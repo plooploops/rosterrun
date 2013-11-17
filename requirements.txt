@@ -1,7 +1,5 @@
 gdata==2.0.18
 httplib2==0.8
-matplotlib==1.2.1
-numpy==1.7.1
 oauth2==unknown
 pulp==1.5.4
 pyparsing==1.5.7
