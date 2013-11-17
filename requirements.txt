@@ -1,6 +1,6 @@
 gdata==2.0.18
 httplib2==0.8
-oauth2==unknown
+oauth2==1.5.211
 pulp==1.5.4
 pyparsing==1.5.7
 scikit-learn==0.13.1
