@@ -23,7 +23,7 @@ class PartyCombination(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80), unique=True)
     g_worksheet_id = db.Column(db.String(80), unique=True)
-    partyIndex = db.Column(db.Integer, unique=False)
+    partyIndex = db.Column(db.String(80), unique=False)
     instanceName = db.Column(db.String(80), unique=False)
     playerName = db.Column(db.String(80), unique=False)
     name = db.Column(db.String(80), unique=False)
