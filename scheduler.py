@@ -9,7 +9,6 @@ import itertools
 import operator
 from itertools import chain, combinations
 from datetime import datetime, timedelta
-from dateutil import parser
 
 class Instance:
   def __init__(self, instanceName, quests, cooldown, roles):
@@ -178,7 +177,7 @@ def initializeData(userName, passWord, docName, quests):
           charac.Quests.append(key)
       if key == 'lastrun':
         if row.custom[key].text is not None:
-          dt = parser.parse(row.custom[key].text)
+          dt = datetime.strptime(row.custom[key].text, '%m/%d/%Y')
           if dt is not None:
 	    charac.LastRun = dt
         else:
