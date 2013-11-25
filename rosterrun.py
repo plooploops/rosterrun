@@ -11,7 +11,7 @@ sched = scheduler()
 
 # configuration
 DATABASE = 'scheduler.db'
-DEBUG = False
+DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -44,7 +44,6 @@ def teardown_request(exception):
 
 @app.route('/')
 def show_entries():
-    print 'testing show entries'
     #session['doc'] = request.form['docname']
     availableParties = []
     #print 'doc name', session['doc']
