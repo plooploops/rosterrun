@@ -27,7 +27,7 @@ class PartyCombination(db.Model):
     instanceName = db.Column(db.String(80), unique=False)
     playerName = db.Column(db.String(80), unique=False)
     name = db.Column(db.String(80), unique=False)
-    class = db.Column(db.String(80), unique=False)
+    className = db.Column(db.String(80), unique=False)
     rolename = db.Column(db.String(80), unique=False)
 
     def __init__(self, spreadsheet_id, worksheet_id, pIndex, iName, pName, cName, cClass, rName):
@@ -37,7 +37,7 @@ class PartyCombination(db.Model):
   	self.instanceName = iName
 	self.playerName = pName
 	self.name = cName
-	self.class = cClass
+	self.className = cClass
 	self.rolename = rName
 
     def __repr__(self):
@@ -82,7 +82,7 @@ def show_entries():
       #g.db.execute('select partyIndex, instanceName, playername, name, class, rolename from combinations where g_spreadsheet_id = ? and g_worksheet_id = ? order by partyIndex, instanceName desc', \
       #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
       #availableParties = [Combination(row[0], row[1], row[2], row[3], row[4], row[5]) for row in cur.fetchall()]
-      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.class, c.rolename) for c in cur]
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
     #print 'availble parties', availableParties
     return render_template('show_entries.html', combinations=availableParties)
 
