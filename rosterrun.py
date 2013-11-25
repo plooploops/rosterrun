@@ -78,7 +78,8 @@ def show_entries():
       #print g_s_id, g_w_id
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
-      cur = PartyCombination.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      cur = PartyCombination.query.all()
+      #cur = PartyCombination.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       #g.db.execute('select partyIndex, instanceName, playername, name, class, rolename from combinations where g_spreadsheet_id = ? and g_worksheet_id = ? order by partyIndex, instanceName desc', \
       #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
       #availableParties = [Combination(row[0], row[1], row[2], row[3], row[4], row[5]) for row in cur.fetchall()]
