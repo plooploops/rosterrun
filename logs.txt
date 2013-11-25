@@ -1,93 +1,3 @@
-2013-11-25T11:24:12.139803+00:00 app[web.1]: 2013-11-25 11:24:12 [2] [INFO] Handling signal: term
-2013-11-25T11:24:12.165282+00:00 app[web.1]: 2013-11-25 11:24:12 [2] [INFO] Shutting down: Master
-2013-11-25T11:24:13.553208+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2013-11-25T11:24:13.584027+00:00 heroku[web.1]: Process exited with status 0
-2013-11-25T11:24:14.957018+00:00 app[web.1]: 2013-11-25 11:24:14 [2] [INFO] Listening at: http://0.0.0.0:34010 (2)
-2013-11-25T11:24:14.956410+00:00 app[web.1]: 2013-11-25 11:24:14 [2] [INFO] Starting gunicorn 18.0
-2013-11-25T11:24:14.957076+00:00 app[web.1]: 2013-11-25 11:24:14 [2] [INFO] Using worker: sync
-2013-11-25T11:24:14.969010+00:00 app[web.1]: 2013-11-25 11:24:14 [7] [INFO] Booting worker with pid: 7
-2013-11-25T11:24:15.306231+00:00 heroku[web.1]: State changed from starting to up
-2013-11-25T11:24:26.180941+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
-2013-11-25T11:24:31.535143+00:00 heroku[run.5341]: State changed from starting to up
-2013-11-25T11:24:31.610862+00:00 heroku[run.5341]: Awaiting client
-2013-11-25T11:24:31.644961+00:00 heroku[run.5341]: Starting process with command `python`
-2013-11-25T11:24:48.556899+00:00 heroku[run.5341]: State changed from up to complete
-2013-11-25T11:24:48.545241+00:00 heroku[run.5341]: Process exited with status 0
-2013-11-25T11:25:08.914426+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=292ms status=200 bytes=684
-2013-11-25T11:25:14.464604+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=115ms status=200 bytes=818
-2013-11-25T11:25:19.711536+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=9ms status=302 bytes=209
-2013-11-25T11:25:20.200896+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=117ms status=200 bytes=509
-2013-11-25T11:25:22.418531+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=12ms status=200 bytes=492
-2013-11-25T11:25:30.564074+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=5ms status=302 bytes=209
-2013-11-25T11:25:31.380844+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=5ms status=200 bytes=733
-2013-11-25T11:25:39.609253+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Lurer')]
-2013-11-25T11:25:39.941815+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Lurer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Healer')]
-2013-11-25T11:25:40.173170+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Support'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Lurer')]
-2013-11-25T11:25:42.914298+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support')]
-2013-11-25T11:25:42.926429+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support'), ('Joe', 'Freezer'), ('Joe', 'Healer')]
-2013-11-25T11:25:42.927654+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
-2013-11-25T11:25:42.972740+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer')]
-2013-11-25T11:25:42.975429+00:00 app[web.1]: dual client assignment [('Cheng', 'Support'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.000919+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.004658+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Support'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.124203+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer')]
-2013-11-25T11:25:43.125542+00:00 app[web.1]: dual client assignment [('Cheng', 'Healer'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.153718+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.219997+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.223061+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Support'), ('Cheng', 'Killer')]
-2013-11-25T11:25:43.293176+00:00 app[web.1]: 2013-11-25 11:25:43 [7] [ERROR] Error handling request
-2013-11-25T11:25:43.293176+00:00 app[web.1]: Traceback (most recent call last):
-2013-11-25T11:25:43.293176+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2013-11-25T11:25:43.293176+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2013-11-25T11:25:43.293176+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2013-11-25T11:25:43.293176+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2013-11-25T11:25:43.293176+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2013-11-25T11:25:43.293176+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2013-11-25T11:25:43.293176+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2013-11-25T11:25:43.293176+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2013-11-25T11:25:43.293392+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2013-11-25T11:25:43.293392+00:00 app[web.1]:     response = self.full_dispatch_request()
-2013-11-25T11:25:43.293392+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2013-11-25T11:25:43.293392+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2013-11-25T11:25:43.293392+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2013-11-25T11:25:43.293392+00:00 app[web.1]:     rv = self.dispatch_request()
-2013-11-25T11:25:43.293392+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2013-11-25T11:25:43.293392+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2013-11-25T11:25:43.293392+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2013-11-25T11:25:43.293536+00:00 app[web.1]:   File "/app/rosterrun.py", line 124, in run_calculation
-2013-11-25T11:25:43.293392+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2013-11-25T11:25:43.293536+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 149, in do
-2013-11-25T11:25:43.293536+00:00 app[web.1]:     return getattr(self.registry(), name)(*args, **kwargs)
-2013-11-25T11:25:43.293536+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 354, in commit
-2013-11-25T11:25:43.293536+00:00 app[web.1]:     self._prepare_impl()
-2013-11-25T11:25:43.293536+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 334, in _prepare_impl
-2013-11-25T11:25:43.293536+00:00 app[web.1]:     self.transaction.commit()
-2013-11-25T11:25:43.293536+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 721, in commit
-2013-11-25T11:25:43.294020+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1818, in flush
-2013-11-25T11:25:43.294020+00:00 app[web.1]:     self._flush(objects)
-2013-11-25T11:25:43.294020+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1936, in _flush
-2013-11-25T11:25:43.293536+00:00 app[web.1]:     db.session.commit()
-2013-11-25T11:25:43.294020+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py", line 58, in __exit__
-2013-11-25T11:25:43.293536+00:00 app[web.1]:     self.session.flush()
-2013-11-25T11:25:43.294020+00:00 app[web.1]:     compat.reraise(exc_type, exc_value, exc_tb)
-2013-11-25T11:25:43.294020+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1900, in _flush
-2013-11-25T11:25:43.294020+00:00 app[web.1]:     flush_context.execute()
-2013-11-25T11:25:43.294169+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/persistence.py", line 64, in save_obj
-2013-11-25T11:25:43.294169+00:00 app[web.1]:     table, insert)
-2013-11-25T11:25:43.294020+00:00 app[web.1]:     rec.execute(self)
-2013-11-25T11:25:43.294169+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 525, in execute
-2013-11-25T11:25:43.294169+00:00 app[web.1]:     uow
-2013-11-25T11:25:43.294020+00:00 app[web.1]:     transaction.rollback(_capture_exception=True)
-2013-11-25T11:25:43.294169+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/persistence.py", line 569, in _emit_insert_statements
-2013-11-25T11:25:43.294169+00:00 app[web.1]:     execute(statement, params)
-2013-11-25T11:25:43.294169+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 662, in execute
-2013-11-25T11:25:43.294169+00:00 app[web.1]:     params)
-2013-11-25T11:25:43.294169+00:00 app[web.1]:     compiled_sql, distilled_params
-2013-11-25T11:25:43.294526+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 874, in _execute_context
-2013-11-25T11:25:43.294526+00:00 app[web.1]:     context)
-2013-11-25T11:25:43.294526+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
-2013-11-25T11:25:43.294526+00:00 app[web.1]:     exc_info
-2013-11-25T11:25:43.294020+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 372, in execute
 2013-11-25T11:25:43.294526+00:00 app[web.1]:     reraise(type(exception), exception, tb=exc_tb)
 2013-11-25T11:25:43.294526+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 867, in _execute_context
 2013-11-25T11:25:43.294526+00:00 app[web.1]:     context)
@@ -99,3 +9,93 @@
 2013-11-25T11:25:43.294169+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
 2013-11-25T11:25:43.294526+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 196, in raise_from_cause
 2013-11-25T11:25:43.292949+00:00 heroku[router]: at=info method=POST path=/runcalc host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=5604ms status=500 bytes=135
+2013-11-25T11:27:19.606569+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2013-11-25T11:27:24.729746+00:00 heroku[run.2784]: Awaiting client
+2013-11-25T11:27:24.783723+00:00 heroku[run.2784]: Starting process with command `python`
+2013-11-25T11:27:24.859430+00:00 heroku[run.2784]: State changed from starting to up
+2013-11-25T11:29:09.673560+00:00 heroku[run.2784]: Process exited with status 0
+2013-11-25T11:29:09.688237+00:00 heroku[run.2784]: State changed from up to complete
+2013-11-25T11:32:52+00:00 heroku[slug-compiler]: Slug compilation started
+2013-11-25T11:33:11.036107+00:00 heroku[api]: Deploy 1190267 by andygee@gmail.com
+2013-11-25T11:33:11.056368+00:00 heroku[api]: Release v23 created by andygee@gmail.com
+2013-11-25T11:33:11+00:00 heroku[slug-compiler]: Slug compilation finished
+2013-11-25T11:33:11.295286+00:00 heroku[web.1]: State changed from up to starting
+2013-11-25T11:33:14.608802+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2013-11-25T11:33:15.219836+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2013-11-25T11:33:15.384863+00:00 app[web.1]: 2013-11-25 11:33:15 [7] [INFO] Worker exiting (pid: 7)
+2013-11-25T11:33:15.487839+00:00 app[web.1]: 2013-11-25 11:33:15 [2] [INFO] Handling signal: term
+2013-11-25T11:33:15.500553+00:00 app[web.1]: 2013-11-25 11:33:15 [2] [INFO] Shutting down: Master
+2013-11-25T11:33:16.136332+00:00 app[web.1]: 2013-11-25 11:33:16 [2] [INFO] Using worker: sync
+2013-11-25T11:33:16.135655+00:00 app[web.1]: 2013-11-25 11:33:16 [2] [INFO] Starting gunicorn 18.0
+2013-11-25T11:33:16.136249+00:00 app[web.1]: 2013-11-25 11:33:16 [2] [INFO] Listening at: http://0.0.0.0:39902 (2)
+2013-11-25T11:33:16.142671+00:00 app[web.1]: 2013-11-25 11:33:16 [7] [INFO] Booting worker with pid: 7
+2013-11-25T11:33:16.405038+00:00 heroku[web.1]: State changed from starting to up
+2013-11-25T11:33:16.904773+00:00 heroku[web.1]: Process exited with status 0
+2013-11-25T11:33:18.436981+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2013-11-25T11:33:23.202564+00:00 heroku[run.1136]: Awaiting client
+2013-11-25T11:33:23.252715+00:00 heroku[run.1136]: Starting process with command `python`
+2013-11-25T11:33:23.330566+00:00 heroku[run.1136]: State changed from starting to up
+2013-11-25T11:33:49.921014+00:00 heroku[run.1136]: Process exited with status 0
+2013-11-25T11:33:49.935622+00:00 heroku[run.1136]: State changed from up to complete
+2013-11-25T11:33:58.031321+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=3ms service=36ms status=404 bytes=233
+2013-11-25T11:34:04.811710+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=25ms status=302 bytes=209
+2013-11-25T11:34:04.933789+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=6ms status=200 bytes=509
+2013-11-25T11:34:07.002610+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=13ms status=200 bytes=492
+2013-11-25T11:33:57.726127+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=31ms status=200 bytes=684
+2013-11-25T11:34:15.378966+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=47ms status=302 bytes=209
+2013-11-25T11:34:15.539681+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=14ms service=37ms status=200 bytes=733
+2013-11-25T11:34:23.723457+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Lurer')]
+2013-11-25T11:34:24.045304+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Lurer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Healer')]
+2013-11-25T11:34:24.253047+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Support'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Lurer')]
+2013-11-25T11:34:26.675630+00:00 app[web.1]: dual client assignment [('Cheng', 'Support'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.633782+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support')]
+2013-11-25T11:34:26.645620+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support'), ('Joe', 'Freezer'), ('Joe', 'Healer')]
+2013-11-25T11:34:26.673511+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer')]
+2013-11-25T11:34:26.646548+00:00 app[web.1]: dual client assignment [('Andy', 'Healer'), ('Andy', 'Support'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.699102+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.702160+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Support'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.816672+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer')]
+2013-11-25T11:34:26.817501+00:00 app[web.1]: dual client assignment [('Cheng', 'Healer'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.844669+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.914561+00:00 app[web.1]: dual client assignment [('Joe', 'Freezer'), ('Joe', 'Healer'), ('Cheng', 'Support'), ('Cheng', 'Killer')]
+2013-11-25T11:34:26.912223+00:00 app[web.1]: dual client assignment [('Joe', 'Support'), ('Joe', 'Freezer'), ('Cheng', 'Healer'), ('Cheng', 'Killer')]
+2013-11-25T11:34:27.014245+00:00 heroku[router]: at=info method=POST path=/runcalc host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=5935ms status=302 bytes=209
+2013-11-25T11:38:23.716511+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=9ms service=6ms status=302 bytes=209
+2013-11-25T11:38:24.508013+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=682ms status=200 bytes=1841
+2013-11-25T11:38:26.752390+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=17ms status=200 bytes=492
+2013-11-25T11:38:35.443753+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=43ms status=302 bytes=209
+2013-11-25T11:38:35.563905+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=6ms status=200 bytes=733
+2013-11-25T11:38:58.502616+00:00 heroku[router]: at=info method=POST path=/runcalc host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=16232ms status=500 bytes=135
+2013-11-25T11:38:58.380398+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Lurer')]
+2013-11-25T11:38:58.384203+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Lurer')]
+2013-11-25T11:38:58.419729+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Support'), ('Cheng', 'Lurer')]
+2013-11-25T11:38:58.391275+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Joe', 'Freezer'), ('Cheng', 'Lurer'), ('Cheng', 'Support')]
+2013-11-25T11:38:58.495489+00:00 app[web.1]: dual client assignment [('Andy', 'SPKiller'), ('Andy', 'Healer'), ('Joe', 'SPActive'), ('Cheng', 'Support'), ('Cheng', 'Lurer'), ('Joe', 'Freezer')]
+2013-11-25T11:38:58.496937+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2013-11-25T11:38:58.496937+00:00 app[web.1]: Traceback (most recent call last):
+2013-11-25T11:38:58.496937+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2013-11-25T11:38:58.496937+00:00 app[web.1]: 2013-11-25 11:38:58 [7] [ERROR] Error handling request
+2013-11-25T11:38:58.496937+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2013-11-25T11:38:58.497110+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2013-11-25T11:38:58.497110+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2013-11-25T11:38:58.497110+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2013-11-25T11:38:58.496937+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2013-11-25T11:38:58.497110+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2013-11-25T11:38:58.496937+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-11-25T11:38:58.496937+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2013-11-25T11:38:58.497110+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2013-11-25T11:38:58.497269+00:00 app[web.1]:   File "/app/rosterrun.py", line 115, in run_calculation
+2013-11-25T11:38:58.497110+00:00 app[web.1]:     response = self.full_dispatch_request()
+2013-11-25T11:38:58.497269+00:00 app[web.1]:     parties = run_scheduler(session['user'], session['pw'], session['doc'])
+2013-11-25T11:38:58.497110+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2013-11-25T11:38:58.497110+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2013-11-25T11:38:58.497110+00:00 app[web.1]:     rv = self.dispatch_request()
+2013-11-25T11:38:58.497269+00:00 app[web.1]: IndexError: list index out of range
+2013-11-25T11:38:58.497269+00:00 app[web.1]:     badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
+2013-11-25T11:38:58.497269+00:00 app[web.1]:   File "/app/scheduler.py", line 93, in run_scheduler
+2013-11-25T11:38:58.497110+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-11-25T11:38:58.496937+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2013-11-25T11:38:58.496937+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2013-11-25T11:38:58.497269+00:00 app[web.1]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
+2013-11-25T11:38:58.497269+00:00 app[web.1]:   File "/app/scheduler.py", line 265, in combineByRoleAssignment
+2013-11-25T11:39:12.493699+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=POST path=/runcalc host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=2ms service=30000ms status=503 bytes=0

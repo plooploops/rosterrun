@@ -8,14 +8,13 @@
         <dd><input type=submit value='Calculate'>
       </dl>
     </form>
-  {% endif %}
   <table class=combination>
   <tr>
   <th>Party Combination</th>
   <th>Player Name</th>
   <th>Character Name</th>
   <th>Class</th>
-  <th>Role</th> 
+  <th>Role</th>
   </tr>
   {% for entry in combinations %}
     <tr>
@@ -29,4 +28,5 @@
     <li><em>Unbelievable.  No combinations here so far</em>
   {% endfor %}
   </table>
+  {% endif %}
 {% endblock %}
