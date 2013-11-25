@@ -9,6 +9,7 @@ import itertools
 import operator
 from itertools import chain, combinations
 from datetime import datetime, timedelta
+from dateutil import parser
 
 class Instance:
   def __init__(self, instanceName, quests, cooldown, roles):
