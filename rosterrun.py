@@ -58,12 +58,12 @@ def resetParameters():
     session['pw'] = None
     session['doc'] = None
 
-@app.before_request
-def before_request():
+#@app.before_request
+#def before_request():
     #g.db = connect_db()
 
-@app.teardown_request
-def teardown_request(exception):
+#@app.teardown_request
+#def teardown_request(exception):
     #db = getattr(g, 'db', None)
     #if db is not None:
         #db.close()
