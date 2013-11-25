@@ -95,9 +95,10 @@ def run_calculation():
         flash('Must include relevant document name')
         return redirect(url_for('show_entries'))
 
-    cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id']) 
-    [db.session.delete(c) for c in cur]  
-    db.session.commit()
+    if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
+      cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id']) 
+      [db.session.delete(c) for c in cur]  
+      db.session.commit()
     #g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
     #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
     #g.db.commit()
