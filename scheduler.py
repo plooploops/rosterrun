@@ -8,7 +8,6 @@ from flask import Flask
 import itertools
 import operator
 from itertools import chain, combinations
-from dateutil import parser
 from datetime import datetime, timedelta
 
 class Instance:
