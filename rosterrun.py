@@ -73,12 +73,12 @@ def show_entries():
     #session['doc'] = request.form['docname']
     availableParties = []
     #print 'doc name', session['doc']
-    if(session['doc'] is not None and len(session['doc']) > 0):
+    if(session['doc'] is not None, len(session['doc']) > 0):
       (g_s_id, g_w_id) = testConnectToSpreadsheetsService(session['user'], session['pw'], session['doc'])
       #print g_s_id, g_w_id
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
-      cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'] and g_worksheet_id=session['g_worksheet_id']) 
+      cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id']) 
       #g.db.execute('select partyIndex, instanceName, playername, name, class, rolename from combinations where g_spreadsheet_id = ? and g_worksheet_id = ? order by partyIndex, instanceName desc', \
       #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
       #availableParties = [Combination(row[0], row[1], row[2], row[3], row[4], row[5]) for row in cur.fetchall()]
@@ -95,7 +95,7 @@ def run_calculation():
         flash('Must include relevant document name')
         return redirect(url_for('show_entries'))
 
-    cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'] and g_worksheet_id=session['g_worksheet_id']) 
+    cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id']) 
     [db.session.delete(c) for c in cur]  
     db.session.commit()
     #g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
@@ -115,7 +115,7 @@ def run_calculation():
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(parties) - 1):
       #print [(c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName) for c in parties[i]]
-      [db.session.add(PartyCombination(session['g_spreadsheet_id'], session['g_worksheet_id'], c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName)) for c in parties[i]
+      [db.session.add(PartyCombination(session['g_spreadsheet_id'], session['g_worksheet_id'], c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName)) for c in parties[i]]
       #[g.db.execute('insert into combinations (g_spreadsheet_id, g_worksheet_id, partyIndex, instanceName, playername, name, class, rolename) values (?, ?, ?, ?, ?, ?, ?, ?)', \
         #(session['g_spreadsheet_id'], session['g_worksheet_id'], c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName)) for c in parties[i]]
 #    g.db.commit()
@@ -137,7 +137,8 @@ def reset():
 #    g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
 #      (session['g_spreadsheet_id'], session['g_worksheet_id']))
 #    g.db.commit()
-    cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'] and g_worksheet_id=session['g_worksheet_id']) 
+    cur = PartyCombination.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id']) 
+    
     [db.session.delete(c) for c in cur]  
     db.session.commit()
 
