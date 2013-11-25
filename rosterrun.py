@@ -73,7 +73,7 @@ def show_entries():
     #session['doc'] = request.form['docname']
     availableParties = []
     #print 'doc name', session['doc']
-    if(session['doc'] is not None and len(session['doc']) > 0):
+    if('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
       (g_s_id, g_w_id) = testConnectToSpreadsheetsService(session['user'], session['pw'], session['doc'])
       #print g_s_id, g_w_id
       session['g_spreadsheet_id'] = g_s_id
