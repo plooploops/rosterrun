@@ -19,7 +19,7 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-class PartyCombination(db.Model):
+class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80), unique=False)
     g_worksheet_id = db.Column(db.String(80), unique=False)
@@ -41,7 +41,7 @@ class PartyCombination(db.Model):
 	self.rolename = rName
 
     def __repr__(self):
-        return '<PartyCombination %r>' % self.playerName
+        return '<PartyCombo %r>' % self.playerName
 
 sched = scheduler()
 
@@ -78,8 +78,8 @@ def show_entries():
       #print g_s_id, g_w_id
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
-      cur = PartyCombination.query.all()
-      #cur = PartyCombination.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      #cur = PartyCombo.query.all()
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       #g.db.execute('select partyIndex, instanceName, playername, name, class, rolename from combinations where g_spreadsheet_id = ? and g_worksheet_id = ? order by partyIndex, instanceName desc', \
       #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
       #availableParties = [Combination(row[0], row[1], row[2], row[3], row[4], row[5]) for row in cur.fetchall()]
@@ -97,7 +97,7 @@ def run_calculation():
         return redirect(url_for('show_entries'))
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
-      cur = PartyCombination.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       [db.session.delete(c) for c in cur]  
       db.session.commit()
     #g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
@@ -117,7 +117,7 @@ def run_calculation():
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(parties) - 1):
       #print [(c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName) for c in parties[i]]
-      [db.session.add(PartyCombination(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+      [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
       #[g.db.execute('insert into combinations (g_spreadsheet_id, g_worksheet_id, partyIndex, instanceName, playername, name, class, rolename) values (?, ?, ?, ?, ?, ?, ?, ?)', \
         #(session['g_spreadsheet_id'], session['g_worksheet_id'], c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName)) for c in parties[i]]
 #    g.db.commit()
@@ -139,7 +139,7 @@ def reset():
 #    g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
 #      (session['g_spreadsheet_id'], session['g_worksheet_id']))
 #    g.db.commit()
-    cur = PartyCombination.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+    cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
     
     [db.session.delete(c) for c in cur]  
     db.session.commit()
