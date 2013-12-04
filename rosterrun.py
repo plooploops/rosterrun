@@ -1,12 +1,42 @@
 import os
 from flask import Flask
-from scheduler import run_scheduler, scheduler, testConnectToSpreadsheetsService, Combination
+from scheduler import run_scheduler, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
 
+import gdata.gauth
+import gdata.docs.client
+
+from urlparse import urlparse, parse_qs
+from oauth2client import client
+from oauth2client.client import OAuth2WebServerFlow
+
+import pickle
+from google.appengine.api import memcache
+from google.appengine.api import users
+
+from google.appengine.ext import db
+from oauth2client.appengine import CredentialsProperty
+from credentialsmodel import CredentialsModel
+from google.appengine.api import users
+from oauth2client.appengine import StorageByKeyName
+import datastorestub
+
+#import dev_appserver
+#os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
+
+#fill in by after registering application with google
+CONSUMER_KEY = 'rosterrun.herokuapp.com'
+CONSUMER_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
+CLIENT_ID = '900730400111-npfbpmda6jtc8mmu7fn3ifm67fckim5b.apps.googleusercontent.com'
+CLIENT_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
+SCOPES = ['https://spreadsheets.google.com/feeds/']
+REDIRECT_URI = 'http://127.0.0.1:5000/auth_return'
+
+flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
 # configuration
 DATABASE = 'scheduler.db'
 DEBUG = True
@@ -16,19 +46,20 @@ PASSWORD = 'default'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+#Heroku Postgres SQL url obtained when deployed
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    g_spreadsheet_id = db.Column(db.String(80), unique=False)
-    g_worksheet_id = db.Column(db.String(80), unique=False)
-    partyIndex = db.Column(db.String(80), unique=False)
-    instanceName = db.Column(db.String(80), unique=False)
-    playerName = db.Column(db.String(80), unique=False)
-    name = db.Column(db.String(80), unique=False)
-    className = db.Column(db.String(80), unique=False)
-    rolename = db.Column(db.String(80), unique=False)
+    g_spreadsheet_id = db.Column(db.String(80))
+    g_worksheet_id = db.Column(db.String(80))
+    partyIndex = db.Column(db.String(80))
+    instanceName = db.Column(db.String(80))
+    playerName = db.Column(db.String(80))
+    name = db.Column(db.String(80))
+    className = db.Column(db.String(80))
+    rolename = db.Column(db.String(80))
 
     def __init__(self, spreadsheet_id, worksheet_id, pIndex, iName, pName, cName, cClass, rName):
         self.g_spreadsheet_id = spreadsheet_id
@@ -45,53 +76,50 @@ class PartyCombo(db.Model):
 
 sched = scheduler()
 
-#def connect_db():
-#    return sqlite3.connect(app.config['DATABASE'])
-#def init_db():
-#    with closing(connect_db()) as db:
-#        with app.open_resource('schema.sql', mode='r') as f:
-#            db.cursor().executescript(f.read())
-#        db.commit()
-
 def resetParameters():
     session['user'] = None
     session['pw'] = None
     session['doc'] = None
-
-#@app.before_request
-#def before_request():
-    #g.db = connect_db()
-
-#@app.teardown_request
-#def teardown_request(exception):
-    #db = getattr(g, 'db', None)
-    #if db is not None:
-        #db.close()
+    session['accessToken'] = None
+    session['requestToken'] = None
 
 @app.route('/')
 def show_entries():
-    #session['doc'] = request.form['docname']
+    
+    res = urlparse(request.url)
+    qs = parse_qs(res.query)
+    if 'docname' in qs.keys() and len(qs['docname']) > 0: 
+      session['doc'] = qs['docname'][0]
     availableParties = []
-    #print 'doc name', session['doc']
     if('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsService(session['user'], session['pw'], session['doc'])
-      #print g_s_id, g_w_id
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id    
-      #cur = PartyCombo.query.all()
-      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-      #g.db.execute('select partyIndex, instanceName, playername, name, class, rolename from combinations where g_spreadsheet_id = ? and g_worksheet_id = ? order by partyIndex, instanceName desc', \
-      #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
-      #availableParties = [Combination(row[0], row[1], row[2], row[3], row[4], row[5]) for row in cur.fetchall()]
-      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-    #print 'availble parties', availableParties
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is not None:
+        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+        print g_s_id, g_w_id
+        session['g_spreadsheet_id'] = g_s_id
+        session['g_worksheet_id'] = g_w_id    
+        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        print 'availble parties', availableParties
+      else:
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
     return render_template('show_entries.html', combinations=availableParties)
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
     if not session.get('logged_in'):
         abort(401)
-    session['doc'] = request.form['docname']
+    
+    res = urlparse(request.url)
+    qs = parse_qs(res.query)
+    if 'docname' in qs.keys() and len(qs['docname']) > 0: 
+      session['doc'] = qs['docname'][0]
+    
     if(len(session['doc']) <= 0):
         flash('Must include relevant document name')
         return redirect(url_for('show_entries'))
@@ -100,70 +128,111 @@ def run_calculation():
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       [db.session.delete(c) for c in cur]  
       db.session.commit()
-    #g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
-    #  (session['g_spreadsheet_id'], session['g_worksheet_id']))
-    #g.db.commit()
-
-    (g_s_id, g_w_id) = testConnectToSpreadsheetsService(session['user'], session['pw'], session['doc'])
-    #print g_s_id, g_w_id
-    if(g_s_id == -1 or g_w_id == -1):
-      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-      return redirect(url_for('show_entries'))
-
-    session['g_spreadsheet_id'] = g_s_id
-    session['g_worksheet_id'] = g_w_id    
-    parties = run_scheduler(session['user'], session['pw'], session['doc'])
     
-    #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-    for i in range(0, len(parties) - 1):
-      #print [(c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName) for c in parties[i]]
-      [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
-      #[g.db.execute('insert into combinations (g_spreadsheet_id, g_worksheet_id, partyIndex, instanceName, playername, name, class, rolename) values (?, ?, ?, ?, ?, ?, ?, ?)', \
-        #(session['g_spreadsheet_id'], session['g_worksheet_id'], c.PartyIndex, c.InstanceName, c.PlayerName, c.CharacterName, c.CharacterClass, c.RoleName)) for c in parties[i]]
-#    g.db.commit()
-    db.session.commit()
-    flash('Calculation finished')
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()    
+    if credentials is not None:
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsService(credentials, session['doc'])
+      #print g_s_id, g_w_id
+      if(g_s_id == -1 or g_w_id == -1):
+        flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+        return redirect(url_for('show_entries'))
+
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      parties = run_scheduler_OAuth(credentials, session['doc'])
+    
+      #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+      for i in range(0, len(parties) - 1):
+        [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+     
+      db.session.commit()
+      flash('Calculation finished')
+    else:
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
     return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
 def reset():
     if not session.get('logged_in'):
-        abort(401)
+      abort(401)
     session['doc'] = request.form['docname']
     if(len(session['doc']) <= 0):
-        flash('Must include relevant document name')
-        return redirect(url_for('show_entries'))
-    sched.testConnectToSpreadsheetsService(session['user'], session['pw'], session['doc'])
-    session['g_spreadsheet_id'] = sched.g_spreadsheet_id
-    session['g_worksheet_id'] = sched.g_worksheet_id    
-#    g.db.execute('delete from combinations where g_spreadsheet_id = ? and g_worksheet_id = ?', \
-#      (session['g_spreadsheet_id'], session['g_worksheet_id']))
-#    g.db.commit()
-    cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      flash('Must include relevant document name')
+      return redirect(url_for('show_entries'))
+
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()    
+    if credentials is not None:
+      sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = sched.g_spreadsheet_id
+      session['g_worksheet_id'] = sched.g_worksheet_id    
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
     
-    [db.session.delete(c) for c in cur]  
-    db.session.commit()
+      [db.session.delete(c) for c in cur]  
+      db.session.commit()
 
-    flash('Reset party combinations')
-    return redirect(url_for('show_entries'))
+      flash('Reset party combinations')
+    else:
+      flash('Cannot log in to spreadsheet')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+    return redirect(url_for('show_entries')) 
 
+@app.route('/auth_return', methods=['GET', 'POST'])
+def oauth2callback():
+    res = urlparse(request.url)
+    qs = parse_qs(res.query)
+    if 'code' in qs.keys() and len(qs['code']) > 0:
+      #Store credentials
+      credentials = flow.step2_exchange(qs['code'][0])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      storage.put(credentials)    
+      session['logged_in'] = True
+      #credentials stored
+      flash('You were logged in')
+      return redirect(url_for('show_entries'))
+ 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     resetParameters()
-    error = None
+    error = None    
+    
     if request.method == 'POST':
         if len(request.form['username']) == 0:
             error = 'Invalid username'
-        elif len(request.form['password']) == 0:
-            error = 'Invalid password'
         else:
-            user = request.form['username']
-            pw = request.form['password']
-            session['user'] = user
-            session['pw'] = pw
-            session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('show_entries'))
+            username = request.form['username']
+            session['user'] = username
+
+	    loginConfiguration(username)
+            flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
+            #print flow
+#            user = users.get_current_user()
+#            print user.user_id()
+#	    memcache.set(user.user_id(), pickle.dumps(flow))
+            
+            auth_uri = flow.step1_get_authorize_url()
+            #print auth_uri
+            
+#            flow = pickle.loads(memcache.get(user.user_id()))            
+            #print flow
+            
+            return redirect(auth_uri)
+            #
+            #If the user has previously granted your application access, the authorization server immediately redirects again to redirect_uri. If the user has not yet granted access, the authorization server asks them to grant your application access. If they grant access, they get redirected to redirect_uri with a code query string parameter similar to the following:
+	    #
+	    #http://example.com/auth_return/?code=kACAH-1Ng1MImB...AA7acjdY9pTD9M
+	    #If they deny access, they get redirected to redirect_uri with an error query string parameter similar to the following:
+	    #
+	    #http://example.com/auth_return/?error=access_denied
+	    #
     return render_template('login.html', error=error)
 
 @app.route('/logout')
@@ -172,5 +241,14 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+def loginConfiguration(username, userid=1):
+  os.environ['USER_EMAIL'] = username
+  #can this a default?
+  os.environ['USER_ID'] = userid
+  os.environ['AUTH_DOMAIN'] = 'testbed'
+  os.environ['APPLICATION_ID'] = 'roster run'
+
 if __name__ == "__main__":
-    app.run()
+  db.create_all()
+  db.session.commit()
+  app.run()

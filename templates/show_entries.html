@@ -1,11 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('run_calculation') }}" method=post class=run-calculation>
+    <form class=run-calculation>
       <dl>
         <dt>Google Document:
         <dd><input type=text name=docname>
-        <dd><input type=submit value='Calculate'>
+        <dd>
+        <input type=submit value='Calculate' action="{{ url_for('run_calculation') }}" method=post>
+        <input type=submit value='Reset' action="{{ url_for('reset') }}" method=post>
+        <input type=submit value='Refresh' action="{{ url_for('show_entries') }}" method=post>
       </dl>
     </form>
   <table class=combination>

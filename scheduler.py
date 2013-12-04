@@ -1,6 +1,7 @@
 import gdata.docs
 import gdata.docs.service
 import gdata.spreadsheet.service
+import gdata.spreadsheets.client
 import re
 import os
 import getpass
@@ -9,6 +10,11 @@ import itertools
 import operator
 from itertools import chain, combinations
 from datetime import datetime, timedelta
+
+#should match from application registration with google
+CONSUMER_KEY = 'rosterrun.herokuapp.com'
+CONSUMER_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
+APP_NAME = 'roster run'
 
 class Instance:
   def __init__(self, instanceName, quests, cooldown, roles):
@@ -98,6 +104,26 @@ def run_scheduler(user, pw, doc):
     #print parties
     return parties    
 
+def run_scheduler_OAuth(token, tokenSecret, doc):
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesSPKiller)
+    instance = niddhoggInstance
+    quests = niddhoggQuests
+    parties = []
+    viablePartyIndex = 0
+
+    userName = user
+    password = pw
+    docName = doc
+    initializeDataOAuth(token, tokenSecret, docName, quests)
+    avChar = computeRequirements(characters, instance, quests)
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+    
+    #print parties
+    return parties    
+
 def raw_test():
     user = raw_input('User Name: ')
     pw = getpass.getpass('Password: ')
@@ -108,6 +134,93 @@ def raw_test():
 
 def scheduler():
     return 'Hello world'
+    
+def authorizeClient(credentials, client):
+  auth2token = gdata.gauth.OAuth2TokenFromCredentials(credentials)
+  #print 'authentication token %s' % auth2token
+  gd_client = client
+  gd_client.auth_token = auth2token
+  gd_client = auth2token.authorize(gd_client)
+  
+  #print 'authorized client %s' % gd_client
+  
+  return gd_client
+
+def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
+  gd_client =  gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
+  spreadsheet_id = -1
+  worksheet_id = -1
+
+  gd_client = authorizeClient(credentials, gd_client)
+  
+  #print 'logged in client %s' % gd_client  
+  q = gdata.spreadsheet.service.DocumentQuery()    
+ 
+  q['title'] = docName
+  q['title-exact'] = 'true'
+  feed = gd_client.GetSpreadsheets(query=q)	
+  #print map(lambda e: (e.title.text, e.id.text.rsplit('/', 1)[1]), feed.entry)
+  spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
+  #print 'found a spreadsheet %s' % spreadsheet_id
+  feed = gd_client.GetWorksheets(spreadsheet_id) 
+  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
+  
+  return (spreadsheet_id, worksheet_id)  
+
+def initializeDataOAuth(credentials, docName, quests):
+  doc_name        = docName
+
+  # Connect to Google
+  gd_client =  gdata.docs.client.DocsClient(source=APP_NAME)
+  gd_client = authorizeClient(credentials, gd_client)
+  
+  q = gdata.spreadsheet.service.DocumentQuery()
+  q['title'] = doc_name
+  q['title-exact'] = 'true'
+  feed = gd_client.GetSpreadsheets(query=q)	
+  spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
+  feed = gd_client.GetWorksheets(spreadsheet_id) 
+  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
+
+  g_spreadsheet_id = spreadsheet_id
+  g_worksheet_id = worksheet_id
+  rows = gd_client.GetLists(spreadsheet_id, worksheet_id).entry
+  
+  for row in rows:
+    charac = Character()
+    charac.Quests = []
+    for key in row.custom:
+      
+      #pick out relevant keys
+      if key == 'playername':
+        charac.PlayerName = row.custom[key].text
+      if key == 'name':
+        charac.Name = row.custom[key].text
+      if key == 'characterclass':
+        charac.Class = row.custom[key].text
+	roleMap = [r for r in AllRoles if charac.Class in r.Classes]
+        if len(roleMap) > 0:
+          charac.Role = roleMap[0]
+      if key in quests:
+        if row.custom[key].text == '1':
+          if key in charac.Quests:
+            continue
+          charac.Quests.append(key)
+      if key == 'lastrun':
+        if row.custom[key].text is not None:
+          dt = datetime.strptime(row.custom[key].text, '%m/%d/%Y')
+          if dt is not None:
+	    charac.LastRun = dt
+        else:
+          charac.LastRun = datetime.min
+      if key == 'present':
+        if row.custom[key].text == '1':
+          charac.Present = True
+        else:
+          charac.Present = False 
+    characters.append(charac)
+  #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
+  #print chars
 
 def testConnectToSpreadsheetsService(user, pw, docName):
   gd_client = gdata.spreadsheet.service.SpreadsheetsService()
@@ -260,7 +373,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       #check improper dual role assignment
       dualClientPlayers = [c[0] for c in [pc for pc in playersCountToCharacters if pc[1] == 2]]
       DualClientPlayersAssignment = [(c.PlayerName, c.Role) for c in comb if c.PlayerName in dualClientPlayers]
-      print 'dual client assignment', [(c[0], c[1].Name) for c in DualClientPlayersAssignment]
+      #print 'dual client assignment', [(c[0], c[1].Name) for c in DualClientPlayersAssignment]
       mergedClientPlayerAssignment = list(accumulate(DualClientPlayersAssignment))
       badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
       if(len(badDualClientPlayers) > 0):
