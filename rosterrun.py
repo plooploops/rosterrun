@@ -244,7 +244,7 @@ def logout():
 def loginConfiguration(username, userid=1):
   os.environ['USER_EMAIL'] = username
   #can this a default?
-  os.environ['USER_ID'] = userid
+  os.environ['USER_ID'] = str(userid)
   os.environ['AUTH_DOMAIN'] = 'testbed'
   os.environ['APPLICATION_ID'] = 'roster run'
 
