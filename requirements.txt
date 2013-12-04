@@ -2,7 +2,6 @@ Flask==0.10.1
 Flask-SQLAlchemy==1.0
 Jinja2==2.7.1
 MarkupSafe==0.18
-PyYAML==3.05
 SQLAlchemy==0.8.3
 Werkzeug==0.9.4
 django==1.6
