@@ -147,7 +147,7 @@ def authorizeClient(credentials, client):
   return gd_client
 
 def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
-  gd_client =  gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
+  gd_client = gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
   spreadsheet_id = -1
   worksheet_id = -1
 
@@ -168,14 +168,12 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   return (spreadsheet_id, worksheet_id)  
 
 def initializeDataOAuth(credentials, docName, quests):
-  doc_name        = docName
-
   # Connect to Google
-  gd_client =  gdata.docs.client.DocsClient(source=APP_NAME)
+  gd_client = gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
   gd_client = authorizeClient(credentials, gd_client)
   
   q = gdata.spreadsheet.service.DocumentQuery()
-  q['title'] = doc_name
+  q['title'] = docName
   q['title-exact'] = 'true'
   feed = gd_client.GetSpreadsheets(query=q)	
   spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
@@ -184,7 +182,7 @@ def initializeDataOAuth(credentials, docName, quests):
 
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
-  rows = gd_client.GetLists(spreadsheet_id, worksheet_id).entry
+  rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
   
   for row in rows:
     charac = Character()
@@ -219,8 +217,8 @@ def initializeDataOAuth(credentials, docName, quests):
         else:
           charac.Present = False 
     characters.append(charac)
-  #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
-  #print chars
+  chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
+  print chars
 
 def testConnectToSpreadsheetsService(user, pw, docName):
   gd_client = gdata.spreadsheet.service.SpreadsheetsService()
