@@ -104,7 +104,7 @@ def run_scheduler(user, pw, doc):
     #print parties
     return parties    
 
-def run_scheduler_OAuth(token, tokenSecret, doc):
+def run_scheduler_OAuth(credentials, doc):
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesSPKiller)
     instance = niddhoggInstance
     quests = niddhoggQuests
@@ -114,7 +114,7 @@ def run_scheduler_OAuth(token, tokenSecret, doc):
     userName = user
     password = pw
     docName = doc
-    initializeDataOAuth(token, tokenSecret, docName, quests)
+    initializeDataOAuth(credentials, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
