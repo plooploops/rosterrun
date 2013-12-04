@@ -23,6 +23,5 @@ pulp==1.5.4
 pyamf==0.6.1
 pyparsing==1.5.7
 virtualenv==1.10.1
-yaml==3.10
 webapp2==2.5.2
 webob==1.2.3
