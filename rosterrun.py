@@ -135,15 +135,16 @@ def run_calculation():
     credentials = storage.get()    
     if credentials is not None:
       (g_s_id, g_w_id) = testConnectToSpreadsheetsService(credentials, session['doc'])
-      #print g_s_id, g_w_id
+      print 'connected to spreadsheet: ', g_s_id, g_w_id
       if(g_s_id == -1 or g_w_id == -1):
         flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
         return redirect(url_for('show_entries'))
 
       session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id    
+      session['g_worksheet_id'] = g_w_id
+      print 'trying to run parties'
       parties = run_scheduler_OAuth(credentials, session['doc'])
-    
+      print parties
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
         [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
