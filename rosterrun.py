@@ -34,7 +34,7 @@ CONSUMER_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
 CLIENT_ID = '900730400111-npfbpmda6jtc8mmu7fn3ifm67fckim5b.apps.googleusercontent.com'
 CLIENT_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
 SCOPES = ['https://spreadsheets.google.com/feeds/']
-REDIRECT_URI = 'http://127.0.0.1:5000/auth_return'
+REDIRECT_URI = 'http://rosterrun.herokuapp.com/auth_return'
 
 flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
 # configuration
