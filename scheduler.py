@@ -182,8 +182,9 @@ def initializeDataOAuth(credentials, docName, quests):
 
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
+  print 'reading list for id %s' % g_spreadsheet_id
   rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
-  
+  print 'number of rows %s' % len(rows)
   for row in rows:
     charac = Character()
     charac.Quests = []
