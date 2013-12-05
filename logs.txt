@@ -1,31 +1,3 @@
-2013-12-05T12:41:36.346202+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T12:41:59.006848+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:42:06.180643+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:42:08.487804+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:42:08.487545+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:42:08.495791+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T12:42:18.019329+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:42:28.260101+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:42:29.431358+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251fdd0>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251f050>])]
-2013-12-05T12:42:29.758487+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251f050>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fdd0>])]
-2013-12-05T12:42:29.969196+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251fbd8>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251f050>])]
-2013-12-05T12:42:32.325679+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>])]
-2013-12-05T12:42:32.337409+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>]), ('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>])]
-2013-12-05T12:42:32.338289+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.364349+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>])]
-2013-12-05T12:42:32.366564+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.388998+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.391216+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <sched
-uler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.504794+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>])]
-2013-12-05T12:42:32.505591+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.532085+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.596154+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.598427+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251ffc8>])]
-2013-12-05T12:42:32.639924+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T13:09:07.140173+00:00 app[web.1]: 2013-12-05 13:09:07 [7] [INFO] Worker exiting (pid: 7)
-2013-12-05T13:09:07.140173+00:00 app[web.1]: 2013-12-05 13:09:07 [2] [INFO] Handling signal: term
-2013-12-05T13:09:07.167529+00:00 app[web.1]: 2013-12-05 13:09:07 [2] [INFO] Shutting down: Master
 2013-12-05T13:19:20.149336+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Starting gunicorn 18.0
 2013-12-05T13:19:20.152198+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Using worker: sync
 2013-12-05T13:19:20.151902+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Listening at: http://0.0.0.0:5173 (2)
@@ -49,3 +21,46 @@ uler.Role instance at 0x251ffc8>])]
 2013-12-05T13:30:21.250277+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2013-12-05T13:30:21.249421+00:00 app[web.1]: cannot find gdoc name
 2013-12-05T13:30:21.380809+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T13:35:05.800160+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Handling signal: term
+2013-12-05T13:35:05.809844+00:00 app[web.1]: 2013-12-05 13:35:05 [12] [INFO] Worker exiting (pid: 12)
+2013-12-05T13:35:05.969440+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Shutting down: Master
+2013-12-05T13:35:15.609322+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T13:35:15.610825+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Listening at: http://0.0.0.0:17130 (2)
+2013-12-05T13:35:15.616729+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Using worker: sync
+2013-12-05T13:35:15.863363+00:00 app[web.1]: 2013-12-05 13:35:15 [7] [INFO] Booting worker with pid: 7
+2013-12-05T13:35:23.628875+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:35:23.628875+00:00 app[web.1]: show entries
+2013-12-05T13:35:23.629543+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:35:24.167833+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T13:35:24.167833+00:00 app[web.1]: get all combinations
+2013-12-05T13:35:33.643241+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:35:36.428561+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:35:36.428561+00:00 app[web.1]: show entries
+2013-12-05T13:35:36.428735+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:35:36.435285+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T13:35:36.435285+00:00 app[web.1]: get all combinations
+2013-12-05T13:35:40.909951+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:35:47.704624+00:00 app[web.1]: FOUND 3 PARTIES
+2013-12-05T13:35:47.754588+00:00 app[web.1]: get all combinations
+2013-12-05T13:36:43.427841+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:36:44.151994+00:00 app[web.1]: get all combinations
+2013-12-05T13:36:49.158832+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:37:19.177746+00:00 app[web.1]: 2013-12-05 13:37:19 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
+2013-12-05T13:37:19.227695+00:00 app[web.1]: 2013-12-05 13:37:19 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
+2013-12-05T13:37:19.248344+00:00 app[web.1]: 2013-12-05 13:37:19 [12] [INFO] Booting worker with pid: 12
+2013-12-05T13:37:22.915742+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:37:22.915742+00:00 app[web.1]: show entries
+2013-12-05T13:37:22.915742+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:37:23.164893+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T13:37:23.165018+00:00 app[web.1]: get all combinations
+2013-12-05T13:37:28.067370+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:37:28.081457+00:00 app[web.1]: get all combinations
+2013-12-05T13:37:34.774238+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:37:37.270580+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:37:37.271722+00:00 app[web.1]: show entries
+2013-12-05T13:37:37.272488+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:37:37.288132+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T13:37:37.288299+00:00 app[web.1]: get all combinations
+2013-12-05T13:37:41.932923+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:37:51.363661+00:00 app[web.1]: FOUND 3 PARTIES
+2013-12-05T13:37:51.494719+00:00 app[web.1]: get all combinations
