@@ -98,25 +98,29 @@ def show_entries():
       run_calculation()    
     elif action == u"Reset":
       reset()
-    elif(len(session['doc']) > 0):
-      #try to retrieve the token from the db
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()   
-      if credentials is not None:
-        print 'found credentials'
-        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-        session['g_spreadsheet_id'] = g_s_id
-        session['g_worksheet_id'] = g_w_id    
-        print g_w_id, g_s_id
+    else:
+      if len(session['g_spreadsheet_id']) > 0 and len(session['g_worksheet_id']) > 0:
+        print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        print 'AVAILABLE PARTIES %s ' % len(availableParties)
-      else:
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
+	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        print 'AVAILABLE PARTIES %s ' % len(availableParties)  
+      elif('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
+        #try to retrieve the token from the db
+        loginConfiguration(session['user'])
+        user = users.get_current_user()
+        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+        credentials = storage.get()   
+        if credentials is not None:
+          (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+          session['g_spreadsheet_id'] = g_s_id
+          session['g_worksheet_id'] = g_w_id    
+          cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+          availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+          print 'AVAILABLE PARTIES %s ' % len(availableParties)
+        else:
+          flash('Please login again')
+          session.pop('logged_in', None)
+          return redirect(url_for('login'))
     return render_template('show_entries.html', combinations=availableParties)
 
 @app.route('/runcalc', methods=['POST'])
