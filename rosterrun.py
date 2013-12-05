@@ -81,13 +81,21 @@ def resetParameters():
     session['user'] = None
     session['pw'] = None
     session['doc'] = None
-    session['accessToken'] = None
-    session['requestToken'] = None
 
 @app.route('/', methods=['GET', 'POST'])
 def show_entries():
     action = None
     availableParties = []
+    
+    #try to retrieve the token from the db
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))        
     
     try:
       session['doc'] = request.form['gdocname']
@@ -105,22 +113,13 @@ def show_entries():
 	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
       elif('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
-        #try to retrieve the token from the db
-        loginConfiguration(session['user'])
-        user = users.get_current_user()
-        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-        credentials = storage.get()   
-        if credentials is not None:
-          (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-          session['g_spreadsheet_id'] = g_s_id
-          session['g_worksheet_id'] = g_w_id    
-          cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-          availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-          print 'AVAILABLE PARTIES %s ' % len(availableParties)
-        else:
-          flash('Please login again')
-          session.pop('logged_in', None)
-          return redirect(url_for('login'))
+        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+        session['g_spreadsheet_id'] = g_s_id
+        session['g_worksheet_id'] = g_w_id    
+        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        print 'AVAILABLE PARTIES %s ' % len(availableParties)
+          
     return render_template('show_entries.html', combinations=availableParties)
 
 @app.route('/runcalc', methods=['POST'])
@@ -143,27 +142,27 @@ def run_calculation():
     loginConfiguration(session['user'])
     user = users.get_current_user()
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-    credentials = storage.get()    
-    if credentials is not None:
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      if(g_s_id == -1 or g_w_id == -1):
-        flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-        return redirect(url_for('show_entries'))
-
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id
-      print 'trying to run parties'
-      parties = run_scheduler_OAuth(credentials, session['doc'])
-      print 'FOUND PARTIES %s' % parties
-      #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-      for i in range(0, len(parties) - 1):
-        [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
-     
-      db.session.commit()
-      flash('Calculation finished')
-    else:
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
+    
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+    parties = run_scheduler_OAuth(credentials, session['doc'])
+    print 'FOUND %s PARTIES' % len(parties)
+    #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+    for i in range(0, len(parties) - 1):
+      [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+     
+    db.session.commit()
+    flash('Calculation finished')
     return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
@@ -173,6 +172,7 @@ def reset():
       flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
+
     if(len(session['doc']) <= 0):
       flash('Must include relevant document name')
       return redirect(url_for('show_entries'))
@@ -181,26 +181,27 @@ def reset():
     user = users.get_current_user()
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
     credentials = storage.get()    
-    if credentials is not None:
-      sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      session['g_spreadsheet_id'] = sched.g_spreadsheet_id
-      session['g_worksheet_id'] = sched.g_worksheet_id    
-      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-      
-      print 'found parties to delete %s ' % cur
-      
-      [db.session.delete(c) for c in cur]  
-      db.session.commit()
-
-      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-      
-      print 'deleted %s found parties ' % len(cur)
-      
-      flash('Reset party combinations')
-    else:
+    if credentials is None:
       flash('Cannot log in to spreadsheet')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
+    
+    sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    session['g_spreadsheet_id'] = sched.g_spreadsheet_id
+    session['g_worksheet_id'] = sched.g_worksheet_id    
+    cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      
+    print 'found parties to delete %s ' % cur
+      
+    [db.session.delete(c) for c in cur]  
+    db.session.commit()
+
+    cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      
+    print 'deleted %s found parties ' % len(cur)
+      
+    flash('Reset party combinations')
+      
     return redirect(url_for('show_entries')) 
 
 @app.route('/auth_return', methods=['GET', 'POST'])

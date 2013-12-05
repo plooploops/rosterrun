@@ -288,9 +288,14 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       DualClientPlayersAssignment = [(c.PlayerName, c.Role) for c in comb if c.PlayerName in dualClientPlayers]
       #print 'dual client assignment', [(c[0], c[1].Name) for c in DualClientPlayersAssignment]
       mergedClientPlayerAssignment = list(accumulate(DualClientPlayersAssignment))
-      badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
-      if(len(badDualClientPlayers) > 0):
-        #print 'players have bad assigment for roles', badDualClientPlayers
+      
+      try:
+        badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
+        if(len(badDualClientPlayers) > 0):
+          #print 'players have bad assigment for roles', badDualClientPlayers
+          continue
+      except:
+        print 'had an issue with finding bad dual clients %s' % mergedClientPlayerAssignment
         continue
  
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
