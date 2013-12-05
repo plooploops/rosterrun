@@ -95,13 +95,10 @@ def show_entries():
     except:
       print request.form
     if action == u"Calculate":
-      print 'run a calculation'
       run_calculation()    
     elif action == u"Reset":
-      print 'resetting'
       reset()
     else:
-      print 'showing available entries'
       if('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
         #try to retrieve the token from the db
         loginConfiguration(session['user'])
@@ -110,12 +107,11 @@ def show_entries():
         credentials = storage.get()   
         if credentials is not None:
           (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-          print g_s_id, g_w_id
           session['g_spreadsheet_id'] = g_s_id
           session['g_worksheet_id'] = g_w_id    
           cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
           availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-          print 'available parties', availableParties
+          print 'AVAILABLE PARTIES %s ' len(availableParties)
         else:
           flash('Please login again')
           session.pop('logged_in', None)
@@ -142,7 +138,6 @@ def run_calculation():
     credentials = storage.get()    
     if credentials is not None:
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      print 'connected to spreadsheet: ', g_s_id, g_w_id
       if(g_s_id == -1 or g_w_id == -1):
         flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
         return redirect(url_for('show_entries'))
@@ -151,7 +146,7 @@ def run_calculation():
       session['g_worksheet_id'] = g_w_id
       print 'trying to run parties'
       parties = run_scheduler_OAuth(credentials, session['doc'])
-      print parties
+      print 'FOUND PARTIES %s' % parties
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
         [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]

@@ -184,11 +184,8 @@ def initializeDataOAuth(credentials, docName, quests):
   for row in rows:
     charac = Character()
     charac.Quests = []
-    print row
     rowDictionary = row.to_dict()
-    print rowDictionary
     for key in rowDictionary.keys():
-      print key
       #pick out relevant keys
       if key == 'playername':
         charac.PlayerName = str(rowDictionary[key])
@@ -218,7 +215,7 @@ def initializeDataOAuth(credentials, docName, quests):
           charac.Present = False 
     characters.append(charac)
   chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
-  print chars
+  #print chars
 
 def computeRequirements(characters, instance, quests):
     now = datetime.now()
@@ -300,7 +297,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       validcombinations.append(chars)
       viablePartyIndex += 1
       #break
-    #print validcombinations
+    print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
     return validcombinations
 
 def accumulate(l):
