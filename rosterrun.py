@@ -126,7 +126,10 @@ def show_entries():
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
     if not session.get('logged_in'):
-        abort(401)
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
     
     if(len(session['doc']) <= 0):
         flash('Must include relevant document name')
@@ -166,7 +169,10 @@ def run_calculation():
 @app.route('/reset', methods=['POST'])
 def reset():
     if not session.get('logged_in'):
-      abort(401)
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
     if(len(session['doc']) <= 0):
       flash('Must include relevant document name')
       return redirect(url_for('show_entries'))
@@ -180,10 +186,16 @@ def reset():
       session['g_spreadsheet_id'] = sched.g_spreadsheet_id
       session['g_worksheet_id'] = sched.g_worksheet_id    
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-    
+      
+      print 'found parties to delete %s ' cur
+      
       [db.session.delete(c) for c in cur]  
       db.session.commit()
 
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      
+      print 'deleted %s found parties ' len(cur)
+      
       flash('Reset party combinations')
     else:
       flash('Cannot log in to spreadsheet')
@@ -248,6 +260,7 @@ def logout():
     return redirect(url_for('show_entries'))
 
 def loginConfiguration(username, userid=1):
+  print 'running with user %s ' % username
   os.environ['USER_EMAIL'] = username
   #can this a default?
   os.environ['USER_ID'] = str(userid)
