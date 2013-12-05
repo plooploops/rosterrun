@@ -1,37 +1,3 @@
-2013-12-05T11:52:07.056415+00:00 app[web.1]: 2013-12-05 11:52:07 [7] [INFO] Booting worker with pid: 7
-2013-12-05T11:54:03.279318+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T11:54:10.083563+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T11:54:12.838464+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T11:54:12.848914+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T11:54:12.848914+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T11:54:13.012056+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T11:54:19.597445+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T11:54:19.588181+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T11:54:21.348608+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd710>, <scheduler.Role instance at 0x22bd758>]), ('Joe', [<scheduler.Role instance at 0x26feb48>, <scheduler.Role instance at 0x26fecf8>]), ('Cheng', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x22bd488>])]
-2013-12-05T11:54:21.681553+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd710>, <scheduler.Role instance at 0x22bd488>]), ('Joe', [<scheduler.Role instance at 0x26feb48>, <scheduler.Role instance at 0x26fecf8>]), ('Cheng', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x22bd758>])]
-2013-12-05T11:54:21.898132+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd710>, <scheduler.Role instance at 0x22bdb48>]), ('Joe', [<scheduler.Role instance at 0x26feb48>, <scheduler.Role instance at 0x26fecf8>]), ('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd488>])]
-2013-12-05T11:54:24.217684+00:00 app[web.1]: NUMBER OF VALID COMBINATIONS 0
-2013-12-05T11:54:24.409998+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bdb48>])]
-2013-12-05T11:54:24.421952+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bdb48>]), ('Joe', [<scheduler.Role instance at 0x26fecf8>, <scheduler.Role instance at 0x22bd758>])]
-2013-12-05T11:54:24.422842+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bdb48>]), ('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.450278+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x26fecf8>])]
-2013-12-05T11:54:24.452519+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.477756+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x26fecf8>, <scheduler.Role instance at 0x22bd758>]), ('Cheng', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.475460+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x26fecf8>]), ('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.594230+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x26fecf8>, <scheduler.Role instance at 0x22bd758>])]
-2013-12-05T11:54:24.595261+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.623144+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x26fecf8>, <scheduler.Role instance at 0x22bd758>]), ('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.688162+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x26fecf8>]), ('Cheng', [<scheduler.Role instance at 0x22bd758>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.690532+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x26fecf8>, <scheduler.Role instance at 0x22bd758>]), ('Cheng', [<scheduler.Role instance at 0x22bdb48>, <scheduler.Role instance at 0x22bd6c8>])]
-2013-12-05T11:54:24.731108+00:00 app[web.1]: NUMBER OF VALID COMBINATIONS 3
-2013-12-05T11:54:24.731270+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T12:02:12.365830+00:00 app[web.1]: 2013-12-05 12:02:12 [2] [INFO] Handling signal: term
-2013-12-05T12:02:12.363859+00:00 app[web.1]: 2013-12-05 12:02:12 [7] [INFO] Worker exiting (pid: 7)
-2013-12-05T12:02:12.381304+00:00 app[web.1]: 2013-12-05 12:02:12 [2] [INFO] Shutting down: Master
-2013-12-05T12:02:24.060245+00:00 app[web.1]: 2013-12-05 12:02:24 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T12:02:24.062048+00:00 app[web.1]: 2013-12-05 12:02:24 [2] [INFO] Listening at: http://0.0.0.0:40673 (2)
-2013-12-05T12:02:24.068079+00:00 app[web.1]: 2013-12-05 12:02:24 [2] [INFO] Using worker: sync
-2013-12-05T12:02:24.096409+00:00 app[web.1]: 2013-12-05 12:02:24 [7] [INFO] Booting worker with pid: 7
 2013-12-05T12:03:32.247261+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2013-12-05T12:03:32.247261+00:00 app[web.1]: ImmutableMultiDict([])
 2013-12-05T12:03:32.725116+00:00 app[web.1]: AVAILABLE PARTIES 10 
@@ -42,8 +8,7 @@
 2013-12-05T12:03:55.815573+00:00 app[web.1]: AVAILABLE PARTIES 10 
 2013-12-05T12:04:00.481214+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T12:04:00.510874+00:00 app[web.1]: 2013-12-05 12:04:00 [7] [ERROR] Error handling request
-2013-12-05T12:04:00.510874+00:00 app
-[web.1]: Traceback (most recent call last):
+2013-12-05T12:04:00.510874+00:00 app[web.1]: Traceback (most recent call last):
 2013-12-05T12:04:00.510874+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
 2013-12-05T12:04:00.510874+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
 2013-12-05T12:04:00.510874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
@@ -67,3 +32,45 @@
 2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2013-12-05T12:04:00.511192+00:00 app[web.1]:     reset()
 2013-12-05T12:04:00.511192+00:00 app[web.1]:     sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+2013-12-05T12:07:46.654560+00:00 app[web.1]: 2013-12-05 12:07:46 [7] [INFO] Worker exiting (pid: 7)
+2013-12-05T12:07:46.658392+00:00 app[web.1]: 2013-12-05 12:07:46 [2] [INFO] Handling signal: term
+2013-12-05T12:07:46.773734+00:00 app[web.1]: 2013-12-05 12:07:46 [2] [INFO] Shutting down: Master
+2013-12-05T12:07:55.586333+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T12:07:55.590918+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Listening at: http://0.0.0.0:34619 (2)
+2013-12-05T12:07:55.591754+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Using worker: sync
+2013-12-05T12:07:55.604092+00:00 app[web.1]: 2013-12-05 12:07:55 [7] [INFO] Booting worker with pid: 7
+2013-12-05T12:08:48.891217+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:08:48.891217+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:08:49.211635+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:08:55.787267+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:09:02.531186+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:09:05.785491+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:09:05.787073+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:09:05.797678+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:09:10.542510+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:09:11.369260+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2013-12-05T12:09:11.369260+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2013-12-05T12:09:11.369260+00:00 app[web.1]: 2013-12-05 12:09:11 [7] [ERROR] Error handling request
+2013-12-05T12:09:11.369260+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e)
+)
+2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2013-12-05T12:09:11.369260+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2013-12-05T12:09:11.369438+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2013-12-05T12:09:11.369438+00:00 app[web.1]:     response = self.full_dispatch_request()
+2013-12-05T12:09:11.369438+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-05T12:09:11.369586+00:00 app[web.1]:     reset()
+2013-12-05T12:09:11.369586+00:00 app[web.1]:   File "/app/rosterrun.py", line 195, in reset
+2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2013-12-05T12:09:11.369438+00:00 app[web.1]:     rv = self.dispatch_request()
+2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2013-12-05T12:09:11.369260+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2013-12-05T12:09:11.369438+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2013-12-05T12:09:11.369586+00:00 app[web.1]:     session['g_spreadsheet_id'] = sched.g_spreadsheet_id
+2013-12-05T12:09:11.369586+00:00 app[web.1]: AttributeError: 'str' object has no attribute 'g_spreadsheet_id'
+2013-12-05T12:09:11.369586+00:00 app[web.1]:   File "/app/rosterrun.py", line 104, in show_entries

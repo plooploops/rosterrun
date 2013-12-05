@@ -191,9 +191,14 @@ def reset():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
     
-    testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-    session['g_spreadsheet_id'] = sched.g_spreadsheet_id
-    session['g_worksheet_id'] = sched.g_worksheet_id    
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+       
     cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
     print 'found parties to delete %s ' % cur
