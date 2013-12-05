@@ -1,102 +1,101 @@
-2013-12-05T02:27:06.214249+00:00 app[web.1]: href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/db1zf" rel="edit" type="application/atom+xml" /><ns2:edited>2013-11-23T23:56:06.346Z</ns2:edited><ns3:playername>Han</ns3:playername><ns3:name>Exterminatus</ns3:name><ns3:characterclass>Champion</ns3:characterclass><ns3:onwardtothenewworld>0</ns3:onwardtothenewworld><ns3:newsurroundings>0</ns3:newsurroundings><ns3:attitudetothenewworld>0</ns3:attitudetothenewworld><ns3:pursuingrayanmoore>0</ns3:pursuingrayanmoore><ns3:tripatriateunionsfeud>0</ns3:tripatriateunionsfeud><ns3:findingafairy>0</ns3:findingafairy><ns3:reportfromthenewworld>0</ns3:reportfromthenewworld><ns3:ringofthewiseking>0</ns3:ringofthewiseking><ns3:twotribes>0</ns3:twotribes><ns3:guardianofyggsdrasilstep9>0</ns3:guardianofyggsdrasilstep9><ns3:ready>0</ns3:ready><ns3:lastrun /><ns3:present>0</ns3:present></ns0:entry>
-2013-12-05T02:27:06.214919+00:00 app[web.1]: {'attitudetothenewworld': '0', 'onwardtothenewworld': '0', 'reportfromthenewworld': '0', 'name': 'Exterminatus', 'ready': '0', 'findingafairy': '0', 'guardianofyggsdrasilstep9': '0', 'ringofthewiseking': '0', 'twotribes': '0', 'lastrun': None, 'tripatriateunionsfeud': '0', 'newsurroundings': '0', 'playername': 'Han', 'characterclass': 'Champion', 'present': '0', 'pursuingrayanmoore': '0'}
-2013-12-05T02:27:06.214919+00:00 app[web.1]: attitudetothenewworld
-2013-12-05T02:27:06.214919+00:00 app[web.1]: onwardtothenewworld
-2013-12-05T02:27:06.214919+00:00 app[web.1]: reportfromthenewworld
-2013-12-05T02:27:06.214919+00:00 app[web.1]: name
-2013-12-05T02:27:06.214919+00:00 app[web.1]: ready
-2013-12-05T02:27:06.214919+00:00 app[web.1]: guardianofyggsdrasilstep9
-2013-12-05T02:27:06.214919+00:00 app[web.1]: findingafairy
-2013-12-05T02:27:06.215057+00:00 app[web.1]: lastrun
-2013-12-05T02:27:06.214919+00:00 app[web.1]: ringofthewiseking
-2013-12-05T02:27:06.214919+00:00 app[web.1]: twotribes
-2013-12-05T02:27:06.215057+00:00 app[web.1]: tripatriateunionsfeud
-2013-12-05T02:27:06.215057+00:00 app[web.1]: characterclass
-2013-12-05T02:27:06.215057+00:00 app[web.1]: newsurroundings
-2013-12-05T02:27:06.215057+00:00 app[web.1]: present
-2013-12-05T02:27:06.216372+00:00 app[web.1]: {'attitudetothenewworld': '1', 'onwardtothenewworld': '1', 'reportfromthenewworld': '1', 'name': '-TheJoker-', 'ready': '10', 'findingafairy': '1', 'guardianofyggsdrasilstep9': '1', 'ringofthewiseking': '1', 'twotribes': '1', 'lastrun': '11/14/2013', 'tripatriateunionsfeud': '1', 'newsurroundings': '1', 'playername': 'Cheng', 'characterclass': 'Clown', 'present': '1', 'pursuingrayanmoore': '1'}
-2013-12-05T02:27:06.216372+00:00 app[web.1]: attitudetothenewworld
-2013-12-05T02:27:06.215724+00:00 app[web.1]: m+xml" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/dcgjs" rel="edit" type="application/atom+xml" /><ns2:edited>2013-11-23T23:56:06.346Z</ns2:edited><ns3:playername>Cheng</ns3:playername><ns3:name>-TheJoker-</ns3:name><ns3:characterclass>Clown</ns3:characterclass><ns3:onwardtothenewworld>1</ns3:onwardtothenewworld><ns3:newsurroundings>1</ns3:newsurroundings><ns3:attitudetothenewworld>1</ns3:attitudetothenewworld><ns3:pursuingrayanmoore>1</ns3:pursuingrayanmoore><ns3:tripatriateunionsfeud>1</ns3:tripatriateunionsfeud><ns3:findingafairy>1</ns3:findingafairy><ns3:reportfromthenewworld>1</ns3:reportfromthenewworld><ns3:ringofthewiseking>1</ns3:ringofthewiseking><ns3:twotribes>1</ns3:twotribes><ns3:guardianofyggsdrasilstep9>1</ns3:guardianofyggsdrasilstep9><ns3:ready>10</ns3:ready><ns3:lastrun>11/14/2013</ns3:lastrun><ns3:present>1</ns3:present></ns0:entry>
-2013-12-05T02:27:06.215057+00:00 app[web.1]: pursuingrayanmoore
-2013-12-05T02:27:06.216372+00:00 app[web.1]: name
-2013-12-05T02:27:06.216372+00:00 app[web.1]: findingafairy
-2013-12-05T02:27:06.216510+00:00 app[web.1]: lastrun
-2013-12-05T02:27:06.215057+00:00 app[web.1]: playername
-2013-12-05T02:27:06.216372+00:00 app[web.1]: reportfromthenewworld
-2013-12-05T02:27:06.217169+00:00 app[web.1]: ation/atom+xml" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/ddv49" rel="edit" type="application/atom+xml" /><ns2:edited>2013-11-23T23:56:06.346Z</ns2:edited><ns3:playername>Cheng</ns3:playername><ns3:name>-Black Label-</ns3:name><ns3:characterclass>High Priest</ns3:characterclass><ns3:onwardtothenewworld>1</ns3:onwardtothenewworld><ns3:newsurroundings>1</ns3:newsurroundings><ns3:attitudetothenewworld>1</ns3:attitudetothenewworld><ns3:pursuingrayanmoore>1</ns3:pursuingrayanmoore><ns3:tripatriateunionsfeud>1</ns3:tripatriateunionsfeud><ns3:findingafairy>1</ns3:findingafairy><ns3:reportfromthenewworld>1</ns3:reportfromthenewworld><ns3:ringofthewiseking>1</ns3:ringofthewiseking><ns3:twotribes>1</ns3:twotribes><ns3:guardianofyggsdrasilstep9>1</ns3:guardianofyggsdrasilstep9><ns3:ready>10</ns3:ready><ns3:lastrun>11/18/2013</ns3:lastrun><ns3:present>1</ns3:present></ns0:entry>
-2013-12-05T02:27:06.215724+00:00 app[web.1]: <ns0:entry xmlns:ns0="http://www.w3.org/2005/Atom" xmlns:ns1="http://schemas.google.com/g/2005" xmlns:ns2="http://www.w3.org/2007/app" xmlns:ns3="http://schemas.google.com/spreadsheets/2006/extended" ns1:etag="&quot;EAAbLWZ8Yit7ImA9Wk1WREUN&quot;"><ns0:title>Cheng</ns0:title><ns0:content>name: -TheJoker-, characterclass: Clown, onwardtothenewworld: 1, newsurroundings: 1, attitudetothenewworld: 1, pursuingrayanmoore: 1, tripatriateunionsfeud: 1, findingafairy: 1, reportfromthenewworld: 1, ringofthewiseking: 1, twotribes: 1, guardianofyggsdrasilstep9: 1, ready: 10, lastrun: 11/14/2013, present: 1</ns0:content><ns0:updated>2013-11-23T23:56:06.346Z</ns0:updated><ns0:id>https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/dcgjs</ns0:id><ns0:category scheme="http://schemas.google.com/spreadsheets/2006" term="http://schemas.google.com/spreadsheets/2006#list" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/dcgjs" rel="self" type="application/ato
-2013-12-05T02:27:06.216372+00:00 app[web.1]: twotribes
-2013-12-05T02:27:06.216510+00:00 app[web.1]: newsurroundings
-2013-12-05T02:27:06.216372+00:00 app[web.1]: ringofthewiseking
-2013-12-05T02:27:06.216510+00:00 app[web.1]: characterclass
-2013-12-05T02:27:06.216372+00:00 app[web.1]: guardianofyggsdrasilstep9
-2013-12-05T02:27:06.216372+00:00 app[web.1]: ready
-2013-12-05T02:27:06.216510+00:00 app[web.1]: present
-2013-12-05T02:27:06.216510+00:00 app[web.1]: playername
-2013-12-05T02:27:06.218085+00:00 app[web.1]: playername
-2013-12-05T02:27:06.218748+00:00 app[web.1]: <ns0:entry xmlns:ns0="http://www.w3.org/2005/Atom" xmlns:ns1="http://schemas.google.com/g/2005" xmlns:ns2="http://www.w3.org/2007/app" xmlns:ns3="http://schemas.google.com/spreadsheets/2006/extended" ns1:etag="&quot;Q1hGJW0pYSt7ImA9Wk8EShEL&quot;"><ns0:title>Cheng</ns0:title><ns0:content>name: -Paper Clip-, characterclass: Paladin, onwardtothenewworld: 1, newsurroundings: 1, attitudetothenewworld: 1, pursuingrayanmoore: 1, tripatriateunionsfeud: 1, findingafairy: 1, reportfromthenewworld: 1, ringofthewiseking: 1, twotribes: 1, guardianofyggsdrasilstep9: 1, ready: 10, present: 1</ns0:content><ns0:updated>2013-11-23T23:56:06.346Z</ns0:updated><ns0:id>https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/d415a</ns0:id><ns0:category scheme="http://schemas.google.com/spreadsheets/2006" term="http://schemas.google.com/spreadsheets/2006#list" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/d415a" rel="self" type="application/atom+xml" /><ns0:lin
-2013-12-05T02:27:06.217918+00:00 app[web.1]: attitudetothenewworld
-2013-12-05T02:27:06.216372+00:00 app[web.1]: onwardtothenewworld
-2013-12-05T02:27:06.217918+00:00 app[web.1]: ringofthewiseking
-2013-12-05T02:27:06.217918+00:00 app[web.1]: reportfromthenewworld
-2013-
-12-05T02:27:06.216510+00:00 app[web.1]: pursuingrayanmoore
-2013-12-05T02:27:06.218085+00:00 app[web.1]: newsurroundings
-2013-12-05T02:27:06.217169+00:00 app[web.1]: <ns0:entry xmlns:ns0="http://www.w3.org/2005/Atom" xmlns:ns1="http://schemas.google.com/g/2005" xmlns:ns2="http://www.w3.org/2007/app" xmlns:ns3="http://schemas.google.com/spreadsheets/2006/extended" ns1:etag="&quot;EFobfjouYyt7ImA9Wk1SSRFY&quot;"><ns0:title>Cheng</ns0:title><ns0:content>name: -Black Label-, characterclass: High Priest, onwardtothenewworld: 1, newsurroundings: 1, attitudetothenewworld: 1, pursuingrayanmoore: 1, tripatriateunionsfeud: 1, findingafairy: 1, reportfromthenewworld: 1, ringofthewiseking: 1, twotribes: 1, guardianofyggsdrasilstep9: 1, ready: 10, lastrun: 11/18/2013, present: 1</ns0:content><ns0:updated>2013-11-23T23:56:06.346Z</ns0:updated><ns0:id>https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/ddv49</ns0:id><ns0:category scheme="http://schemas.google.com/spreadsheets/2006" term="http://schemas.google.com/spreadsheets/2006#list" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/ddv49" rel="self" type="applic
-2013-12-05T02:27:06.218085+00:00 app[web.1]: tripatriateunionsfeud
-2013-12-05T02:27:06.218748+00:00 app[web.1]: k href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/d415a" rel="edit" type="application/atom+xml" /><ns2:edited>2013-11-23T23:56:06.346Z</ns2:edited><ns3:playername>Cheng</ns3:playername><ns3:name>-Paper Clip-</ns3:name><ns3:characterclass>Paladin</ns3:characterclass><ns3:onwardtothenewworld>1</ns3:onwardtothenewworld><ns3:newsurroundings>1</ns3:newsurroundings><ns3:attitudetothenewworld>1</ns3:attitudetothenewworld><ns3:pursuingrayanmoore>1</ns3:pursuingrayanmoore><ns3:tripatriateunionsfeud>1</ns3:tripatriateunionsfeud><ns3:findingafairy>1</ns3:findingafairy><ns3:reportfromthenewworld>1</ns3:reportfromthenewworld><ns3:ringofthewiseking>1</ns3:ringofthewiseking><ns3:twotribes>1</ns3:twotribes><ns3:guardianofyggsdrasilstep9>1</ns3:guardianofyggsdrasilstep9><ns3:ready>10</ns3:ready><ns3:lastrun /><ns3:present>1</ns3:present></ns0:entry>
-2013-12-05T02:27:06.219405+00:00 app[web.1]: findingafairy
-2013-12-05T02:27:06.217918+00:00 app[web.1]: findingafairy
-2013-12-05T02:27:06.217918+00:00 app[web.1]: name
-2013-12-05T02:27:06.219405+00:00 app[web.1]: reportfromthenewworld
-2013-12-05T02:27:06.216510+00:00 app[web.1]: tripatriateunionsfeud
-2013-12-05T02:27:06.217918+00:00 app[web.1]: twotribes
-2013-12-05T02:27:06.219405+00:00 app[web.1]: ready
-2013-12-05T02:27:06.217918+00:00 app[web.1]: {'attitudetothenewworld': '1', 'onwardtothenewworld': '1', 'reportfromthenewworld': '1', 'name': '-Black Label-', 'ready': '10', 'findingafairy': '1', 'guardianofyggsdrasilstep9': '1', 'ringofthewiseking': '1', 'twotribes': '1', 'lastrun': '11/18/2013', 'tripatriateunionsfeud': '1', 'newsurroundings': '1', 'playername': 'Cheng', 'characterclass': 'High Priest', 'present': '1', 'pursuingrayanmoore': '1'}
-2013-12-05T02:27:06.219557+00:00 app[web.1]: newsurroundings
-2013-12-05T02:27:06.219405+00:00 app[web.1]: attitudetothenewworld
-2013-12-05T02:27:06.218085+00:00 app[web.1]: lastrun
-2013-12-05T02:27:06.219405+00:00 app[web.1]: ringofthewiseking
-2013-12-05T02:27:06.220165+00:00 app[web.1]: <ns0:entry xmlns:ns0="http://www.w3.org/2005/Atom" xmlns:ns1="http://schemas.google.com/g/2005" xmlns:ns2="http://www.w3.org/2007/app" xmlns:ns3="http://schemas.google.com/spreadsheets/2006/extended" ns1:etag="&quot;RF0TKWMlait7ImA9Wk1QRhdd&quot;"><ns0:title>Cheng</ns0:title><ns0:content>name: Amoeba Boy, characterclass: Creator, onwardtothenewworld: 1, newsurroundings: 1, attitudetothenewworld: 1, pursuingrayanmoore: 1, tripatriateunionsfeud: 1, findingafairy: 1, reportfromthenewworld: 1, ringofthewiseking: 1, twotribes: 1, guardianofyggsdrasilstep9: 1, ready: 10, lastrun: 11/18/2013, present: 1</ns0:content><ns0:updated>2013-11-23T23:56:06.346Z</ns0:updated><ns0:id>https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/d5fpr</ns0:id><ns0:category scheme="http://schemas.google.com/spreadsheets/2006" term="http://schemas.google.com/spreadsheets/2006#list" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/d5fpr" rel="self" type="application/a
-2013-12-05T02:27:06.218085+00:00 app[web.1]: present
-2013-12-05T02:27:06.217918+00:00 app[web.1]: guardianofyggsdrasilstep9
-2013-12-05T02:27:06.219557+00:00 app[web.1]: characterclass
-2013-12-05T02:27:06.221055+00:00 app[web.1]: reportfromthenewworld
-2013-12-05T02:27:06.219557+00:00 app[web.1]: pursuingrayanmoore
-2013-12-05T02:27:06.219405+00:00 app[web.1]: guardianofyggsdrasilstep9
-2013-12-05T02:27:06.218085+00:00 app[web.1]: characterclass
-2013-12-05T02:27:06.219405+00:00 app[web.1]: {'attitudetothenewworld': '1', 'onwardtothenewworld': '1', 'reportfromthenewworld': '1', 'name': '-Paper Clip-', 'ready': '10', 'findingafairy': '1', 'guardianofyggsdrasilstep9': '1', 'ringofthewiseking': '1', 'twotribes': '1', 'lastrun': None, 'tripatriateunionsfeud': '1', 'newsurroundings': '1', 'playername': 'Cheng', 'characterclass': 'Paladin', 'present': '1', 'pursuingrayanmoore': '1'}
-2013-12-05T02:27:06.220926+00:00 app[web.1]: {'attitudetothenewworld': '1', 'onwardtothenewworld': '1', 'reportfromthenewworld': '1', 'name': 'Amoeba Boy', 'ready': '10', 'findingafairy': '1', 'guardianofyggsdrasilstep9': '1', 'ringofthewiseking': '1', 'twotribes': '1', 'lastrun': '11/18/2013', 'tripatriateunionsfeud': '1', 'newsurroundings': '1', 'playername': 'Cheng', 'characterclass': 'Creator', 'present': '1', 'pursuingrayanmoore': '1'}
-2013-12-05T02:27:06.218085+00:00 app[web.1]: pursuingrayanmoore
-2013-12-05T02:27:06.219557+00:00 app[web.1]: lastrun
-2013-12-05T02:27:06.221055+00:00 app[web.1]: ringofthewiseking
-2013-12-05T02:27:06.217918+00:00 app[web.1]: onwardtothenewworld
-2013-12-05T02:27:06.217918+00:00 app[web.1]: ready
-2013-12-05T02:27:06.219557+00:00 app[web.1]: present
-2013-12-05T02:27:06.221055+00:00 app[web.1]: name
-2013-12-05T02:27:06.219557+00:00 app[web.1]: tripatriateunionsfeud
-2013-12-05T02:27:06.221055+00:00 app[web.1]: onwardtothenewworld
-2013-12-05T02:27:06.219405+00:00 app[web.1]: onwardtothenewworld
-2013-12-05T02:27:06.221055+00:00 app[web.1]: twotribes
-2013-12-05T02:27:06.219405+00:00 app[web.1]: twotribes
-2013-12-05T02:27:06.221055+00:00 app[web.1]: findingafairy
-2013-12-05T02:27:06.221055+00:00 app[web.1]: ready
-2013-12-05T02:27:06.221055+00:00 app[web.1]: lastrun
-2013-12-05T02:27:06.219405+00:00 app[web.1]: name
-2013-12-05T02:27:06.219557+00:00 app[web.1]: playername
-2013-12-05T02:27:06.221055+00:00 app[web.1]: attitudetothenewworld
-2013-12-05T02:27:06.220281+00:00 app[web.1]: tom+xml" /><ns0:link href="https://spreadsheets.google.com/feeds/list/t0r5xf97B-k70k6TxherGcw/od6/private/full/d5fpr" rel="edit" type="application/atom+xml" /><ns2:edited>2013-11-23T23:56:06.346Z</ns2:edited><ns3:playername>Cheng</ns3:playername><ns3:name>Amoeba Boy</ns3:name><ns3:characterclass>Creator</ns3:characterclass><ns3:onwardtothenewworld>1</ns3:onwardtothenewworld><ns3:newsurroundings>1</ns3:newsurroundings><ns3:attitudetothenewworld>1</ns3:attitudetothenewworld><ns3:pursuingrayanmoore>1</ns3:pursuingrayanmoore><ns3:tripatriateunionsfeud>1</ns3:tripatriateunionsfeud><ns3:findingafairy>1</ns3:findingafairy><ns3:reportfromthenewworld>1</ns3:reportfromthenewworld><ns3:ringofthewiseking>1</ns3:ringofthewiseking><ns3:twotribes>1</ns3:twotribes><ns3:guardianofyggsdrasilstep9>1</ns3:guardianofyggsdrasilstep9><ns3:ready>10</ns3:ready><ns3:lastrun>11/18/2013</ns3:lastrun><ns3:present>1</ns3:present></ns0:entry>
-2013-12-05T02:27:06.221055+00:00 app[web.1]: guardianofyggsdrasilstep9
-2013-12-05T02:27:06.221208+00:00 app[web.1]: present
-2013-12-05T02:27:06.221208+00:00 app[web.1]: tripatriateunionsfeud
-2013-12-05T02:27:06.221208+00:00 app[web.1]: newsurroundings
-2013-12-05T02:27:06.221208+00:00 app[web.1]: characterclass
-2013-12-05T02:27:06.221208+00:00 app[web.1]: playername
-2013-12-05T02:27:06.221977+00:00 app[web.1]: [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(1, 1, 1, 0, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Lisa', 'Lavinia Swire', 'High Priest', 'Healer', datetime.datetime(1, 1, 1, 0, 0), 5], ['Lisa', 'Fantail', 'Champion', 'SPKiller', datetime.datetime(1, 1, 1, 0, 0), 5], ['Lisa', 'Bellbird', 'Professor', 'SPActive', datetime.datetime(1, 1, 1, 0, 0), 5], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(1, 1, 
-2013-12-05T02:27:06.221208+00:00 app[web.1]: pursuingrayanmoore
-2013-12-05T02:27:06.223023+00:00 app[web.1]: 1, 0, 0), 9], ['Lanny', 'HealingHands-', 'High Priest', 'Healer', datetime.datetime(1, 1, 1, 0, 0), 0], ['Mike', 'MikeBoii-', 'Sniper', 'SPKiller', datetime.datetime(1, 1, 1, 0, 0), 0], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKiller', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Joe', 'Ibrahim Moizoos', 'Professor', 'SPActive', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Joe', 'Lord of the strings', 'Clown', 'Support', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Joe', 'Kjata', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Joe', 'Super Nova', 'Priest', 'Healer', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Joe', 'Potassium Hydroxide', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Joe', 'Dark Link', 'Sniper', 'SPKiller', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Joe', 'Knight of Hyrule', 'Lord Knight', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9], ['Jason', 'Tain Cissnei', 'Paladin
-2013-12-05T02:27:06.223456+00:00 app[web.1]: ', 'Lurer', datetime.datetime(2013, 11, 14, 0, 0), 8], ['Han', 'Exterminatus', 'Champion', 'SPKiller', datetime.datetime(1, 1, 1, 0, 0), 0], ['Cheng', '-TheJoker-', 'Clown', 'Support', datetime.datetime(2013, 11, 14, 0, 0), 9], ['Cheng', '-Black Label-', 'High Priest', 'Healer', datetime.datetime(2013, 11, 18, 0, 0), 9], ['Cheng', '-Paper Clip-', 'Paladin', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9], ['Cheng', 'Amoeba Boy', 'Creator', 'Killer', datetime.datetime(2013, 11, 18, 0, 0), 9]]
-2013-12-05T02:27:10.079721+00:00 app[web.1]: [[<scheduler.Combination instance at 0x2cf9710>, <scheduler.Combination instance at 0x2cf9a28>, <scheduler.Combination instance at 0x2cf9560>, <scheduler.Combination instance at 0x2cf9758>, <scheduler.Combination instance at 0x2cf9518>], [<scheduler.Combination instance at 0x2cf9ea8>, <scheduler.Combination instance at 0x2cf9ab8>, <scheduler.Combination instance at 0x2cf9c20>, <scheduler.Combination instance at 0x2cf9b90>, <scheduler.Combination instance at 0x2cf99e0>], [<scheduler.Combination instance at 0x2cf9f38>, <scheduler.Combination instance at 0x2cf9dd0>, <scheduler.Combination instance at 0x2cf9fc8>, <scheduler.Combination instance at 0x2cf9f80>, <scheduler.Combination instance at 0x2cf9e60>]]
-2013-12-05T02:25:58.333350+00:00 heroku[api]: Deploy eb4bfe3 by andygee@gmail.com
-2013-12-05T02:25:58.372778+00:00 heroku[api]: Release v42 created by andygee@gmail.com
 2013-12-05T02:26:57.727600+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/ITXMGuEe9rMMBnfWKsRP8dNjvKJt.crYMmzS655gcMqTmHjyTFGO2UCyBhQI host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=1ms service=2047ms status=302 bytes=209
+2013-12-05T02:27:10.117246+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=1ms service=6401ms status=200 bytes=790
+2013-12-05T02:26:54.946836+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=1ms service=9ms status=302 bytes=803
+2013-12-05T02:26:57.878357+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=5ms service=12ms status=200 bytes=788
+2013-12-05T02:33:29+00:00 heroku[slug-compiler]: Slug compilation started
+2013-12-05T02:35:05.668513+00:00 heroku[api]: Deploy 7efe3dc by andygee@gmail.com
+2013-12-05T02:35:05.694107+00:00 heroku[api]: Release v43 created by andygee@gmail.com
+2013-12-05T02:35:05+00:00 heroku[slug-compiler]: Slug compilation finished
+2013-12-05T02:35:05.969303+00:00 heroku[web.1]: State changed from up to starting
+2013-12-05T02:35:08.691275+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2013-12-05T02:35:09.227016+00:00 app[web.1]: 2013-12-05 02:35:09 [7] [INFO] Worker exiting (pid: 7)
+2013-12-05T02:35:09.227886+00:00 app[web.1]: 2013-12-05 02:35:09 [2] [INFO] Handling signal: term
+2013-12-05T02:35:09.246250+00:00 app[web.1]: 2013-12-05 02:35:09 [2] [INFO] Shutting down: Master
+2013-12-05T02:35:10.442466+00:00 heroku[web.1]: Process exited with status 0
+2013-12-05T02:35:17.871298+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2013-12-05T02:35:19.047958+00:00 app[web.1]: 2013-12-05 02:35:19 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T02:35:19.049026+00:00 app[web.1]: 2013-12-05 02:35:19 [2] [INFO] Listening at: http://0.0.0.0:10943 (2)
+2013-12-05T02:35:19.049237+00:00 app[web.1]: 2013-12-05 02:35:19 [2] [INFO] Using worker: sync
+2013-12-05T02:35:19.058594+00:00 app[web.1]: 2013-12-05 02:35:19 [7] [INFO] Booting worker with pid: 7
+2013-12-05T02:35:19.068196+00:00 app[web.1]: 2013-12-05 02:35:19 [7] [ERROR] Exception in worker process:
+2013-12-05T02:35:19.068196+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-05T02:35:19.068196+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2013-12-05T02:35:19.068196+00:00 app[web.1]:     worker.init_process()
+2013-12-05T02:35:19.068196+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2013-12-05T02:35:19.068196+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2013-12-05T02:35:19.068196+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2013-12-05T02:35:19.068196+00:00 app[web.1]:     self.callable = self.load()
+2013-12-05T02:35:19.068196+00:00 app[web.1]:     return self.load_wsgiapp()
+2013-12-05T02:35:19.068396+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2013-12-05T02:35:19.068396+00:00 app[web.1]:     __import__(module)
+2013-12-05T02:35:19.068396+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2013-12-05T02:35:19.068396+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2013-12-05T02:35:19.068396+00:00 app[web.1]:   File "/app/rosterrun.py", line 114
+2013-12-05T02:35:19.068396+00:00 app[web.1]:                                     ^
+2013-12-05T02:35:19.068396+00:00 app[web.1]: SyntaxError: invalid syntax
+2013-12-05T02:35:19.068196+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2013-12-05T02:35:19.068602+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2013-12-05T02:35:19.068396+00:00 app[web.1]:     print 'AVAILABLE PARTIES %s ' len(availableParties)
+2013-12-05T02:35:19.068396+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-05T02:35:19.068602+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2013-12-05T02:35:19.068396+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2013-12-05T02:35:19.068602+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2013-12-05T02:35:19.068602+00:00 app[web.1]:     worker.init_process()
+2013-12-05T02:35:19.068602+00:00 app[web.1]:     return self.load_wsgiapp()
+2013-12-05T02:35:19.069001+00:00 app[web.1]:   File "/app/rosterrun.py", line 114
+2013-12-05T02:35:19.068602+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2013-12-05T02:35:19.068602+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2013-12-05T02:35:19.068602+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2013-12-05T02:35:19.068602+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2013-12-05T02:35:19.069001+00:00 app[web.1]:     __import__(module)
+2013-12-05T02:35:19.069001+00:00 app[web.1]: 2013-12-05 02:35:19 [7] [INFO] Worker exiting (pid: 7)
+2013-12-05T02:35:19.069001+00:00 app[web.1]:                                     ^
+2013-12-05T02:35:19.069001+00:00 app[web.1]: SyntaxError: invalid syntax
+2013-12-05T02:35:19.068602+00:00 app[web.1]:     self.callable = self.load()
+2013-12-05T02:35:19.069001+00:00 app[web.1]:     print 'AVAILABLE PARTIES %s ' len(availableParties)
+2013-12-05T02:35:19.207633+00:00 app[web.1]: 2013-12-05 02:35:19 [2] [INFO] Shutting down: Master
+2013-12-05T02:35:19.207992+00:00 app[web.1]: 2013-12-05 02:35:19 [2] [INFO] Reason: Worker failed to boot.
+2013-12-05T02:35:20.529616+00:00 heroku[web.1]: Process exited with status 3
+2013-12-05T02:35:20.547993+00:00 heroku[web.1]: State changed from starting to crashed
+2013-12-05T02:35:20.548879+00:00 heroku[web.1]: State changed from crashed to starting
+2013-12-05T02:35:28.157846+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2013-12-05T02:35:36.116501+00:00 heroku[web.1]: State changed from starting to up
+2013-12-05T02:35:43.554279+00:00 heroku[run.8964]: Awaiting client
+2013-12-05T02:35:43.609698+00:00 heroku[run.8964]: Starting process with command `python`
+2013-12-05T02:36:03.350582+00:00 heroku[run.8964]: State changed from up to complete
+2013-12-05T02:36:03.337864+00:00 heroku[run.8964]: Process exited with status 0
+2013-12-05T02:36:33+00:00 heroku[slug-compiler]: Slug compilation started
+2013-12-05T02:35:37.649204+00:00 heroku[web.1]: State changed from up to crashed
+2013-12-05T02:38:08.780954+00:00 heroku[api]: Deploy 31e61eb by andygee@gmail.com
+2013-12-05T02:38:08.816627+00:00 heroku[api]: Release v44 created by andygee@gmail.com
+2013-12-05T02:38:09.017807+00:00 heroku[web.1]: State changed from crashed to starting
+2013-12-05T02:38:08+00:00 heroku[slug-compiler]: Slug compilation finished
+2013-12-05T02:38:18.932387+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2013-12-05T02:38:19.856932+00:00 app[web.1]: 2013-12-05 02:38:19 [2] [INFO] Using worker: sync
+2013-12-05T02:38:19.856112+00:00 app[web.1]: 2013-12-05 02:38:19 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T02:38:19.856867+00:00 app[web.1]: 2013-12-05 02:38:19 [2] [INFO] Listening at: http://0.0.0.0:47034 (2)
+2013-12-05T02:38:19.863446+00:00 app[web.1]: 2013-12-05 02:38:19 [7] [INFO] Booting worker with pid: 7
+2013-12-05T02:38:20.057613+00:00 heroku[web.1]: State changed from starting to up
+2013-12-05T02:38:33.689429+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2013-12-05T02:38:46.715648+00:00 heroku[run.9976]: Awaiting client
+2013-12-05T02:38:46.774670+00:00 heroku[run.9976]: Starting process with command `python`
+2013-12-05T02:38:46.785775+00:00 heroku[run.9976]: State changed from starting to up
+2013-12-05T02:39:12.640497+00:00 heroku[run.9976]: Process exited with status 0
+2013-12-05T02:39:12.648997+00:00 heroku[run.9976]: State changed from up to complete
+2013-12-05T02:39:28.405065+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T02:39:28.425043+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=3ms service=21ms status=302 bytes=219
+2013-12-05T02:39:28.647608+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=2ms service=49ms status=200 bytes=483
+2013-12-05T02:39:32.633678+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=2ms service=7ms status=302 bytes=803
+2013-12-05T02:39:38.397934+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/Q0qaf7Baq7wO49lMmtKPHStOVzJ-.Um4bScMnWtIXEnp6UAPFm0FGb0OBhQI host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=2ms service=5154ms status=302 bytes=209
+2013-12-05T02:39:38.552548+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T02:39:38.568593+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=3ms service=19ms status=200 bytes=788
+2013-12-05T02:39:43.408599+00:00 app[web.1]: trying to run parties
+2013-12-05T02:39:47.727491+00:00 app[web.1]: NUMBER OF VALID COMBINATIONS 0
+2013-12-05T02:39:48.322643+00:00 app[web.1]: FOUND PARTIES [[<scheduler.Combination instance at 0x37d8998>, <scheduler.Combination instance at 0x37d8a28>, <scheduler.Combination instance at 0x37d8e60>, <scheduler.Combination instance at 0x37d8ab8>, <scheduler.Combination instance at 0x37d87e8>], [<scheduler.Combination instance at 0x37d8f38>, <scheduler.Combination instance at 0x37d8c20>, <scheduler.Combination instance at 0x37d8cb0>, <scheduler.Combination instance at 0x37d8cf8>, <scheduler.Combination instance at 0x37d8050>], [<scheduler.Combination instance at 0x37d8d88>, <scheduler.Combination instance at 0x37d8128>, <scheduler.Combination instance at 0x37d80e0>, <scheduler.Combination instance at 0x37d6128>, <scheduler.Combination instance at 0x37d6320>]]
+2013-12-05T02:39:48.322643+00:00 app[web.1]: NUMBER OF VALID COMBINATIONS 3
+2013-12-05T02:39:48.367460+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="108.0.233.129" dyno=web.1 connect=1ms service=6230ms status=200 bytes=790
+2013-12-05T02:40:12.586992+00:00 heroku[run.6645]: Awaiting client
+2013-12-05T02:40:12.567313+00:00 heroku[run.6645]: State changed from starting to up
+2013-12-05T02:40:12.640821+00:00 heroku[run.6645]: Starting process with command `python`
+2013-12-05T02:39:57.247820+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2013-12-05T02:41:26.111485+00:00 heroku[run.6645]: Process exited with status 0
