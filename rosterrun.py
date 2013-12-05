@@ -98,13 +98,13 @@ def show_entries():
       run_calculation()    
     elif action == u"Reset":
       reset()
-    else:
+    elif(len(session['doc']) > 0):
       #try to retrieve the token from the db
       loginConfiguration(session['user'])
       user = users.get_current_user()
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
-      if credentials:
+      if credentials is not None:
         print 'found credentials'
         (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
         session['g_spreadsheet_id'] = g_s_id
