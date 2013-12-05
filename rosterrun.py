@@ -83,20 +83,16 @@ def resetParameters():
     session['doc'] = None
 
 @app.route('/', methods=['GET', 'POST'])
-def show_entries():
-    action = None
-    availableParties = []
-    
-    #try to retrieve the token from the db
-    loginConfiguration(session['user'])
-    user = users.get_current_user()
-    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-    credentials = storage.get()   
-    if credentials is None:
+def show_entries():   
+    if not session.get('logged_in'):
+      #abort(401)
       flash('Please login again')
       session.pop('logged_in', None)
-      return redirect(url_for('login'))        
-    
+      return redirect(url_for('login'))
+ 
+    action = None
+    availableParties = []
+ 
     try:
       session['doc'] = request.form['gdocname']
       action = request.form['action']
@@ -106,13 +102,22 @@ def show_entries():
       run_calculation()    
     elif action == u"Reset":
       reset()
-    else:
+    else:    
       if len(str(session['g_spreadsheet_id'])) > 0 and len(str(session['g_worksheet_id'])) > 0:
         print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
 	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
       elif('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
+        #try to retrieve the token from the db
+	loginConfiguration(session['user'])
+	user = users.get_current_user()
+	storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+	credentials = storage.get()   
+	if credentials is None:
+	  flash('Please login again')
+	  session.pop('logged_in', None)
+          return redirect(url_for('login'))
         (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
         session['g_spreadsheet_id'] = g_s_id
         session['g_worksheet_id'] = g_w_id    
