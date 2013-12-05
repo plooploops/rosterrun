@@ -187,14 +187,14 @@ def reset():
       session['g_worksheet_id'] = sched.g_worksheet_id    
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
-      print 'found parties to delete %s ' cur
+      print 'found parties to delete %s ' % cur
       
       [db.session.delete(c) for c in cur]  
       db.session.commit()
 
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
-      print 'deleted %s found parties ' len(cur)
+      print 'deleted %s found parties ' % len(cur)
       
       flash('Reset party combinations')
     else:
