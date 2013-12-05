@@ -191,7 +191,7 @@ def reset():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
     
-    sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
     session['g_spreadsheet_id'] = sched.g_spreadsheet_id
     session['g_worksheet_id'] = sched.g_worksheet_id    
     cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
