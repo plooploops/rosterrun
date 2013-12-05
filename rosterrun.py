@@ -98,7 +98,7 @@ def show_entries():
       run_calculation()    
     elif action == u"Reset":
       reset()
-    elif(len(session['doc']) > 0):
+    else:
       #try to retrieve the token from the db
       loginConfiguration(session['user'])
       user = users.get_current_user()
