@@ -123,7 +123,6 @@ def show_entries():
         session['g_worksheet_id'] = g_w_id    
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        print 'AVAILABLE PARTIES %s ' % len(availableParties)
           
     return render_template('show_entries.html', combinations=availableParties)
 
@@ -201,16 +200,12 @@ def reset():
        
     cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
-    print 'found parties to delete %s ' % cur
-      
     [db.session.delete(c) for c in cur]  
     db.session.commit()
 
     cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
-    print 'deleted %s found parties ' % len(cur)
-      
-    flash('Reset party combinations')
+     flash('Reset party combinations')
       
     return redirect(url_for('show_entries')) 
 

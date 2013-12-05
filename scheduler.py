@@ -303,7 +303,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       validcombinations.append(chars)
       viablePartyIndex += 1
       #break
-    print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
+    #print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
     return validcombinations
 
 def accumulate(l):

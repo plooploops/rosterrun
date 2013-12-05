@@ -1,47 +1,3 @@
-2013-12-05T12:03:32.247261+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:03:32.247261+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:03:32.725116+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T12:03:47.150204+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:03:52.920550+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:03:55.805251+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:03:55.805251+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:03:55.815573+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T12:04:00.481214+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:04:00.510874+00:00 app[web.1]: 2013-12-05 12:04:00 [7] [ERROR] Error handling request
-2013-12-05T12:04:00.510874+00:00 app[web.1]: Traceback (most recent call last):
-2013-12-05T12:04:00.510874+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2013-12-05T12:04:00.510874+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2013-12-05T12:04:00.510874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2013-12-05T12:04:00.510874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2013-12-05T12:04:00.510874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2013-12-05T12:04:00.510874+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2013-12-05T12:04:00.510874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2013-12-05T12:04:00.510874+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2013-12-05T12:04:00.511037+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2013-12-05T12:04:00.511037+00:00 app[web.1]:     rv = self.dispatch_request()
-2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2013-12-05T12:04:00.511192+00:00 app[web.1]:   File "/app/rosterrun.py", line 194, in reset
-2013-12-05T12:04:00.511037+00:00 app[web.1]:     response = self.full_dispatch_request()
-2013-12-05T12:04:00.511037+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2013-12-05T12:04:00.511037+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2013-12-05T12:04:00.511192+00:00 app[web.1]: AttributeError: 'str' object has no attribute 'testConnectToSpreadsheetsServiceOAuth'
-2013-12-05T12:04:00.511192+00:00 app[web.1]:   File "/app/rosterrun.py", line 104, in show_entries
-2013-12-05T12:04:00.511037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2013-12-05T12:04:00.511192+00:00 app[web.1]:     reset()
-2013-12-05T12:04:00.511192+00:00 app[web.1]:     sched.testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-2013-12-05T12:07:46.654560+00:00 app[web.1]: 2013-12-05 12:07:46 [7] [INFO] Worker exiting (pid: 7)
-2013-12-05T12:07:46.658392+00:00 app[web.1]: 2013-12-05 12:07:46 [2] [INFO] Handling signal: term
-2013-12-05T12:07:46.773734+00:00 app[web.1]: 2013-12-05 12:07:46 [2] [INFO] Shutting down: Master
-2013-12-05T12:07:55.586333+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T12:07:55.590918+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Listening at: http://0.0.0.0:34619 (2)
-2013-12-05T12:07:55.591754+00:00 app[web.1]: 2013-12-05 12:07:55 [2] [INFO] Using worker: sync
-2013-12-05T12:07:55.604092+00:00 app[web.1]: 2013-12-05 12:07:55 [7] [INFO] Booting worker with pid: 7
-2013-12-05T12:08:48.891217+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:08:48.891217+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:08:49.211635+00:00 app[web.1]: AVAILABLE PARTIES 10 
 2013-12-05T12:08:55.787267+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T12:09:02.531186+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T12:09:05.785491+00:00 app[web.1]: ImmutableMultiDict([])
@@ -54,8 +10,7 @@
 2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
 2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
 2013-12-05T12:09:11.369260+00:00 app[web.1]: 2013-12-05 12:09:11 [7] [ERROR] Error handling request
-2013-12-05T12:09:11.369260+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e)
-)
+2013-12-05T12:09:11.369260+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
 2013-12-05T12:09:11.369260+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
 2013-12-05T12:09:11.369260+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
 2013-12-05T12:09:11.369438+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
@@ -74,3 +29,49 @@
 2013-12-05T12:09:11.369586+00:00 app[web.1]:     session['g_spreadsheet_id'] = sched.g_spreadsheet_id
 2013-12-05T12:09:11.369586+00:00 app[web.1]: AttributeError: 'str' object has no attribute 'g_spreadsheet_id'
 2013-12-05T12:09:11.369586+00:00 app[web.1]:   File "/app/rosterrun.py", line 104, in show_entries
+2013-12-05T12:12:10.098578+00:00 app[web.1]: 2013-12-05 12:12:10 [2] [INFO] Handling signal: term
+2013-12-05T12:12:10.111481+00:00 app[web.1]: 2013-12-05 12:12:10 [7] [INFO] Worker exiting (pid: 7)
+2013-12-05T12:12:10.217128+00:00 app[web.1]: 2013-12-05 12:12:10 [2] [INFO] Shutting down: Master
+2013-12-05T12:12:16.931141+00:00 app[web.1]: 2013-12-05 12:12:16 [2] [INFO] Listening at: http://0.0.0.0:5144 (2)
+2013-12-05T12:12:16.930415+00:00 app[web.1]: 2013-12-05 12:12:16 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T12:12:16.931485+00:00 app[web.1]: 2013-12-05 12:12:16 [2] [INFO] Using worker: sync
+2013-12-05T12:12:16.941735+00:00 app[web.1]: 2013-12-05 12:12:16 [7] [INFO] Booting worker with pid: 7
+2013-12-05T12:13:21.797525+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:13:21.797525+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:13:22.141998+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:13:28.822052+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:13:35.396447+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:13:40.434623+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:13:40.434623+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:13:40.446567+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:13:44.867310+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:13:45.714036+00:00 app[web.1]: found parties to delete SELECT party_combo.id AS party_combo_id, party_combo.g_spreadsheet_id AS party_combo_g_spreadsheet_id, party_combo.g_worksheet_id AS party_combo_g_worksheet_id, party_combo."partyIndex" AS "party_combo_partyIndex", party_combo."instanceName" AS "party_combo_instanceName", party_combo."playerName" AS "party_combo_playerName", party_combo.name AS party_combo_name, party_combo."className" AS "party_combo_className", party_combo.rolename AS party_combo_rolename 
+2013-12-05T12:13:45.714036+00:00 app[web.1]: FROM party_combo 
+2013-12-05T12:13:45.714036+00:00 app[web.1]: WHERE party_combo.g_worksheet_id = :g_worksheet_id_1 AND party_combo.g_spreadsheet_id = :g_spreadsheet_id_1 
+2013-12-05T12:13:45.744756+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-05T12:13:45.744756+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2013-12-05T12:13:45.744756+00:00 app[web.1]: 2013-12-05 12:13:45 [7] [ERROR] Error handling request
+2013-12-05T12:13:45.744756+00:00 app[web.1]:   File "/app/.heroku/p
+ython/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2013-12-05T12:13:45.744756+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2013-12-05T12:13:45.744756+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2013-12-05T12:13:45.744756+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2013-12-05T12:13:45.744756+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2013-12-05T12:13:45.744756+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-05T12:13:45.744756+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2013-12-05T12:13:45.744939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2013-12-05T12:13:45.744939+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-05T12:13:45.744939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2013-12-05T12:13:45.744939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2013-12-05T12:13:45.744939+00:00 app[web.1]:     response = self.full_dispatch_request()
+2013-12-05T12:13:45.744939+00:00 app[w
+eb.1]:     rv = self.handle_user_exception(e)
+2013-12-05T12:13:45.745082+00:00 app[web.1]:     reset()
+2013-12-05T12:13:45.744939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2013-12-05T12:13:45.744939+00:00 app[web.1]:     rv = self.dispatch_request()
+2013-12-05T12:13:45.745082+00:00 app[web.1]:   File "/app/rosterrun.py", line 211, in reset
+2013-12-05T12:13:45.745082+00:00 app[web.1]:     print 'deleted %s found parties ' % len(cur)
+2013-12-05T12:13:45.744939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2013-12-05T12:13:45.744939+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2013-12-05T12:13:45.745082+00:00 app[web.1]:   File "/app/rosterrun.py", line 104, in show_entries
+2013-12-05T12:13:45.745082+00:00 app[web.1]: TypeError: object of type 'BaseQuery' has no len()
