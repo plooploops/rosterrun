@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from scheduler import run_scheduler, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination
+from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
@@ -10,7 +10,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 import gdata.gauth
 import gdata.docs.client
 
-from urlparse import urlparse, parse_qs
+from parseurl import parseUrl
 from oauth2client import client
 from oauth2client.client import OAuth2WebServerFlow
 
@@ -35,6 +35,7 @@ CLIENT_ID = '900730400111-npfbpmda6jtc8mmu7fn3ifm67fckim5b.apps.googleuserconten
 CLIENT_SECRET = 'RaWdj6OlSO36AReeLPiPx7Uc'
 SCOPES = ['https://spreadsheets.google.com/feeds/']
 REDIRECT_URI = 'http://rosterrun.herokuapp.com/auth_return'
+#REDIRECT_URI = 'http://127.0.0.1:5000/auth_return'
 
 flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
 # configuration
@@ -83,42 +84,48 @@ def resetParameters():
     session['accessToken'] = None
     session['requestToken'] = None
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def show_entries():
-    
-    res = urlparse(request.url)
-    qs = parse_qs(res.query)
-    if 'docname' in qs.keys() and len(qs['docname']) > 0: 
-      session['doc'] = qs['docname'][0]
+    action = None
     availableParties = []
-    if('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
-      #try to retrieve the token from the db
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()   
-      if credentials is not None:
-        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-        print g_s_id, g_w_id
-        session['g_spreadsheet_id'] = g_s_id
-        session['g_worksheet_id'] = g_w_id    
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        print 'available parties', availableParties
-      else:
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
+    
+    try:
+      session['doc'] = request.form['gdocname']
+      action = request.form['action']
+    except:
+      print request.form
+    if action == u"Calculate":
+      print 'run a calculation'
+      run_calculation()    
+    elif action == u"Reset":
+      print 'resetting'
+      reset()
+    else:
+      print 'showing available entries'
+      if('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
+        #try to retrieve the token from the db
+        loginConfiguration(session['user'])
+        user = users.get_current_user()
+        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+        credentials = storage.get()   
+        if credentials is not None:
+          (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+          print g_s_id, g_w_id
+          session['g_spreadsheet_id'] = g_s_id
+          session['g_worksheet_id'] = g_w_id    
+          cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+          availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+          print 'available parties', availableParties
+        else:
+          flash('Please login again')
+          session.pop('logged_in', None)
+          return redirect(url_for('login'))
     return render_template('show_entries.html', combinations=availableParties)
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
     if not session.get('logged_in'):
         abort(401)
-    
-    res = urlparse(request.url)
-    qs = parse_qs(res.query)
-    if 'docname' in qs.keys() and len(qs['docname']) > 0: 
-      session['doc'] = qs['docname'][0]
     
     if(len(session['doc']) <= 0):
         flash('Must include relevant document name')
@@ -134,7 +141,7 @@ def run_calculation():
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
     credentials = storage.get()    
     if credentials is not None:
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsService(credentials, session['doc'])
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
       print 'connected to spreadsheet: ', g_s_id, g_w_id
       if(g_s_id == -1 or g_w_id == -1):
         flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
@@ -160,7 +167,6 @@ def run_calculation():
 def reset():
     if not session.get('logged_in'):
       abort(401)
-    session['doc'] = request.form['docname']
     if(len(session['doc']) <= 0):
       flash('Must include relevant document name')
       return redirect(url_for('show_entries'))
@@ -187,11 +193,10 @@ def reset():
 
 @app.route('/auth_return', methods=['GET', 'POST'])
 def oauth2callback():
-    res = urlparse(request.url)
-    qs = parse_qs(res.query)
-    if 'code' in qs.keys() and len(qs['code']) > 0:
+    codeValue = parseUrl(request, 'code')
+    if len(codeValue) > 0:
       #Store credentials
-      credentials = flow.step2_exchange(qs['code'][0])
+      credentials = flow.step2_exchange(codeValue)
       user = users.get_current_user()
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       storage.put(credentials)    

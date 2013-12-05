@@ -111,8 +111,6 @@ def run_scheduler_OAuth(credentials, doc):
     parties = []
     viablePartyIndex = 0
 
-    userName = user
-    password = pw
     docName = doc
     initializeDataOAuth(credentials, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
@@ -182,126 +180,45 @@ def initializeDataOAuth(credentials, docName, quests):
 
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
-  print 'reading list for id %s' % g_spreadsheet_id
   rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
-  print 'number of rows %s' % len(rows)
   for row in rows:
     charac = Character()
     charac.Quests = []
-    for key in row.custom:
-      
+    print row
+    rowDictionary = row.to_dict()
+    print rowDictionary
+    for key in rowDictionary.keys():
+      print key
       #pick out relevant keys
       if key == 'playername':
-        charac.PlayerName = row.custom[key].text
+        charac.PlayerName = str(rowDictionary[key])
       if key == 'name':
-        charac.Name = row.custom[key].text
+        charac.Name = str(rowDictionary[key])
       if key == 'characterclass':
-        charac.Class = row.custom[key].text
+        charac.Class = str(rowDictionary[key])
 	roleMap = [r for r in AllRoles if charac.Class in r.Classes]
         if len(roleMap) > 0:
           charac.Role = roleMap[0]
       if key in quests:
-        if row.custom[key].text == '1':
+        if str(rowDictionary[key]) == '1':
           if key in charac.Quests:
             continue
           charac.Quests.append(key)
       if key == 'lastrun':
-        if row.custom[key].text is not None:
-          dt = datetime.strptime(row.custom[key].text, '%m/%d/%Y')
+        if str(rowDictionary[key]) != 'None':
+          dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
           if dt is not None:
 	    charac.LastRun = dt
         else:
           charac.LastRun = datetime.min
       if key == 'present':
-        if row.custom[key].text == '1':
+        if str(rowDictionary[key]) == '1':
           charac.Present = True
         else:
           charac.Present = False 
     characters.append(charac)
   chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   print chars
-
-def testConnectToSpreadsheetsService(user, pw, docName):
-  gd_client = gdata.spreadsheet.service.SpreadsheetsService()
-  gd_client.email = user
-  gd_client.password = pw
-  gd_client.source = 'scheduler'
-  spreadsheet_id = -1
-  worksheet_id = -1
-
-  try:
-    gd_client.ProgrammaticLogin()  
-    q = gdata.spreadsheet.service.DocumentQuery()
-    q['title'] = docName
-    q['title-exact'] = 'true'
-    feed = gd_client.GetSpreadsheetsFeed(query=q)
-    spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
-    feed = gd_client.GetWorksheetsFeed(spreadsheet_id) 
-    worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
-  except:
-    gd_client = None
-
-  return (spreadsheet_id, worksheet_id)  
-
-def initializeData(userName, passWord, docName, quests):
-  username        = userName
-  passwd          = passWord
-  doc_name        = docName
-
-  # Connect to Google
-  gd_client = gdata.spreadsheet.service.SpreadsheetsService()
-  gd_client.email = username
-  gd_client.password = passwd
-  gd_client.source = 'scheduler'
-  gd_client.ProgrammaticLogin()
-
-  q = gdata.spreadsheet.service.DocumentQuery()
-  q['title'] = doc_name
-  q['title-exact'] = 'true'
-  feed = gd_client.GetSpreadsheetsFeed(query=q)
-  spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
-  feed = gd_client.GetWorksheetsFeed(spreadsheet_id) 
-  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
-
-  g_spreadsheet_id = spreadsheet_id
-  g_worksheet_id = worksheet_id
-  rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
-  
-  for row in rows:
-    charac = Character()
-    charac.Quests = []
-    for key in row.custom:
-      
-      #pick out relevant keys
-      if key == 'playername':
-        charac.PlayerName = row.custom[key].text
-      if key == 'name':
-        charac.Name = row.custom[key].text
-      if key == 'characterclass':
-        charac.Class = row.custom[key].text
-	roleMap = [r for r in AllRoles if charac.Class in r.Classes]
-        if len(roleMap) > 0:
-          charac.Role = roleMap[0]
-      if key in quests:
-        if row.custom[key].text == '1':
-          if key in charac.Quests:
-            continue
-          charac.Quests.append(key)
-      if key == 'lastrun':
-        if row.custom[key].text is not None:
-          dt = datetime.strptime(row.custom[key].text, '%m/%d/%Y')
-          if dt is not None:
-	    charac.LastRun = dt
-        else:
-          charac.LastRun = datetime.min
-      if key == 'present':
-        if row.custom[key].text == '1':
-          charac.Present = True
-        else:
-          charac.Present = False 
-    characters.append(charac)
-  #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
-  #print chars
 
 def computeRequirements(characters, instance, quests):
     now = datetime.now()
