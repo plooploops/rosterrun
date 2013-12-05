@@ -205,7 +205,7 @@ def reset():
 
     cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       
-     flash('Reset party combinations')
+    flash('Reset party combinations')
       
     return redirect(url_for('show_entries')) 
 
