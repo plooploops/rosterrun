@@ -104,7 +104,7 @@ def show_entries():
       user = users.get_current_user()
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
-      if credentials is not None:
+      if credentials:
         print 'found credentials'
         (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
         session['g_spreadsheet_id'] = g_s_id
