@@ -99,7 +99,7 @@ def show_entries():
     elif action == u"Reset":
       reset()
     else:
-      if len(session['g_spreadsheet_id']) > 0 and len(session['g_worksheet_id']) > 0:
+      if len(str(session['g_spreadsheet_id'])) > 0 and len(str(session['g_worksheet_id'])) > 0:
         print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
 	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
