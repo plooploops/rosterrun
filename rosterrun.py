@@ -111,7 +111,7 @@ def show_entries():
           session['g_worksheet_id'] = g_w_id    
           cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
           availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-          print 'AVAILABLE PARTIES %s ' len(availableParties)
+          print 'AVAILABLE PARTIES %s ' % len(availableParties)
         else:
           flash('Please login again')
           session.pop('logged_in', None)
