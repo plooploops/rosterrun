@@ -1,26 +1,3 @@
-2013-12-05T13:19:20.149336+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T13:19:20.152198+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Using worker: sync
-2013-12-05T13:19:20.151902+00:00 app[web.1]: 2013-12-05 13:19:20 [2] [INFO] Listening at: http://0.0.0.0:5173 (2)
-2013-12-05T13:19:20.165591+00:00 app[web.1]: 2013-12-05 13:19:20 [7] [INFO] Booting worker with pid: 7
-2013-12-05T13:20:04.747856+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:20:04.747856+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:20:04.893447+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T13:20:11.034033+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:20:17.487855+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:20:20.666032+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:20:20.665718+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:20:20.675242+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T13:20:25.108237+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:20:30.532455+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:20:40.009232+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T13:24:51.334073+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:25:21.819339+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x2983e18>, <scheduler.Role instance at 0x2983c68>]), ('Joe', [<scheduler.Role instance at 0x2983758>]), ('Cheng', [<scheduler.Role instance at 0x2983a28>, <scheduler.Role instance at 0x2983a70>]), ('Joe', [<scheduler.Role instance at 0x2983c20>])]
-2013-12-05T13:25:21.877444+00:00 app[web.1]: 2013-12-05 13:25:21 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
-2013-12-05T13:25:21.918641+00:00 app[web.1]: 2013-12-05 13:25:21 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
-2013-12-05T13:25:21.938398+00:00 app[web.1]: 2013-12-05 13:25:21 [12] [INFO] Booting worker with pid: 12
-2013-12-05T13:30:21.250277+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:30:21.249421+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:30:21.380809+00:00 app[web.1]: AVAILABLE PARTIES 0 
 2013-12-05T13:35:05.800160+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Handling signal: term
 2013-12-05T13:35:05.809844+00:00 app[web.1]: 2013-12-05 13:35:05 [12] [INFO] Worker exiting (pid: 12)
 2013-12-05T13:35:05.969440+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Shutting down: Master
@@ -64,3 +41,24 @@
 2013-12-05T13:37:41.932923+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T13:37:51.363661+00:00 app[web.1]: FOUND 3 PARTIES
 2013-12-05T13:37:51.494719+00:00 app[web.1]: get all combinations
+2013-12-05T13:41:33.366882+00:00 app[web.1]: 2013-12-05 13:41:33 [2] [INFO] Handling signal: term
+2013-12-05T13:41:33.368499+00:00 app[web.1]: 2013-12-05 13:41:33 [12] [INFO] Worker exiting (pid: 12)
+2013-12-05T13:41:33.515693+00:00 app[web.1]: 2013-12-05 13:41:33 [2] [INFO] Shutting down: Master
+2013-12-05T13:41:40.790995+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Using worker: sync
+2013-12-05T13:41:40.789583+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T13:41:40.790898+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Listening at: http://0.0.0.0:28667 (2)
+2013-12-05T13:41:40.799327+00:00 app[web.1]: 2013-12-05 13:41:40 [7] [INFO] Booting worker with pid: 7
+2013-12-05T13:42:11.232564+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:42:11.232564+00:00 app[web.1]: show entries
+2013-12-05T13:42:11.232564+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:42:11.371751+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T13:42:26.406469+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:42:28.994803+00:00 app[web.1]: show entries
+2013-12-05T13:42:28.994803+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:42:28.994803+00:00 app[web.1]: cannot find gdoc name
+2013-12-05T13:42:29.003458+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T13:43:00.585273+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:43:01.864882+00:00 app[web.1]: get all combinations
+2013-12-05T13:43:07.551807+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:43:12.520581+00:00 app[web.1]: FOUND 3 PARTIES
+2013-12-05T13:43:12.558473+00:00 app[web.1]: get all combinations

@@ -104,29 +104,30 @@ def show_entries():
       reset()
     else:
       print 'show entries'
-      if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
-        print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-      	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        print 'AVAILABLE PARTIES %s ' % len(availableParties)  
-      else:
-        print 'could not find the spreadsheet id'
-        #try to retrieve the token from the db
-	loginConfiguration(session['user'])
-	user = users.get_current_user()
-	storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-	credentials = storage.get()   
-	if credentials is None:
-	  flash('Please login again')
-	  session.pop('logged_in', None)
-          return redirect(url_for('login'))
-        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-        session['g_spreadsheet_id'] = g_s_id
-        session['g_worksheet_id'] = g_w_id    
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+    
+    if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
+      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      print 'AVAILABLE PARTIES %s ' % len(availableParties)  
+    else:
+      print 'could not find the spreadsheet id'
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is None:
+        flash('Please login again')
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         
-        print 'now found available parties %s' % len(availableParties)  
+      print 'now found available parties %s' % len(availableParties)  
         
     if len(availableParties) == 0:
       print 'get all combinations'
