@@ -97,18 +97,18 @@ def show_entries():
       session['doc'] = request.form['gdocname']
       action = request.form['action']
     except:
-      print request.form
+      print 'cannot find gdoc name'
     if action == u"Calculate":
       run_calculation()    
     elif action == u"Reset":
       reset()
-    else:    
+    else:
       if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
         print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      	availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
-      elif('doc' in session.keys() and session['doc'] is not None and len(session['doc']) > 0):
+      else:
         #try to retrieve the token from the db
 	loginConfiguration(session['user'])
 	user = users.get_current_user()

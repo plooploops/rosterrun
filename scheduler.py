@@ -289,7 +289,6 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       #print 'dual client assignment', [(c[0], c[1].Name) for c in DualClientPlayersAssignment]
       mergedClientPlayerAssignment = list(accumulate(DualClientPlayersAssignment))
       
-      print [mcpa for mcpa in mergedClientPlayerAssignment]
       try:
         badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
         if(len(badDualClientPlayers) > 0):

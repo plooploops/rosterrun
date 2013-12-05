@@ -1,60 +1,62 @@
-2013-12-05T12:25:59.316498+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:25:59.316498+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:25:59.666941+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T12:26:10.740852+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:26:14.875762+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:26:14.875762+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:26:14.878955+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T12:26:20.882155+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:26:22.649207+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b11e18>, <scheduler.Role instance at 0x2b115a8>]), ('Joe', [<scheduler.Role instance at 0x2b113f8>, <scheduler.Role instance at 0x2b11b90>]), ('Cheng', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11b00>])]
-2013-12-05T12:26:23.009191+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b11e18>, <scheduler.Role instance at 0x2b11b00>]), ('Joe', [<scheduler.Role instance at 0x2b113f8>, <scheduler.Role instance at 0x2b11b90>]), ('Cheng', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b115a8>])]
-2013-12-05T12:26:23.242497+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b11e18>, <scheduler.Role instance at 0x2b11ab8>]), ('Joe', [<scheduler.Role insta
-nce at 0x2b113f8>, <scheduler.Role instance at 0x2b11b90>]), ('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11b00>])]
-2013-12-05T12:26:25.825052+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11ab8>])]
-2013-12-05T12:26:25.837118+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11ab8>]), ('Joe', [<scheduler.Role instance at 0x2b11b90>, <scheduler.Role instance at 0x2b115a8>])]
-2013-12-05T12:26:25.837989+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11ab8>]), ('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:25.865082+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11b90>])]
-2013-12-05T12:26:25.867263+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:25.893488+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11b90>, <scheduler.Role instance at 0x2b115a8>]), ('Cheng', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:25.891152+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11b90>]), ('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:26.015353+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11b90>, <scheduler.Role instance at 0x2b115a8>])]
-2013-12-05T12:26:26.016285+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:26.044911+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11b90>, <scheduler.Role instance at 0x2b115a8>]), ('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:26.111950+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11b90>]), ('Cheng', [<scheduler.Role instance at 0x2b115a8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:26.114161+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2b11b90>, <scheduler.Role instance at 0x2b115a8>]), ('Cheng', [<scheduler.Role instance at 0x2b11ab8>, <scheduler.Role instance at 0x2b11e60>])]
-2013-12-05T12:26:26.154677+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T12:29:37.619652+00:00 app[web.1]: 2013-12-05 12:29:37 [2] [INFO] Shutting down: Master
-2013-12-05T12:29:37.601515+00:00 app[web.1]: 2013-12-05 12:29:37 [2] [INFO] Handling signal: term
-2013-12-05T12:29:37.600605+00:00 app[web.1]: 2013-12-05 12:29:37 [7] [INFO] Worker exiting (pid: 7)
-2013-12-05T12:29:50.474020+00:00 app[web.1]: 2013-12-05 12:29:50 [2] [INFO] Listening at: http://0.0.0.0:47921 (2)
-2013-12-05T12:29:50.477961+00:00 app[web.1]: 2013-12-05 12:29:50 [2] [INFO] Using worker: sync
-2013-12-05T12:29:50.473462+00:00 app[web.1]: 2013-12-05 12:29:50 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T12:29:50.495111+00:00 app[web.1]: 2013-12-05 12:29:50 [7] [INFO] Booting worker with pid: 7
-2013-12-05T12:31:18.739956+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:31:26.587068+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:31:28.843903+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T12:31:28.843903+00:00 app[web.1]: ImmutableMultiDict([])
-2013-12-05T12:31:28.857606+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T12:31:48.862782+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T12:31:51.702381+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a03050>, <scheduler.Role instance at 0x2a033b0>]), ('Joe', [<scheduler.Role instance at 0x2a032d8>, <scheduler.Role instance at 0x2a03440>]), ('Cheng', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a035f0>])]
-2013-12-05T12:31:52.567268+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a03050>, <scheduler.Role instance at 0x2a035f0>]), ('Joe', [<scheduler.Role instance at 0x2a032d8>, <scheduler.Role instance at 0x2a03440>]), ('Cheng', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a033b0
->])]
-2013-12-05T12:31:53.111238+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a03050>, <scheduler.Role instance at 0x2a035a8>]), ('Joe', [<scheduler.Role instance at 0x2a032d8>, <scheduler.Role instance at 0x2a03440>]), ('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a035f0>])]
-2013-12-05T12:31:59.604837+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a035a8>])]
-2013-12-05T12:31:59.636817+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a035a8>]), ('Joe', [<scheduler.Role instance at 0x2a03440>, <scheduler.Role instance at 0x2a033b0>])]
-2013-12-05T12:31:59.638973+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a035a8>]), ('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:31:59.720037+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03440>])]
-2013-12-05T12:31:59.731873+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:31:59.789550+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03440>]), ('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:31:59.796478+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a03440>, <scheduler.Role instance at 0x2a033b0>]), ('Cheng', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:32:00.123543+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a03440>, <scheduler.Role instance at 0x2a033b0>])]
-2013-12-05T12:32:00.128544+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:32:00.192445+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a03440>, <scheduler.Role instance at 0x2a033b0>]), ('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:32:00.354675+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a03440>, <scheduler.Role instance at 0x2a033b0>]), ('Cheng', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03368>])]
-2013-12-05T12:32:00.351123+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2a035a8>, <scheduler.Role instance at 0x2a03440>]), ('Cheng', [<scheduler.Role instance at 0x2a033b0>, <scheduler.Role instance at 0x2a03368>])]
 2013-12-05T12:32:00.452053+00:00 app[web.1]: FOUND 3 PARTIES
 2013-12-05T12:33:46.339575+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T12:33:54.166284+00:00 app[web.1]: running with user andygee@gmail.com 
 2013-12-05T12:34:24.991430+00:00 app[web.1]: 2013-12-05 12:34:24 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
 2013-12-05T12:34:25.014645+00:00 app[web.1]: 2013-12-05 12:34:25 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
 2013-12-05T12:34:25.027721+00:00 app[web.1]: 2013-12-05 12:34:25 [12] [INFO] Booting worker with pid: 12
+2013-12-05T12:35:08.419554+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:35:17.226330+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:35:18.705834+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:35:18.705834+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:35:18.715903+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2013-12-05T12:35:29.740592+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:35:31.559978+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x28341b8>, <scheduler.Role instance at 0x2834128>]), ('Joe', [<scheduler.Role instance at 0x28343f8>, <scheduler.Role instance at 0x2834488>]), ('Cheng', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834248>])]
+2013-12-05T12:35:32.352545+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x28341b8>, <scheduler.Role instance at 0x2834248>]), ('Joe', [<scheduler.Role instance at 0x28343f8>, <scheduler.Role instance at 0x2834488>]), ('Cheng', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834128>])]
+2013-12-05T12:35:32.964428+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x28341b8>, <scheduler.Role instance at 0x28342d8>]), ('Joe', [<scheduler.Role instance at 0x28343f8>, <scheduler.Role instance at 0x2834488>]), ('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834248>])]
+2013-12-05T12:35:39.086394+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x28342d8>])]
+2013-12-05T12:35:39.114029+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x28342d8>]), ('Joe', [<scheduler.Role instance at 0x2834488>, <scheduler.Role instance at 0x2834128>])]
+2013-12-05T12:35:39.116848+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x28342d8>]), ('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.186048+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834488>])]
+2013-12-05T12:35:39.189893+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.232862+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834488>]), ('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.243016+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2834488>, <scheduler.Role instance at 0x2834128>]), ('Cheng', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.545042+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2834488>, <scheduler.Role instance at 0x2834128>])]
+2013-12-05T12:35:39.545845+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.614235+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2834488>, <scheduler.Role instance at 0x2834128>]), ('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.761260+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834488>]), ('Cheng', [<scheduler.Role instance at 0x2834128>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.765727+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x2834488>, <scheduler.Role instance at 0x2834128>]), ('Cheng', [<scheduler.Role instance at 0x28342d8>, <scheduler.Role instance at 0x2834170>])]
+2013-12-05T12:35:39.863027+00:00 app[web.1]: FOUND 3 PARTIES
+2013-12-05T12:39:43.572453+00:00 app[web.1]: 2013-12-05 12:39:43 [12] [INFO] Worker exiting (pid: 12)
+2013-12-05T12:39:43.582284+00:00 app[web.1]: 2013-12-05 12:39:43 [2] [INFO] Handling signal: term
+2013-12-05T12:39:43.598424+00:00 app[web.1]: 2013-12-05 12:39:43 [2] [INFO] Shutting down: Master
+2013-12-05T12:39:53.883381+00:00 app[web.1]: 2013-12-05 12:39:53 [2] [INFO] Starting gunicorn 18.0
+2013-12-05T12:39:53.884093+00:00 app[web.1]: 2013-12-05 12:39:53 [2] [INFO] Using worker: sync
+2013-12-05T12:39:53.884007+00:00 app[web.1]: 2013-12-05 12:39:53 [2] [INFO] Listening at: http://0.0.0.0:20823 (2)
+2013-12-05T12:39:53.892806+00:00 app[web.1]: 2013-12-05 12:39:53 [7] [INFO] Booting worker with pid: 7
+2013-12-05T12:41:36.208379+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:41:36.208379+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:41:36.346202+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:41:59.006848+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:42:06.180643+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:42:08.487804+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T12:42:08.487545+00:00 app[web.1]: ImmutableMultiDict([])
+2013-12-05T12:42:08.495791+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T12:42:18.019329+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:42:
+28.260101+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T12:42:29.431358+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251fdd0>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251f050>])]
+2013-12-05T12:42:29.758487+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251f050>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fdd0>])]
+2013-12-05T12:42:29.969196+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fd88>, <scheduler.Role instance at 0x251fbd8>]), ('Joe', [<scheduler.Role instance at 0x251fc20>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251f050>])]
+2013-12-05T12:42:32.325679+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>])]
+2013-12-05T12:42:32.337409+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>]), ('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>])]
+2013-12-05T12:42:32.338289+00:00 app[web.1]: [('Andy', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251fbd8>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.364349+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>])]
+2013-12-05T12:42:32.366564+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.388998+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.391216+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.504794+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>])]
+2013-12-05T12:42:32.505591+00:00 app[web.1]: [('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.532085+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.596154+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251fe18>]), ('Cheng', [<scheduler.Role instance at 0x251fdd0>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.598427+00:00 app[web.1]: [('Joe', [<scheduler.Role instance at 0x251fe18>, <scheduler.Role instance at 0x251fdd0>]), ('Cheng', [<scheduler.Role instance at 0x251fbd8>, <scheduler.Role instance at 0x251ffc8>])]
+2013-12-05T12:42:32.639924+00:00 app[web.1]: FOUND 3 PARTIES
