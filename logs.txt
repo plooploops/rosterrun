@@ -1,64 +1,70 @@
-2013-12-05T13:35:05.800160+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Handling signal: term
-2013-12-05T13:35:05.809844+00:00 app[web.1]: 2013-12-05 13:35:05 [12] [INFO] Worker exiting (pid: 12)
-2013-12-05T13:35:05.969440+00:00 app[web.1]: 2013-12-05 13:35:05 [2] [INFO] Shutting down: Master
-2013-12-05T13:35:15.609322+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T13:35:15.610825+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Listening at: http://0.0.0.0:17130 (2)
-2013-12-05T13:35:15.616729+00:00 app[web.1]: 2013-12-05 13:35:15 [2] [INFO] Using worker: sync
-2013-12-05T13:35:15.863363+00:00 app[web.1]: 2013-12-05 13:35:15 [7] [INFO] Booting worker with pid: 7
-2013-12-05T13:35:23.628875+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:35:23.628875+00:00 app[web.1]: show entries
-2013-12-05T13:35:23.629543+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:35:24.167833+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T13:35:24.167833+00:00 app[web.1]: get all combinations
-2013-12-05T13:35:33.643241+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:35:36.428561+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:35:36.428561+00:00 app[web.1]: show entries
-2013-12-05T13:35:36.428735+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:35:36.435285+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T13:35:36.435285+00:00 app[web.1]: get all combinations
-2013-12-05T13:35:40.909951+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:35:47.704624+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T13:35:47.754588+00:00 app[web.1]: get all combinations
-2013-12-05T13:36:43.427841+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:36:44.151994+00:00 app[web.1]: get all combinations
-2013-12-05T13:36:49.158832+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:37:19.177746+00:00 app[web.1]: 2013-12-05 13:37:19 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
-2013-12-05T13:37:19.227695+00:00 app[web.1]: 2013-12-05 13:37:19 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
-2013-12-05T13:37:19.248344+00:00 app[web.1]: 2013-12-05 13:37:19 [12] [INFO] Booting worker with pid: 12
-2013-12-05T13:37:22.915742+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:37:22.915742+00:00 app[web.1]: show entries
-2013-12-05T13:37:22.915742+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:37:23.164893+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T13:37:23.165018+00:00 app[web.1]: get all combinations
-2013-12-05T13:37:28.067370+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:37:28.081457+00:00 app[web.1]: get all combinations
-2013-12-05T13:37:34.774238+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:37:37.270580+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:37:37.271722+00:00 app[web.1]: show entries
-2013-12-05T13:37:37.272488+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:37:37.288132+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2013-12-05T13:37:37.288299+00:00 app[web.1]: get all combinations
-2013-12-05T13:37:41.932923+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:37:51.363661+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T13:37:51.494719+00:00 app[web.1]: get all combinations
-2013-12-05T13:41:33.366882+00:00 app[web.1]: 2013-12-05 13:41:33 [2] [INFO] Handling signal: term
-2013-12-05T13:41:33.368499+00:00 app[web.1]: 2013-12-05 13:41:33 [12] [INFO] Worker exiting (pid: 12)
-2013-12-05T13:41:33.515693+00:00 app[web.1]: 2013-12-05 13:41:33 [2] [INFO] Shutting down: Master
-2013-12-05T13:41:40.790995+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Using worker: sync
-2013-12-05T13:41:40.789583+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Starting gunicorn 18.0
-2013-12-05T13:41:40.790898+00:00 app[web.1]: 2013-12-05 13:41:40 [2] [INFO] Listening at: http://0.0.0.0:28667 (2)
-2013-12-05T13:41:40.799327+00:00 app[web.1]: 2013-12-05 13:41:40 [7] [INFO] Booting worker with pid: 7
-2013-12-05T13:42:11.232564+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:42:11.232564+00:00 app[web.1]: show entries
-2013-12-05T13:42:11.232564+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:42:11.371751+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T13:42:26.406469+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:42:28.994803+00:00 app[web.1]: show entries
-2013-12-05T13:42:28.994803+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2013-12-05T13:42:28.994803+00:00 app[web.1]: cannot find gdoc name
-2013-12-05T13:42:29.003458+00:00 app[web.1]: AVAILABLE PARTIES 10 
-2013-12-05T13:43:00.585273+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:43:01.864882+00:00 app[web.1]: get all combinations
-2013-12-05T13:43:07.551807+00:00 app[web.1]: running with user andygee@gmail.com 
-2013-12-05T13:43:12.520581+00:00 app[web.1]: FOUND 3 PARTIES
-2013-12-05T13:43:12.558473+00:00 app[web.1]: get all combinations
+2013-12-05T13:49:12.026929+00:00 app[web.1]: running with user andygee@gmail.com 
+2013-12-05T13:49:19.995084+00:00 app[web.1]: FOUND 3 PARTIES
+2013-12-05T13:49:20.117396+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2013-12-05T13:49:20.128364+00:00 app[web.1]: AVAILABLE PARTIES 10 
+2013-12-05T14:53:16.746290+00:00 app[web.1]: 2013-12-05 14:53:16 [7] [INFO] Worker exiting (pid: 7)
+2013-12-05T14:53:16.748007+00:00 app[web.1]: 2013-12-05 14:53:16 [2] [INFO] Handling signal: term
+2013-12-05T14:53:16.771656+00:00 app[web.1]: 2013-12-05 14:53:16 [2] [INFO] Shutting down: Master
+2013-12-06T00:29:15.195067+00:00 app[web.1]: 2013-12-06 00:29:15 [2] [INFO] Starting gunicorn 18.0
+2013-12-06T00:29:15.195661+00:00 app[web.1]: 2013-12-06 00:29:15 [2] [INFO] Listening at: http://0.0.0.0:4228 (2)
+2013-12-06T00:29:15.195736+00:00 app[web.1]: 2013-12-06 00:29:15 [2] [INFO] Using worker: sync
+2013-12-06T00:29:15.212046+00:00 app[web.1]: 2013-12-06 00:29:15 [7] [INFO] Booting worker with pid: 7
+2013-12-06T00:31:18.822002+00:00 app[web.1]: running with user legendairy647@gmail.com 
+2013-12-06T00:32:21.404488+00:00 app[web.1]: cannot find gdoc name
+2013-12-06T00:32:21.404698+00:00 app[web.1]: show entries
+2013-12-06T00:32:21.406068+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-06T00:32:21.406068+00:00 app[web.1]: 2013-12-06 00:32:21 [7] [ERROR] Error handling request
+2013-12-06T00:32:21.406068+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2013-12-06T00:32:21.406068+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2013-12-06T00:32:21.406068+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2013-12-06T00:32:21.406364+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2013-12-06T00:32:21.406364+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2013-12-06T00:32:21.406364+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2013-12-06T00:32:21.406364+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2013-12-06T00:32:21.406364+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-06T00:32:21.406364+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2013-12-06T00:32:21.406364+00:00 app[web.1]:     response = self.full_dispatch_request()
+2013-12-06T00:32:21.406364+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2013-12-06T00:32:21.406364+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2013-12-06T00:32:21.406364+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2013-12-06T00:32:21.406551+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-06T00:32:21.406551+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2013-12-06T00:32:21.406551+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2013-12-06T00:32:21.406551+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2013-12-06T00:32:21.406551+00:00 app[web.1]:     rv = self.dispatch_request()
+2013-12-06T00:32:21.406551+00:00 app[web.1]:   File "/app/rosterrun.py", line 108, in show_entries
+2013-12-06T00:32:21.406551+00:00 app[web.1]:     if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
+2013-12-06T00:32:21.406551+00:00 app[web.1]:     __getitem__ = lambda x, i: x._get_current_object()[i]
+2013-12-06T00:32:21.406551+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+2013-12-06T00:32:21.406551+00:00 app[web.1]: KeyError: 'g_spreadsheet_id'
+2013-12-06T00:33:48.580121+00:00 app[web.1]: cannot find gdoc name
+2013-12-06T00:33:48.580682+00:00 app[web.1]: show entries
+2013-12-06T00:33:48.581605+00:00 app[web.1]: Traceback (most recent call last):
+2013-12-06T00:33:48.581605+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2013-12-06T00:33:48.581605+00:00 app[web.1]: 2013-12-06 00:33:48 [7] [ERROR] Error handling request
+2013-12-06T00:33:48.581605+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2013-12-06T00:33:48.581605+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2013-12-06T00:33:48.581605+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2013-12-06T00:33:48.581605+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2013-12-06T00:33:48.581605+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2013-12-06T00:33:48.581605+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2013-12-06T00:33:48.581605+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-06T00:33:48.581763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2013-12-06T00:33:48.581763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2013-12-06T00:33:48.581763+00:00 app[web.1]:     response = self.full_dispatch_request()
+2013-12-06T00:33:48.581763+00:00
+ app[web.1]:     rv = self.handle_user_exception(e)
+2013-12-06T00:33:48.581763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2013-12-06T00:33:48.581763+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2013-12-06T00:33:48.581763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2013-12-06T00:33:48.581763+00:00 app[web.1]:     rv = self.dispatch_request()
+2013-12-06T00:33:48.581763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2013-12-06T00:33:48.581935+00:00 app[web.1]:   File "/app/rosterrun.py", line 108, in show_entries
+2013-12-06T00:33:48.581935+00:00 app[web.1]:     if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
+2013-12-06T00:33:48.581935+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+2013-12-06T00:33:48.581935+00:00 app[web.1]:     __getitem__ = lambda x, i: x._get_current_object()[i]
+2013-12-06T00:33:48.581763+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2013-12-06T00:33:48.581935+00:00 app[web.1]: KeyError: 'g_spreadsheet_id'
+2013-12-06T02:09:19.043589+00:00 app[web.1]: 2013-12-06 02:09:19 [2] [INFO] Handling signal: term
+2013-12-06T02:09:19.038535+00:00 app[web.1]: 2013-12-06 02:09:19 [7] [INFO] Worker exiting (pid: 7)
+2013-12-06T02:09:19.072288+00:00 app[web.1]: 2013-12-06 02:09:19 [2] [INFO] Shutting down: Master

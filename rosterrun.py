@@ -94,7 +94,7 @@ def show_entries():
     availableParties = []
  
     try:
-      session['doc'] = request.form['gdocname']
+      session['doc'] = request.form['gdocname'].strip()
       action = request.form['action']
     except:
       print 'cannot find gdoc name'
@@ -105,7 +105,7 @@ def show_entries():
     else:
       print 'show entries'
     
-    if session['g_spreadsheet_id'] is not None and session['g_worksheet_id'] is not None:
+    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
       print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
@@ -243,7 +243,7 @@ def login():
         if len(request.form['username']) == 0:
             error = 'Invalid username'
         else:
-            username = request.form['username']
+            username = request.form['username'].strip()
             session['user'] = username
 
 	    loginConfiguration(username)
