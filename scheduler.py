@@ -167,11 +167,14 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   q['title'] = docName
   q['title-exact'] = 'true'
   feed = gd_client.GetSpreadsheets(query=q)	
-  #print map(lambda e: (e.title.text, e.id.text.rsplit('/', 1)[1]), feed.entry)
-  spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
-  #print 'found a spreadsheet %s' % spreadsheet_id
+  print 'trying to find the spreadsheet named %s ' % docName
+  relevantSpreadsheet = [e for e in feed.entry if e.title.text == docName]
+  friendlyName = [rs.title.text for rs in relevantSpreadsheet]
+  print friendlyName
+  spreadsheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
+  print spreadsheet_id
   feed = gd_client.GetWorksheets(spreadsheet_id) 
-  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
+  worksheet_id = feed[0].id.text.rsplit('/',1)[1]
   
   return (spreadsheet_id, worksheet_id)  
 
@@ -182,7 +185,7 @@ def initializeDataOAuth(credentials, docName, quests):
   
   q = gdata.spreadsheet.service.DocumentQuery()
   q['title'] = docName
-  q['title_exact'] = 'true'
+  q['title-exact'] = 'true'
   feed = gd_client.GetSpreadsheets(query=q)
   
   print 'trying to find the spreadsheet named %s ' % docName
@@ -190,8 +193,9 @@ def initializeDataOAuth(credentials, docName, quests):
   friendlyName = [rs.title.text for rs in relevantSpreadsheet]
   print friendlyName
   spreadsheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
+  print spreadsheet_id
   feed = gd_client.GetWorksheets(spreadsheet_id) 
-  worksheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
+  worksheet_id = feed[0].id.text.rsplit('/',1)[1]
 
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
