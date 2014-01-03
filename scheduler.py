@@ -206,7 +206,7 @@ def initializeDataOAuth(credentials, docName, quests):
     rowDictionary = row.to_dict()
     for key in rowDictionary.keys():
       key = key.lower().strip()
-      print 'Mapped key %s' % key
+      #print 'Mapped key %s' % key
       #pick out relevant keys
       if key == 'playername' or key == 'player name':
         charac.PlayerName = str(rowDictionary[key])
