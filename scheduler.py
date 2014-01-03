@@ -203,9 +203,12 @@ def initializeDataOAuth(credentials, docName, quests):
           charac.Quests.append(key)
       if key == 'lastrun':
         if str(rowDictionary[key]) != 'None':
-          dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
-          if dt is not None:
-	    charac.LastRun = dt
+          try:
+            dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
+            if dt is not None:
+	      charac.LastRun = dt
+	  except:
+	    print 'failed to convert: %s to date' % rowDictionary[key]
         else:
           charac.LastRun = datetime.min
       if key == 'present':
