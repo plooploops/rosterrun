@@ -185,9 +185,10 @@ def initializeDataOAuth(credentials, docName, quests):
   q['title_exact'] = 'true'
   feed = gd_client.GetSpreadsheets(query=q)
   
-  
+  print 'trying to find the spreadsheet named %s ' % docName
   relevantSpreadsheet = [e for e in feed.entry if e.title.text == docName]
-  print relevantSpreadsheet
+  friendlyName = [rs.title.text for rs in relevantSpreadsheet]
+  print friendlyName
   spreadsheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
   feed = gd_client.GetWorksheets(spreadsheet_id) 
   worksheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]

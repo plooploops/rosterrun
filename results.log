@@ -1,65 +1,3 @@
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.298594+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.298594+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.300073+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.300214+00:00 app[web.1]: failed to convert: High Priest, Lord Knight to date
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.300214+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300214+00:00 app[web.1]: failed to convert: Champion, Professor to date
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.300557+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.300731+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key maxfloor
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key name
-2014-01-03T08:50:49.300731+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key lastrun
-2014-01-03T08:50:49.300997+00:00 app[web.1]: failed to convert: Whitesmith to date
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key dungeon
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key rundate
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key success
-2014-01-03T08:50:49.301140+00:00 app[web.1]: 2014-01-03 08:50:49 [7] [ERROR] Error handling request
-2014-01-03T08:50:49.301140+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-03T08:50:49.300997+00:00 app[web.1]: Mapped key drops
-2014-01-03T08:50:49.301140+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-01-03T08:50:49.301140+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-01-03T08:50:49.301140+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-01-03T08:50:49.301140+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-03T08:50:49.301416+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-01-03T08:50:49.301140+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-01-03T08:50:49.301140+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-01-03T08:50:49.301416+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-01-03T08:50:49.301140+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-01-03T08:50:49.301416+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-03T08:50:49.301416+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-01-03T08:50:49.301140+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-01-03T08:50:49.301416+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
 2014-01-03T08:50:49.301416+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
 2014-01-03T08:50:49.301416+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
 2014-01-03T08:50:49.300557+00:00 app[web.1]: failed to convert: Clown to date
@@ -99,27 +37,27 @@
 2014-01-03T09:01:54.620355+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=34ms status=302 bytes=209
 2014-01-03T09:01:54.742636+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=15ms service=10ms status=302 bytes=219
 2014-01-03T09:01:54.883233+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=33ms status=200 bytes=563
+2014-01-03T09:01:58.057662+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-03T09:01:29.776538+00:00 heroku[api]: Deploy 227541f by andygee@gmail.com
 2014-01-03T09:01:29.807926+00:00 heroku[api]: Release v72 created by andygee@gmail.com
-2014-01-03T09:01:58.057662+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-03T09:01:59.917195+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/f8yJHs0P-18GOoOkco2QIDimWmQB.kkfHslyTueYeEnp6UAPFm0HSg7CuhgI host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=1380ms status=302 bytes=209
+2014-01-03T09:01:59.917195+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/f8yJHs0P-18GOoOkco2QIDimWmQB.kkfHslyTueYeEnp6UAPFm0HSg7CuhgI 
+host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=1380ms status=302 bytes=209
 2014-01-03T09:02:00.030687+00:00 app[web.1]: cannot find gdoc name
+2014-01-03T09:02:00.037907+00:00 app[web.1]: get all combinations
 2014-01-03T09:02:00.030687+00:00 app[web.1]: show entries
 2014-01-03T09:02:00.030999+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-03T09:02:00.037907+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-03T09:02:00.037907+00:00 app[web.1]: get all combinations
 2014-01-03T09:02:00.055585+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=19ms status=200 bytes=815
 2014-01-03T09:02:03.615420+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-03T09:02:04.313331+00:00 app[web.1]: 2014-01-03 09:02:04 [7] [ERROR] Error handling request
-2014-01-03T09:02:04.313331+00:00 app[web.1]: Traceback (most recent call last):
 2014-01-03T09:02:04.313331+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-03T09:02:04.313331+00:00 app[web.1]: Traceback (most recent call last):
 2014-01-03T09:02:04.313331+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
 2014-01-03T09:02:04.313331+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
 2014-01-03T09:02:04.313331+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
 2014-01-03T09:02:04.313331+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-01-03T09:02:04.313331+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-01-03T09:02:04.313331+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
 2014-01-03T09:02:04.313331+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-03T09:02:04.313331+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
 2014-01-03T09:02:04.313704+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
 2014-01-03T09:02:04.313704+00:00 app[web.1]:     response = self.full_dispatch_request()
 2014-01-03T09:02:04.313704+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
@@ -127,6 +65,7 @@
 2014-01-03T09:02:04.313704+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
 2014-01-03T09:02:04.313704+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
 2014-01-03T09:02:04.313704+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-03T09:02:04.313331+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
 2014-01-03T09:02:04.313704+00:00 app[web.1]:     rv = self.dispatch_request()
 2014-01-03T09:02:04.313704+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2014-01-03T09:02:04.313704+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
@@ -136,9 +75,81 @@
 2014-01-03T09:02:04.314030+00:00 app[web.1]:     parties = run_scheduler_OAuth(credentials, session['doc'])
 2014-01-03T09:02:04.314030+00:00 app[web.1]:   File "/app/scheduler.py", line 120, in run_scheduler_OAuth
 2014-01-03T09:02:04.314030+00:00 app[web.1]:     initializeDataOAuth(credentials, docName, quests)
-2014-01-03T09:02:04.314030+00:00 app[web.1]:   File "/app/scheduler.py", line 189, in initializeDataOAuth
 2014-01-03T09:02:04.314030+00:00 app[web.1]:     relevantSpreadsheet = [e for e in feed.entry if e.title.text == docname]
 2014-01-03T09:02:04.314030+00:00 app[web.1]: NameError: global name 'docname' is not defined
+2014-01-03T09:02:04.314030+00:00 app[web.1]:   File "/app/scheduler.py", line 189, in initializeDataOAuth
 2014-01-03T09:02:04.358828+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=3ms service=762ms status=500 bytes=135
 2014-01-03T09:01:58.062073+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=9ms status=302 bytes=803
+2014-01-03T09:03:10+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-03T09:04:12+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-03T09:04:12.671370+00:00 heroku[web.1]: State changed from up to starting
+2014-01-03T09:04:15.648310+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-03T09:04:16.363857+00:00 app[web.1]: 2014-01-03 09:04:16 [7] [INFO] Worker exiting (pid: 7)
+2014-01-03T09:04:16.363857+00:00 app[web.1]: 2014-01-03 09:04:16 [2] [INFO] Handling signal: term
+2014-01-03T09:04:16.383996+00:00 app[web.1]: 2014-01-03 09:04:16 [2] [INFO] Shutting down: Master
+2014-01-03T09:04:18.108026+00:00 heroku[web.1]: Process exited with status 0
+2014-01-03T09:04:23.799335+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-03T09:04:25.671716+00:00 app[web.1]: 2014-01-03 09:04:25 [2] [INFO] Starting gunicorn 18.0
+2014-01-03T09:04:25.672704+00:00 app[web.1]: 2014-01-03 09:04:25 [2] [INFO] Listening at: http://0.0.0.0:24358 (2)
+2014-01-03T09:04:25.672971+00:00 app[web.1]: 2014-01-03 09:04:25 [2] [INFO] Using worker: sync
+2014-01-03T09:04:25.680671+00:00 app[web.1]: 2014-01-03 09:04:25 [7] [INFO] Booting worker with pid: 7
+2014-01-03T09:04:26.008723+00:00 heroku[web.1]: State changed from starting to up
+2014-01-03T09:04:28.987053+00:00 app[web.1]: cannot find gdoc name
+2014-01-03T09:04:28.987053+00:00 app[web.1]: show entries
+2014-01-03T09:04:28.987053+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-03T09:04:29.111474+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-03T09:04:29.111474+00:00 app[web.1]: get all combinations
+2014-01-03T09:04:29.149467+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=1843ms status=200 bytes=766
+2014-01-03T09:04:44.417294+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=26ms status=302 bytes=209
+2014-01-03T09:04:44.545409+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=15ms status=302 bytes=219
+2014-01-03T09:04:44.675406+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=17ms status=200 bytes=563
+2014-01-03T09:04:48.461130+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-03T09:04:48.523509+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=63ms status=302 bytes=803
+2014-01-03T09:04:50.221285+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/MFvKp6PAiBlX2nnY1HW11TjHKY54.YorIXugVI_EbEnp6UAPFm0F8tbWuhgI host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=3ms service=1463ms status=302 bytes=209
+2014-01-03T09:04:50.322460+00:00 app[web.1]: cannot find gdoc name
+2014-01-03T09:04:50.322460+00:00 app[web.1]: show entries
+2014-01-03T09:04:50.322523+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-03T09:04:50.327280+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-03T09:04:50.327280+00:00 app[web.1]: get all combinations
+2014-01-03T09:04:50.333999+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=12ms status=200 bytes=815
+2014-01-03T09:04:54.542206+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-03T09:04:56.261572+00:00 app[web.1]: [<gdata.spreadsheets.data.Spreadsheet object at 0x4a27950>]
+2014-01-03T09:04:57.111303+00:00 app[web.1]: 2014-01-03 09:04:57 [7] [ERROR] Error handling request
+2014-01-03T09:04:57.111303+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-03T09:04:57.111303+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-03T09:04:57.111303+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-01-03T09:04:57.111303+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-03T09:04:57.111303+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-01-03T09:04:57.111303+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-01-03T09:04:57.111303+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-01-03T09:04:57.111303+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-01-03T09:04:57.111303+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-03T09:04:57.111558+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-01-03T09:04:57.111558+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-01-03T09:04:57.111558+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-03T09:04:57.111558+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-03T09:04:57.111558+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-03T09:04:57.111558+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-03T09:04:57.111558+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-03T09:04:57.111558+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-01-03T09:04:57.111558+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-01-03T09:04:57.111558+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-03T09:04:57.111757+00:00 app[web.1]:   File "/app/rosterrun.py", line 106, in show_entries
+2014-01-03T09:04:57.111757+00:00 app[web.1]:     run_calculation()
+2014-01-03T09:04:57.111757+00:00 app[web.1]:   File "/app/rosterrun.py", line 180, in run_calculation
+2014-01-03T09:04:57.111757+00:00 app[web.1]:     parties = run_scheduler_OAuth(credentials, session['doc'])
+2014-01-03T09:04:57.111757+00:00 app[web.1]:   File "/app/scheduler.py", line 120, in run_scheduler_OAuth
+2014-01-03T09:04:57.111757+00:00 app[web.1]:     initializeDataOAuth(credentials, docName, quests)
+2014-01-03T09:04:57.111757+00:00 app[web.1]:   File "/app/scheduler.py", line 197, in initializeDataOAuth
+2014-01-03T09:04:57.111757+00:00 app[web.1]:     rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
+2014-01-03T09:04:57.111757+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gdata/spreadsheets/client.py", line 450, in get_list_feed
+2014-01-03T09:04:57.111757+00:00 app[web.1]:     **kwargs)
+2014-01-03T09:04:57.112246+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gdata/client.py", line 640, in get_feed
+2014-01-03T09:04:57.112246+00:00 app[web.1]:     **kwargs)
+2014-01-03T09:04:57.112246+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gdata/client.py", line 319, in request
+2014-01-03T09:04:57.112246+00:00 app[web.1]:     RequestError)
+2014-01-03T09:04:57.112246+00:00 app[web.1]: RequestError: Server responded with: 400, Invalid query parameter value for grid-id.
+2014-01-03T09:04:57.126890+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=2591ms status=500 bytes=135
+2014-01-03T09:04:12.078914+00:00 heroku[api]: Deploy a2ad538 by andygee@gmail.com
+2014-01-03T09:04:12.108173+00:00 heroku[api]: Release v73 created by andygee@gmail.com
 Terminate batch job (Y/N)? 
