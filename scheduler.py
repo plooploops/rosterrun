@@ -52,7 +52,7 @@ class Combination:
 roleHealer = Role('Healer', ['High Priest', 'Priest'])
 roleKiller = Role('Killer', ['Creator'])
 roleSPKiller = Role('SPKiller', ['Champion', 'Sniper'])
-roleLurer = Role('Lurer', ['Lord Knight', 'Paladin'])
+roleLurer = Role('Lurer', ['Lord Knight', 'Paladin', 'Whitesmith'])
 roleSupport = Role('Support', ['Bard', 'Clown'])
 roleSPBoost = Role('SPBoost', ['Dancer', 'Gypsy'])
 roleSPActive = Role('SPActive', ['Professor'])
@@ -72,6 +72,7 @@ AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPK
 niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
 niddhoggRolesSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleFreezer, roleSPActive]
 niddhoggRolesKiller = [roleHealer, roleHealer, roleKiller, roleSupport, roleFreezer]
+niddhoggRolesNoFreezeSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 
 characters = []
 availableCharacters = []
@@ -100,6 +101,10 @@ def run_scheduler(user, pw, doc):
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
     
     #print parties
     return parties    
@@ -118,6 +123,11 @@ def run_scheduler_OAuth(credentials, doc):
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+    
     
     #print parties
     return parties    
@@ -186,12 +196,14 @@ def initializeDataOAuth(credentials, docName, quests):
     charac.Quests = []
     rowDictionary = row.to_dict()
     for key in rowDictionary.keys():
+      key = key.lower().strip()
+      print 'Mapped key %s' % key
       #pick out relevant keys
-      if key == 'playername':
+      if key == 'playername' or key == 'player name':
         charac.PlayerName = str(rowDictionary[key])
       if key == 'name':
         charac.Name = str(rowDictionary[key])
-      if key == 'characterclass':
+      if key == 'characterclass' or key == 'character class':
         charac.Class = str(rowDictionary[key])
 	roleMap = [r for r in AllRoles if charac.Class in r.Classes]
         if len(roleMap) > 0:
