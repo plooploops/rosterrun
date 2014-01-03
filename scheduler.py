@@ -174,7 +174,7 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   spreadsheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
   print spreadsheet_id
   feed = gd_client.GetWorksheets(spreadsheet_id) 
-  worksheet_id = feed[0].id.text.rsplit('/',1)[1]
+  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
   
   return (spreadsheet_id, worksheet_id)  
 
@@ -195,7 +195,7 @@ def initializeDataOAuth(credentials, docName, quests):
   spreadsheet_id = relevantSpreadsheet[0].id.text.rsplit('/',1)[1]
   print spreadsheet_id
   feed = gd_client.GetWorksheets(spreadsheet_id) 
-  worksheet_id = feed[0].id.text.rsplit('/',1)[1]
+  worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
 
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
