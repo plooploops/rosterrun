@@ -1,105 +1,102 @@
-2014-01-03T08:11:15.504776+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.504871+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.504959+00:00 app[web.1]: failed to convert: High Wiz to date
-2014-01-03T08:11:15.505103+00:00 app[web.1]: failed to convert: Prof, Champ to date
-2014-01-03T08:11:15.505376+00:00 app[web.1]: failed to convert: Lord Knight to date
-2014-01-03T08:11:15.505288+00:00 app[web.1]: failed to convert: High Wiz to date
-2014-01-03T08:11:15.505198+00:00 app[web.1]: failed to convert: Paladin to date
-2014-01-03T08:11:15.505465+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.505556+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.505637+00:00 app[web.1]: failed to convert: Paladin to date
-2014-01-03T08:11:15.505818+00:00 app[web.1]: failed to convert: High Wiz, Clown, SL to date
-2014-01-03T08:11:15.505906+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.505993+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.506219+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.506136+00:00 app[web.1]: failed to convert: High Wiz, Clown, High Priest to date
-2014-01-03T08:11:15.506310+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:11:15.506424+00:00 app[web.1]: failed to convert: Lord Knight to date
-2014-01-03T08:11:15.506512+00:00 app[web.1]: failed to convert: Kafra Chan to date
-2014-01-03T08:11:15.505726+00:00 app[web.1]: failed to convert: Lord Knight to date
-2014-01-03T08:11:15.506628+00:00 app[web.1]: failed to convert: Paladin to date
-2014-01-03T08:11:15.506719+00:00 app[web.1]: failed to convert: Soul Linker to date
-2014-01-03T08:11:15.506948+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.506802+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:11:15.507143+00:00 app[web.1]: failed to convert: Whitesmith to date
-2014-01-03T08:11:15.507044+00:00 app[web.1]: failed to convert: Champion to date
-2014-01-03T08:11:15.507220+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.507309+00:00 app[web.1]: failed to convert: Professor to date
-2014-01-03T08:11:15.507401+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.507507+00:00 app[web.1]: failed to convert: High Wiz to date
-2014-01-03T08:11:15.507598+00:00 app[web.1]: failed to convert: Lord Knight to date
-2014-01-03T08:11:15.507680+00:00 app[web.1]: failed to convert: Dancer to date
-2014-01-03T08:11:15.507831+00:00 app[web.1]: failed to convert: Champion to date
-2014-01-03T08:11:15.508023+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.507922+00:00 app[web.1]: failed to convert: Professor to date
-2014-01-03T08:11:15.508095+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.508185+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.508358+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.508279+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.508451+00:00 app[web.1]: failed to convert: High Wizard, Soul Linker to date
-2014-01-03T08:11:15.508541+00:00 app[web.1]: failed to convert: High Priest, Clown to date
-2014-01-03T08:11:15.508624+00:00 app[web.1]: failed to convert: High Wiz, Clown to date
-2014-01-03T08:11:15.508762+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.508943+00:00 app[web.1]: failed to convert: Champion, Lord Knight to date
-2014-01-03T08:11:15.509031+00:00 app[web.1]: failed to convert: Soul Linker, High Priest to date
-2014-01-03T08:11:15.508865+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:11:15.509115+00:00 app[web.1]: failed to convert: High Wiz, Professor to date
-2014-01-03T08:11:15.509210+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.509293+00:00 app[web.1]: failed to convert: High wiz to date
-2014-01-03T08:11:15.509386+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.509486+00:00 app[web.1]: failed to convert: Champion to date
-2014-01-03T08:11:15.509551+00:00 app[web.1]: failed to convert: Sniper, High Priest, Dancer to date
-2014-01-03T08:11:15.509658+00:00 app[web.1]: failed to convert: Clown, Gypsy to date
-2014-01-03T08:11:15.509748+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.509887+00:00 app[web.1]: failed to convert: Paladin to date
-2014-01-03T08:11:15.509950+00:00 app[web.1]: failed to convert: High Wiz to date
-2014-01-03T08:11:15.510045+00:00 app[web.1]: failed to convert: Lord Knight to date
-2014-01-03T08:11:15.510126+00:00 app[web.1]: failed to convert: High Wiz, Clown to date
-2014-01-03T08:11:15.510218+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:11:15.510335+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.510731+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.510400+00:00 app[web.1]: failed to convert: High Priest, Dancer to date
-2014-01-03T08:11:15.510512+00:00 app[web.1]: failed to convert: Champion, Professor to date
-2014-01-03T08:11:15.510602+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.510829+00:00 app[web.1]: failed to convert: Lord Knight, High Priest to date
-2014-01-03T08:11:15.510918+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.511010+00:00 app[web.1]: failed to convert: Creator to date
-2014-01-03T08:11:15.511096+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.511172+00:00 app[web.1]: failed to convert: High Priest, Lord Knight to date
-2014-01-03T08:11:15.511360+00:00 app[web.1]: failed to convert: Clown to date
-2014-01-03T08:11:15.511271+00:00 app[web.1]: failed to convert: Champion, Professor to date
-2014-01-03T08:11:15.511458+00:00 app[web.1]: failed to convert: High Priest to date
-2014-01-03T08:11:15.511584+00:00 app[web.1]: failed to convert: Whitesmith to date
-2014-01-03T08:11:15.513044+00:00 app[web.1]: 2014-01-03 08:11:15 [7] [ERROR] Error handling request
-2014-01-03T08:11:15.513044+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-03T08:11:15.513044+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-01-03T08:11:15.513044+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-01-03T08:11:15.513044+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-01-03T08:11:15.513044+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-01-03T08:11:15.513044+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-01-03T08:11:15.513044+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-01-03T08:11:15.513044+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-03T08:11:15.513044+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-01-03T08:11:15.513228+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-01-03T08:11:15.513228+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-01-03T08:11:15.513228+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-03T08:11:15.513228+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-01-03T08:11:15.513228+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-01-03T08:11:15.513228+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-03T08:11:15.513404+00:00 app[web.1]:   File "/app/rosterrun.py", line 180, in run_calculation
-2014-01-03T08:11:15.513404+00:00 app[web.1]:     parties = run_scheduler_OAuth(credentials, session['doc'])
-2014-01-03T08:11:15.513404+00:00 app[web.1]:   File "/app/scheduler.py", line 115, in run_scheduler_OAuth
-2014-01-03T08:11:15.513228+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-01-03T08:11:15.513228+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-01-03T08:11:15.513228+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-01-03T08:11:15.513228+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-01-03T08:11:15.513404+00:00 app[web.1]:   File "/app/rosterrun.py", line 106, in show_entries
-2014-01-03T08:11:15.513404+00:00 app[web.1]:     run_calculation()
-2014-01-03T08:11:15.513404+00:00 app[web.1]:     initializeDataOAuth(credentials, docName, quests)
-2014-01-03T08:11:15.513404+00:00 app[web.1]:   File "/app/scheduler.py", line 220, in initializeDataOAuth
-2014-01-03T08:11:15.513404+00:00 app[web.1]:     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
-2014-01-03T08:11:15.513404+00:00 app[web.1]: AttributeError: 'NoneType' object has no attribute 'Name'
-2014-01-03T08:11:03.380361+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=8ms status=200 bytes=563
+2014-01-03T08:23:39.918803+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.918803+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.918803+00:00 app[web.1]: failed to convert: Clown to date
+2014-01-03T08:23:39.918803+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.918803+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.918803+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.918983+00:00 app[web.1]: failed to convert: Creator to date
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.918983+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.919346+00:00 app[web.1]: failed to convert: High Priest to date
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.919502+00:00 app[web.1]: failed to convert: Champion, Professor to date
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.919346+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.919502+00:00 app[web.1]: failed to convert: High Priest, Lord Knight to date
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.919502+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.920313+00:00 app[web.1]: failed to convert: Whitesmith to date
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.920313+00:00 app[web.1]: 2014-01-03 08:23:39 [7] [ERROR] Error handling request
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-03T08:23:39.920313+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-03T08:23:39.920313+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-01-03T08:23:39.920483+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-03T08:23:39.920483+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-01-03T08:23:39.920483+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-01-03T08:23:39.919809+00:00 app[web.1]: failed to convert: Clown to date
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919809+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.919978+00:00 app[web.1]: failed to convert: High Priest to date
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key name
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key success
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key rundate
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key dungeon
+2014-01-03T08:23:39.919978+00:00 app[web.1]: Mapped key maxfloor
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Mapped key drops
+2014-01-03T08:23:39.920313+00:00 app[web.1]: Mapped key lastrun
+2014-01-03T08:23:39.920483+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-01-03T08:23:39.920483+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-01-03T08:23:39.920483+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-03T08:23:39.920483+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-01-03T08:23:39.920483+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-01-03T08:23:39.920483+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-03T08:23:39.920483+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-03T08:23:39.920808+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-03T08:23:39.920808+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-03T08:23:39.920808+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-03T08:23:39.920808+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-01-03T08:23:39.920808+00:00 app[web.1]:   File "/app/rosterrun.py", line 106, in show_entries
+2014-01-03T08:23:39.920808+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-01-03T08:23:39.920808+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-03T08:23:39.920808+00:00 app[web.1]:     run_calculation()
+2014-01-03T08:23:39.920808+00:00 app[web.1]:     parties = run_scheduler_OAuth(credentials, session['doc'])
+2014-01-03T08:23:39.920808+00:00 app[web.1]:   File "/app/rosterrun.py", line 180, in run_calculation
+2014-01-03T08:23:39.920977+00:00 app[web.1]:   File "/app/scheduler.py", line 120, in run_scheduler_OAuth
+2014-01-03T08:23:39.920977+00:00 app[web.1]:     initializeDataOAuth(credentials, docName, quests)
+2014-01-03T08:23:39.920977+00:00 app[web.1]:   File "/app/scheduler.py", line 232, in initializeDataOAuth
+2014-01-03T08:23:39.920977+00:00 app[web.1]:     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
+2014-01-03T08:23:39.920977+00:00 app[web.1]: AttributeError: 'NoneType' object has no attribute 'Name'
+2014-01-03T08:22:23.848737+00:00 heroku[api]: Deploy 2079b2a by andygee@gmail.com
+2014-01-03T08:22:23.879677+00:00 heroku[api]: Release v69 created by andygee@gmail.com
+2014-01-03T08:22:38.578712+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2014-01-03T08:24:15.792566+00:00 app[web.1]: cannot find gdoc name
+2014-01-03T08:24:15.792566+00:00 app[web.1]: show entries
+2014-01-03T08:24:15.792566+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-03T08:24:15.797068+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-03T08:24:15.797068+00:00 app[web.1]: get all combinations
+2014-01-03T08:24:15.803130+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=15ms status=200 bytes=766
+2014-01-03T08:24:16.120852+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="67.188.246.249" dyno=web.1 connect=1ms service=13ms status=200 bytes=1028
 Terminate batch job (Y/N)? 
-
-C:\Users\andy\Documents\GitHub\rosterrun>

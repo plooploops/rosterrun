@@ -183,7 +183,9 @@ def initializeDataOAuth(credentials, docName, quests):
   q = gdata.spreadsheet.service.DocumentQuery()
   q['title'] = docName
   q['title-exact'] = 'true'
-  feed = gd_client.GetSpreadsheets(query=q)	
+  feed = gd_client.GetSpreadsheets(query=q)
+  
+  print feed
   spreadsheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
   feed = gd_client.GetWorksheets(spreadsheet_id) 
   worksheet_id = feed.entry[0].id.text.rsplit('/',1)[1]
