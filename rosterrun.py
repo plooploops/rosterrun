@@ -75,7 +75,7 @@ class PartyCombo(db.Model):
     def __repr__(self):
         return '<PartyCombo %r>' % self.playerName
 
-class Character(db.Model):
+class MappedCharacter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80))
     g_worksheet_id = db.Column(db.String(80))
@@ -99,7 +99,7 @@ class Character(db.Model):
 	self.Present = present
     
     def __repr__(self):
-        return '<Character %r>' % self.playerName
+        return '<MappedCharacter %r>' % self.playerName
 
 sched = scheduler()
 
@@ -142,7 +142,7 @@ def show_entries():
         print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
       else:
@@ -161,7 +161,7 @@ def show_entries():
         session['g_worksheet_id'] = g_w_id    
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
         
         print 'now found available parties %s' % len(availableParties)  
@@ -173,7 +173,7 @@ def show_entries():
       print 'get all combinations'
       cur = PartyCombo.query.all()
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
-      curChars = Character.query.all()
+      curChars = MappedCharacter.query.all()
       chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
@@ -191,7 +191,7 @@ def import_characters():
         return redirect(url_for('show_entries'))
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
-      cur = Character.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      cur = MappedCharacter.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       [db.session.delete(c) for c in cur]  
       db.session.commit()
     
@@ -215,7 +215,7 @@ def import_characters():
     chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-    [db.session.add(Character(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str('|'.join(c.Quests)), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars]
+    [db.session.add(MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str('|'.join(c.Quests)), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars]
      
     db.session.commit()
     flash('Import finished')
