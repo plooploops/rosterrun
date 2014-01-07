@@ -341,7 +341,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         print 'had an issue with finding bad dual clients %s' % mergedClientPlayerAssignment
         continue
  
-      chars = [Combination(viablePartyIndex, '%(instancename)s using %(roles)s' % {"instancename":instance.Name, "roles":' '.join(roles), c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       combinationsMapping[comb] = successfulteam
       validcombinations.append(chars)
       viablePartyIndex += 1
