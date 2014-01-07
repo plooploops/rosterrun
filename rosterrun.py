@@ -75,6 +75,32 @@ class PartyCombo(db.Model):
     def __repr__(self):
         return '<PartyCombo %r>' % self.playerName
 
+class Character(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    g_spreadsheet_id = db.Column(db.String(80))
+    g_worksheet_id = db.Column(db.String(80))
+    Class = db.Column(db.String(80))
+    Name = db.Column(db.String(80))
+    Role = db.Column(db.String(80))
+    Quests = db.Column(db.String(180))
+    LastRun = db.Column(db.String(80))
+    PlayerName = db.Column(db.String(80))
+    Present = db.Column(db.String(80))
+    
+    def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, quests, lastRun, playerName, present):
+        self.g_spreadsheet_id = spreadsheet_id
+        self.g_worksheet_id = worksheet_id
+	self.Class = characterClass
+	self.Name = characterName
+	self.Role = role
+	self.Quests = quests
+	self.LastRun = lastRun
+	self.PlayerName = playerName
+	self.Present = present
+    
+    def __repr__(self):
+        return '<Character %r>' % self.playerName
+
 sched = scheduler()
 
 def resetParameters():
@@ -102,7 +128,9 @@ def show_entries():
       action = request.form['action']
     except:
       print 'cannot find gdoc name'
-    if action == u"Calculate":
+    if action == u"Import":
+      import()
+    elif action == u"Calculate":
       run_calculation()    
     elif action == u"Reset":
       reset()
@@ -114,6 +142,8 @@ def show_entries():
         print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
       else:
         print 'could not find the spreadsheet id'
@@ -131,6 +161,8 @@ def show_entries():
         session['g_worksheet_id'] = g_w_id    
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
         
         print 'now found available parties %s' % len(availableParties)  
     except:
@@ -141,8 +173,55 @@ def show_entries():
       print 'get all combinations'
       cur = PartyCombo.query.all()
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
+      curChars = Character.query.all()
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
     
-    return render_template('show_entries.html', combinations=availableParties)
+    return render_template('show_entries.html', combinations=availableParties, characters=chars)
+
+@app.route('/import', methods=['POST'])
+def import():
+    if not session.get('logged_in'):
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+    
+    if(len(session['doc']) <= 0):
+        flash('Must include relevant document name')
+        return redirect(url_for('show_entries'))
+
+    if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
+      cur = Character.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      [db.session.delete(c) for c in cur]  
+      db.session.commit()
+    
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+    
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+    quests = []
+    chars = initializeDataOAuth(credentials, session['doc'], quests)
+    print 'FOUND %s CHARS' % len(chars)
+    #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+    for i in range(0, len(chars) - 1):
+      [db.session.add(Character(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str(c.Quests), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars[i]]
+     
+    db.session.commit()
+    flash('Import finished')
+    
+    return redirect(url_for('show_entries'))
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():

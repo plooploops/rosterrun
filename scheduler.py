@@ -238,6 +238,7 @@ def initializeDataOAuth(credentials, docName, quests):
         else:
           charac.Present = False 
     characters.append(charac)
+  return characters
   chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars
 
@@ -276,7 +277,15 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     #print 'number roles', len(instance.Roles)
 
     for comb in combinations(availableCharacters, len(instance.Roles)):                
+      testCharsInValidCombinations = [c for c in comb if [comb for comb in validcombinations if c.PlayerName == comb.PlayerName]]
+      if(len(testCharsInValidCombinations) > 0):
+      	continue
+      	
+      testChars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      if testChars in validcombiations:
+      	continue
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
+      
       #print 'attempting combination', chars
       #print 'number chars', len(chars)
       #checks for last run date and quest status already precomputed
