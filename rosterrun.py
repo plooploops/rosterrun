@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination
+from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
