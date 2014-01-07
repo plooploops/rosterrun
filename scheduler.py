@@ -269,7 +269,10 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     if (len(instance.Roles) > len(availableCharacters)):
 	return []
 
+    combinationsMapping = {}
     validcombinations = []
+    
+    succesfulteam = len(instance.Roles)
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     #print 'Available Characters', chars
@@ -279,10 +282,12 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     for comb in combinations(availableCharacters, len(instance.Roles)):                
       testCharsInValidCombinations = [c for c in comb if [comb for comb in validcombinations if c.PlayerName == comb.PlayerName]]
       if(len(testCharsInValidCombinations) > 0):
+        combinationsMapping[comb] = successfulteam 
       	continue
       	
       testChars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       if testChars in validcombiations:
+        combinationsMapping[comb] = 0
       	continue
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
       
@@ -296,6 +301,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       roleCharacters = [c.Role for c in comb if c.Role in instance.Roles]
 
       if(len(instance.Roles) > len(roleCharacters)):
+        combinationsMapping[comb] = 0
         #print 'don't have character to role coverage'
         continue
 
@@ -305,6 +311,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       roleDelta = list(set(roleInstance) - set(roleCountToCharacters))
   
       if(len(roleDelta) > 0):
+        combinationsMapping[comb] = 0
         #print 'role delta', roleDelta
         continue
       
@@ -313,6 +320,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       #print playersCountToCharacters
       playerMapping = [pc for pc in playersCountToCharacters if pc[1] > 2]
       if(len(playerMapping) > 0):
+        combinationsMapping[comb] = 0
         #print 'too many clients for a player', playerMapping
         continue
       
@@ -325,13 +333,16 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       try:
         badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
         if(len(badDualClientPlayers) > 0):
+          combinationsMapping[comb] = 0
           #print 'players have bad assigment for roles', badDualClientPlayers
           continue
       except:
+        combinationsMapping[comb] = 0
         print 'had an issue with finding bad dual clients %s' % mergedClientPlayerAssignment
         continue
  
-      chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      chars = [Combination(viablePartyIndex, '%(instancename)s using %(roles)s' % {"instancename":instance.Name, "roles":' '.join(roles), c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      combinationsMapping[comb] = successfulteam
       validcombinations.append(chars)
       viablePartyIndex += 1
       #break
