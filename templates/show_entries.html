@@ -15,6 +15,7 @@
   <th>Class</th>
   <th>Name</th>
   <th>Role</th>
+  <th>Quests</th>
   <th>Last Run</th>
   <th>Player Name</th>
   <th>Present</th>
@@ -24,7 +25,11 @@
     <td><h2>{{ char.Class }}</h2></td>
     <td>{{ char.Name }}</td>
     <td>{{ char.Role}}</td>
-    <td>{{ char.Quests }}</td>
+    <td>
+    {% for q in char.Quests %}
+    { { char.Quests } }
+    {% endfor %}
+    </td>
     <td>{{ char.LastRun }}</td>
     <td>{{ char.PlayerName }}</td>
     <td>{{ char.Present }}</td>

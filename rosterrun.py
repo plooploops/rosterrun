@@ -82,7 +82,7 @@ class Character(db.Model):
     Class = db.Column(db.String(80))
     Name = db.Column(db.String(80))
     Role = db.Column(db.String(80))
-    Quests = db.Column(db.String(180))
+    Quests = db.Column(db.String(280))
     LastRun = db.Column(db.String(80))
     PlayerName = db.Column(db.String(80))
     Present = db.Column(db.String(80))
@@ -129,7 +129,7 @@ def show_entries():
     except:
       print 'cannot find gdoc name'
     if action == u"Import":
-      import()
+      import_characters()
     elif action == u"Calculate":
       run_calculation()    
     elif action == u"Reset":
@@ -143,7 +143,7 @@ def show_entries():
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
         print 'AVAILABLE PARTIES %s ' % len(availableParties)  
       else:
         print 'could not find the spreadsheet id'
@@ -162,7 +162,7 @@ def show_entries():
         cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
         availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
         curChars = Character.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
         
         print 'now found available parties %s' % len(availableParties)  
     except:
@@ -174,12 +174,12 @@ def show_entries():
       cur = PartyCombo.query.all()
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
       curChars = Character.query.all()
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
 
-@app.route('/import', methods=['POST'])
-def import():
+@app.route('/import_characters', methods=['POST'])
+def import_characters():
     if not session.get('logged_in'):
       #abort(401)
       flash('Please login again')
@@ -211,12 +211,12 @@ def import():
 
     session['g_spreadsheet_id'] = g_s_id
     session['g_worksheet_id'] = g_w_id
-    quests = []
-    chars = initializeDataOAuth(credentials, session['doc'], quests)
+    basequests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
+    chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(chars) - 1):
-      [db.session.add(Character(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str(c.Quests), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars[i]]
+      [db.session.add(Character(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str('|'.join(c.Quests)), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars[i]]
      
     db.session.commit()
     flash('Import finished')
