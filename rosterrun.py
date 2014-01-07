@@ -216,6 +216,7 @@ def import_characters():
     print 'FOUND %s CHARS' % len(chars)
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(chars) - 1):
+      [print c.PlayerName for c in chars[i]]
       [db.session.add(Character(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role), str('|'.join(c.Quests)), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars[i]]
      
     db.session.commit()
