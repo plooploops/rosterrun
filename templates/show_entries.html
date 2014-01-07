@@ -10,54 +10,50 @@
         <input type=submit name=action value=Reset>
       </dl>
     </form>
-  <table class=character>
-  <tr>
-  <th>Class</th>
-  <th>Name</th>
-  <th>Role</th>
-  <th>Quests</th>
-  <th>Last Run</th>
-  <th>Player Name</th>
-  <th>Present</th>
-  </tr>
-  {% for char in characters %}
+    <table class=character>
     <tr>
-    <td><h2>{{ char.Class }}</h2></td>
-    <td>{{ char.Name }}</td>
-    <td>{{ char.Role}}</td>
-    <td>
-    {% for q in char.Quests %}
-    <li>{{ q }}
-    {% endfor %}
-    </td>
-    <td>{{ char.LastRun }}</td>
-    <td>{{ char.PlayerName }}</td>
-    <td>{{ char.Present }}</td>
-  {% else % }
-    <li><em>No players imported.</em>
-  {% endfor %}
-  </table>
-  {% endif %}
-  {% if session.logged_in %}
-  <table class=combination>
-  <tr>
-  <th>Party Combination</th>
-  <th>Player Name</th>
-  <th>Character Name</th>
-  <th>Class</th>
-  <th>Role</th>
-  </tr>
-  {% for entry in combinations %}
-    <tr>
-    <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex }}</h2></td>
-    <td>{{ entry.PlayerName|safe }}</td>
-    <td>{{ entry.CharacterName|safe }}</td>
-    <td>{{ entry.CharacterClass|safe }}</td>
-    <td>{{ entry.RoleName|safe }}</td>
+    <th>Class</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th>Quests</th>
+    <th>Last Run</th>
+    <th>Player Name</th>
+    <th>Present</th>
     </tr>
-  {% else %}
-    <li><em>Unbelievable.  No combinations here so far</em>
-  {% endfor %}
-  </table>
+    {% for char in characters %}
+      <tr>
+      <td><h2>{{ char.Class }}</h2></td>
+      <td>{{ char.Name }}</td>
+      <td>{{ char.Role}}</td>
+      <td>
+      {% for q in char.Quests %}
+        <li>{{ q }}
+      {% endfor %}
+      </td>
+      <td>{{ char.LastRun }}</td>
+      <td>{{ char.PlayerName }}</td>
+      <td>{{ char.Present }}</td>
+    {% endfor %}
+    </table>
+    <table class=combination>
+    <tr>
+    <th>Party Combination</th>
+    <th>Player Name</th>
+    <th>Character Name</th>
+    <th>Class</th>
+    <th>Role</th>
+    </tr>
+    {% for entry in combinations %}
+      <tr>
+      <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex }}</h2></td>
+      <td>{{ entry.PlayerName|safe }}</td>
+      <td>{{ entry.CharacterName|safe }}</td>
+      <td>{{ entry.CharacterClass|safe }}</td>
+      <td>{{ entry.RoleName|safe }}</td>
+      </tr>
+    {% else %}
+      <li><em>Unbelievable.  No combinations here so far</em>
+    {% endfor %}
+    </table>
   {% endif %}
 {% endblock %}
