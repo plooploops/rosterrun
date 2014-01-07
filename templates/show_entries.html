@@ -37,6 +37,8 @@
     <li><em>No players imported.</em>
   {% endfor %}
   </table>
+  {% endif %}
+  {% if session.logged_in %}
   <table class=combination>
   <tr>
   <th>Party Combination</th>

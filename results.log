@@ -1,79 +1,3 @@
-2014-01-07T02:15:26.150993+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-07T02:15:26.150993+00:00 app[web.1]:     worker.init_process()
-2014-01-07T02:15:26.150993+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-07T02:15:26.151213+00:00 app[web.1]:     __import__(module)
-2014-01-07T02:15:26.151213+00:00 app[web.1]:   File "/app/rosterrun.py", line 132
-2014-01-07T02:15:26.151213+00:00 app[web.1]:     import()
-2014-01-07T02:15:26.151213+00:00 app[web.1]:           ^
-2014-01-07T02:15:26.151213+00:00 app[web.1]: SyntaxError: invalid syntax
-2014-01-07T02:15:26.151213+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-07T02:15:26.151213+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-07T02:15:26.151376+00:00 app[web.1]:     worker.init_process()
-2014-01-07T02:15:26.151376+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-07T02:15:26.151376+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-07T02:15:26.151376+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-07T02:15:26.151376+00:00 app[web.1]:     self.callable = self.load()
-2014-01-07T02:15:26.151376+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-07T02:15:26.151376+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-07T02:15:26.151376+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-07T02:15:26.151376+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-07T02:15:26.151376+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-07T02:15:26.151832+00:00 app[web.1]:     __import__(module)
-2014-01-07T02:15:26.151832+00:00 app[web.1]:   File "/app/rosterrun.py", line 132
-2014-01-07T02:15:26.151832+00:00 app[web.1]:     import()
-2014-01-07T02:15:26.151832+00:00 app[web.1]:           ^
-2014-01-07T02:15:26.151832+00:00 app[web.1]: SyntaxError: invalid syntax
-2014-01-07T02:15:26.151832+00:00 app[web.1]: 2014-01-07 02:15:26 [7] [INFO] Worker exiting (pid: 7)
-2014-01-07T02:15:26.274564+00:00 app[web.1]: 2014-01-07 02:15:26 [2] [INFO] Reason: Worker failed to boot.
-2014-01-07T02:15:26.274394+00:00 app[web.1]: 2014-01-07 02:15:26 [2] [INFO] Shutting down: Master
-2014-01-07T02:15:27.627797+00:00 heroku[web.1]: Process exited with status 3
-2014-01-07T02:15:27.632260+00:00 heroku[web.1]: State changed from starting to crashed
-2014-01-07T02:13:51.583048+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
-2014-01-07T02:26:54.204841+00:00 heroku[run.9529]: Process exited with status 0
-2014-01-07T02:26:54.212200+00:00 heroku[run.9529]: State changed from up to complete
-2014-01-07T02:27:44+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-07T02:28:57+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-07T02:28:57.938970+00:00 heroku[web.1]: State changed from crashed to starting
-2014-01-07T02:28:57.464051+00:00 heroku[api]: Deploy 3b4f450 by andygee@gmail.com
-2014-01-07T02:28:57.493479+00:00 heroku[api]: Release v79 created by andygee@gmail.com
-2014-01-07T02:29:10.497230+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-07T02:29:12.318433+00:00 app[web.1]: 2014-01-07 02:29:12 [2] [INFO] Listening at: http://0.0.0.0:8728 (2)
-2014-01-07T02:29:12.318433+00:00 app[web.1]: 2014-01-07 02:29:12 [2] [INFO] Using worker: sync
-2014-01-07T02:29:12.345078+00:00 app[web.1]: 2014-01-07 02:29:12 [7] [INFO] Booting worker with pid: 7
-2014-01-07T02:29:12.405289+00:00 heroku[web.1]: State changed from starting to up
-2014-01-07T02:29:12.317412+00:00 app[web.1]: 2014-01-07 02:29:12 [2] [INFO] Starting gunicorn 18.0
-2014-01-07T02:30:07.654805+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
-2014-01-07T02:30:21.402663+00:00 heroku[run.8452]: Awaiting client
-2014-01-07T02:30:21.460677+00:00 heroku[run.8452]: Starting process with command `python`
-2014-01-07T02:30:21.446784+00:00 heroku[run.8452]: State changed from starting to up
-2014-01-07T02:32:40.773951+00:00 heroku[run.8452]: Process exited with status 0
-2014-01-07T02:32:40.801028+00:00 heroku[run.8452]: State changed from up to complete
-2014-01-07T02:32:47.545530+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=6ms service=38ms status=200 bytes=513
-2014-01-07T02:32:47.872004+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=10ms status=200 bytes=1028
-2014-01-07T02:32:55.748765+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=13ms status=302 bytes=803
-2014-01-07T02:32:55.751121+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-07T02:32:57.619799+00:00 app[web.1]: could not find the spreadsheet id
-2014-01-07T02:32:57.619799+00:00 app[web.1]: show entries
-2014-01-07T02:32:57.619799+00:00 app[web.1]: cannot find gdoc name
-2014-01-07T02:32:57.805082+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=198ms status=500 bytes=135
-2014-01-07T02:32:57.626042+00:00 app[web.1]: issue finding the available parties
-2014-01-07T02:32:57.626158+00:00 app[web.1]: get all combinations
-2014-01-07T02:32:57.619799+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-07T02:32:57.814201+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-01-07T02:32:57.814201+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-01-07T02:32:57.814201+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-01-07T02:32:57.814201+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-01-07T02:32:57.814201+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-01-07T02:32:57.814201+00:00 app[web.1]: 2014-01-07 02:32:57 [7] [ERROR] Error handling request
-2014-01-07T02:32:57.814201+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-01-07T02:32:57.814201+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-07T02:32:57.814504+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-01-07T02:32:57.814504+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-07T02:32:57.814504+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-01-07T02:32:57.814201+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-07T02:32:57.814504+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-07T02:32:57.814201+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-01-07T02:32:57.814504+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
 2014-01-07T02:32:57.814504+00:00 app[web.1]:     rv = self.handle_user_exception(e)
 2014-01-07T02:32:57.814708+00:00 app[web.1]:     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
 2014-01-07T02:32:57.814504+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
@@ -99,4 +23,80 @@
 2014-01-07T02:32:57.815248+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
 2014-01-07T02:32:57.815248+00:00 app[web.1]: TemplateSyntaxError: expected token 'end of statement block', got '%'
 2014-01-07T02:32:57.360127+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/Shu-8D941G4_bmdBC0tyUWieRlcO.Yj6fg_nTot0bmmS0T3UFEsP6CRvVhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=47ms service=1090ms status=302 bytes=209
+2014-01-07T02:39:38+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-07T02:40:46.567829+00:00 heroku[api]: Deploy d457e46 by andygee@gmail.com
+2014-01-07T02:40:46.615701+00:00 heroku[api]: Release v80 created by andygee@gmail.com
+2014-01-07T02:40:46+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-07T02:40:47.418993+00:00 heroku[web.1]: State changed from up to starting
+2014-01-07T02:40:50.403346+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-07T02:40:50.989534+00:00 app[web.1]: 2014-01-07 02:40:50 [7] [INFO] Worker exiting (pid: 7)
+2014-01-07T02:40:50.989534+00:00 app[web.1]: 2014-01-07 02:40:50 [2] [INFO] Handling signal: term
+2014-01-07T02:40:51.128075+00:00 app[web.1]: 2014-01-07 02:40:51 [2] [INFO] Shutting down: Master
+2014-01-07T02:40:52.739621+00:00 heroku[web.1]: Process exited with status 0
+2014-01-07T02:40:56.800647+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2014-01-07T02:40:59.943725+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-07T02:41:02.292941+00:00 app[web.1]: 2014-01-07 02:41:02 [2] [INFO] Starting gunicorn 18.0
+2014-01-07T02:41:02.293535+00:00 app[web.1]: 2014-01-07 02:41:02 [2] [INFO] Listening at: http://0.0.0.0:6019 (2)
+2014-01-07T02:41:02.293614+00:00 app[web.1]: 2014-01-07 02:41:02 [2] [INFO] Using worker: sync
+2014-01-07T02:41:02.308699+00:00 app[web.1]: 2014-01-07 02:41:02 [7] [INFO] Booting worker with pid: 7
+2014-01-07T02:41:02.577139+00:00 heroku[web.1]: State changed from starting to up
+2014-01-07T02:41:08.833936+00:00 heroku[run.2890]: State changed from starting to up
+2014-01-07T02:41:09.020164+00:00 heroku[run.2890]: Awaiting client
+2014-01-07T02:41:09.067175+00:00 heroku[run.2890]: Starting process with command `python`
+2014-01-07T02:42:11.571703+00:00 heroku[run.2890]: State changed from up to complete
+2014-01-07T02:42:11.540603+00:00 heroku[run.2890]: Process exited with status 0
+2014-01-07T02:42:16.729350+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=24ms status=302 bytes=219
+2014-01-07T02:42:16.710782+00:00 app[web.1]: cannot find gdoc name
+2014-01-07T02:42:16.710782+00:00 app[web.1]: show entries
+2014-01-07T02:42:16.710782+00:00 app[web.1]: could not find the spreadsheet id
+2014-01-07T02:42:16.710782+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-07T02:42:21.213665+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=302 bytes=803
+2014-01-07T02:42:21.208575+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-07T02:42:21.874723+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/9rbVzAUea72Gmhz4bmVHCSj8iVX9.shxFpcrR3eEWmmS0T3UFEsNKSizVhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=360ms status=302 bytes=209
+2014-01-07T02:42:21.977957+00:00 app[web.1]: show entries
+2014-01-07T02:42:21.977957+00:00 app[web.1]: could not find the spreadsheet id
+2014-01-07T02:42:21.977957+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-07T02:42:21.977957+00:00 app[web.1]: cannot find gdoc name
+2014-01-07T02:42:21.986887+00:00 app[web.1]: get all combinations
+2014-01-07T02:42:21.986887+00:00 app[web.1]: issue finding the available parties
+2014-01-07T02:42:22.209343+00:00 app[web.1]: 2014-01-07 02:42:22 [7] [ERROR] Error handling request
+2014-01-07T02:42:22.209343+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-07T02:42:22.209343+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-01-07T02:42:22.209343+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-01-07T02:42:22.209343+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-07T02:42:22.209343+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-01-07T02:42:22.209343+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-07T02:42:22.209343+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-01-07T02:42:22.209343+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-01-07T02:42:22.209626+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-01-07T02:42:22.209626+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-01-07T02:42:22.209626+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-07T02:42:22.209626+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-07T02:42:22.209626+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-01-07T02:42:22.209626+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-07T02:42:22.209626+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-07T02:42:22.209626+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-07T02:42:22.209343+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-07T02:42:22.209626+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-01-07T02:42:22.209626+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-07T02:42:22.209855+00:00 app[web.1]:   File "/app/rosterrun.py", line 179, in show_entries
+2014-01-07T02:42:22.209855+00:00 app[web.1]:     return render_template('show_entries.html', combinations=availableParties, characters=chars)
+2014-01-07T02:42:22.209855+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+2014-01-07T02:42:22.209855+00:00 app[web.1]:     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+2014-01-07T02:42:22.209855+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+2014-01-07T02:42:22.209855+00:00 app[web.1]:     return self.get_template(template_name_or_list, parent, globals)
+2014-01-07T02:42:22.209855+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+2014-01-07T02:42:22.209855+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+2014-01-07T02:42:22.209855+00:00 app[web.1]:     template = self.loader.load(self, name, globals)
+2014-01-07T02:42:22.210436+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+2014-01-07T02:42:22.210436+00:00 app[web.1]:     code = environment.compile(source, name, filename)
+2014-01-07T02:42:22.210436+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+2014-01-07T02:42:22.210436+00:00 app[web.1]:     self.handle_exception(exc_info, source_hint=source)
+2014-01-07T02:42:22.210436+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-07T02:42:22.210436+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+2014-01-07T02:42:22.209855+00:00 app[web.1]:     return self._load_template(name, self.make_globals(globals))
+2014-01-07T02:42:22.210436+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 36, in template
+2014-01-07T02:42:22.210436+00:00 app[web.1]:     {% else % }
+2014-01-07T02:42:22.210436+00:00 app[web.1]: TemplateSyntaxError: expected token 'end of statement block', got '%'
+2014-01-07T02:42:22.196359+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=239ms status=500 bytes=135
 Terminate batch job (Y/N)? 
