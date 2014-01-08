@@ -1,3 +1,4 @@
+import sys
 import os
 from flask import Flask
 from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
