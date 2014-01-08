@@ -364,11 +364,14 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
           [usedChars.append(c) for c in comb]
           currentcombinations.append(comb)
     
+    print maxmapping
+    
     for comb in currentcombinations:
       viablePartyIndex += 1
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       validcombinations.append(chars)
     
+    print 'found %s ' % len(validcombinations)
     return validcombinations
 
 def accumulate(l):
