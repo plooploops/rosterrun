@@ -9,6 +9,9 @@ h2              { font-size: 1.2em; }
 .combinations        { list-style: none; margin: 0; padding: 0; }
 .combinations li     { margin: 0.8em 1.2em; }
 .combinations li h2  { margin-left: -1em; }
+.characters        { list-style: none; margin: 0; padding: 0; }
+.characters li     { margin: 0.8em 1.2em; }
+.characters li h2  { margin-left: -1em; }
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;

@@ -280,11 +280,6 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     #print 'number roles', len(instance.Roles)
 
     for comb in combinations(availableCharacters, len(instance.Roles)):                
-      testCharsInValidCombinations = [c for c in comb if [comb for comb in validcombinations if c.PlayerName == comb.PlayerName]]
-      if(len(testCharsInValidCombinations) > 0):
-        combinationsMapping[comb] = successfulteam 
-      	continue
-      	
       testChars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       if testChars in validcombiations:
         combinationsMapping[comb] = 0
@@ -341,12 +336,39 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         print 'had an issue with finding bad dual clients %s' % mergedClientPlayerAssignment
         continue
  
-      chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      #chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       combinationsMapping[comb] = successfulteam
-      validcombinations.append(chars)
+      #validcombinations.append(chars)
       viablePartyIndex += 1
       #break
     #print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
+   
+    #run through combinations of players
+    currentcombinations = []
+    usedChars = []
+    maxmapping = [[0 for j in range(len(q.keys()) + 1)] for i in range(len(q.keys()))]
+    for j in range(1, len(q.keys())):
+      for k in range(0, len(q.keys())):
+        comb = q.keys()[k]
+        #print 'attempting %s' % comb
+        used = [c for c in comb if c in usedChars]
+        if len(used) > 0:
+          #print 'used combination %s ' % used
+          maxmapping[j][k] = maxmapping[j - 1][k]
+          continue
+        #print 'combination gives %s' % q[comb]
+        if q[comb] <= 0:
+          maxmapping[j][k] = maxmapping[j - 1][k]
+        else:
+          maxmapping[j][k] = max(maxmapping[j - 1][k], q[comb] + maxmapping[j][k - 1])
+          [usedChars.append(c) for c in comb]
+          currentcombinations.append(comb)
+    
+    for comb in currentcombinations:
+      viablePartyIndex += 1
+      chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      validcombinations.append(chars)
+    
     return validcombinations
 
 def accumulate(l):
