@@ -311,7 +311,7 @@ def reset():
     
       flash('Reset party combinations')
     except:
-      print 'error reseting
+      print 'error reseting'
       
     return redirect(url_for('show_entries')) 
 

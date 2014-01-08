@@ -1,102 +1,105 @@
-2014-01-08T06:26:23.300565+00:00 heroku[api]: Deploy c9cc920 by andygee@gmail.com
-2014-01-08T06:26:23.551015+00:00 heroku[api]: Release v101 created by andygee@gmail.com
-2014-01-08T06:26:23+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T06:26:23.868384+00:00 heroku[web.1]: State changed from up to starting
-2014-01-08T06:26:26.624916+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-08T06:26:27.195835+00:00 app[web.1]: 2014-01-08 06:26:27 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T06:26:27.195835+00:00 app[web.1]: 2014-01-08 06:26:27 [2] [INFO] Handling signal: term
-2014-01-08T06:26:27.229065+00:00 app[web.1]: 2014-01-08 06:26:27 [2] [INFO] Shutting down: Master
-2014-01-08T06:26:28.456289+00:00 heroku[web.1]: Process exited with status 0
-2014-01-08T06:26:34.945049+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T06:26:35.994003+00:00 app[web.1]: 2014-01-08 06:26:35 [2] [INFO] Using worker: sync
-2014-01-08T06:26:35.993167+00:00 app[web.1]: 2014-01-08 06:26:35 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T06:26:35.993889+00:00 app[web.1]: 2014-01-08 06:26:35 [2] [INFO] Listening at: http://0.0.0.0:18205 (2)
-2014-01-08T06:26:36.002642+00:00 app[web.1]: 2014-01-08 06:26:36 [7] [INFO] Booting worker with pid: 7
-2014-01-08T06:26:36.011992+00:00 app[web.1]: 2014-01-08 06:26:36 [7] [ERROR] Exception in worker process:
-2014-01-08T06:26:36.011992+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T06:26:36.011992+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T06:26:36.011992+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T06:26:36.011992+00:00 app[web.1]:     worker.init_process()
-2014-01-08T06:26:36.011992+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T06:26:36.011992+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T06:26:36.011992+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T06:26:36.012156+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T06:26:36.011992+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T06:26:36.011992+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T06:26:36.012156+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T06:26:36.012156+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T06:26:36.012156+00:00 app[web.1]:     __import__(module)
-2014-01-08T06:26:36.012156+00:00 app[web.1]:   File "/app/rosterrun.py", line 315
-2014-01-08T06:26:36.012156+00:00 app[web.1]:                                      ^
-2014-01-08T06:26:36.012156+00:00 app[web.1]:     logging.exception('error reseting)
-2014-01-08T06:26:36.012156+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T06:26:36.012156+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T06:26:36.012318+00:00 app[web.1]:     worker.init_process()
-2014-01-08T06:26:36.012318+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T06:26:36.012318+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T06:26:36.012156+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
-2014-01-08T06:26:36.012318+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T06:26:36.012318+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T06:26:36.012318+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T06:26:36.012318+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T06:26:36.012318+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T06:26:36.012318+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T06:26:36.012318+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T06:26:36.012782+00:00 app[web.1]:     __import__(module)
-2014-01-08T06:26:36.012782+00:00 app[web.1]:   File "/app/rosterrun.py", line 315
-2014-01-08T06:26:36.012782+00:00 app[web.1]:                                      ^
-2014-01-08T06:26:36.012782+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
-2014-01-08T06:26:36.012782+00:00 app[web.1]: 2014-01-08 06:26:36 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T06:26:36.012782+00:00 app[web.1]:     logging.exception('error reseting)
-2014-01-08T06:26:36.135713+00:00 app[web.1]: 2014-01-08 06:26:36 [2] [INFO] Shutting down: Master
-2014-01-08T06:26:36.135713+00:00 app[web.1]: 2014-01-08 06:26:36 [2] [INFO] Reason: Worker failed to boot.
-2014-01-08T06:26:37.342531+00:00 heroku[web.1]: Process exited with status 3
-2014-01-08T06:26:37.350740+00:00 heroku[web.1]: State changed from starting to crashed
-2014-01-08T06:26:37.351381+00:00 heroku[web.1]: State changed from crashed to starting
-2014-01-08T06:26:49.825081+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T06:26:51.336337+00:00 app[web.1]: 2014-01-08 06:26:51 [2] [INFO] Using worker: sync
-2014-01-08T06:26:51.334939+00:00 app[web.1]: 2014-01-08 06:26:51 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T06:26:51.336061+00:00 app[web.1]: 2014-01-08 06:26:51 [2] [INFO] Listening at: http://0.0.0.0:42941 (2)
-2014-01-08T06:26:51.344338+00:00 app[web.1]: 2014-01-08 06:26:51 [7] [INFO] Booting worker with pid: 7
-2014-01-08T06:26:51.352122+00:00 app[web.1]: 2014-01-08 06:26:51 [7] [ERROR] Exception in worker process:
-2014-01-08T06:26:51.352122+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T06:26:51.352122+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T06:26:51.352122+00:00 app[web.1]:     worker.init_process()
-2014-01-08T06:26:51.352122+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T06:26:51.352122+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T06:26:51.352122+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T06:26:51.352322+00:00 app[web.1]:     __import__(module)
-2014-01-08T06:26:51.352322+00:00 app[web.1]:   File "/app/rosterrun.py", line 315
-2014-01-08T06:26:51.352122+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T06:26:51.352122+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T06:26:51.352122+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T06:26:51.352322+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T06:26:51.352322+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T06:26:51.352322+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T06:26:51.352322+00:00 app[web.1]:     logging.exception('error reseting)
-2014-01-08T06:26:51.352322+00:00 app[web.1]:                                      ^
-2014-01-08T06:26:51.352322+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
-2014-01-08T06:26:51.352322+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T06:26:51.352322+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T06:26:51.352512+00:00 app[web.1]:     worker.init_process()
-2014-01-08T06:26:51.352512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T06:26:51.352512+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T06:26:51.352512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T06:26:51.353012+00:00 app[web.1]:     __import__(module)
-2014-01-08T06:26:51.353012+00:00 app[web.1]:   File "/app/rosterrun.py", line 315
-2014-01-08T06:26:51.353012+00:00 app[web.1]:     logging.exception('error reseting)
-2014-01-08T06:26:51.352512+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T06:26:51.352512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T06:26:51.352512+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T06:26:51.352512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T06:26:51.352512+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T06:26:51.352512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T06:26:51.353012+00:00 app[web.1]:                                      ^
-2014-01-08T06:26:51.353012+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
-2014-01-08T06:26:51.353012+00:00 app[web.1]: 2014-01-08 06:26:51 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T06:26:51.476402+00:00 app[web.1]: 2014-01-08 06:26:51 [2] [INFO] Shutting down: Master
-2014-01-08T06:26:51.476402+00:00 app[web.1]: 2014-01-08 06:26:51 [2] [INFO] Reason: Worker failed to boot.
-2014-01-08T06:26:52.641428+00:00 heroku[web.1]: Process exited with status 3
-2014-01-08T06:26:52.649226+00:00 heroku[web.1]: State changed from starting to crashed
-2014-01-08T06:27:22.135407+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:32:06+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T06:32:06.995404+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-08T06:32:18.840163+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T06:32:20.354720+00:00 app[web.1]: 2014-01-08 06:32:20 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T06:32:20.356407+00:00 app[web.1]: 2014-01-08 06:32:20 [2] [INFO] Listening at: http://0.0.0.0:4388 (2)
+2014-01-08T06:32:20.356622+00:00 app[web.1]: 2014-01-08 06:32:20 [2] [INFO] Using worker: sync
+2014-01-08T06:32:20.376041+00:00 app[web.1]: 2014-01-08 06:32:20 [7] [INFO] Booting worker with pid: 7
+2014-01-08T06:32:20.428520+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T06:32:20.428520+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T06:32:20.428520+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T06:32:20.428520+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T06:32:20.428520+00:00 app[web.1]: 2014-01-08 06:32:20 [7] [ERROR] Exception in worker process:
+2014-01-08T06:32:20.428520+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T06:32:20.428520+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T06:32:20.428520+00:00 app[web.1]:     worker.init_process()
+2014-01-08T06:32:20.428520+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T06:32:20.428520+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T06:32:20.428769+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T06:32:20.428769+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T06:32:20.428769+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T06:32:20.428769+00:00 app[web.1]:     __import__(module)
+2014-01-08T06:32:20.428769+00:00 app[web.1]:   File "/app/rosterrun.py", line 314
+2014-01-08T06:32:20.428769+00:00 app[web.1]:     print 'error reseting
+2014-01-08T06:32:20.428769+00:00 app[web.1]:                         ^
+2014-01-08T06:32:20.428769+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
+2014-01-08T06:32:20.428769+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T06:32:20.428769+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T06:32:20.428939+00:00 app[web.1]:     worker.init_process()
+2014-01-08T06:32:20.428939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T06:32:20.428939+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-0
+8T06:32:20.428939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T06:32:20.428939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T06:32:20.428939+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T06:32:20.428939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T06:32:20.428939+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T06:32:20.428939+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T06:32:20.428939+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T06:32:20.429485+00:00 app[web.1]:     __import__(module)
+2014-01-08T06:32:20.429485+00:00 app[web.1]:   File "/app/rosterrun.py", line 314
+2014-01-08T06:32:20.429485+00:00 app[web.1]:     print 'error reseting
+2014-01-08T06:32:20.429485+00:00 app[web.1]:                         ^
+2014-01-08T06:32:20.429485+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
+2014-01-08T06:32:20.429485+00:00 app[web.1]: 2014-01-08 06:32:20 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T06:32:20.545117+00:00 app[web.1]: 2014-01-08 06:32:20 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T06:32:20.544829+00:00 app[web.1]: 2014-01-08 06:32:20 [2] [INFO] Shutting down: Master
+2014-01-08T06:32:21.876841+00:00 heroku[web.1]: Process exited with status 3
+2014-01-08T06:32:21.896038+00:00 heroku[web.1]: State changed from starting to crashed
+2014-01-08T06:32:06.317968+00:00 heroku[api]: Deploy f136a54 by andygee@gmail.com
+2014-01-08T06:32:06.365279+00:00 heroku[api]: Release v102 created by andygee@gmail.com
+2014-01-08T06:33:04.029298+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:04.483469+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:17.417976+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:18.044811+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:32.072076+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:32.647054+00:00 heroku[router]: at=error code=H
+10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T06:33:57.299110+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-08T06:34:07.759556+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T06:34:08.850685+00:00 app[web.1]: 2014-01-08 06:34:08 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T06:34:08.852407+00:00 app[web.1]: 2014-01-08 06:34:08 [2] [INFO] Listening at: http://0.0.0.0:30866 (2)
+2014-01-08T06:34:08.852539+00:00 app[web.1]: 2014-01-08 06:34:08 [2] [INFO] Using worker: sync
+2014-01-08T06:34:08.860754+00:00 app[web.1]: 2014-01-08 06:34:08 [7] [INFO] Booting worker with pid: 7
+2014-01-08T06:34:08.872045+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T06:34:08.872045+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T06:34:08.872045+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T06:34:08.872045+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T06:34:08.872045+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T06:34:08.872045+00:00 app[web.1]: 2014-01-08 06:34:08 [7] [ERROR] Exception in worker process:
+2014-01-08T06:34:08.872045+00:00 app[web.1]:     worker.init_process()
+20
+14-01-08T06:34:08.872045+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T06:34:08.872045+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T06:34:08.872327+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T06:34:08.872327+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T06:34:08.872327+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T06:34:08.872327+00:00 app[web.1]:     print 'error reseting
+2014-01-08T06:34:08.872327+00:00 app[web.1]:     __import__(module)
+2014-01-08T06:34:08.872327+00:00 app[web.1]:   File "/app/rosterrun.py", line 314
+2014-01-08T06:34:08.872327+00:00 app[web.1]:                         ^
+2014-01-08T06:34:08.872327+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
+2014-01-08T06:34:08.872327+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T06:34:08.872523+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T06:34:08.872523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T06:34:08.872523+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T06:34:08.872523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T06:34:08.872045+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T06:34:08.872327+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T06:34:08.872523+00:00 app[web.1]:     worker.init_process()
+2014-01-08T06:34:08.872523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T06:34:08.872523+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T06:34:08.872523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T06:34:08.872523+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T06:34:08.872523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T06:34:08.873082+00:00 app[web.1]:     __import__(module)
+2014-01-08T06:34:08.873082+00:00 app[web.1]:   File "/app/rosterrun.py", line 314
+2014-01-08T06:34:08.873082+00:00 app[web.1]:     print 'error reseting
+2014-01-08T06:34:08.873082+00:00 app[web.1]:                         ^
+2014-01-08T06:34:08.873082+00:00 app[web.1]: SyntaxError: EOL while scanning string literal
+2014-01-08T06:34:08.873082+00:00 app[web.1]: 2014-01-08 06:34:08 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T06:34:08.999634+00:00 app[web.1]: 2014-01-08 06:34:08 [2] [INFO] Shutting down: Master
+2014-01-08T06:34:09.000171+00:00 app[web.1]: 2014-01-08 06:34:09 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T06:34:10.259037+00:00 heroku[web.1]: Process exited with status 3
+2014-01-08T06:34:10.267132+00:00 heroku[web.1]: State changed from starting to crashed
 Terminate batch job (Y/N)? 
