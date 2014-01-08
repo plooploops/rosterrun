@@ -55,7 +55,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
-job 
+job = None
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80))
