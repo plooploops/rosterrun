@@ -361,6 +361,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     for comb in currentcombinations:
       viablePartyIndex += 1
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      print 'found good chars %s' % chars
       validcombinations.append(chars)
     
     print 'found %s ' % len(validcombinations)
