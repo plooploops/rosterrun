@@ -343,6 +343,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       #break
     #print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
    
+    print combinationsMapping
     #run through combinations of players
     currentcombinations = []
     usedChars = []
@@ -371,8 +372,8 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       validcombinations.append(chars)
     
-    print 'found %s ' % len(validcombinations)
-    return validcombinations
+    print 'found %s ' % len(currentcombinations)
+    return currentcombinations
 
 def accumulate(l):
     it = itertools.groupby(l, operator.itemgetter(0))
