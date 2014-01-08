@@ -277,7 +277,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     combinationsMapping = {}
     validcombinations = []
     
-    succesfulteam = len(instance.Roles)
+    successfulteam = len(instance.Roles)
     print 'defining successful team as %s' % successfulteam
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
