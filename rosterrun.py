@@ -138,6 +138,7 @@ def show_entries():
     elif action == u"Calculate":
       flash('Running Calculation')
       q.enqueue(run_calculation)
+      return redirect(url_for('show_entries'))
     elif action == u"Reset":
       reset()
     else:
@@ -274,7 +275,7 @@ def run_calculation():
       flash('Calculation finished')
     except:
       print 'error running calculation'
-    return redirect(url_for('show_entries'))
+    
  
 @app.route('/reset', methods=['POST'])
 def reset():
