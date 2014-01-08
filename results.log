@@ -1,85 +1,3 @@
-2014-01-08T09:43:45.777379+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:43:45.777441+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=5ms status=302 bytes=803
-2014-01-08T09:43:46.687185+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T09:43:46.687185+00:00 app[web.1]: show entries
-2014-01-08T09:43:46.687185+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:43:46.696738+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:43:46.696738+00:00 app[web.1]: get all combinations
-2014-01-08T09:43:46.707491+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=25ms status=200 bytes=16665
-2014-01-08T09:43:52.004413+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:43:52.275875+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T09:43:52.275875+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T09:43:52.275875+00:00 app[web.1]: ['Quest Status']
-2014-01-08T09:43:52.904122+00:00 app[web.1]: error running calculation
-2014-01-08T09:43:52.905349+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:43:52.927340+00:00 app[web.1]: get all combinations
-2014-01-08T09:43:52.927340+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:43:52.952101+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=964ms status=200 bytes=16616
-2014-01-08T09:43:53.146001+00:00 app[worker.1]: 09:43:53 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x39e7d50>, u'Quest Status') (c2dd344a-bc5a-4bc8-bbb4-446c35efc293)
-2014-01-08T09:43:54.053444+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T09:43:54.054007+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T09:43:54.053852+00:00 app[worker.1]: ['Quest Status']
-2014-01-08T09:43:56.654152+00:00 app[worker.1]: found 0 combinations
-2014-01-08T09:43:56.654152+00:00 app[worker.1]: found 0 mapping
-2014-01-08T09:43:56.654152+00:00 app[worker.1]: found 0 
-2014-01-08T09:43:57.378815+00:00 app[worker.1]: found 0 combinations
-2014-01-08T09:43:57.379062+00:00 app[worker.1]: found 0 mapping
-2014-01-08T09:43:57.379193+00:00 app[worker.1]: found 0 
-2014-01-08T09:43:59.147731+00:00 app[worker.1]: found 0 mapping
-2014-01-08T09:43:59.147527+00:00 app[worker.1]: found 0 combinations
-2014-01-08T09:43:59.148230+00:00 app[worker.1]: found 0 
-2014-01-08T09:43:59.160021+00:00 app[worker.1]: 09:43:59 Job OK, result = []
-2014-01-08T09:43:59.160829+00:00 app[worker.1]: 09:43:59 Result is kept for 500 seconds.
-2014-01-08T09:43:59.179762+00:00 app[worker.1]: 09:43:59 *** Listening on high, default, low...
-2014-01-08T09:43:59.179416+00:00 app[worker.1]: 09:43:59 
-2014-01-08T09:43:42.070454+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=25ms service=33ms status=200 bytes=563
-2014-01-08T09:43:46.598795+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/OBcWh-ZcMm1wU5U6yZtqyY9m16tJ.Uha6BPipyaMemmS0T3UFEsOuonzihgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=5ms service=456ms status=302 bytes=209
-2014-01-08T09:43:41.933374+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=5ms status=302 bytes=219
-2014-01-08T09:46:43+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-08T09:47:52.339797+00:00 heroku[api]: Deploy 58fdccb by andygee@gmail.com
-2014-01-08T09:47:52.368428+00:00 heroku[api]: Release v122 created by andygee@gmail.com
-2014-01-08T09:47:52+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T09:47:52.911462+00:00 heroku[web.1]: State changed from up to starting
-2014-01-08T09:47:52.962348+00:00 heroku[worker.2]: State changed from up to starting
-2014-01-08T09:47:52.992073+00:00 heroku[worker.1]: State changed from up to starting
-2014-01-08T09:47:55.683707+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-01-08T09:47:55.697895+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-01-08T09:47:56.249720+00:00 app[worker.1]: 09:47:56 Warm shut down requested.
-2014-01-08T09:47:56.246872+00:00 app[worker.2]: 09:47:56 Warm shut down requested.
-2014-01-08T09:47:56.323191+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-08T09:47:57.042671+00:00 app[web.1]: 2014-01-08 09:47:57 [2] [INFO] Handling signal: term
-2014-01-08T09:47:57.042671+00:00 app[web.1]: 2014-01-08 09:47:57 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T09:47:57.059800+00:00 app[web.1]: 2014-01-08 09:47:57 [2] [INFO] Shutting down: Master
-2014-01-08T09:47:57.577408+00:00 heroku[worker.2]: Process exited with status 0
-2014-01-08T09:47:57.687788+00:00 heroku[worker.1]: Process exited with status 0
-2014-01-08T09:47:58.273847+00:00 heroku[web.1]: Process exited with status 0
-2014-01-08T09:48:02.724302+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T09:48:03.654662+00:00 app[web.1]: 2014-01-08 09:48:03 [7] [INFO] Booting worker with pid: 7
-2014-01-08T09:48:03.647918+00:00 app[web.1]: 2014-01-08 09:48:03 [2] [INFO] Listening at: http://0.0.0.0:10017 (2)
-2014-01-08T09:48:03.647305+00:00 app[web.1]: 2014-01-08 09:48:03 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T09:48:03.648021+00:00 app[web.1]: 2014-01-08 09:48:03 [2] [INFO] Using worker: sync
-2014-01-08T09:48:03.857853+00:00 heroku[web.1]: State changed from starting to up
-2014-01-08T09:48:04.685955+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-08T09:48:05.263422+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-08T09:48:05.776382+00:00 app[worker.1]: 09:48:05 RQ worker started, version 0.3.13
-2014-01-08T09:48:05.778384+00:00 app[worker.1]: 09:48:05 
-2014-01-08T09:48:05.778500+00:00 app[worker.1]: 09:48:05 *** Listening on high, default, low...
-2014-01-08T09:48:06.990075+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-08T09:48:07.658935+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-08T09:48:09.329875+00:00 app[worker.2]: 09:48:09 RQ worker started, version 0.3.13
-2014-01-08T09:48:09.336961+00:00 app[worker.2]: 09:48:09 *** Listening on high, default, low...
-2014-01-08T09:48:09.335684+00:00 app[worker.2]: 09:48:09 
-2014-01-08T09:48:14.789741+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T09:48:14.789741+00:00 app[web.1]: show entries
-2014-01-08T09:48:14.789741+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:48:15.001978+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:48:15.001978+00:00 app[web.1]: get all combinations
-2014-01-08T09:48:15.042690+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=258ms status=200 bytes=16616
-2014-01-08T09:48:55.306385+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=7ms status=302 bytes=219
-2014-01-08T09:48:55.398930+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=200 bytes=563
-2014-01-08T09:48:55.205060+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=25ms status=302 bytes=209
-2014-01-08T09:48:59.164524+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:48:59.172218+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=302 bytes=803
 2014-01-08T09:49:00.197370+00:00 app[web.1]: cannot find gdoc name
 2014-01-08T09:49:00.197644+00:00 app[web.1]: show entries
 2014-01-08T09:49:00.198036+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
@@ -100,19 +18,19 @@
 2014-01-08T09:49:13.831134+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-08T09:49:13.831134+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:49:12.600333+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=561ms status=200 bytes=16616
-2014-01-08T09:49:16.304248+00:00 app[worker.1]: found 0 combinations
 2014-01-08T09:49:16.304248+00:00 app[worker.1]: found 0 mapping
+2014-01-08T09:49:16.304248+00:00 app[worker.1]: found 0 combinations
 2014-01-08T09:49:16.304248+00:00 app[worker.1]: found 0 
-2014-01-08T09:49:16.598101+00:00 app[worker.1]: found 0 combinations
-2014-01-08T09:49:16.598101+00:00 app[worker.1]: found 0 mapping
 2014-01-08T09:49:16.598101+00:00 app[worker.1]: found 0 
+2014-01-08T09:49:16.598101+00:00 app[worker.1]: found 0 mapping
+2014-01-08T09:49:16.598101+00:00 app[worker.1]: found 0 combinations
 2014-01-08T09:49:17.284617+00:00 app[worker.1]: found 0 combinations
 2014-01-08T09:49:17.284617+00:00 app[worker.1]: found 0 mapping
 2014-01-08T09:49:17.284617+00:00 app[worker.1]: found 0 
 2014-01-08T09:49:17.295250+00:00 app[worker.1]: 09:49:17 Job OK, result = []
 2014-01-08T09:49:17.295353+00:00 app[worker.1]: 09:49:17 Result is kept for 500 seconds.
-2014-01-08T09:49:17.310465+00:00 app[worker.1]: 09:49:17 
 2014-01-08T09:49:17.310630+00:00 app[worker.1]: 09:49:17 *** Listening on high, default, low...
+2014-01-08T09:49:17.310465+00:00 app[worker.1]: 09:49:17 
 2014-01-08T09:50:32.957877+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-08T09:50:33.160487+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:50:33.160487+00:00 app[web.1]: ['Quest Status']
@@ -121,13 +39,13 @@
 2014-01-08T09:50:33.479644+00:00 app[web.1]: ['Quest Status']
 2014-01-08T09:50:33.479644+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-08T09:50:33.709757+00:00 app[web.1]: FOUND 31 CHARS
+2014-01-08T09:50:33.783141+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=872ms status=200 bytes=16651
 2014-01-08T09:50:33.763100+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-08T09:50:33.771441+00:00 app[web.1]: AVAILABLE PARTIES 0 
 2014-01-08T09:50:33.771441+00:00 app[web.1]: get all combinations
-2014-01-08T09:50:33.783141+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=872ms status=200 bytes=16651
 2014-01-08T09:50:41.568269+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:50:41.764409+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:50:41.764409+00:00 app[web.1]: ['Quest Status']
+2014-01-08T09:50:41.764409+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:50:41.764409+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-08T09:50:41.906393+00:00 app[web.1]: error running calculation
 2014-01-08T09:50:41.906840+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
@@ -135,22 +53,1199 @@
 2014-01-08T09:50:41.918005+00:00 app[web.1]: get all combinations
 2014-01-08T09:50:42.066640+00:00 app[worker.2]: 09:50:42 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x4bd0450>, u'Quest Status') (82a7622c-62a4-4e82-b620-7fe620b7ca43)
 2014-01-08T09:50:41.932736+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=375ms status=200 bytes=16605
-2014-01-08T09:50:43.571581+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:50:43.572330+00:00 app[worker.2]: ['Quest Status']
+2014-01-08T09:50:43.571581+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
 2014-01-08T09:50:43.572330+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:51:01.004746+00:00 app[worker.2]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
 2014-01-08T09:51:01.004746+00:00 app[worker.2]: 09:51:01 TypeError: not all arguments converted during string formatting
-2014-01-08T09:51:01.004746+00:00 app[worker.2]: Traceback (most recent call last):
-2014-01-08T09:51:01.004746+00:00 app[worker.2]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
 2014-01-08T09:51:01.004746+00:00 app[worker.2]:     rv = job.perform()
 2014-01-08T09:51:01.004746+00:00 app[worker.2]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 348, in perform
-2014-01-08T09:51:01.004746+00:00 app[worker.2]:     self._result = self.func(*self.args, **self.kwargs)
 2014-01-08T09:51:01.004746+00:00 app[worker.2]:   File "/app/scheduler.py", line 122, in run_scheduler_OAuth
-2014-01-08T09:51:01.004746+00:00 app[worker.2]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
+2014-01-08T09:51:01.004746+00:00 app[worker.2]: Traceback (most recent call last):
+2014-01-08T09:51:01.004746+00:00 app[worker.2]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
+2014-01-08T09:51:01.004746+00:00 app[worker.2]:     self._result = self.func(*self.args, **self.kwargs)
+2014-01-08T09:51:01.005106+00:00 app[worker.2]: TypeError: not all arguments converted during string formatting
 2014-01-08T09:51:01.004746+00:00 app[worker.2]:   File "/app/scheduler.py", line 335, in combineByRoleAssignment
 2014-01-08T09:51:01.004746+00:00 app[worker.2]:     print 'found successful team %s ' % comb
-2014-01-08T09:51:01.005106+00:00 app[worker.2]: TypeError: not all arguments converted during string formatting
 2014-01-08T09:51:01.005106+00:00 app[worker.2]: 
 2014-01-08T09:51:01.005705+00:00 app[worker.2]: 09:51:01 Moving job to failed queue.
 2014-01-08T09:51:01.099125+00:00 app[worker.2]: 09:51:01 
 2014-01-08T09:51:01.099320+00:00 app[worker.2]: 09:51:01 *** Listening on high, default, low...
+2014-01-08T09:52:34+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T09:53:38+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T09:53:38.558925+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T09:53:38.623185+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-08T09:53:38.656209+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-08T09:53:40.900181+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-08T09:53:41.176737+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-08T09:53:41.357400+00:00 app[worker.1]: 09:53:41 Warm shut down requested.
+2014-01-08T09:53:41.752880+00:00 app[web.1]: 2014-01-08 09:53:41 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T09:53:41.759157+00:00 app[web.1]: 2014-01-08 09:53:41 [2] [INFO] Handling signal: term
+2014-01-08T09:53:41.773715+00:00 app[web.1]: 2014-01-08 09:53:41 [2] [INFO] Shutting down: Master
+2014-01-08T09:53:42.546533+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-08T09:53:42.688482+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-08T09:53:43.062135+00:00 heroku[web.1]: Process exited with status 0
+2014-01-08T09:53:43.568772+00:00 app[worker.2]: 09:53:43 Warm shut down requested.
+2014-01-08T09:53:45.171357+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-08T09:53:50.925870+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-08T09:53:51.029674+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T09:53:51.497386+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-08T09:53:52.345764+00:00 app[web.1]: 2014-01-08 09:53:52 [2] [INFO] Listening at: http://0.0.0.0:4097 (2)
+2014-01-08T09:53:52.344681+00:00 app[web.1]: 2014-01-08 09:53:52 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T09:53:52.345994+00:00 app[web.1]: 2014-01-08 09:53:52 [2] [INFO] Using worker: sync
+2014-01-08T09:53:52.354723+00:00 app[web.1]: 2014-01-08 09:53:52 [7] [INFO] Booting worker with pid: 7
+2014-01-08T09:53:52.811051+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T09:53:52.889624+00:00 app[worker.2]: 09:53:52 RQ worker started, version 0.3.13
+2014-01-08T09:53:52.899201+00:00 app[worker.2]: 09:53:52 
+2014-01-08T09:53:52.899579+00:00 app[worker.2]: 09:53:52 *** Listening on high, default, low...
+2014-01-08T09:53:53.286475+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-08T09:53:53.992459+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-08T09:53:54.925596+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T09:53:54.927687+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T09:53:54.937767+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T09:53:54.937767+00:00 app[web.1]: get all combinations
+2014-01-08T09:53:55.020011+00:00 app[worker.1]: 09:53:55 RQ worker started, version 0.3.13
+2014-01-08T09:53:55.023221+00:00 app[worker.1]: 09:53:55 
+2014-01-08T09:53:55.023521+00:00 app[worker.1]: 09:53:55 *** Listening on high, default, low...
+2014-01-08T09:53:55.336625+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=72ms status=200 bytes=1178
+2014-01-08T09:53:54.982320+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1388ms status=200 bytes=276
+2014-01-08T09:53:58.568997+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=17ms status=200 bytes=464
+2014-01-08T09:54:01.478312+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T09:54:02.495779+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/s_uuChozhmzHp-5O0XJUdSOesQsm.QgwRv7PTWHUWmmS0T3UFEsP0bI_ihgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=630ms status=302 bytes=209
+2014-01-08T09:54:02.594219+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T09:54:02.594219+00:00 app[web.1]: show entries
+2014-01-08T09:54:02.594219+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T09:54:02.612513+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T09:54:02.612513+00:00 app[web.1]: get all combinations
+2014-01-08T09:54:01.492419+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=19ms status=302 bytes=803
+2014-01-08T09:54:02.633521+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=44ms status=200 bytes=16654
+2014-01-08T09:53:37.933697+00:00 heroku[api]: Deploy 113ce14 by andygee@gmail.com
+2014-01-08T09:53:37.962673+00:00 heroku[api]: Release v123 created by andygee@gmail.com
+2014-01-08T09:54:08.861776+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T09:54:09.441591+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:54:09.441688+00:00 app[web.1]: ['Quest Status']
+2014-01-08T09:54:09.441688+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:54:09.838186+00:00 app[web.1]: error running calculation
+2014-01-08T09:54:09.838988+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T09:54:09.851045+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T09:54:09.851045+00:00 app[web.1]: get all combinations
+2014-01-08T09:54:09.870278+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1020ms status=200 bytes=16605
+2014-01-08T09:54:09.924494+00:00 app[worker.2]: 09:54:09 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x309cc90>, u'Quest Status') (19efbdb4-550b-4a7b-8e28-d921b7103ff2)
+2014-01-08T09:54:10.573465+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:54:10.573465+00:00 app[worker.2]: ['Quest Status']
+2014-01-08T09:54:10.573465+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:54:21.846371+00:00 app[worker.2]: found successful team 0 
+2014-01-08T09:54:21.846647+00:00 app[worker.2]: found successful team 1 
+2014-01-08T09:54:21.901146+00:00 app[worker.2]: found successful team 2 
+2014-01-08T09:54:22.205753+00:00 app[worker.2]: found successful team 3 
+2014-01-08T09:54:22.217777+00:00 app[worker.2]: found successful team 4 
+2014-01-08T09:54:22.218209+00:00 app[worker.2]: found successful team 5 
+2014-01-08T09:54:22.221322+00:00 app[worker.2]: found successful team 6 
+2014-01-08T09:54:22.223667+00:00 app[worker.2]: found successful team 7 
+2014-01-08T09:54:22.293657+00:00 app[worker.2]: found successful team 8 
+2014-01-08T09:54:22.366897+00:00 app[worker.2]: found successful team 9 
+2014-01-08T09:54:22.636041+00:00 app[worker.2]: found successful team 10 
+2014-01-08T09:54:25.545955+00:00 app[worker.2]: found successful team 11 
+2014-01-08T09:54:25.546338+00:00 app[worker.2]: found successful team 12 
+2014-01-08T09:54:25.600390+00:00 app[worker.2]: found successful team 13 
+2014-01-08T09:54:25.902822+00:00 app[worker.2]: found successful team 14 
+2014-01-08T09:54:25.914739+00:00 app[worker.2]: found successful team 15 
+2014-01-08T09:54:25.915170+00:00 app[worker.2]: found successful team 16 
+2014-01-08T09:54:25.918277+00:00 app[worker.2]: found successful team 17 
+2014-01-08T09:54:25.920579+00:00 app[worker.2]: found successful team 18 
+2014-01-08T09:54:25.990438+00:00 app[worker.2]: found successful team 19 
+2014-01-08T09:54:26.062951+00:00 app[worker.2]: found successful team 20 
+2014-01-08T09:54:26.331368+00:00 app[worker.2]: found successful team 21 
+2014-01-08T09:54:27.575559+00:00 app[worker.2]: found successful team 22 
+2014-01-08T09:54:27.575936+00:00 app[worker.2]: found successful team 23 
+2014-01-08T09:54:27.583740+00:00 app[worker.2]: found successful team 24 
+2014-01-08T09:54:27.584115+00:00 app[worker.2]: found successful team 25 
+2014-01-08T09:54:27.749197+00:00 app[worker.2]: found successful team 26 
+2014-01-08T09:54:27.774227+00:00 app[worker.2]: found successful team 27 
+2014-01-08T09:54:28.661530+00:00 app[worker.2]: found successful team 28 
+2014-01-08T09:54:28.670045+00:00 app[worker.2]: found successful team 29 
+2014-01-08T09:54:28.706258+00:00 app[worker.2]: found successful team 30 
+2014-01-08T09:54:28.706476+00:00 app[worker.2]: found successful team 31 
+2014-01-08T09:54:28.709898+00:00 app[worker.2]: found successful team 32 
+2014-01-08T09:54:28.712271+00:00 app[worker.2]: found successful team 33 
+2014-01-08T09:54:28.727332+00:00 app[worker.2]: found successful team 34 
+2014-01-08T09:54:28.727650+00:00 app[worker.2]: found successful team 35 
+2014-01-08T09:54:28.736580+00:00 app[worker.2]: found successful team 36 
+2014-01-08T09:54:28.739145+00:00 app[worker.2]: found successful team 37 
+2014-01-08T09:54:28.900398+00:00 app[worker.2]: found successful team 38 
+2014-01-08T09:54:28.939107+00:00 app[worker.2]: found successful team 39 
+2014-01-08T09:54:29.099003+00:00 app[worker.2]: found successful team 40 
+2014-01-08T09:54:29.131297+00:00 app[worker.2]: found successful team 41 
+2014-01-08T09:54:29.678644+00:00 app[worker.2]: found successful team 42 
+2014-01-08T09:54:29.702212+00:00 app[worker.2]: found successful team 43 
+2014-01-08T09:54:36.652507+00:00 app[worker.2]: found successful team 44 
+2014-01-08T09:54:36.652921+00:00 app[worker.2]: found successful team 45 
+2014-01-08T09:54:36.673022+00:00 app[worker.2]: found successful team 46 
+2014-01-08T09:54:36.673425+00:00 app[worker.2]: found successful team 47 
+2014-01-08T09:54:36.977961+00:00 app[worker.2]: found successful team 48 
+2014-01-08T09:54:36.978344+00:00 app[worker.2]: found successful team 49 
+2014-01-08T09:54:36.991414+00:00 app[worker.2]: found successful team 50 
+2014-01-08T09:54:36.991779+00:00 app[worker.2]: found successful team 51 
+2014-01-08T09:54:37.028260+00:00 app[worker.2]: found successful team 52 
+2014-01-08T09:54:37.071455+00:00 app[worker.2]: found successful team 53 
+2014-01-08T09:54:37.373252+00:00 app[worker.2]: found successful team 54 
+2014-01-08T09:54:37.373636+00:00 app[worker.2]: found successful team 55 
+2014-01-08T09:54:37.392839+00:00 app[worker.2]: found successful team 56 
+2014-01-08T09:54:37.393259+00:00 app[worker.2]: found successful team 57 
+2014-01-08T09:54:37.553693+00:00 app[worker.2]: found successful team 58 
+2014-01-08T09:54:37.617011+00:00 app[worker.2]: found successful team 59 
+2014-01-08T09:54:41.015611+00:00 app[worker.2]: found successful team 60 
+2014-01-08T09:54:41.016287+00:00 app[worker.2]: found successful team 61 
+2014-01-08T09:54:41.036245+00:00 app[worker.2]: found successful team 62 
+2014-01-08T09:54:41.036728+00:00 app[worker.2]: found successful team 63 
+2014-01-08T09:54:41.343841+00:00 app[worker.2]: found successful team 64 
+2014-01-08T09:54:41.344245+00:00 app[worker.2]: found successful team 65 
+2014-01-08T09:54:41.355595+00:00 app[worker.2]: found successful team 66 
+2014-01-08T09:54:41.356024+00:00 app[worker.2]: found successful team 67 
+2014-01-08T09:54:41.393757+00:00 app[worker.2]: found successful team 68 
+2014-01-08T09:54:41.437812+00:00 app[worker.2]: found successful team 69 
+2014-01-08T09:54:41.798230+00:00 app[worker.2]: found successful team 70 
+2014-01-08T09:54:41.798918+00:00 app[worker.2]: found successful team 71 
+2014-01-08T09:54:41.909929+00:00 app[worker.2]: found successful team 72 
+2014-01-08T09:54:41.910872+00:00 app[worker.2]: found successful team 73 
+2014-01-08T09:54:42.298906+00:00 app[worker.2]: found successful team 74 
+2014-01-08T09:54:42.540120+00:00 app[worker.2]: found successful team 75 
+2014-01-08T09:54:44.605053+00:00 app[worker.2]: found successful team 76 
+2014-01-08T09:54:44.605442+00:00 app[worker.2]: found successful team 77 
+2014-01-08T09:54:44.666396+00:00 app[worker.2]: found successful team 78 
+2014-01-08T09:54:44.666777+00:00 app[worker.2]: found successful team 79 
+2014-01-08T09:54:45.306765+00:00 app[worker.2]: found successful team 80 
+2014-01-08T09:54:45.307244+00:00 app[worker.2]: found successful team 81 
+2014-01-08T09:54:45.315020+00:00 app[worker.2]: found successful team 82 
+2014-01-08T09:54:45.315504+00:00 app[worker.2]: found successful team 83 
+2014-01-08T09:54:45.334971+00:00 app[worker.2]: found successful team 84 
+2014-01-08T09:54:45.335589+00:00 app[worker.2]: found successful team 85 
+2014-01-08T09:54:45.359330+00:00 app[worker.2]: found successful team 86 
+2014-01-08T09:54:45.359923+00:00 app[worker.2]: found successful team 87 
+2014-01-08T09:54:45.453238+00:00 app[worker.2]: found successful team 88 
+2014-01-08T09:54:45.476857+00:00 app[worker.2]: found successful team 89 
+2014-01-08T09:54:45.534516+00:00 app[worker.2]: found successful team 90 
+2014-01-08T09:54:45.576544+00:00 app[worker.2]: found successful team 91 
+2014-01-08T09:54:46.241642+00:00 app[worker.2]: found successful team 92 
+2014-01-08T09:54:46.242073+00:00 app[worker.2]: found successful team 93 
+2014-01-08T09:54:46.302068+00:00 app[worker.2]: found successful team 94 
+2014-01-08T09:54:46.302510+00:00 app[worker.2]: found successful team 95 
+2014-01-08T09:54:46.539771+00:00 app[worker.2]: found successful team 96 
+2014-01-08T09:54:46.666007+00:00 app[worker.2]: found successful team 97 
+2014-01-08T09:54:49.092058+00:00 app[worker.2]: found successful team 98 
+2014-01-08T09:54:49.095595+00:00 app[worker.2]: found successful team 99 
+2014-01-08T09:54:49.127067+00:00 app[worker.2]: found successful team 100 
+2014-01-08T09:54:49.147574+00:00 app[worker.2]: found successful team 101 
+2014-01-08T09:54:49.456393+00:00 app[worker.2]: found successful team 102 
+2014-01-08T09:54:49.467855+00:00 app[worker.2]: found successful team 103 
+2014-01-08T09:54:49.860471+00:00 app[worker.2]: found successful team 104 
+2014-01-08T09:54:49.881149+00:00 app[worker.2]: found successful team 105 
+2014-01-08T09:54:53.124805+00:00 app[worker.2]: found successful team 106 
+2014-01-08T09:54:53.128324+00:00 app[worker.2]: found successful team 107 
+2014-01-08T09:54:53.159796+00:00 app[worker.2]: found successful team 108 
+2014-01-08T09:54:53.180357+00:00 app[worker.2]: found successful team 109 
+2014-01-08T09:54:53.495045+00:00 app[worker.2]: found successful team 110 
+2014-01-08T09:54:53.507194+00:00 app[worker.2]: found successful team 111 
+2014-01-08T09:54:53.901001+00:00 app[worker.2]: found successful team 112 
+2014-01-08T09:54:53.921571+00:00 app[worker.2]: found successful team 113 
+2014-01-08T09:54:55.229664+00:00 app[worker.2]: found successful team 114 
+2014-01-08T09:54:55.249941+00:00 app[worker.2]: found successful team 115 
+2014-01-08T09:54:55.355060+00:00 app[worker.2]: found successful team 116 
+2014-01-08T09:54:55.419633+00:00 app[worker.2]: found successful team 117 
+2014-01-08T09:54:56.093129+00:00 app[worker.2]: found successful team 118 
+2014-01-08T09:54:56.101617+00:00 app[worker.2]: found successful team 119 
+2014-01-08T09:54:56.123286+00:00 app[worker.2]: found successful team 120 
+2014-01-08T09:54:56.145998+00:00 app[worker.2]: found successful team 121 
+2014-01-08T09:54:57.081160+00:00 app[worker.2]: found successful team 122 
+2014-01-08T09:54:57.144869+00:00 app[worker.2]: found successful team 123 
+2014-01-08T09:55:03.279345+00:00 app[worker.2]: found successful team 124 
+2014-01-08T09:55:03.279818+00:00 app[worker.2]: found successful team 125 
+2014-01-08T09:55:03.303833+00:00 app[worker.2]: found successful team 126 
+2014-01-08T09:55:03.304346+00:00 app[worker.2]: found successful team 127 
+2014-01-08T09:55:03.433527+00:00 app[worker.2]: found successful team 128 
+2014-01-08T09:55:03.506013+00:00 app[worker.2]: found successful team 129 
+2014-01-08T09:55:04.337967+00:00 app[worker.2]: found successful team 130 
+2014-01-08T09:55:04.395566+00:00 app[worker.2]: found successful team 131 
+2014-01-08T09:55:05.396528+00:00 app[worker.2]: found successful team 132 
+2014-01-08T09:55:05.460721+00:00 app[worker.2]: found successful team 133 
+2014-01-08T09:55:11.961040+00:00 app[worker.2]: found successful team 134 
+2014-01-08T09:55:11.961427+00:00 app[worker.2]: found successful team 135 
+2014-01-08T09:55:11.980824+00:00 app[worker.2]: found successful team 136 
+2014-01-08T09:55:11.981237+00:00 app[worker.2]: found successful team 137 
+2014-01-08T09:55:12.087196+00:00 app[worker.2]: found successful team 138 
+2014-01-08T09:55:12.150468+00:00 app[worker.2]: found successful team 139 
+2014-01-08T09:55:12.827091+00:00 app[worker.2]: found successful team 140 
+2014-01-08T09:55:12.870163+00:00 app[worker.2]: found successful team 141 
+2014-01-08T09:55:13.834363+00:00 app[worker.2]: found successful team 142 
+2014-01-08T09:55:13.912753+00:00 app[worker.2]: found successful team 143 
+2014-01-08T09:55:16.588433+00:00 app[worker.2]: found successful team 144 
+2014-01-08T09:55:16.588868+00:00 app[worker.2]: found successful team 145 
+2014-01-08T09:55:16.651369+00:00 app[worker.2]: found successful team 146 
+2014-01-08T09:55:16.651796+00:00 app[worker.2]: found successful team 147 
+2014-01-08T09:55:16.938947+00:00 app[worker.2]: found successful team 148 
+2014-01-08T09:55:17.079217+00:00 app[worker.2]: found successful team 149 
+2014-01-08T09:55:18.277672+00:00 app[worker.2]: found successful team 150 
+2014-01-08T09:55:18.305931+00:00 app[worker.2]: found successful team 151 
+2014-01-08T09:55:18.403501+00:00 app[worker.2]: found successful team 152 
+2014-01-08T09:55:18.491529+00:00 app[worker.2]: found successful team 153 
+2014-01-08T09:55:20.176913+00:00 app[worker.2]: found successful team 154 
+2014-01-08T09:55:20.300812+00:00 app[worker.2]: found successful team 155 
+2014-01-08T09:55:22.373366+00:00 app[worker.2]: found 156 combinations
+2014-01-08T09:55:24.419412+00:00 app[worker.2]: found 156 mapping
+2014-01-08T09:55:24.419412+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x1974908>, <scheduler.Combination instance at 0x1974368>, <scheduler.Combination instance at 0x1974c68>, <scheduler.Combination instance at 0x1974878>, <scheduler.Combination instance at 0x1974d40>, <scheduler.Combination instance at 0x1974b90>, <scheduler.Combination instance at 0x1974ea8>]
+2014-01-08T09:55:24.419412+00:00 app[worker.2]: found 1 
+2014-01-08T09:55:25.425042+00:00 app[worker.2]: found successful team 0 
+2014-01-08T09:55:25.430875+00:00 app[worker.2]: found successful team 1 
+2014-01-08T09:55:25.445724+00:00 app[worker.2]: found successful team 2 
+2014-01-08T09:55:25.452521+00:00 app[worker.2]: found successful team 3 
+2014-01-08T09:55:25.459766+00:00 app[worker.2]: found successful team 4 
+2014-01-08T09:55:25.582810+00:00 app[worker.2]: found successful team 5 
+2014-01-08T09:55:25.588642+00:00 app[worker.2]: found successful team 6 
+2014-01-08T09:55:25.603462+00:00 app[worker.2]: found successful team 7 
+2014-01-08T09:55:25.609398+00:00 app[worker.2]: found successful team 8 
+2014-01-08T09:55:25.616655+00:00 app[worker.2]: found successful team 9 
+2014-01-08T09:55:25.666525+00:00 app[worker.2]: found successful team 10 
+2014-01-08T09:55:25.669894+00:00 app[worker.2]: found successful team 11 
+2014-01-08T09:55:25.694172+00:00 app[worker.2]: found successful team 12 
+2014-01-08T09:55:25.699655+00:00 app[worker.2]: found successful team 13 
+2014-01-08T09:55:25.760405+00:00 app[worker.2]: found successful team 14 
+2014-01-08T09:55:25.763803+00:00 app[worker.2]: found successful team 15 
+2014-01-08T09:55:25.785541+00:00 app[worker.2]: found successful team 16 
+2014-01-08T09:55:25.795661+00:00 app[worker.2]: found successful team 17 
+2014-01-08T09:55:25.818607+00:00 app[worker.2]: found successful team 18 
+2014-01-08T09:55:25.824440+00:00 app[worker.2]: found successful team 19 
+2014-01-08T09:55:26.691376+00:00 app[worker.2]: found successful team 20 
+2014-01-08T09:55:26.697258+00:00 app[worker.2]: found successful team 21 
+2014-01-08T09:55:26.704632+00:00 app[worker.2]: found successful team 22 
+2014-01-08T09:55:26.798796+00:00 app[worker.2]: found successful team 23 
+2014-01-08T09:55:27.356718+00:00 app[worker.2]: found successful team 24 
+2014-01-08T09:55:27.362917+00:00 app[worker.2]: found successful team 25 
+2014-01-08T09:55:27.369897+00:00 app[worker.2]: found successful team 26 
+2014-01-08T09:55:27.464655+00:00 app[worker.2]: found successful team 27 
+2014-01-08T09:55:27.683158+00:00 app[worker.2]: found successful team 28 
+2014-01-08T09:55:27.686521+00:00 app[worker.2]: found successful team 29 
+2014-01-08T09:55:27.706616+00:00 app[worker.2]: found successful team 30 
+2014-01-08T09:55:27.714425+00:00 app[worker.2]: found successful team 31 
+2014-01-08T09:55:27.737622+00:00 app[worker.2]: found successful team 32 
+2014-01-08T09:55:27.743168+00:00 app[worker.2]: found successful team 33 
+2014-01-08T09:55:28.032954+00:00 app[worker.2]: found successful team 34 
+2014-01-08T09:55:28.041007+00:00 app[worker.2]: found successful team 35 
+2014-01-08T09:55:28.473688+00:00 app[worker.2]: found 36 combinations
+2014-01-08T09:55:28.521226+00:00 app[worker.2]: found 36 mapping
+2014-01-08T09:55:28.521324+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x19008c0>, <scheduler.Combination instance at 0x19009e0>, <scheduler.Combination instance at 0x1900440>, <scheduler.Combination instance at 0x1900680>, <scheduler.Combination instance at 0x19005a8>]
+2014-01-08T09:55:28.521433+00:00 app[worker.2]: found 1 
+2014-01-08T09:55:30.882340+00:00 app[worker.2]: found successful team 0 
+2014-01-08T09:55:30.882661+00:00 app[worker.2]: found successful team 1 
+2014-01-08T09:55:30.923895+00:00 app[worker.2]: found successful team 2 
+2014-01-08T09:55:30.965501+00:00 app[worker.2]: found successful team 3 
+2014-01-08T09:55:30.973702+00:00 app[worker.2]: found successful team 4 
+2014-01-08T09:55:30.974079+00:00 app[worker.2]: found successful team 5 
+2014-01-08T09:55:30.976356+00:00 app[worker.2]: found successful team 6 
+2014-01-08T09:55:30.978062+00:00 app[worker.2]: found successful team 7 
+2014-01-08T09:55:31.026222+00:00 app[worker.2]: found successful team 8 
+2014-01-08T09:55:31.125174+00:00 app[worker.2]: found successful team 9 
+2014-01-08T09:55:31.886232+00:00 app[worker.2]: found successful team 10 
+2014-01-08T09:55:31.886744+00:00 app[worker.2]: found successful team 11 
+2014-01-08T09:55:31.982891+00:00 app[worker.2]: found successful team 12 
+2014-01-08T09:55:32.033047+00:00 app[worker.2]: found successful team 13 
+2014-01-08T09:55:32.041558+00:00 app[worker.2]: found successful team 14 
+2014-01-08T09:55:32.041918+00:00 app[worker.2]: found successful team 15 
+2014-01-08T09:55:32.044374+00:00 app[worker.2]: found successful team 16 
+2014-01-08T09:55:32.046222+00:00 app[worker.2]: found successful team 17 
+2014-01-08T09:55:32.096160+00:00 app[worker.2]: found successful team 18 
+2014-01-08T09:55:32.209142+00:00 app[worker.2]: found successful team 19 
+2014-01-08T09:55:32.571695+00:00 app[worker.2]: found successful team 20 
+2014-01-08T09:55:32.572219+00:00 app[worker.2]: found successful team 21 
+2014-01-08T09:55:32.577909+00:00 app[worker.2]: found successful team 22 
+2014-01-08T09:55:32.578270+00:00 app[worker.2]: found successful team 23 
+2014-01-08T09:55:32.677074+00:00 app[worker.2]: found successful team 24 
+2014-01-08T09:55:32.693610+00:00 app[worker.2]: found successful team 25 
+2014-01-08T09:55:32.809254+00:00 app[worker.2]: found successful team 26 
+2014-01-08T09:55:32.815259+00:00 app[worker.2]: found successful team 27 
+2014-01-08T09:55:32.841140+00:00 app[worker.2]: found successful team 28 
+2014-01-08T09:55:32.841368+00:00 app[worker.2]: found successful team 29 
+2014-01-08T09:55:32.843716+00:00 app[worker.2]: found successful team 30 
+2014-01-08T09:55:32.845419+00:00 app[worker.2]: found successful team 31 
+2014-01-08T09:55:32.853471+00:00 app[worker.2]: found successful team 32 
+2014-01-08T09:55:32.853794+00:00 app[worker.2]: found successful team 33 
+2014-01-08T09:55:32.860848+00:00 app[worker.2]: found successful team 34 
+2014-01-08T09:55:32.862871+00:00 app[worker.2]: found successful team 35 
+2014-01-08T09:55:33.018671+00:00 app[worker.2]: found successful team 36 
+2014-01-08T09:55:33.081920+00:00 app[worker.2]: found successful team 37 
+2014-01-08T09:55:34.002666+00:00 app[worker.2]: found successful team 38 
+2014-01-08T09:55:34.119119+00:00 app[worker.2]: found successful team 39 
+2014-01-08T09:55:36.549138+00:00 app[worker.2]: found successful team 40 
+2014-01-08T09:55:36.549543+00:00 app[worker.2]: found successful team 41 
+2014-01-08T09:55:36.590600+00:00 app[worker.2]: found successful team 42 
+2014-01-08T09:55:36.593046+00:00 app[worker.2]: found successful team 43 
+2014-01-08T09:55:36.689973+00:00 app[worker.2]: found successful team 44 
+2014-01-08T09:55:36.690345+00:00 app[worker.2]: found successful team 45 
+2014-01-08T09:55:36.706697+00:00 app[worker.2]: found successful team 46 
+2014-01-08T09:55:36.707437+00:00 app[worker.2]: found successful team 47 
+2014-01-08T09:55:36.779974+00:00 app[worker.2]: found successful team 48 
+2014-01-08T09:55:36.860356+00:00 app[worker.2]: found successful team 49 
+2014-01-08T09:55:37.012500+00:00 app[worker.2]: found successful team 50 
+2014-01-08T09:55:37.016632+00:00 app[worker.2]: found successful team 51 
+2014-01-08T09:55:37.044601+00:00 app[worker.2]: found successful team 52 
+2014-01-08T09:55:37.046587+00:00 app[worker.2]: found successful team 53 
+2014-01-08T09:55:37.166961+00:00 app[worker.2]: found successful team 54 
+2014-01-08T09:55:37.231546+00:00 app[worker.2]: found successful team 55 
+2014-01-08T09:55:37.974930+00:00 app[worker.2]: found successful team 56 
+2014-01-08T09:55:37.975506+00:00 app[worker.2]: found successful team 57 
+2014-01-08T09:55:38.005394+00:00 app[worker.2]: found successful team 58 
+2014-01-08T09:55:38.005918+00:00 app[worker.2]: found successful team 59 
+2014-01-08T09:55:38.060945+00:00 app[worker.2]: found successful team 60 
+2014-01-08T09:55:38.063046+00:00 app[worker.2]: found successful team 61 
+2014-01-08T09:55:38.095139+00:00 app[worker.2]: found successful team 62 
+2014-01-08T09:55:38.095690+00:00 app[worker.2]: found successful team 63 
+2014-01-08T09:55:38.142632+00:00 app[worker.2]: found successful team 64 
+2014-01-08T09:55:38.178536+00:00 app[worker.2]: found successful team 65 
+2014-01-08T09:55:38.254545+00:00 app[worker.2]: found successful team 66 
+2014-01-08T09:55:38.254859+00:00 app[worker.2]: found successful team 67 
+2014-01-08T09:55:38.268429+00:00 app[worker.2]: found successful team 68 
+2014-01-08T09:55:38.268652+00:00 app[worker.2]: found successful team 69 
+2014-01-08T09:55:38.341534+00:00 app[worker.2]: found successful team 70 
+2014-01-08T09:55:38.386024+00:00 app[worker.2]: found successful team 71 
+2014-01-08T09:55:38.688812+00:00 app[worker.2]: found successful team 72 
+2014-01-08T09:55:38.689378+00:00 app[worker.2]: found successful team 73 
+2014-01-08T09:55:38.733985+00:00 app[worker.2]: found successful team 74 
+2014-01-08T09:55:38.734544+00:00 app[worker.2]: found successful team 75 
+2014-01-08T09:55:38.853985+00:00 app[worker.2]: found successful team 76 
+2014-01-08T09:55:38.854545+00:00 app[worker.2]: found successful team 77 
+2014-01-08T09:55:38.861161+00:00 app[worker.2]: found successful team 78 
+2014-01-08T09:55:38.861672+00:00 app[worker.2]: found successful team 79 
+2014-01-08T09:55:38.876575+00:00 app[worker.2]: found successful team 80 
+2014-01-08T09:55:38.877131+00:00 app[worker.2]: found successful team 81 
+2014-01-08T09:55:38.891277+00:00 app[worker.2]: found successful team 82 
+2014-01-08T09:55:38.891975+00:00 app[worker.2]: found successful team 83 
+2014-01-08T09:55:38.972257+00:00 app[worker.2]: found successful team 84 
+2014-01-08T09:55:38.990627+00:00 app[worker.2]: found successful team 85 
+2014-01-08T09:55:39.034782+00:00 app[worker.2]: found successful team 86 
+2014-01-08T09:55:39.062918+00:00 app[worker.2]: found successful team 87 
+2014-01-08T09:55:39.324138+00:00 app[worker.2]: found successful team 88 
+2014-01-08T09:55:39.324414+00:00 app[worker.2]: found successful team 89 
+2014-01-08T09:55:39.366242+00:00 app[worker.2]: found successful team 90 
+2014-01-08T09:55:39.366592+00:00 app[worker.2]: found successful team 91 
+2014-01-08T09:55:39.556132+00:00 app[worker.2]: found successful team 92 
+2014-01-08T09:55:39.643341+00:00 app[worker.2]: found successful team 93 
+2014-01-08T09:55:40.004998+00:00 app[worker.2]: found successful team 94 
+2014-01-08T09:55:40.007413+00:00 app[worker.2]: found successful team 95 
+2014-01-08T09:55:40.030031+00:00 app[worker.2]: found successful team 96 
+2014-01-08T09:55:40.044159+00:00 app[worker.2]: found successful team 97 
+2014-01-08T09:55:40.087361+00:00 app[worker.2]: found successful team 98 
+2014-01-08T09:55:40.095343+00:00 app[worker.2]: found successful team 99 
+2014-01-08T09:55:40.228732+00:00 app[worker.2]: found successful team 100 
+2014-01-08T09:55:40.242811+00:00 app[worker.2]: found successful team 101 
+2014-01-08T09:55:40.954173+00:00 app[worker.2]: found successful team 102 
+2014-01-08T09:55:40.956647+00:00 app[worker.2]: found successful team 103 
+2014-01-08T09:55:40.978622+00:00 app[worker.2]: found successful team 104 
+2014-01-08T09:55:40.992821+00:00 app[worker.2]: found successful team 105 
+2014-01-08T09:55:41.041278+00:00 app[worker.2]: found successful team 106 
+2014-01-08T09:55:41.053655+00:00 app[worker.2]: found successful team 107 
+2014-01-08T09:55:41.195940+00:00 app[worker.2]: found successful team 108 
+2014-01-08T09:55:41.210373+00:00 app[worker.2]: found successful team 109 
+2014-01-08T09:55:41.568404+00:00 app[worker.2]: found successful team 110 
+2014-01-08T09:55:41.584366+00:00 app[worker.2]: found successful team 111 
+2014-01-08T09:55:41.684838+00:00 app[worker.2]: found successful team 112 
+2014-01-08T09:55:41.782196+00:00 app[worker.2]: found successful team 113 
+2014-01-08T09:55:41.982793+00:00 app[worker.2]: found successful team 114 
+2014-01-08T09:55:42.026345+00:00 app[worker.2]: found successful team 115 
+2014-01-08T09:55:42.075671+00:00 app[worker.2]: found successful team 116 
+2014-01-08T09:55:42.094116+00:00 app[worker.2]: found successful team 117 
+2014-01-08T09:55:42.670241+00:00 app[worker.2]: found successful team 118 
+2014-01-08T09:55:42.728179+00:00 app[worker.2]: found successful team 119 
+2014-01-08T09:55:44.483665+00:00 app[worker.2]: found successful team 120 
+2014-01-08T09:55:44.483954+00:00 app[worker.2]: found successful team 121 
+2014-01-08T09:55:44.496890+00:00 app[worker.2]: found successful team 122 
+2014-01-08T09:55:44.497199+00:00 app[worker.2]: found successful team 123 
+2014-01-08T09:55:44.569816+00:00 app[worker.2]: found successful team 124 
+2014-01-08T09:55:44.613081+00:00 app[worker.2]: found successful team 125 
+2014-01-08T09:55:44.744849+00:00 app[worker.2]: found successful team 126 
+2014-01-08T09:55:44.774026+00:00 app[worker.2]: found successful team 127 
+2014-01-08T09:55:45.156474+00:00 app[worker.2]: found successful team 128 
+2014-01-08T09:55:45.199953+00:00 app[worker.2]: found successful team 129 
+2014-01-08T09:55:47.167200+00:00 app[worker.2]: found successful team 130 
+2014-01-08T09:55:47.167460+00:00 app[worker.2]: found successful team 131 
+2014-01-08T09:55:47.180519+00:00 app[worker.2]: found successful team 132 
+2014-01-08T09:55:47.180802+00:00 app[worker.2]: found successful team 133 
+2014-01-08T09:55:47.253479+00:00 app[worker.2]: found successful team 134 
+2014-01-08T09:55:47.296810+00:00 app[worker.2]: found successful team 135 
+2014-01-08T09:55:47.428119+00:00 app[worker.2]: found successful team 136 
+2014-01-08T09:55:47.457721+00:00 app[worker.2]: found successful team 137 
+2014-01-08T09:55:47.836532+00:00 app[worker.2]: found successful team 138 
+2014-01-08T09:55:47.879465+00:00 app[worker.2]: found successful team 139 
+2014-01-08T09:55:48.706140+00:00 app[worker.2]: found successful team 140 
+2014-01-08T09:55:48.706457+00:00 app[worker.2]: found successful team 141 
+2014-01-08T09:55:48.747662+00:00 app[worker.2]: found successful team 142 
+2014-01-08T09:55:48.747992+00:00 app[worker.2]: found successful team 143 
+2014-01-08T09:55:48.912442+00:00 app[worker.2]: found successful team 144 
+2014-01-08T09:55:48.998548+00:00 app[worker.2]: found successful team 145 
+2014-01-08T09:55:49.293630+00:00 app[worker.2]: found successful team 146 
+2014-01-08T09:55:49.309487+00:00 app[worker.2]: found successful team 147 
+2014-01-08T09:55:49.347720+00:00 app[worker.2]: found successful team 148 
+2014-01-08T09:55:49.375317+00:00 app[worker.2]: found successful team 149 
+2014-01-08T09:55:50.496827+00:00 app[worker.2]: found successful team 150 
+2014-01-08T09:55:50.643565+00:00 app[worker.2]: found successful team 151 
+2014-01-08T09:55:52.645355+00:00 app[worker.2]: found 152 combinations
+2014-01-08T09:55:55.940416+00:00 app[worker.2]: found 152 mapping
+2014-01-08T09:55:55.940660+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x1904248>, <scheduler.Combination instance at 0x1904440>, <scheduler.Combination instance at 0x1904ab8>, <scheduler.Combination instance at 0x1904950>, <scheduler.Combination instance at 0x1904758>, <scheduler.Combination instance at 0x19047e8>]
+2014-01-08T09:55:55.940836+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x19048c0>, <scheduler.Combination instance at 0x19046c8>, <scheduler.Combination instance at 0x1904b48>, <scheduler.Combination instance at 0x1904710>, <scheduler.Combination instance at 0x1904908>, <scheduler.Combination instance at 0x1904998>]
+2014-01-08T09:55:55.940970+00:00 app[worker.2]: found 2 
+2014-01-08T09:55:55.964917+00:00 app[worker.2]: 09:55:55 Job OK, result = [[<scheduler.Combination instance at 0x1974908>, <scheduler.Combination instance at 0x1974368>, <scheduler.Combination instance at 0x1974c68>, <scheduler.Combination instance at 0x1974878>, <scheduler.Combination instance at 0x1974d40>, <scheduler.Combination instance at 0x1974b90>, <scheduler.Combination instance at 0x1974ea8>], [<scheduler.Combination instance at 0x19008c0>, <scheduler.Combination instance at 0x19009e0>, <scheduler.Combination instance at 0x1900440>, <scheduler.Combination instance at 0x1900680>, <scheduler.Combination instance at 0x19005a8>], [<scheduler.Combination instance at 0x1904248>, <scheduler.Combination instance at 0x1904440>, <scheduler.Combination instance at 0x1904ab8>, <scheduler.Combination instance at 0x1904950>, <scheduler.Combination instance at 0x1904758>, <scheduler.Combination instance at 0x19047e8>], [<scheduler.Combination instance at 0x19048c0>, <scheduler.Combination instance at 0x19046c8>, <scheduler.Combination instance at 0x1904b48>, <s
+2014-01-08T09:55:55.964917+00:00 app[worker.2]: cheduler.Combination instance at 0x1904710>, <scheduler.Combination instance at 0x1904908>, <scheduler.Combination instance at 0x1904998>]]
+2014-01-08T09:55:55.965421+00:00 app[worker.2]: 09:55:55 Result is kept for 500 seconds.
+2014-01-08T09:55:56.023599+00:00 app[worker.2]: 09:55:56 
+2014-01-08T09:55:56.023829+00:00 app[worker.2]: 09:55:56 *** Listening on high, default, low...
+2014-01-08T09:56:13.011101+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T09:56:13.550117+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:56:13.550117+00:00 app[web.1]: ['Quest Status']
+2014-01-08T09:56:13.550117+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:56:13.954209+00:00 app[web.1]: error running calculation
+2014-01-08T09:56:13.954684+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T09:56:13.965093+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T09:56:13.965093+00:00 app[web.1]: get all combinations
+2014-01-08T09:56:14.248286+00:00 app[worker.1]: 09:56:14 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x30ac150>, u'Quest Status') (70fc6d1a-fa1e-4673-9861-5a0a045ffb81)
+2014-01-08T09:56:14.296045+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=11ms status=304 bytes=0
+2014-01-08T09:56:15.478550+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:56:15.478550+00:00 app[worker.1]: ['Quest Status']
+2014-01-08T09:56:15.478847+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:56:13.977897+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=990ms status=200 bytes=16605
+2014-01-08T09:56:40.969680+00:00 app[worker.1]: found successful team 0 
+2014-01-08T09:56:40.970060+00:00 app[worker.1]: found successful team 1 
+2014-01-08T09:56:41.028782+00:00 app[worker.1]: found successful team 2 
+2014-01-08T09:56:41.507496+00:00 app[worker.1]: found successful team 3 
+2014-01-08T09:56:41.520738+00:00 app[worker.1]: found successful team 4 
+2014-01-08T09:56:41.521182+00:00 app[worker.1]: found successful team 5 
+2014-01-08T09:56:41.528665+00:00 app[worker.1]: found successful team 6 
+2014-01-08T09:56:41.531224+00:00 app[worker.1]: found successful team 7 
+2014-01-08T09:56:41.759094+00:00 app[worker.1]: found successful team 8 
+2014-01-08T09:56:42.005686+00:00 app[worker.1]: found successful team 9 
+2014-01-08T09:56:42.823730+00:00 app[worker.1]: found successful team 10 
+2014-01-08T09:56:46.309241+00:00 app[worker.1]: found successful team 11 
+2014-01-08T09:56:46.309793+00:00 app[worker.1]: found successful team 12 
+2014-01-08T09:56:46.372126+00:00 app[worker.1]: found successful team 13 
+2014-01-08T09:56:46.819579+00:00 app[worker.1]: found successful team 14 
+2014-01-08T09:56:46.835285+00:00 app[worker.1]: found successful team 15 
+2014-01-08T09:56:46.835836+00:00 app[worker.1]: found successful team 16 
+2014-01-08T09:56:46.839232+00:00 app[worker.1]: found successful team 17 
+2014-01-08T09:56:46.841755+00:00 app[worker.1]: found successful team 18 
+2014-01-08T09:56:46.943435+00:00 app[worker.1]: found successful team 19 
+2014-01-08T09:56:47.042471+00:00 app[worker.1]: found successful team 20 
+2014-01-08T09:56:47.459753+00:00 app[worker.1]: found successful team 21 
+2014-01-08T09:56:49.987258+00:00 app[worker.1]: found successful team 22 
+2014-01-08T09:56:49.987638+00:00 app[worker.1]: found successful team 23 
+2014-01-08T09:56:50.007689+00:00 app[worker.1]: found successful team 24 
+2014-01-08T09:56:50.008292+00:00 app[worker.1]: found successful team 25 
+2014-01-08T09:56:50.319093+00:00 app[worker.1]: found successful team 26 
+2014-01-08T09:56:50.346996+00:00 app[worker.1]: found successful team 27 
+2014-01-08T09:56:52.443631+00:00 app[worker.1]: found successful team 28 
+2014-01-08T09:56:52.462498+00:00 app[worker.1]: found successful team 29 
+2014-01-08T09:56:52.559410+00:00 app[worker.1]: found successful team 30 
+2014-01-08T09:56:52.560094+00:00 app[worker.1]: found successful team 31 
+2014-01-08T09:56:52.566848+00:00 app[worker.1]: found successful team 32 
+2014-01-08T09:56:52.576693+00:00 app[worker.1]: found successful team 33 
+2014-01-08T09:56:52.610211+00:00 app[worker.1]: found successful team 34 
+2014-01-08T09:56:52.610684+00:00 app[worker.1]: found successful team 35 
+2014-01-08T09:56:52.634184+00:00 app[worker.1]: found successful team 36 
+2014-01-08T09:56:52.646703+00:00 app[worker.1]: found successful team 37 
+2014-01-08T09:56:53.013574+00:00 app[worker.1]: found successful team 38 
+2014-01-08T09:56:53.063979+00:00 app[worker.1]: found successful team 39 
+2014-01-08T09:56:53.301405+00:00 app[worker.1]: found successful team 40 
+2014-01-08T09:56:53.335413+00:00 app[worker.1]: found successful team 41 
+2014-01-08T09:56:54.028048+00:00 app[worker.1]: found successful team 42 
+2014-01-08T09:56:54.070358+00:00 app[worker.1]: found successful team 43 
+2014-01-08T09:57:05.417412+00:00 app[worker.1]: found successful team 44 
+2014-01-08T09:57:05.419314+00:00 app[worker.1]: found successful team 45 
+2014-01-08T09:57:05.443760+00:00 app[worker.1]: found successful team 46 
+2014-01-08T09:57:05.445177+00:00 app[worker.1]: found successful team 47 
+2014-01-08T09:57:05.830785+00:00 app[worker.1]: found successful team 48 
+2014-01-08T09:57:05.831247+00:00 app[worker.1]: found successful team 49 
+2014-01-08T09:57:05.847828+00:00 app[worker.1]: found successful team 50 
+2014-01-08T09:57:05.848362+00:00 app[worker.1]: found successful team 51 
+2014-01-08T09:57:05.920968+00:00 app[worker.1]: found successful team 52 
+2014-01-08T09:57:05.973307+00:00 app[worker.1]: found successful team 53 
+2014-01-08T09:57:06.368018+00:00 app[worker.1]: found successful team 54 
+2014-01-08T09:57:06.368428+00:00 app[worker.1]: found successful team 55 
+2014-01-08T09:57:06.387681+00:00 app[worker.1]: found successful team 56 
+2014-01-08T09:57:06.388093+00:00 app[worker.1]: found successful team 57 
+2014-01-08T09:57:06.561776+00:00 app[worker.1]: found successful team 58 
+2014-01-08T09:57:06.631211+00:00 app[worker.1]: found successful team 59 
+2014-01-08T09:57:09.551361+00:00 app[worker.1]: found successful team 60 
+2014-01-08T09:57:09.551825+00:00 app[worker.1]: found successful team 61 
+2014-01-08T09:57:09.571769+00:00 app[worker.1]: found successful team 62 
+2014-01-08T09:57:09.572209+00:00 app[worker.1]: found successful team 63 
+2014-01-08T09:57:09.884308+00:00 app[worker.1]: found successful team 64 
+2014-01-08T09:57:09.884679+00:00 app[worker.1]: found successful team 65 
+2014-01-08T09:57:09.895510+00:00 app[worker.1]: found successful team 66 
+2014-01-08T09:57:09.895951+00:00 app[worker.1]: found successful team 67 
+2014-01-08T09:57:09.933624+00:00 app[worker.1]: found successful team 68 
+2014-01-08T09:57:09.986679+00:00 app[worker.1]: found successful team 69 
+2014-01-08T09:57:10.409781+00:00 app[worker.1]: found successful team 70 
+2014-01-08T09:57:10.410327+00:00 app[worker.1]: found successful team 71 
+2014-01-08T09:57:10.469985+00:00 app[worker.1]: found successful team 72 
+2014-01-08T09:57:10.470462+00:00 app[worker.1]: found successful team 73 
+2014-01-08T09:57:10.581207+00:00 app[worker.1]: found successful team 74 
+2014-01-08T09:57:10.653229+00:00 app[worker.1]: found successful team 75 
+2014-01-08T09:57:12.267732+00:00 app[worker.1]: found successful team 76 
+2014-01-08T09:57:12.268192+00:00 app[worker.1]: found successful team 77 
+2014-01-08T09:57:12.334541+00:00 app[worker.1]: found successful team 78 
+2014-01-08T09:57:12.335914+00:00 app[worker.1]: found successful team 79 
+2014-01-08T09:57:13.139897+00:00 app[worker.1]: found successful team 80 
+2014-01-08T09:57:13.140392+00:00 app[worker.1]: found successful team 81 
+2014-01-08T09:57:13.149539+00:00 app[worker.1]: found successful team 82 
+2014-01-08T09:57:13.150009+00:00 app[worker.1]: found successful team 83 
+2014-01-08T09:57:13.169161+00:00 app[worker.1]: found successful team 84 
+2014-01-08T09:57:13.169665+00:00 app[worker.1]: found successful team 85 
+2014-01-08T09:57:13.195484+00:00 app[worker.1]: found successful team 86 
+2014-01-08T09:57:13.196702+00:00 app[worker.1]: found successful team 87 
+2014-01-08T09:57:13.337369+00:00 app[worker.1]: found successful team 88 
+2014-01-08T09:57:13.381928+00:00 app[worker.1]: found successful team 89 
+2014-01-08T09:57:13.455828+00:00 app[worker.1]: found successful team 90 
+2014-01-08T09:57:13.497282+00:00 app[worker.1]: found successful team 91 
+2014-01-08T09:57:14.392728+00:00 app[worker.1]: found successful team 92 
+2014-01-08T09:57:14.393113+00:00 app[worker.1]: found successful team 93 
+2014-01-08T09:57:14.472561+00:00 app[worker.1]: found successful team 94 
+2014-01-08T09:57:14.474021+00:00 app[worker.1]: found successful team 95 
+2014-01-08T09:57:14.809996+00:00 app[worker.1]: found successful team 96 
+2014-01-08T09:57:15.005514+00:00 app[worker.1]: found successful team 97 
+2014-01-08T09:57:19.623921+00:00 app[worker.1]: found successful team 98 
+2014-01-08T09:57:19.627536+00:00 app[worker.1]: found successful team 99 
+2014-01-08T09:57:19.681241+00:00 app[worker.1]: found successful team 100 
+2014-01-08T09:57:19.720348+00:00 app[worker.1]: found successful team 101 
+2014-01-08T09:57:20.268627+00:00 app[worker.1]: found successful team 102 
+2014-01-08T09:57:20.283044+00:00 app[worker.1]: found successful team 103 
+2014-01-08T09:57:20.839274+00:00 app[worker.1]: found successful team 104 
+2014-01-08T09:57:20.860540+00:00 app[worker.1]: found successful team 105 
+2014-01-08T09:57:26.176826+00:00 app[worker.1]: found successful team 106 
+2014-01-08T09:57:26.180409+00:00 app[worker.1]: found successful team 107 
+2014-01-08T09:57:26.228397+00:00 app[worker.1]: found successful team 108 
+2014-01-08T09:57:26.266283+00:00 app[worker.1]: found successful team 109 
+2014-01-08T09:57:26.710080+00:00 app[worker.1]: found successful team 110 
+2014-01-08T09:57:26.745604+00:00 app[worker.1]: found successful team 111 
+2014-01-08T09:57:27.523890+00:00 app[worker.1]: found successful team 112 
+2014-01-08T09:57:27.545894+00:00 app[worker.1]: found successful team 113 
+2014-01-08T09:57:29.557521+00:00 app[worker.1]: found successful team 114 
+2014-01-08T09:57:29.666391+00:00 app[worker.1]: found successful team 115 
+2014-01-08T09:57:29.787400+00:00 app[worker.1]: found successful team 116 
+2014-01-08T09:57:29.876621+00:00 app[worker.1]: found successful team 117 
+2014-01-08T09:57:30.699083+00:00 app[worker.1]: found successful team 118 
+2014-01-08T09:57:30.707739+00:00 app[worker.1]: found successful team 119 
+2014-01-08T09:57:30.729813+00:00 app[worker.1]: found successful team 120 
+2014-01-08T09:57:30.767348+00:00 app[worker.1]: found successful team 121 
+2014-01-08T09:57:31.832334+00:00 app[worker.1]: found successful team 122 
+2014-01-08T09:57:32.009518+00:00 app[worker.1]: found successful team 123 
+2014-01-08T09:57:41.293519+00:00 app[worker.1]: found successful team 124 
+2014-01-08T09:57:41.299806+00:00 app[worker.1]: found successful team 125 
+2014-01-08T09:57:41.356579+00:00 app[worker.1]: found successful team 126 
+2014-01-08T09:57:41.357063+00:00 app[worker.1]: found successful team 127 
+2014-01-08T09:57:41.567838+00:00 app[worker.1]: found successful team 128 
+2014-01-08T09:57:41.669540+00:00 app[worker.1]: found successful team 129 
+2014-01-08T09:57:43.092632+00:00 app[worker.1]: found successful team 130 
+2014-01-08T09:57:43.149642+00:00 app[worker.1]: found successful team 131 
+2014-01-08T09:57:44.347865+00:00 app[worker.1]: found successful team 132 
+2014-01-08T09:57:44.448878+00:00 app[worker.1]: found successful team 133 
+2014-01-08T09:57:53.603714+00:00 app[worker.1]: found successful team 134 
+2014-01-08T09:57:53.604156+00:00 app[worker.1]: found successful team 135 
+2014-01-08T09:57:53.627385+00:00 app[worker.1]: found successful team 136 
+2014-01-08T09:57:53.628007+00:00 app[worker.1]: found successful team 137 
+2014-01-08T09:57:53.797948+00:00 app[worker.1]: found successful team 138 
+2014-01-08T09:57:53.868282+00:00 app[worker.1]: found successful team 139 
+2014-01-08T09:57:54.587205+00:00 app[worker.1]: found successful team 140 
+2014-01-08T09:57:54.633000+00:00 app[worker.1]: found successful team 141 
+2014-01-08T09:57:55.607778+00:00 app[worker.1]: found successful team 142 
+2014-01-08T09:57:55.676871+00:00 app[worker.1]: found successful team 143 
+2014-01-08T09:57:58.617505+00:00 app[worker.1]: found successful team 144 
+2014-01-08T09:57:58.618112+00:00 app[worker.1]: found successful team 145 
+2014-01-08T09:57:58.684891+00:00 app[worker.1]: found successful team 146 
+2014-01-08T09:57:58.685269+00:00 app[worker.1]: found successful team 147 
+2014-01-08T09:57:58.933645+00:00 app[worker.1]: found successful team 148 
+2014-01-08T09:57:59.062359+00:00 app[worker.1]: found successful team 149 
+2014-01-08T09:58:00.327568+00:00 app[worker.1]: found successful team 150 
+2014-01-08T09:58:00.366102+00:00 app[worker.1]: found successful team 151 
+2014-01-08T09:58:00.435383+00:00 app[worker.1]: found successful team 152 
+2014-01-08T09:58:00.482864+00:00 app[worker.1]: found successful team 153 
+2014-01-08T09:58:02.691148+00:00 app[worker.1]: found successful team 154 
+2014-01-08T09:58:02.835525+00:00 app[worker.1]: found successful team 155 
+2014-01-08T09:58:06.026264+00:00 app[worker.1]: found 156 combinations
+2014-01-08T09:58:08.502444+00:00 app[worker.1]: found 156 mapping
+2014-01-08T09:58:08.502444+00:00 app[worker.1]: found good chars [<scheduler.Combination instance at 0x2822680>, <scheduler.Combination instance at 0x2822518>, <scheduler.Combination instance at 0x28225f0>, <scheduler.Combination instance at 0x2822710>, <scheduler.Combination instance at 0x2822908>, <scheduler.Combination instance at 0x2822878>, <scheduler.Combination instance at 0x28225a8>]
+2014-01-08T09:58:08.502444+00:00 app[worker.1]: found 1 
+2014-01-08T09:58:09.539643+00:00 app[worker.1]: found successful team 0 
+2014-01-08T09:58:09.546512+00:00 app[worker.1]: found successful team 1 
+2014-01-08T09:58:09.561365+00:00 app[worker.1]: found successful team 2 
+2014-01-08T09:58:09.567375+00:00 app[worker.1]: found successful team 3 
+2014-01-08T09:58:09.586418+00:00 app[worker.1]: found successful team 4 
+2014-01-08T09:58:09.876509+00:00 app[worker.1]: found successful team 5 
+2014-01-08T09:58:09.887130+00:00 app[worker.1]: found successful team 6 
+2014-01-08T09:58:09.922687+00:00 app[worker.1]: found successful team 7 
+2014-01-08T09:58:09.934654+00:00 app[worker.1]: found successful team 8 
+2014-01-08T09:58:09.949248+00:00 app[worker.1]: found successful team 9 
+2014-01-08T09:58:10.034833+00:00 app[worker.1]: found successful team 10 
+2014-01-08T09:58:10.039789+00:00 app[worker.1]: found successful team 11 
+2014-01-08T09:58:10.082329+00:00 app[worker.1]: found successful team 12 
+2014-01-08T09:58:10.097513+00:00 app[worker.1]: found successful team 13 
+2014-01-08T09:58:10.227454+00:00 app[worker.1]: found successful team 14 
+2014-01-08T09:58:10.232966+00:00 app[worker.1]: found successful team 15 
+2014-01-08T09:58:10.282047+00:00 app[worker.1]: found successful team 16 
+2014-01-08T09:58:10.331723+00:00 app[worker.1]: found successful team 17 
+2014-01-08T09:58:10.411783+00:00 app[worker.1]: found successful team 18 
+2014-01-08T09:58:10.418707+00:00 app[worker.1]: found successful team 19 
+2014-01-08T09:58:11.467272+00:00 app[worker.1]: found successful team 20 
+2014-01-08T09:58:11.473685+00:00 app[worker.1]: found successful team 21 
+2014-01-08T09:58:11.481465+00:00 app[worker.1]: found successful team 22 
+2014-01-08T09:58:11.611014+00:00 app[worker.1]: found successful team 23 
+2014-01-08T09:58:12.281277+00:00 app[worker.1]: found successful team 24 
+2014-01-08T09:58:12.287572+00:00 app[worker.1]: found successful team 25 
+2014-01-08T09:58:12.298037+00:00 app[worker.1]: found successful team 26 
+2014-01-08T09:58:12.413379+00:00 app[worker.1]: found successful team 27 
+2014-01-08T09:58:12.657294+00:00 app[worker.1]: found successful team 28 
+2014-01-08T09:58:12.660871+00:00 app[worker.1]: found successful team 29 
+2014-01-08T09:58:12.684004+00:00 app[worker.1]: found successful team 30 
+2014-01-08T09:58:12.692591+00:00 app[worker.1]: found successful team 31 
+2014-01-08T09:58:12.716840+00:00 app[worker.1]: found successful team 32 
+2014-01-08T09:58:12.722924+00:00 app[worker.1]: found successful team 33 
+2014-01-08T09:58:13.123633+00:00 app[worker.1]: found successful team 34 
+2014-01-08T09:58:13.144480+00:00 app[worker.1]: found successful team 35 
+2014-01-08T09:58:13.795867+00:00 app[worker.1]: found 36 combinations
+2014-01-08T09:58:13.858623+00:00 app[worker.1]: found 36 mapping
+2014-01-08T09:58:13.858623+00:00 app[worker.1]: found good chars [<scheduler.Combination instance at 0x2823638>, <scheduler.Combination instance at 0x2823b90>, <scheduler.Combination instance at 0x28233f8>, <scheduler.Combination instance at 0x2823050>, <scheduler.Combination instance at 0x28235f0>]
+2014-01-08T09:58:13.858623+00:00 app[worker.1]: found 1 
+2014-01-08T09:58:17.228097+00:00 app[worker.1]: found successful team 0 
+2014-01-08T09:58:17.231767+00:00 app[worker.1]: found successful team 1 
+2014-01-08T09:58:17.283466+00:00 app[worker.1]: found successful team 2 
+2014-01-08T09:58:17.336650+00:00 app[worker.1]: found successful team 3 
+2014-01-08T09:58:17.346223+00:00 app[worker.1]: found successful team 4 
+2014-01-08T09:58:17.346705+00:00 app[worker.1]: found successful team 5 
+2014-01-08T09:58:17.349083+00:00 app[worker.1]: found successful team 6 
+2014-01-08T09:58:17.350962+00:00 app[worker.1]: found successful team 7 
+2014-01-08T09:58:17.480456+00:00 app[worker.1]: found successful team 8 
+2014-01-08T09:58:17.778814+00:00 app[worker.1]: found successful team 9 
+2014-01-08T09:58:19.344245+00:00 app[worker.1]: found successful team 10 
+2014-01-08T09:58:19.346033+00:00 app[worker.1]: found successful team 11 
+2014-01-08T09:58:19.460906+00:00 app[worker.1]: found successful team 12 
+2014-01-08T09:58:19.576543+00:00 app[worker.1]: found successful team 13 
+2014-01-08T09:58:19.599636+00:00 app[worker.1]: found successful team 14 
+2014-01-08T09:58:19.600178+00:00 app[worker.1]: found successful team 15 
+2014-01-08T09:58:19.602521+00:00 app[worker.1]: found successful team 16 
+2014-01-08T09:58:19.605838+00:00 app[worker.1]: found successful team 17 
+2014-01-08T09:58:19.721949+00:00 app[worker.1]: found successful team 18 
+2014-01-08T09:58:19.957692+00:00 app[worker.1]: found successful team 19 
+2014-01-08T09:58:20.394740+00:00 app[worker.1]: found successful team 20 
+2014-01-08T09:58:20.395354+00:00 app[worker.1]: found successful team 21 
+2014-01-08T09:58:20.400617+00:00 app[worker.1]: found successful team 22 
+2014-01-08T09:58:20.401107+00:00 app[worker.1]: found successful team 23 
+2014-01-08T09:58:20.519695+00:00 app[worker.1]: found successful team 24 
+2014-01-08T09:58:20.537342+00:00 app[worker.1]: found successful team 25 
+2014-01-08T09:58:20.644401+00:00 app[worker.1]: found successful team 26 
+2014-01-08T09:58:20.652056+00:00 app[worker.1]: found successful team 27 
+2014-01-08T09:58:20.694587+00:00 app[worker.1]: found successful team 28 
+2014-01-08T09:58:20.694934+00:00 app[worker.1]: found successful team 29 
+2014-01-08T09:58:20.697299+00:00 app[worker.1]: found successful team 30 
+2014-01-08T09:58:20.698964+00:00 app[worker.1]: found successful team 31 
+2014-01-08T09:58:20.706676+00:00 app[worker.1]: found successful team 32 
+2014-01-08T09:58:20.706932+00:00 app[worker.1]: found successful team 33 
+2014-01-08T09:58:20.713023+00:00 app[worker.1]: found successful team 34 
+2014-01-08T09:58:20.714909+00:00 app[worker.1]: found successful team 35 
+2014-01-08T09:58:20.862370+00:00 app[worker.1]: found successful team 36 
+2014-01-08T09:58:20.892625+00:00 app[worker.1]: found successful team 37 
+2014-01-08T09:58:21.385509+00:00 app[worker.1]: found successful team 38 
+2014-01-08T09:58:21.428238+00:00 app[worker.1]: found successful team 39 
+2014-01-08T09:58:23.738199+00:00 app[worker.1]: found successful team 40 
+2014-01-08T09:58:23.741520+00:00 app[worker.1]: found successful team 41 
+2014-01-08T09:58:23.773631+00:00 app[worker.1]: found successful team 42 
+2014-01-08T09:58:23.774510+00:00 app[worker.1]: found successful team 43 
+2014-01-08T09:58:23.922972+00:00 app[worker.1]: found successful team 44 
+2014-01-08T09:58:23.923250+00:00 app[worker.1]: found successful team 45 
+2014-01-08T09:58:23.949472+00:00 app[worker.1]: found successful team 46 
+2014-01-08T09:58:23.949782+00:00 app[worker.1]: found successful team 47 
+2014-01-08T09:58:24.024096+00:00 app[worker.1]: found successful team 48 
+2014-01-08T09:58:24.106569+00:00 app[worker.1]: found successful team 49 
+2014-01-08T09:58:24.297554+00:00 app[worker.1]: found successful team 50 
+2014-01-08T09:58:24.299678+00:00 app[worker.1]: found successful team 51 
+2014-01-08T09:58:24.320577+00:00 app[worker.1]: found successful team 52 
+2014-01-08T09:58:24.320926+00:00 app[worker.1]: found successful team 53 
+2014-01-08T09:58:24.459862+00:00 app[worker.1]: found successful team 54 
+2014-01-08T09:58:24.520651+00:00 app[worker.1]: found successful team 55 
+2014-01-08T09:58:25.540637+00:00 app[worker.1]: found successful team 56 
+2014-01-08T09:58:25.540935+00:00 app[worker.1]: found successful team 57 
+2014-01-08T09:58:25.555518+00:00 app[worker.1]: found successful team 58 
+2014-01-08T09:58:25.555802+00:00 app[worker.1]: found successful team 59 
+2014-01-08T09:58:25.599366+00:00 app[worker.1]: found successful team 60 
+2014-01-08T09:58:25.599644+00:00 app[worker.1]: found successful team 61 
+2014-01-08T09:58:25.606915+00:00 app[worker.1]: found successful team 62 
+2014-01-08T09:58:25.607217+00:00 app[worker.1]: found successful team 63 
+2014-01-08T09:58:25.632016+00:00 app[worker.1]: found successful team 64 
+2014-01-08T09:58:25.723464+00:00 app[worker.1]: found successful team 65 
+2014-01-08T09:58:25.868622+00:00 app[worker.1]: found successful team 66 
+2014-01-08T09:58:25.875689+00:00 app[worker.1]: found successful team 67 
+2014-01-08T09:58:25.900119+00:00 app[worker.1]: found successful team 68 
+2014-01-08T09:58:25.900506+00:00 app[worker.1]: found successful team 69 
+2014-01-08T09:58:26.029150+00:00 app[worker.1]: found successful team 70 
+2014-01-08T09:58:26.084377+00:00 app[worker.1]: found successful team 71 
+2014-01-08T09:58:26.395493+00:00 app[worker.1]: found successful team 72 
+2014-01-08T09:58:26.395856+00:00 app[worker.1]: found successful team 73 
+2014-01-08T09:58:26.441315+00:00 app[worker.1]: found successful team 74 
+2014-01-08T09:58:26.441693+00:00 app[worker.1]: found successful team 75 
+2014-01-08T09:58:26.585498+00:00 app[worker.1]: found successful team 76 
+2014-01-08T09:58:26.585870+00:00 app[worker.1]: found successful team 77 
+2014-01-08T09:58:26.590923+00:00 app[worker.1]: found successful team 78 
+2014-01-08T09:58:26.591253+00:00 app[worker.1]: found successful team 79 
+2014-01-08T09:58:26.604655+00:00 app[worker.1]: found successful team 80 
+2014-01-08T09:58:26.604951+00:00 app[worker.1]: found successful team 81 
+2014-01-08T09:58:26.619669+00:00 app[worker.1]: found successful team 82 
+2014-01-08T09:58:26.620162+00:00 app[worker.1]: found successful team 83 
+2014-01-08T09:58:26.697858+00:00 app[worker.1]: found successful team 84 
+2014-01-08T09:58:26.713783+00:00 app[worker.1]: found successful team 85 
+2014-01-08T09:58:26.751714+00:00 app[worker.1]: found successful team 86 
+2014-01-08T09:58:26.779512+00:00 app[worker.1]: found successful team 87 
+2014-01-08T09:58:27.055837+00:00 app[worker.1]: found successful team 88 
+2014-01-08T09:58:27.056187+00:00 app[worker.1]: found successful team 89 
+2014-01-08T09:58:27.108858+00:00 app[worker.1]: found successful team 90 
+2014-01-08T09:58:27.109234+00:00 app[worker.1]: found successful team 91 
+2014-01-08T09:58:27.430664+00:00 app[worker.1]: found successful team 92 
+2014-01-08T09:58:27.597363+00:00 app[worker.1]: found successful team 93 
+2014-01-08T09:58:28.419607+00:00 app[worker.1]: found successful team 94 
+2014-01-08T09:58:28.436189+00:00 app[worker.1]: found successful team 95 
+2014-01-08T09:58:28.506706+00:00 app[worker.1]: found successful team 96 
+2014-01-08T09:58:28.538914+00:00 app[worker.1]: found successful team 97 
+2014-01-08T09:58:28.629737+00:00 app[worker.1]: found successful team 98 
+2014-01-08T09:58:28.654353+00:00 app[worker.1]: found successful team 99 
+2014-01-08T09:58:29.002561+00:00 app[worker.1]: found successful team 100 
+2014-01-08T09:58:29.034293+00:00 app[worker.1]: found successful team 101 
+2014-01-08T09:58:30.559710+00:00 app[worker.1]: found successful team 102 
+2014-01-08T09:58:30.564317+00:00 app[worker.1]: found successful team 103 
+2014-01-08T09:58:30.590346+00:00 app[worker.1]: found successful team 104 
+2014-01-08T09:58:30.625525+00:00 app[worker.1]: found successful team 105 
+2014-01-08T09:58:30.717075+00:00 app[worker.1]: found successful team 106 
+2014-01-08T09:58:30.730912+00:00 app[worker.1]: found successful team 107 
+2014-01-08T09:58:30.914918+00:00 app[worker.1]: found successful team 108 
+2014-01-08T09:58:30.929247+00:00 app[worker.1]: found successful team 109 
+2014-01-08T09:58:31.395548+00:00 app[worker.1]: found successful team 110 
+2014-01-08T09:58:31.413275+00:00 app[worker.1]: found successful team 111 
+2014-01-08T09:58:31.513317+00:00 app[worker.1]: found successful team 112 
+2014-01-08T09:58:31.606661+00:00 app[worker.1]: found successful team 113 
+2014-01-08T09:58:31.824450+00:00 app[worker.1]: found successful team 114 
+2014-01-08T09:58:31.831042+00:00 app[worker.1]: found successful team 115 
+2014-01-08T09:58:31.891499+00:00 app[worker.1]: found successful team 116 
+2014-01-08T09:58:31.909078+00:00 app[worker.1]: found successful team 117 
+2014-01-08T09:58:32.624015+00:00 app[worker.1]: found successful team 118 
+2014-01-08T09:58:32.668417+00:00 app[worker.1]: found successful team 119 
+2014-01-08T09:58:34.501790+00:00 app[worker.1]: found successful team 120 
+2014-01-08T09:58:34.502553+00:00 app[worker.1]: found successful team 121 
+2014-01-08T09:58:34.521257+00:00 app[worker.1]: found successful team 122 
+2014-01-08T09:58:34.521689+00:00 app[worker.1]: found successful team 123 
+2014-01-08T09:58:34.603863+00:00 app[worker.1]: found successful team 124 
+2014-01-08T09:58:34.653147+00:00 app[worker.1]: found successful team 125 
+2014-01-08T09:58:34.797143+00:00 app[worker.1]: found successful team 126 
+2014-01-08T09:58:34.826936+00:00 app[worker.1]: found successful team 127 
+2014-01-08T09:58:35.224480+00:00 app[worker.1]: found successful team 128 
+2014-01-08T09:58:35.267034+00:00 app[worker.1]: found successful team 129 
+2014-01-08T09:58:37.507941+00:00 app[worker.1]: found successful team 130 
+2014-01-08T09:58:37.508908+00:00 app[worker.1]: found successful team 131 
+2014-01-08T09:58:37.530060+00:00 app[worker.1]: found successful team 132 
+2014-01-08T09:58:37.530312+00:00 app[worker.1]: found successful team 133 
+2014-01-08T09:58:37.655126+00:00 app[worker.1]: found successful team 134 
+2014-01-08T09:58:37.709386+00:00 app[worker.1]: found successful team 135 
+2014-01-08T09:58:37.903477+00:00 app[worker.1]: found successful team 136 
+2014-01-08T09:58:37.941465+00:00 app[worker.1]: found successful team 137 
+2014-01-08T09:58:38.549403+00:00 app[worker.1]: found successful team 138 
+2014-01-08T09:58:38.592666+00:00 app[worker.1]: found successful team 139 
+2014-01-08T09:58:39.517787+00:00 app[worker.1]: found successful team 140 
+2014-01-08T09:58:39.518147+00:00 app[worker.1]: found successful team 141 
+2014-01-08T09:58:39.562700+00:00 app[worker.1]: found successful team 142 
+2014-01-08T09:58:39.563039+00:00 app[worker.1]: found successful team 143 
+2014-01-08T09:58:39.727895+00:00 app[worker.1]: found successful team 144 
+2014-01-08T09:58:39.810618+00:00 app[worker.1]: found successful team 145 
+2014-01-08T09:58:40.105444+00:00 app[worker.1]: found successful team 146 
+2014-01-08T09:58:40.121002+00:00 app[worker.1]: found successful team 147 
+2014-01-08T09:58:40.177147+00:00 app[worker.1]: found successful team 148 
+2014-01-08T09:58:40.232353+00:00 app[worker.1]: found successful team 149 
+2014-01-08T09:58:41.688118+00:00 app[worker.1]: found successful team 150 
+2014-01-08T09:58:41.827928+00:00 app[worker.1]: found successful team 151 
+2014-01-08T09:58:43.006326+00:00 app[worker.1]: found 152 combinations
+2014-01-08T09:58:46.914362+00:00 app[worker.1]: found 152 mapping
+2014-01-08T09:58:46.914731+00:00 app[worker.1]: found good chars [<scheduler.Combination instance at 0x2827c20>, <scheduler.Combination instance at 0x2827cf8>, <scheduler.Combination instance at 0x2827c68>, <scheduler.Combination instance at 0x2827b90>, <scheduler.Combination instance at 0x2827dd0>, <scheduler.Combination instance at 0x2827e18>]
+2014-01-08T09:58:46.914952+00:00 app[worker.1]: found good chars [<scheduler.Combination instance at 0x2827d40>, <scheduler.Combination instance at 0x2827d88>, <scheduler.Combination instance at 0x2ad12d8>, <scheduler.Combination instance at 0x2ad13b0>, <scheduler.Combination instance at 0x2ad1560>, <scheduler.Combination instance at 0x2ad15a8>]
+2014-01-08T09:58:46.915147+00:00 app[worker.1]: found 2 
+2014-01-08T09:58:46.928860+00:00 app[worker.1]: 09:58:46 Job OK, result = [[<scheduler.Combination instance at 0x2822680>, <scheduler.Combination instance at 0x2822518>, <scheduler.Combination instance at 0x28225f0>, <scheduler.Combination instance at 0x2822710>, <scheduler.Combination instance at 0x2822908>, <scheduler.Combination instance at 0x2822878>, <scheduler.Combination instance at 0x28225a8>], [<scheduler.Combination instance at 0x2823638>, <scheduler.Combination instance at 0x2823b90>, <scheduler.Combination instance at 0x28233f8>, <scheduler.Combination instance at 0x2823050>, <scheduler.Combination instance at 0x28235f0>], [<scheduler.Combination instance at 0x2827c20>, <scheduler.Combination instance at 0x2827cf8>, <scheduler.Combination instance at 0x2827c68>, <scheduler.Combination instance at 0x2827b90>, <scheduler.Combination instance at 0x2827dd0>, <scheduler.Combination instance at 0x2827e18>], [<scheduler.Combination instance at 0x2827d40>, <scheduler.Combination instance at 0x2827d88>, <scheduler.Combination instance at 0x2ad12d8>, <s
+2014-01-08T09:58:46.928860+00:00 app[worker.1]: cheduler.Combination instance at 0x2ad13b0>, <scheduler.Combination instance at 0x2ad1560>, <scheduler.Combination instance at 0x2ad15a8>]]
+2014-01-08T09:58:46.930868+00:00 app[worker.1]: 09:58:46 Result is kept for 500 seconds.
+2014-01-08T09:58:46.998934+00:00 app[worker.1]: 09:58:46 
+2014-01-08T09:58:46.999159+00:00 app[worker.1]: 09:58:46 *** Listening on high, default, low...
+2014-01-08T09:59:03.135758+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T09:59:03.917212+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:59:03.926350+00:00 app[web.1]: ['Quest Status']
+2014-01-08T09:59:03.926350+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:59:04.412793+00:00 app[web.1]: error running calculation
+2014-01-08T09:59:04.413431+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T09:59:04.422489+00:00 app[worker.2]: 09:59:04 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x30a05d0>, u'Quest Status') (c019b045-a485-406c-a0cf-27eb1286c5fe)
+2014-01-08T09:59:04.474729+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T09:59:04.474729+00:00 app[web.1]: get all combinations
+2014-01-08T09:59:04.546970+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=5ms service=1430ms status=200 bytes=16605
+2014-01-08T09:59:04.783432+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
+2014-01-08T09:59:04.783432+00:00 app[worker.2]: ['Quest Status']
+2014-01-08T09:59:04.783432+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T09:59:19.434773+00:00 app[worker.2]: found successful team 0 
+2014-01-08T09:59:19.435476+00:00 app[worker.2]: found successful team 1 
+2014-01-08T09:59:19.523486+00:00 app[worker.2]: found successful team 2 
+2014-01-08T09:59:20.008750+00:00 app[worker.2]: found successful team 3 
+2014-01-08T09:59:20.021864+00:00 app[worker.2]: found successful team 4 
+2014-01-08T09:59:20.022318+00:00 app[worker.2]: found successful team 5 
+2014-01-08T09:59:20.026593+00:00 app[worker.2]: found successful team 6 
+2014-01-08T09:59:20.028924+00:00 app[worker.2]: found successful team 7 
+2014-01-08T09:59:20.101918+00:00 app[worker.2]: found successful team 8 
+2014-01-08T09:59:20.177615+00:00 app[worker.2]: found successful team 9 
+2014-01-08T09:59:20.459549+00:00 app[worker.2]: found successful team 10 
+2014-01-08T09:59:23.393567+00:00 app[worker.2]: found successful team 11 
+2014-01-08T09:59:23.394029+00:00 app[worker.2]: found successful team 12 
+2014-01-08T09:59:23.448604+00:00 app[worker.2]: found successful team 13 
+2014-01-08T09:59:23.751984+00:00 app[worker.2]: found successful team 14 
+2014-01-08T09:59:23.763967+00:00 app[worker.2]: found successful team 15 
+2014-01-08T09:59:23.764359+00:00 app[worker.2]: found successful team 16 
+2014-01-08T09:59:23.767490+00:00 app[worker.2]: found successful team 17 
+2014-01-08T09:59:23.769801+00:00 app[worker.2]: found successful team 18 
+2014-01-08T09:59:23.839903+00:00 app[worker.2]: found successful team 19 
+2014-01-08T09:59:23.912161+00:00 app[worker.2]: found successful team 20 
+2014-01-08T09:59:24.180143+00:00 app[worker.2]: found successful team 21 
+2014-01-08T09:59:25.407151+00:00 app[worker.2]: found successful team 22 
+2014-01-08T09:59:25.407564+00:00 app[worker.2]: found successful team 23 
+2014-01-08T09:59:25.415301+00:00 app[worker.2]: found successful team 24 
+2014-01-08T09:59:25.415809+00:00 app[worker.2]: found successful team 25 
+2014-01-08T09:59:25.567921+00:00 app[worker.2]: found successful team 26 
+2014-01-08T09:59:25.591783+00:00 app[worker.2]: found successful team 27 
+2014-01-08T09:59:26.238991+00:00 app[worker.2]: found successful team 28 
+2014-01-08T09:59:26.247552+00:00 app[worker.2]: found successful team 29 
+2014-01-08T09:59:26.284406+00:00 app[worker.2]: found successful team 30 
+2014-01-08T09:59:26.284881+00:00 app[worker.2]: found successful team 31 
+2014-01-08T09:59:26.288064+00:00 app[worker.2]: found successful team 32 
+2014-01-08T09:59:26.290454+00:00 app[worker.2]: found successful team 33 
+2014-01-08T09:59:26.303011+00:00 app[worker.2]: found successful team 34 
+2014-01-08T09:59:26.303470+00:00 app[worker.2]: found successful team 35 
+2014-01-08T09:59:26.311871+00:00 app[worker.2]: found successful team 36 
+2014-01-08T09:59:26.314773+00:00 app[worker.2]: found successful team 37 
+2014-01-08T09:59:26.487744+00:00 app[worker.2]: found successful team 38 
+2014-01-08T09:59:26.526903+00:00 app[worker.2]: found successful team 39 
+2014-01-08T09:59:26.687160+00:00 app[worker.2]: found successful team 40 
+2014-01-08T09:59:26.719153+00:00 app[worker.2]: found successful team 41 
+2014-01-08T09:59:27.253153+00:00 app[worker.2]: found successful team 42 
+2014-01-08T09:59:27.276881+00:00 app[worker.2]: found successful team 43 
+2014-01-08T09:59:34.557917+00:00 app[worker.2]: found successful team 44 
+2014-01-08T09:59:34.558431+00:00 app[worker.2]: found successful team 45 
+2014-01-08T09:59:34.578162+00:00 app[worker.2]: found successful team 46 
+2014-01-08T09:59:34.578617+00:00 app[worker.2]: found successful team 47 
+2014-01-08T09:59:34.885908+00:00 app[worker.2]: found successful team 48 
+2014-01-08T09:59:34.886360+00:00 app[worker.2]: found successful team 49 
+2014-01-08T09:59:34.897857+00:00 app[worker.2]: found successful team 50 
+2014-01-08T09:59:34.898307+00:00 app[worker.2]: found successful team 51 
+2014-01-08T09:59:34.935429+00:00 app[worker.2]: found successful team 52 
+2014-01-08T09:59:34.980081+00:00 app[worker.2]: found successful team 53 
+2014-01-08T09:59:35.314255+00:00 app[worker.2]: found successful team 54 
+2014-01-08T09:59:35.314823+00:00 app[worker.2]: found successful team 55 
+2014-01-08T09:59:35.337816+00:00 app[worker.2]: found successful team 56 
+2014-01-08T09:59:35.338240+00:00 app[worker.2]: found successful team 57 
+2014-01-08T09:59:35.455600+00:00 app[worker.2]: found successful team 58 
+2014-01-08T09:59:35.522666+00:00 app[worker.2]: found successful team 59 
+2014-01-08T09:59:38.403455+00:00 app[worker.2]: found successful team 60 
+2014-01-08T09:59:38.404162+00:00 app[worker.2]: found successful team 61 
+2014-01-08T09:59:38.429869+00:00 app[worker.2]: found successful team 62 
+2014-01-08T09:59:38.430966+00:00 app[worker.2]: found successful team 63 
+2014-01-08T09:59:38.749200+00:00 app[worker.2]: found successful team 64 
+2014-01-08T09:59:38.749662+00:00 app[worker.2]: found successful team 65 
+2014-01-08T09:59:38.760961+00:00 app[worker.2]: found successful team 66 
+2014-01-08T09:59:38.761434+00:00 app[worker.2]: found successful team 67 
+2014-01-08T09:59:38.799898+00:00 app[worker.2]: found successful team 68 
+2014-01-08T09:59:38.845645+00:00 app[worker.2]: found successful team 69 
+2014-01-08T09:59:39.174763+00:00 app[worker.2]: found successful team 70 
+2014-01-08T09:59:39.175163+00:00 app[worker.2]: found successful team 71 
+2014-01-08T09:59:39.194812+00:00 app[worker.2]: found successful team 72 
+2014-01-08T09:59:39.195281+00:00 app[worker.2]: found successful team 73 
+2014-01-08T09:59:39.318133+00:00 app[worker.2]: found successful team 74 
+2014-01-08T09:59:39.383425+00:00 app[worker.2]: found successful team 75 
+2014-01-08T09:59:40.591933+00:00 app[worker.2]: found successful team 76 
+2014-01-08T09:59:40.592337+00:00 app[worker.2]: found successful team 77 
+2014-01-08T09:59:40.653693+00:00 app[worker.2]: found successful team 78 
+2014-01-08T09:59:40.654130+00:00 app[worker.2]: found successful team 79 
+2014-01-08T09:59:41.315540+00:00 app[worker.2]: found successful team 80 
+2014-01-08T09:59:41.316007+00:00 app[worker.2]: found successful team 81 
+2014-01-08T09:59:41.324468+00:00 app[worker.2]: found successful team 82 
+2014-01-08T09:59:41.324975+00:00 app[worker.2]: found successful team 83 
+2014-01-08T09:59:41.346126+00:00 app[worker.2]: found successful team 84 
+2014-01-08T09:59:41.346613+00:00 app[worker.2]: found successful team 85 
+2014-01-08T09:59:41.368673+00:00 app[worker.2]: found successful team 86 
+2014-01-08T09:59:41.369067+00:00 app[worker.2]: found successful team 87 
+2014-01-08T09:59:41.493431+00:00 app[worker.2]: found successful team 88 
+2014-01-08T09:59:41.518767+00:00 app[worker.2]: found successful team 89 
+2014-01-08T09:59:41.583209+00:00 app[worker.2]: found successful team 90 
+2014-01-08T09:59:41.647092+00:00 app[worker.2]: found successful team 91 
+2014-01-08T09:59:42.393383+00:00 app[worker.2]: found successful team 92 
+2014-01-08T09:59:42.393813+00:00 app[worker.2]: found successful team 93 
+2014-01-08T09:59:42.457544+00:00 app[worker.2]: found successful team 94 
+2014-01-08T09:59:42.457993+00:00 app[worker.2]: found successful team 95 
+2014-01-08T09:59:42.706230+00:00 app[worker.2]: found successful team 96 
+2014-01-08T09:59:42.841468+00:00 app[worker.2]: found successful team 97 
+2014-01-08T09:59:45.535723+00:00 app[worker.2]: found successful team 98 
+2014-01-08T09:59:45.539371+00:00 app[worker.2]: found successful team 99 
+2014-01-08T09:59:45.572207+00:00 app[worker.2]: found successful team 100 
+2014-01-08T09:59:45.593829+00:00 app[worker.2]: found successful team 101 
+2014-01-08T09:59:45.914849+00:00 app[worker.2]: found successful team 102 
+2014-01-08T09:59:45.926695+00:00 app[worker.2]: found successful team 103 
+2014-01-08T09:59:46.358709+00:00 app[worker.2]: found successful team 104 
+2014-01-08T09:59:46.380879+00:00 app[worker.2]: found successful team 105 
+2014-01-08T09:59:49.523800+00:00 app[worker.2]: found successful team 106 
+2014-01-08T09:59:49.527762+00:00 app[worker.2]: found successful team 107 
+2014-01-08T09:59:49.565611+00:00 app[worker.2]: found successful team 108 
+2014-01-08T09:59:49.588654+00:00 app[worker.2]: found successful team 109 
+2014-01-08T09:59:50.045242+00:00 app[worker.2]: found successful team 110 
+2014-01-08T09:59:50.057261+00:00 app[worker.2]: found successful team 111 
+2014-01-08T09:59:50.544177+00:00 app[worker.2]: found successful team 112 
+2014-01-08T09:59:50.569633+00:00 app[worker.2]: found successful team 113 
+2014-01-08T09:59:52.375387+00:00 app[worker.2]: found successful team 114 
+2014-01-08T09:59:52.396413+00:00 app[worker.2]: found successful team 115 
+2014-01-08T09:59:52.516121+00:00 app[worker.2]: found successful team 116 
+2014-01-08T09:59:52.581898+00:00 app[worker.2]: found successful team 117 
+2014-01-08T09:59:54.536193+00:00 app[worker.2]: found successful team 118 
+2014-01-08T09:59:54.550670+00:00 app[worker.2]: found successful team 119 
+2014-01-08T09:59:54.578904+00:00 app[worker.2]: found successful team 120 
+2014-01-08T09:59:54.607205+00:00 app[worker.2]: found successful team 121 
+2014-01-08T09:59:55.875257+00:00 app[worker.2]: found successful team 122 
+2014-01-08T09:59:55.938652+00:00 app[worker.2]: found successful team 123 
+2014-01-08T10:00:02.685021+00:00 app[worker.2]: found successful team 124 
+2014-01-08T10:00:02.685765+00:00 app[worker.2]: found successful team 125 
+2014-01-08T10:00:02.709433+00:00 app[worker.2]: found successful team 126 
+2014-01-08T10:00:02.710132+00:00 app[worker.2]: found successful team 127 
+2014-01-08T10:00:02.849010+00:00 app[worker.2]: found successful team 128 
+2014-01-08T10:00:02.927579+00:00 app[worker.2]: found successful team 129 
+2014-01-08T10:00:03.670118+00:00 app[worker.2]: found successful team 130 
+2014-01-08T10:00:03.716104+00:00 app[worker.2]: found successful team 131 
+2014-01-08T10:00:04.681387+00:00 app[worker.2]: found successful team 132 
+2014-01-08T10:00:04.745842+00:00 app[worker.2]: found successful team 133 
+2014-01-08T10:00:11.516032+00:00 app[worker.2]: found successful team 134 
+2014-01-08T10:00:11.516495+00:00 app[worker.2]: found successful team 135 
+2014-01-08T10:00:11.536168+00:00 app[worker.2]: found successful team 136 
+2014-01-08T10:00:11.536592+00:00 app[worker.2]: found successful team 137 
+2014-01-08T10:00:11.645760+00:00 app[worker.2]: found successful team 138 
+2014-01-08T10:00:11.717487+00:00 app[worker.2]: found successful team 139 
+2014-01-08T10:00:12.502124+00:00 app[worker.2]: found successful team 140 
+2014-01-08T10:00:12.549015+00:00 app[worker.2]: found successful team 141 
+2014-01-08T10:00:13.500684+00:00 app[worker.2]: found successful team 142 
+2014-01-08T10:00:13.565870+00:00 app[worker.2]: found successful team 143 
+2014-01-08T10:00:16.190031+00:00 app[worker.2]: found successful team 144 
+2014-01-08T10:00:16.190475+00:00 app[worker.2]: found successful team 145 
+2014-01-08T10:00:16.262520+00:00 app[worker.2]: found successful team 146 
+2014-01-08T10:00:16.263045+00:00 app[worker.2]: found successful team 147 
+2014-01-08T10:00:16.627652+00:00 app[worker.2]: found successful team 148 
+2014-01-08T10:00:16.784447+00:00 app[worker.2]: found successful team 149 
+2014-01-08T10:00:17.933984+00:00 app[worker.2]: found successful team 150 
+2014-01-08T10:00:17.958387+00:00 app[worker.2]: found successful team 151 
+2014-01-08T10:00:18.017173+00:00 app[worker.2]: found successful team 152 
+2014-01-08T10:00:18.061522+00:00 app[worker.2]: found successful team 153 
+2014-01-08T10:00:19.734674+00:00 app[worker.2]: found successful team 154 
+2014-01-08T10:00:19.862501+00:00 app[worker.2]: found successful team 155 
+2014-01-08T10:00:21.994282+00:00 app[worker.2]: found 156 combinations
+2014-01-08T10:00:24.197528+00:00 app[worker.2]: found 156 mapping
+2014-01-08T10:00:24.197528+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x1a96830>, <scheduler.Combination instance at 0x1a96878>, <scheduler.Combination instance at 0x1a968c0>, <scheduler.Combination instance at 0x1a96758>, <scheduler.Combination instance at 0x1a965f0>, <scheduler.Combination instance at 0x1a96908>, <scheduler.Combination instance at 0x1a96998>]
+2014-01-08T10:00:24.197528+00:00 app[worker.2]: found 1 
+2014-01-08T10:00:25.299719+00:00 app[worker.2]: found successful team 0 
+2014-01-08T10:00:25.306044+00:00 app[worker.2]: found successful team 1 
+2014-01-08T10:00:25.324731+00:00 app[worker.2]: found successful team 2 
+2014-01-08T10:00:25.331347+00:00 app[worker.2]: found successful team 3 
+2014-01-08T10:00:25.339969+00:00 app[worker.2]: found successful team 4 
+2014-01-08T10:00:25.468833+00:00 app[worker.2]: found successful team 5 
+2014-01-08T10:00:25.474733+00:00 app[worker.2]: found successful team 6 
+2014-01-08T10:00:25.490582+00:00 app[worker.2]: found successful team 7 
+2014-01-08T10:00:25.496929+00:00 app[worker.2]: found successful team 8 
+2014-01-08T10:00:25.504372+00:00 app[worker.2]: found successful team 9 
+2014-01-08T10:00:25.555784+00:00 app[worker.2]: found successful team 10 
+2014-01-08T10:00:25.559253+00:00 app[worker.2]: found successful team 11 
+2014-01-08T10:00:25.584106+00:00 app[worker.2]: found successful team 12 
+2014-01-08T10:00:25.589676+00:00 app[worker.2]: found successful team 13 
+2014-01-08T10:00:25.655760+00:00 app[worker.2]: found successful team 14 
+2014-01-08T10:00:25.659319+00:00 app[worker.2]: found successful team 15 
+2014-01-08T10:00:25.680315+00:00 app[worker.2]: found successful team 16 
+2014-01-08T10:00:25.688313+00:00 app[worker.2]: found successful team 17 
+2014-01-08T10:00:25.711218+00:00 app[worker.2]: found successful team 18 
+2014-01-08T10:00:25.716920+00:00 app[worker.2]: found successful team 19 
+2014-01-08T10:00:26.742022+00:00 app[worker.2]: found successful team 20 
+2014-01-08T10:00:26.747986+00:00 app[worker.2]: found successful team 21 
+2014-01-08T10:00:26.755218+00:00 app[worker.2]: found successful team 22 
+2014-01-08T10:00:26.851327+00:00 app[worker.2]: found successful team 23 
+2014-01-08T10:00:27.398406+00:00 app[worker.2]: found successful team 24 
+2014-01-08T10:00:27.404422+00:00 app[worker.2]: found successful team 25 
+2014-01-08T10:00:27.411742+00:00 app[worker.2]: found successful team 26 
+2014-01-08T10:00:27.506711+00:00 app[worker.2]: found successful team 27 
+2014-01-08T10:00:27.732350+00:00 app[worker.2]: found successful team 28 
+2014-01-08T10:00:27.735759+00:00 app[worker.2]: found successful team 29 
+2014-01-08T10:00:27.755956+00:00 app[worker.2]: found successful team 30 
+2014-01-08T10:00:27.763786+00:00 app[worker.2]: found successful team 31 
+2014-01-08T10:00:27.786385+00:00 app[worker.2]: found successful team 32 
+2014-01-08T10:00:27.791911+00:00 app[worker.2]: found successful team 33 
+2014-01-08T10:00:28.130382+00:00 app[worker.2]: found successful team 34 
+2014-01-08T10:00:28.139176+00:00 app[worker.2]: found successful team 35 
+2014-01-08T10:00:28.609116+00:00 app[worker.2]: found 36 combinations
+2014-01-08T10:00:28.669811+00:00 app[worker.2]: found 36 mapping
+2014-01-08T10:00:28.669811+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x19bc0e0>, <scheduler.Combination instance at 0x1a2cf38>, <scheduler.Combination instance at 0x1aaa9e0>, <scheduler.Combination instance at 0x1aaaa28>, <scheduler.Combination instance at 0x1aaa950>]
+2014-01-08T10:00:28.669811+00:00 app[worker.2]: found 1 
+2014-01-08T10:00:30.899108+00:00 app[worker.2]: found successful team 0 
+2014-01-08T10:00:30.899284+00:00 app[worker.2]: found successful team 1 
+2014-01-08T10:00:30.936384+00:00 app[worker.2]: found successful team 2 
+2014-01-08T10:00:30.974802+00:00 app[worker.2]: found successful team 3 
+2014-01-08T10:00:30.983118+00:00 app[worker.2]: found successful team 4 
+2014-01-08T10:00:30.983346+00:00 app[worker.2]: found successful team 5 
+2014-01-08T10:00:30.985643+00:00 app[worker.2]: found successful team 6 
+2014-01-08T10:00:30.987311+00:00 app[worker.2]: found successful team 7 
+2014-01-08T10:00:31.036421+00:00 app[worker.2]: found successful team 8 
+2014-01-08T10:00:31.132429+00:00 app[worker.2]: found successful team 9 
+2014-01-08T10:00:31.839020+00:00 app[worker.2]: found successful team 10 
+2014-01-08T10:00:31.839263+00:00 app[worker.2]: found successful team 11 
+2014-01-08T10:00:31.884451+00:00 app[worker.2]: found successful team 12 
+2014-01-08T10:00:31.923210+00:00 app[worker.2]: found successful team 13 
+2014-01-08T10:00:31.931305+00:00 app[worker.2]: found successful team 14 
+2014-01-08T10:00:31.931537+00:00 app[worker.2]: found successful team 15 
+2014-01-08T10:00:31.933880+00:00 app[worker.2]: found successful team 16 
+2014-01-08T10:00:31.935580+00:00 app[worker.2]: found successful team 17 
+2014-01-08T10:00:31.987200+00:00 app[worker.2]: found successful team 18 
+2014-01-08T10:00:32.090547+00:00 app[worker.2]: found successful team 19 
+2014-01-08T10:00:32.446841+00:00 app[worker.2]: found successful team 20 
+2014-01-08T10:00:32.447126+00:00 app[worker.2]: found successful team 21 
+2014-01-08T10:00:32.452550+00:00 app[worker.2]: found successful team 22 
+2014-01-08T10:00:32.452856+00:00 app[worker.2]: found successful team 23 
+2014-01-08T10:00:32.551715+00:00 app[worker.2]: found successful team 24 
+2014-01-08T10:00:32.567655+00:00 app[worker.2]: found successful team 25 
+2014-01-08T10:00:32.675939+00:00 app[worker.2]: found successful team 26 
+2014-01-08T10:00:32.681557+00:00 app[worker.2]: found successful team 27 
+2014-01-08T10:00:32.703176+00:00 app[worker.2]: found successful team 28 
+2014-01-08T10:00:32.703427+00:00 app[worker.2]: found successful team 29 
+2014-01-08T10:00:32.705678+00:00 app[worker.2]: found successful team 30 
+2014-01-08T10:00:32.707378+00:00 app[worker.2]: found successful team 31 
+2014-01-08T10:00:32.715014+00:00 app[worker.2]: found successful team 32 
+2014-01-08T10:00:32.715304+00:00 app[worker.2]: found successful team 33 
+2014-01-08T10:00:32.721235+00:00 app[worker.2]: found successful team 34 
+2014-01-08T10:00:32.723406+00:00 app[worker.2]: found successful team 35 
+2014-01-08T10:00:32.832907+00:00 app[worker.2]: found successful team 36 
+2014-01-08T10:00:32.859053+00:00 app[worker.2]: found successful team 37 
+2014-01-08T10:00:33.201893+00:00 app[worker.2]: found successful team 38 
+2014-01-08T10:00:33.238876+00:00 app[worker.2]: found successful team 39 
+2014-01-08T10:00:34.648451+00:00 app[worker.2]: found successful team 40 
+2014-01-08T10:00:34.648804+00:00 app[worker.2]: found successful team 41 
+2014-01-08T10:00:34.662723+00:00 app[worker.2]: found successful team 42 
+2014-01-08T10:00:34.663052+00:00 app[worker.2]: found successful team 43 
+2014-01-08T10:00:34.703420+00:00 app[worker.2]: found successful team 44 
+2014-01-08T10:00:34.703678+00:00 app[worker.2]: found successful team 45 
+2014-01-08T10:00:34.710795+00:00 app[worker.2]: found successful team 46 
+2014-01-08T10:00:34.711098+00:00 app[worker.2]: found successful team 47 
+2014-01-08T10:00:34.736463+00:00 app[worker.2]: found successful team 48 
+2014-01-08T10:00:34.765607+00:00 app[worker.2]: found successful team 49 
+2014-01-08T10:00:34.837437+00:00 app[worker.2]: found successful team 50 
+2014-01-08T10:00:34.837711+00:00 app[worker.2]: found successful team 51 
+2014-01-08T10:00:34.850743+00:00 app[worker.2]: found successful team 52 
+2014-01-08T10:00:34.850999+00:00 app[worker.2]: found successful team 53 
+2014-01-08T10:00:34.925359+00:00 app[worker.2]: found successful team 54 
+2014-01-08T10:00:34.968888+00:00 app[worker.2]: found successful team 55 
+2014-01-08T10:00:35.540575+00:00 app[worker.2]: found successful team 56 
+2014-01-08T10:00:35.540851+00:00 app[worker.2]: found successful team 57 
+2014-01-08T10:00:35.553834+00:00 app[worker.2]: found successful team 58 
+2014-01-08T10:00:35.554100+00:00 app[worker.2]: found successful team 59 
+2014-01-08T10:00:35.594667+00:00 app[worker.2]: found successful team 60 
+2014-01-08T10:00:35.594925+00:00 app[worker.2]: found successful team 61 
+2014-01-08T10:00:35.602132+00:00 app[worker.2]: found successful team 62 
+2014-01-08T10:00:35.602415+00:00 app[worker.2]: found successful team 63 
+2014-01-08T10:00:35.626985+00:00 app[worker.2]: found successful team 64 
+2014-01-08T10:00:35.656154+00:00 app[worker.2]: found successful team 65 
+2014-01-08T10:00:35.727696+00:00 app[worker.2]: found successful team 66 
+2014-01-08T10:00:35.728047+00:00 app[worker.2]: found successful team 67 
+2014-01-08T10:00:35.741069+00:00 app[worker.2]: found successful team 68 
+2014-01-08T10:00:35.741425+00:00 app[worker.2]: found successful team 69 
+2014-01-08T10:00:35.814631+00:00 app[worker.2]: found successful team 70 
+2014-01-08T10:00:35.857481+00:00 app[worker.2]: found successful team 71 
+2014-01-08T10:00:36.120561+00:00 app[worker.2]: found successful team 72 
+2014-01-08T10:00:36.120897+00:00 app[worker.2]: found successful team 73 
+2014-01-08T10:00:36.160424+00:00 app[worker.2]: found successful team 74 
+2014-01-08T10:00:36.160931+00:00 app[worker.2]: found successful team 75 
+2014-01-08T10:00:36.275815+00:00 app[worker.2]: found successful team 76 
+2014-01-08T10:00:36.276337+00:00 app[worker.2]: found successful team 77 
+2014-01-08T10:00:36.281573+00:00 app[worker.2]: found successful team 78 
+2014-01-08T10:00:36.282059+00:00 app[worker.2]: found successful team 79 
+2014-01-08T10:00:36.294842+00:00 app[worker.2]: found successful team 80 
+2014-01-08T10:00:36.295125+00:00 app[worker.2]: found successful team 81 
+2014-01-08T10:00:36.309067+00:00 app[worker.2]: found successful team 82 
+2014-01-08T10:00:36.309362+00:00 app[worker.2]: found successful team 83 
+2014-01-08T10:00:36.370336+00:00 app[worker.2]: found successful team 84 
+2014-01-08T10:00:36.386157+00:00 app[worker.2]: found successful team 85 
+2014-01-08T10:00:36.424983+00:00 app[worker.2]: found successful team 86 
+2014-01-08T10:00:36.453656+00:00 app[worker.2]: found successful team 87 
+2014-01-08T10:00:36.669365+00:00 app[worker.2]: found successful team 88 
+2014-01-08T10:00:36.669753+00:00 app[worker.2]: found successful team 89 
+2014-01-08T10:00:36.709458+00:00 app[worker.2]: found successful team 90 
+2014-01-08T10:00:36.709737+00:00 app[worker.2]: found successful team 91 
+2014-01-08T10:00:36.870679+00:00 app[worker.2]: found successful team 92 
+2014-01-08T10:00:36.953848+00:00 app[worker.2]: found successful team 93 
+2014-01-08T10:00:37.294231+00:00 app[worker.2]: found successful team 94 
+2014-01-08T10:00:37.296623+00:00 app[worker.2]: found successful team 95 
+2014-01-08T10:00:37.318198+00:00 app[worker.2]: found successful team 96 
+2014-01-08T10:00:37.332197+00:00 app[worker.2]: found successful team 97 
+2014-01-08T10:00:37.375067+00:00 app[worker.2]: found successful team 98 
+2014-01-08T10:00:37.382944+00:00 app[worker.2]: found successful team 99 
+2014-01-08T10:00:37.513787+00:00 app[worker.2]: found successful team 100 
+2014-01-08T10:00:37.528102+00:00 app[worker.2]: found successful team 101 
+2014-01-08T10:00:38.240820+00:00 app[worker.2]: found successful team 102 
+2014-01-08T10:00:38.241367+00:00 app[worker.2]: found successful team 103 
+2014-01-08T10:00:38.263079+00:00 app[worker.2]: found successful team 104 
+2014-01-08T10:00:38.277330+00:00 app[worker.2]: found successful team 105 
+2014-01-08T10:00:38.320056+00:00 app[worker.2]: found successful team 106 
+2014-01-08T10:00:38.327959+00:00 app[worker.2]: found successful team 107 
+2014-01-08T10:00:38.458413+00:00 app[worker.2]: found successful team 108 
+2014-01-08T10:00:38.472627+00:00 app[worker.2]: found successful team 109 
+2014-01-08T10:00:38.786987+00:00 app[worker.2]: found successful team 110 
+2014-01-08T10:00:38.799902+00:00 app[worker.2]: found successful team 111 
+2014-01-08T10:00:38.869624+00:00 app[worker.2]: found successful team 112 
+2014-01-08T10:00:38.911610+00:00 app[worker.2]: found successful team 113 
+2014-01-08T10:00:39.032184+00:00 app[worker.2]: found successful team 114 
+2014-01-08T10:00:39.037871+00:00 app[worker.2]: found successful team 115 
+2014-01-08T10:00:39.051721+00:00 app[worker.2]: found successful team 116 
+2014-01-08T10:00:39.066715+00:00 app[worker.2]: found successful team 117 
+2014-01-08T10:00:39.449405+00:00 app[worker.2]: found successful team 118 
+2014-01-08T10:00:39.495472+00:00 app[worker.2]: found successful team 119 
+2014-01-08T10:00:40.992190+00:00 app[worker.2]: found successful team 120 
+2014-01-08T10:00:40.992450+00:00 app[worker.2]: found successful team 121 
+2014-01-08T10:00:41.005525+00:00 app[worker.2]: found successful team 122 
+2014-01-08T10:00:41.005783+00:00 app[worker.2]: found successful team 123 
+2014-01-08T10:00:41.082695+00:00 app[worker.2]: found successful team 124 
+2014-01-08T10:00:41.153343+00:00 app[worker.2]: found successful team 125 
+2014-01-08T10:00:41.287017+00:00 app[worker.2]: found successful team 126 
+2014-01-08T10:00:41.316174+00:00 app[worker.2]: found successful team 127 
+2014-01-08T10:00:41.693764+00:00 app[worker.2]: found successful team 128 
+2014-01-08T10:00:41.736840+00:00 app[worker.2]: found successful team 129 
+2014-01-08T10:00:44.108374+00:00 app[worker.2]: found successful team 130 
+2014-01-08T10:00:44.108642+00:00 app[worker.2]: found successful team 131 
+2014-01-08T10:00:44.121784+00:00 app[worker.2]: found successful team 132 
+2014-01-08T10:00:44.122040+00:00 app[worker.2]: found successful team 133 
+2014-01-08T10:00:44.200634+00:00 app[worker.2]: found successful team 134 
+2014-01-08T10:00:44.253162+00:00 app[worker.2]: found successful team 135 
+2014-01-08T10:00:44.406672+00:00 app[worker.2]: found successful team 136 
+2014-01-08T10:00:44.483047+00:00 app[worker.2]: found successful team 137 
+2014-01-08T10:00:45.195451+00:00 app[worker.2]: found successful team 138 
+2014-01-08T10:00:45.241668+00:00 app[worker.2]: found successful team 139 
+2014-01-08T10:00:46.180434+00:00 app[worker.2]: found successful team 140 
+2014-01-08T10:00:46.180715+00:00 app[worker.2]: found successful team 141 
+2014-01-08T10:00:46.228430+00:00 app[worker.2]: found successful team 142 
+2014-01-08T10:00:46.228716+00:00 app[worker.2]: found successful team 143 
+2014-01-08T10:00:46.398953+00:00 app[worker.2]: found successful team 144 
+2014-01-08T10:00:46.489241+00:00 app[worker.2]: found successful team 145 
+2014-01-08T10:00:46.792807+00:00 app[worker.2]: found successful team 146 
+2014-01-08T10:00:46.808607+00:00 app[worker.2]: found successful team 147 
+2014-01-08T10:00:46.847344+00:00 app[worker.2]: found successful team 148 
+2014-01-08T10:00:46.876192+00:00 app[worker.2]: found successful team 149 
+2014-01-08T10:00:47.694919+00:00 app[worker.2]: found successful team 150 
+2014-01-08T10:00:47.780684+00:00 app[worker.2]: found successful team 151 
+2014-01-08T10:00:48.328366+00:00 app[worker.2]: found 152 combinations
+2014-01-08T10:00:50.748627+00:00 app[worker.2]: found 152 mapping
+2014-01-08T10:00:50.748627+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x1a808c0>, <scheduler.Combination instance at 0x1a80710>, <scheduler.Combination instance at 0x1a80758>, <scheduler.Combination instance at 0x1a80830>, <scheduler.Combination instance at 0x1a80680>, <scheduler.Combination instance at 0x1a80638>]
+2014-01-08T10:00:50.748627+00:00 app[worker.2]: found good chars [<scheduler.Combination instance at 0x1a80878>, <scheduler.Combination instance at 0x1a809e0>, <scheduler.Combination instance at 0x1aa5440>, <scheduler.Combination instance at 0x1aa5320>, <scheduler.Combination instance at 0x1aa5290>, <scheduler.Combination instance at 0x1aa54d0>]
+2014-01-08T10:00:50.748627+00:00 app[worker.2]: found 2 
+2014-01-08T10:00:50.770810+00:00 app[worker.2]: 10:00:50 Job OK, result = [[<scheduler.Combination instance at 0x1a96830>, <scheduler.Combination instance at 0x1a96878>, <scheduler.Combination instance at 0x1a968c0>, <scheduler.Combination instance at 0x1a96758>, <scheduler.Combination instance at 0x1a965f0>, <scheduler.Combination instance at 0x1a96908>, <scheduler.Combination instance at 0x1a96998>], [<scheduler.Combination instance at 0x19bc0e0>, <scheduler.Combination instance at 0x1a2cf38>, <scheduler.Combination instance at 0x1aaa9e0>, <scheduler.Combination instance at 0x1aaaa28>, <scheduler.Combination instance at 0x1aaa950>], [<scheduler.Combination instance at 0x1a808c0>, <scheduler.Combination instance at 0x1a80710>, <scheduler.Combination instance at 0x1a80758>, <scheduler.Combination instance at 0x1a80830>, <scheduler.Combination instance at 0x1a80680>, <scheduler.Combination instance at 0x1a80638>], [<scheduler.Combination instance at 0x1a80878>, <scheduler.Combination instance at 0x1a809e0>, <scheduler.Combination instance at 0x1aa5440>, <s
+2014-01-08T10:00:50.770810+00:00 app[worker.2]: cheduler.Combination instance at 0x1aa5320>, <scheduler.Combination instance at 0x1aa5290>, <scheduler.Combination instance at 0x1aa54d0>]]
+2014-01-08T10:00:50.770810+00:00 app[worker.2]: 10:00:50 Result is kept for 500 seconds.
+2014-01-08T10:00:50.819218+00:00 app[worker.2]: 10:00:50 
+2014-01-08T10:00:50.819218+00:00 app[worker.2]: 10:00:50 *** Listening on high, default, low...
+2014-01-08T09:59:04.862581+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=304 bytes=0
 Terminate batch job (Y/N)? 

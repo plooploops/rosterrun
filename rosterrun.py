@@ -136,7 +136,7 @@ def show_entries():
     if action == u"Import":
       import_characters()
     elif action == u"Calculate":
-      run_calculation()    
+      q.enqueue(run_calculation)
     elif action == u"Reset":
       reset()
     else:
@@ -263,7 +263,7 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      parties = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      parties = run_scheduler_OAuth(credentials, session['doc'])
       print 'FOUND %s PARTIES' % len(parties)
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
