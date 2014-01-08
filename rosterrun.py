@@ -269,6 +269,7 @@ def run_calculation():
       session['g_worksheet_id'] = g_w_id
       job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
       print 'running calc %s ' % job.id
+      session['job_id'] = job.id
       checkCalculation()      
     #except:
     #  print 'error running calculation'
@@ -281,18 +282,22 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  job = get_current_job()
-  print 'Refreshing %s ' % job
-  if job is not None:
-    if job.result is not None:
-      parties = job.result
-      print parties
-      #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-      for i in range(0, len(parties) - 1):
-        [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+  if 'job_id' in session.keys():
+    job_id = session['job_id']
+    print 'using job id %s ' % job_id
+    job = q.fetch_job(job_id)
+    print 'found job %s ' % job
+  
+    if job is not None:
+      if job.result is not None:
+        parties = job.result
+        print parties
+        #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+        for i in range(0, len(parties) - 1):
+          [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
      
-      db.session.commit()
-      flash('Calculation finished')
+        db.session.commit()
+        flash('Calculation finished')
   return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
