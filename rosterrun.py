@@ -1,4 +1,4 @@
-from rq import Queue, get_current_job
+from rq import Queue, Job, get_current_job
 from worker import conn
 
 import os
@@ -285,7 +285,7 @@ def checkCalculation():
   if 'job_id' in session.keys():
     job_id = session['job_id']
     print 'using job id %s ' % job_id
-    job = q.fetch_job(job_id)
+    job = Job.fetch(job_id, conn)
     print 'found job %s ' % job
   
     if job is not None:
