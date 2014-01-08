@@ -300,7 +300,7 @@ def reset():
     [db.session.delete(c) for c in cur]  
     db.session.commit()
 
-    cur = Character.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+    cur = MappedCharacter.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
     [db.session.delete(c) for c in cur]  
     db.session.commit()  
     
