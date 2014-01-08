@@ -1,4 +1,4 @@
-from rq import Queue, Job, get_current_job
+from rq import Queue, job, get_current_job
 from worker import conn
 
 import os
@@ -267,9 +267,9 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
-      print 'running calc %s ' % job.id
-      session['job_id'] = job.id
+      calcjob = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      print 'running calc %s ' % calcjob.id
+      session['job_id'] = calcjob.id
       checkCalculation()      
     #except:
     #  print 'error running calculation'
@@ -285,12 +285,12 @@ def checkCalculation():
   if 'job_id' in session.keys():
     job_id = session['job_id']
     print 'using job id %s ' % job_id
-    job = Job.fetch(job_id, conn)
-    print 'found job %s ' % job
+    currentjob = Job.fetch(job_id, conn)
+    print 'found job %s ' % currentjob
   
-    if job is not None:
-      if job.result is not None:
-        parties = job.result
+    if currentjob is not None:
+      if currentjob.result is not None:
+        parties = currentjob.result
         print parties
         #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
         for i in range(0, len(parties) - 1):
