@@ -2,6 +2,8 @@ import os
 
 import redis
 from rq import Worker, Queue, Connection
+from rq.job import Job
+from worker import conn
 
 listen = ['high', 'default', 'low']
 
