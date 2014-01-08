@@ -55,7 +55,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
-job = None
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -268,7 +267,7 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      session['job'] = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
       print 'running calc %s ' % job.id
       checkCalculation()      
     #except:
@@ -282,6 +281,7 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+  job = session['job']
   print 'Refreshing %s ' % job
   if job is not None:
     parties = job.result
