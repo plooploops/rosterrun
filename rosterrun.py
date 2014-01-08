@@ -273,7 +273,7 @@ def run_calculation():
       return redirect(url_for('show_entries'))
     
 def checkCalculation():
-  if job.Result is not None:
+  if job is not None:
     parties = job.result      
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(parties) - 1):

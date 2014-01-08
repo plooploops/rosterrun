@@ -1,37 +1,7 @@
-2014-01-08T10:41:33.059844+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-08T10:41:33.262691+00:00 app[web.1]: 2014-01-08 10:41:33 [2] [INFO] Listening at: http://0.0.0.0:22067 (2)
-2014-01-08T10:41:33.262781+00:00 app[web.1]: 2014-01-08 10:41:33 [2] [INFO] Using worker: sync
-2014-01-08T10:41:33.262022+00:00 app[web.1]: 2014-01-08 10:41:33 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T10:41:33.272640+00:00 app[web.1]: 2014-01-08 10:41:33 [7] [INFO] Booting worker with pid: 7
-2014-01-08T10:41:33.382077+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-08T10:41:33.731198+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-08T10:41:33.864936+00:00 heroku[web.1]: State changed from starting to up
-2014-01-08T10:41:34.027918+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-08T10:41:34.673344+00:00 app[worker.1]: 10:41:34 RQ worker started, version 0.3.13
-2014-01-08T10:41:34.675575+00:00 app[worker.1]: 10:41:34 
-2014-01-08T10:41:34.675739+00:00 app[worker.1]: 10:41:34 *** Listening on high, default, low...
-2014-01-08T10:41:35.326924+00:00 app[worker.2]: 10:41:35 *** Listening on high, default, low...
-2014-01-08T10:41:35.324333+00:00 app[worker.2]: 10:41:35 RQ worker started, version 0.3.13
-2014-01-08T10:41:35.326612+00:00 app[worker.2]: 10:41:35 
-2014-01-08T10:41:35.421869+00:00 app[web.1]: 2014-01-08 10:41:35 [7] [ERROR] Exception in worker process:
-2014-01-08T10:41:35.421869+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T10:41:35.421869+00:00 app[web.1]:     worker.init_process()
-2014-01-08T10:41:35.421869+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T10:41:35.421869+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T10:41:35.421869+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T10:41:35.421869+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T10:41:35.421869+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T10:41:35.421869+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T10:41:35.422097+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T10:41:35.421869+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T10:41:35.422097+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T10:41:35.422097+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T10:41:35.422097+00:00 app[web.1]:     __import__(module)
 2014-01-08T10:41:35.422097+00:00 app[web.1]:   File "/app/rosterrun.py", line 58, in <module>
 2014-01-08T10:41:35.422097+00:00 app[web.1]:     job
 2014-01-08T10:41:35.422097+00:00 app[web.1]: NameError: name 'job' is not defined
-20
-14-01-08T10:41:35.422097+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T10:41:35.422097+00:00 app[web.1]: Traceback (most recent call last):
 2014-01-08T10:41:35.422097+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
 2014-01-08T10:41:35.422097+00:00 app[web.1]:     worker.init_process()
 2014-01-08T10:41:35.422274+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
@@ -89,8 +59,7 @@
 2014-01-08T10:41:53.774011+00:00 app[web.1]:     return self.load_wsgiapp()
 2014-01-08T10:41:53.774011+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
 2014-01-08T10:41:53.774011+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T10:41:53.774011+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py",
- line 354, in import_app
+2014-01-08T10:41:53.774011+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
 2014-01-08T10:41:53.774011+00:00 app[web.1]:     __import__(module)
 2014-01-08T10:41:53.774582+00:00 app[web.1]:   File "/app/rosterrun.py", line 58, in <module>
 2014-01-08T10:41:53.774582+00:00 app[web.1]:     job
@@ -103,6 +72,58 @@
 2014-01-08T10:41:55.273584+00:00 heroku[web.1]: State changed from up to crashed
 2014-01-08T10:42:03.526605+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
 2014-01-08T10:42:03.879715+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-08T10:44:42+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T10:45:58.828223+00:00 heroku[api]: Deploy 9403e36 by andygee@gmail.com
+2014-01-08T10:45:58.857853+00:00 heroku[api]: Release v128 created by andygee@gmail.com
+2014-01-08T10:45:59+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T10:45:59.143734+00
+:00 heroku[web.1]: State changed from crashed to starting
+2014-01-08T10:45:59.193999+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-08T10:45:59.209484+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-08T10:46:06.933250+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-08T10:46:07.872209+00:00 app[worker.2]: 10:46:07 Warm shut down requested.
+2014-01-08T10:46:08.781727+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-08T10:46:09.392192+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-08T10:46:09.646530+00:00 app[worker.1]: 10:46:09 
+2014-01-08T10:46:09.646593+00:00 app[worker.1]: 10:46:09 *** Listening on high, default, low...
+2014-01-08T10:46:09.644510+00:00 app[worker.1]: 10:46:09 RQ worker started, version 0.3.13
+2014-01-08T10:46:10.272395+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-08T10:46:13.214527+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T10:46:14.698697+00:00 app[web.1]: 2014-01-08 10:46:14 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T10:46:14.702159+00:00 app[web.1]: 2014-01-08 10:46:14 [2] [INFO] Listening at: http://0.0.0.0:56972 (2)
+2014-01-08T10:46:14.702517+00:00 app[web.1]: 2014-01-08 10:46:14 [2] [INFO] Using worker: sync
+2014-01-08T10:46:14.723194+00:00 app[web.1]: 2014-01-08 10:46:14 [7] [INFO] Booting worker with pid: 7
+2014-01-08T10:46:15.122915+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T10:46:16.523609+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-08T10:46:16.558484+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-08T10:46:16.934380+00:00 app[worker.2]: 10:46:16 RQ worker started, version 0.3.13
+2014-01-08T10:46:16.936505+00:00 app[worker.2]: 10:46:16 
+2014-01-08T10:46:16.936566+00:00 app[worker.2]: 10:46:16 *** Listening on high, default, low...
+2014-01-08T10:46:49.394452+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=22ms status=404 bytes=233
+2014-01-08T10:47:09.996023+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=8ms status=500 bytes=135
+2014-01-08T10:47:09.992950+00:00 app[web.1]: 2014-01-08 10:47:09 [7] [ERROR] Error handling request
+2014-01-08T10:47:09.992950+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T10:47:09.992950+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-08T10:47:09.992950+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-01-08T10:47:09.992950+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-08T10:47:09.992950+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-01-08T10:47:09.992950+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-01-08T10:47:09.992950+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-01-08T10:47:09.992950+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-01-08T10:47:09.992950+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-08T10:47:09.993155+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-01-08T10:47:09.993155+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-01-08T10:47:09.993155+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-08T10:47:09.993155+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-08T10:47:09.993155+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-08T10:47:09.993155+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-08T10:47:09.993155+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-08T10:47:09.993155+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-01-08T10:47:09.993155+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-01-08T10:47:09.993155+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-08T10:47:09.993325+00:00 app[web.1]:   File "/app/rosterrun.py", line 130, in show_entries
+2014-01-08T10:47:09.993325+00:00 app[web.1]:     checkCalculation()
+2014-01-08T10:47:09.993325+00:00 app[web.1]:   File "/app/rosterrun.py", line 276, in checkCalculation
+2014-01-08T10:47:09.993325+00:00 app[web.1]:     if job.Result is not None:
+2014-01-08T10:47:09.993325+00:00 app[web.1]: AttributeError: 'NoneType' object has no attribute 'Result'
 Terminate batch job (Y/N)? 
-
-C:\Users\andy\Documents\GitHub\rosterrun>
