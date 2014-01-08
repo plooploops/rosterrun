@@ -338,10 +338,10 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     #run through combinations of players
     currentcombinations = []
     usedChars = []
-    maxmapping = [[0 for j in range(len(combinationMapping.keys()) + 1)] for i in range(len(combinationMapping.keys()))]
-    for j in range(1, len(combinationMapping.keys())):
-      for k in range(0, len(combinationMapping.keys())):
-        comb = combinationMapping.keys()[k]
+    maxmapping = [[0 for j in range(len(combinationsMapping.keys()) + 1)] for i in range(len(combinationsMapping.keys()))]
+    for j in range(1, len(combinationsMapping.keys())):
+      for k in range(0, len(combinationsMapping.keys())):
+        comb = combinationsMapping.keys()[k]
         #print 'attempting %s' % comb
         used = [c for c in comb if c in usedChars]
         if len(used) > 0:
@@ -349,10 +349,10 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
           maxmapping[j][k] = maxmapping[j - 1][k]
           continue
         #print 'combination gives %s' % q[comb]
-        if combinationMapping[comb] <= 0:
+        if combinationsMapping[comb] <= 0:
           maxmapping[j][k] = maxmapping[j - 1][k]
         else:
-          maxmapping[j][k] = max(maxmapping[j - 1][k], combinationMapping[comb] + maxmapping[j][k - 1])
+          maxmapping[j][k] = max(maxmapping[j - 1][k], combinationsMapping[comb] + maxmapping[j][k - 1])
           [usedChars.append(c) for c in comb]
           currentcombinations.append(comb)
     
