@@ -237,7 +237,7 @@ def initializeDataOAuth(credentials, docName, quests):
           charac.Present = False 
     characters.append(charac)
   return characters
-  chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
+  #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars
 
 def computeRequirements(characters, instance, quests):
@@ -246,21 +246,11 @@ def computeRequirements(characters, instance, quests):
     #precompute requirements
     availableCharacters = characters
     presentCharacters = [c for c in characters if c.Present == True]
-    #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in presentCharacters]
-    #print 'present chars', chars
     notEnoughCooldown = [c for c in presentCharacters if (now - c.LastRun) < timedelta (days = instance.Cooldown)]
-    #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in notEnoughCooldown]
-    #print 'not enough cooldown', chars
     availableCharacters = [c for c in presentCharacters if not c in notEnoughCooldown]
-    #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in availableCharacters]
-    #print 'available characters', chars
     notEnoughQuest = [c for c in presentCharacters if len(c.Quests) < len(quests)]    
-    #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in presentCharacters]
-    #print 'not enough quest characters', chars
     availableCharacters = [c for c in availableCharacters if not c in notEnoughQuest]
-    #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
-    #print 'Available Characters', chars
-
+    
     return availableCharacters
     
 def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIndex):
@@ -271,44 +261,34 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     validcombinations = []
     
     successfulteam = len(instance.Roles)
-    #print 'defining successful team as %s' % successfulteam
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     #print 'Available Characters', chars
-    #print 'Number of available characters', len(chars)
-    #print 'number roles', len(instance.Roles)
-
+    
     for comb in combinations(availableCharacters, len(instance.Roles)):                
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
       
-      #print 'attempting combination', chars
-      #print 'number chars', len(chars)
       #checks for last run date and quest status already precomputed
 
       #check role fufillment
       roleInstance = list(set([(c.Name, instance.Roles.count(c)) for c in instance.Roles]))
-      #print 'role instance', roleInstance
       roleCharacters = [c.Role for c in comb if c.Role in instance.Roles]
 
       if(len(instance.Roles) > len(roleCharacters)):
         combinationsMapping[comb] = 0
-        #print 'don't have character to role coverage'
         continue
 
-      #print 'role characters',[r.Name for r in roleCharacters]
       roleCountToCharacters = list(set([(c.Name, roleCharacters.count(c)) for c in roleCharacters]))
-      #print 'role count to characters', roleCountToCharacters
       roleDelta = list(set(roleInstance) - set(roleCountToCharacters))
   
       if(len(roleDelta) > 0):
         combinationsMapping[comb] = 0
-        #print 'role delta', roleDelta
         continue
       
       playersToCharacters = [c.PlayerName for c in comb]
       playersCountToCharacters = list(set([(pName, playersToCharacters.count(pName)) for pName in playersToCharacters]))
-      #print playersCountToCharacters
       playerMapping = [pc for pc in playersCountToCharacters if pc[1] > 2]
+      #check dual clienting
       if(len(playerMapping) > 0):
         combinationsMapping[comb] = 0
         #print 'too many clients for a player', playerMapping
@@ -317,14 +297,12 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       #check improper dual role assignment
       dualClientPlayers = [c[0] for c in [pc for pc in playersCountToCharacters if pc[1] == 2]]
       DualClientPlayersAssignment = [(c.PlayerName, c.Role) for c in comb if c.PlayerName in dualClientPlayers]
-      #print 'dual client assignment', [(c[0], c[1].Name) for c in DualClientPlayersAssignment]
       mergedClientPlayerAssignment = list(accumulate(DualClientPlayersAssignment))
       
       try:
         badDualClientPlayers = [(c[0], [r.Name for r in c[1]]) for c in mergedClientPlayerAssignment if c[1][1] not in c[1][0].CanDualClientRole]
         if(len(badDualClientPlayers) > 0):
           combinationsMapping[comb] = 0
-          #print 'players have bad assigment for roles', badDualClientPlayers
           continue
       except:
         combinationsMapping[comb] = 0
@@ -344,13 +322,10 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     for j in range(1, len(combinationsMapping.keys())):
       for k in range(0, len(combinationsMapping.keys())):
         comb = combinationsMapping.keys()[k]
-        #print 'attempting %s' % comb
         used = [c for c in comb if c in usedChars]
         if len(used) > 0:
-          #print 'used combination %s ' % used
           maxmapping[j][k] = maxmapping[j - 1][k]
           continue
-        #print 'combination gives %s' % q[comb]
         if combinationsMapping[comb] <= 0:
           maxmapping[j][k] = maxmapping[j - 1][k]
         else:
@@ -361,7 +336,6 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     for comb in currentcombinations:
       viablePartyIndex += 1
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
-      print 'found good chars %s' % chars
       validcombinations.append(chars)
     
     print 'found %s ' % len(validcombinations)

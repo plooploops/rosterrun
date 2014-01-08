@@ -137,8 +137,7 @@ def show_entries():
       import_characters()
     elif action == u"Calculate":
       flash('Running Calculation')
-      q.enqueue(run_calculation)
-      return redirect(url_for('show_entries'))
+      run_calculation()
     elif action == u"Reset":
       reset()
     else:
@@ -233,7 +232,7 @@ def import_characters():
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
-    try:
+    #try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
@@ -265,16 +264,17 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      parties = run_scheduler_OAuth(credentials, session['doc'])
-      print 'FOUND %s PARTIES' % len(parties)
+      parties = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
         [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
      
       db.session.commit()
       flash('Calculation finished')
-    except:
-      print 'error running calculation'
+    #except:
+    #  print 'error running calculation'
+      return redirect(url_for('show_entries'))
     
  
 @app.route('/reset', methods=['POST'])
