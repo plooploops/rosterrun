@@ -273,6 +273,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     validcombinations = []
     
     succesfulteam = len(instance.Roles)
+    print 'defining successful team as %s' % successfulteam
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     #print 'Available Characters', chars
@@ -280,13 +281,9 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     #print 'number roles', len(instance.Roles)
 
     for comb in combinations(availableCharacters, len(instance.Roles)):                
-      testChars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
-      if testChars in validcombiations:
-        combinationsMapping[comb] = 0
-      	continue
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
       
-      #print 'attempting combination', chars
+      print 'attempting combination', chars
       #print 'number chars', len(chars)
       #checks for last run date and quest status already precomputed
 
@@ -336,13 +333,9 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         print 'had an issue with finding bad dual clients %s' % mergedClientPlayerAssignment
         continue
  
-      #chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       combinationsMapping[comb] = successfulteam
-      #validcombinations.append(chars)
       viablePartyIndex += 1
-      #break
-    #print 'NUMBER OF VALID COMBINATIONS %s' % len(validcombinations)
-   
+    
     print combinationsMapping
     #run through combinations of players
     currentcombinations = []
