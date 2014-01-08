@@ -269,7 +269,7 @@ def run_calculation():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
       job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
-
+      print 'running calc %s ' % job.id
       checkCalculation()      
     #except:
     #  print 'error running calculation'
@@ -282,8 +282,10 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+  print 'Refreshing %s ' % job
   if job is not None:
-    parties = job.result      
+    parties = job.result
+    print parties
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for i in range(0, len(parties) - 1):
       [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
