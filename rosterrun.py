@@ -54,7 +54,7 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-q = Queue(connection=conn)
+q = Queue(connection=conn, default_timeout=3600)
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -263,7 +263,7 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      parties = q.enqueue(func=run_scheduler_OAuth, args=(credentials, session['doc'],), timeout=3600)
+      parties = q.enqueue(func=run_scheduler_OAuth, credentials, session['doc'])
       print 'FOUND %s PARTIES' % len(parties)
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
