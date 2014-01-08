@@ -267,7 +267,7 @@ def run_calculation():
       db.session.commit()
       flash('Calculation finished')
     except:
-      print 'error running calculation'
+      print 'error running calculation %s' % sys.exc_info()[0]
     return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
