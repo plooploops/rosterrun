@@ -136,6 +136,7 @@ def show_entries():
     if action == u"Import":
       import_characters()
     elif action == u"Calculate":
+      flash('Running Calculation')
       q.enqueue(run_calculation)
     elif action == u"Reset":
       reset()
