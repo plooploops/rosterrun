@@ -1,74 +1,3 @@
-2014-01-08T10:51:52.449841+00:00 app[worker.2]: 10:51:52 
-2014-01-08T10:51:52.449841+00:00 app[worker.2]: 10:51:52 *** Listening on high, default, low...
-2014-01-08T10:56:22.996436+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=32ms status=404 bytes=233
-2014-01-08T10:56:27.391276+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=209
-2014-01-08T10:56:33.884611+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=5ms status=302 bytes=803
-2014-01-08T10:56:33.882996+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T10:56:35.023406+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T10:56:35.023406+00:00 app[web.1]: show entries
-2014-01-08T10:56:35.023406+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T10:56:35.034223+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T10:56:35.034223+00:00 app[web.1]: get all combinations
-2014-01-08T10:56:27.552090+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=5ms status=200 bytes=612
-2014-01-08T10:56:27.468221+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=219
-2014-01-08T10:56:34.942458+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/btvMjCScJzLUB2xb6kTsx0lwVLeL.kv7zdxxmFvYVmmS0T3UFEsNm8AHjhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=710ms status=302 bytes=209
-2014-01-08T10:56:35.051140+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=31ms status=200 bytes=16654
-2014-01-08T10:58:20.872331+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T10:58:21.651167+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T10:58:21.654858+00:00 app[web.1]: ['Quest Status']
-2014-01-08T10:58:21.654858+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T10:58:22.247333+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T10:58:22.266996+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T10:58:22.267226+00:00 app[web.1]: get all combinations
-2014-01-08T10:58:22.320558+00:00 app[worker.1]: 10:58:22 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x4bdb650>, u'Quest Status') (915a33c8-f67c-4d7e-b274-840627d19a0f)
-2014-01-08T10:58:23.463716+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T10:58:23.463716+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T10:58:23.463716+00:00 app[worker.1]: ['Quest Status']
-2014-01-08T10:59:32.356642+00:00 app[worker.1]: found 156 combinations
-2014-01-08T10:59:35.481111+00:00 app[worker.1]: found 1 
-2014-01-08T10:59:42.220144+00:00 app[worker.1]: found 36 combinations
-2014-01-08T10:59:42.305334+00:00 app[worker.1]: found 1 
-2014-01-08T10:58:22.289135+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=8ms service=1437ms status=200 bytes=16655
-2014-01-08T11:00:06.969273+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T11:00:07.584733+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T11:00:07.584733+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T11:00:07.584733+00:00 app[web.1]: ['Quest Status']
-2014-01-08T11:00:08.086595+00:00 app[worker.2]: 11:00:08 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x4bdcfd0>, u'Quest Status') (34e53150-a35d-42eb-aea3-c4280d94b762)
-2014-01-08T11:00:08.075975+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T11:00:08.084750+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T11:00:08.084952+00:00 app[web.1]: get all combinations
-2014-01-08T11:00:08.101782+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=1150ms status=200 bytes=16655
-2014-01-08T11:00:08.456949+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=304 bytes=0
-2014-01-08T11:00:08.468198+00:00 app[worker.2]: ['Quest Status']
-2014-01-08T11:00:08.468198+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
-2014-01-08T11:00:08.468198+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T11:00:09.443614+00:00 app[worker.1]: found 152 combinations
-2014-01-08T11:00:11.542223+00:00 app[worker.1]: found 2 
-2014-01-08T11:00:11.553830+00:00 app[worker.1]: 11:00:11 Result is kept for 500 seconds.
-2014-01-08T11:00:11.553830+00:00 app[worker.1]: cheduler.Combination instance at 0x28f4950>, <scheduler.Combination instance at 0x28f4998>, <scheduler.Combination instance at 0x28f4368>]]
-2014-01-08T11:00:11.553830+00:00 app[worker.1]: 11:00:11 Job OK, result = [[<scheduler.Combination instance at 0x2c0cb00>, <scheduler.Combination instance at 0x2c0cf38>, <scheduler.Combination instance at 0x2c0ce60>, <scheduler.Combination instance at 0x2c19290>, <scheduler.Combination instance at 0x2c19560>, <scheduler.Combination instance at 0x2c19200>, <scheduler.Combination instance at 0x2c19518>], [<scheduler.Combination instance at 0x2bfab90>, <scheduler.Combination instance at 0x2bfa1b8>, <scheduler.Combination instance at 0x2bfad40>, <scheduler.Combination instance at 0x2bfaab8>, <scheduler.Combination instance at 0x2bfa680>], [<scheduler.Combination instance at 0x28f46c8>, <scheduler.Combination instance at 0x28f4710>, <scheduler.Combination instance at 0x28f4758>, <scheduler.Combination instance at 0x28f47a0>, <scheduler.Combination instance at 0x28f47e8>, <scheduler.Combination instance at 0x28f4830>], [<scheduler.Combination instance at 0x28f4878>, <scheduler.Combination instance at 0x28f48c0>, <scheduler.Combination instance at 0x28f4908>, <s
-2014-01-08T11:00:11.582368+00:00 app[worker.1]: 11:00:11 
-2014-01-08T11:00:11.582489+00:00 app[worker.1]: 11:00:11 *** Listening on high, default, low...
-2014-01-08T11:01:16.387768+00:00 app[worker.2]: found 156 combinations
-2014-01-08T11:01:18.359120+00:00 app[worker.2]: found 1 
-2014-01-08T11:01:22.318873+00:00 app[worker.2]: found 36 combinations
-2014-01-08T11:01:22.368105+00:00 app[worker.2]: found 1 
-2014-01-08T11:01:44.204602+00:00 app[worker.2]: found 152 combinations
-2014-01-08T11:01:46.544228+00:00 app[worker.2]: found 2 
-2014-01-08T11:01:46.683346+00:00 app[worker.2]: 11:01:46 Job OK, result = [[<scheduler.Combination instance at 0x1ad4830>, <scheduler.Combination instance at 0x1ad4878>, <scheduler.Combination instance at 0x1ad48c0>, <scheduler.Combination instance at 0x1ad4758>, <scheduler.Combination instance at 0x1ad46c8>, <scheduler.Combination instance at 0x1ad4680>, <scheduler.Combination instance at 0x1ad4a28>], [<scheduler.Combination instance at 0x1ae8a70>, <scheduler.Combination instance at 0x1ae8ab8>, <scheduler.Combination instance at 0x1ae8050>, <scheduler.Combination instance at 0x1ae8098>, <scheduler.Combination instance at 0x1ae8908>], [<scheduler.Combination instance at 0x1ae3368>, <scheduler.Combination instance at 0x1ae33f8>, <scheduler.Combination instance at 0x1ae3440>, <scheduler.Combination instance at 0x1ae31b8>, <scheduler.Combination instance at 0x1ae3290>, <scheduler.Combination instance at 0x1ae34d0>], [<scheduler.Combination instance at 0x1ae3320>, <scheduler.Combination instance at 0x1ae33b0>, <scheduler.Combination instance at 0x1ae3248>, <s
-2014-01-08T11:01:46.683346+00:00 app[worker.2]: cheduler.Combination instance at 0x1ae32d8>, <scheduler.Combination instance at 0x1ae38c0>, <scheduler.Combination instance at 0x1ae3710>]]
-2014-01-08T11:01:46.683346+00:00 app[worker.2]: 11:01:46 Result is kept for 500 seconds.
-2014-01-08T11:01:48.765967+00:00 app[worker.2]: 11:01:48 
-2014-01-08T11:01:48.803665+00:00 app[worker.2]: 11:01:48 *** Listening on high, default, low...
-2014-01-08T11:17:02.045092+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=9ms status=404 bytes=233
-2014-01-08T11:17:29+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-08T11:18:35.286408+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=404 bytes=233
-2014-01-08T11:18:42.361791+00:00 heroku[api]: Deploy 6cb0b2f by andygee@gmail.com
-2014-01-08T11:18:42.426004+00:00 heroku[api]: Release v130 created by andygee@gmail.com
-2014-01-08T11:18:42+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T11:18:42.700376+00:00 heroku[web.1]: State changed from up to starting
-2014-01-08T11:18:42.762462+00:00 heroku[worker.1]: State changed from up to starting
-2014-01-08T11:18:42.794085+00:00 heroku[worker.2]: State changed from up to starting
 2014-01-08T11:18:45.639896+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
 2014-01-08T11:18:46.078533+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
 2014-01-08T11:18:46.247355+00:00 app[worker.1]: 11:18:46 Warm shut down requested.
@@ -92,8 +21,7 @@
 2014-01-08T11:18:56.706711+00:00 app[web.1]: 2014-01-08 11:18:56 [7] [INFO] Booting worker with pid: 7
 2014-01-08T11:18:57.138983+00:00 heroku[web.1]: State changed from starting to up
 2014-01-08T11:18:58.503451+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-08T11:18:59.202755+00:00 heroku[worker.2]: State changed f
-rom starting to up
+2014-01-08T11:18:59.202755+00:00 heroku[worker.2]: State changed from starting to up
 2014-01-08T11:18:59.404866+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1149ms status=302 bytes=209
 2014-01-08T11:18:59.702578+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=25ms status=302 bytes=219
 2014-01-08T11:18:59.851078+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=38ms status=200 bytes=563
@@ -101,32 +29,143 @@ rom starting to up
 2014-01-08T11:19:00.874259+00:00 app[worker.2]: 11:19:00 
 2014-01-08T11:19:00.874710+00:00 app[worker.2]: 11:19:00 *** Listening on high, default, low...
 2014-01-08T11:19:08.153023+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T11:19:08.154135+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=16ms status=302 bytes=803
+2014-01-08T11:19:0
+8.154135+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=16ms status=302 bytes=803
 2014-01-08T11:19:08.868928+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/hD4sA-Db48BZol3IpNU4Gbr_x4tW.8sCQQSlnMxYZmmS0T3UFEsOwRCvjhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=359ms status=302 bytes=209
-2014-01-08T11:19:08.990967+00:00 app[web.1]: 2014-01-08 11:19:08 [7] [ERROR] Error handling request
 2014-01-08T11:19:08.990967+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T11:19:08.990967+00:00 app[web.1]: 2014-01-08 11:19:08 [7] [ERROR] Error handling request
 2014-01-08T11:19:08.990967+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-01-08T11:19:08.990967+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
 2014-01-08T11:19:08.990967+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-08T11:19:08.990967+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
 2014-01-08T11:19:08.990967+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
 2014-01-08T11:19:08.990967+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
 2014-01-08T11:19:08.990967+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
 2014-01-08T11:19:08.990967+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
 2014-01-08T11:19:08.990967+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
 2014-01-08T11:19:08.991154+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-08T11:19:08.987407+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=500 bytes=135
-2014-01-08T11:19:08.991154+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
 2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-08T11:19:08.991154+00:00 app[web.1]:     rv = self.handle_user_exception(e)
 2014-01-08T11:19:08.991154+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
 2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
 2014-01-08T11:19:08.991154+00:00 app[web.1]:     rv = self.dispatch_request()
 2014-01-08T11:19:08.991154+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2014-01-08T11:19:08.991154+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-01-08T11:19:08.991302+00:00 app[web.1]:   File "/app/rosterrun.py", line 129, in show_entries
 2014-01-08T11:19:08.991302+00:00 app[web.1]:     checkCalculation()
-2014-01-08T11:19:08.991302+00:00 app[web.1]:   File "/app/rosterrun.py", line 276, in checkCalculation
-2014-01-08T11:19:08.991302+00:00 app[web.1]:     if job is not None:
+2014-01-08T11:19:08.991302+00:00 app[web.1]:   File "/app/rosterrun.py",
+ line 276, in checkCalculation
+2014-01-08T11:19:08.991302+00:00 app[web.1]:   File "/app/rosterrun.py", line 129, in show_entries
 2014-01-08T11:19:08.991302+00:00 app[web.1]: NameError: global name 'job' is not defined
+2014-01-08T11:19:08.991302+00:00 app[web.1]:     if job is not None:
+2014-01-08T11:19:08.987407+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=500 bytes=135
+2014-01-08T11:20:23+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T11:20:26.754305+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=55ms status=404 bytes=233
+2014-01-08T11:21:27.368742+00:00 heroku[api]: Deploy f573fcd by andygee@gmail.com
+2014-01-08T11:21:27.411179+00:00 heroku[api]: Release v131 created by andygee@gmail.com
+2014-01-08T11:21:27+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T11:21:28.114139+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T11:21:28.171788+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-08T11:21:28.209391+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-08T11:21:31.467058+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-08T11:21:32.229181+00:00 app[worker.1]: 11:21:32 Warm shut down requested.
+2014-01-08T11:21:32.854776+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-08T11:21:33.442013+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-08T11:21:33.840319+00:00 app[web.1]: 2014-01-08 11:21:33 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T11:21:33.852580+00:00 app[web.1]: 2014-01-08 11:21:33 [2] [INFO] Handling signal: term
+2014-01-08T11:21:33.898099+00:00 app[web.1]: 2014-01-08 11:21:33 [2] [INFO] Shutting down: Master
+2014-01-08T11:21:34.699507+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-08T11:21:35.547163+00:00 app[worker.2]: 11:21:35 Warm shut down requested.
+2014-01-08T11:21:35.554702+00:00 heroku[web.1]: Process exited with status 0
+2014-01-08T11:21:37.288487+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-08T11:21:38.038234+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T11:21:38.537106+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-08T11:21:38.692055+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-08T11:21:39.004822+00:00 app[web.1]: 2014-01-08 11:21:39 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T11:21:39.005623+00:00 app[web.1]: 2014-01-08 11:21:39 [2] [INFO] Listening at: http://0.0.0.0:47654 (2)
+2014-01-08T11:21:39.005845+00:00 app[web.1]: 2014-01-08 11:21:39 [2] [INFO] Using worker: sync
+2014-01-08T11:21:39.015780+00:00 app[web.1]: 2014-01-08 11:21:39 [7] [INFO] Booting worker with pid: 7
+2014-01-08T11:21:39.205993+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-08T11:21:39.282676+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-08T11:21:39.656051+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T11:21:39.747917+00:00 app[worker.2]: 11:21:39 *** Listening on high, default, low...
+2014-01-08T11:21:39.745810+00:00 app[worker.2]: 11:21:39 RQ worker started, version 0.3.13
+2014-01-08T11:21:39.747687+00:00 app[worker.2]: 11:21:39 
+2014-01-08T11:21:39.900709+00:00 app[worker.1]: 11:21:39 RQ worker started, version 0.3.13
+2014-01-08T11:21:39.902790+00:00 app[worker.1]: 11:21:39 
+2014-01-08T11:21:39.902933+00:00 app[worker.1]: 11:21:39 *** Listening on high, default, low...
+2014-01-08T11:22:06.782968+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T11:22:06.782968+00:00 app[web.1]: show entries
+2014-01-08T11:22:06.782968+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T11:22:06.912655+00:00 app[web.1]: get all combinations
+2014-01-08T11:22:06.912655+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T11:22:06.955451+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=177ms status=200 bytes=16654
+2014-01-08T11:22:07.392725+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=32ms service=13ms status=200 bytes=1178
+2014-01-08T11:22:09.221629+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=5ms status=302 bytes=219
+2014-01-08T11:22:09.331649+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=29ms service=10ms status=200 bytes=563
+2014-01-08T11:22:12.834281+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T11:22:12.838307+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=9ms status=302 bytes=803
+2014-01-08T11:22:14.236839+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T11:22:14.236839+00:00 app[web.1]: show entries
+2014-01-08T11:22:14.236839+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T11:22:14.245849+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T11:22:14.245849+00:00 app[web.1]: get all combinations
+2014-01-08T11:22:24.684997+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T11:22:25.359005+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T11:22:25.359005+00:00 app[web.1]: ['Quest Status']
+2014-01-08T11:22:25.359005+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T11:22:25.785258+00:00 app[web.1]: 2014-01-08 11:22:25 [7] [ERROR] Error handling request
+2014-01-08T11:22:25.785258+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T11:22:25.785258+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-01-08T11:22:25.785258+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-01-08T11:22:25.785258+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-01-08T11:22:25.785258+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-01-08T11:22:25.785258+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-01-08T11:22:25.785258+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-01-08T11:22:25.785258+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-01-08T11:22:25.785258+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-08T11:22:25.785675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-01-08T11:22:25.785675+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-01-08T11:22:25.785675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-01-08T11:22:25.785675+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-08T11:22:25.785675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-01-08T11:22:25.785675+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-01-08T11:22:25.785675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-01-08T11:22:25.785675+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-01-08T11:22:25.785675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-01-08T11:22:25.785675+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-08T11:22:25.786024+00:00 app[web.1]:   File "/app/rosterrun.py", line 142, in show_entries
+2014-01-08T11:22:25.786024+00:00 app[web.1]:     run_calculation()
+2014-01-08T11:22:25.786024+00:00 app[web.1]:   File "/app/rosterrun.py", line 270, in run_calculation
+2014-01-08T11:22:25.786024+00:00 app[web.1]:     q.enqueue(checkCalculation, depends_on=job)
+2014-01-08T11:22:25.786024+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/queue.py", line 176, in enqueue
+2014-01-08T11:22:25.786024+00:00 app[web.1]:     timeout=timeout, result_ttl=result_ttl)
+2014-01-08T11:22:25.786024+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/queue.py", line 143, in enqueue_call
+2014-01-08T11:22:25.786024+00:00 app[web.1]:     return self.enqueue_job(job, timeout=timeout)
+2014-01-08T11:22:25.786024+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/queue.py", line 198, in enqueue_job
+2014-01-08T11:22:25.786024+00:00 app[web.1]:     job.save()
+2014-01-08T11:22:25.786876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 303, in save
+2014-01-08T11:22:25.786876+00:00 app[web.1]:     obj['data'] = dumps(self.job_tuple)
+2014-01-08T11:22:25.786876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/copy_reg.py", line 70, in _reduce_ex
+2014-01-08T11:22:25.786876+00:00 app[web.1]:     raise TypeError, "can't pickle %s objects" % base.__name__
+2014-01-08T11:22:25.786876+00:00 app[web.1]: TypeError: can't pickle instancemethod objects
+2014-01-08T11:22:25.876684+00:00 app[worker.2]: 11:22:25 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x22f9e50>, u'Quest Status') (72b41b72-854b-4152-a30d-b7d15afb5d88)
+2014-01-08T11:22:26.622102+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
+2014-01-08T11:22:26.622102+00:00 app[worker.2]: ['Quest Status']
+2014-01-08T11:22:26.622102+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T11:22:09.128299+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=12ms status=302 bytes=209
+2014-01-08T11:22:14.262790+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=26ms status=200 bytes=16654
+2014-01-08T11:22:25.793654+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1111ms status=500 bytes=135
+2014-01-08T11:23:38.045271+00:00 app[worker.2]: found 156 combinations
+2014-01-08T11:23:40.485160+00:00 app[worker.2]: found 1 
+2014-01-08T11:22:14.160930+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/wkVi2gwih1j9nbNCmy4ENfQjKFhI.0jde8F9_vyMWmmS0T3UFEsPu5zDjhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=910ms status=302 bytes=209
+2014-01-08T11:23:44.439942+00:00 app[worker.2]: found 36 combinations
+2014-01-08T11:23:44.491146+00:00 app[worker.2]: found 1 
+2014-01-08T11:24:03.030000+00:00 app[worker.2]: found 152 combinations
+2014-01-08T11:24:05.308751+00:00 app[worker.2]: found 2 
+2014-01-08T11:24:05.325739+00:00 app[worker.2]: 11:24:05 Job OK, result = [[<scheduler.Combination instance at 0x265d998>, <scheduler.Combination instance at 0x265dab8>, <scheduler.Combination instance at 0x265dfc8>, <scheduler.Combination instance at 0x265de60>, <scheduler.Combination instance at 0x265dd40>, <scheduler.Combination instance at 0x265df80>, <scheduler.Combination instance at 0x265d098>], [<scheduler.Combination instance at 0x265bf80>, <scheduler.Combination instance at 0x265b7a0>, <scheduler.Combination instance at 0x265b488>, <scheduler.Combination instance at 0x265b290>, <scheduler.Combination instance at 0x265b2d8>], [<scheduler.Combination instance at 0x2668dd0>, <scheduler.Combination instance at 0x2668e18>, <scheduler.Combination instance at 0x2668c20>, <scheduler.Combination instance at 0x2668d88>, <scheduler.Combination instance at 0x23f4368>, <scheduler.Combination instance at 0x23f4200>], [<scheduler.Combination instance at 0x23f43f8>, <scheduler.Combination instance at 0x23f4440>, <scheduler.Combination instance at 0x23f42d8>, <s
+2014-01-08T11:24:05.325739+00:00 app[worker.2]: cheduler.Combination instance at 0x23f43b0>, <scheduler.Combination instance at 0x23f4560>, <scheduler.Combination instance at 0x23f45a8>]]
+2014-01-08T11:24:05.325739+00:00 app[worker.2]: 11:24:05 Result is kept for 500 seconds.
+2014-01-08T11:24:05.360670+00:00 app[worker.2]: 11:24:05 
+2014-01-08T11:24:05.360851+00:00 app[worker.2]: 11:24:05 *** Listening on high, default, low...
 Terminate batch job (Y/N)? 

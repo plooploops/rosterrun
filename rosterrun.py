@@ -142,6 +142,8 @@ def show_entries():
       run_calculation()
     elif action == u"Reset":
       reset()
+    elif action == u"Refresh":
+      checkCalculation()
     else:
       print 'show entries'
     
@@ -267,14 +269,19 @@ def run_calculation():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
       job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
-      q.enqueue(checkCalculation, depends_on=job)
 
       checkCalculation()      
     #except:
     #  print 'error running calculation'
       return redirect(url_for('show_entries'))
-    
+
+@app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
   if job is not None:
     parties = job.result      
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
@@ -283,6 +290,7 @@ def checkCalculation():
      
     db.session.commit()
     flash('Calculation finished')
+  return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
 def reset():
