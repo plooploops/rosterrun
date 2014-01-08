@@ -285,7 +285,7 @@ def checkCalculation():
   if 'job' in session.keys():
     job = session['job']
     print 'Refreshing %s ' % job
-    if job is not None:
+    if job.result is not None:
       parties = job.result
       print parties
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
