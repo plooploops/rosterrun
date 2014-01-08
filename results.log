@@ -1,96 +1,3 @@
-2014-01-08T13:05:00.864672+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T13:05:00.864672+00:00 app[web.1]: show entries
-2014-01-08T13:05:00.893525+00:00 app[worker.1]: 13:05:00 RQ worker started, version 0.3.13
-2014-01-08T13:05:00.864672+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T13:05:00.907945+00:00 app[worker.1]: 13:05:00 
-2014-01-08T13:05:00.908196+00:00 app[worker.1]: 13:05:00 *** Listening on high, default, low...
-2014-01-08T13:05:01.028115+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T13:05:01.028115+00:00 app[web.1]: get all combinations
-2014-01-08T13:05:01.095619+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=235ms status=200 bytes=16670
-2014-01-08T13:05:01.380660+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=13ms status=200 bytes=1178
-2014-01-08T13:05:04.025735+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=4ms status=302 bytes=219
-2014-01-08T13:05:07.706476+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T13:05:07.711515+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=16ms service=31ms status=302 bytes=803
-2014-01-08T13:05:14.425467+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/ZM3RVW4je3Y2XDK0G1VJyAwHAetb.kvsknGiFrIoammS0T3UFEsMsWe3jhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6302ms status=302 bytes=209
-2014-01-08T13:05:14.521108+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T13:05:14.521108+00:00 app[web.1]: show entries
-2014-01-08T13:05:14.521108+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T13:05:14.534265+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T13:05:14.534265+00:00 app[web.1]: get all combinations
-2014-01-08T13:05:14.550282+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=30ms status=200 bytes=16719
-2014-01-08T13:05:23.602528+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T13:05:24.189220+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T13:05:24.189220+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T13:05:24.189220+00:00 app[web.1]: ['Quest Status']
-2014-01-08T13:05:24.607908+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=1017ms status=500 bytes=135
-2014-01-08T13:05:24.605867+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T13:05:24.605867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-01-08T13:05:24.605867+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-01-08T13:05:24.604199+00:00 app[web.1]: running calc 7d6a29c0-3db9-45ae-9bcd-6de7badbc608 
-2014-01-08T13:05:24.604261+00:00 app[web.1]: using job id 7d6a29c0-3db9-45ae-9bcd-6de7badbc608 
-2014-01-08T13:05:24.605867+00:00 app[web.1]: 2014-01-08 13:05:24 [7] [ERROR] Error handling request
-2014-01-08T13:05:24.605867+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-01-08T13:05:24.605867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-01-08T13:05:24.605867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-01-08T13:05:24.605867+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-01-08T13:05:24.605867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-01-08T13:05:24.605867+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-08T13:05:24.606069+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-01-08T13:05:24.606069+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-01-08T13:05:24.606069+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-01-08T13:05:24.606069+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-01-08T13:05:24.606069+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-08T13:05:24.606069+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-01-08T13:05:24.606069+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-01-08T13:05:24.606069+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-01-08T13:05:24.606272+00:00 app[web.1]:     checkCalculation()
-2014-01-08T13:05:24.606272+00:00 app[web.1]:   File "/app/rosterrun.py", line 288, in checkCalculation
-2014-01-08T13:05:24.606069+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-01-08T13:05:24.606069+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-01-08T13:05:24.606272+00:00 app[web.1]:   File "/app/rosterrun.py", line 141, in show_entries
-2014-01-08T13:05:24.606272+00:00 app[web.1]:     run_calculation()
-2014-01-08T13:05:24.606272+00:00 app[web.1]:   File "/app/rosterrun.py", line 273, in run_calculation
-2014-01-08T13:05:24.606272+00:00 app[web.1]:     currentjob = q.fetch_job(job_id)
-2014-01-08T13:05:24.606272+00:00 app[web.1]: AttributeError: 'Queue' object has no attribute 'fetch_job'
-2014-01-08T13:05:24.709178+00:00 app[worker.2]: 13:05:24 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x39cb710>, u'Quest Status') (7d6a29c0-3db9-45ae-9bcd-6de7badbc608)
-2014-01-08T13:05:25.739575+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
-2014-01-08T13:05:25.739575+00:00 app[worker.2]: ['Quest Status']
-2014-01-08T13:05:25.739575+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T13:05:28.009774+00:00 app[worker.2]: found 0 combinations
-2014-01-08T13:05:28.009774+00:00 app[worker.2]: found 0 
-2014-01-08T13:05:28.365007+00:00 app[worker.2]: found 0 combinations
-2014-01-08T13:05:28.365007+00:00 app[worker.2]: found 0 
-2014-01-08T13:05:29.093346+00:00 app[worker.2]: found 0 combinations
-2014-01-08T13:05:29.093346+00:00 app[worker.2]: found 0 
-2014-01-08T13:05:29.145368+00:00 app[worker.2]: 13:05:29 Job OK, result = []
-2014-01-08T13:05:29.145368+00:00 app[worker.2]: 13:05:29 Result is kept for 500 seconds.
-2014-01-08T13:05:29.226228+00:00 app[worker.2]: 13:05:29 
-2014-01-08T13:05:29.227999+00:00 app[worker.2]: 13:05:29 *** Listening on high, default, low...
-2014-01-08T13:04:41.683747+00:00 heroku[api]: Deploy 5826fc1 by andygee@gmail.com
-2014-01-08T13:04:41.714527+00:00 heroku[api]: Release v143 created by andygee@gmail.com
-2014-01-08T13:05:04.108784+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=7ms status=200 bytes=563
-2014-01-08T13:19:35+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-08T13:21:23.111205+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=8ms service=31ms status=404 bytes=233
-2014-01-08T13:23:15+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T13:23:15.694543+00:00 heroku[web.1]: State changed from up to starting
-2014-01-08T13:23:15.761103+00:00 heroku[worker.1]: State changed from up to starting
-2014-01-08T13:23:15.798800+00:00 heroku[worker.2]: State changed from up to starting
-2014-01-08T13:23:18.432195+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-01-08T13:23:19.019901+00:00 app[worker.1]: 13:23:19 Warm shut down requested.
-2014-01-08T13:23:19.127698+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-01-08T13:23:19.415647+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-08T13:23:19.796970+00:00 app[worker.2]: 13:23:19 Warm shut down requested.
-2014-01-08T13:23:20.150540+00:00 app[web.1]: 2014-01-08 13:23:20 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T13:23:20.150540+00:00 app[web.1]: 2014-01-08 13:23:20 [2] [INFO] Handling signal: term
-2014-01-08T13:23:20.176881+00:00 app[web.1]: 2014-01-08 13:23:20 [2] [INFO] Shutting down: Master
-2014-01-08T13:23:20.411514+00:00 heroku[worker.1]: Process exited with status 0
-2014-01-08T13:23:15.369611+00:00 heroku[api]: Deploy db5ab29 by andygee@gmail.com
-2014-01-08T13:23:15.398952+00:00 heroku[api]: Release v144 created by andygee@gmail.com
-2014-01-08T13:23:21.380117+00:00 heroku[worker.2]: Process exited with status 0
-2014-01-08T13:23:22.001116+00:00 heroku[web.1]: Process exited with status 0
-2014-01-08T13:23:27.258393+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-08T13:23:28.043872+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-08T13:23:28.285120+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
 2014-01-08T13:23:29.134540+00:00 app[worker.1]: 13:23:29 RQ worker started, version 0.3.13
 2014-01-08T13:23:29.137905+00:00 app[worker.1]: 13:23:29 *** Listening on high, default, low...
 2014-01-08T13:23:29.137477+00:00 app[worker.1]: 13:23:29 
@@ -99,9 +6,9 @@
 2014-01-08T13:23:29.502544+00:00 app[web.1]: 2014-01-08 13:23:29 [2] [INFO] Using worker: sync
 2014-01-08T13:23:29.525265+00:00 app[web.1]: 2014-01-08 13:23:29 [7] [INFO] Booting worker with pid: 7
 2014-01-08T13:23:29.632410+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T13:23:33.476120+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-08T13:23:33.476120+00:00 app[web.1]: cannot find gdoc name
 2014-01-08T13:23:33.476120+00:00 app[web.1]: show entries
-2014-01-08T13:23:33.476120+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-08T13:23:33.646480+00:00 app[web.1]: AVAILABLE PARTIES 0 
 2014-01-08T13:23:33.646928+00:00 app[web.1]: get all combinations
 2014-01-08T13:23:33.711077+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=240ms status=200 bytes=16670
@@ -120,9 +27,9 @@
 2014-01-08T13:23:40.860781+00:00 app[web.1]: cannot find gdoc name
 2014-01-08T13:23:40.860781+00:00 app[web.1]: show entries
 2014-01-08T13:23:40.860781+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T13:23:40.870582+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T13:23:40.870582+00:00 app[web.1]: get all combinations
 2014-01-08T13:23:40.881353+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=26ms status=200 bytes=16719
+2014-01-08T13:23:40.870582+00:00 app[web.1]: get all combinations
+2014-01-08T13:23:40.870582+00:00 app[web.1]: AVAILABLE PARTIES 0 
 2014-01-08T13:23:45.615998+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-08T13:23:45.833713+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-08T13:23:45.833713+00:00 app[web.1]: ['Quest Status']
@@ -144,28 +51,29 @@
 2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
 2014-01-08T13:23:45.996103+00:00 app[web.1]:     response = self.full_dispatch_request()
 2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-01-08T13:23:45.996103+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-01-08T13:23:45.99610
+3+00:00 app[web.1]:     rv = self.handle_user_exception(e)
 2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
 2014-01-08T13:23:45.996103+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
 2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
 2014-01-08T13:23:45.996103+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2014-01-08T13:23:45.996103+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-01-08T13:23:45.996103+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2014-01-08T13:23:45.996273+00:00 app[web.1]:   File "/app/rosterrun.py", line 141, in show_entries
 2014-01-08T13:23:45.996273+00:00 app[web.1]:     run_calculation()
-2014-01-08T13:23:45.996273+00:00 app[web.1]:   File "/app/rosterrun.py", line 273, in run_calculation
 2014-01-08T13:23:45.996273+00:00 app[web.1]:     checkCalculation()
 2014-01-08T13:23:45.996273+00:00 app[web.1]:   File "/app/rosterrun.py", line 292, in checkCalculation
+2014-01-08T13:23:45.996273+00:00 app[web.1]:   File "/app/rosterrun.py", line 273, in run_calculation
 2014-01-08T13:23:45.996273+00:00 app[web.1]:     currentjob = q.fetch_job(job_id)
 2014-01-08T13:23:45.996273+00:00 app[web.1]: AttributeError: 'Queue' object has no attribute 'fetch_job'
 2014-01-08T13:23:46.181223+00:00 app[worker.1]: 13:23:46 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3a2d710>, u'Quest Status') (6f4e7c54-45a1-4158-8254-cbd5db672bea)
 2014-01-08T13:23:46.874617+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T13:23:46.874669+00:00 app[worker.1]: ['Quest Status']
 2014-01-08T13:23:46.874669+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T13:23:46.874669+00:00 app[worker.1]: ['Quest Status']
 2014-01-08T13:23:49.100399+00:00 app[worker.1]: found 0 combinations
 2014-01-08T13:23:49.100489+00:00 app[worker.1]: found 0 
-2014-01-08T13:23:49.448595+00:00 app[worker.1]: found 0 combinations
 2014-01-08T13:23:49.448844+00:00 app[worker.1]: found 0 
+2014-01-08T13:23:49.448595+00:00 app[worker.1]: found 0 combinations
 2014-01-08T13:23:50.378383+00:00 app[worker.1]: found 0 combinations
 2014-01-08T13:23:50.378576+00:00 app[worker.1]: found 0 
 2014-01-08T13:23:50.390982+00:00 app[worker.1]: 13:23:50 Job OK, result = []
@@ -173,4 +81,119 @@
 2014-01-08T13:23:50.419136+00:00 app[worker.1]: 13:23:50 
 2014-01-08T13:23:50.419771+00:00 app[worker.1]: 13:23:50 *** Listening on high, default, low...
 2014-01-08T13:23:45.998108+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=392ms status=500 bytes=135
+2014-01-08T13:28:14+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T13:29:08.459658+00:00 heroku[api]: Deploy f24e158 by andygee@gmail.com
+2014-01-08T13:29:08+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T13:29:08.864231+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T13:29:08.624755+00:00 heroku[api]: Release v145 created by andygee@gmail.com
+2014-01-08T13:29:08.932320+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-08T13:29:08.974276+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-08T13:29:11.732945+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-08T13:29:12.331061+00:00 app[worker.2]: 13:29:12 Warm shut down requested.
+2014-01-08T13:29:12.732567+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-08T13:29:13.289275+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-08T13:29:13.503025+00:00 app[web.1]: 2014-01-08 13:29:13 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T13:29:13.538221+00:00 app[web.1]: 2014-01-08 13:29:13 [2] [INFO] Handling signal: term
+2014-01-08T13:29:13.553846+00:00 app[web.1]: 2014-01-08 13:29:13 [2] [INFO] Shutting down: Master
+2014-01-08T13:29:13.612295+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-08T13:29:14.198724+00:00 app[worker.1]: 13:29:14 Warm shut down requested.
+2014-01-08T13:29:14.902640+00:00 heroku[web.1]: Process exited with status 0
+2014-01-08T13:29:16.257755+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-08T13:29:20.694192+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-08T13:29:21.297947+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-08T13:29:21.758267+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-08T13:29:21.806733+00:00 app[worker.2]: 13:29:21 RQ worker started, version 0.3.13
+2014-01-08T13:29:21.808587+00:00 app[worker.2]: 13:29:21 
+2014-01-08T13:29:21.808661+00:00 app[worker.2]: 13:29:21 *** Listening on high, default, low...
+2014-01-08T13:29:22.362921+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-08T13:29:22.783050+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T13:29:23.468102+00:00 app[worker.1]: 13:29:23 RQ worker started, version 0.3.13
+2014-01-08T13:29:23.472451+00:00 app[worker.1]: 13:29:23 
+2014-01-08T13:29:23.472451+00:00 app[worker.1]: 13:29:23 *** Listening on high, default, low...
+2014-01-08T13:29:24.108483+00:00 app[web.1]: 2014-01-08 13:29:24 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T13:29:24.109335+00:00 app[web.1]: 2014-01-08 13:29:24 [2] [INFO] Listening at: http://0.0.0.0:16406 (2)
+2014-01-08T13:29:24.109542+00:00 app[web.1]: 2014-01-08 13:29:24 [2] [INFO] Using worker: sync
+2014-01-08T13:29:24.123418+00:00 app[web.1]: 2014-01-08 13:29:24 [7] [INFO] Booting worker with pid: 7
+2014-01-08T13:29:24.316255+00:00 app[web.1]: 2014-01-08 13:29:24 [7] [ERROR] Exception in worker process:
+2014-01-08T13:29:24.316255+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T13:29:24.316255+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T13:29:24.316255+00:00 app[web.1]:     worker.init_process()
+2014-01-08T13:29:24.316255+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T13:29:24.316255+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T13:29:24.316255+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T13:29:24.316255+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T13:29:24.316255+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T13:29:24.316255+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T13:29:24.316497+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T13:29:24.316497+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T13:29:24.316497+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T13:29:24.316497+00:00 app[web.1]:     __import__(module)
+2014-01-08T13:29:24.316497+00:00 app[web.1]:   File "/app/rosterrun.py", line 1, in <module>
+2014-01-08T13:29:24.316497+00:00 app[web.1]:     from rq import Queue, get_current_job, Job
+2014-01-08T13:29:24.316497+00:00 app[web.1]: ImportError: cannot import name Job
+2014-01-08T13:29:24.316497+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T13:29:24.316497+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T13:29:24.316497+00:00 app[web.1]:     worker.init_process()
+2014-01-08T13:29:24.316664+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T13:29:24.316664+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T13:29:24.316664+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T13:29:24.316664+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T13:29:24.316664+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T13:29:24.316664+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T13:29:24.316664+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T13:29:24.316664+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T13:29:24.316664+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T13:29:24.316664+00:00 app[web.1]:     __import__(module)
+2014-01-08T13:29:24.317178+00:00 app[web.1]:   File "/app/rosterrun.py", line 1, in <module>
+2014-01-08T13:29:24.317178+00:00 app[web.1]:     from rq import Queue, get_current_job, Job
+2014-01-08T13:29:24.317178+00:00 app[web.1]: ImportError: cannot import name Job
+2014-01-08T13:29:24.317915+00:00 app[web.1]: 2014-01-08 13:29:24 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T13:29:24.450225+00:00 app[web.1]: 2014-01-08 13:29:24 [2] [INFO] Shutting down: Master
+2014-01-08T13:29:24.450667+00:00 app[web.1]: 2014-01-08 13:29:24 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T13:29:25.877550+00:00 heroku[web.1]: Process exited with status 3
+2014-01-08T13:29:25.895868+00:00 heroku[web.1]: State changed from starting to crashed
+2014-01-08T13:29:25.897127+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-08T13:29:41.761190+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T13:29:43.631920+00:00 app[web.1]: 2014-01-08 13:29:43 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T13:29:43.632565+00:00 app[web.1]: 2014-01-08 13:29:43 [2] [INFO] Listening at: http://0.0.0.0:10505 (2)
+2014-01-08T13:29:43.632659+00:00 app[web.1]: 2014-01-08 13:29:43 [2] [INFO] Using worker: sync
+2014-01-08T13:29:43.664934+00:00 app[web.1]: 2014-01-08 13:29:43 [7] [INFO] Booting worker with pid: 7
+2014-01-08T13:29:43.941622+00:00 app[web.1]: 2014-01-08 13:29:43 [7] [ERROR] Exception in worker process:
+2014-01-08T13:29:43.941622+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T13:29:43.941622+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T13:29:43.941622+00:00 app[web.1]:     worker.init_process()
+2014-01-08T13:29:43.941622+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T13:29:43.941622+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T13:29:43.941622+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T13:29:43.941622+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T13:29:43.941622+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T13:29:43.941622+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T13:29:43.942015+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T13:29:43.942015+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T13:29:43.942015+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T13:29:43.942015+00:00 app[web.1]:     __import__(module)
+2014-01-08T13:29:43.942015+00:00 app[web.1]:   File "/app/rosterrun.py", line 1, in <module>
+2014-01-08T13:29:43.942015+00:00 app[web.1]:     from rq import Queue, get_current_job, Job
+2014-01-08T13:29:43.942015+00:00 app[web.1]: ImportError: cannot import name Job
+2014-01-08T13:29:43.942015+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T13:29:43.942015+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T13:29:43.942015+00:00 app[web.1]:     worker.init_process()
+2014-01-08T13:29:43.942191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T13:29:43.942191+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T13:29:43.942191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T13:29:43.942191+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T13:29:43.942191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T13:29:43.942191+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T13:29:43.942191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T13:29:43.942191+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T13:29:43.942191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T13:29:43.942662+00:00 app[web.1]:     __import__(module)
+2014-01-08T13:29:43.942662+00:00 app[web.1]:   File "/app/rosterrun.py", line 1, in <module>
+2014-01-08T13:29:43.942662+00:00 app[web.1]:     from rq import Queue, get_current_job, Job
+2014-01-08T13:29:43.942662+00:00 app[web.1]: ImportError: cannot import name Job
+2014-01-08T13:29:43.942662+00:00 app[web.1]: 2014-01-08 13:29:43 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T13:29:44.070407+00:00 app[web.1]: 2014-01-08 13:29:44 [2] [INFO] Shutting down: Master
+2014-01-08T13:29:44.070407+00:00 app[web.1]: 2014-01-08 13:29:44 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T13:29:45.905454+00:00 heroku[web.1]: State changed from starting to crashed
+2014-01-08T13:29:45.898752+00:00 heroku[web.1]: Process exited with status 3
 Terminate batch job (Y/N)? 

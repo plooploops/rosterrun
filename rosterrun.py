@@ -1,4 +1,5 @@
-from rq import Queue, get_current_job, Job
+from rq import Queue, get_current_job
+from rq.job import Job
 from worker import conn
 
 import os
@@ -235,7 +236,7 @@ def import_characters():
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
-    #try:
+    try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
@@ -271,9 +272,9 @@ def run_calculation():
       print 'running calc %s ' % calcjob.id
       session['job_id'] = calcjob.id
       checkCalculation()      
-    #except:
-    #  print 'error running calculation'
-      return redirect(url_for('show_entries'))
+    except:
+      print 'error running calculation'
+    return redirect(url_for('show_entries'))
 
 @app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
@@ -283,23 +284,26 @@ def checkCalculation():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  if 'job_id' in session.keys():
-    job_id = session['job_id']
-    print 'using job id %s ' % job_id
-    currentjob = Job()
-    currentjob = currentjob.fetch(job_id)
-    print 'found job %s ' % currentjob
-  
-    if currentjob is not None:
-      if currentjob.result is not None:
-        parties = currentjob.result
-        print parties
-        #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-        for i in range(0, len(parties) - 1):
-          [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+  try:
+    if 'job_id' in session.keys():
+      job_id = session['job_id']
+      print 'using job id %s ' % job_id
+      currentjob = Job()
+      currentjob = currentjob.fetch(job_id)
+      print 'found job %s ' % currentjob
+    
+      if currentjob is not None:
+        if currentjob.result is not None:
+          parties = currentjob.result
+          print parties
+          #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+          for i in range(0, len(parties) - 1):
+            [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
      
-        db.session.commit()
-        flash('Calculation finished')
+          db.session.commit()
+          flash('Calculation finished')
+  except:
+    print 'error trying to fetch job'
   return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
