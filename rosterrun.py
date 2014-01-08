@@ -1,4 +1,3 @@
-import requests
 from rq import Queue
 from worker import conn
 
