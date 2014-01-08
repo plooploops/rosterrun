@@ -1,25 +1,3 @@
-2014-01-08T05:52:10.860179+00:00 app[web.1]: 2014-01-08 05:52:10 [2] [INFO] Shutting down: Master
-2014-01-08T05:52:12.344009+00:00 heroku[web.1]: Process exited with status 0
-2014-01-08T05:52:14.726300+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=10ms service=32ms status=302 bytes=803
-2014-01-08T05:52:14.696996+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T05:52:15.410099+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/QmlqPrJa2DcVWXO3xGmRapnHpKQJ.4riH6NCP2gkTmmS0T3UFEsPUtdTghgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=8ms service=430ms status=302 bytes=209
-2014-01-08T05:52:15.499343+00:00 app[web.1]: show entries
-2014-01-08T05:52:15.499343+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T05:52:15.499343+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T05:52:15.555794+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T05:52:15.555794+00:00 app[web.1]: get all combinations
-2014-01-08T05:52:15.581559+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=15ms service=88ms status=200 bytes=16665
-2014-01-08T05:52:23.289051+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T05:52:23.600671+00:00 app[web.1]: ['Quest Status']
-2014-01-08T05:52:23.600717+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T05:52:23.600391+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T05:52:24.014470+00:00 app[web.1]: ['Quest Status']
-2014-01-08T05:52:24.013964+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T05:52:24.014642+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T05:52:24.234735+00:00 app[web.1]: error running calculation <type 'exceptions.NameError'>
-2014-01-08T05:52:24.235068+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T05:52:24.260091+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T05:52:24.260091+00:00 app[web.1]: get all combinations
 2014-01-08T05:52:24.278106+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1001ms status=200 bytes=16616
 2014-01-08T05:53:58.661161+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-08T05:53:58.973261+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
@@ -55,7 +33,8 @@
 2014-01-08T05:53:59.271531+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=618ms status=200 bytes=1106
 2014-01-08T05:57:41+00:00 heroku[slug-compiler]: Slug compilation started
 2014-01-08T05:59:00+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T05:59:00.937058+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T05:59:00.937058+00:
+00 heroku[web.1]: State changed from up to starting
 2014-01-08T05:59:03.818456+00:00 heroku[web.1]: Stopping all processes with SIGTERM
 2014-01-08T05:59:04.330845+00:00 app[web.1]: 2014-01-08 05:59:04 [7] [INFO] Worker exiting (pid: 7)
 2014-01-08T05:59:04.366681+00:00 app[web.1]: 2014-01-08 05:59:04 [2] [INFO] Shutting down: Master
@@ -99,4 +78,50 @@
 2014-01-08T05:59:28.380536+00:00 app[web.1]: get all combinations
 2014-01-08T05:59:28.408179+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=967ms status=200 bytes=32170
 2014-01-08T05:59:18.448825+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=6ms status=302 bytes=219
+2014-01-08T06:03:31+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T06:04:49.200293+00:00 heroku[api]: Deploy 79daaf4 by andygee@gmail.com
+2014-01-08T06:04:49.231381+00:00 heroku[api]: Release v99 created by andygee@gmail.com
+2014-01-08T06:04:49+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T06:04:49.687134+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T06:04:52.537299+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-08T06:04:53.235342+00:00 app[web.1]: 2014-01-08 06:04:53 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T06:04:53.235897+00:00 app[web.1]: 2014-01-08 06:04:53 [2] [INFO] Handling signal: term
+2014-01-08T06:04:53.247020+00:00 app[web.1]: 2014-01-08 06:04:53 [2] [INFO] Shutting down: Master
+2014-01-08T06:04:54.444689+00:00 heroku[web.1]: Process exited with status 0
+2014-01-08T06:04:59.914171+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T06:05:01.089937+00:00 app[web.1]: 2014-01-08 06:05:01 [2] [INFO] Listening at: http://0.0.0.0:25149 (2)
+2014-01-08T06:05:01.090166+00:00 app[web.1]: 2014-01-08 06:05:01 [2] [INFO] Using worker: sync
+2014-01-08T06:05:01.098443+00:00 app[web.1]: 2014-01-08 06:05:01 [7] [INFO] Booting worker with pid: 7
+2014-01-08T06:05:01.089207+00:00 app[web.1]: 2014-01-08 06:05:01 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T06:05:01.365772+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T06:05:05.539529+00:00 app[web.1]: show entries
+2014-01-08T06:05:05.539789+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T06:05:05.539529+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T06:05:05.716070+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T06:05:05.716267+00:00 app[web.1]: get all combinations
+2014-01-08T06:05:05.788051+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=245ms status=200 bytes=32170
+2014-01-08T06:05:49.302070+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=6ms service=20ms status=302 bytes=209
+2014-01-08T06:05:49.395848+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=8ms status=302 bytes=219
+2014-01-08T06:05:49.484385+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=200 bytes=563
+2014-01-08T06:05:52.953786+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=9ms status=302 bytes=803
+2014-01-08T06:05:52.947883+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T06:05:53.734955+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/2ictoGNn6rPnO6D9F9vHcu6fc792.cqhjMvEm_uYammS0T3UFEsN0r-3ghgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=378ms status=302 bytes=209
+2014-01-08T06:05:53.878721+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T06:05:53.878721+00:00 app[web.1]: show entries
+2014-01-08T06:05:53.878893+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T06:05:53.895126+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T06:05:53.895126+00:00 app[web.1]: get all combinations
+2014-01-08T06:05:59.220693+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T06:05:59.473776+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T06:05:59.473863+00:00 app[web.1]: ['Quest Status']
+2014-01-08T06:05:59.473863+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T06:06:00.052418+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T06:06:00.052418+00:00 app[web.1]: ['Quest Status']
+2014-01-08T06:06:00.052418+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T06:06:00.348909+00:00 app[web.1]: error running calculation <type 'exceptions.NameError'>
+2014-01-08T06:06:00.349268+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T06:06:00.365363+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T06:06:00.365363+00:00 app[web.1]: get all combinations
+2014-01-08T06:06:00.403546+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1187ms status=200 bytes=32170
+2014-01-08T06:05:53.926000+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=11ms service=65ms status=200 bytes=32219
 Terminate batch job (Y/N)? 

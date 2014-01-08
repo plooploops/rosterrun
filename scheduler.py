@@ -117,8 +117,13 @@ def run_scheduler_OAuth(credentials, doc):
     viablePartyIndex = 0
 
     docName = doc
+    print 'try to get data'
     initializeDataOAuth(credentials, docName, quests)
+    print 'done reading data'
+    print 'computing requirements'
     avChar = computeRequirements(characters, instance, quests)
+    print 'done computing requirements'
+    print 'adding by roles'
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
@@ -129,7 +134,7 @@ def run_scheduler_OAuth(credentials, doc):
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
     
     
-    #print parties
+    print parties
     return parties    
 
 def raw_test():
@@ -365,8 +370,8 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       validcombinations.append(chars)
     
-    print 'found %s ' % len(currentcombinations)
-    return currentcombinations
+    print 'found %s ' % len(validcombinations)
+    return validcombinations
 
 def accumulate(l):
     it = itertools.groupby(l, operator.itemgetter(0))
