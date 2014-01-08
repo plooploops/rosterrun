@@ -117,13 +117,8 @@ def run_scheduler_OAuth(credentials, doc):
     viablePartyIndex = 0
 
     docName = doc
-    print 'try to get data'
     initializeDataOAuth(credentials, docName, quests)
-    print 'done reading data'
-    print 'computing requirements'
     avChar = computeRequirements(characters, instance, quests)
-    print 'done computing requirements'
-    print 'adding by roles'
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
@@ -133,8 +128,6 @@ def run_scheduler_OAuth(credentials, doc):
     instance = niddhoggInstance
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
     
-    
-    print parties
     return parties    
 
 def raw_test():
@@ -278,7 +271,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     validcombinations = []
     
     successfulteam = len(instance.Roles)
-    print 'defining successful team as %s' % successfulteam
+    #print 'defining successful team as %s' % successfulteam
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     #print 'Available Characters', chars
@@ -288,7 +281,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     for comb in combinations(availableCharacters, len(instance.Roles)):                
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
       
-      print 'attempting combination', chars
+      #print 'attempting combination', chars
       #print 'number chars', len(chars)
       #checks for last run date and quest status already precomputed
 
