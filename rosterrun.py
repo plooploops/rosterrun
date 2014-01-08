@@ -1,4 +1,4 @@
-from rq import Queue
+from rq import Queue, get_current_job
 from worker import conn
 
 import os
@@ -268,7 +268,6 @@ def run_calculation():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
       job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
-      session['job'] = job
       print 'running calc %s ' % job.id
       checkCalculation()      
     #except:
@@ -282,9 +281,9 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  if 'job' in session.keys():
-    job = session['job']
-    print 'Refreshing %s ' % job
+  job = get_current_job()
+  print 'Refreshing %s ' % job
+  if job is not None:
     if job.result is not None:
       parties = job.result
       print parties
