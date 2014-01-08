@@ -281,17 +281,18 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  job = session['job']
-  print 'Refreshing %s ' % job
-  if job is not None:
-    parties = job.result
-    print parties
-    #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-    for i in range(0, len(parties) - 1):
-      [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+  if 'job' in session.keys():
+    job = session['job']
+    print 'Refreshing %s ' % job
+    if job is not None:
+      parties = job.result
+      print parties
+      #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+      for i in range(0, len(parties) - 1):
+        [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
      
-    db.session.commit()
-    flash('Calculation finished')
+      db.session.commit()
+      flash('Calculation finished')
   return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
