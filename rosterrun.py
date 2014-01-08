@@ -285,7 +285,7 @@ def checkCalculation():
   if 'job_id' in session.keys():
     job_id = session['job_id']
     print 'using job id %s ' % job_id
-    currentjob = Job.fetch(job_id, conn)
+    currentjob = job.fetch(job_id, conn)
     print 'found job %s ' % currentjob
   
     if currentjob is not None:
