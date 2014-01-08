@@ -180,7 +180,7 @@ def show_entries():
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
-    #try:
+    try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
@@ -226,7 +226,7 @@ def import_characters():
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
-    try:
+    #try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
