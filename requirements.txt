@@ -2,7 +2,7 @@ Flask==0.10.1
 Flask-SQLAlchemy==1.0
 Jinja2==2.7.1
 MarkupSafe==0.18
-PyYAML==3.10
+PyYAML==3.05
 SQLAlchemy==0.8.3
 Werkzeug==0.9.4
 django==1.6
@@ -22,6 +22,12 @@ psycopg2==2.5.1
 pulp==1.5.4
 pyamf==0.6.1
 pyparsing==1.5.7
+python-dateutil==2.2
+pytz==2013.9
+redis==2.9.0
+rq==0.3.13
+six==1.5.2
+times==0.6.2
 virtualenv==1.10.1
 webapp2==2.5.2
 webob==1.2.3

@@ -1,58 +1,3 @@
-2014-01-08T07:03:20.082680+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T07:03:20.082680+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T07:03:20.082680+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T07:03:20.082897+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T07:03:20.082897+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T07:03:20.082897+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T07:03:20.082897+00:00 app[web.1]:     __import__(module)
-2014-01-08T07:03:20.082897+00:00 app[web.1]:   File "/app/rosterrun.py", line 223
-2014-01-08T07:03:20.082897+00:00 app[web.1]:     except:
-2014-01-08T07:03:20.082897+00:00 app[web.1]:           ^
-2014-01-08T07:03:20.082897+00:00 app[web.1]: IndentationError: unindent does not match any outer indentation level
-2014-01-08T07:03:20.082897+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-08T07:03:20.083053+00:00 app[web.1]:     worker.init_process()
-2014-01-08T07:03:20.083053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-08T07:03:20.083053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-08T07:03:20.083053+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-08T07:03:20.083053+00:00 app[web.1]:     self.callable = self.load()
-2014-01-08T07:03:20.082897+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-08T07:03:20.083053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-08T07:03:20.083053+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-08T07:03:20.083053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-08T07:03:20.083053+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-08T07:03:20.083053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-08T07:03:20.083453+00:00 app[web.1]:     __import__(module)
-2014-01-08T07:03:20.083453+00:00 app[web.1]: IndentationError: unindent does not match any outer indentation level
-2014-01-08T07:03:20.083453+00:00 app[web.1]:   File "/app/rosterrun.py", line 223
-2014-01-08T07:03:20.083453+00:00 app[web.1]:     except:
-2014-01-08T07:03:20.083453+00:00 app[web.1]:           ^
-2014-01-08T07:03:20.086481+00:00 app[web.1]: 2014-01-08 07:03:20 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T07:03:20.330913+00:00 app[web.1]: 2014-01-08 07:03:20 [2] [INFO] Reason: Worker failed to boot.
-2014-01-08T07:03:20.330704+00:00 app[web.1]: 2014-01-08 07:03:20 [2] [INFO] Shutting down: Master
-2014-01-08T07:03:22.474565+00:00 heroku[web.1]: Process exited with status 3
-2014-01-08T07:03:22.479957+00:00 heroku[web.1]: State changed from starting to crashed
-2014-01-08T07:03:35.921299+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
-2014-01-08T07:06:35+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-08T07:07:38.730976+00:00 heroku[api]: Deploy 5ca613d by andygee@gmail.com
-2014-01-08T07:07:38.767471+00:00 heroku[api]: Release v109 created by andygee@gmail.com
-2014-01-08T07:07:38+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T07:07:39.597678+00:00 heroku[web.1]: State changed from crashed to starting
-2014-01-08T07:07:50.433323+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T07:07:51.563200+00:00 app[web.1]: 2014-01-08 07:07:51 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T07:07:51.563806+00:00 app[web.1]: 2014-01-08 07:07:51 [2] [INFO] Listening at: http://0.0.0.0:56981 (2)
-2014-01-08T07:07:51.563939+00:00 app[web.1]: 2014-01-08 07:07:51 [2] [INFO] Using worker: sync
-2014-01-08T07:07:51.571241+00:00 app[web.1]: 2014-01-08 07:07:51 [7] [INFO] Booting worker with pid: 7
-2014-01-08T07:07:51.770867+00:00 heroku[web.1]: State changed from starting to up
-2014-01-08T07:07:58.119526+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T07:07:58.119526+00:00 app[web.1]: show entries
-2014-01-08T07:07:58.119526+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T07:07:58.331325+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T07:07:58.331325+00:00 app[web.1]: get all combinations
-2014-01-08T07:07:58.366292+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=254ms status=200 bytes=1051
-2014-01-08T07:08:01.913475+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=14ms status=302 bytes=209
-2014-01-08T07:08:01.993938+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=5ms status=302 bytes=219
-2014-01-08T07:08:02.083047+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=11ms status=200 bytes=563
-2014-01-08T07:08:05.352032+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-08T07:08:05.367114+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=16ms status=302 bytes=803
 2014-01-08T07:08:06.380664+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/ClwMA7-2pzRzJLdyfyDv_R3ln854.0tBpVMcnIpYTmmS0T3UFEsMyl1_hhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=584ms status=302 bytes=209
 2014-01-08T07:08:06.463460+00:00 app[web.1]: show entries
@@ -96,7 +41,80 @@
 2014-01-08T07:08:15.103910+00:00 app[web.1]:     rv = self.dispatch_request()
 2014-01-08T07:08:15.103910+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
 2014-01-08T07:08:15.104082+00:00 app[web.1]:     maxmapping = [[0 for j in range(len(combinationMapping.keys()) + 1)] for i in range(len(combinationMapping.keys()))]
-2014-01-08T07:08:15.104082+00:00 app[web.1]: NameError: global name 'combinationMapping' is not defined
+2014-01-08T07:08:15.104082+00:00 app[web
+.1]: NameError: global name 'combinationMapping' is not defined
 2014-01-08T07:08:15.104082+00:00 app[web.1]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
 2014-01-08T07:08:15.104082+00:00 app[web.1]:   File "/app/scheduler.py", line 341, in combineByRoleAssignment
+2014-01-08T07:10:11+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-08T07:11:23.258810+00:00 heroku[api]: Deploy 5f73c69 by andygee@gmail.com
+2014-01-08T07:11:23.284616+00:00 heroku[api]: Release v110 created by andygee@gmail.com
+2014-01-08T07:11:23.536493+00:00 heroku[web.1]: State changed from up to starting
+2014-01-08T07:11:23+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-08T07:11:26.937402+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-08T07:11:27.504461+00:00 app[web.1]: 2014-01-08 07:11:27 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T07:11:27.505380+00:00 app[web.1]: 2014-01-08 07:11:27 [2] [INFO] Handling signal: term
+2014-01-08T07:11:27.520502+00:00 app[web.1]: 2014-01-08 07:11:27 [2] [INFO] Shutting down: Master
+2014-01-08T07:11:28.906756+00:00 heroku[web.1]: Process exited with status 0
+2014-01-08T07:11:37.508670+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T07:11:38.566960+00:00 app[web.1]: 2014-01-08 07:11:38 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T07:11:38.567505+00:00 app[web.1]: 2014-01-08 07:11:38 [2] [INFO] Listening at: http://0.0.0.0:26088 (2)
+2014-01-08T07:11:38.567593+00:00 app[web.1]: 2014-01-08 07:11:38 [2] [INFO] Using worker: sync
+2014-01-08T07:11:38.573544+00:00 app[web.1]: 2014-01-08 07:11:38 [7] [INFO] Booting worker with pid: 7
+2014-01-08T07:11:39.166362+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T07:16:06.164827+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T07:16:06.164827+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T07:16:06.164827+00:00 app[web.1]: show entries
+2014-01-08T07:16:06.338670+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=178ms status=200 bytes=1051
+2014-01-08T07:16:06.301565+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T07:16:06.301565+00:00 app[web.1]: get all combinations
+2014-01-08T07:16:10.755168+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=9ms service=23ms status=302 bytes=209
+2014-01-08T07:16:10.927918+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=9ms status=200 bytes=563
+2014-01-08T07:16:13.825024+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=803
+2014-01-08T07:16:13.821247+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T07:16:14.160255+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T07:16:14.163057+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=8ms status=302 bytes=803
+2014-01-08T07:16:14.870222+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/V4cVhq4DWuG4ECwb_8WE8rZSk9mu.4q63r0huFAgUmmS0T3UFEsOCgG7hhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=457ms status=302 bytes=209
+2014-01-08T07:16:14.961532+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=19ms status=200 bytes=1100
+2014-01-08T07:16:14.950147+00:00 app[web.1]: cannot find gdoc name
+2014-01-08T07:16:14.950147+00:00 app[web.1]: show entries
+2014-01-08T07:16:14.950147+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T07:16:14.957722+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T07:16:14.957722+00:00 app[web.1]: get all combinations
+2014-01-08T07:16:10.843715+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=6ms status=302 bytes=219
+2014-01-08T07:16:30.182146+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T07:16:30.465416+00:00 app[web.1]: trying to find the spreadshe
+et named Quest Status 
+2014-01-08T07:16:30.465508+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T07:16:30.465508+00:00 app[web.1]: ['Quest Status']
+2014-01-08T07:16:30.826507+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T07:16:30.826507+00:00 app[web.1]: ['Quest Status']
+2014-01-08T07:16:30.826507+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T07:16:31.103166+00:00 app[web.1]: FOUND 31 CHARS
+2014-01-08T07:16:31.171828+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-08T07:16:31.181370+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-08T07:16:31.181370+00:00 app[web.1]: get all combinations
+2014-01-08T07:16:31.196523+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=1026ms status=200 bytes=16662
+2014-01-08T07:16:35.427541+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-08T07:16:35.672210+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T07:16:35.672210+00:00 app[web.1]: ['Quest Status']
+2014-01-08T07:16:35.672210+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T07:16:36.042325+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-08T07:16:36.042325+00:00 app[web.1]: ['Quest Status']
+2014-01-08T07:16:36.042325+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-08T07:16:59.642879+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>, <scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>])]
+2014-01-08T07:16:59.678682+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>])]
+2014-01-08T07:16:59.747108+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>, <scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>])]
+2014-01-08T07:16:59.764963+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>])]
+2014-01-08T07:16:59.766618+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>])]
+2014-01-08T07:16:59.903702+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>])]
+2014-01-08T07:17:01.951750+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>, <scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>])]
+2014-01-08T07:17:02.169570+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>])]
+2014-01-08T07:17:02.589120+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>, <scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>])]
+2014-01-08T07:17:02.670251+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>])]
+2014-01-08T07:17:02.671928+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>])]
+2014-01-08T07:17:03.332625+00:00 app[web.1]: had an issue with finding bad dual clients [('Andy', [<scheduler.Role instance at 0x18baab8>, <scheduler.Role instance at 0x18baa28>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x18ba908>]), ('Mos', [<scheduler.Role instance at 0x18baf80>]), ('Joe', [<scheduler.Role instance at 0x16d5dd0>])]
+2014-01-08T07:17:05.887878+00:00 app[web.1]: 2014-01-08 07:17:05 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
+2014-01-08T07:17:05.904275+00:00 app[web.1]: 2014-01-08 07:17:05 [2] [CRITICAL] WORKER TIMEOUT (pid:7)
+2014-01-08T07:17:05.913535+00:00 app[web.1]: 2014-01-08 07:17:05 [12] [INFO] Booting worker with pid: 12
+2014-01-08T07:17:05.420349+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=30000ms status=503 bytes=0
 Terminate batch job (Y/N)? 

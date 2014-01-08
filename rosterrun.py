@@ -1,3 +1,7 @@
+import requests
+from rq import Queue
+from worker import conn
+
 import os
 from flask import Flask
 from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
@@ -50,6 +54,8 @@ app.config.from_object(__name__)
 #Heroku Postgres SQL url obtained when deployed
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+
+q = Queue(connection=conn)
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -258,7 +264,7 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      parties = run_scheduler_OAuth(credentials, session['doc'])
+      parties = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
       print 'FOUND %s PARTIES' % len(parties)
       #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
       for i in range(0, len(parties) - 1):
