@@ -1,149 +1,105 @@
-2014-01-08T08:16:20.034839+00:00 app[worker.1]: 08:16:20 
-2014-01-08T08:16:20.034922+00:00 app[worker.1]: 08:16:20 *** Listening on high, default, low...
-2014-01-08T08:16:20.033392+00:00 app[worker.1]: 08:16:20 RQ worker started, version 0.3.13
-2014-01-08T08:16:20.812705+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T08:16:21.629203+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-08T08:16:22.272083+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-08T08:16:22.891316+00:00 app[web.1]: 2014-01-08 08:16:22 [2] [INFO] Listening at: http://0.0.0.0:45761 (2)
-2014-01-08T08:16:22.890932+00:00 app[web.1]: 2014-01-08 08:16:22 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T08:16:22.891401+00:00 app[web.1]: 2014-01-08 08:16:22 [2] [INFO] Using worker: sync
-2014-01-08T08:16:22.897589+00:00 app[web.1]: 2014-01-08 08:16:22 [7] [INFO] Booting worker with pid: 7
-2014-01-08T08:16:23.591017+00:00 app[worker.2]: 08:16:23 RQ worker started, version 0.3.13
-2014-01-08T08:16:23.593001+00:00 app[worker.2]: 08:16:23 *** Listening on high, default, low...
-2014-01-08T08:16:23.592622+00:00 app[worker.2]: 08:16:23 
-2014-01-08T08:16:24.489792+00:00 heroku[web.1]: State changed from starting to up
-2014-01-08T08:16:49.807028+00:00 app[web.1]: show entries
-2014-01-08T08:16:49.807028+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T08:16:49.807028+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T08:16:49.942000+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T08:16:49.942000+00:00 app[web.1]: get all combinations
-2014-01-08T08:16:49.987923+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=184ms status=200 bytes=16616
-2014-01-08T08:16:54.390977+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=11ms status=302 bytes=209
-2014-01-08T08:16:54.476097+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=7ms status=302 bytes=219
-2014-01-08T08:16:54.564036+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=8ms status=200 bytes=563
-2014-01-08T08:16:58.025297+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T08:16:59.186362+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T08:16:59.186362+00:00 app[web.1]: show entries
-2014-01-08T08:16:59.186362+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T08:16:59.195428+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T08:16:59.195428+00:00 app[web.1]: get all combinations
-2014-01-08T08:17:03.629292+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T08:17:03.895073+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T08:17:03.895073+00:00 app[web.1]: ['Quest Status']
-2014-01-08T08:17:03.895073+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T08:17:04.151276+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T08:17:04.150596+00:00 app[web.1]: error running calculation
-2014-01-08T08:17:04.162760+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T08:17:04.162760+00:00 app[web.1]: get all combinations
-2014-01-08T08:17:04.180045+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=559ms status=200 bytes=16616
-2014-01-08T08:17:04.224842+00:00 app[worker.1]: 08:17:04 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x4230110>, u'Quest Status') (7df216b8-7732-447b-b743-ccc0d7ca382a)
-2014-01-08T08:17:05.199576+00:00 app[worker.1]: ['Quest Status']
-2014-01-08T08:17:05.199576+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T08:17:05.199576+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T08:17:07.357001+00:00 app[worker.1]: found 6435 combinations
-2014-01-08T08:16:58.017595+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=6ms status=302 bytes=803
-2014-01-08T08:16:59.206569+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=23ms status=200 bytes=16665
-2014-01-08T08:16:59.106162+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/SNWUoEHmglGRbcv44_41v_J5d744.0nnTyKcDWhoQmmS0T3UFEsPWtN3hhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=702ms status=302 bytes=209
-2014-01-08T08:16:09.196199+00:00 heroku[api]: Deploy d1646cf by andygee@gmail.com
-2014-01-08T08:16:09.218073+00:00 heroku[api]: Release v118 created by andygee@gmail.com
-2014-01-08T09:17:04.243986+00:00 app[worker.1]: Traceback (most recent call last):
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:     rv = job.perform()
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:   File "/app/scheduler.py", line 122, in run_scheduler_OAuth
-2014-01-08T09:17:04.243986+00:00 app[worker.1]: 09:17:04 JobTimeoutException: Job exceeded maximum timeout value (3600 seconds).
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 348, in perform
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:     self._result = self.func(*self.args, **self.kwargs)
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:   File "/app/scheduler.py", line 352, in combineByRoleAssignment
-2014-01-08T09:17:04.243986+00:00 app[worker.1]:     if combinationsMapping[comb] <= 0:
-2014-01-08T09:17:04.244185+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/timeouts.py", line 36, in handle_death_penalty
-2014-01-08T09:17:04.244185+00:00 app[worker.1]:     'value (%d seconds).' % self._timeout)
-2014-01-08T09:17:04.244185+00:00 app[worker.1]: JobTimeoutException: Job exceeded maximum timeout value (3600 seconds).
-2014-01-08T09:17:04.244185+00:00 app[worker.1]: 
-2014-01-08T09:17:04.244185+00:00 app[worker.1]: 09:17:04 Moving job to failed queue.
-2014-01-08T09:17:04.491782+00:00 app[worker.1]: 09:17:04 
-2014-01-08T09:17:04.491852+00:00 app[worker.1]: 09:17:04 *** Listening on high, default, low...
-2014-01-08T09:20:16.163078+00:00 heroku[web.1]: Idling
-2014-01-08T09:20:16.164752+00:00 heroku[web.1]: State changed from up to down
-2014-01-08T09:20:18.902648+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-08T09:20:19.514977+00:00 app[web.1]: 2014-01-08 09:20:19 [7] [INFO] Worker exiting (pid: 7)
-2014-01-08T09:20:19.517845+00:00 app[web.1]: 2014-01-08 09:20:19 [2] [INFO] Handling signal: term
-2014-01-08T09:20:19.530050+00:00 app[web.1]: 2014-01-08 09:20:19 [2] [INFO] Shutting down: Master
-2014-01-08T09:20:20.721163+00:00 heroku[web.1]: Process exited with status 0
-2014-01-08T09:31:55+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-08T09:32:52.325617+00:00 heroku[api]: Deploy 48d7a31 by andygee@gmail.com
-2014-01-08T09:32:52.354720+00:00 heroku[api]: Release v119 created by andygee@gmail.com
-2014-01-08T09:32:52+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-08T09:32:53.220626+00:00 heroku[web.1]: State changed from down to starting
-2014-01-08T09:32:53.274471+00:00 heroku[worker.2]: State changed from up to starting
-2014-01-08T09:32:53.326616+00:00 heroku[worker.1]: State changed from up to starting
-2014-01-08T09:32:55.634685+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-01-08T09:32:56.145761+00:00 app[worker.1]: 09:32:56 Warm shut down requested.
-2014-01-08T09:32:56.965184+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-01-08T09:32:57.343196+00:00 heroku[worker.1]: Process exited with status 0
-2014-01-08T09:32:57.701157+00:00 app[worker.2]: 09:32:57 Warm shut down requested.
-2014-01-08T09:32:59.221019+00:00 heroku[worker.2]: Process exited with status 0
-2014-01-08T09:33:05.342135+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-08T09:33:05.385637+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-08T09:33:05.917496+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-08T09:33:06.038699+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-08T09:33:06.494908+00:00 app[worker.1]: 09:33:06 *** Listening on high, default, low...
-2014-01-08T09:33:06.494787+00:00 app[worker.1]: 09:33:06 
-2014-01-08T09:33:06.492930+00:00 app[worker.1]: 09:33:06 RQ worker started, version 0.3.13
-2014-01-08T09:33:06.690142+00:00 app[worker.2]: 09:33:06 RQ worker started, version 0.3.13
-2014-01-08T09:33:06.698082+00:00 app[worker.2]: 09:33:06 
-2014-01-08T09:33:06.698716+00:00 app[worker.2]: 09:33:06 *** Listening on high, default, low...
-2014-01-08T09:33:07.380762+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-08T09:33:09.272701+00:00 app[web.1]: 2014-01-08 09:33:09 [2] [INFO] Starting gunicorn 18.0
-2014-01-08T09:33:09.273271+00:00 app[web.1]: 2014-01-08 09:33:09 [2] [INFO] Listening at: http://0.0.0.0:6937 (2)
-2014-01-08T09:33:09.273382+00:00 app[web.1]: 2014-01-08 09:33:09 [2] [INFO] Using worker: sync
-2014-01-08T09:33:09.880247+00:00 app[web.1]: 2014-01-08 09:33:09 [7] [INFO] Booting worker with pid: 7
-2014-01-08T09:33:09.876070+00:00 heroku[web.1]: State changed from starting to up
-2014-01-08T09:33:12.855897+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T09:33:12.855897+00:00 app[web.1]: show entries
-2014-01-08T09:33:12.856085+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:33:13.044619+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:33:13.044619+00:00 app[web.1]: get all combinations
-2014-01-08T09:33:13.127607+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=18ms service=675ms status=200 bytes=16616
-2014-01-08T09:33:15.642751+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=36ms status=302 bytes=209
-2014-01-08T09:33:15.748712+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=22ms status=302 bytes=219
-2014-01-08T09:33:15.843555+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=13ms status=200 bytes=563
-2014-01-08T09:33:21.759626+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:33:21.763299+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=9ms status=302 bytes=803
-2014-01-08T09:33:22.767544+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/XghV_WiM9Yy_-cQsRDpqlE3eamT1.wseNkxRLL7oVmmS0T3UFEsOul2nihgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=616ms status=302 bytes=209
-2014-01-08T09:33:22.904843+00:00 app[web.1]: cannot find gdoc name
-2014-01-08T09:33:22.904843+00:00 app[web.1]: show entries
-2014-01-08T09:33:22.904843+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:33:22.923191+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:33:22.923191+00:00 app[web.1]: get all combinations
-2014-01-08T09:33:22.945809+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=49ms status=200 bytes=16665
-2014-01-08T09:33:29.332296+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-08T09:33:31.665530+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T09:33:31.665530+00:00 app[web.1]: ['Quest Status']
-2014-01-08T09:33:31.665530+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T09:33:32.363394+00:00 app[web.1]: error running calculation
-2014-01-08T09:33:32.366842+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-08T09:33:32.435457+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-08T09:33:32.436908+00:00 app[web.1]: get all combinations
-2014-01-08T09:33:32.433132+00:00 app[worker.1]: 09:33:32 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x269e6d0>, u'Quest Status') (3ea38a16-f537-42e5-9958-50a2ce1a6084)
-2014-01-08T09:33:33.101608+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
-2014-01-08T09:33:33.101973+00:00 app[worker.1]: ['Quest Status']
-2014-01-08T09:33:33.101973+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-08T09:33:32.483621+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=3212ms status=200 bytes=16616
-2014-01-08T09:33:35.092627+00:00 app[worker.1]: found 0 combinations
-2014-01-08T09:33:35.120355+00:00 app[worker.1]: 09:33:35 ValueError: unsupported format character 'm' (0x6d) at index 8
-2014-01-08T09:33:35.120355+00:00 app[worker.1]: Traceback (most recent call last):
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:     rv = job.perform()
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 348, in perform
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:     self._result = self.func(*self.args, **self.kwargs)
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:   File "/app/scheduler.py", line 122, in run_scheduler_OAuth
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:   File "/app/scheduler.py", line 361, in combineByRoleAssignment
-2014-01-08T09:33:35.120355+00:00 app[worker.1]:     print 'found % mapping' % len(maxmapping)
-2014-01-08T09:33:35.120578+00:00 app[worker.1]: ValueError: unsupported format character 'm' (0x6d) at index 8
-2014-01-08T09:33:35.120578+00:00 app[worker.1]: 
-2014-01-08T09:33:35.121071+00:00 app[worker.1]: 09:33:35 Moving job to failed queue.
-2014-01-08T09:33:35.155152+00:00 app[worker.1]: 09:33:35 
-2014-01-08T09:33:35.155152+00:00 app[worker.1]: 09:33:35 *** Listening on high, default, low...
+2014-01-08T09:38:06.215073+00:00 app[web.1]: 2014-01-08 09:38:06 [2] [INFO] Using worker: sync
+2014-01-08T09:38:06.214355+00:00 app[web.1]: 2014-01-08 09:38:06 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T09:38:06.214999+00:00 app[web.1]: 2014-01-08 09:38:06 [2] [INFO] Listening at: http://0.0.0.0:34589 (2)
+2014-01-08T09:38:06.241159+00:00 app[web.1]: 2014-01-08 09:38:06 [7] [INFO] Booting worker with pid: 7
+2014-01-08T09:38:06.686349+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T09:38:07.139735+00:00 app[web.1]: 2014-01-08 09:38:07 [7] [ERROR] Exception in worker process:
+2014-01-08T09:38:07.139735+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T09:38:07.139735+00:00 app[web.1]:     worker.init_process()
+2014-01-08T09:38:07.139735+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T09:38:07.139735+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T09:38:07.139735+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T09:38:07.139735+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T09:38:07.139735+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T09:38:07.139735+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T09:38:07.139735+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T09:38:07.139956+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T09:38:07.139956+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T09:38:07.139956+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T09:38:07.139956+00:00 app[web.1]:     __import__(module)
+2014-01-08T09:38:07.139956+00:00 app[web.1]:   File "/app/rosterrun.py", line 6, in <module>
+2014-01-08T09:38:07.139956+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+2014-01-08T09:38:07.140115+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T09:38:07.139956+00:00 app[web.1]:   File "/app/scheduler.py", line 337
+2014-01-08T09:38:07.139956+00:00 app[web.1]:     combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v = successfulteam)
+2014-01-08T09:38:07.139956+00:00 app[web.1]:                                                                                          ^
+2014-01-08T09:38:07.139956+00:00 app[web.1]: SyntaxError: invalid syntax
+2014-01-08T09:38:07.140115+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T09:38:07.140115+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T09:38:07.140115+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T09:38:07.140115+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T09:38:07.140115+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T09:38:07.140115+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T09:38:07.140115+00:00 app[web.1]:     worker.init_process()
+2014-01-08T09:38:07.140115+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T09:38:07.140115+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T09:38:07.140543+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T09:38:07.140543+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T09:38:07.140543+00:00 app[web.1]:   File "/app/rosterrun.py", line 6, in <module>
+2014-01-08T09:38:07.140543+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+2014-01-08T09:38:07.140543+00:00 app[web.1]:   File "/app/scheduler.py", line 337
+2014-01-08T09:38:07.140543+00:00 app[web.1]:     combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v = successfulteam)
+2014-01-08T09:38:07.140543+00:00 app[web.1]:                                                                                          ^
+2014-01-08T09:38:07.140543+00:00 app[web.1]: SyntaxError: invalid syntax
+2014-01-08T09:38:07.140543+00:00 app[web.1]: 2014-01-08 09:38:07 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T09:38:07.278464+00:00 app[web.1]: 2014-01-08 09:38:07 [2] [INFO] Shutting down: Master
+2014-01-08T09:38:07.278590+00:00 app[web.1]: 2014-01-08 09:38:07 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T09:38:07.140543+00:00 app[web.1]:     __import__(module)
+2014-01-08T09:38:08.710641+00:00 heroku[web.1]: Process exited with status 3
+2014-01-08T09:38:08.728548+00:00 heroku[web.1]: State changed from up to crashed
+2014-01-08T09:38:08.729474+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-08T09:38:22.872318+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-08T09:38:24.651936+00:00 app[web.1]: 2014-01-08 09:38:24 [2] [INFO] Starting gunicorn 18.0
+2014-01-08T09:38:24.660873+00:00 app[web.1]: 2014-01-08 09:38:24 [2] [INFO] Listening at: http://0.0.0.0:14216 (2)
+2014-01-08T09:38:24.662829+00:00 app[web.1]: 2014-01-08 09:38:24 [2] [INFO] Using worker: sync
+2014-01-08T09:38:24.683174+00:00 app[web.1]: 2014-01-08 09:38:24 [7] [INFO] Booting worker with pid: 7
+2014-01-08T09:38:24.709581+00:00 heroku[web.1]: State changed from starting to up
+2014-01-08T09:38:25.343747+00:00 app[web.1]: 2014-01-08 09:38:25 [7] [ERROR] Exception in worker process:
+2014-01-08T09:38:25.343747+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T09:38:25.343747+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T09:38:25.343747+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T09:38:25.343747+00:00 app[web.1]:     worker.init_process()
+2014-01-08T09:38:25.343747+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T09:38:25.343953+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T09:38:25.343953+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T09:38:25.343747+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T09:38:25.343747+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T09:38:25.343953+00:00 app[web.1]:   File "/app/scheduler.py", line 337
+2014-01-08T09:38:25.343747+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T09:38:25.344137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-01-08T09:38:25.343953+00:00 app[web.1]:                                                                                          ^
+2014-01-08T09:38:25.343953+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+2014-01-08T09:38:25.344137+00:00 app[web.1]:     self.callable = self.load()
+2014-01-08T09:38:25.343953+00:00 app[web.1]: SyntaxError: invalid syntax
+2014-01-08T09:38:25.344597+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-01-08T09:38:25.343747+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T09:38:25.344137+00:00 app[web.1]:     worker.init_process()
+2014-01-08T09:38:25.343953+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T09:38:25.343953+00:00 app[web.1]:     __import__(module)
+2014-01-08T09:38:25.344137+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-01-08T09:38:25.344597+00:00 app[web.1]:     combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v = successfulteam)
+2014-01-08T09:38:25.344597+00:00 app[web.1]: SyntaxError: invalid syntax
+2014-01-08T09:38:25.344597+00:00 app[web.1]:   File "/app/scheduler.py", line 337
+2014-01-08T09:38:25.344597+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-01-08T09:38:25.344137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-01-08T09:38:25.344137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-01-08T09:38:25.343953+00:00 app[web.1]:   File "/app/rosterrun.py", line 6, in <module>
+2014-01-08T09:38:25.343953+00:00 app[web.1]:     combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v = successfulteam)
+2014-01-08T09:38:25.344597+00:00 app[web.1]:     from scheduler import run_scheduler_OAu
+th, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+2014-01-08T09:38:25.344597+00:00 app[web.1]:                                                                                          ^
+2014-01-08T09:38:25.344597+00:00 app[web.1]:   File "/app/rosterrun.py", line 6, in <module>
+2014-01-08T09:38:25.344137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-01-08T09:38:25.344137+00:00 app[web.1]: Traceback (most recent call last):
+2014-01-08T09:38:25.344597+00:00 app[web.1]: 2014-01-08 09:38:25 [7] [INFO] Worker exiting (pid: 7)
+2014-01-08T09:38:25.344137+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-01-08T09:38:25.344137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-01-08T09:38:25.344597+00:00 app[web.1]:     __import__(module)
+2014-01-08T09:38:25.469748+00:00 app[web.1]: 2014-01-08 09:38:25 [2] [INFO] Shutting down: Master
+2014-01-08T09:38:25.469748+00:00 app[web.1]: 2014-01-08 09:38:25 [2] [INFO] Reason: Worker failed to boot.
+2014-01-08T09:38:26.914971+00:00 heroku[web.1]: Process exited with status 3
+2014-01-08T09:38:26.928269+00:00 heroku[web.1]: State changed from up to crashed
+2014-01-08T09:38:59.593767+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
 Terminate batch job (Y/N)? 
+
+C:\Users\andy\Documents\GitHub\rosterrun>
