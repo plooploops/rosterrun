@@ -1,4 +1,3 @@
-import logging
 import os
 from flask import Flask
 from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
@@ -167,7 +166,7 @@ def show_entries():
         
         print 'now found available parties %s' % len(availableParties)  
     except:
-      logging.exception('issue finding the available parties')
+      print 'issue finding the available parties'
       resetLookupParameters()
       
     if len(availableParties) == 0:
@@ -222,12 +221,12 @@ def import_characters():
       db.session.commit()
       flash('Import finished')
     except:
-      logging.exception('error importing')
+      print 'error importing'
     return redirect(url_for('show_entries'))
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
-    try:
+    #try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
@@ -267,10 +266,10 @@ def run_calculation():
      
       db.session.commit()
       flash('Calculation finished')
-    except:
-      logging.exception('error running calculation')
-    return redirect(url_for('show_entries'))
-
+#    except:
+    #  print 'error running calculation'
+      return redirect(url_for('show_entries'))
+ 
 @app.route('/reset', methods=['POST'])
 def reset():
     try:
@@ -312,7 +311,7 @@ def reset():
     
       flash('Reset party combinations')
     except:
-      logging.exception('error reseting)
+      print 'error reseting
       
     return redirect(url_for('show_entries')) 
 
@@ -331,7 +330,7 @@ def oauth2callback():
         flash('You were logged in')
         return redirect(url_for('show_entries'))
     except: 
-      logging.exception('error with oauth2callback')
+      print 'error with oauth2callback'
  
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -370,7 +369,7 @@ def login():
 	      #
       return render_template('login.html', error=error)
     except:
-      logging.exception('error with login')
+      print 'error with login'
       return render_template('login.html', error='Please give permissions to log in')
 
 @app.route('/logout')
@@ -380,7 +379,7 @@ def logout():
       flash('You were logged out')
       return redirect(url_for('show_entries'))
     except:
-      logging.exception('error with logout')
+      print 'error with logout'
       return redirect(url_for('show_entries'))  
 
 def loginConfiguration(username, userid=1):
@@ -392,7 +391,7 @@ def loginConfiguration(username, userid=1):
     os.environ['AUTH_DOMAIN'] = 'testbed'
     os.environ['APPLICATION_ID'] = 'roster run'
   except:
-    logging.exception('error with login configuration')
+    print 'error with login configuration'
 
 if __name__ == "__main__":
   db.create_all()
