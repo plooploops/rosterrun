@@ -334,7 +334,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
       combinationsMapping[comb] = successfulteam
       viablePartyIndex += 1
     
-    combinationsMapping = dict((c, combinationsMapping[c]) for c in combinationsMapping if combinationsMapping[c] > 0)
+    combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v = successfulteam)
     
     print 'found %s combinations' % len(combinationsMapping)
     #run through combinations of players
@@ -358,7 +358,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
           [usedChars.append(c) for c in comb]
           currentcombinations.append(comb)
     
-    print 'found % mapping' % len(maxmapping)
+    print 'found %s mapping' % len(maxmapping)
     
     for comb in currentcombinations:
       viablePartyIndex += 1
