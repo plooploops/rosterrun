@@ -180,7 +180,7 @@ def show_entries():
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
-    try:
+    #try:
       if not session.get('logged_in'):
         #abort(401)
         flash('Please login again')
@@ -266,9 +266,9 @@ def run_calculation():
      
       db.session.commit()
       flash('Calculation finished')
-    except:
-      print 'error running calculation'
-    return redirect(url_for('show_entries'))
+    #except:
+    #  print 'error running calculation'
+      return redirect(url_for('show_entries'))
  
 @app.route('/reset', methods=['POST'])
 def reset():
