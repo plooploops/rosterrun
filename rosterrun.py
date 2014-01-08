@@ -267,7 +267,8 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
-      session['job'] = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      job = q.enqueue(run_scheduler_OAuth, credentials, session['doc'])
+      session['job'] = job
       print 'running calc %s ' % job.id
       checkCalculation()      
     #except:
