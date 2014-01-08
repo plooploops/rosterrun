@@ -1,4 +1,4 @@
-from rq import Queue, get_current_job
+from rq import Queue, get_current_job, Job
 from worker import conn
 
 import os
@@ -282,14 +282,12 @@ def checkCalculation():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+  
   if 'job_id' in session.keys():
-    job_ids = q.get_job_ids()
-    print job_ids
-    jobs = q.get_jobs()
-    print jobs
     job_id = session['job_id']
     print 'using job id %s ' % job_id
-    currentjob = q.fetch_job(job_id)
+    currentjob = Job()
+    currentjob = currentjob.fetch(job_id)
     print 'found job %s ' % currentjob
   
     if currentjob is not None:
