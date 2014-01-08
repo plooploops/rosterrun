@@ -332,7 +332,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         continue
  
       combinationsMapping[comb] = successfulteam
-      print 'found successful team %s ' % comb
+      print 'found successful team %s ' % viablePartyIndex
       viablePartyIndex += 1
     
     combinationsMapping = dict((k, v) for (k, v) in combinationsMapping.iteritems() if v == successfulteam)
