@@ -52,7 +52,7 @@ class Combination:
 #establish roles
 roleHealer = Role('Healer', ['High Priest', 'Priest'])
 roleKiller = Role('Killer', ['Creator'])
-roleSPKiller = Role('SPKiller', ['Champion', 'Sniper'])
+roleSPKiller = Role('SPKiller', ['Champion'])
 roleLurer = Role('Lurer', ['Lord Knight', 'Paladin', 'Whitesmith'])
 roleSupport = Role('Support', ['Bard', 'Clown'])
 roleSPBoost = Role('SPBoost', ['Dancer', 'Gypsy'])
