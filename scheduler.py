@@ -248,18 +248,18 @@ def computeRequirements(characters, instance, quests):
     print 'current time %s' % now
     #precompute requirements
     availableCharacters = []
-    print 'trying with characters %s ' % len(characters)
+    #print 'trying with characters %s ' % len(characters)
     presentCharacters = [c for c in characters if c.Present == True]
-    print 'cooldown %s ' % instance.Cooldown
-    print 'trying with present characters %s ' % len(presentCharacters)
+    #print 'cooldown %s ' % instance.Cooldown
+    #print 'trying with present characters %s ' % len(presentCharacters)
     enoughCooldown = [c for c in presentCharacters \
-                     if (now - c.LastRun >= timedelta (days = instance.Cooldown)]
-    print [c.Name for c in enoughCooldown]
-    print 'present chars with enough cooldown %s ' % len(enoughCooldown)
+                     if (now - c.LastRun) >= timedelta (days = instance.Cooldown)]
+    #print [c.Name for c in enoughCooldown]
+    #print 'present chars with enough cooldown %s ' % len(enoughCooldown)
 
     
     availableCharacters = [c for c in enoughCooldown if len(c.Quests) >= len(quests)]    
-    print 'remaining characters with enough quest, cooldown, and present %s ' % len(availableCharacters)
+    #print 'remaining characters with enough quest, cooldown, and present %s ' % len(availableCharacters)
     
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     print 'Available Characters', chars
