@@ -226,7 +226,7 @@ def initializeDataOAuth(credentials, docName, quests):
           try:
             dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
             if dt is not None:
-              dt = dt.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))
+              dt = dt.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New')).replace(tzinfo=None)
 	      charac.LastRun = dt
 	  except:
 	    print 'failed to convert: %s to date' % rowDictionary[key]
@@ -243,8 +243,7 @@ def initializeDataOAuth(credentials, docName, quests):
   #print chars
 
 def computeRequirements(characters, instance, quests):
-    servernow = datetime.now()
-    now = servernow.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))
+    now = datetime.now(pytz.timezone('US/Pacific-New')).replace(tzinfo=None)
     print 'current time %s' % now
     #precompute requirements
     availableCharacters = []
