@@ -1,32 +1,3 @@
-2014-01-09T02:26:48.183147+00:00 app[worker.1]: 02:26:48 
-2014-01-09T02:26:48.183218+00:00 app[worker.1]: 02:26:48 *** Listening on high, default, low...
-2014-01-09T02:26:48.901831+00:00 app[web.1]: 2014-01-09 02:26:48 [2] [INFO] Using worker: sync
-2014-01-09T02:26:48.901150+00:00 app[web.1]: 2014-01-09 02:26:48 [2] [INFO] Starting gunicorn 18.0
-2014-01-09T02:26:48.909989+00:00 app[web.1]: 2014-01-09 02:26:48 [7] [INFO] Booting worker with pid: 7
-2014-01-09T02:26:48.901771+00:00 app[web.1]: 2014-01-09 02:26:48 [2] [INFO] Listening at: http://0.0.0.0:23737 (2)
-2014-01-09T02:26:49.302995+00:00 app[web.1]: 2014-01-09 02:26:49 [7] [ERROR] Exception in worker process:
-2014-01-09T02:26:49.302995+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-09T02:26:49.302995+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
-2014-01-09T02:26:49.302995+00:00 app[web.1]:     worker.init_process()
-2014-01-09T02:26:49.302995+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
-2014-01-09T02:26:49.302995+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2014-01-09T02:26:49.302995+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
-2014-01-09T02:26:49.302995+00:00 app[web.1]:     self.callable = self.load()
-2014-01-09T02:26:49.302995+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
-2014-01-09T02:26:49.302995+00:00 app[web.1]:     return self.load_wsgiapp()
-2014-01-09T02:26:49.303268+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2014-01-09T02:26:49.303268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
-2014-01-09T02:26:49.303268+00:00 app[web.1]:     __import__(module)
-2014-01-09T02:26:49.303268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
-2014-01-09T02:26:49.303268+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
-2014-01-09T02:26:49.303268+00:00 app[web.1]:   File "/app/scheduler.py", line 338
-2014-01-09T02:26:49.303268+00:00 app[web.1]:     else:
-2014-01-09T02:26:49.303268+00:00 app[web.1]:        ^
-2014-01-09T02:26:49.303268+00:00 app[web.1]: SyntaxError: invalid syntax
-2014-01-09T02:26:49.303268+00:00 app[web.1]:   File "/app/rosterrun.py", line 7, in <module>
-2014-01-09T02:26:49.303494+00:00 app[web.1]: Traceback (most recent call last):
-2014-01-09T02:26:49.303494+00:00 app[web.1]:     worker.init_process()
-2014-01-09T02:26:49.303494+00:00 app[web.1]:     self.callable = self.load()
 2014-01-09T02:26:49.303494+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
 2014-01-09T02:26:49.304101+00:00 app[web.1]:     return util.import_app(self.app_uri)
 2014-01-09T02:26:49.303494+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
@@ -41,11 +12,11 @@
 2014-01-09T02:26:49.304101+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
 2014-01-09T02:26:49.304101+00:00 app[web.1]:   File "/app/scheduler.py", line 338
 2014-01-09T02:26:49.304101+00:00 app[web.1]:        ^
-2014-01-09T02:26:49.304101+00:00 app[web.1]: SyntaxError: invalid syntax
+2014-01-09T02:26:49.304101+00:00 app[web.1]: SyntaxError: invalid synta
+x
 2014-01-09T02:26:49.304101+00:00 app[web.1]:     else:
 2014-01-09T02:26:49.304101+00:00 app[web.1]: 2014-01-09 02:26:49 [7] [INFO] Worker exiting (pid: 7)
-2014-01-09T02:26:49.432519+00:00 app[web.1]: 2014-01-09 02:26:49 [2] [INFO] Sh
-utting down: Master
+2014-01-09T02:26:49.432519+00:00 app[web.1]: 2014-01-09 02:26:49 [2] [INFO] Shutting down: Master
 2014-01-09T02:26:49.432917+00:00 app[web.1]: 2014-01-09 02:26:49 [2] [INFO] Reason: Worker failed to boot.
 2014-01-09T02:26:50.600599+00:00 heroku[web.1]: Process exited with status 3
 2014-01-09T02:26:50.614023+00:00 heroku[web.1]: State changed from starting to crashed
@@ -73,7 +44,8 @@ utting down: Master
 2014-01-09T02:27:07.296233+00:00 app[web.1]:   File "/app/rosterrun.py", line 7, in <module>
 2014-01-09T02:27:07.296233+00:00 app[web.1]:   File "/app/scheduler.py", line 338
 2014-01-09T02:27:07.296233+00:00 app[web.1]:     else:
-2014-01-09T02:27:07.296233+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+2014-01-09T02:27:07.
+296233+00:00 app[web.1]:     from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
 2014-01-09T02:27:07.296233+00:00 app[web.1]:        ^
 2014-01-09T02:27:07.296233+00:00 app[web.1]: SyntaxError: invalid syntax
 2014-01-09T02:27:07.296424+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
@@ -104,6 +76,40 @@ utting down: Master
 2014-01-09T02:28:45.702265+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
 2014-01-09T02:26:47.385089+00:00 heroku[worker.1]: State changed from starting to up
 2014-01-09T02:28:46.175634+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:30:32+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-09T02:31:33.724159+00:00 heroku[api]: Deploy 3433991 by andygee@gmail.com
+2014-01-09T02:31:33.757963+00:00 heroku[api]: Release v155 created by andygee@gmail.com
+2014-01-09T02:31:33.970891+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-09T02:31:34.020430+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-09T02:31:33+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-09T02:31:34.059937+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-09T02:31:37.012437+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-09T02:31:37.132104+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-09T02:31:37.765799+00:00 app[worker.2]: 02:31:37 Warm shut down requested.
+2014-01-09T02:31:37.804517+00:00 app[worker.1]: 02:31:37 Warm shut down requested.
+2014-01-09T02:31:39.259470+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-09T02:31:39.348975+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-09T02:31:43.913182+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-09T02:31:44.535890+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-09T02:31:44.976910+00:00 app[worker.1]: 02:31:44 RQ worker started, version 0.3.13
+2014-01-09T02:31:44.978924+00:00 app[worker.1]: 02:31:44 *** Listening on high, default, low...
+2014-01-09T02:31:44.978837+00:00 app[worker.1]: 02:31:44 
+2014-01-09T02:31:46.305425+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-09T02:31:47.048444+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-09T02:31:47.178238+00:00 heroku[web.1]: State changed from starting to up
+2014-01-09T02:31:48.085363+00:00 app[worker.2]: 02:31:48 RQ worker started, version 0.3.13
+2014-01-09T02:31:48.087488+00:00 app[worker.2]: 02:31:48 *** Listening on high, default, low...
+2014-01-09T02:31:48.087258+00:00 app[worker.2]: 02:31:48 
+2014-01-09T02:31:48.832447+00:00 heroku[web.1]: State changed from up to crashed
+2014-01-09T02:33:12.013493+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:31:45.406076+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-09T02:31:46.819567+00:00 app[web.1]: 2014-01-09 02:31:46 [7] [INFO] Booting worker with pid: 7
+2014-01-09T02:31:47.564096+00:00 app[web.1]: 2014-01-09 02:31:47 [2] [INFO] Shutting down: Master
+2014-01-09T02:31:47.564306+00:00 app[web.1]: 2014-01-09 02:31:47 [2] [INFO] Reason: Worker failed to boot.
+2014-01-09T02:31:48.806572+00:00 heroku[web.1]: Process exited with status 3
+2014-01-09T02:33:09.685411+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:33:07.744924+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:37:29.437662+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:37:27.331509+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
+2014-01-09T02:37:30.439962+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno= connect= service= status=503 bytes=
 Terminate batch job (Y/N)? 
-
-C:\Users\andy\Documents\GitHub\rosterrun>
