@@ -242,14 +242,18 @@ def initializeDataOAuth(credentials, docName, quests):
 
 def computeRequirements(characters, instance, quests):
     now = datetime.now()
-
+    print 'current time %s' % now
     #precompute requirements
     availableCharacters = characters
     presentCharacters = [c for c in characters if c.Present == True]
     notEnoughCooldown = [c for c in presentCharacters if (now - c.LastRun) < timedelta (days = instance.Cooldown)]
+    print [c.Name for c in notEnoughCooldown]
     availableCharacters = [c for c in presentCharacters if not c in notEnoughCooldown]
     notEnoughQuest = [c for c in presentCharacters if len(c.Quests) < len(quests)]    
     availableCharacters = [c for c in availableCharacters if not c in notEnoughQuest]
+    
+    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
+    print 'Available Characters', chars
     
     return availableCharacters
     
@@ -263,7 +267,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     successfulteam = len(instance.Roles)
     now = datetime.now()
     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
-    #print 'Available Characters', chars
+    print 'Available Characters', chars
     
     for comb in combinations(availableCharacters, len(instance.Roles)):                
       chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
