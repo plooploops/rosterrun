@@ -288,7 +288,7 @@ def checkCalculation():
   if 'job_id' in session.keys():
     job_id = session['job_id']
     print 'using job id %s ' % job_id
-    currentjob = Job()
+    currentjob = Job(connection=conn)
     currentjob = currentjob.fetch(job_id)
     print 'found job %s ' % currentjob
     
