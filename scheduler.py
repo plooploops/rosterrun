@@ -278,7 +278,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     print 'Available Characters', chars
     
     for comb in combinations(availableCharacters, len(instance.Roles)):                
-      chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb]
+      #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name] for c in comb if c.Role is not None]
       
       #checks for last run date and quest status already precomputed
 
