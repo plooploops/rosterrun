@@ -226,6 +226,7 @@ def initializeDataOAuth(credentials, docName, quests):
           try:
             dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
             if dt is not None:
+              dt = dt.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))
 	      charac.LastRun = dt
 	  except:
 	    print 'failed to convert: %s to date' % rowDictionary[key]
@@ -252,7 +253,7 @@ def computeRequirements(characters, instance, quests):
     print 'cooldown %s ' % instance.Cooldown
     print 'trying with present characters %s ' % len(presentCharacters)
     enoughCooldown = [c for c in presentCharacters \
-                     if (now - c.LastRun.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))) >= timedelta (days = instance.Cooldown)]
+                     if (now - c.LastRun >= timedelta (days = instance.Cooldown)]
     print [c.Name for c in enoughCooldown]
     print 'present chars with enough cooldown %s ' % len(enoughCooldown)
 
