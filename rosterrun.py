@@ -289,7 +289,7 @@ def checkCalculation():
     job_id = session['job_id']
     print 'using job id %s ' % job_id
     currentjob = Job(connection=conn)
-    currentjob = currentjob.fetch(job_id)
+    currentjob = currentjob.fetch(job_id, connection=conn)
     print 'found job %s ' % currentjob
     
     if currentjob is not None:
