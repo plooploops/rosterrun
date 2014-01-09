@@ -74,7 +74,7 @@ niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewi
 niddhoggRolesMinSPKiller = [roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 niddhoggRolesSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleFreezer, roleSPActive]
 niddhoggRolesKiller = [roleHealer, roleHealer, roleKiller, roleSupport, roleFreezer]
-niddhoggRolesMinKiller = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer]
+niddhoggRolesMinKiller = [roleHealer, roleKiller, roleLurer, roleSupport]
 niddhoggRolesNoFreezeSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 
 characters = []
@@ -353,7 +353,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         comb = combinationsMapping.keys()[k]
         used = [c for c in comb if c in usedChars]
         if len(used) > 0:
-          print 'characters already exist in prior parties'
+          #print 'characters already exist in prior parties'
           maxmapping[j][k] = maxmapping[j - 1][k]
           continue
         if combinationsMapping[comb] <= 0:
