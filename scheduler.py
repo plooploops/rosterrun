@@ -251,7 +251,8 @@ def computeRequirements(characters, instance, quests):
     presentCharacters = [c for c in characters if c.Present == True]
     print 'cooldown %s ' % instance.Cooldown
     print 'trying with present characters %s ' % len(presentCharacters)
-    enoughCooldown = [c for c in presentCharacters if (now - c.LastRun) >= timedelta (days = instance.Cooldown)]
+    enoughCooldown = [c for c in presentCharacters \
+                     if (now - c.LastRun.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))) >= timedelta (days = instance.Cooldown)]
     print [c.Name for c in enoughCooldown]
     print 'present chars with enough cooldown %s ' % len(enoughCooldown)
 
