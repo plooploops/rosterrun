@@ -1,3 +1,4 @@
+import pytz
 import gdata.docs
 import gdata.docs.service
 import gdata.spreadsheet.service
@@ -241,7 +242,8 @@ def initializeDataOAuth(credentials, docName, quests):
   #print chars
 
 def computeRequirements(characters, instance, quests):
-    now = datetime.now()
+    servernow = datetime.now()
+    now = servernow.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New'))
     print 'current time %s' % now
     #precompute requirements
     availableCharacters = []

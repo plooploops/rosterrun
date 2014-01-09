@@ -271,7 +271,7 @@ def run_calculation():
       calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
       print 'running calc %s ' % calcjob.id
       session['job_id'] = calcjob.id
-      checkCalculation()      
+      
     except:
       print 'error running calculation'
     return redirect(url_for('show_entries'))
@@ -306,7 +306,7 @@ def checkCalculation():
             [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
        
           db.session.commit()
-          flash('Calculation finished')
+          
   
     print 'error trying to fetch job'
   except:
