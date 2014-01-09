@@ -226,7 +226,7 @@ def initializeDataOAuth(credentials, docName, quests):
           try:
             dt = datetime.strptime(str(rowDictionary[key]), '%m/%d/%Y')
             if dt is not None:
-              dt = dt.replace(tzinfo=pytz.utc).astimezone(pytz.timezone('US/Pacific-New')).replace(tzinfo=None)
+              dt = dt.replace(tzinfo=None)
 	      charac.LastRun = dt
 	  except:
 	    print 'failed to convert: %s to date' % rowDictionary[key]
