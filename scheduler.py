@@ -332,13 +332,12 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
           continue
         if combinationsMapping[comb] <= 0:
           maxmapping[j][k] = maxmapping[j - 1][k]
+        elif(maxmapping[j - 1][k] > combinationsMapping[comb] + maxmapping[j][k - 1]):
+          maxmapping[j][k] = max(maxmapping[j - 1][k]
         else:
-          if(maxmapping[j - 1][k] > combinationsMapping[comb] + maxmapping[j][k - 1]):
-            maxmapping[j][k] = max(maxmapping[j - 1][k]
-          else:
-            maxmapping[j][k] = combinationsMapping[comb] + maxmapping[j][k - 1]
-            [usedChars.append(c) for c in comb]
-            currentcombinations.append(comb)
+          maxmapping[j][k] = combinationsMapping[comb] + maxmapping[j][k - 1]
+          [usedChars.append(c) for c in comb]
+          currentcombinations.append(comb)
     
     for comb in currentcombinations:
       viablePartyIndex += 1
