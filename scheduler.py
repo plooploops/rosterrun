@@ -274,7 +274,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     
     successfulteam = len(instance.Roles)
     now = datetime.now()
-    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
+    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters if c.Role is not None]
     print 'Available Characters', chars
     
     for comb in combinations(availableCharacters, len(instance.Roles)):                
