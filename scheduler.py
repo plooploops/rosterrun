@@ -259,8 +259,8 @@ def computeRequirements(characters, instance, quests):
     
     availableCharacters = [c for c in enoughCooldown if len(c.Quests) >= len(quests)]    
     #print 'remaining characters with enough quest, cooldown, and present %s ' % len(availableCharacters)
-    
-    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters if c.Role is not None]
+    availableCharacters = [c for c in availableCharacters if c.Role is not None]
+    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     print 'Available Characters', chars
     
     return availableCharacters
@@ -274,7 +274,7 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
     
     successfulteam = len(instance.Roles)
     now = datetime.now()
-    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters if c.Role is not None]
+    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
     print 'Available Characters', chars
     
     for comb in combinations(availableCharacters, len(instance.Roles)):                
