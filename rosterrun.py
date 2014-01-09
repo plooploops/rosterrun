@@ -284,26 +284,26 @@ def checkCalculation():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  try:
-    if 'job_id' in session.keys():
-      job_id = session['job_id']
-      print 'using job id %s ' % job_id
-      currentjob = Job()
-      currentjob = currentjob.fetch(job_id)
-      print 'found job %s ' % currentjob
+  
+  if 'job_id' in session.keys():
+    job_id = session['job_id']
+    print 'using job id %s ' % job_id
+    currentjob = Job()
+    currentjob = currentjob.fetch(job_id)
+    print 'found job %s ' % currentjob
     
-      if currentjob is not None:
-        if currentjob.result is not None:
-          parties = currentjob.result
-          print parties
-          #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-          for i in range(0, len(parties) - 1):
-            [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
+    if currentjob is not None:
+      if currentjob.result is not None:
+        parties = currentjob.result
+        print parties
+        #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+        for i in range(0, len(parties) - 1):
+          [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
      
-          db.session.commit()
-          flash('Calculation finished')
-  except:
-    print 'error trying to fetch job'
+        db.session.commit()
+        flash('Calculation finished')
+  
+  print 'error trying to fetch job'
   return redirect(url_for('show_entries'))
 
 @app.route('/reset', methods=['POST'])
