@@ -119,14 +119,17 @@ def run_scheduler_OAuth(credentials, doc):
     docName = doc
     initializeDataOAuth(credentials, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
+    print 'viable party index %s ' % viablePartyIndex
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
+    print 'viable party index %s ' % viablePartyIndex
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
-    
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'No SP Killer') 
+    print 'viable party index %s ' % viablePartyIndex
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
     instance = niddhoggInstance
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'No Freezer SP Killer') 
+    print 'viable party index %s ' % viablePartyIndex
     
     return parties    
 
@@ -253,7 +256,7 @@ def computeRequirements(characters, instance, quests):
     
     return availableCharacters
     
-def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIndex):
+def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIndex, partyTypeName):
     if (len(instance.Roles) > len(availableCharacters)):
 	return []
 
@@ -324,18 +327,22 @@ def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIn
         comb = combinationsMapping.keys()[k]
         used = [c for c in comb if c in usedChars]
         if len(used) > 0:
+          print 'characters already exists in prior parties'
           maxmapping[j][k] = maxmapping[j - 1][k]
           continue
         if combinationsMapping[comb] <= 0:
           maxmapping[j][k] = maxmapping[j - 1][k]
         else:
-          maxmapping[j][k] = max(maxmapping[j - 1][k], combinationsMapping[comb] + maxmapping[j][k - 1])
-          [usedChars.append(c) for c in comb]
-          currentcombinations.append(comb)
+          if(maxmapping[j - 1][k] > combinationsMapping[comb] + maxmapping[j][k - 1]):
+            maxmapping[j][k] = max(maxmapping[j - 1][k]
+          else:
+            maxmapping[j][k] = combinationsMapping[comb] + maxmapping[j][k - 1]
+            [usedChars.append(c) for c in comb]
+            currentcombinations.append(comb)
     
     for comb in currentcombinations:
       viablePartyIndex += 1
-      chars = [Combination(viablePartyIndex, instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
+      chars = [Combination(viablePartyIndex, partyTypeName + ' ' + instance.Name, c.PlayerName, c.Name, c.Class, c.Role.Name) for c in comb]
       validcombinations.append(chars)
     
     print 'found %s ' % len(validcombinations)
