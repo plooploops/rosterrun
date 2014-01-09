@@ -296,6 +296,11 @@ def checkCalculation():
         if currentjob.result is not None:
           parties = currentjob.result
           print parties
+          
+          cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+	         
+	  [db.session.delete(c) for c in cur]  
+          db.session.commit()
           #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
           for i in range(0, len(parties) - 1):
             [db.session.add(PartyCombo(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.PartyIndex), str(c.InstanceName), str(c.PlayerName), str(c.CharacterName), str(c.CharacterClass), str(c.RoleName))) for c in parties[i]]
