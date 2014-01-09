@@ -71,8 +71,10 @@ roleFreezer.CanDualClientRole = [roleSupport, roleSPBoost]
 
 AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive]
 niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
+niddhoggRolesMinSPKiller = [roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 niddhoggRolesSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleFreezer, roleSPActive]
 niddhoggRolesKiller = [roleHealer, roleHealer, roleKiller, roleSupport, roleFreezer]
+niddhoggRolesMinKiller = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer]
 niddhoggRolesNoFreezeSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 
 characters = []
@@ -98,15 +100,22 @@ def run_scheduler(user, pw, doc):
     docName = doc
     initializeData(userName, password, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex)
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
     instance = niddhoggInstance
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
-
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'No SP Killer') 
+    
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
     instance = niddhoggInstance
-    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex) 
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer No Freezer') 
     
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
     #print parties
     return parties    
 
@@ -128,6 +137,14 @@ def run_scheduler_OAuth(credentials, doc):
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
     instance = niddhoggInstance
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
     
     return parties    
 
