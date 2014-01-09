@@ -1,146 +1,18 @@
-2014-01-09T04:22:10.394764+00:00 app[web.1]: 2014-01-09 04:22:10 [2] [INFO] Using worker: sync
-2014-01-09T04:22:10.402874+00:00 app[web.1]: 2014-01-09 04:22:10 [7] [INFO] Booting worker with pid: 7
-2014-01-09T04:22:10.974356+00:00 heroku[web.1]: State changed from starting to up
-2014-01-09T04:22:11.136642+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-09T04:22:11.679380+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-09T04:22:12.243517+00:00 app[worker.2]: 04:22:12 RQ worker started, version 0.3.13
-2014-01-09T04:22:12.245406+00:00 app[worker.2]: 04:22:12 
-2014-01-09T04:22:12.245589+00:00 app[worker.2]: 04:22:12 *** Listening on high, default, low...
-2014-01-09T04:22:12.358643+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-09T04:22:12.917590+00:00 app[worker.1]: 04:22:12 RQ worker started, version 0.3.13
-2014-01-09T04:22:12.919264+00:00 app[worker.1]: 04:22:12 *** Listening on high, default, low...
-2014-01-09T04:22:12.919175+00:00 app[worker.1]: 04:22:12 
-2014-01-09T04:22:17.199562+00:00 app[web.1]: using job id 9feaf291-9164-4e0b-ac99-09a9da2780dc 
-2014-01-09T04:22:17.222716+00:00 app[web.1]: show entries
-2014-01-09T04:22:17.221326+00:00 app[web.1]: found job <Job 9feaf291-9164-4e0b-ac99-09a9da2780dc: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x2414e90>, u'Quest Status')> 
-2014-01-09T04:22:17.222097+00:00 app[web.1]: error trying to fetch job
-2014-01-09T04:22:17.222716+00:00 app[web.1]: cannot find gdoc name
-2014-01-09T04:22:17.222716+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-09T04:22:17.371524+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-09T04:22:17.371524+00:00 app[web.1]: get all combinations
-2014-01-09T04:22:20.903332+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=14ms status=302 bytes=209
-2014-01-09T04:22:21.015098+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=7ms status=302 bytes=219
-2014-01-09T04:22:21.119318+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=200 bytes=563
-2014-01-09T04:22:25.157509+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-09T04:22:25.158259+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=5ms status=302 bytes=803
-2014-01-09T04:22:26.239897+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/6JMnNdyIIpusi-34lxr3ubbrAEQV.Qm8eIE_apc0ZmmS0T3UFEsM-9XzqhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=663ms status=302 bytes=209
-2014-01-09T04:22:26.383983+00:00 app[web.1]: using job id 9feaf291-9164-4e0b-ac99-09a9da2780dc 
-2014-01-09T04:22:26.387317+00:00 app[web.1]: found job <Job 9feaf291-9164-4e0b-ac99-09a9da2780dc: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x2414e90>, u'Quest Status')> 
-2014-01-09T04:22:26.390101+00:00 app[web.1]: error trying to fetch job
-2014-01-09T04:22:26.390101+00:00 app[web.1]: cannot find gdoc name
-2014-01-09T04:22:26.390101+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-09T04:22:26.390101+00:00 app[web.1]: show entries
-2014-01-09T04:22:26.404825+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-09T04:22:26.404825+00:00 app[web.1]: get all combinations
-2014-01-09T04:22:33.038438+00:00 app[web.1]: found job <Job 9feaf291-9164-4e0b-ac99-09a9da2780dc: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x2414e90>, u'Quest Status')> 
-2014-01-09T04:22:33.036245+00:00 app[web.1]: using job id 9feaf291-9164-4e0b-ac99-09a9da2780dc 
-2014-01-09T04:22:33.039228+00:00 app[web.1]: error trying to fetch job
-2014-01-09T04:22:33.047982+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-09T04:22:33.638914+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-09T04:22:33.638914+00:00 app[web.1]: ['Quest Status']
-2014-01-09T04:22:33.638914+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-09T04:22:34.137022+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-09T04:22:34.136675+00:00 app[web.1]: running calc 8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c 
-2014-01-09T04:22:34.146516+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-09T04:22:34.146516+00:00 app[web.1]: get all combinations
-2014-01-09T04:22:34.157348+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=1125ms status=200 bytes=1217
-2014-01-09T04:22:34.211322+00:00 app[worker.2]: 04:22:34 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x37a3810>, u'Quest Status') (8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c)
-2014-01-09T04:22:35.170572+00:00 app[worker.2]: ['Quest Status']
-2014-01-09T04:22:35.170572+00:00 app[worker.2]: t0r5xf97B-k70k6TxherGcw
-2014-01-09T04:22:35.170465+00:00 app[worker.2]: trying to find the spreadsheet named Quest Status 
-2014-01-09T04:22:36.141615+00:00 app[worker.2]: current time 2014-01-08 20:22:36.141395-08:00
-2014-01-09T04:22:36.152638+00:00 app[worker.2]: 04:22:36 TypeError: can't subtract offset-naive and offset-aware datetimes
-2014-01-09T04:22:36.152638+00:00 app[worker.2]: Traceback (most recent call last):
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:     rv = job.perform()
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 348, in perform
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:     self._result = self.func(*self.args, **self.kwargs)
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:   File "/app/scheduler.py", line 122, in run_scheduler_OAuth
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:     avChar = computeRequirements(characters, instance, quests)
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:   File "/app/scheduler.py", line 256, in computeRequirements
-2014-01-09T04:22:36.152638+00:00 app[worker.2]:     if (now - c.LastRun) >= timedelta (days = instance.Cooldown)]
-2014-01-09T04:22:36.152817+00:00 app[worker.2]: 
-2014-01-09T04:22:36.152817+00:00 app[worker.2]: TypeError: can't subtract offset-naive and offset-aware datetimes
-2014-01-09T04:22:36.152817+00:00 app[worker.2]: 04:22:36 Moving job to failed queue.
-2014-01-09T04:22:36.170996+00:00 app[worker.2]: 04:22:36 
-2014-01-09T04:22:36.171114+00:00 app[worker.2]: 04:22:36 *** Listening on high, default, low...
-2014-01-09T04:22:26.410200+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=37ms status=200 bytes=1216
-2014-01-09T04:22:11.780238+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-09T04:22:17.402748+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=212ms status=200 bytes=1167
-2014-01-09T04:30:41+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-09T04:33:04.207283+00:00 heroku[web.1]: State changed from up to starting
-2014-01-09T04:33:04+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-01-09T04:33:04.310450+00:00 heroku[worker.1]: State changed from up to starting
-2014-01-09T04:33:04.350838+00:00 heroku[worker.2]: State changed from up to starting
-2014-01-09T04:33:06.688795+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-01-09T04:33:06.963671+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-09T04:33:07.181431+00:00 app[worker.1]: 04:33:07 Warm shut down requested.
-2014-01-09T04:33:07.170342+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-01-09T04:33:07.540605+00:00 app[web.1]: 2014-01-09 04:33:07 [2] [INFO] Handling signal: term
-2014-01-09T04:33:07.540605+00:00 app[web.1]: 2014-01-09 04:33:07 [7] [INFO] Worker exiting (pid: 7)
-2014-01-09T04:33:07.558778+00:00 app[web.1]: 2014-01-09 04:33:07 [2] [INFO] Shutting down: Master
-2014-01-09T04:33:07.730437+00:00 app[worker.2]: 04:33:07 Warm shut down requested.
-2014-01-09T04:33:08.518250+00:00 heroku[worker.1]: Process exited with status 0
-2014-01-09T04:33:08.770180+00:00 heroku[web.1]: Process exited with status 0
-2014-01-09T04:33:08.918509+00:00 heroku[worker.2]: Process exited with status 0
-2014-01-09T04:33:14.246094+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-01-09T04:33:14.885735+00:00 heroku[worker.1]: State changed from starting to up
-2014-01-09T04:33:15.104130+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-01-09T04:33:15.456459+00:00 app[worker.1]: 04:33:15 RQ worker started, version 0.3.13
-2014-01-09T04:33:15.458192+00:00 app[worker.1]: 04:33:15 
-2014-01-09T04:33:15.458500+00:00 app[worker.1]: 04:33:15 *** Listening on high, default, low...
-2014-01-09T04:33:15.682774+00:00 heroku[worker.2]: State changed from starting to up
-2014-01-09T04:33:16.197939+00:00 app[worker.2]: 04:33:16 RQ worker started, version 0.3.13
-2014-01-09T04:33:16.199428+00:00 app[worker.2]: 04:33:16 
-2014-01-09T04:33:16.199506+00:00 app[worker.2]: 04:33:16 *** Listening on high, default, low...
-2014-01-09T04:33:20.190078+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-09T04:33:22.477376+00:00 app[web.1]: 2014-01-09 04:33:22 [2] [INFO] Starting gunicorn 18.0
-2014-01-09T04:33:22.478000+00:00 app[web.1]: 2014-01-09 04:33:22 [2] [INFO] Listening at: http://0.0.0.0:28496 (2)
-2014-01-09T04:33:22.478091+00:00 app[web.1]: 2014-01-09 04:33:22 [2] [INFO] Using worker: sync
-2014-01-09T04:33:22.487510+00:00 app[web.1]: 2014-01-09 04:33:22 [7] [INFO] Booting worker with pid: 7
-2014-01-09T04:33:23.053457+00:00 heroku[web.1]: State changed from starting to up
-2014-01-09T04:33:53.373599+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=12ms status=302 bytes=209
-2014-01-09T04:33:53.511469+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=5ms status=302 bytes=219
-2014-01-09T04:33:53.670498+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=23ms status=200 bytes=563
-2014-01-09T04:33:57.714335+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-09T04:33:58.360720+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/ESC7PaaB2wEqiTSfOKdsHmJtKsZ4.cugMgQ3NofUdmmS0T3UFEsP2FpLqhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=342ms status=302 bytes=209
-2014-01-09T04:33:58.459900+00:00 app[web.1]: using job id 8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c 
-2014-01-09T04:33:58.472005+00:00 app[web.1]: found job <Job 8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x37a3810>, u'Quest Status')> 
-2014-01-09T04:33:58.472934+00:00 app[web.1]: error trying to fetch job
-2014-01-09T04:33:58.473411+00:00 app[web.1]: cannot find gdoc name
-2014-01-09T04:33:58.473411+00:00 app[web.1]: show entries
-2014-01-09T04:33:58.473411+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-09T04:33:58.617987+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-09T04:33:58.617987+00:00 app[web.1]: get all combinations
-2014-01-09T04:33:58.648294+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=187ms status=200 bytes=1216
-2014-01-09T04:34:07.095342+00:00 app[web.1]: using job id 8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c 
-2014-01-09T04:34:07.097669+00:00 app[web.1]: found job <Job 8dc7f715-beb2-46f9-8dc7-8ce6762c7f6c: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x37a3810>, u'Quest Status')> 
-2014-01-09T04:34:07.098464+00:00 app[web.1]: error trying to fetch job
-2014-01-09T04:34:07.107478+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-09T04:34:07.319034+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-09T04:34:07.319034+00:00 app[web.1]: ['Quest Status']
-2014-01-09T04:34:07.319034+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-09T04:34:07.551542+00:00 app[web.1]: running calc 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
-2014-01-09T04:34:07.552358+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-09T04:34:07.569102+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-01-09T04:34:07.569102+00:00 app[web.1]: get all combinations
-2014-01-09T04:34:07.594543+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=498ms status=200 bytes=1217
-2014-01-09T04:34:07.634687+00:00 app[worker.1]: 04:34:07 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status') (6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d)
-2014-01-09T04:34:08.585843+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
 2014-01-09T04:34:08.585843+00:00 app[worker.1]: ['Quest Status']
 2014-01-09T04:34:08.586183+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-09T04:34:09.496750+00:00 app[worker.1]: current time 2014-01-08 20:34:09.496583
-2014-01-09T04:34:09.498041+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
 2014-01-09T04:34:09.498826+00:00 app[worker.1]: er', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Ibrahim Moizoos', 'Professor', 'SPActive', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Lord of the strings', 'Clown', 'Support', datetime.datetime(2013, 11, 17, 16, 0), 9], ['Joe', 'Kjata', 'High Wizard', 'Freezer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Joe', 'Super Nova', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Potassium Hydroxide', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Dark Link', 'Sniper', 'SPKiller', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Knight of Hyrule', 'Lord Knight', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9]]
-2014-01-09T04:34:09.499930+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
+2014-01-09T04:34:09.498041+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
+2014-01-09T04:34:09.499930+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(201
+4, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
 2014-01-09T04:34:09.500671+00:00 app[worker.1]: er', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Ibrahim Moizoos', 'Professor', 'SPActive', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Lord of the strings', 'Clown', 'Support', datetime.datetime(2013, 11, 17, 16, 0), 9], ['Joe', 'Kjata', 'High Wizard', 'Freezer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Joe', 'Super Nova', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Potassium Hydroxide', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Dark Link', 'Sniper', 'SPKiller', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Knight of Hyrule', 'Lord Knight', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9]]
+2014-01-09T04:34:21.183845+00:00 app[worker.1]: characters already exist in prior parties
+2014-01-09T04:34:21.184002+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.183276+00:00 app[worker.1]: found 4 combinations
 2014-01-09T04:34:21.183461+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.183603+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.183679+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.183756+00:00 app[worker.1]: characters already exist in prior parties
-2014-01-09T04:34:21.183845+00:00 app[worker.1]: characters already exist in prior parties
-2014-01-09T04:34:21.184002+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.184061+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.184153+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.184251+00:00 app[worker.1]: characters already exist in prior parties
@@ -148,8 +20,7 @@
 2014-01-09T04:34:21.184443+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:21.184506+00:00 app[worker.1]: found 1 
 2014-01-09T04:34:21.186148+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
-2014-01-09T04:34:21.187085+00:00 app[worker.1]: er', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Ibrahim Moizoos', 'Professor', 'SPActive', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Lord of the strings', 'Clown', 'Support', datetime.datetime(2013, 11, 17, 16, 0), 9], ['Joe', 'Kjata', 'High Wizard', 'Fr
-eezer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Joe', 'Super Nova', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Potassium Hydroxide', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Dark Link', 'Sniper', 'SPKiller', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Knight of Hyrule', 'Lord Knight', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9]]
+2014-01-09T04:34:21.187085+00:00 app[worker.1]: er', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Ibrahim Moizoos', 'Professor', 'SPActive', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Joe', 'Lord of the strings', 'Clown', 'Support', datetime.datetime(2013, 11, 17, 16, 0), 9], ['Joe', 'Kjata', 'High Wizard', 'Freezer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Joe', 'Super Nova', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Potassium Hydroxide', 'Dancer', 'SPBoost', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Dark Link', 'Sniper', 'SPKiller', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Joe', 'Knight of Hyrule', 'Lord Knight', 'Lurer', datetime.datetime(1, 1, 1, 0, 0), 9]]
 2014-01-09T04:34:23.372906+00:00 app[worker.1]: found 0 combinations
 2014-01-09T04:34:23.372906+00:00 app[worker.1]: found 0 
 2014-01-09T04:34:23.375136+00:00 app[worker.1]: Available Characters [['Andy', 'plooper', 'Champion', 'SPKiller', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'kafra chan', 'High Priest', 'Healer', datetime.datetime(2014, 1, 1, 16, 0), 9], ['Andy', 'nugsack', 'Lord Knight', 'Lurer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Andy', 'ctrlx', 'Clown', 'Support', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Andy', 'aphroditeX3', 'Dancer', 'SPBoost', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Becca', 'Rain Man', 'Clown', 'Support', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Acid Burn', 'High Priest', 'Healer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Nick', 'Pocket SP', 'Professor', 'SPActive', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Lisa', 'Maisy', 'High Wizard', 'Freezer', datetime.datetime(2013, 11, 13, 16, 0), 9], ['Mos', 'richerTHANlenny', 'High Priest', 'Healer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'X Calibur', 'Paladin', 'Lurer', datetime.datetime(2014, 1, 3, 16, 0), 9], ['Joe', 'Kiss The Floor', 'Champion', 'SPKill
@@ -159,29 +30,126 @@ eezer', datetime.datetime(2014, 1, 5, 16, 0), 9], ['Joe', 'Super Nova', 'High Pr
 2014-01-09T04:34:28.321872+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.321872+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.321958+00:00 app[worker.1]: characters already exist in prior parties
-2014-01-09T04:34:28.322027+00:00 app[worker.1]: characters already exist in prior parties
-2014-01-09T04:34:28.322101+00:00 app[worker.1]: characters already exist in prior parties
-2014-01-09T04:34:28.322101+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.322182+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.322285+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.322285+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.322358+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.322431+00:00 app[worker.1]: found 1 
+2014-01-09T04:34:28.322027+00:00 app[worker.1]: characters already exist in prior parties
+2014-01-09T04:34:28.322101+00:00 app[worker.1]: characters already exist in prior parties
+2014-01-09T04:34:28.322101+00:00 app[worker.1]: characters already exist in prior parties
 2014-01-09T04:34:28.350026+00:00 app[worker.1]: 04:34:28 Job OK, result = [[<scheduler.Combination instance at 0x30e4ef0>, <scheduler.Combination instance at 0x30e4680>, <scheduler.Combination instance at 0x30e4e18>, <scheduler.Combination instance at 0x30e4f80>, <scheduler.Combination instance at 0x30e4fc8>, <scheduler.Combination instance at 0x2b7eb00>, <scheduler.Combination instance at 0x2f01998>], [<scheduler.Combination instance at 0x314acf8>, <scheduler.Combination instance at 0x314afc8>, <scheduler.Combination instance at 0x314a7a0>, <scheduler.Combination instance at 0x314a908>, <scheduler.Combination instance at 0x314aea8>, <scheduler.Combination instance at 0x314a7e8>]]
 2014-01-09T04:34:28.350026+00:00 app[worker.1]: 04:34:28 Result is kept for 3000 seconds.
 2014-01-09T04:34:28.386912+00:00 app[worker.1]: 04:34:28 
 2014-01-09T04:34:28.386912+00:00 app[worker.1]: 04:34:28 *** Listening on high, default, low...
-2014-01-09T04:34:38.807303+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
 2014-01-09T04:34:38.810200+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
+2014-01-09T04:34:38.807303+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
 2014-01-09T04:34:38.810473+00:00 app[web.1]: [[<scheduler.Combination instance at 0x53119e0>, <scheduler.Combination instance at 0x3f7dd40>, <scheduler.Combination instance at 0x3f7de18>, <scheduler.Combination instance at 0x3f7d908>, <scheduler.Combination instance at 0x3f7dea8>, <scheduler.Combination instance at 0x4920830>, <scheduler.Combination instance at 0x4922518>], [<scheduler.Combination instance at 0x4922440>, <scheduler.Combination instance at 0x49227a0>, <scheduler.Combination instance at 0x4922560>, <scheduler.Combination instance at 0x3fa2950>, <scheduler.Combination instance at 0x3fa23f8>, <scheduler.Combination instance at 0x3fa2170>]]
+2014-01-09T04:34:38.854199+00:00 app[web.1]: [[<scheduler.Combination instance at 0x3f7d908>, <scheduler.Combination instance at 0x4922dd0>, <scheduler.Combination instance at 0x4922440>, <scheduler.Combination instance at 0x49227a0>, <scheduler.Combination instance at 0x4922e60>, <scheduler.Combination instance at 0x4922560>, <scheduler.Combination instance at 0x49228c0>], [<scheduler.Combination instance at 0x3fa2950>, <scheduler.Combination instance at 0x3fa23f8>, <scheduler.Combination instance at 0x3fa2170>, <scheduler.Combination instance at 0x4955368>, <scheduler.Combination instance at 0x4955c20>, <scheduler.Combination instance at 0x4955fc8>]]
 2014-01-09T04:34:38.848916+00:00 app[web.1]: error trying to fetch job
 2014-01-09T04:34:38.850076+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
 2014-01-09T04:34:38.853683+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
-2014-01-09T04:34:38.854199+00:00 app[web.1]: [[<scheduler.Combination instance at 0x3f7d908>, <scheduler.Combination instance at 0x4922dd0>, <scheduler.Combination instance at 0x4922440>, <scheduler.Combination instance at 0x49227a0>, <scheduler.Combination instance at 0x4922e60>, <scheduler.Combination instance at 0x4922560>, <scheduler.Combination instance at 0x49228c0>], [<scheduler.Combination instance at 0x3fa2950>, <scheduler.Combination instance at 0x3fa23f8>, <scheduler.Combination instance at 0x3fa2170>, <scheduler.Combination instance at 0x4955368>, <scheduler.Combination instance at 0x4955c20>, <scheduler.Combination instance at 0x4955fc8>]]
 2014-01-09T04:34:38.909957+00:00 app[web.1]: error trying to fetch job
 2014-01-09T04:34:38.910443+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-09T04:34:38.920677+00:00 app[web.1]: AVAILABLE PARTIES 7 
 2014-01-09T04:33:03.902589+00:00 heroku[api]: Deploy b375e44 by andygee@gmail.com
 2014-01-09T04:33:03.932872+00:00 heroku[api]: Release v164 created by andygee@gmail.com
 2014-01-09T04:33:57.720797+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=803
+2014-01-09T04:34:38.929107+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=122ms status=200 bytes=2264
+2014-01-09T04:36:53+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-09T04:38:34.218885+00:00 heroku[api]: Deploy 0550225 by andygee@gmail.com
+2014-01-09T04:38:34.254444+00:00 heroku[api]: Release v165 created by andygee@gmail.com
+2014-01-09T04:38:34+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-09T04:38:34.932403+00:00 heroku[web.1]: State changed from up to starting
+2014-01-09T04:38:34.996900+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-09T04:38:35.030087+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-09T04:38:37.687090+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-09T04:38:38.268591+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-09T04:38:38.300597+00:00 app[worker.1]: 04:38:38 Warm shut down requested.
+2014-01-09T04:38:39.158087+00:00 app[worker.2]: 04:38:39 Warm shut down requested.
+2014-01-09T04:38:39.410911+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-09T04:38:39.795196+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-09T04:38:40.235725+00:00 app[web.1]: 2014-01-09 04:38:40 [7] [INFO] Worker exiting (pid: 7)
+2014-01-09T04:38:40.236074+00:00 app[web.1]: 2014-01-09 04:38:40 [2] [INFO] Handling signal: term
+2014-01-09T04:38:40.250302+00:00 app[web.1]: 2014-01-09 04:38:40 [2] [INFO] Shutting down: Master
+2014-01-09T04:38:40.364829+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-09T04:38:41.708106+00:00 heroku[web.1]: Process exited with status 0
+2014-01-09T04:38:44.844264+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-09T04:38:46.329723+00:00 app[web.1]: 2014-01-09 04:38:46 [2] [INFO] Using worker: sync
+2014-01-09T04:38:46.337026+00:00 app[web.1]: 2014-01-09 04:38:46 [7] [INFO] Booting worker with pid: 7
+2014-01-09T04:38:46.329647+00:00 app[web.1]: 2014-01-09 04:38:46 [2] [INFO] Listening at: http://0.0.0.0:52427 (2)
+2014-01-09T04:38:46.328992+00:00 app[web.1]: 2014-01-09 04:38:46 [2] [INFO] Starting gunicorn 18.0
+2014-01-09T04:38:46.528051+00:00 heroku[web.1]: State changed from starting to up
+2014-01-09T04:38:48.924432+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-01-09T04:38:49.581672+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-09T04:38:50.098769+00:00 app[worker.1]: 04:38:50 RQ worker started, version 0.3.13
+2014-01-09T04:38:50.110159+00:00 app[worker.1]: 04:38:50 
+2014-01-09T04:38:50.110159+00:00 app[worker.1]: 04:38:50 *** Listening on high, default, low...
+2014-01-09T04:38:52.978077+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-09T04:38:54.075663+00:00 app[worker.2]: 04:38:54 RQ worker started, version 0.3.13
+2014-01-09T04:38:54.077809+00:00 app[worker.2]: 04:38:54 *** Listening on high, default, low...
+2014-01-09T04:38:54.077715+00:00 app[worker.2]: 04:38:54 
+2014-01-09T04:38:53.678830+00:00 heroku[worker.2]: State changed from starting to up
+2014-01-09T04:39:14.077510+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
+2014-01-09T04:39:14.093203+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
+2014-01-09T04:39:14.093958+00:00 app[web.1]: [[<scheduler.Combination instance at 0x389de60>, <scheduler.Combination instance at 0x2301050>, <scheduler.Combination instance at 0x2301128>, <scheduler.Combination instance at 0x2301098>, <scheduler.Combination instance at 0x2301170>, <scheduler.Combination instance at 0x23010e0>, <scheduler.Combination instance at 0x2301248>], [<scheduler.Combination instance at 0x23012d8>, <scheduler.Combination instance at 0x2301200>, <scheduler.Combination instance at 0x23013f8>, <scheduler.Combination instance at 0x2301320>, <scheduler.Combination instance at 0x2301440>, <scheduler.Combination instance at 0x23015a8>]]
+2014-01-09T04:39:14.287553+00:00 app[web.1]: error trying to fetch job
+2014-01-09T04:39:14.289115+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
+2014-01-09T04:39:14.292293+00:00 app[web.1]: [[<scheduler.Combination instance at 0x23010e0>, <scheduler.Combination instance at 0x2301290>, <scheduler.Combination instance at 0x23013b0>, <scheduler.Combination instance at 0x2301440>, <scheduler.Combination instance at 0x2301518>, <scheduler.Combination instance at 0x2301200>, <scheduler.Combination instance at 0x2301488>], [<scheduler.Combination instance at 0x23015a8>, <scheduler.Combination instance at 0x389de60>, <scheduler.Combination instance at 0x2e23638>, <scheduler.Combination instance at 0x2e237e8>, <scheduler.Combination instance at 0x343f998>, <scheduler.Combination instance at 0x343dd88>]]
+2014-01-09T04:39:14.291938+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
+2014-01-09T04:39:14.346292+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-09T04:39:14.345637+00:00 app[web.1]: error trying to fetch job
+2014-01-09T04:39:14.359285+00:00 app[web.1]: AVAILABLE PARTIES 7 
+2014-01-09T04:39:14.718270+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=14ms status=200 bytes=1178
+2014-01-09T04:39:14.394316+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=321ms status=200 bytes=2264
+2014-01-09T04:39:33.301092+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=219
+2014-01-09T04:39:33.415804+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=14ms status=200 bytes=563
+2014-01-09T04:39:38.499363+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-09T04:39:38.502642+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=6ms status=302 bytes=803
+2014-01-09T04:39:39.426546+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/Xn4A3uiyPgADaWQy2_hPJsNL539A.UspHP49cYcEfmmS0T3UFEsOSfpzqhgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=445ms status=302 bytes=209
+2014-01-09T04:39:39.585221+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
+2014-01-09T04:39:39.587818+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
+2014-01-09T04:39:39.588087+00:00 app[web.1]: [[<scheduler.Combination instance at 0x2e6c3b0>, <scheduler.Combination instance at 0x2e6c560>, <scheduler.Combination instance at 0x2e6e128>, <scheduler.Combination instance at 0x2e6e170>, <scheduler.Combination instance at 0x2e6e098>, <scheduler.Combination instance at 0x2e6e1b8>, <scheduler.Combination instance at 0x2e6e320>], [<scheduler.Combination instance at 0x2e6e050>, <scheduler.Combination instance at 0x2e6e440>, <scheduler.Combination instance at 0x2e6e6c8>, <scheduler.Combination instance at 0x2e6e758>, <scheduler.Combination instance at 0x2e6e368>, <scheduler.Combination instance at 0x2e6e560>]]
+2014-01-09T04:39:39.638728+00:00 app[web.1]: error trying to fetch job
+2014-01-09T04:39:39.639171+00:00 app[web.1]: cannot find gdoc name
+2014-01-09T04:39:39.639171+00:00 app[web.1]: show entries
+2014-01-09T04:39:39.639171+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-09T04:39:39.648457+00:00 app[web.1]: AVAILABLE PARTIES 7 
+2014-01-09T04:39:39.649526+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=6ms service=74ms status=200 bytes=2313
+2014-01-09T04:39:44.599166+00:00 app[web.1]: using job id 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d 
+2014-01-09T04:39:44.602820+00:00 app[web.1]: found job <Job 6f485592-5b9a-4bb8-b0fd-6e6bd3293d0d: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x3f8f950>, u'Quest Status')> 
+2014-01-09T04:39:44.602985+00:00 app[web.1]: [[<scheduler.Combination instance at 0x2e5fe18>, <scheduler.Combination instance at 0x2e6c3b0>, <scheduler.Combination instance at 0x2e6c5a8>, <scheduler.Combination instance at 0x2e781b8>, <scheduler.Combination instance at 0x2e78128>, <scheduler.Combination instance at 0x2e78368>, <scheduler.Combination instance at 0x2e78050>], [<scheduler.Combination instance at 0x2e782d8>, <scheduler.Combination instance at 0x2e78248>, <scheduler.Combination instance at 0x2e78170>, <scheduler.Combination instance at 0x2e78098>, <scheduler.Combination instance at 0x2e783f8>, <scheduler.Combination instance at 0x2e78488>]]
+2014-01-09T04:39:44.668525+00:00 app[web.1]: error trying to fetch job
+2014-01-09T04:39:44.699621+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-09T04:39:45.308015+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-09T04:39:45.308015+00:00 app[web.1]: ['Quest Status']
+2014-01-09T04:39:45.308015+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-09T04:39:45.827931+00:00 app[web.1]: running calc 78e9eb21-bb2d-48d5-85d4-f9db8ed0408a 
+2014-01-09T04:39:45.829076+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-09T04:39:45.849074+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-01-09T04:39:45.849074+00:00 app[web.1]: get all combinations
+2014-01-09T04:39:45.865120+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=1268ms status=200 bytes=1217
+2014-01-09T04:39:45.935883+00:00 app[worker.1]: 04:39:45 default: scheduler.run_scheduler_OAuth(<oauth2client.client.OAuth2Credentials object at 0x2e75f90>, u'Quest Status') (78e9eb21-bb2d-48d5-85d4-f9db8ed0408a)
+2014-01-09T04:39:47.107263+00:00 app[worker.1]: trying to find the spreadsheet named Quest Status 
+2014-01-09T04:39:47.107594+00:00 app[worker.1]: ['Quest Status']
+2014-01-09T04:39:47.107645+00:00 app[worker.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-09T04:40:05.716803+00:00 app[worker.1]: current time 2014-01-08 20:40:05.716645
+2014-01-09T04:40:05.746587+00:00 app[worker.1]: 04:40:05 AttributeError: 'NoneType' object has no attribute 'Name'
+2014-01-09T04:40:05.746587+00:00 app[worker.1]: Traceback (most recent call last):
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/worker.py", line 429, in perform_job
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:     rv = job.perform()
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/rq/job.py", line 348, in perform
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:     self._result = self.func(*self.args, **self.kwargs)
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:   File "/app/scheduler.py", line 122, in run_scheduler_OAuth
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:     avChar = computeRequirements(characters, instance, quests)
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:   File "/app/scheduler.py", line 263, in computeRequirements
+2014-01-09T04:40:05.746587+00:00 app[worker.1]:     chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
+2014-01-09T04:40:05.746826+00:00 app[worker.1]: AttributeError: 'NoneType' object has no attribute 'Name'
+2014-01-09T04:40:05.746826+00:00 app[worker.1]: 
+2014-01-09T04:40:05.746826+00:00 app[worker.1]: 04:40:05 Moving job to failed queue.
+2014-01-09T04:40:05.782471+00:00 app[worker.1]: 04:40:05 
+2014-01-09T04:40:05.782810+00:00 app[worker.1]: 04:40:05 *** Listening on high, default, low...
+2014-01-09T04:39:33.110699+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=11ms status=302 bytes=209
 Terminate batch job (Y/N)? 
+
+C:\Users\andy\Documents\GitHub\rosterrun>

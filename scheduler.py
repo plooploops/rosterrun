@@ -260,7 +260,7 @@ def computeRequirements(characters, instance, quests):
     availableCharacters = [c for c in enoughCooldown if len(c.Quests) >= len(quests)]    
     #print 'remaining characters with enough quest, cooldown, and present %s ' % len(availableCharacters)
     
-    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters]
+    chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in availableCharacters if c.Role is not None]
     print 'Available Characters', chars
     
     return availableCharacters
