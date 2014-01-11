@@ -230,7 +230,8 @@ def import_characters():
      
       db.session.commit()
       flash('Import finished')
-    except:
+    except Exception,e: 
+      print str(e)
       print 'error importing'
     return redirect(url_for('show_entries'))
 
