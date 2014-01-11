@@ -1,72 +1,3 @@
-2014-01-11T00:34:35.023837+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-01-11T00:34:35.580058+00:00 app[web.1]: 2014-01-11 00:34:35 [7] [INFO] Worker exiting (pid: 7)
-2014-01-11T00:34:35.581494+00:00 app[web.1]: 2014-01-11 00:34:35 [2] [INFO] Handling signal: term
-2014-01-11T00:34:35.600969+00:00 app[web.1]: 2014-01-11 00:34:35 [2] [INFO] Shutting down: Master
-2014-01-11T00:34:36.906412+00:00 heroku[web.1]: Process exited with status 0
-2014-01-11T00:50:25.731651+00:00 heroku[web.1]: Unidling
-2014-01-11T00:50:25.731983+00:00 heroku[web.1]: State changed from down to starting
-2014-01-11T00:50:37.356795+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-01-11T00:50:38.816421+00:00 app[web.1]: 2014-01-11 00:50:38 [2] [INFO] Starting gunicorn 18.0
-2014-01-11T00:50:38.817520+00:00 app[web.1]: 2014-01-11 00:50:38 [2] [INFO] Listening at: http://0.0.0.0:10831 (2)
-2014-01-11T00:50:38.826696+00:00 app[web.1]: 2014-01-11 00:50:38 [7] [INFO] Booting worker with pid: 7
-2014-01-11T00:50:38.817787+00:00 app[web.1]: 2014-01-11 00:50:38 [2] [INFO] Using worker: sync
-2014-01-11T00:50:41.846427+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=2049ms status=404 bytes=233
-2014-01-11T00:50:41.848426+00:00 app[web.1]: using job id 1f8e6c96-6ede-4dd2-a5cf-3746f0b47795 
-2014-01-11T00:50:41.861851+00:00 app[web.1]: error occurred trying to fetch job
-2014-01-11T00:50:41.867126+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:50:41.867489+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:50:42.034119+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:50:42.064408+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=5ms service=2121ms status=200 bytes=4269
-2014-01-11T00:50:43.072668+00:00 heroku[router]: at=info method=GET path=/static/style.css host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=10ms status=304 bytes=0
-2014-01-11T00:50:39.115603+00:00 heroku[web.1]: State changed from starting to up
-2014-01-11T00:51:45.045464+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:51:45.051786+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-11T00:51:45.053989+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:51:45.062836+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:51:48.151538+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=12ms status=200 bytes=464
-2014-01-11T00:51:52.724389+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=14ms status=302 bytes=803
-2014-01-11T00:51:52.699846+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-11T00:51:53.930659+00:00 app[web.1]: show entries
-2014-01-11T00:51:53.930659+00:00 app[web.1]: cannot find gdoc name
-2014-01-11T00:51:53.930229+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:51:53.930659+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:51:53.938986+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:51:53.948267+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=17ms status=200 bytes=4318
-2014-01-11T00:51:53.829748+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/L3W1iP-PRxeBWBTxIu-imCNGvBZG.km5HWPrrfh4VmmS0T3UFEsMS4pT9hgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=715ms status=302 bytes=209
-2014-01-11T00:51:59.975632+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-11T00:51:59.969376+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:52:00.627221+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-11T00:52:00.627221+00:00 app[web.1]: ['Quest Status']
-2014-01-11T00:52:00.627221+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-11T00:52:01.653202+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-11T00:52:01.653202+00:00 app[web.1]: ['Quest Status']
-2014-01-11T00:52:01.653202+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-11T00:52:02.702468+00:00 app[web.1]: FOUND 31 CHARS
-2014-01-11T00:52:02.704533+00:00 app[web.1]: error importing
-2014-01-11T00:52:02.704939+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:52:02.713044+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:51:45.059093+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=5ms service=23ms status=200 bytes=276
-2014-01-11T00:58:51.705695+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=32ms status=200 bytes=4269
-2014-01-11T00:58:51.674076+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:58:51.680290+00:00 app[web.1]: cannot find gdoc name
-2014-01-11T00:58:51.680290+00:00 app[web.1]: show entries
-2014-01-11T00:58:51.681783+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:58:51.695598+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:58:57.129683+00:00 app[web.1]: running with user andygee@gmail.com 
-2014-01-11T00:58:57.118808+00:00 app[web.1]: error trying to fetch job
-2014-01-11T00:58:57.733813+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-11T00:58:57.733813+00:00 app[web.1]: ['Quest Status']
-2014-01-11T00:58:57.733813+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-11T00:58:58.740150+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
-2014-01-11T00:58:58.740150+00:00 app[web.1]: ['Quest Status']
-2014-01-11T00:58:58.740150+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-11T00:59:01.956403+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=4847ms status=200 bytes=4269
-2014-01-11T00:59:01.926615+00:00 app[web.1]: FOUND 62 CHARS
-2014-01-11T00:59:01.938612+00:00 app[web.1]: error importing
-2014-01-11T00:59:01.938936+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-01-11T00:59:01.954252+00:00 app[web.1]: AVAILABLE PARTIES 18 
-2014-01-11T00:59:47+00:00 heroku[slug-compiler]: Slug compilation started
-2014-01-11T01:00:57.981418+00:00 heroku[api]: Deploy ce6299b by andygee@gmail.com
 2014-01-11T01:00:58.002433+00:00 heroku[api]: Release v172 created by andygee@gmail.com
 2014-01-11T01:00:58+00:00 heroku[slug-compiler]: Slug compilation finished
 2014-01-11T01:00:58.307597+00:00 heroku[web.1]: State changed from up to starting
@@ -105,8 +36,8 @@
 2014-01-11T01:01:22.629953+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-11T01:01:22.761950+00:00 app[web.1]: AVAILABLE PARTIES 18 
 2014-01-11T01:01:23.039668+00:00 app[web.1]: error trying to fetch job
-2014-01-11T01:01:23.040076+00:00 app[web.1]: cannot find gdoc name
 2014-01-11T01:01:23.040076+00:00 app[web.1]: show entries
+2014-01-11T01:01:23.040076+00:00 app[web.1]: cannot find gdoc name
 2014-01-11T01:01:23.040140+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-11T01:01:23.046516+00:00 app[web.1]: AVAILABLE PARTIES 18 
 2014-01-11T01:01:23.057844+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=0ms service=12ms status=200 bytes=4269
@@ -119,25 +50,89 @@
 2014-01-11T01:01:34.252016+00:00 app[web.1]: running with user andygee@gmail.com 
 2014-01-11T01:01:34.286828+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=11ms service=19ms status=302 bytes=803
 2014-01-11T01:01:35.634380+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/T8rcytQpoVlJ80jmYZQA-EP9BaIz.MhLk4N_xGJodmmS0T3UFEsOyoab9hgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=912ms status=302 bytes=209
-2014-01-11T01:01:35.840690+00:00 app[web.1]: error trying to fetch job
 2014-01-11T01:01:35.841092+00:00 app[web.1]: cannot find gdoc name
+2014-01-11T01:01:35.840690+00:00 app[web.1]: error trying to fetch job
 2014-01-11T01:01:35.841092+00:00 app[web.1]: show entries
 2014-01-11T01:01:35.841218+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
 2014-01-11T01:01:35.848490+00:00 app[web.1]: AVAILABLE PARTIES 18 
 2014-01-11T01:01:35.884942+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=7ms service=28ms status=200 bytes=4318
 2014-01-11T01:01:40.833628+00:00 app[web.1]: error trying to fetch job
 2014-01-11T01:01:40.839341+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-11T01:01:41.096945+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-11T01:01:41.096643+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-11T01:01:41.096945+00:00 app[web.1]: ['Quest Status']
-2014-01-11T01:01:41.096945+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
 2014-01-11T01:01:41.427815+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
 2014-01-11T01:01:41.427815+00:00 app[web.1]: ['Quest Status']
 2014-01-11T01:01:41.427921+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
-2014-01-11T01:01:42.250552+00:00 app[web.1]: FOUND 31 CHARS
-2014-01-11T01:01:42.252462+00:00 app[web.1]: 'NoneType' object has no attribute 'Name'
 2014-01-11T01:01:42.252462+00:00 app[web.1]: error importing
 2014-01-11T01:01:42.253194+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-11T01:01:42.250552+00:00 app[web.1]: FOUND 31 CHARS
+2014-01-11T01:01:42.252462+00:00 app[web.1]: 'NoneType' object has no attribute 'Name'
 2014-01-11T01:01:42.265606+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=1435ms status=200 bytes=4269
 2014-01-11T01:01:42.261386+00:00 app[web.1]: AVAILABLE PARTIES 18 
 2014-01-11T01:01:22.794757+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=1ms service=167ms status=200 bytes=4269
-Terminate batch job (Y/N)? 
+2014-01-11T01:09:27+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-11T01:11:06+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-01-11T01:11:08.929744+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-01-11T01:11:09.495118+00:00 app[web.1]: 2014-01-11 01:11:09 [2] [INFO] Handling signal: term
+2014-01-11T01:11:09.494752+00:00 app[web.1]: 2014-01-11 01:11:09 [7] [INFO] Worker exiting (pid: 7)
+2014-01-11T01:11:09.509457+00:00 app[web.1]: 2014-01-11 01:11:09 [2] [INFO] Shutting down: Master
+2014-01-11T01:11:10.133952+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-01-11T01:11:10.315526+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-01-11T01:11:10.883721+00:00 heroku[web.1]: Process exited with status 0
+2014-01-11T01:11:10.974680+00:00 app[worker.2]: 01:11:10 Warm shut down requested.
+2014-01-11T01:11:11.103963+00:00 app[worker.1]: 01:11:11 Warm shut down requested.
+2014-01-11T01:11:12.740328+00:00 heroku[worker.2]: Process exited with status 0
+2014-01-11T01:11:12.795859+00:00 heroku[worker.1]: Process exited with status 0
+2014-01-11T01:11:17.548463+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-01-11T01:11:19.793001+00:00 app[worker.2]: 01:11:19 
+2014-01-11T01:11:19.789963+00:00 app[worker.2]: 01:11:19 RQ worker started, version 0.3.13
+2014-01-11T01:11:19.793237+00:00 app[worker.2]: 01:11:19 *** Listening on high, default, low...
+2014-01-11T01:11:20.576925+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-01-11T01:11:20.853921+00:00 heroku[wor
+ker.1]: Starting process with command `python worker.py`
+2014-01-11T01:11:21.692685+00:00 heroku[worker.1]: State changed from starting to up
+2014-01-11T01:11:22.132850+00:00 app[web.1]: 2014-01-11 01:11:22 [2] [INFO] Starting gunicorn 18.0
+2014-01-11T01:11:22.133407+00:00 app[web.1]: 2014-01-11 01:11:22 [2] [INFO] Listening at: http://0.0.0.0:47924 (2)
+2014-01-11T01:11:22.133521+00:00 app[web.1]: 2014-01-11 01:11:22 [2] [INFO] Using worker: sync
+2014-01-11T01:11:22.143141+00:00 app[web.1]: 2014-01-11 01:11:22 [7] [INFO] Booting worker with pid: 7
+2014-01-11T01:11:22.722648+00:00 app[worker.1]: 01:11:22 RQ worker started, version 0.3.13
+2014-01-11T01:11:22.775548+00:00 app[worker.1]: 01:11:22 
+2014-01-11T01:11:22.775699+00:00 app[worker.1]: 01:11:22 *** Listening on high, default, low...
+2014-01-11T01:11:22.414027+00:00 heroku[web.1]: State changed from starting to up
+2014-01-11T01:12:01.770719+00:00 app[web.1]: error trying to fetch job
+2014-01-11T01:12:01.773581+00:00 app[web.1]: cannot find gdoc name
+2014-01-11T01:12:01.773581+00:00 app[web.1]: show entries
+2014-01-11T01:12:01.773581+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-11T01:12:01.990933+00:00 app[web.1]: AVAILABLE PARTIES 18 
+2014-01-11T01:12:02.026578+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=269ms status=200 bytes=4269
+2014-01-11T01:12:06.235041+00:00 heroku[router]: at=info method=GET path=/logout host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=3ms service=18ms status=302 bytes=209
+2014-01-11T01:12:06.339686+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=6ms status=302 bytes=219
+2014-01-11T01:12:09.426771+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-11T01:12:09.430692+00:00 heroku[router]: at=info method=POST path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=19ms status=302 bytes=803
+2014-01-11T01:12:10.415346+00:00 app[web.1]: error trying to fetch job
+2014-01-11T01:12:10.415746+00:00 app[web.1]: cannot find gdoc name
+2014-01-11T01:12:10.415746+00:00 app[web.1]: show entries
+2014-01-11T01:12:10.415746+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-11T01:12:10.429507+00:00 app[web.1]: AVAILABLE PARTIES 18 
+2014-01-11T01:12:10.487534+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=73ms status=200 bytes=4318
+2014-01-11T01:12:16.057940+00:00 app[web.1]: error trying to fetch job
+2014-01-11T01:12:16.071707+00:00 app[web.1]: running with user andygee@gmail.com 
+2014-01-11T01:12:16.328348+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-11T01:12:16.328894+00:00 app[web.1]: ['Quest Status']
+2014-01-11T01:12:16.328894+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-11T01:12:16.942675+00:00 app[web.1]: trying to find the spreadsheet named Quest Status 
+2014-01-11T01:12:16.949845+00:00 app[web.1]: ['Quest Status']
+2014-01-11T01:12:16.949845+00:00 app[web.1]: t0r5xf97B-k70k6TxherGcw
+2014-01-11T01:12:17.717568+00:00 app[web.1]: FOUND 31 CHARS
+2014-01-11T01:12:17.845817+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-01-11T01:12:17.862182+00:00 app[web.1]: AVAILABLE PARTIES 18 
+2014-01-11T01:12:17.887330+00:00 heroku[router]: at=info method=POST path=/ host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=7ms service=1831ms status=200 bytes=19874
+2014-01-11T01:12:06.472249+00:00 heroku[router]: at=info method=GET path=/login host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=2ms service=17ms status=200 bytes=563
+2014-01-11T01:12:10.127020+00:00 heroku[router]: at=info method=GET path=/auth_return?code=4/tipRIjpjf-YCfmIfrawdB-lWe9z6.QpzFh4_Il6QTmmS0T3UFEsPEA7r9hgI host=rosterrun.herokuapp.com fwd="107.16.122.17" dyno=web.1 connect=4ms service=283ms status=302 bytes=209
+2014-01-11T01:11:06.365547+00:00 heroku[web.1]: State changed from up to starting
+2014-01-11T01:11:06.452339+00:00 heroku[worker.2]: State changed from up to starting
+2014-01-11T01:11:06.488538+00:00 heroku[worker.1]: State changed from up to starting
+2014-01-11T01:11:06.064789+00:00 heroku[api]: Deploy 8ba57be by andygee@gmail.com
+2014-01-11T01:11:06.098867+00:00 heroku[api]: Release v173 created by andygee@gmail.com
+2014-01-11T01:11:18.194380+00:00 heroku[worker.2]: State changed from starting to up
