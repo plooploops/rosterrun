@@ -58,6 +58,8 @@ roleSupport = Role('Support', ['Bard', 'Clown'])
 roleSPBoost = Role('SPBoost', ['Dancer', 'Gypsy'])
 roleSPActive = Role('SPActive', ['Professor'])
 roleFreezer = Role('Freezer', ['Wizard', 'High Wizard'])
+roleDPS = Role('DPS', ['Sniper'])
+roleUnmapped = Role('Unmapped', [])
 
 #establish relationships, can check later but for now use party configurations
 roleHealer.CanDualClientRole = [roleSupport, roleSPBoost]
@@ -68,6 +70,7 @@ roleSPBoost.CanDualClientRole = [roleHealer, roleKiller, roleLurer, roleSupport,
 roleSPKiller.CanDualClientRole = [roleSupport, roleSPBoost, roleSPActive]
 roleSPActive.CanDualClientRole = [roleSupport, roleSPBoost, roleSPKiller]
 roleFreezer.CanDualClientRole = [roleSupport, roleSPBoost]
+roleDPS.CanDualClientRole = [roleSupport, roleSPBoost]
 
 AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive]
 niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
@@ -254,6 +257,9 @@ def initializeDataOAuth(credentials, docName, quests):
           charac.Present = True
         else:
           charac.Present = False 
+    
+    if charac.Role is None:
+      charac.Role = roleUnmapped
     characters.append(charac)
   return characters
   #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
