@@ -308,9 +308,13 @@ def checkCalculation():
        
           db.session.commit()
           
+          flash('Calculation completed.')
+          
       else: 
+        flash('Calculation not finished yet.')
         print 'current job is not ready %s' % job_id
     else:
+      flash('Please recalculate before refresh')
       print 'No job in session'
   except:
     print 'error occurred trying to fetch job'
