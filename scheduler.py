@@ -289,6 +289,7 @@ def computeRequirements(characters, instance, quests):
     return availableCharacters
     
 def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIndex, partyTypeName):
+    print 'examining party configuration %s' % partyTypeName
     if (len(instance.Roles) > len(availableCharacters)):
 	return []
 

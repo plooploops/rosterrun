@@ -308,8 +308,10 @@ def checkCalculation():
        
           db.session.commit()
           
-  
-    print 'error trying to fetch job'
+      else: 
+        print 'current job is not ready %s' % job_id
+    else:
+      print 'No job in session'
   except:
     print 'error occurred trying to fetch job'
     session.pop('job_id', None)
