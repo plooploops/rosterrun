@@ -308,8 +308,6 @@ def checkCalculation():
        
           db.session.commit()
           
-          flash('Calculation completed.')
-          
       else: 
         flash('Calculation not finished yet.')
         print 'current job is not ready %s' % job_id
