@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('treasury') }}" method=post class=run-calculation>
+      <h2>Guild Dashboard</h2>
+      <table class="guild dashboard">
+        <tr>
+        <td><a href="{{ url_for('show_entries') }}">Roster</a></td>
+        <td><a href="{{ url_for('market_results') }}">Market Results</a></td>
+        <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
+        <td><a href="{{ url_for('points') }}">Points</a></td>
+      </table>
+    </form>
+    <h2>Treasury</h2>
+    <table class=mappedguildtreasure>
+    <tr>
+    <th>Itemid</th>
+    <th>Name</th>
+    <th>Cards</th>
+    <th>Amount</th>
+    <th>Min Market Price</th>
+    <th>Max Market Price</th>
+    <th>Median Market Price</th>
+    <th>Refresh Date</th>
+    <th>Guild Transaction</th>
+    </tr>
+    {% for t in treasury %}
+      <tr>
+      <td><h2>{{ t.itemid}}</h2></td>
+      <td>{{ t.name }}</td>
+      <td>
+      {% for c in t.cards %}
+        <li>{{ c }}
+      {% endfor %}
+      </td>
+      <td>{{ t.amount|safe }}</td>
+      <td>{{ t.minMarketPrice|safe }}</td>
+      <td>{{ t.maxMarketPrice|safe }}</td>
+      <td>{{ t.medianMarketPrice|safe }}</td>
+
+      <td>{{ t.refreshDate|safe }}</td>
+      <td>{% if t.guildtransaction_id is None %}<input type=submit name=buy value=Buy>{% else %}{{ t.guildtransaction_id|safe }}  {% endif %}</>
+    {% endfor %}
+    </table>
+    <form>
+      <h2>Add Item</h2>
+      <dd>Item Id:<input type=text name=nitemid placeholder="1234">
+      <dd>Amount:<input type=text name=nitemamount placeholder="1">
+      <input type=submit name=action value=Add></>
+    </form>
+  {% endif %}
+{% endblock %}

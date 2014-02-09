@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('points') }}" method=post class=points-calculation>
+      <h2>Guild Dashboard</h2>
+      <table class="guild dashboard">
+        <tr>
+        <td><a href="{{ url_for('show_entries') }}">Roster</a></td>
+        <td><a href="{{ url_for('market_results') }}">Market Results</a></td>
+        <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
+        <td><a href="{{ url_for('points') }}">Points</a></td>
+      </table>
+    </form>
+    <h2>Points</h2>
+    <table class=mappedguildpoints>
+    <tr>
+    <th>Name</th>
+    <th>Amount</th>
+    </tr>
+    {% for p in points %}
+      <tr>
+      <td><h2>{{ p.name}}</h2></td>
+      <td>{{ p.amount }}</td>
+      
+    {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}

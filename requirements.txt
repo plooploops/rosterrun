@@ -25,6 +25,8 @@ pyparsing==1.5.7
 python-dateutil==2.2
 pytz==2013.9
 redis==2.9.0
+requests==2.2.0
+-e git+git@github.com:nvie/rq.git@a2213f136478ec4f86339ab56971120d2aab632a#egg=rq-master
 rq==0.3.13
 six==1.5.2
 times==0.6.2

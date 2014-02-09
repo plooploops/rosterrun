@@ -29,6 +29,12 @@ from google.appengine.api import users
 from oauth2client.appengine import StorageByKeyName
 import datastorestub
 
+from guildpoints import *
+from marketscrape import *
+from marketvalue import *
+from mathutility import *
+from items_map import *
+
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
 
@@ -52,6 +58,7 @@ PASSWORD = 'default'
 app = Flask(__name__)
 app.config.from_object(__name__)
 #Heroku Postgres SQL url obtained when deployed
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'http://127.0.0.1:5000/auth_return'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
@@ -81,6 +88,77 @@ class PartyCombo(db.Model):
     def __repr__(self):
         return '<PartyCombo %r>' % self.playerName
 
+class MappedGuild(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    chars = db.relationship('MappedCharacter', backref='guild', lazy='dynamic')
+    guildTreasures = db.relationship('MappedGuildTreasure', backref='guild', lazy='dynamic')
+    guildPoints = db.relationship('MappedGuildPoint', backref='guild', lazy='dynamic')
+    
+    def __init__(self, name, chars, guildTreasures, guildPoints):
+    	self.name = name
+    	self.chars = chars
+    	self.guildTreasures = guildTreasures
+    	self.guildPoints = guildPoints
+    
+    def __repr__(self):
+        return '<Guild %r>' % self.name
+
+class MappedGuildTreasure(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    itemid = db.Column(db.Integer)
+    name = db.Column(db.String(80))
+    cards = db.Column(db.String(160))
+    amount = db.Column(db.Float)
+    minMarketPrice = db.Column(db.Float)
+    maxMarketPrice = db.Column(db.Float)
+    medianMarketPrice = db.Column(db.Float)
+    refreshDate = db.Column(db.DateTime)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guildtransaction_id = db.relationship('MappedGuildTransaction', backref='guildtreasure', lazy='dynamic')
+ 
+    def __init__(self, itemid, name, cards, amount, minMarketPrice, maxMarketPrice, medianMarketPrice, refreshDate):
+        self.itemid = itemid
+        self.name = name
+        self.cards = cards
+        self.amount = amount
+        self.minMarketPrice = minMarketPrice
+        self.maxMarketPrice = maxMarketPrice
+        self.medianMarketPrice = medianMarketPrice
+        self.refreshDate = refreshDate
+        
+    def __repr__(self):
+        return '<MappedGuildTreasure %r>' % self.name
+
+class MappedGuildPoint(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column(db.Integer)
+    amount = db.Column(db.Float)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guildtransaction_id = db.relationship('MappedGuildTransaction', backref='guildpoint', lazy='dynamic')
+ 
+    def __init__(self, playerid, amount):
+        self.player_id = playerid
+        self.amount = amount
+        
+    def __repr__(self):
+        return '<MappedGuildPoint %r>' % self.id
+        
+class MappedGuildTransaction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    guildpoint_id = db.Column(db.Integer, db.ForeignKey('guildpoint.id'))
+    guildtreasure_id = db.Column(db.Integer, db.ForeignKey('guildtreasure.id'))
+    transType = db.Column(db.String(16))
+    transDate = db.Column(db.DateTime)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+ 
+    def __init__(self, playerid, amount):
+        self.player_id = playerid
+        self.amount = amount
+        
+    def __repr__(self):
+        return '<MappedGuildTransaction %r>' % self.id
+
 class MappedCharacter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80))
@@ -92,6 +170,7 @@ class MappedCharacter(db.Model):
     LastRun = db.Column(db.String(80))
     PlayerName = db.Column(db.String(80))
     Present = db.Column(db.String(80))
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
     
     def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, quests, lastRun, playerName, present):
         self.g_spreadsheet_id = spreadsheet_id
@@ -106,6 +185,32 @@ class MappedCharacter(db.Model):
     
     def __repr__(self):
         return '<MappedCharacter %r>' % self.playerName
+
+class MappedMarketResult(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    itemid = db.Column(db.Integer)
+    name = db.Column(db.String(80))
+    cards = db.Column(db.String(160))
+    price = db.Column(db.Float)
+    amount = db.Column(db.Float)
+    title = db.Column(db.String(280))
+    vendor = db.Column(db.String(80))
+    coords = db.Column(db.String(80))
+    date = db.Column(db.DateTime)
+        
+    def __init__(self, itemid, name, cards, price, amount, title, vendor, coords, date):
+        self.itemid = itemid
+        self.name = name
+	self.cards = cards
+	self.price = price
+	self.amount = amount
+	self.title = title
+	self.vendor = vendor
+	self.coords = coords
+	self.date = date
+    
+    def __repr__(self):
+        return '<MappedMarketResult %r>' % self.name
 
 sched = scheduler()
 
@@ -185,6 +290,9 @@ def show_entries():
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
       curChars = MappedCharacter.query.all()
       chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+    
+    #map points back from characters and guild?
+    
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
 
@@ -269,6 +377,8 @@ def run_calculation():
 
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
+      
+      #consider calculating from imported results if possible
       calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
       print 'running calc %s ' % calcjob.id
       session['job_id'] = calcjob.id

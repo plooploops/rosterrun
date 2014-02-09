@@ -2,6 +2,14 @@
 {% block body %}
   {% if session.logged_in %}
     <form action="{{ url_for('show_entries') }}" method=post class=run-calculation>
+      <h2>Guild Dashboard</h2>
+      <table class="guild dashboard">
+        <tr>
+        <td><a href="{{ url_for('show_entries') }}">Roster</a></td>
+        <td><a href="{{ url_for('market_results') }}">Market Results</a></td>
+        <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
+        <td><a href="{{ url_for('points') }}">Points</a></td>
+      </table>
       <dl>
         <dt>Google Document:
         <dd><input type=text name=gdocname placeholder="Quest Status">
@@ -12,8 +20,9 @@
       </dl>
     </form>
     <h2>Character Status</h2>
-    <table class=character>
+    <table action="{{ url_for('update_chars') }}" method=post class=character>
     <tr>
+    <th>Manage</th>
     <th>Class</th>
     <th>Name</th>
     <th>Role</th>
@@ -24,19 +33,30 @@
     </tr>
     {% for char in characters %}
       <tr>
-      <td><h2>{{ char.Class }}</h2></td>
-      <td>{{ char.Name }}</td>
-      <td>{{ char.Role}}</td>
+      <td><input type=submit action value=Drop><input type=submit action value=Edit>
+      <td><h2>{{ char.Class|safe }}</h2></td>
+      <td>{{ char.Name|safe }}</td>
+      <td>{{ char.Role|safe}}</td>
       <td>
       {% for q in char.Quests %}
-        <li>{{ q }}
+        <li>{{ q|safe }}
       {% endfor %}
       </td>
-      <td>{{ char.LastRun }}</td>
-      <td>{{ char.PlayerName }}</td>
-      <td>{{ char.Present }}</td>
+      <td>{{ char.LastRun|safe }}</td>
+      <td>{{ char.PlayerName|safe }}</td>
+      <td>{{ char.Present|safe }}</td>
     {% endfor %}
     </table>
+    <form action="{{ url_for('add_character') }}" method=post>
+      <h2>Character</h2>
+      <dd>Class: <input type=text name=charclass placeholder="High Wizard">
+      <dd>Name: <input type=text name=charname placeholder="Billdalf">
+      <dd>Quests: <input type=text name=charquests placeholder="twotribes">
+      <dd>Last Run: <input type=text name=charlastrun placeholder="2/9/2014">
+      <dd>Player Name: <input type=text name=charplayername placeholder="Billy">
+      <dd>Present: <input type=text name=charpresent placeholder="1">
+      <input type=submit name=action value=Add></>
+    </form>
     <h2>Party Combinations</h2>
     <table class=combination>
     <tr>
@@ -48,7 +68,7 @@
     </tr>
     {% for entry in combinations %}
       <tr>
-      <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex }}</h2></td>
+      <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex|safe }}</h2></td>
       <td>{{ entry.PlayerName|safe }}</td>
       <td>{{ entry.CharacterName|safe }}</td>
       <td>{{ entry.CharacterClass|safe }}</td>
