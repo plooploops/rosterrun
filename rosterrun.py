@@ -115,7 +115,7 @@ class MappedGuildTreasure(db.Model):
     medianMarketPrice = db.Column(db.Float)
     refreshDate = db.Column(db.DateTime)
     guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
-    guildtransaction_id = db.relationship('MappedGuildTransaction', backref='guildtreasure', lazy='dynamic')
+    guildtransaction_id = db.relationship('MappedGuildPoint', backref='guildtreasure', lazy='dynamic')
  
     def __init__(self, itemid, name, cards, amount, minMarketPrice, maxMarketPrice, medianMarketPrice, refreshDate):
         self.itemid = itemid
