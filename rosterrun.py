@@ -89,11 +89,13 @@ class PartyCombo(db.Model):
         return '<PartyCombo %r>' % self.playerName
 
 class MappedGuild(db.Model):
+    __tablename__ = 'guild'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    chars = db.relationship('MappedCharacter', backref='guild', lazy='dynamic')
-    guildTreasures = db.relationship('MappedGuildTreasure', backref='guild', lazy='dynamic')
-    guildPoints = db.relationship('MappedGuildPoint', backref='guild', lazy='dynamic')
+    
+    guildTreasures = db.relationship('MappedGuildTreasure', backref='guildTreasures', lazy='dynamic')
+    guildPoints = db.relationship('MappedGuildPoint', backref='guildPoints', lazy='dynamic')
+    chars = db.relationship('MappedCharacter')
     
     def __init__(self, name, chars, guildTreasures, guildPoints):
     	self.name = name
@@ -102,64 +104,10 @@ class MappedGuild(db.Model):
     	self.guildPoints = guildPoints
     
     def __repr__(self):
-        return '<Guild %r>' % self.name
-
-class MappedGuildTreasure(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    itemid = db.Column(db.Integer)
-    name = db.Column(db.String(80))
-    cards = db.Column(db.String(160))
-    amount = db.Column(db.Float)
-    minMarketPrice = db.Column(db.Float)
-    maxMarketPrice = db.Column(db.Float)
-    medianMarketPrice = db.Column(db.Float)
-    refreshDate = db.Column(db.DateTime)
-    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
-    guildtransaction_id = db.relationship('MappedGuildPoint', backref='guildtreasure', lazy='dynamic')
- 
-    def __init__(self, itemid, name, cards, amount, minMarketPrice, maxMarketPrice, medianMarketPrice, refreshDate):
-        self.itemid = itemid
-        self.name = name
-        self.cards = cards
-        self.amount = amount
-        self.minMarketPrice = minMarketPrice
-        self.maxMarketPrice = maxMarketPrice
-        self.medianMarketPrice = medianMarketPrice
-        self.refreshDate = refreshDate
-        
-    def __repr__(self):
-        return '<MappedGuildTreasure %r>' % self.name
-
-class MappedGuildPoint(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer)
-    amount = db.Column(db.Float)
-    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
-    guildtransaction_id = db.relationship('MappedGuildTransaction', backref='guildpoint', lazy='dynamic')
- 
-    def __init__(self, playerid, amount):
-        self.player_id = playerid
-        self.amount = amount
-        
-    def __repr__(self):
-        return '<MappedGuildPoint %r>' % self.id
-        
-class MappedGuildTransaction(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    guildpoint_id = db.Column(db.Integer, db.ForeignKey('guildpoint.id'))
-    guildtreasure_id = db.Column(db.Integer, db.ForeignKey('guildtreasure.id'))
-    transType = db.Column(db.String(16))
-    transDate = db.Column(db.DateTime)
-    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
- 
-    def __init__(self, playerid, amount):
-        self.player_id = playerid
-        self.amount = amount
-        
-    def __repr__(self):
-        return '<MappedGuildTransaction %r>' % self.id
+        return '<MappedGuild %r>' % self.name
 
 class MappedCharacter(db.Model):
+    __tablename__ = 'guild_characters'
     id = db.Column(db.Integer, primary_key=True)
     g_spreadsheet_id = db.Column(db.String(80))
     g_worksheet_id = db.Column(db.String(80))
@@ -171,6 +119,7 @@ class MappedCharacter(db.Model):
     PlayerName = db.Column(db.String(80))
     Present = db.Column(db.String(80))
     guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guild = db.relationship('MappedGuild', backref='characters', uselist=False)
     
     def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, quests, lastRun, playerName, present):
         self.g_spreadsheet_id = spreadsheet_id
@@ -185,6 +134,68 @@ class MappedCharacter(db.Model):
     
     def __repr__(self):
         return '<MappedCharacter %r>' % self.playerName
+
+class MappedGuildTreasure(db.Model):
+    __tablename__ = 'guild_treasures'
+    id = db.Column(db.Integer, primary_key=True)
+    itemid = db.Column(db.Integer)
+    name = db.Column(db.String(80))
+    cards = db.Column(db.String(160))
+    amount = db.Column(db.Float)
+    minMarketPrice = db.Column(db.Float)
+    maxMarketPrice = db.Column(db.Float)
+    medianMarketPrice = db.Column(db.Float)
+    refreshDate = db.Column(db.DateTime)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guild = db.relationship('MappedGuild', backref='treasures', uselist=False)
+  
+    def __init__(self, itemid, name, cards, amount, minMarketPrice, maxMarketPrice, medianMarketPrice, refreshDate):
+        self.itemid = itemid
+        self.name = name
+        self.cards = cards
+        self.amount = amount
+        self.minMarketPrice = minMarketPrice
+        self.maxMarketPrice = maxMarketPrice
+        self.medianMarketPrice = medianMarketPrice
+        self.refreshDate = refreshDate
+        
+    def __repr__(self):
+        return '<MappedGuildTreasure %r>' % self.name   
+
+class MappedGuildPoint(db.Model):
+    __tablename__ = 'guild_points'
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column(db.Integer)
+    amount = db.Column(db.Float)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guild = db.relationship('MappedGuild', backref='points', uselist=False)
+    guildtransaction = db.relationship("MappedGuildTransaction", uselist=False, backref="transactions")
+ 
+    def __init__(self, playerid, amount):
+        self.player_id = playerid
+        self.amount = amount
+        
+    def __repr__(self):
+        return '<MappedGuildPoint %r>' % self.id
+
+class MappedGuildTransaction(db.Model):
+    __tablename__ = 'guild_transactions'
+    id = db.Column(db.Integer, primary_key=True)
+    guildpoint_id = db.Column(db.Integer, db.ForeignKey('guild_points.id'))
+    guildtreasure_id = db.Column(db.Integer, db.ForeignKey('guild_treasures.id'))
+    guildtreasure = db.relationship('MappedGuildTreasure', backref='transactions')
+ 
+    transType = db.Column(db.String(16))
+    transDate = db.Column(db.DateTime)
+    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
+    guild = db.relationship('MappedGuild', backref='transactions', uselist=False)
+ 
+    def __init__(self, playerid, amount):
+        self.player_id = playerid
+        self.amount = amount
+        
+    def __repr__(self):
+        return '<MappedGuildTransaction %r>' % self.id     
 
 class MappedMarketResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
