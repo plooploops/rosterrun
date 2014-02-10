@@ -364,6 +364,48 @@ def points():
   p = MappedGuildPoint.query.all()
   
   return render_template('points.html', points=p)
+  
+@app.route('/update_chars', methods=['GET', 'POST'])
+def update_chars():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  
+  #do something to populate fields with current character
+  action = None
+  p = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  mc = MappedCharacter.query.all()
+  
+  return render_template('show_entries.html')
+
+@app.route('/add_character', methods=['GET', 'POST'])
+def add_character():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  
+  #do something to save / edit current character
+  action = None
+  p = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  mc = MappedCharacter.query.all()
+  
+  return render_template('show_entries.html')
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
