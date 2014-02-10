@@ -323,7 +323,7 @@ def market_results():
   except:
     print 'cannot bind action'
   
-  mr = MarketResults.query.all()
+  mr = MappedMarketResult.query.all()
   
   return render_template('market_results.html', marketresults=mr)
   
