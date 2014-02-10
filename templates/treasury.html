@@ -12,7 +12,7 @@
       </table>
     </form>
     <h2>Treasury</h2>
-    <table class=mappedguildtreasure>
+    <table class=treasure>
     <tr>
     <th>Itemid</th>
     <th>Name</th>
@@ -24,7 +24,7 @@
     <th>Refresh Date</th>
     <th>Guild Transaction</th>
     </tr>
-    {% for t in treasury %}
+    {% for t in treasures %}
       <tr>
       <td><h2>{{ t.itemid}}</h2></td>
       <td>{{ t.name }}</td>
