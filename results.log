@@ -1,101 +1,103 @@
-2014-02-10T07:39:24.191767+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-02-10T07:39:24.191767+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-02-10T07:39:24.191767+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-02-10T07:39:24.191767+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:39:24.191516+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:39:24.191767+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-02-10T07:39:24.191767+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-02-10T07:39:24.191958+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
-2014-02-10T07:39:24.191958+00:00 app[web.1]:   File "/app/rosterrun.py", line 309, in show_entries
-2014-02-10T07:39:24.191958+00:00 app[web.1]:     context, ctx.app)
-2014-02-10T07:39:24.191958+00:00 app[web.1]:     rv = template.render(context)
-2014-02-10T07:39:24.191958+00:00 app[web.1]:     return render_template('show_entries.html', combinations=availableParties, characters=chars)
-2014-02-10T07:39:24.191958+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
-2014-02-10T07:39:24.191958+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
-2014-02-10T07:39:24.191958+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
-2014-02-10T07:39:24.191958+00:00 app[web.1]:     return self.environment.handle_exception(exc_info, True)
-2014-02-10T07:39:24.191958+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:39:24.192601+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 1, in top-level template code
-2014-02-10T07:39:24.192601+00:00 app[web.1]:     {% extends "layout.html" %}
-2014-02-10T07:39:24.192601+00:00 app[web.1]:     {% block body %}{% endblock %}
-2014-02-10T07:39:24.192601+00:00 app[web.1]:   File "/app/templates/layout.html", line 16, in top-level template code
-2014-02-10T07:39:24.192601+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 23, in block "body"
-2014-02-10T07:39:24.192601+00:00 app[web.1]:     <table action="{{ url_for('update_chars') }}" method=post class=character>
-2014-02-10T07:39:24.192601+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
-2014-02-10T07:39:24.192601+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
-2014-02-10T07:39:24.192601+00:00 app[web.1]:     return appctx.app.handle_url_build_error(error, endpoint, values)
-2014-02-10T07:39:24.192867+00:00 app[web.1]:     force_external=external)
-2014-02-10T07:39:24.192601+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:39:24.192867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
-2014-02-10T07:39:24.192867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
-2014-02-10T07:39:24.192867+00:00 app[web.1]:     raise BuildError(endpoint, values, method)
-2014-02-10T07:39:24.192867+00:00 app[web.1]: BuildError: ('update_chars', {}, None)
-2014-02-10T07:39:25.493648+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-10T07:39:26.068852+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-10T07:39:27.030462+00:00 app[worker.1]: 07:39:27 RQ worker started, version 0.3.13
-2014-02-10T07:39:27.031756+00:00 app[worker.1]: 07:39:27 
-2014-02-10T07:39:27.031933+00:00 app[worker.1]: 07:39:27 *** Listening on high, default, low...
-2014-02-10T07:45:00+00:00 heroku[slug-compiler]: Slug compilation started
-2014-02-10T07:46:32.394399+00:00 heroku[api]: Deploy 3cf0eeb by andygee@gmail.com
-2014-02-10T07:46:32.457868+00:00 heroku[api]: Release v185 created by andygee@gmail.com
-2014-02-10T07:46:32+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-02-10T07:46:32.738330+00:00 heroku[web.1]: State changed from up to starting
-2014-02-10T07:46:32.787231+00:00 heroku[worker.1]: State changed from up to starting
-2014-02-10T07:46:32.810021+00:00 heroku[worker.2]: State changed from up to starting
-2014-02-10T07:46:35.162392+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-02-10T07:46:35.187452+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-02-10T07:46:35.612544+00:00 app[worker.2]: 07:46:35 Warm shut down requested.
-2014-02-10T07:46:35.719524+00:00 app[web.1]: 2014-02-10 07:46:35 [7] [INFO] Worker exiting (pid: 7)
-2014-02-10T07:46:35.739633+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-02-10T07:46:35.740483+00:00 app[web.1]: 2014-02-10 07:46:35 [2] [INFO] Handling signal: term
-2014-02-10T07:46:35.780543+00:00 app[web.1]: 2014-02-10 07:46:35 [2] [INFO] Shutting down: Master
-2014-02-10T07:46:36.423990+00:00 app[worker.1]: 07:46:36 Warm shut down requested.
-2014-02-10T07:46:37.019152+00:00 heroku[worker.2]: Process exited with status 0
-2014-02-10T07:46:37.138976+00:00 heroku[web.1]: Process exited with status 0
-2014-02-10T07:46:37.730325+00:00 heroku[worker.1]: Process exited with status 0
-2014-02-10T07:46:42.801802+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-10T07:46:43.421195+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-10T07:46:43.571368+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-02-10T07:46:44.049544+00:00 app[worker.1]: 07:46:44 RQ worker started, version 0.3.13
-2014-02-10T07:46:44.051706+00:00 app[worker.1]: 07:46:44 
-2014-02-10T07:46:44.051996+00:00 app[worker.1]: 07:46:44 *** Listening on high, default, low...
-2014-02-10T07:46:44.380379+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-10T07:46:44.513572+00:00 app[web.1]: 2014-02-10 07:46:44 [7] [INFO] Booting worker with pid: 7
-2014-02-10T07:46:44.506901+00:00 app[web.1]: 2014-02-10 07:46:44 [2] [INFO] Starting gunicorn 18.0
-2014-02-10T07:46:44.507465+00:00 app[web.1]: 2014-02-10 07:46:44 [2] [INFO] Listening at: http://0.0.0.0:41363 (2)
-2014-02-10T07:46:44.507543+00:00 app[web.1]: 2014-02-10 07:46:44 [2] [INFO] Using worker: sync
-2014-02-10T07:46:44.976509+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-10T07:46:44.907726+00:00 heroku[web.1]: State changed from starting to up
-2014-02-10T07:46:45.892806+00:00 app[worker.2]: 07:46:45 RQ worker started, version 0.3.13
-2014-02-10T07:46:45.926163+00:00 app[worker.2]: 07:46:45 
-2014-02-10T07:46:45.926163+00:00 app[worker.2]: 07:46:45 *** Listening on high, default, low...
-2014-02-10T07:46:54.799497+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:46:54.799109+00:00 app[web.1]: No job in session
-2014-02-10T07:46:54.799497+00:00 app[web.1]: show entries
-2014-02-10T07:46:54.799544+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-02-10T07:46:54.947840+00:00 app[web.1]: issue finding the available parties
-2014-02-10T07:46:54.984579+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=b1dc9487-51b1-42a4-bc02-a78cbebe9192 fwd="67.105.106.9" dyno=web.1 connect=1ms service=186ms status=200 bytes=4925
-2014-02-10T07:47:24.626118+00:00 app[web.1]: cannot bind action
-2014-02-10T07:47:24.627268+00:00 app[web.1]: 2014-02-10 07:47:24 [7] [ERROR] Error handling request
-2014-02-10T07:47:24.627268+00:00 app[web.1]: Traceback (most recent call last):
-2014-02-10T07:47:24.627268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-02-10T07:47:24.627268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-02-10T07:47:24.627268+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:47:24.627450+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-02-10T07:47:24.627268+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-02-10T07:47:24.627268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-02-10T07:47:24.627450+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-02-10T07:47:24.627268+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-02-10T07:47:24.627268+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-02-10T07:47:24.627268+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-02-10T07:47:24.627450+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-02-10T07:47:24.627450+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:47:24.627450+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-02-10T07:47:24.627450+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-02-10T07:47:24.627670+00:00 app[web.1]:   File "/app/rosterrun.py", line 326, in market_results
-2014-02-10T07:47:24.627670+00:00 app[web.1]:     mr = MarketResults.query.all()
-2014-02-10T07:47:24.627450+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-02-10T07:47:24.627450+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-02-10T07:47:24.627450+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-02-10T07:47:24.627450+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-02-10T07:47:24.627670+00:00 app[web.1]: NameError: global name 'MarketResults' is not defined
+2014-02-10T07:52:49.315601+00:00 app[web.1]: show entries
+2014-02-10T07:52:49.315601+00:00 app[web.1]: already have ids in session  None None
+2014-02-10T07:52:49.320992+00:00 app[web.1]: get all combinations
+2014-02-10T07:52:49.323366+00:00 app[web.1]: 2014-02-10 07:52:49 [7] [ERROR] Error handling request
+2014-02-10T07:52:49.323366+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-02-10T07:52:49.323366+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:52:49.323366+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-02-10T07:52:49.323366+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-02-10T07:52:49.323366+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-02-10T07:52:49.323610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-02-10T07:52:49.323366+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-02-10T07:52:49.323610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-02-10T07:52:49.323610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-02-10T07:52:49.323610+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:52:49.323610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-02-10T07:52:49.323366+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-02-10T07:52:49.323366+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-02-10T07:52:49.323610+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-02-10T07:52:49.323876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/query.py", line 2368, in _execute_and_instances
+2014-02-10T07:52:49.323610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-02-10T07:52:49.323610+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-02-10T07:52:49.323610+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-02-10T07:52:49.323876+00:00 app[web.1]:     cur = PartyCombo.query.all()
+2014-02-10T07:52:49.323876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/query.py", line 2241, in all
+2014-02-10T07:52:49.323610+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-02-10T07:52:49.323876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/query.py", line 2353, in __iter__
+2014-02-10T07:52:49.323366+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:52:49.323876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 662, in execute
+2014-02-10T07:52:49.324484+00:00 app[web.1]:     compiled_sql, distilled_params
+2014-02-10T07:52:49.324484+00:00 app[web.1]:     exc_info
+2014-02-10T07:52:49.324659+00:00 app[web.1]:     cursor.execute(statement, parameters)
+2014-02-10T07:52:49.324659+00:00 app[web.1]: InternalError: (InternalError) current transaction is aborted, commands ignored until end of transaction block
+2014-02-10T07:52:49.323876+00:00 app[web.1]:     return list(self)
+2014-02-10T07:52:49.323876+00:00 app[web.1]:     params)
+2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 761, in _execute_clauseelement
+2014-02-10T07:52:49.323876+00:00 app[web.1]:     return self._execute_and_instances(context)
+2014-02-10T07:52:49.324484+00:00 app[web.1]:     context)
+2014-02-10T07:52:49.323876+00:00 app[web.1]:   File "/app/rosterrun.py", line 301, in show_entries
+2014-02-10T07:52:49.324484+00:00 app[web.1]:     reraise(type(exception), exception, tb=exc_tb)
+2014-02-10T07:52:49.323876+00:00 app[web.1]:     result = conn.execute(querycontext.statement, self._params)
+2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 196, in raise_from_cause
+2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1024, in _handle_dbapi_exception
+2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 874, in _execute_context
+2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 867, in _execute_context
+2014-02-10T07:52:49.324659+00:00 app[web.1]:  'SELECT party_combo.id AS party_combo_id, party_combo.g_spreadsheet_id AS party_combo_g_spreadsheet_id, party_combo.g_worksheet_id AS party_combo_g_worksheet_id, party_combo."partyIndex" AS "party_combo_partyIndex", party_combo."instanceName" AS "party_combo_instanceName", party_combo."playerName" AS "party_combo_playerName", party_combo.name AS party_combo_name, party_combo."className" AS "party_combo_className", party_combo.rolename AS party_combo_rolename \nFROM party_combo' {}
+2014-02-10T07:52:49.324484+00:00 app[web.1]:     context)
+2014-02-10T07:52:49.324659+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 324, in do_execute
+2014-02-10T07:52:49.324607+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=d730c279-e686-45fd-a477-a2b40e617c9c fwd="67.105.106.9" dyno=web.1 connect=1ms service=12ms status=500 bytes=135
+2014-02-10T07:53:05.085586+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
+2014-02-10T07:53:19.033744+00:00 heroku[run.4104]: Awaiting client
+2014-02-10T07:53:19.085003+00:00 heroku[run.4104]: Starting process with command `python`
+2014-02-10T07:53:19.007709+00:00 heroku[run.4104]: State changed from starting to up
+2014-02-10T07:53:38.505404+00:00 heroku[run.4104]: State changed from up to complete
+2014-02-10T07:53:38.481502+00:00 heroku[run.4104]: Process exited with status 0
+2014-02-10T07:53:44.325630+00:00 app[web.1]: show entries
+2014-02-10T07:53:44.325630+00:00 app[web.1]: cannot find gdoc name
+2014-02-10T07:53:44.325199+00:00 app[web.1]: No job in session
+2014-02-10T07:53:44.325696+00:00 app[web.1]: already have ids in session  None None
+2014-02-10T07:53:44.346038+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-02-10T07:53:44.346038+00:00 app[web.1]: get all combinations
+2014-02-10T07:54:01.959305+00:00 app[web.1]: cannot bind action
+2014-02-10T07:54:04.308572+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-02-10T07:54:04.272537+00:00 app[web.1]: cannot bind action
+2014-02-10T07:54:04.308572+00:00 app[web.1]: 2014-02-10 07:54:04 [7] [ERROR] Error handling request
+2014-02-10T07:54:04.308572+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-02-10T07:54:04.308572+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-02-10T07:54:04.308572+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-02-10T07:54:04.308917+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-02-10T07:54:04.308572+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-02-10T07:54:04.309151+00:00 app[web.1]:     return render_template('treasury.html', treasures=t)
+2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-02-10T07:54:04.308917+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-02-10T07:54:04.308917+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-02-10T07:54:04.308917+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-02-10T07:54:04.308917+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/rosterrun.py", line 347, in treasury
+2014-02-10T07:54:04.309151+00:00 app[web.1]:     return self.get_template(template_name_or_list, parent, globals)
+2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
+2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+2014-02-10T07:54:04.309151+00:00 app[web.1]:     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
+2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+2014-02-10T07:54:04.309151+00:00 app[web.1]:     template = self.loader.load(self, name, globals)
+2014-02-10T07:54:04.309151+00:00 app[web.1]:     return self._load_template(name, self.make_globals(globals))
+2014-02-10T07:54:04.309923+00:00 app[web.1]:     self.handle_exception(exc_info, source_hint=source)
+2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
+2014-02-10T07:54:04.309923+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:54:04.309923+00:00 app[web.1]: TemplateAssertionError: no test named 'None'
+2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
+2014-02-10T07:54:04.309923+00:00 app[web.1]:     code = environment.compile(source, name, filename)
+2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
+2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/templates/treasury.html", line 42, in template
+2014-02-10T07:54:04.309923+00:00 app[web.1]:     <!--<td>{% if t.guildtransaction_id is None %}<input type=submit name=buy value=Buy>{% else %}{{ t.guildtransaction_id|safe }}  {% endif %}</>-->
+2014-02-10T07:53:44.443749+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=a0794865-00d2-42b8-99ae-9933a021a716 fwd="67.105.106.9" dyno=web.1 connect=0ms service=128ms status=200 bytes=4925
+Terminate batch job (Y/N)? 
