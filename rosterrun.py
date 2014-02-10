@@ -308,6 +308,25 @@ def show_entries():
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
 
+@app.route('/market_results', methods=['POST'])
+def market_results():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  action = None
+  mr = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  mr = MarketResults.query.all()
+  
+  return render_template('market_results.html', marketresults=mr)
+
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
     try:
