@@ -1,69 +1,3 @@
-2014-02-09T23:31:49.449248+00:00 app[web.1]: issue finding the available parties
-2014-02-09T23:31:49.447709+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-02-09T23:31:49.454011+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-02-09T23:31:49.454011+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-02-09T23:31:49.454011+00:00 app[web.1]: Traceback (most recent call last):
-2014-02-09T23:31:49.454011+00:00 app[web.1]: 2014-02-09 23:31:49 [7] [ERROR] Error handling request
-2014-02-09T23:31:49.454198+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-02-09T23:31:49.454198+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-02-09T23:31:49.454198+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-02-09T23:31:49.454198+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-02-09T23:31:49.454198+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-02-09T23:31:49.454383+00:00 app[web.1]:   File "/app/rosterrun.py", line 289, in show_entries
-2014-02-09T23:31:49.454198+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-02-09T23:31:49.454011+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-02-09T23:31:49.454011+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-09T23:31:49.454198+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-02-09T23:31:49.454198+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-02-09T23:31:49.454383+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/util.py", line 1118, in class_mapper
-2014-02-09T23:31:49.454383+00:00 app[web.1]:     mapper = orm.class_mapper(type)
-2014-02-09T23:31:49.454198+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-09T23:31:49.454383+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 426, in __get__
-2014-02-09T23:31:49.454383+00:00 app[web.1]:     mapperlib.configure_mappers()
-2014-02-09T23:31:49.454383+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/util.py", line 1051, in _inspect_mapped_class
-2014-02-09T23:31:49.454383+00:00 app[web.1]:     cur = PartyCombo.query.all()
-2014-02-09T23:31:49.454383+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/mapper.py", line 2150, in configure_mappers
-2014-02-09T23:31:49.454383+00:00 app[web.1]:     raise e
-2014-02-09T23:31:49.454383+00:00 app[web.1]:     mapper = _inspect_mapped_class(class_, configure=configure)
-2014-02-09T23:31:49.454877+00:00 app[web.1]: InvalidRequestError: One or more mappers failed to initialize - can't proceed with initialization of other mappers.  Original exception was: Could not determine join condition between parent/child tables on relationship MappedGuildPoint.guildtransaction_id - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
-2014-02-09T23:31:49.456802+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=a83b3dc5-24d9-42a4-8ae9-8abb8ff2a874 fwd="67.105.106.9" dyno=web.1 connect=0ms service=15ms status=500 bytes=135
-2014-02-09T23:43:10+00:00 heroku[slug-compiler]: Slug compilation started
-2014-02-09T23:44:32.382289+00:00 heroku[api]: Deploy e7864b0 by andygee@gmail.com
-2014-02-09T23:44:32.486488+00:00 heroku[api]: Release v179 created by andygee@gmail.com
-2014-02-09T23:44:32+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-02-09T23:44:32.741535+00:00 heroku[web.1]: State changed from up to starting
-2014-02-09T23:44:32.796765+00:00 heroku[worker.2]: State changed from up to starting
-2014-02-09T23:44:32.820094+00:00 heroku[worker.1]: State changed from up to starting
-2014-02-09T23:44:35.720213+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-02-09T23:44:35.915577+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-02-09T23:44:36.330937+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-02-09T23:44:36.414849+00:00 app[web.1]: 2014-02-09 23:44:36 [2] [INFO] Handling signal: term
-2014-02-09T23:44:36.425015+00:00 app[web.1]: 2014-02-09 23:44:36 [2] [INFO] Shutting down: Master
-2014-02-09T23:44:36.414145+00:00 app[web.1]: 2014-02-09 23:44:36 [7] [INFO] Worker exiting (pid: 7)
-2014-02-09T23:44:36.712490+00:00 app[worker.1]: 23:44:36 Warm shut down requested.
-2014-02-09T23:44:37.144760+00:00 app[worker.2]: 23:44:37 Warm shut down requested.
-2014-02-09T23:44:37.639830+00:00 heroku[web.1]: Process exited with status 0
-2014-02-09T23:44:38.109683+00:00 heroku[worker.1]: Process exited with status 0
-2014-02-09T23:44:38.690780+00:00 heroku[worker.2]: Process exited with status 0
-2014-02-09T23:44:43.366287+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-02-09T23:44:43.940722+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-09T23:44:44.518188+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-09T23:44:44.712240+00:00 app[web.1]: 2014-02-09 23:44:44 [2] [INFO] Starting gunicorn 18.0
-2014-02-09T23:44:44.713285+00:00 app[web.1]: 2014-02-09 23:44:44 [2] [INFO] Listening at: http://0.0.0.0:40012 (2)
-2014-02-09T23:44:44.713405+00:00 app[web.1]: 2014-02-09 23:44:44 [2] [INFO] Using worker: sync
-2014-02-09T23:44:44.734745+00:00 app[web.1]: 2014-02-09 23:44:44 [7] [INFO] Booting worker with pid: 7
-2014-02-09T23:44:44.952887+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-09T23:44:45.077466+00:00 heroku[web.1]: State changed from starting to up
-2014-02-09T23:44:45.527606+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-09T23:44:45.386652+00:00 app[worker.2]: 23:44:45 RQ worker started, version 0.3.13
-2014-02-09T23:44:45.388811+00:00 app[worker.2]: 23:44:45 
-2014-02-09T23:44:45.388902+00:00 app[worker.2]: 23:44:45 *** Listening on high, default, low...
-2014-02-09T23:44:46.303145+00:00 app[worker.1]: 23:44:46 RQ worker started, version 0.3.13
-2014-02-09T23:44:46.305614+00:00 app[worker.1]: 23:44:46 
-2014-02-09T23:44:46.305684+00:00 app[worker.1]: 23:44:46 *** Listening on high, default, low...
-2014-02-09T23:46:27.053460+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-02-09T23:46:27.053460+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-02-09T23:46:27.053460+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
 2014-02-09T23:46:27.053460+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
 2014-02-09T23:46:27.053460+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
 2014-02-09T23:46:27.053460+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
@@ -99,3 +33,69 @@
 2014-02-09T23:46:27.053817+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/orm/mapper.py", line 2150, in configure_mappers
 2014-02-09T23:46:27.053817+00:00 app[web.1]:     raise e
 2014-02-09T23:46:27.054309+00:00 app[web.1]: InvalidRequestError: One or more mappers failed to initialize - can't proceed with initialization of other mappers.  Original exception was: Could not determine join condition between parent/child tables on relationship MappedGuildTreasure.guildtransaction_id - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2014-02-10T00:48:22.468394+00:00 heroku[web.1]: State changed from up to down
+2014-02-10T00:48:22.467729+00:00 heroku[web.1]: Idling
+2014-02-10T00:48:27.357747+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-02-10T00:48:28.401025+00:00 app[web.1]: 2014-02-10 00:48:28 [2] [INFO] Handling signal: term
+2014-02-10T00:48:28.456268+00:00 app[web.1]: Exception KeyError: KeyError(140616445667072,) in <module 'threading' from '/app/.heroku/python/lib/python2.7/threading.pyc'> ignored
+2014-02-10T00:48:28.401025+00:00 app[web.1]: 2014-02-10 00:48:28 [7] [INFO] Worker exiting (pid: 7)
+2014-02-10T00:48:28.607388+00:00 app[web.1]: 2014-02-10 00:48:28 [2] [INFO] Shutting down: Master
+2014-02-10T00:48:31.419538+00:00 heroku[web.1]: Process exited with status 0
+2014-02-10T06:16:07+00:00 heroku[slug-compiler]: Slug compilation started
+2014-02-10T06:16:56.536113+00:00 heroku[api]: Deploy b592e58 by andygee@gmail.com
+2014-02-10T06:16:57+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-02-10T06:16:56.771038+00:00 heroku[api]: Release v180 created by andygee@gmail.com
+2014-02-10T06:17:00.565089+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-02-10T06:17:00.769657+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-02-10T06:17:01.164949+00:00 app[worker.1]: 06:17:01 Warm shut down requested.
+2014-02-10T06:17:01.530258+00:00 app[worker.2]: 06:17:01 Warm shut down requested.
+2014-02-10T06:17:02.947213+00:00 heroku[worker.2]: Process exited with status 0
+2014-02-10T06:17:03.032211+00:00 heroku[worker.1]: Process exited with status 0
+2014-02-10T06:17:09.008580+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-02-10T06:17:09.237740+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-02-10T06:17:09.457751+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-02-10T06:17:09.952772+00:00 heroku[worker.2]: State changed from starting to up
+2014-02-10T06:17:10.109213+00:00 app[web.1]: 2014-02-10 06:17:10 [2] [INFO] Starting gunicorn 18.0
+2014-02-10T06:17:10.109784+00:00 app[web.1]: 2014-02-10 06:17:10 [2] [INFO] Listening at: http://0.0.0.0:11681 (2)
+2014-02-10T06:17:10.109894+00:00 app[web.1]: 2014-02-10 06:17:10 [2] [INFO] Using worker: sync
+2014-02-10T06:17:10.117235+00:00 app[web.1]: 2014-02-10 06:17:10 [7] [INFO] Booting worker with pid: 7
+2014-02-10T06:17:10.117837+00:00 heroku[worker.1]: State changed from starting to up
+2014-02-10T06:17:10.657203+00:00 heroku[web.1]: State changed from starting to up
+2014-02-10T06:17:10.866783+00:00 app[worker.2]: 06:17:10 RQ worker started, version 0.3.13
+2014-02-10T06:17:10.870104+00:00 app[worker.2]: 06:17:10 
+2014-02-10T06:17:10.870162+00:00 app[worker.2]: 06:17:10 *** Listening on high, default, low...
+2014-02-10T06:17:11.530922+00:00 app[worker.1]: 06:17:11 
+2014-02-10T06:17:11.531063+00:00 app[worker.1]: 06:17:11 *** Listening on high, default, low...
+2014-02-10T06:17:11.529220+00:00 app[worker.1]: 06:17:11 RQ worker started, version 0.3.13
+2014-02-10T06:16:57.625660+00:00 heroku[web.1]: State changed from down to starting
+2014-02-10T06:16:57.669197+00:00 heroku[worker.1]: State changed from up to starting
+2014-02-10T06:16:57.701007+00:00 heroku[worker.2]: State changed from up to starting
+2014-02-10T07:00:02.233220+00:00 app[web.1]: No job in session
+2014-02-10T07:00:02.255852+00:00 app[web.1]: show entries
+2014-02-10T07:00:02.255852+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
+2014-02-10T07:00:02.255852+00:00 app[web.1]: cannot find gdoc name
+2014-02-10T07:00:02.578173+00:00 app[web.1]: issue finding the available parties
+2014-02-10T07:00:02.584922+00:00 app[web.1]: 2014-02-10 07:00:02 [7] [ERROR] Error handling request
+2014-02-10T07:00:02.584922+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:00:02.584922+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+2014-02-10T07:00:02.584922+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:00:02.584922+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+2014-02-10T07:00:02.584922+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+2014-02-10T07:00:02.584922+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+2014-02-10T07:00:02.584922+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
+2014-02-10T07:00:02.585150+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+2014-02-10T07:00:02.585150+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+2014-02-10T07:00:02.584922+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+2014-02-10T07:00:02.585150+00:00 app[web.1]:     response = self.full_dispatch_request()
+2014-02-10T07:00:02.584922+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+2014-02-10T07:00:02.585150+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+2014-02-10T07:00:02.585150+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2014-02-10T07:00:02.585150+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+2014-02-10T07:00:02.585150+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+2014-02-10T07:00:02.585150+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+2014-02-10T07:00:02.585334+00:00 app[web.1]:     return render_template('show_entries.html', combinations=availableParties, characters=chars)
+2014-02-10T07:00:02.585334+00:00 app[web.1]: UnboundLocalError: local variable 'chars' referenced before assignment
+2014-02-10T07:00:02.585150+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+2014-02-10T07:00:02.585150+00:00 app[web.1]:     rv = self.dispatch_request()
+2014-02-10T07:00:02.585334+00:00 app[web.1]:   File "/app/rosterrun.py", line 308, in show_entries
+2014-02-10T07:00:02.604530+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=317b4a7c-012c-41b7-82b5-8c2322235f7a fwd="67.105.106.9" dyno=web.1 connect=1ms service=552ms status=500 bytes=135

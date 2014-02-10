@@ -244,7 +244,8 @@ def show_entries():
  
     action = None
     availableParties = []
-    checkCalculation()
+    chars = []
+    checkCalculation()    
     
     try:
       session['doc'] = request.form['gdocname'].strip()
