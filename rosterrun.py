@@ -328,7 +328,7 @@ def market_results():
   return render_template('market_results.html', marketresults=mr)
   
 @app.route('/treasury', methods=['GET', 'POST'])
-def market_results():
+def treasury():
   if not session.get('logged_in'):
     #abort(401)
     flash('Please login again')
@@ -347,7 +347,7 @@ def market_results():
   return render_template('treasury.html', treasures=t)
   
 @app.route('/points', methods=['GET', 'POST'])
-def market_results():
+def points():
   if not session.get('logged_in'):
     #abort(401)
     flash('Please login again')

@@ -1,102 +1,101 @@
-2014-02-10T07:04:57.484340+00:00 app[web.1]:     {% extends "layout.html" %}
-2014-02-10T07:04:57.484340+00:00 app[web.1]:     {% block body %}{% endblock %}
-2014-02-10T07:04:57.484340+00:00 app[web.1]:   File "/app/templates/layout.html", line 16, in top-level template code
-2014-02-10T07:04:57.484340+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
-2014-02-10T07:04:57.484340+00:00 app[web.1]:     return appctx.app.handle_url_build_error(error, endpoint, values)
-2014-02-10T07:04:57.483823+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
-2014-02-10T07:04:57.484340+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 9, in block "body"
-2014-02-10T07:04:57.484340+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:04:57.484340+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 1, in top-level template code
-2014-02-10T07:04:57.483823+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:04:57.484517+00:00 app[web.1]:     raise BuildError(endpoint, values, method)
-2014-02-10T07:04:57.484340+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
-2014-02-10T07:04:57.484517+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
-2014-02-10T07:04:57.484517+00:00 app[web.1]:     force_external=external)
-2014-02-10T07:04:57.484517+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
-2014-02-10T07:04:57.484517+00:00 app[web.1]: BuildError: ('market_results', {}, None)
-2014-02-10T07:19:37+00:00 heroku[slug-compiler]: Slug compilation started
-2014-02-10T07:20:53.653537+00:00 heroku[api]: Deploy 51d3bf0 by andygee@gmail.com
-2014-02-10T07:20:53.691532+00:00 heroku[api]: Release v182 created by andygee@gmail.com
-2014-02-10T07:20:53+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-02-10T07:20:53.946844+00:00 heroku[web.1]: State changed from up to starting
-2014-02-10T07:20:54.004169+00:00 heroku[worker.1]: State changed from up to starting
-2014-02-10T07:20:54.027872+00:00 heroku[worker.2]: State changed from up to starting
-2014-02-10T07:20:56.363276+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-02-10T07:20:56.879201+00:00 app[web.1]: 2014-02-10 07:20:56 [7] [INFO] Worker exiting (pid: 7)
-2014-02-10T07:20:56.879991+00:00 app[web.1]: 2014-02-10 07:20:56 [2] [INFO] Handling signal: term
-2014-02-10T07:20:56.891237+00:00 app[web.1]: 2014-02-10 07:20:56 [2] [INFO] Shutting down: Master
-2014-02-10T07:20:55.597492+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-02-10T07:20:55.884583+00:00 app[worker.1]: 07:20:55 Warm shut down requested.
-2014-02-10T07:20:57.045518+00:00 heroku[worker.1]: Process exited with status 0
-2014-02-10T07:20:57.765034+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-02-10T07:20:58.097570+00:00 heroku[web.1]: Process exited with status 0
-2014-02-10T07:20:58.701057+00:00 app[worker.2]: 07:20:58 Warm shut down requested.
-2014-02-10T07:21:00.006464+00:00 heroku[worker.2]: Process exited with status 0
-2014-02-10T07:21:04.864564+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-10T07:21:05.554511+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-10T07:21:05.951809+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-10T07:21:06.471380+00:00 app[worker.2]: 07:21:06 
-2014-02-10T07:21:06.471570+00:00 app[worker.2]: 07:21:06 *** Listening on high, default, low...
-2014-02-10T07:21:06.469564+00:00 app[worker.2]: 07:21:06 RQ worker started, version 0.3.13
-2014-02-10T07:21:06.619727+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-10T07:21:07.165579+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-02-10T07:21:07.388871+00:00 app[worker.1]: 07:21:07 RQ worker started, version 0.3.13
-2014-02-10T07:21:07.392187+00:00 app[worker.1]: 07:21:07 
-2014-02-10T07:21:07.392187+00:00 app[worker.1]: 07:21:07 *** Listening on high, default, low...
-2014-02-10T07:21:09.205834+00:00 heroku[web.1]: State changed from starting to up
-2014-02-10T07:21:08.689620+00:00 app[web.1]: 2014-02-10 07:21:08 [2] [INFO] Starting gunicorn 18.0
-2014-02-10T07:21:08.691201+00:00 app[web.1]: 2014-02-10 07:21:08 [2] [INFO] Using worker: sync
-2014-02-10T07:21:08.690915+00:00 app[web.1]: 2014-02-10 07:21:08 [2] [INFO] Listening at: http://0.0.0.0:23637 (2)
-2014-02-10T07:21:08.707877+00:00 app[web.1]: 2014-02-10 07:21:08 [7] [INFO] Booting worker with pid: 7
-2014-02-10T07:23:40.518088+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:23:40.512797+00:00 app[web.1]: No job in session
-2014-02-10T07:23:40.519750+00:00 app[web.1]: already have ids in session  t0r5xf97B-k70k6TxherGcw od6
-2014-02-10T07:23:40.518088+00:00 app[web.1]: show entries
-2014-02-10T07:23:40.822319+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=ce8b1923-1105-4966-ad11-f64eeee48197 fwd="67.105.106.9" dyno=web.1 connect=1ms service=314ms status=500 bytes=135
-2014-02-10T07:23:40.817271+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-02-10T07:23:40.772575+00:00 app[web.1]: issue finding the available parties
-2014-02-10T07:23:40.817271+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-02-10T07:23:40.817271+00:00 app[web.1]: 2014-02-10 07:23:40 [7] [ERROR] Error handling request
-2014-02-10T07:23:40.817271+00:00 app[web.1]: Traceback (most recent call last):
-2014-02-10T07:23:40.817271+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-02-10T07:23:40.817271+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-02-10T07:23:40.817509+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-02-10T07:23:40.817509+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-02-10T07:23:40.817271+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:23:40.817509+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-02-10T07:23:40.817509+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-02-10T07:23:40.817672+00:00 app[web.1]:   File "/app/rosterrun.py", line 309, in show_entries
-2014-02-10T07:23:40.817509+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-02-10T07:23:40.817509+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-02-10T07:23:40.817672+00:00 app[web.1]:     return render_template('show_entries.html', combinations=availableParties, characters=chars)
-2014-02-10T07:23:40.817672+00:00 app[web.1]:     context, ctx.app)
-2014-02-10T07:23:40.817672+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 110, in _render
-2014-02-10T07:23:40.817672+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 128, in render_template
-2014-02-10T07:23:40.817672+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
-2014-02-10T07:23:40.818208+00:00 app[web.1]:     <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
-2014-02-10T07:23:40.818208+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 1, in top-level template code
-2014-02-10T07:23:40.817672+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:23:40.818208+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1641, in handle_url_build_error
-2014-02-10T07:23:40.818208+00:00 app[web.1]:   File "/app/templates/show_entries.html", line 10, in block "body"
-2014-02-10T07:23:40.818388+00:00 app[web.1]:     force_external=external)
-2014-02-10T07:23:40.818208+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 312, in url_for
-2014-02-10T07:23:40.818208+00:00 app[web.1]:     return appctx.app.handle_url_build_error(error, endpoint, values)
-2014-02-10T07:23:40.817271+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-02-10T07:23:40.817271+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-02-10T07:23:40.817509+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-02-10T07:23:40.817509+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:23:40.
-817271+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-02-10T07:23:40.817509+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-02-10T07:23:40.818388+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/werkzeug/routing.py", line 1620, in build
-2014-02-10T07:23:40.818388+00:00 app[web.1]:     raise BuildError(endpoint, values, method)
-2014-02-10T07:23:40.818208+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:23:40.817509+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-02-10T07:23:40.817672+00:00 app[web.1]:     rv = template.render(context)
-2014-02-10T07:23:40.817672+00:00 app[web.1]:     return self.environment.handle_exception(exc_info, True)
-2014-02-10T07:23:40.818388+00:00 app[web.1]: BuildError: ('treasury', {}, None)
-2014-02-10T07:23:40.818208+00:00 app[web.1]:     {% block body %}{% endblock %}
-2014-02-10T07:23:40.817672+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 969, in render
-2014-02-10T07:23:40.818208+00:00 app[web.1]:   File "/app/templates/layout.html", line 16, in top-level template code
-2014-02-10T07:23:40.818388+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/helpers.py", line 305, in url_for
-2014-02-10T07:23:40.818208+00:00 app[web.1]:     {% extends "layout.html" %}
+2014-02-10T07:36:12.116557+00:00 app[web.1]:   File "/app/rosterrun.py", line 330, in <module>
+2014-02-10T07:36:12.116557+00:00 app[web.1]:     @app.route('/treasury', methods=['GET', 'POST'])
+2014-02-10T07:36:12.116557+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 62, in wrapper_func
+2014-02-10T07:36:12.116557+00:00 app[web.1]:     return f(self, *args, **kwargs)
+2014-02-10T07:36:12.116732+00:00 app[web.1]: AssertionError: View function mapping is overwriting an existing endpoint function: market_results
+2014-02-10T07:36:12.116732+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:36:12.116732+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-02-10T07:36:12.116732+00:00 app[web.1]:     worker.init_process()
+2014-02-10T07:36:12.116557+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1013, in decorator
+2014-02-10T07:36:12.116557+00:00 app[web.1]:     self.add_url_rule(rule, endpoint, f, **options)
+2014-02-10T07:36:12.116732+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 984, in add_url_rule
+2014-02-10T07:36:12.116732+00:00 app[web.1]:     'existing endpoint function: %s' % endpoint)
+2014-02-10T07:36:12.116732+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-02-10T07:36:12.116732+00:00 app[web.1]:     self.callable = self.load()
+2014-02-10T07:36:12.117462+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-02-10T07:36:12.117462+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-02-10T07:36:12.117462+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-02-10T07:36:12.117462+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-02-10T07:36:12.116732+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-02-10T07:36:12.116732+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-02-10T07:36:12.117462+00:00 app[web.1]:     __import__(module)
+2014-02-10T07:36:12.117462+00:00 app[web.1]:   File "/app/rosterrun.py", line 330, in <module>
+2014-02-10T07:36:12.117462+00:00 app[web.1]:     @app.route('/treasury', methods=['GET', 'POST'])
+2014-02-10T07:36:12.117641+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 62, in wrapper_func
+2014-02-10T07:36:12.117641+00:00 app[web.1]:     return f(self, *args, **kwargs)
+2014-02-10T07:36:12.117641+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 984, in add_url_rule
+2014-02-10T07:36:12.117641+00:00 app[web.1]:     'existing endpoint function: %s' % endpoint)
+2014-02-10T07:36:12.117462+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-02-10T07:36:12.117462+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1013, in decorator
+2014-02-10T07:36:12.117462+00:00 app[web.1]:     self.add_url_rule(rule, endpoint, f, **options)
+2014-02-10T07:36:12.117641+00:00 app[web.1]: AssertionError: View function mapping is overwriting an existing endpoint function: market_results
+2014-02-10T07:36:12.117641+00:00 app[web.1]: 2014-02-10 07:36:12 [7] [INFO] Worker exiting (pid: 7)
+2014-02-10T07:36:12.212962+00:00 app[worker.2]: 07:36:12 *** Listening on high, default, low...
+2014-02-10T07:36:12.211437+00:00 app[worker.2]: 07:36:12 RQ worker started, version 0.3.13
+2014-02-10T07:36:12.212770+00:00 app[worker.2]: 07:36:12 
+2014-02-10T07:36:12.272793+00:00 app[web.1]: 2014-02-10 07:36:12 [2] [INFO] Shutting down: Master
+2014-02-10T07:36:12.272930+00:00 app[web.1]: 2014-02-10 07:36:12 [2] [INFO] Reason: Worker failed to boot.
+2014-02-10T07:36:13.444149+00:00 heroku[web.1]: State changed from up to crashed
+2014-02-10T07:36:13.445153+00:00 heroku[web.1]: State changed from crashed to starting
+2014-02-10T07:36:13.431173+00:00 heroku[web.1]: Process exited with status 3
+2014-02-10T07:36:23.910043+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-02-10T07:36:25.710057+00:00 app[web.1]: 2014-02-10 07:36:25 [2] [INFO] Starting gunicorn 18.0
+2014-02-10T07:36:25.711294+00:00 app[web.1]: 2014-02-10 07:36:25 [2] [INFO] Using worker: sync
+2014-02-10T07:36:25.727328+00:00 app[web.1]: 2014-02-10 07:36:25 [7] [INFO] Booting worker with pid: 7
+2014-02-10T07:36:25.711082+00:00 app[web.1]: 2014-02-10 07:36:25 [2] [INFO] Listening at: http://0.0.0.0:49343 (2)
+2014-02-10T07:36:25.986087+00:00 heroku[web.1]: State changed from starting to up
+2014-02-10T07:36:31.706215+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-02-10T07:36:31.706485+00:00 app[web.1]:     __import__(module)
+2014-02-10T07:36:31.706215+00:00 app[web.1]: 2014-02-10 07:36:31 [7] [ERROR] Exception in worker process:
+2014-02-10T07:36:31.706215+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-02-10T07:36:31.706215+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-02-10T07:36:31.706485+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-02-10T07:36:31.706215+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-02-10T07:36:31.706485+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-02-10T07:36:31.706215+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:36:31.706215+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-02-10T07:36:31.706706+00:00 app[web.1]: Traceback (most recent call last):
+2014-02-10T07:36:31.706706+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 106, in init_process
+2014-02-10T07:36:31.706215+00:00 app[web.1]:     self.callable = self.load()
+2014-02-10T07:36:31.706485+00:00 app[web.1]:     self.add_url_rule(rule, endpoint, f, **options)
+2014-02-10T07:36:31.706485+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-02-10T07:36:31.706485+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1013, in decorator
+2014-02-10T07:36:31.706706+00:00 app[web.1]:     'existing endpoint function: %s' % endpoint)
+2014-02-10T07:36:31.706215+00:00 app[web.1]:     worker.init_process()
+2014-02-10T07:36:31.706706+00:00 app[web.1]: AssertionError: View function mapping is overwriting an existing endpoint function: market_results
+2014-02-10T07:36:31.706485+00:00 app[web.1]:     return f(self, *args, **kwargs)
+2014-02-10T07:36:31.706706+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 114, in wsgi
+2014-02-10T07:36:31.706706+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 984, in add_url_rule
+2014-02-10T07:36:31.706706+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+2014-02-10T07:36:31.706485+00:00 app[web.1]:     @app.route('/treasury', methods=['GET', 'POST'])
+2014-02-10T07:36:31.707316+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 354, in import_app
+2014-02-10T07:36:31.706706+00:00 app[web.1]:     self.callable = self.load()
+2014-02-10T07:36:31.706706+00:00 app[web.1]:     worker.init_process()
+2014-02-10T07:36:31.706215+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-02-10T07:36:31.707316+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 62, in load
+2014-02-10T07:36:31.707316+00:00 app[web.1]:   File "/app/rosterrun.py", line 330, in <module>
+2014-02-10T07:36:31.707316+00:00 app[web.1]:     __import__(module)
+2014-02-10T07:36:31.706485+00:00 app[web.1]:   File "/app/rosterrun.py", line 330, in <module>
+2014-02-10T07:36:31.707316+00:00 app[web.1]:     self.add_url_rule(rule, endpoint, f, **options)
+2014-02-10T07:36:31.706485+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 62, in wrapper_func
+2014-02-10T07:36:31.707316+00:00 app[web.1]:     return self.load_wsgiapp()
+2014-02-10T07:36:31.707316+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1013, in decorator
+2014-02-10T07:36:31.706706+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2014-02-10T07:36:31.707316+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+2014-02-10T07:36:31.707508+00:00 app[web.1]:     return f(self, *args, **kwargs)
+2014-02-10T07:36:31.707508+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 62, in wrapper_func
+2014-02-10T07:36:31.707508+00:00 app[web.1]: 2014-02-10 07:36:31 [7] [INFO] Worker exiting (pid: 7)
+2014-02-10T07:36:31.707316+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2014-02-10T07:36:31.707508+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 984, in add_url_rule
+2014-02-10T07:36:31.707508+00:00 app[web.1]:     'existing endpoint function: %s' % endpoint)
+2014-02-10T07:36:31.707508+00:00 app[web.1]: AssertionError: View function mapping is overwriting an existing endpoint function: market_results
+2014-02-10T07:36:31.707316+00:00 app[web.1]:     @app.route('/treasury', methods=['GET', 'POST'])
+2014-02-10T07:36:31.878500+00:00 app[web.1]: 2014-02-10 07:36:31 [2] [INFO] Shutting down: Master
+2014-02-10T07:36:31.878500+00:00 app[web.1]: 2014-02-10 07:36:31 [2] [INFO] Reason: Worker failed to boot.
+2014-02-10T07:36:33.122181+00:00 heroku[web.1]: Process exited with status 3
+2014-02-10T07:36:33.135174+00:00 heroku[web.1]: State changed from up to crashed
+2014-02-10T07:36:33.609985+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=rosterrun.herokuapp.com request_id=4d6a86e6-3138-477e-8090-1c29ad65f49a fwd="67.105.106.9" dyno= connect= service= status=503 bytes=
+2014-02-10T07:35:59.008550+00:00 heroku[web.1]: State changed from up to starting
+2014-02-10T07:35:59.060133+00:00 heroku[worker.1]: State changed from up to starting
+2014-02-10T07:35:59.085305+00:00 heroku[worker.2]: State changed from up to starting
+2014-02-10T07:36:09.574793+00:00 heroku[worker.1]: State changed from starting to up
