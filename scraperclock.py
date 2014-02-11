@@ -12,6 +12,7 @@ import sys
 from rq import Queue, get_current_job
 from rq.job import Job
 from worker import conn
+from datetime import datetime
 
 sched = Scheduler()
 m = MarketScraper()
@@ -58,7 +59,7 @@ def retrieve_market_scrape():
       #db.session.commit()
       #mapped market result havs [itemid, name, cards, price, amount, title, vendor, coords, date]
       for i in range(0, len(marketresults) - 1):
-        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords))) for mr in marketresults[i]]
+        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[i]]
        
       db.session.commit()
   else: 
