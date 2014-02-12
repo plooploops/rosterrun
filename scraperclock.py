@@ -43,35 +43,33 @@ def retrieve_market_scrape():
     print 'No scrape job found'
     return
   
-  try:
-    job_id = sched.scrapejobid
-    currentjob = Job(connection=conn)
-    currentjob = currentjob.fetch(job_id, connection=conn)
-    print 'scrape job found'
+  job_id = sched.scrapejobid
+  currentjob = Job(connection=conn)
+  currentjob = currentjob.fetch(job_id, connection=conn)
+  print 'scrape job found'
   
-    print 'found job %s ' % currentjob
-      
-    if currentjob is not None:
-      if currentjob.result is not None:
-        marketresults = currentjob.result
-        print marketresults
+  print 'found job %s ' % currentjob
+  print 'for job id %s ' % job_id
+    
+  if currentjob is not None:
+    if currentjob.result is not None:
+      marketresults = currentjob.result
+      print marketresults
   
-        #delete existing market results
-           
-        #cur = MappedMarketResult.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-      
-        #[db.session.delete(c) for c in cur]  
-        #db.session.commit()
-        #mapped market result havs [itemid, name, cards, price, amount, title, vendor, coords, date]
-        for i in range(0, len(marketresults) - 1):
-          [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[i]]
-       
-        db.session.commit()
-    else: 
-      print 'current job is not ready %s' % job_id
-  except:
-    print 'issue finding scrape job'
-
+      #delete existing market results
+         
+      #cur = MappedMarketResult.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+    
+      #[db.session.delete(c) for c in cur]  
+      #db.session.commit()
+      #mapped market result havs [itemid, name, cards, price, amount, title, vendor, coords, date]
+      for i in range(0, len(marketresults) - 1):
+        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[i]]
+     
+      db.session.commit()
+  else: 
+    print 'current job is not ready %s' % job_id
+  
 
 #@sched.cron_schedule(day_of_week='mon-fri', hour=17)
 #def scheduled_job():
