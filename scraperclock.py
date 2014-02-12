@@ -24,27 +24,27 @@ print user
 print pw
 m.login(user, pw)
 
-scrapejob = None
-scrapejobid = None
+sched.scrapejob = None
+sched.scrapejobid = None
 
 @sched.interval_schedule(hours=12)
 def interval_market_scrape():
   #send this to redis queue
   
-  scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
-  print 'running calc %s ' % scrapejob.id
+  sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
+  print 'running calc %s ' % sched.scrapejob.id
   print 'This job runs every 12 hours.'
-  scrapejobid = scrapejob.id
+  sched.scrapejobid = scrapejob.id
 
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
   #retrieve results from redis queue
-  if scrapejobid is None:
+  if sched.scrapejobid is None:
     print 'No scrape job found'
     return
   
   try:
-    job_id = scrapejobid
+    job_id = sched.scrapejobid
     currentjob = Job(connection=conn)
     currentjob = currentjob.fetch(job_id, connection=conn)
     print 'scrape job found'
