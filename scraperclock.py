@@ -67,8 +67,9 @@ def retrieve_market_scrape():
       #mapped market result havs [itemid, name, cards, price, amount, title, vendor, coords, date]
       
       print 'adding to db'
-      
-      [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults]
+      vals = marketresults.values()
+      flattenedvals = [item for sublist in vals for item in sublist]
+      [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in flattenedvals]
      
       db.session.commit()
       print 'added to db'
