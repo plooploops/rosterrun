@@ -16,10 +16,7 @@ from datetime import datetime
 
 sched = Scheduler()
 m = MarketScraper()
-if len(sys.argv) == 0:
-  print 'need to pass credentials'
-  return
-
+  
 user = sys.argv[1]
 pw = sys.argv[2]
 
