@@ -54,7 +54,7 @@ def retrieve_market_scrape():
   if currentjob is not None:
     if currentjob.result is not None:
       marketresults = currentjob.result
-      print marketresults
+      print 'found market results %s ' % marketresults
   
       #delete existing market results
          
@@ -63,10 +63,16 @@ def retrieve_market_scrape():
       #[db.session.delete(c) for c in cur]  
       #db.session.commit()
       #mapped market result havs [itemid, name, cards, price, amount, title, vendor, coords, date]
+      
+      print 'adding to db'
       for i in range(0, len(marketresults) - 1):
         [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[i]]
      
       db.session.commit()
+      print 'added to db'
+      print 'removing job results'
+      currentjob.delete()
+      print 'finished deleting job results'
   else: 
     print 'current job is not ready %s' % job_id
   
