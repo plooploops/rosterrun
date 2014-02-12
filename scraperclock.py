@@ -26,8 +26,9 @@ m.login(user, pw)
 
 scrapejob = None
 scrapejobid = None
+interval_market_scrape()
 
-@sched.interval_schedule(minutes=3)
+@sched.interval_schedule(minutes=5)
 def interval_market_scrape():
   #send this to redis queue
   
@@ -39,7 +40,7 @@ def interval_market_scrape():
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
   #retrieve results from redis queue
-  if scrapejob is None:
+  if scrapejobid is None:
     print 'No scrape job found'
     return
   
