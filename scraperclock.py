@@ -25,6 +25,7 @@ print pw
 m.login(user, pw)
 
 scrapejob = None
+scrapejobid = None
 
 @sched.interval_schedule(minutes=3)
 def interval_market_scrape():
@@ -33,6 +34,7 @@ def interval_market_scrape():
   scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
   print 'running calc %s ' % scrapejob.id
   print 'This job runs every 12 hours.'
+  scrapejobid = scrapejob.id
 
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
@@ -42,7 +44,7 @@ def retrieve_market_scrape():
     return
   
   try:
-    job_id = scrapejob.id
+    job_id = scrapejobid
     currentjob = Job(connection=conn)
     currentjob = currentjob.fetch(job_id, connection=conn)
     print 'scrape job found'
