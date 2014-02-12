@@ -26,9 +26,8 @@ m.login(user, pw)
 
 scrapejob = None
 scrapejobid = None
-interval_market_scrape()
 
-@sched.interval_schedule(minutes=5)
+@sched.interval_schedule(hours=12)
 def interval_market_scrape():
   #send this to redis queue
   
@@ -77,6 +76,8 @@ def retrieve_market_scrape():
 #@sched.cron_schedule(day_of_week='mon-fri', hour=17)
 #def scheduled_job():
 #    print 'This job is run every weekday at 5pm.'
+
+interval_market_scrape()
 
 sched.start()
 
