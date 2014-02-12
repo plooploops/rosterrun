@@ -1,142 +1,15 @@
-2014-02-12T09:53:55.545372+00:00 app[web.1]: 2014-02-12 09:53:55 [2] [INFO] Listening at: http://0.0.0.0:6027 (2)
-2014-02-12T09:53:55.545451+00:00 app[web.1]: 2014-02-12 09:53:55 [2] [INFO] Using worker: sync
-2014-02-12T09:53:55.761583+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-12T09:53:56.394754+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-12T09:53:56.737557+00:00 app[worker.1]: 09:53:56 RQ worker started, version 0.3.13
-2014-02-12T09:53:56.739810+00:00 app[worker.1]: 09:53:56 
-2014-02-12T09:53:56.739880+00:00 app[worker.1]: 09:53:56 *** Listening on high, default, low...
-2014-02-12T09:53:55.778715+00:00 heroku[web.1]: State changed from starting to up
-2014-02-12T09:53:57.200405+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-12T09:53:57.811822+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-12T09:53:58.433073+00:00 app[worker.2]: 09:53:58 
-2014-02-12T09:53:58.430927+00:00 app[worker.2]: 09:53:58 RQ worker started, version 0.3.13
-2014-02-12T09:53:58.433136+00:00 app[worker.2]: 09:53:58 *** Listening on high, default, low...
-2014-02-12T09:54:02.339211+00:00 heroku[clock.1]: Starting process with command `python scraperclock.py theoatmealagain poopieBUTT456`
-2014-02-12T09:54:02.991001+00:00 heroku[clock.1]: State changed from starting to up
-2014-02-12T09:54:05.842421+00:00 app[clock.1]: theoatmealagain
-2014-02-12T09:54:05.842421+00:00 app[clock.1]: poopieBUTT456
-2014-02-12T09:54:06.910496+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=3i2dts8hqh27m5555hs330r1t3 for .talonro.com/>]>
-2014-02-12T09:54:06.910496+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=esregf8nhnk0848vdo6et389i5 for .talonro.com/>, <Cookie TalonCookie675=a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22164150%22%3Bi%3A1%3Bs%3A40%3A%229a0e37c02e552ab4ee3c2b3e2003f75efd0e49f8%22%3Bi%3A2%3Bi%3A1392216846%3Bi%3A3%3Bi%3A2%3B%7D for .talonro.com/>]>
-2014-02-12T09:54:06.920322+00:00 app[clock.1]: Traceback (most recent call last):
-2014-02-12T09:54:06.920822+00:00 app[clock.1]: NameError: name 'interval_market_scrape' is not defined
-2014-02-12T09:54:06.920511+00:00 app[clock.1]:   File "scraperclock.py", line 29, in <module>
-2014-02-12T09:54:06.920661+00:00 app[clock.1]:     interval_market_scrape()
-2014-02-12T09:54:08.271787+00:00 heroku[clock.1]: Process exited with status 1
-2014-02-12T09:54:08.286542+00:00 heroku[clock.1]: State changed from up to crashed
-2014-02-12T09:54:08.287416+00:00 heroku[clock.1]: State changed from crashed to starting
-2014-02-12T09:54:19.004366+00:00 heroku[clock.1]: Starting process with command `python scraperclock.py theoatmealagain poopieBUTT456`
-2014-02-12T09:54:19.594982+00:00 heroku[clock.1]: State changed from starting to up
-2014-02-12T09:54:23.107762+00:00 app[clock.1]: theoatmealagain
-2014-02-12T09:54:23.107762+00:00 app[clock.1]: poopieBUTT456
-2014-02-12T09:54:24.153846+00:00 app[clock.1]: Traceback (most recent call last):
-2014-02-12T09:54:24.149146+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=o8tus4hm5rash9m5b10ab7ii10 for .talonro.com/>]>
-2014-02-12T09:54:24.149146+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=5rq63ea0jj4e6fjbdcmhk2psm4 for .talonro.com/>, <Cookie TalonCookie675=a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22164150%22%3Bi%3A1%3Bs%3A40%3A%229a0e37c02e552ab4ee3c2b3e2003f75efd0e49f8%22%3Bi%3A2%3Bi%3A1392216863%3Bi%3A3%3Bi%3A2%3B%7D for .talonro.com/>]>
-2014-02-12T09:54:24.153989+00:00 app[clock.1]:   File "scraperclock.py", line 29, in <module>
-2014-02-12T09:54:24.154443+00:00 app[clock.1]: NameError: name 'interval_market_scrape' is not defined
-2014-02-12T09:54:24.154310+00:00 app[clock.1]:     interval_market_scrape()
-2014-02-12T09:54:25.606957+00:00 heroku[clock.1]: State changed from up to crashed
-2014-02-12T09:54:25.591901+00:00 heroku[clock.1]: Process exited with status 1
-2014-02-12T09:55:44+00:00 heroku[slug-compiler]: Slug compilation started
-2014-02-12T09:56:46+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-02-12T09:56:46.571443+00:00 heroku[clock.1]: State changed from crashed to starting
-2014-02-12T09:56:46.615059+00:00 heroku[web.1]: State changed from up to starting
-2014-02-12T09:56:46.634651+00:00 heroku[worker.2]: State changed from up to starting
-2014-02-12T09:56:46.654636+00:00 heroku[worker.1]: State changed from up to starting
-2014-02-12T09:56:48.888725+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-02-12T09:56:48.730934+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-02-12T09:56:49.177123+00:00 app[worker.1]: 09:56:49 Warm shut down requested.
-2014-02-12T09:56:49.396718+00:00 app[web.1]: 2014-02-12 09:56:49 [2] [INFO] Shutting down: Master
-2014-02-12T09:56:49.384112+00:00 app[web.1]: 2014-02-12 09:56:49 [7] [INFO] Worker exiting (pid: 7)
-2014-02-12T09:56:49.384688+00:00 app[web.1]: 2014-02-12 09:56:49 [2] [INFO] Handling signal: term
-2014-02-12T09:56:49.971340+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-02-12T09:56:50.405514+00:00 heroku[worker.1]: Process exited with status 0
-2014-02-12T09:56:50.746427+00:00 heroku[web.1]: Process exited with status 0
-2014-02-12T09:56:50.765647+00:00 app[worker.2]: 09:56:50 Warm shut down requested.
-2014-02-12T09:56:52.041285+00:00 heroku[worker.2]: Process exited with status 0
-2014-02-12T09:56:56.241960+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-02-12T09:56:56.737378+00:00 heroku[clock.1]: Starting process with command `python scraperclock.py theoatmealagain poopieBUTT456`
-2014-02-12T09:56:57.325266+00:00 heroku[clock.1]: State changed from starting to up
-2014-02-12T09:56:57.303231+00:00 app[web.1]: 2014-02-12 09:56:57 [2] [INFO] Listening at: http://0.0.0.0:25906 (2)
-2014-02-12T09:56:57.309782+00:00 app[web.1]: 2014-02-12 09:56:57 [7] [INFO] Booting worker with pid: 7
-2014-02-12T09:56:57.303309+00:00 app[web.1]: 2014-02-12 09:56:57 [2] [INFO] Using worker: sync
-2014-02-12T09:56:57.302580+00:00 app[web.1]: 2014-02-12 09:56:57 [2] [INFO] Starting gunicorn 18.0
-2014-02-12T09:56:57.824637+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-12T09:56:57.873182+00:00 heroku[web.1]: State changed from starting to up
-2014-02-12T09:56:58.535537+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-12T09:56:58.666469+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-12T09:56:59.125015+00:00 app[worker.1]: 09:56:59 RQ worker started, version 0.3.13
-2014-02-12T09:56:59.131724+00:00 app[worker.1]: 09:56:59 *** Listening on high, default, low...
-2014-02-12T09:56:59.131215+00:00 app[worker.1]: 09:56:59 
-2014-02-12T09:56:59.234267+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-12T09:56:59.699046+00:00 app[worker.2]: 09:56:59 RQ worker started, version 0.3.13
-2014-02-12T09:56:59.701290+00:00 app[worker.2]: 09:56:59 
-2014-02-12T09:56:59.701290+00:00 app[worker.2]: 09:56:59 *** Listening on high, default, low...
-2014-02-12T09:57:01.646484+00:00 app[clock.1]: theoatmealagain
-2014-02-12T09:57:01.646484+00:00 app[clock.1]: poopieBUTT456
-2014-02-12T09:57:02.672975+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=luur1bqurbj0sk8u9quti0jtu0 for .talonro.com/>, <Cookie TalonCookie675=a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22164150%22%3Bi%3A1%3Bs%3A40%3A%229a0e37c02e552ab4ee3c2b3e2003f75efd0e49f8%22%3Bi%3A2%3Bi%3A1392217022%3Bi%3A3%3Bi%3A2%3B%7D for .talonro.com/>]>
-2014-02-12T09:57:02.718723+00:00 app[clock.1]: This job runs every 12 hours.
-2014-02-12T09:57:02.672975+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=2f7hce4hdg2f17odgjbu6hc2p2 for .talonro.com/>]>
-2014-02-12T09:57:02.718723+00:00 app[clock.1]: running calc 32c8d3cb-1d6d-4221-b780-ebbe05a3b638 
-2014-02-12T09:57:02.831210+00:00 app[worker.1]: 09:57:02 default: get_scrape_results({1557: 'Book of the Apocalypse', 1560: "Sage's Diary [2]", 1565: 'Book of the Dead', 4145: 'Berzebub Card', 2610: 'Gold Ring', 2615: 'Safety Ring', 2616: 'Critical Ring', 2115: "Valkyrja's Shield", 7754: 'Broken Crown', 1618: "Survivor's Rod [1]", 1624: "Lich's Bone Wand [2]", 1636: 'Dark Thorn Staff', 4367: 'Sniper Card', 1631: 'Holy Stick [1]', 13412: 'Naght Seiger Twin Blade(B) [3]', 13413: 'Naght Seiger Twin Blade(R) [3]', 616: 'Old Card Album', 617: 'Old Purple Box', 1132: 'Edge', 1133: 'Fireblend', 1138: 'Mysteltainn', 1140: 'Byeollungum', 2677: 'Spiritual Ring', 7291: 'Agate', 7294: 'Turquoise', 1166: 'Dragon Slayer', 1170: 'Katzbalger', 2229: 'Helm', 1720: 'Rudra Bow', 1724: 'Dragon Wing', 8900: 'Talon Coin', 13002: 'Ginnungagap', 1228: 'Combat Knife', 1230: 'Ice Pick', 1232: 'Assassin Dagger', 1233: 'Exorciser', 1234: 'Moonlight Dagger', 1236: 'Sucsamad', 1237: 'Grimtooth', 13017: 'Ice Pick [1]', 1242: 'Dagger of Counter', 742: 'Chonchon Doll', 1265: 'Bloody Roar
-2014-02-12T09:57:02.831210+00:00 app[worker.1]: ', 4357: 'Lord Knight Card', 4359: 'Assassin Cross Card', 4361: 'Whitesmith Card', 4363: 'High Priest Card', 4365: 'High Wizard Card', 2318: "Lord's Clothes [1]", 2319: 'Glittering Jacket [1]', 7444: 'Treasure Box', 1814: 'Berserk', 1241: 'Cursed Dagger', 2342: 'Legion Plate Armor [1]', 2343: 'Robe of Cast', 2345: "Lucius's Fierce Armor of Volcano [1]", 5420: 'Mask Of Ifrit', 2357: "Valkyrja's Armor", 4407: 'Valkyrie Randgris Card', 12103: 'Bloody Branch', 4430: 'Ifrit Card', 1364: 'Great Axe', 2702: 'Horn of the Buffalo', 7510: "Valhalla's Flower", 1368: 'Tomahawk', 1369: 'Guillotine', 5467: 'Helm of Dragon', 2412: 'Greaves [1]', 7024: 'Bloody Edge', 2421: "Valkyrja's Shoes", 2423: 'Variant Shoes', 1415: 'Brocca', 1417: 'Pole Axe', 5017: 'Bone Helm', 1469: "Longinus's Spear", 1470: 'Brionac', 1471: 'Hellfire', 6091: 'Red Scale', 1484: 'Carled', 2000: 'Staff of Destruction', 2513: 'Heavenly Maiden Robe [1]', 2514: 'Pauldron [1]', 985: 'Elunium', 2524: "Valkyrja's Manteau", 994: 'Flame Heart', 2542: 'Naght Se
-2014-02-12T09:57:02.831210+00:00 app[worker.1]: iger Flame Manteau [1]', 1527: 'Quadrille', 1528: 'Grand Cross', 2554: "Nydhorgg's Shadow Garb", 1365: 'Sabbath'}) (32c8d3cb-1d6d-4221-b780-ebbe05a3b638)
-2014-02-12T09:57:02.880005+00:00 app[worker.1]: 09:57:02 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:03.389694+00:00 app[worker.1]: 09:57:03 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:03.829553+00:00 app[worker.1]: 09:57:03 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:04.238779+00:00 app[worker.1]: 09:57:04 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:04.626011+00:00 app[worker.1]: 09:57:04 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:05.071829+00:00 app[worker.1]: 09:57:05 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:05.472668+00:00 app[worker.1]: 09:57:05 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:05.878070+00:00 app[worker.1]: 09:57:05 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:06.272918+00:00 app[worker.1]: 09:57:06 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:06.650359+00:00 app[worker.1]: 09:57:06 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:07.056572+00:00 app[worker.1]: 09:57:07 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:07.480963+00:00 app[worker.1]: 09:57:07 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:07.921342+00:00 app[worker.1]: 09:57:07 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:08.359150+00:00 app[worker.1]: 09:57:08 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:08.804232+00:00 app[worker.1]: 09:57:08 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:09.226944+00:00 app[worker.1]: 09:57:09 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:09.672089+00:00 app[worker.1]: 09:57:09 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:10.142757+00:00 app[worker.1]: 09:57:10 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:10.586436+00:00 app[worker.1]: 09:57:10 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:11.025752+00:00 app[worker.1]: 09:57:11 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:11.424365+00:00 app[worker.1]: 09:57:11 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:11.854762+00:00 app[worker.1]: 09:57:11 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:12.261251+00:00 app[worker.1]: 09:57:12 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:12.673820+00:00 app[worker.1]: 09:57:12 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:13.089565+00:00 app[worker.1]: 09:57:13 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:13.482606+00:00 app[worker.1]: 09:57:13 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:13.877841+00:00 app[worker.1]: 09:57:13 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:14.292464+00:00 app[worker.1]: 09:57:14 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:14.694175+00:00 app[worker.1]: 09:57:14 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:15.122624+00:00 app[worker.1]: 09:57:15 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:15.526164+00:00 app[worker.1]: 09:57:15 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:15.948958+00:00 app[worker.1]: 09:57:15 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:16.398494+00:00 app[worker.1]: 09:57:16 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:16.803209+00:00 app[worker.1]: 09:57:16 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:17.246847+00:00 app[worker.1]: 09:57:17 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:17.708291+00:00 app[worker.1]: 09:57:17 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:18.138345+00:00 app[worker.1]: 09:57:18 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:18.562311+00:00 app[worker.1]: 09:57:18 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:18.990788+00:00 app[worker.1]: 09:57:18 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:19.446565+00:00 app[worker.1]: 09:57:19 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:19.877264+00:00 app[worker.1]: 09:57:19 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:20.264801+00:00 app[worker.1]: 09:57:20 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:20.659132+00:00 app[worker.1]: 09:57:20 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:21.076482+00:00 app[worker.1]: 09:57:21 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:21.482400+00:00 app[worker.1]: 09:57:21 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:21.908865+00:00 app[worker.1]: 09:57:21 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:22.303244+00:00 app[worker.1]: 09:57:22 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:22.721813+00:00 app[worker.1]: 09:57:22 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:23.156773+00:00 app[worker.1]: 09:57:23 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:23.575029+00:00 app[worker.1]: 09:57:23 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:23.156773+00:00 app[worker.1]: 09:57:23 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:23.999289+00:00 app[worker.1]: 09:57:23 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:24.445634+00:00 app[worker.1]: 09:57:24 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:24.869312+00:00 app[worker.1]: 09:57:24 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:25.296641+00:00 app[worker.1]: 09:57:25 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:25.737291+00:00 app[worker.1]: 09:57:25 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:26.167840+00:00 app[worker.1]: 09:57:26 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:25.296641+00:00 app[worker.1]: 09:57:25 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:26.629407+00:00 app[worker.1]: 09:57:26 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:26.167840+00:00 app[worker.1]: 09:57:26 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:27.053919+00:00 app[worker.1]: 09:57:27 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:27.445344+00:00 app[worker.1]: 09:57:27 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:27.855038+00:00 app[worker.1]: 09:57:27 Starting new HTTPS connection (1): panel.talonro.com
@@ -144,9 +17,9 @@
 2014-02-12T09:57:28.734919+00:00 app[worker.1]: 09:57:28 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:29.158277+00:00 app[worker.1]: 09:57:29 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:29.554481+00:00 app[worker.1]: 09:57:29 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:30.760770+00:00 app[worker.1]: 09:57:30 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:29.954920+00:00 app[worker.1]: 09:57:29 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:30.355083+00:00 app[worker.1]: 09:57:30 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:30.760770+00:00 app[worker.1]: 09:57:30 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:31.151883+00:00 app[worker.1]: 09:57:31 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:31.595165+00:00 app[worker.1]: 09:57:31 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:32.002925+00:00 app[worker.1]: 09:57:32 Starting new HTTPS connection (1): panel.talonro.com
@@ -154,43 +27,136 @@
 2014-02-12T09:57:32.856291+00:00 app[worker.1]: 09:57:32 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:33.270370+00:00 app[worker.1]: 09:57:33 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:33.663588+00:00 app[worker.1]: 09:57:33 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:34.088972+00:00 app[worker.1]: 09:57:34 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:34.501732+00:00 app[worker.1]: 09:57:34 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:34.088972+00:00 app[worker.1]: 09:57:34 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:34.947819+00:00 app[worker.1]: 09:57:34 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:35.355190+00:00 app[worker.1]: 09:57:35 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:36.096002+00:00 app[worker.1]: 09:57:36 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:36.514744+00:00 app[worker.1]: 09:57:36 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:36.943667+00:00 app[worker.1]: 09:57:36 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:37.360287+00:00 app[worker.1]: 09:57:37 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:37.799970+00:00 app[worker.1]: 09:57:37 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:37.360287+00:00 app[worker.1]: 09:57:37 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:36.943667+00:00 app[worker.1]: 09:57:36 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:38.224870+00:00 app[worker.1]: 09:57:38 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:38.652440+00:00 app[worker.1]: 09:57:38 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T09:57:39.913710+00:00 app[worker.1]: 09:57:39 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:39.091920+00:00 app[worker.1]: 09:57:39 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:39.491525+00:00 app[worker.1]: 09:57:39 Starting new HTTPS connection (1): panel.talonro.com
-2014-02-12T09:57:39.913710+00:00 app[worker.1]: 09:57:39 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:40.328186+00:00 app[worker.1]: 09:57:40 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:40.749930+00:00 app[worker.1]: 09:57:40 Starting new HTTPS connection (1): panel.talonro.com
 2014-02-12T09:57:41.162900+00:00 app[worker.1]: 09:57:41 Job OK, result = {1557: [<marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>, <marketscrape.MarketResult instance at 0x1598bd8>], 1560: [<marketscrape.MarketResult instance at 0x19b2ea8>, <marketscrape.MarketResult instance at 0x19b2ea8>], 1565: [<marketscrape.MarketResult instance at 0x19abfc8>, <marketscrape.MarketResult instance at 0x19abfc8>], 4145: [<marketscrape.MarketResult instance at 0x19abab8>, <marketscrape.MarketResult instance at 0x19abab8>, <marketscrape.MarketResult instance at 0x19abab8>], 2610: [], 2615: [], 2616: [<marketscrape.MarketResult instance at 0x19aef80>, <marketscrape.MarketResult instance at 0x19aef80>, <marketscrape.Marke
 2014-02-12T09:57:41.162900+00:00 app[worker.1]: tResult instance at 0x19aef80>], 2115: [<marketscrape.MarketResult instance at 0x19aec20>, <marketscrape.MarketResult instance at 0x19aec20>, <marketscrape.MarketResult instance at 0x19aec20>, <marketscrape.MarketResult instance at 0x19aec20>, <marketscrape.MarketResult instance at 0x19aec20>], 7754: [], 1618: [<marketscrape.MarketResult instance at 0x19ae9e0>, <marketscrape.MarketResult instance at 0x19ae9e0>, <marketscrape.MarketResult instance at 0x19ae9e0>, <marketscrape.MarketResult instance at 0x19ae9e0>, <marketscrape.MarketResult instance at 0x19ae9e0>, <marketscrape.MarketResult instance at 0x19ae9e0>], 1624: [<marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 
 2014-02-12T09:57:41.162900+00:00 app[worker.1]: 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x1
 2014-02-12T09:57:41.162900+00:00 app[worker.1]: 9ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>, <marketscrape.MarketResult instance at 0x19ae248>], 1636: [<marketscrape.MarketResult instance at 0x19aed40>, <marketscrape.MarketResult instance at 0x19aed40>], 4367: [<marketscrape.MarketResult instance at 0x19c7c68>], 1631: [<marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketResult instance at 0x19acef0>, <marketscrape.MarketR
-2014-02-12T09:57:41.162900+00:00 app[worker.1]: esult instance at 0x19acef0>], 13412: [<marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>], 13413: [<marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>], 616: [<marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>], 617: [<marketscrape.MarketResult instance at 0x19bfc20>], 1132: [], 1133: [<marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResul
-2014-02-12T09:57:41.162900+00:00 app[worker.1]: t instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>], 1138: [<marketscrape.MarketResult instance at 0x19bfb00>], 1140: [], 2677: [<marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketR
-esult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>], 7291: [], 7294: [], 1166: [<marketscrape.MarketResult instance at 0x19c0ab8>, <marketscrape.MarketResult instance at 0x19c0ab8>], 1170: [<marketscrape.MarketResult instance at 0x19c0bd8>], 2229: [<marketscrape.MarketResult instance at 0x19c0e60>, <marketscrape.MarketResult instance at 0x19c0e60>, <marketscrape.MarketResult instance at 0x19c0e60>], 1720: [], 1724: [], 8900: [<marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult insta
-2014-02-12T09:57:41.162900+00:00 app[worker.1]: nce at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>], 13002: [], 1228: [<marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>], 1230: [<marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>], 1232: [<marketscrape.MarketResult instance at 0x19c1cf8>, 
+2014-02-12T09:57:41.162900+00:00 app[worker.1]: t instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>], 1138: [<marketscrape.MarketResult instance at 0x19bfb00>], 1140: [], 2677: [<marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>, <marketscrape.MarketResult instance at 0x19bfd88>], 7291: [], 7294: [], 1166: [<marketscrape.MarketResult instance at 0x19c0ab8>, <marketscrape.MarketResult instance at 0x19c0ab8>], 1170: [<marketscrape.MarketResult instance at 0x19c0bd8>], 2229: [<marketscrape.MarketResult instance at 0x19c0e60>, <marketscrape.MarketResult instance at 0x19c0e60>, <marketscrape.MarketResult instance at 0x19c0e60>], 1720: [], 1724: [], 8900: [<marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult insta
 2014-02-12T09:57:41.162900+00:00 app[worker.1]: <marketscrape.MarketResult instance at 0x19c1cf8>], 1233: [<marketscrape.MarketResult instance at 0x19c3d88>, <marketscrape.MarketResult instance at 0x19c3d88>], 1234: [<marketscrape.MarketResult instance at 0x19c3ef0>, <marketscrape.MarketResult instance at 0x19c3ef0>], 1236: [], 1237: [<marketscrape.MarketResult instance at 0x19c3c68>, <marketscrape.MarketResult instance at 0x19c3c68>, <marketscrape.MarketResult instance at 0x19c3c68>], 13017: [<marketscrape.MarketResult instance at 0x19c3b48>, <marketscrape.MarketResult instance at 0x19c3b48>], 1242: [], 742: [], 1265: [<marketscrape.MarketResult instance at 0x19c5830>, <marketscrape.MarketResult instance at 0x19c5830>], 4357: [], 4359: [], 4361: [], 4363: [<marketscrape.MarketResult instance at 0x19c5e60>, <marketscrape.MarketResult instance at 0x19c5e60>, <marketscrape.MarketResult instance at 0x19c5e60>, <marketscrape.MarketResult instance at 0x19c5e60>, <marketscrape.MarketResult instance at 0x19c5e60>], 4365: [], 2318: [<marketscrape.MarketResult ins
-2014-02-12T09:57:41.162900+00:00 app[worker.1]: tance at 0x19c7a28>, <marketscrape.MarketResult instance at 0x19c7a28>], 2319: [<marketscrape.MarketResult instance at 0x19acd88>], 7444: [], 1814: [<marketscrape.MarketResult instance at 0x19c7ea8>, <marketscrape.MarketResult instance at 0x19c7ea8>], 1241: [], 2342: [<marketscrape.MarketResult instance at 0x19c6ef0>, <marketscrape.MarketResult instance at 0x19c6ef0>], 2343: [], 2345: [<marketscrape.MarketResult instance at 0x19c6b90>, <marketscrape.MarketResult instance at 0x19c6b90>], 5420: [<marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>], 2357: [<marketscrape.MarketResult instance at 0x19c6c20>], 4407: [<marketscrape.MarketResult instance at 0x19cbcf8>, <marketscrape.MarketResult instance at 0x19cbcf8>], 12103: [<marketscrape.MarketResult instance at 0x19cbfc8>, <marketscrape.MarketResult instance at 0
-2014-02-12T09:57:41.162900+00:00 app[worker.1]: x19cbfc8>], 4430: [<marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>], 1364: [], 2702: [<marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x
-19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>], 7510: [<marketscrape.MarketResult instance at 0x19cb2d8>], 1368: [], 1369: [], 5467: [<marketscrape.MarketResult instance at 0x19cb998>, <marketscrape.MarketResult instance at 0x19cb998>, <marketscrape.MarketResult instance at 0x19cb998>], 2412: [<marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResu
+2014-02-12T09:57:41.162900+00:00 app[worker.1]: x19cbfc8>], 4430: [<marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>, <marketscrape.MarketResult instance at 0x19cb950>], 1364: [], 2702: [<marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>, <marketscrape.MarketResult instance at 0x19cbd88>], 7510: [<marketscrape.MarketResult instance at 0x19cb2d8>], 1368: [], 1369: [], 5467: [<marketscrape.MarketResult instance at 0x19cb998>, <marketscrape.MarketResult instance at 0x19cb998>, <marketscrape.MarketResult instance at 0x19cb998>], 2412: [<marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResu
+2014-02-12T09:57:41.162900+00:00 app[worker.1]: esult instance at 0x19acef0>], 13412: [<marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>, <marketscrape.MarketResult instance at 0x19acb48>], 13413: [<marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>, <marketscrape.MarketResult instance at 0x19ac368>], 616: [<marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>, <marketscrape.MarketResult instance at 0x19ac8c0>], 617: [<marketscrape.MarketResult instance at 0x19bfc20>], 1132: [], 1133: [<marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResult instance at 0x19bf878>, <marketscrape.MarketResul
 2014-02-12T09:57:41.163195+00:00 app[worker.1]: lt instance at 0x19c6680>, <marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResult instance at 0x19c6680>, <marketscrape.MarketResult instance at 0x19c6680>], 7024: [], 2421: [<marketscrape.MarketResult instance at 0x19c6bd8>, <marketscrape.MarketResult instance at 0x19c6bd8>, <marketscrape.MarketResult instance at 0x19c6bd8>, <marketscrape.MarketResult instance at 0x19c6bd8>], 2423: [<marketscrape.MarketResult instance at 0x19c6518>, <marketscrape.MarketResult instance at 0x19c6518>, <marketscrape.MarketResult instance at 0x19c6518>, <marketscrape.MarketResult instance at 0x19c6518>, <marketscrape.MarketResult instance at 0x19c6518>, <marketscrape.MarketResult instance at 0x19c6518>], 1415: [<marketscrape.MarketResult instance at 0x19cb128>, <marketscrape.MarketResult instance at 0x19cb128>, <marketscrape.MarketResult instance at 0x19cb128>], 1417: [], 5017: [<marketscrape.MarketResult instance at 0x19c7050>, <marketscrape.MarketResult instance at 0x19c7050>, <marketscrape.MarketResult
+2014-02-12T09:57:41.162900+00:00 app[worker.1]: tance at 0x19c7a28>, <marketscrape.MarketResult instance at 0x19c7a28>], 2319: [<marketscrape.MarketResult instance at 0x19acd88>], 7444: [], 1814: [<marketscrape.MarketResult instance at 0x19c7ea8>, <marketscrape.MarketResult instance at 0x19c7ea8>], 1241: [], 2342: [<marketscrape.MarketResult instance at 0x19c6ef0>, <marketscrape.MarketResult instance at 0x19c6ef0>], 2343: [], 2345: [<marketscrape.MarketResult instance at 0x19c6b90>, <marketscrape.MarketResult instance at 0x19c6b90>], 5420: [<marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>, <marketscrape.MarketResult instance at 0x19c6e18>], 2357: [<marketscrape.MarketResult instance at 0x19c6c20>], 4407: [<marketscrape.MarketResult instance at 0x19cbcf8>, <marketscrape.MarketResult instance at 0x19cbcf8>], 12103: [<marketscrape.MarketResult instance at 0x19cbfc8>, <marketscrape.MarketResult instance at 0
 2014-02-12T09:57:41.163195+00:00 app[worker.1]:  instance at 0x19c7050>, <marketscrape.MarketResult instance at 0x19c7050>, <marketscrape.MarketResult instance at 0x19c7050>, <marketscrape.MarketResult instance at 0x19c7050>], 1469: [], 1470: [<marketscrape.MarketResult instance at 0x19c7488>, <marketscrape.MarketResult instance at 0x19c7488>], 1471: [<marketscrape.MarketResult instance at 0x19c7518>, <marketscrape.MarketResult instance at 0x19c7518>, <marketscrape.MarketResult instance at 0x19c7518>], 6091: [], 1484: [<marketscrape.MarketResult instance at 0x19c5290>, <marketscrape.MarketResult instance at 0x19c5290>], 2000: [<marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>, <marketscrape.MarketResult instance at 0x19c5638>], 2513: [<marketscrape.MarketResult instance at 0x19c5200>, <marketscrape.Market
-2014-02-12T09:57:41.163195+00:00 app[worker.1]: Result instance at 0x19c5200>, <marketscrape.MarketResult instance at 0x19c5200>, <marketscrape.MarketResult instance at 0x19c5200>], 2514: [<marketscrape.MarketResult instance at 0x19c52d8>, <marketscrape.MarketResult instance at 0x19c52d8>], 985: [<marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>], 2524: [], 994: [<marketscrape.MarketResult instance at 0x19c3368>], 2542: [<marketscrape.MarketResult instance at 0x19c3320>, <marketscrape.MarketResult instance at 0x19c3320>], 1527: [], 1528: [<marketscrape.MarketResult instance at 0x19c1128>], 2554: [<marketscrape.MarketResult instance at 0x19c1c20>, <marketscrape.MarketResult instance at 0x19c1c20>, <marketscrape.MarketResult instance at 0x19c1c20>], 1365: []}
 2014-02-12T09:57:41.163195+00:00 app[worker.1]: 09:57:41 Result is kept for 3000 seconds.
-2014-02-12T09:57:41.178325+00:00 app[worker.1]: 09:57:41 
+2014-02-12T09:57:41.162900+00:00 app[worker.1]: nce at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.M
+arketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>, <marketscrape.MarketResult instance at 0x19c1ea8>], 13002: [], 1228: [<marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>, <marketscrape.MarketResult instance at 0x19c1c68>], 1230: [<marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>, <marketscrape.MarketResult instance at 0x19c0cf8>], 1232: [<marketscrape.MarketResult instance at 0x19c1cf8>, 
+2014-02-12T09:57:41.163195+00:00 app[worker.1]: Result instance at 0x19c5200>, <marketscrape.MarketResult instance at 0x19c5200>, <marketscrape.MarketResult instance at 0x19c5200>], 2514: [<marketscrape.MarketResult instance at 0x19c52d8>, <marketscrape.MarketResult instance at 0x19c52d8>], 985: [<marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>, <marketscrape.MarketResult instance at 0x19c3128>], 2524: [], 994: [<marketscrape.MarketResult instance at 0x19c3368>], 2542: [<marketscrape.MarketResult instance at 0x19c3320>, <marketscrape.MarketResult instance at 0x19c3320>], 1527: [], 1528: [<marketscrape.MarketResult instance at 0x19c1128>], 2554: [<marketscrape.MarketResult instance at 0x19c1c20>, <marketscrape.MarketResult instance at 0x19c1c20>, <marketscrape.MarketResult instance at 0x19c1c20>], 1365: []}
 2014-02-12T09:57:41.178439+00:00 app[worker.1]: 09:57:41 *** Listening on high, default, low...
+2014-02-12T09:57:41.178325+00:00 app[worker.1]: 09:57:41 
 2014-02-12T09:58:02.678241+00:00 app[clock.1]: No scrape job found
 2014-02-12T09:58:54.444210+00:00 heroku[api]: Scale to clock=0, web=1, worker=2 by andygee@gmail.com
 2014-02-12T09:58:54.894264+00:00 heroku[clock.1]: State changed from up to down
 2014-02-12T09:58:57.092459+00:00 heroku[clock.1]: Stopping all processes with SIGTERM
 2014-02-12T09:58:58.942928+00:00 heroku[clock.1]: Process exited with status 143
+2014-02-12T10:02:20+00:00 heroku[slug-compiler]: Slug compilation started
+2014-02-12T10:03:38.410094+00:00 heroku[api]: Deploy d63f944 by andygee@gmail.com
+2014-02-12T10:03:38.447990+00:00 heroku[api]: Release v196 created by andygee@gmail.com
+2014-02-12T10:03:39.084984+00:00 heroku[web.1]: State changed from up to starting
+2014-02-12T10:03:39.140549+00:00 heroku[worker.2]: State changed from up to starting
+2014-02-12T10:03:39.167713+00:00 heroku[worker.1]: State changed from up to starting
+2014-02-12T10:03:41+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-02-12T10:03:41.734332+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-02-12T10:03:41.814977+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
+2014-02-12T10:03:42.318001+00:00 app[web.1]: 2014-02-12 10:03:42 [2] [INFO] Handling signal: term
+2014-02-12T10:03:42.317525+00:00 app[web.1]: 2014-02-12 10:03:42 [7] [INFO] Worker exiting (pid: 7)
+2014-02-12T10:03:42.331662+00:00 app[web.1]: 2014-02-12 10:03:42 [2] [INFO] Shutting down: Master
+2014-02-12T10:03:42.407470+00:00 app[worker.2]: 10:03:42 Warm shut down requested.
+2014-02-12T10:03:43.112562+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
+2014-02-12T10:03:43.605518+00:00 heroku[worker.2]: Process exited with status 0
+2014-02-12T10:03:43.598927+00:00 heroku[web.1]: Process exited with status 0
+2014-02-12T10:03:44.010235+00:00 app[worker.1]: 10:03:44 Warm shut down requested.
+2014-02-12T10:03:46.204050+00:00 heroku[worker.1]: Process exited with status 0
+2014-02-12T10:03:46.242936+00:00 heroku[api]: Scale to clock=1, web=1, worker=2 by andygee@gmail.com
+2014-02-12T10:03:49.273666+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-02-12T10:03:50.663300+00:00 app[web.1]: 2014-02-12 10:03:50 [2] [INFO] Starting gunicorn 18.0
+2014-02-12T10:03:50.663695+00:00 app[web.1]: 2014-02-12 10:03:50 [2] [INFO] Listening at: http://0.0.0.0:33690 (2)
+2014-02-12T10:03:50.678241+00:00 app[web.1]: 2014-02-12 10:03:50 [7] [INFO] Booting worker with pid: 7
+2014-02-12T10:03:50.664472+00:00 app[web.1]: 2014-02-12 10:03:50 [2] [INFO] Using worker: sync
+2014-02-12T10:03:50.876633+00:00 heroku[worker.2]: Starting process with command `python worker.py`
+2014-02-12T10:03:51.342309+00:00 heroku[worker.1]: Starting process with command `python worker.py`
+2014-02-12T10:03:51.417719+00:00 heroku[web.1]: State changed from starting to up
+2014-02-12T10:03:51.575877+00:00 heroku[worker.2]: State changed from starting to up
+2014-02-12T10:03:51.901188+00:00 heroku[worker.1]: State changed from starting to up
+2014-02-12T10:03:52.585580+00:00 app[worker.1]: 10:03:52 RQ worker started, version 0.3.13
+2014-02-12T10:03:52.587478+00:00 app[worker.1]: 10:03:52 
+2014-02-12T10:03:52.587761+00:00 app[worker.1]: 10:03:52 *** Listening on high, default, low...
+2014-02-12T10:03:53.095238+00:00 app[worker.2]: 10:03:53 
+2014-02-12T10:03:53.092723+00:00 app[worker.2]: 10:03:53 RQ worker started, version 0.3.13
+2014-02-12T10:03:53.095352+00:00 app[worker.2]: 10:03:53 *** Listening on high, default, low...
+2014-02-12T10:04:01.269085+00:00 heroku[clock.1]: Starting process with command `python scraperclock.py theoatmealagain poopieBUTT456`
+2014-02-12T10:04:01.907286+00:00 heroku[clock.1]: State changed from starting to up
+2014-02-12T10:04:06.675315+00:00 app[clock.1]: theoatmealagain
+2014-02-12T10:04:06.675315+00:00 app[clock.1]: poopieBUTT456
+2014-02-12T10:04:07.753252+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=ejn7h0qdmqdoacnep5mtbtr9n0 for .talonro.com/>]>
+2014-02-12T10:04:07.753252+00:00 app[clock.1]: <<class 'requests.cookies.RequestsCookieJar'>[<Cookie PHPSESSID=b305p7njr9a1ovn75or0fn7on1 for .talonro.com/>, <Cookie TalonCookie675=a%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22164150%22%3Bi%3A1%3Bs%3A40%3A%229a0e37c02e552ab4ee3c2b3e2003f75efd0e49f8%22%3Bi%3A2%3Bi%3A1392217447%3Bi%3A3%3Bi%3A2%3B%7D for .talonro.com/>]>
+2014-02-12T10:04:07.771903+00:00 app[clock.1]: running calc 3d5c2818-c22e-4533-9f56-8255c807f9b0 
+2014-02-12T10:04:07.771903+00:00 app[clock.1]: This job runs every 12 hours.
+2014-02-12T10:04:07.867781+00:00 app[worker.1]: 10:04:07 default: get_scrape_results({1557: 'Book of the Apocalypse', 1560: "Sage's Diary [2]", 1565: 'Book of the Dead', 4145: 'Berzebub Card', 2610: 'Gold Ring', 2615: 'Safety Ring', 2616: 'Critical Ring', 2115: "Valkyrja's Shield", 7754: 'Broken Crown', 1618: "Survivor's Rod [1]", 1624: "Lich's Bone Wand [2]", 1636: 'Dark Thorn Staff', 4367: 'Sniper Card', 1631: 'Holy Stick [1]', 13412: 'Naght Seiger Twin Blade(B) [3]', 13413: 'Naght Seiger Twin Blade(R) [3]', 616: 'Old Card Album', 617: 'Old Purple Box', 1132: 'Edge', 1133: 'Fireblend', 1138: 'Mysteltainn', 1140: 'Byeollungum', 2677: 'Spiritual Ring', 7291: 'Agate', 7294: 'Turquoise', 1166: 'Dragon Slayer', 1170: 'Katzbalger', 2229: 'Helm', 1720: 'Rudra Bow', 1724: 'Dragon Wing', 8900: 'Talon Coin', 13002: 'Ginnungagap', 1228: 'Combat Knife', 1230: 'Ice Pick', 1232: 'Assassin Dagger', 1233: 'Exorciser', 1234: 'Moonlight Dagger', 1236: 'Sucsamad', 1237: 'Grimtooth', 13017: 'Ice Pick [1]', 1242: 'Dagger of Counter', 742: 'Chonchon Doll', 1265: 'Bloody Roar
+2014-02-12T10:04:07.867781+00:00 app[worker.1]: ', 4357: 'Lord Knight Card', 4359: 'Assassin Cross Card', 4361: 'Whitesmith Card', 4363: 'High Priest Card', 4365: 'High Wizard Card', 2318: "Lord's Clothes [1]", 2319: 'Glittering Jacket [1]', 7444: 'Treasure Box', 1814: 'Berserk', 1241: 'Cursed Dagger', 2342: 'Legion Plate Armor [1]', 2343: 'Robe of Cast', 2345: "Lucius's Fierce Armor of Volcano [1]", 5420: 'Mask Of Ifrit', 2357: "Valkyrja's Armor", 4407: 'Valkyrie Randgris Card', 12103: 'Bloody Branch', 4430: 'Ifrit Card', 1364: 'Great Axe', 2702: 'Horn of the Buffalo', 7510: "Valhalla's Flower", 1368: 'Tomahawk', 1369: 'Guillotine', 5467: 'Helm of Dragon', 2412: 'Greaves [1]', 7024: 'Bloody Edge', 2421: "Valkyrja's Shoes", 2423: 'Variant Shoes', 1415: 'Brocca', 1417: 'Pole Axe', 5017: 'Bone Helm', 1469: "Longinus's Spear", 1470: 'Brionac', 1471: 'Hellfire', 6091: 'Red Scale', 1484: 'Carled', 2000: 'Staff of Destruction', 2513: 'Heavenly Maiden Robe [1]', 2514: 'Pauldron [1]', 985: 'Elunium', 2524: "Valkyrja's Manteau", 994: 'Flame Heart', 2542: 'Naght Se
+2014-02-12T10:04:07.867781+00:00 app[worker.1]: iger Flame Manteau [1]', 1527: 'Quadrille', 1528: 'Grand Cross', 2554: "Nydhorgg's Shadow Garb", 1365: 'Sabbath'}) (3d5c2818-c22e-4533-9f56-8255c807f9b0)
+2014-02-12T10:04:07.954791+00:00 app[worker.1]: 10:04:07 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:07.772215+00:00 app[clock.1]: Traceback (most recent call last):
+2014-02-12T10:04:07.772215+00:00 app[clock.1]:   File "scraperclock.py", line 80, in <module>
+2014-02-12T10:04:07.773295+00:00 app[clock.1]:     interval_market_scrape()
+2014-02-12T10:04:07.773295+00:00 app[clock.1]:   File "scraperclock.py", line 37, in interval_market_scrape
+2014-02-12T10:04:07.773433+00:00 app[clock.1]:     sched.scrapejobid = scrapejob.id
+2014-02-12T10:04:07.773519+00:00 app[clock.1]: NameError: global name 'scrapejob' is not defined
+2014-02-12T10:04:08.549943+00:00 app[worker.1]: 10:04:08 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:08.953603+00:00 app[worker.1]: 10:04:08 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:09.685275+00:00 heroku[clock.1]: Process exited with status 1
+2014-02-12T10:04:09.702964+00:00 heroku[clock.1]: State changed from up to crashed
+2014-02-12T10:04:09.703986+00:00 heroku[clock.1]: State changed from crashed to starting
+2014-02-12T10:04:09.363053+00:00 app[worker.1]: 10:04:09 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:09.815959+00:00 app[worker.1]: 10:04:09 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:10.207482+00:00 app[worker.1]: 10:04:10 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:10.624543+00:00 app[worker.1]: 10:04:10 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:11.046846+00:00 app[worker.1]: 10:04:11 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:11.477720+00:00 app[worker.1]: 10:04:11 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:11.916067+00:00 app[worker.1]: 10:04:11 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:12.348720+00:00 app[worker.1]: 10:04:12 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:12.775865+00:00 app[worker.1]: 10:04:12 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:13.221614+00:00 app[worker.1]: 10:04:13 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:13.683527+00:00 app[worker.1]: 10:04:13 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:14.113760+00:00 app[worker.1]: 10:04:14 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:14.538789+00:00 app[worker.1]: 10:04:14 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:14.940764+00:00 app[worker.1]: 10:04:14 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:15.375725+00:00 app[worker.1]: 10:04:15 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:15.814867+00:00 app[worker.1]: 10:04:15 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:16.242174+00:00 app[worker.1]: 10:04:16 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:16.658274+00:00 app[worker.1]: 10:04:16 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:17.064336+00:00 app[worker.1]: 10:04:17 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:17.475448+00:00 app[worker.1]: 10:04:17 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:17.898231+00:00 app[worker.1]: 10:04:17 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:18.313880+00:00 app[worker.1]: 10:04:18 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:18.756039+00:00 app[worker.1]: 10:04:18 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:19.205029+00:00 app[worker.1]: 10:04:19 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:19.614825+00:00 app[worker.1]: 10:04:19 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:20.015805+00:00 app[worker.1]: 10:04:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:20.479684+00:00 app[worker.1]: 10:04:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:20.933471+00:00 app[worker.1]: 10:04:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:21.361362+00:00 app[worker.1]: 10:04:21 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:21.823466+00:00 app[worker.1]: 10:04:21 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:22.227809+00:00 app[worker.1]: 10:04:22 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:22.682783+00:00 app[worker.1]: 10:04:22 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-12T10:04:22.938258+00:00 heroku[clock.1]: Starting process with command `python scraperclock.py theoatmealagain poopieBUTT456`
+2014-02-12T10:04:23.536165+00:00 heroku[clock.1]: State changed from starting to up
 Terminate batch job (Y/N)? 
+
+C:\Users\andy\Documents\GitHub\rosterrun>

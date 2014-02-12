@@ -34,7 +34,7 @@ def interval_market_scrape():
   sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
   print 'running calc %s ' % sched.scrapejob.id
   print 'This job runs every 12 hours.'
-  sched.scrapejobid = scrapejob.id
+  sched.scrapejobid = sched.scrapejob.id
 
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
