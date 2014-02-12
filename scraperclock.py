@@ -1,4 +1,5 @@
 from apscheduler.scheduler import Scheduler
+import logging
 from marketscrape import *
 from items_map import *
 
@@ -26,6 +27,7 @@ m.login(user, pw)
 
 sched.scrapejob = None
 sched.scrapejobid = None
+logging.basicConfig()
 
 @sched.interval_schedule(hours=12)
 def interval_market_scrape():
