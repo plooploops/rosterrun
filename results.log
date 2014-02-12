@@ -1,146 +1,102 @@
-2014-02-10T07:52:49.324484+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 867, in _execute_context
-2014-02-10T07:52:49.324659+00:00 app[web.1]:  'SELECT party_combo.id AS party_combo_id, party_combo.g_spreadsheet_id AS party_combo_g_spreadsheet_id, party_combo.g_worksheet_id AS party_combo_g_worksheet_id, party_combo."partyIndex" AS "party_combo_partyIndex", party_combo."instanceName" AS "party_combo_instanceName", party_combo."playerName" AS "party_combo_playerName", party_combo.name AS party_combo_name, party_combo."className" AS "party_combo_className", party_combo.rolename AS party_combo_rolename \nFROM party_combo' {}
-2014-02-10T07:52:49.324484+00:00 app[web.1]:     context)
-2014-02-10T07:52:49.324659+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 324, in do_execute
-2014-02-10T07:52:49.324607+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=d730c279-e686-45fd-a477-a2b40e617c9c fwd="67.105.106.9" dyno=web.1 connect=1ms service=12ms status=500 bytes=135
-2014-02-10T07:53:05.085586+00:00 heroku[api]: Starting process with command `python` by andygee@gmail.com
-2014-02-10T07:53:19.033744+00:00 heroku[run.4104]: Awaiting client
-2014-02-10T07:53:19.085003+00:00 heroku[run.4104]: Starting process with command `python`
-2014-02-10T07:53:19.007709+00:00 heroku[run.4104]: State changed from starting to up
-2014-02-10T07:53:38.505404+00:00 heroku[run.4104]: State changed from up to complete
-2014-02-10T07:53:38.481502+00:00 heroku[run.4104]: Process exited with status 0
-2014-02-10T07:53:44.325630+00:00 app[web.1]: show entries
-2014-02-10T07:53:44.325630+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:53:44.325199+00:00 app[web.1]: No job in session
-2014-02-10T07:53:44.325696+00:00 app[web.1]: already have ids in session  None None
-2014-02-10T07:53:44.346038+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-02-10T07:53:44.346038+00:00 app[web.1]: get all combinations
-2014-02-10T07:54:01.959305+00:00 app[web.1]: cannot bind action
-2014-02-10T07:54:04.308572+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
-2014-02-10T07:54:04.272537+00:00 app[web.1]: cannot bind action
-2014-02-10T07:54:04.308572+00:00 app[web.1]: 2014-02-10 07:54:04 [7] [ERROR] Error handling request
-2014-02-10T07:54:04.308572+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
-2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
-2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
-2014-02-10T07:54:04.308572+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
-2014-02-10T07:54:04.308572+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
-2014-02-10T07:54:04.308917+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
-2014-02-10T07:54:04.308572+00:00 app[web.1]: Traceback (most recent call last):
-2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 131, in handle_request
-2014-02-10T07:54:04.308572+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
-2014-02-10T07:54:04.309151+00:00 app[web.1]:     return render_template('treasury.html', treasures=t)
-2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
-2014-02-10T07:54:04.308917+00:00 app[web.1]:     rv = self.dispatch_request()
-2014-02-10T07:54:04.308917+00:00 app[web.1]:     response = self.full_dispatch_request()
-2014-02-10T07:54:04.308917+00:00 app[web.1]:     rv = self.handle_user_exception(e)
-2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
-2014-02-10T07:54:04.308917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
-2014-02-10T07:54:04.308917+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
-2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/rosterrun.py", line 347, in treasury
-2014-02-10T07:54:04.309151+00:00 app[web.1]:     return self.get_template(template_name_or_list, parent, globals)
-2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/templating.py", line 127, in render_template
-2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
-2014-02-10T07:54:04.309151+00:00 app[web.1]:     return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_or_select_template
-2014-02-10T07:54:04.309151+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
-2014-02-10T07:54:04.309151+00:00 app[web.1]:     template = self.loader.load(self, name, globals)
-2014-02-10T07:54:04.309151+00:00 app[web.1]:     return self._load_template(name, self.make_globals(globals))
-2014-02-10T07:54:04.309923+00:00 app[web.1]:     self.handle_exception(exc_info, source_hint=source)
-2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 742, in handle_exception
-2014-02-10T07:54:04.309923+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
-2014-02-10T07:54:04.309923+00:00 app[web.1]: TemplateAssertionError: no test named 'None'
-2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/loaders.py", line 125, in load
-2014-02-10T07:54:04.309923+00:00 app[web.1]:     code = environment.compile(source, name, filename)
-2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/jinja2/environment.py", line 554, in compile
-2014-02-10T07:54:04.309923+00:00 app[web.1]:   File "/app/templates/treasury.html", line 42, in template
-2014-02-10T07:54:04.309923+00:00 app[web.1]:     <!--<td>{% if t.guildtransaction_id is None %}<input type=submit name=buy value=Buy>{% else %}{{ t.guildtransaction_id|safe }}  {% endif %}</>-->
-2014-02-10T07:53:44.443749+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=a0794865-00d2-42b8-99ae-9933a021a716 fwd="67.105.106.9" dyno=web.1 connect=0ms service=128ms status=200 bytes=4925
-2014-02-10T07:54:02.021827+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=af88ac33-8b03-4f63-aa58-97921aa49e87 fwd="67.105.106.9" dyno=web.1 connect=5ms service=68ms status=200 bytes=1040
-2014-02-10T07:56:08+00:00 heroku[slug-compiler]: Slug compilation started
-2014-02-10T07:57:20.513929+00:00 heroku[api]: Deploy c2aeb87 by andygee@gmail.com
-2014-02-10T07:57:20.555237+00:00 heroku[api]: Release v187 created by andygee@gmail.com
-2014-02-10T07:57:20+00:00 heroku[slug-compiler]: Slug compilation finished
-2014-02-10T07:57:20.947096+00:00 heroku[web.1]: State changed from up to starting
-2014-02-10T07:57:20.997705+00:00 heroku[worker.1]: State changed from up to starting
-2014-02-10T07:57:21.026893+00:00 heroku[worker.2]: State changed from up to starting
-2014-02-10T07:57:23.740333+00:00 heroku[worker.2]: Stopping all processes with SIGTERM
-2014-02-10T07:57:24.057740+00:00 heroku[worker.1]: Stopping all processes with SIGTERM
-2014-02-10T07:57:24.353317+00:00 app[worker.2]: 07:57:24 Warm shut down requested.
-2014-02-10T07:57:23.882657+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2014-02-10T07:57:24.469418+00:00 app[web.1]: 2014-02-10 07:57:24 [7] [INFO] Worker exiting (pid: 7)
-2014-02-10T07:57:24.471502+00:00 app[web.1]: 2014-02-10 07:57:24 [2] [INFO] Handling signal: term
-2014-02-10T07:57:24.488032+00:00 app[web.1]: 2014-02-10 07:57:24 [2] [INFO] Shutting down: Master
-2014-02-10T07:57:24.739190+00:00 app[worker.1]: 07:57:24 Warm shut down requested.
-2014-02-10T07:57:25.886590+00:00 heroku[worker.2]: Process exited with status 0
-2014-02-10T07:57:26.062120+00:00 heroku[web.1]: Process exited with status 0
-2014-02-10T07:57:26.127719+00:00 heroku[worker.1]: Process exited with status 0
-2014-02-10T07:57:30.411512+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
-2014-02-10T07:57:30.571332+00:00 heroku[worker.2]: Starting process with command `python worker.py`
-2014-02-10T07:57:30.671932+00:00 heroku[worker.1]: Starting process with command `python worker.py`
-2014-02-10T07:57:31.274253+00:00 heroku[worker.2]: State changed from starting to up
-2014-02-10T07:57:31.338324+00:00 heroku[worker.1]: State changed from starting to up
-2014-02-10T07:57:31.551901+00:00 app[web.1]: 2014-02-10 07:57:31 [2] [INFO] Starting gunicorn 18.0
-2014-02-10T07:57:31.552842+00:00 app[web.1]: 2014-02-10 07:57:31 [2] [INFO] Listening at: http://0.0.0.0:46177 (2)
-2014-02-10T07:57:31.552892+00:00 app[web.1]: 2014-02-10 07:57:31 [2] [INFO] Using worker: sync
-2014-02-10T07:57:31.562295+00:00 app[web.1]: 2014-02-10 07:57:31 [7] [INFO] Booting worker with pid: 7
-2014-02-10T07:57:31.787823+00:00 app[worker.2]: 07:57:31 *** Listening on high, default, low...
-2014-02-10T07:57:31.786009+00:00 app[worker.2]: 07:57:31 RQ worker started, version 0.3.13
-2014-02-10T07:57:31.787757+00:00 app[worker.2]: 07:57:31 
-2014-02-10T07:57:31.987451+00:00 app[worker.1]: 07:57:31 
-2014-02-10T07:57:31.987614+00:00 app[worker.1]: 07:57:31 *** Listening on high, default, low...
-2014-02-10T07:57:31.985775+00:00 app[worker.1]: 07:57:31 RQ worker started, version 0.3.13
-2014-02-10T07:57:32.091836+00:00 heroku[web.1]: State changed from starting to up
-2014-02-10T07:57:41.907182+00:00 app[web.1]: No job in session
-2014-02-10T07:57:41.907708+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:57:41.907708+00:00 app[web.1]: show entries
-2014-02-10T07:57:41.907827+00:00 app[web.1]: already have ids in session  None None
-2014-02-10T07:57:42.039254+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-02-10T07:57:42.039254+00:00 app[web.1]: get all combinations
-2014-02-10T07:57:42.103970+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=5f8dbb95-7423-4223-a10d-e06b7aaf8ed9 fwd="67.105.106.9" dyno=web.1 connect=7ms service=196ms status=200 bytes=4925
-2014-02-10T07:58:07.141073+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:07.180929+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=101d10d8-8161-46fa-a473-f1b24c184484 fwd="67.105.106.9" dyno=web.1 connect=1ms service=40ms status=200 bytes=1150
-2014-02-10T07:58:08.774226+00:00 heroku[router]: at=info method=GET path=/points host=rosterrun.herokuapp.com request_id=c9e98d0d-c648-47f8-819d-cdf590c4c3cc fwd="67.105.106.9" dyno=web.1 connect=1ms service=18ms status=200 bytes=723
-2014-02-10T07:58:08.755796+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:09.934233+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:09.941869+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=aa7de180-a798-4621-924e-b26a0d751ac5 fwd="67.105.106.9" dyno=web.1 connect=0ms service=7ms status=200 bytes=1150
-2014-02-10T07:58:10.774888+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=de1e8309-b59d-4dd5-9f6e-c79d4f60d958 fwd="67.105.106.9" dyno=web.1 connect=0ms service=23ms status=200 bytes=1040
-2014-02-10T07:58:10.749610+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:11.447158+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=7caaf8ed-f6ec-404a-ac02-3682103e4d78 fwd="67.105.106.9" dyno=web.1 connect=0ms service=14ms status=200 bytes=4925
-2014-02-10T07:58:11.431714+00:00 app[web.1]: No job in session
-2014-02-10T07:58:11.432113+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:58:11.432113+00:00 app[web.1]: show entries
-2014-02-10T07:58:11.432113+00:00 app[web.1]: already have ids in session  None None
-2014-02-10T07:58:11.436965+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-02-10T07:58:11.436965+00:00 app[web.1]: get all combinations
-2014-02-10T07:58:13.591641+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:15.227228+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=3c0a9e4e-0502-4a73-a4fc-a542fb8968db fwd="67.105.106.9" dyno=web.1 connect=0ms service=8ms status=200 bytes=1150
-2014-02-10T07:58:15.217566+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:15.807743+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:16.650348+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=c7cba25f-edc9-40f0-8d49-e77bbe02b967 fwd="67.105.106.9" dyno=web.1 connect=0ms service=9ms status=200 bytes=1150
-2014-02-10T07:58:16.641065+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:24.069164+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:25.140355+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=f2720ee7-98af-439f-a46d-a5e781168e79 fwd="67.105.106.9" dyno=web.1 connect=1ms service=8ms status=200 bytes=1150
-2014-02-10T07:58:25.132729+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:25.822389+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=f27c7ea7-330e-4a50-95e9-bc3a0e477305 fwd="67.105.106.9" dyno=web.1 connect=0ms service=10ms status=200 bytes=1040
-2014-02-10T07:58:25.812461+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:26.714316+00:00 app[web.1]: No job in session
-2014-02-10T07:58:26.714717+00:00 app[web.1]: cannot find gdoc name
-2014-02-10T07:58:26.714717+00:00 app[web.1]: show entries
-2014-02-10T07:58:26.714717+00:00 app[web.1]: already have ids in session  None None
-2014-02-10T07:58:26.730608+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=b0c065b4-ec1d-42b2-b608-0298a52f0a05 fwd="67.105.106.9" dyno=web.1 connect=0ms service=15ms status=200 bytes=4925
-2014-02-10T07:58:26.719828+00:00 app[web.1]: AVAILABLE PARTIES 0 
-2014-02-10T07:58:26.719828+00:00 app[web.1]: get all combinations
-2014-02-10T07:58:29.260952+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:30.777247+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=b4d338b4-7789-4811-8b16-39c0eaf9726c fwd="67.105.106.9" dyno=web.1 connect=1ms service=12ms status=200 bytes=1150
-2014-02-10T07:58:30.765802+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:31.707363+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:31.716806+00:00 heroku[router]: at=info method=GET path=/points host=rosterrun.herokuapp.com request_id=453a452d-2d14-4540-b866-b0fc5ab0ba18 fwd="67.105.106.9" dyno=web.1 connect=0ms service=8ms status=200 bytes=723
-2014-02-10T07:58:32.963568+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=7ed97344-7e57-45f6-9979-e17566827c16 fwd="67.105.106.9" dyno=web.1 connect=0ms service=9ms status=200 bytes=1040
-2014-02-10T07:58:32.954454+00:00 app[web.1]: cannot bind action
-2014-02-10T07:58:13.599325+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=0a21fabd-de06-4eee-bab3-b112139672c7 fwd="67.105.106.9" dyno=web.1 connect=1ms service=8ms status=200 bytes=1040
-2014-02-10T07:58:15.815745+00:00 heroku[router]: at=info method=GET path=/points host=rosterrun.herokuapp.com request_id=f92c0a4b-b11c-49c9-9af1-6ad04f671d82 fwd="67.105.106.9" dyno=web.1 connect=1ms service=8ms status=200 bytes=723
-2014-02-10T07:58:29.269454+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=9ccb4b43-8d64-4fe6-be0c-dd1d590cac1b fwd="67.105.106.9" dyno=web.1 connect=1ms service=8ms status=200 bytes=1040
-2014-02-10T07:58:24.076344+00:00 heroku[router]: at=info method=GET path=/points host=rosterrun.herokuapp.com request_id=3523e909-b3f7-4ee7-99ed-21cfa5571ff9 fwd="67.105.106.9" dyno=web.1 connect=0ms service=7ms status=200 bytes=723
-Terminate batch job (Y/N)? 
+2014-02-11T20:50:20.235920+00:00 app[worker.2]: 20:50:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:20.590300+00:00 app[worker.2]: 20:50:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:20.932964+00:00 app[worker.2]: 20:50:20 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:21.250807+00:00 app[worker.2]: 20:50:21 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:21.622296+00:00 app[worker.2]: 20:50:21 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:21.983726+00:00 app[worker.2]: 20:50:21 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:22.362552+00:00 app[worker.2]: 20:50:22 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:22.718959+00:00 app[worker.2]: 20:50:22 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:23.088706+00:00 app[worker.2]: 20:50:23 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:23.768154+00:00 app[worker.2]: 20:50:23 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:23.429970+00:00 app[worker.2]: 20:50:23 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:24.109960+00:00 app[worker.2]: 20:50:24 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:24.441276+00:00 app[worker.2]: 20:50:24 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:24.803119+00:00 app[worker.2]: 20:50:24 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:25.160686+00:00 app[worker.2]: 20:50:25 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:2
+5.856672+00:00 app[worker.2]: 20:50:25 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:25.497413+00:00 app[worker.2]: 20:50:25 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:26.245123+00:00 app[worker.2]: 20:50:26 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:26.605346+00:00 app[worker.2]: 20:50:26 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:26.962065+00:00 app[worker.2]: 20:50:26 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:27.297770+00:00 app[worker.2]: 20:50:27 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:27.647372+00:00 app[worker.2]: 20:50:27 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:27.997100+00:00 app[worker.2]: 20:50:27 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:28.350281+00:00 app[worker.2]: 20:50:28 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:28.702992+00:00 app[worker.2]: 20:50:28 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:29.053542+00:00 app[worker.2]: 20:50:29 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:29.425813+00:00 app[worker.2]: 20:50:29 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:29.796605+00:00 app[worker.2]: 20:50:29 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:30.174073+00:00 app[worker.2]: 20:50:30 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:30.526215+00:00 app[worker.2]: 20:50:30 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:30.876911+00:00 app[worker.2]: 20:50:30 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:31.213599+00:00 app[worker.2]: 20:50:31 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:31.568066+00:00 app[worker.2]: 20:50:31 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:31.902340+00:00 app[worker.2]: 20:50:31 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:32.236400+00:00 app[worker.2]: 20:50:32 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:32.577501+00:00 app[worker.2]: 20:50:32 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:32.937464+00:00 app[worker.2]: 20:50:32 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:33.292143+00:00 app[worker.2]: 20:50:33 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:33.645491+00:00 app[worker.2]: 20:50:33 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:33.984596+00:00 app[worker.2]: 20:50:33 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:34.339929+00:00 app[worker.2]: 20:50:34 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:34.667807+00:00 app[worker.2]: 20:50:34 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:34.990008+00:00 app[worker.2]: 20:50:34 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:35.320813+00:00 app[worker.2]: 20:50:35 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:36.368101+00:00 app[worker.2]: 20:50:36 Job OK, result = {1557: [], 1560: [], 1565: [], 4145: [], 2610: [], 2615: [], 2616: [], 2115: [], 7754: [], 1618: [], 1624: [], 1636: [], 4367: [], 1631: [], 13412: [], 13413: [], 616: [], 617: [], 1132: [], 1133: [], 1138: [], 1140: [], 2677: [], 7291: [], 7294: [], 1166: [], 1170: [], 2229: [], 1720: [], 1724: [], 8900: [], 13002: [], 1228: [], 1230: [], 1232: [], 1233: [], 1234: [], 1236: [], 1237: [], 13017: [], 1242: [], 742: [], 1265: [], 4357: [], 4359: [], 4361: [], 4363: [], 4365: [], 2318: [], 2319: [], 7444: [], 1814: [], 1241: [], 2342: [], 2343: [], 2345: [], 5420: [], 2357: [], 4407: [], 12103: [], 4430: [], 1364: [], 2702: [], 7510: [], 1368: [], 1369: [], 5467: [], 2412: [], 7024: [], 2421: [], 2423: [], 1415: [], 1417: [], 5017: [], 1469: [], 1470: [], 1471: [], 6091: [], 1484: [], 2000: [], 2513: [], 2514: [], 985: [], 2524: [], 994: [], 2542: [], 1527: [], 1528: [], 2554: [], 1365: []}
+2014-02-11T20:50:36.381944+00:00 app[worker.2]: 20:50:36 *** Listening on high, default, low...
+2014-02-11T20:50:35.987378+00:00 app[worker.2]: 20:50:35 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:35.659527+00:00 app[worker.2]: 20:50:35 Starting new HTTPS connection (1): panel.talonro.com
+2014-02-11T20:50:36.368101+00:00 app[worker.2]: 20:50:36 Result is kept for 3000 seconds.
+2014-02-11T20:50:36.381724+00:00 app[worker.2]: 20:50:36 
+2014-02-11T21:05:59.841830+00:00 app[web.1]: cannot bind action
+2014-02-11T21:05:59.854467+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=74d68e3f-9a92-43ca-9d2f-fe942a2f4514 fwd="146.23.65.198" dyno=web.1 connect=0ms service=14ms status=200 bytes=1040
+2014-02-11T21:39:48.211277+00:00 app[web.1]: cannot bind action
+2014-02-11T21:39:48.229783+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=c756ded9-7eda-488a-8bdc-8ee0adad838b fwd="146.23.65.198" dyno=web.1 connect=7ms service=33ms status=200 bytes=1040
+2014-02-11T21:50:03.422379+00:00 app[clock.1]: No scrape job found
+2014-02-11T22:16:32.438070+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=14e6b592-0a0e-4de9-b251-c2d41e26fe4e fwd="146.23.65.198" dyno=web.1 connect=7ms service=29ms status=200 bytes=1040
+2014-02-11T22:16:32.418920+00:00 app[web.1]: cannot bind action
+2014-02-11T22:16:32.891555+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=d9ec368a-6d77-4873-8dd7-3515b4902b68 fwd="146.23.65.198" dyno=web.1 connect=7ms service=29ms status=200 bytes=1040
+2014-02-11T22:16:32.867924+00:00 app[web.1]: cannot bind action
+2014-02-11T22:16:35.119066+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=70d9a34d-e059-4ccd-9b54-c57c11ad3625 fwd="146.23.65.198" dyno=web.1 connect=5ms service=43ms status=200 bytes=1040
+2014-02-11T22:16:35.106488+00:00 app[web.1]: cannot bind action
+2014-02-11T22:31:51.430738+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=df53d6d7-84a0-4a18-a914-ec347b7b9ee6 fwd="146.23.65.198" dyno=web.1 connect=4ms service=49ms status=200 bytes=1040
+2014-02-11T22:31:51.392485+00:00 app[web.1]: cannot bind action
+2014-02-11T22:31:53.681499+00:00 app[web.1]: cannot bind action
+2014-02-11T22:31:53.690169+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=467fd110-adee-4741-adc0-527aabb2d7b6 fwd="146.23.65.198" dyno=web.1 connect=0ms service=13ms status=200 bytes=1040
+2014-02-11T22:49:17.515857+00:00 app[web.1]: cannot bind action
+2014-02-11T22:49:18.623110+00:00 heroku[router]: at=info method=GET path=/treasury host=rosterrun.herokuapp.com request_id=bb6184b9-65a2-453e-a101-655e6121d85b fwd="146.23.65.198" dyno=web.1 connect=1ms service=24ms status=200 bytes=1150
+2014-02-11T22:49:18.600823+00:00 app[web.1]: cannot bind action
+2014-02-11T22:49:20.992965+00:00 app[web.1]: No job in session
+2014-02-11T22:49:20.995103+00:00 app[web.1]: cannot find gdoc name
+2014-02-11T22:49:20.995246+00:00 app[web.1]: show entries
+2014-02-11T22:49:20.995568+00:00 app[web.1]: already have ids in session  None None
+2014-02-11T22:49:21.013787+00:00 app[web.1]: AVAILABLE PARTIES 0 
+2014-02-11T22:49:21.013948+00:00 app[web.1]: get all combinations
+2014-02-11T22:50:03.167221+00:00 app[clock.1]: No scrape job found
+2014-02-11T22:49:21.075607+00:00 heroku[router]: at=info method=GET path=/ host=rosterrun.herokuapp.com request_id=79ad20eb-6f38-4958-9acb-fdb761175f23 fwd="146.23.65.198" dyno=web.1 connect=1ms service=118ms status=200 bytes=23768
+2014-02-11T22:50:23.736967+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=b6833537-42ad-4664-b79f-53f99bf2d682 fwd="146.23.65.198" dyno=web.1 connect=0ms service=12ms status=200 bytes=1040
+2014-02-11T22:50:23.725527+00:00 app[web.1]: cannot bind action
+2014-02-11T22:49:17.525239+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=28ac6a7c-1e77-4297-b176-262b89a31606 fwd="146.23.65.198" dyno=web.1 connect=1ms service=13ms status=200 bytes=1040
+2014-02-11T23:50:03.168816+00:00 app[clock.1]: No scrape job found
+2014-02-11T23:52:32.673893+00:00 heroku[web.1]: Idling
+2014-02-11T23:52:32.674453+00:00 heroku[web.1]: State changed from up to down
+2014-02-11T23:52:36.876663+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-02-11T23:52:37.896868+00:00 app[web.1]: 2014-02-11 23:52:37 [7] [INFO] Worker exiting (pid: 7)
+2014-02-11T23:52:38.166053+00:00 app[web.1]: 2014-02-11 23:52:38 [2] [INFO] Handling signal: term
+2014-02-11T23:52:38.257202+00:00 app[web.1]: 2014-02-11 23:52:38 [2] [INFO] Shutting down: Master
+2014-02-11T23:52:40.192819+00:00 heroku[web.1]: Process exited with status 0
+2014-02-12T00:25:34.949917+00:00 heroku[web.1]: Unidling
+2014-02-12T00:25:34.950270+00:00 heroku[web.1]: State changed from down to starting
+2014-02-12T00:25:49.305266+00:00 heroku[web.1]: Starting process with command `gunicorn rosterrun:app`
+2014-02-12T00:25:51.129441+00:00 app[web.1]: 2014-02-12 00:25:51 [2] [INFO] Starting gunicorn 18.0
+2014-02-12T00:25:51.130113+00:00 app[web.1]: 2014-02-12 00:25:51 [2] [INFO] Listening at: http://0.0.0.0:9282 (2)
+2014-02-12T00:25:51.130184+00:00 app[web.1]: 2014-02-12 00:25:51 [2] [INFO] Using worker: sync
+2014-02-12T00:25:51.138866+00:00 app[web.1]: 2014-02-12 00:25:51 [7] [INFO] Booting worker with pid: 7
+2014-02-12T00:25:51.695412+00:00 heroku[web.1]: State changed from starting to up
+2014-02-12T00:25:55.697055+00:00 app[web.1]: cannot bind action
+2014-02-12T00:25:56.010849+00:00 heroku[router]: at=info method=GET path=/market_results host=rosterrun.herokuapp.com request_id=4a3ccee4-303f-4916-8c62-96fe9dc19d77 fwd="146.23.65.198" dyno=web.1 connect=1ms service=2988ms status=200 bytes=1040
+2014-02-12T00:41:42.724910+00:00 heroku[api]: Scale to clock=0, web=1, worker=2 by andygee@gmail.com
+2014-02-12T00:41:42.964926+00:00 heroku[clock.1]: State changed from up to down
+2014-02-12T00:41:46.337958+00:00 heroku[clock.1]: Stopping all processes with SIGTERM
+2014-02-12T00:41:48.819719+00:00 heroku[clock.1]: Process exited with status 143

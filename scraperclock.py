@@ -25,7 +25,7 @@ m.login(user, pw)
 
 scrapejob = None
 
-@sched.interval_schedule(hours=12)
+@sched.interval_schedule(minutes=3)
 def interval_market_scrape():
   #send this to redis queue
   
@@ -33,7 +33,7 @@ def interval_market_scrape():
   print 'running calc %s ' % scrapejob.id
   print 'This job runs every 12 hours.'
 
-@sched.interval_schedule(minutes=60)
+@sched.interval_schedule(minutes=5)
 def retrieve_market_scrape():
   #retrieve results from redis queue
   if scrapejob is None:
