@@ -76,11 +76,11 @@ class MarketScraper:
       #vendor
       #coords
 
-      mr = MarketResult()
-      mr.itemid = i
       results = []
       #map values to result
       for j in range(len(vals)):
+        mr = MarketResult()
+        mr.itemid = i
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
@@ -118,9 +118,10 @@ class MarketScraper:
       sell_r = requests.post(sell_url, cookies=self.cookies)
       #load results into tree
       tree = html.fromstring(sell_r.content)
+      print tree
       #find search results
       vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@style='vertical-align:top;']")
-      
+      print vals
       #order of values (cycles):
       #name
       #cards
@@ -130,11 +131,11 @@ class MarketScraper:
       #vendor
       #coords
 
-      mr = MarketResult()
-      mr.itemid = i
       results = []
       #map values to result
       for j in range(len(vals)):
+        mr = MarketResult()
+        mr.itemid = i
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
