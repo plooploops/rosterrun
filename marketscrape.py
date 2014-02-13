@@ -97,7 +97,8 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           mr.coords = val_found
-          results.append(mr)
+          if len(mr.name) > 0:
+            results.append(mr)
   
       #map results back to item
       items_results[i] = results
@@ -118,10 +119,8 @@ class MarketScraper:
       sell_r = requests.post(sell_url, cookies=self.cookies)
       #load results into tree
       tree = html.fromstring(sell_r.content)
-      print tree
       #find search results
       vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@style='vertical-align:top;']")
-      print vals
       #order of values (cycles):
       #name
       #cards
@@ -152,7 +151,8 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           mr.coords = val_found
-          results.append(mr)
+          if len(mr.name) > 0:
+            results.append(mr)
   
       #map results back to item
       items_results[i] = results
