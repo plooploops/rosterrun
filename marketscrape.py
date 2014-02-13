@@ -87,6 +87,9 @@ class MarketScraper:
         #might want to account for multiple cards here.  can convert to a list?
         if(j % 7 == 1):
           mr.cards = val_found
+          if len(test_val) > 0:
+	    val_found = val_found.lstrip().replace('Card', 'Card,')
+            mr.cards = val_found
         if(j % 7 == 2):
           mr.price = float(val_found.replace('.',''))
         if(j % 7 == 3):
@@ -146,11 +149,9 @@ class MarketScraper:
         if(j % 7 == 1):
           mr.cards = val_found
           if len(test_val) > 0:
-            print 'card found unaltered'
-            print test_val
-            print 'card found'
-            print val_found
-          
+            val_found = val_found.lstrip().replace('Card', 'Card,')
+            mr.cards = val_found
+            
         if(j % 7 == 2):
           mr.price = float(val_found.replace('.',''))
         if(j % 7 == 3):

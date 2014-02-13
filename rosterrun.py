@@ -323,9 +323,11 @@ def market_results():
   except:
     print 'cannot bind action'
   
-  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.desc(), MappedMarketResult.price.asc()).all()
+  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
-  return render_template('market_results.html', marketresults=mr)
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords) for m in mr]
+  return render_template('market_results.html', marketresults=mrs)
   
 @app.route('/treasury', methods=['GET', 'POST'])
 def treasury():
