@@ -137,12 +137,15 @@ class MarketScraper:
       #map values to result
       for j in range(len(vals)):
         print vals[j]
+        test_val = "".join(vals[j].itertext())
+        print test_val
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
         #might want to account for multiple cards here.  can convert to a list?
         if(j % 7 == 1):
           mr.cards = val_found
+          print val_found
         if(j % 7 == 2):
           mr.price = float(val_found.replace('.',''))
         if(j % 7 == 3):
