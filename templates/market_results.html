@@ -16,12 +16,10 @@
     <tr>
     <th>Itemid</th>
     <th>Name</th>
-    <th>Cards</th>
+    <th>Slotted with</th>
     <th>Price</th>
     <th>Amount</th>
-    <th>Title</th>
     <th>Vendor</th>
-    <th>Coords</th>
     <th>Date</th>
     </tr>
     {% for mr in marketresults %}
@@ -35,9 +33,7 @@
       </td>
       <td>{{ mr.price|safe }}</td>
       <td>{{ mr.amount|safe }}</td>
-      <td>{{ mr.title|safe }}</td>
       <td>{{ mr.vendor|safe }}</td>
-      <td>{{ mr.coords|safe }}</td>
       <td>{{ mr.date|safe }}</td>
     {% endfor %}
     </table>

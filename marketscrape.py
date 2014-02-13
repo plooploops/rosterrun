@@ -136,6 +136,7 @@ class MarketScraper:
       mr.itemid = i
       #map values to result
       for j in range(len(vals)):
+        print vals[j]
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
