@@ -146,8 +146,10 @@ class MarketScraper:
         if(j % 7 == 1):
           mr.cards = val_found
           if len(test_val) > 0:
-            print 'card found unaltered %s' % test_val
-            print 'card found %s' % val_found
+            print 'card found unaltered'
+            print test_val
+            print 'card found'
+            print val_found
           
         if(j % 7 == 2):
           mr.price = float(val_found.replace('.',''))
