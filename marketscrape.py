@@ -77,10 +77,10 @@ class MarketScraper:
       #coords
 
       results = []
+      mr = MarketResult()
+      mr.itemid = i
       #map values to result
       for j in range(len(vals)):
-        mr = MarketResult()
-        mr.itemid = i
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
@@ -97,8 +97,9 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           mr.coords = val_found
-          if len(mr.name) > 0:
-            results.append(mr)
+          results.append(mr)
+          mr = MarketResult()
+          mr.itemid = i
   
       #map results back to item
       items_results[i] = results
@@ -131,10 +132,10 @@ class MarketScraper:
       #coords
 
       results = []
+      mr = MarketResult()
+      mr.itemid = i
       #map values to result
       for j in range(len(vals)):
-        mr = MarketResult()
-        mr.itemid = i
         val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
         if(j % 7 == 0):
           mr.name = val_found
@@ -151,8 +152,9 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           mr.coords = val_found
-          if len(mr.name) > 0:
-            results.append(mr)
+          results.append(mr)
+          mr = MarketResult()
+          mr.itemid = i
   
       #map results back to item
       items_results[i] = results
