@@ -47,8 +47,14 @@ def retrieve_market_scrape():
   
   job_id = sched.scrapejobid
   currentjob = Job(connection=conn)
-  currentjob = currentjob.fetch(job_id, connection=conn)
-  print 'scrape job found'
+  
+  try:
+    currentjob = currentjob.fetch(job_id, connection=conn)
+    print 'scrape job found'
+  except:
+    print 'job not available'
+    sched.scrapejobid = None
+    return
   
   print 'found job %s ' % currentjob
   print 'for job id %s ' % job_id
@@ -68,8 +74,9 @@ def retrieve_market_scrape():
       
       print 'adding to db'
       vals = marketresults.values()
-      flattenedvals = [item for sublist in vals for item in sublist]
-      [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in flattenedvals]
+      #flattenedvals = [item for sublist in vals for item in sublist]
+      for k in marketresults.keys():
+        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[k]]
      
       db.session.commit()
       print 'added to db'
