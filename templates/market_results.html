@@ -13,8 +13,8 @@
     </form>
     <h2>Market Results</h2>
     <table class=marketresult>
-    {% for group in marketresults|groupby('itemid') %}
-	    <td colspan="7">{{ group.grouper }}</td>
+    {% for grouper, list in marketresults|groupby('itemid') %}
+	    <td colspan="7">{{ grouper }}</td>
 	    <tr>
 		  <th>Name</th>
 		  <th>Slotted with</th>
@@ -24,7 +24,7 @@
 		  <th>Location</th>
 		  <th>Date</th>
         </tr>
-	    {% for mr in group.list %}
+	    {% for mr in list %}
 	      <td style="width:27%;">{{ mr.name|safe }}</td>
           <td style="width:26%;">
           {% for c in mr.cards %}
