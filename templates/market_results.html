@@ -13,16 +13,17 @@
     </form>
     <h2>Market Results</h2>
     <table class=marketresult>
-    <tr>
-    <th>Slotted with</th>
-    <th>Price</th>
-    <th>Amount</th>
-    <th>Vendor</th>
-    <th>Location</th>
-    <th>Date</th>
-    </tr>
+
     {% for mr in marketresults %}
       <tr><td colspan="6"><h2>{{ mr.itemid|safe }} {{ mr.name|safe }}</h2></td></tr>
+      <tr>
+	    <th>Slotted with</th>
+	    <th>Price</th>
+	    <th>Amount</th>
+	    <th>Vendor</th>
+	    <th>Location</th>
+	    <th>Date</th>
+      </tr>
       <tr>
       <td>
       {% for c in mr.cards %}
