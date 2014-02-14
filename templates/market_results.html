@@ -13,31 +13,31 @@
     </form>
     <h2>Market Results</h2>
     <table class=marketresult>
-    {% for grouper, list in marketresults|groupby('name') %}
-	    <td colspan="7">{{ grouper }}</td>
-	    <tr>
-		  <th>Name</th>
-		  <th>Slotted with</th>
-		  <th>Price</th>
-		  <th>Amount</th>
-		  <th>Vendor</th>
-		  <th>Location</th>
-		  <th>Date</th>
-        </tr>
-	    {% for mr in list %}
-	      <td style="width:27%;">{{ mr.name|safe }}</td>
-          <td style="width:26%;">
-          {% for c in mr.cards %}
-            {{ c|safe }}
-          {% endfor %}
-          </td>
-          <td style="width:7%;">{{ mr.price|safe }}</td>
-          <td style="width:5%;">{{ mr.amount|safe }}</td>
-          <td style="width:10%;">{{ mr.vendor|safe }}</td>
-          <td style="width:10%;">{{ mr.coords|safe }}</td>
-          <td style="width:15%;">{{ mr.date|safe }}</td>
-	    {% endfor %}
-	{% endfor %}
+    <tr>
+    <th>Itemid</th>
+    <th>Name</th>
+    <th>Slotted with</th>
+    <th>Price</th>
+    <th>Amount</th>
+    <th>Vendor</th>
+    <th>Location</th>
+    <th>Date</th>
+    </tr>
+    {% for mr in marketresults %}
+      <tr>
+      <td style="width:5%;"><h2>{{ mr.itemid|safe }}</h2></td>
+      <td style="width:22%;">{{ mr.name|safe }}</td>
+      <td style="width:26%;">
+      {% for c in mr.cards %}
+        {{ c|safe }}
+      {% endfor %}
+      </td>
+      <td style="width:7%;">{{ mr.price|safe }}</td>
+      <td style="width:5%;">{{ "${:,.2f}"|format(mr.amount)|safe }}</td>
+      <td style="width:10%;">{{ mr.vendor|safe }}</td>
+      <td style="width:10%;">{{ mr.coords|replace(".","")|safe }}</td>
+      <td style="width:15%;">{{ mr.date|safe }}</td>
+    {% endfor %}
     </table>
     <form>
       <h2>Search Item</h2>
