@@ -100,7 +100,7 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           v = vals[j].getchildren()[0].get('onclick')
-	  coord = v.split('minimap,')[1].split('html')[0]
+	  coord = v.split('minimap,')[1].split('html')[0].replace('.','')
           mr.coords = coord
           results.append(mr)
           mr = MarketResult()
@@ -164,7 +164,7 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           v = vals[j].getchildren()[0].get('onclick')
-          coord = v.split('minimap,')[1].split('html')[0]
+          coord = v.split('minimap,')[1].split('html')[0].replace('.','')
           mr.coords = coord
           results.append(mr)
           mr = MarketResult()
