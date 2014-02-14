@@ -32,9 +32,9 @@
           {% endfor %}
           </td>
           <td style="width:7%;">{{ mr.price|safe }}</td>
-          <td style="width:5%;">{{ "${:,.2f}"|format(mr.amount)|safe }}</td>
+          <td style="width:5%;">{{ mr.amount|safe }}</td>
           <td style="width:10%;">{{ mr.vendor|safe }}</td>
-          <td style="width:10%;">{{ mr.coords|replace(".","")|safe }}</td>
+          <td style="width:10%;">{{ mr.coords|safe }}</td>
           <td style="width:15%;">{{ mr.date|safe }}</td>
 	    {% endfor %}
 	{% endfor %}
