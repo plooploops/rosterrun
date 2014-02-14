@@ -20,6 +20,7 @@
     <th>Price</th>
     <th>Amount</th>
     <th>Vendor</th>
+    <th>Location</th>
     <th>Date</th>
     </tr>
     {% for mr in marketresults %}
@@ -34,6 +35,7 @@
       <td>{{ mr.price|safe }}</td>
       <td>{{ mr.amount|safe }}</td>
       <td>{{ mr.vendor|safe }}</td>
+      <td>{{ mr.coords|safe }}</td>
       <td>{{ mr.date|safe }}</td>
     {% endfor %}
     </table>

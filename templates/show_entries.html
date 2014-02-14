@@ -26,10 +26,9 @@
     <th>Class</th>
     <th>Name</th>
     <th>Role</th>
-    <th>Quests</th>
     <th>Last Run</th>
     <th>Player Name</th>
-    <th>Present</th>
+    <th>Online?</th>
     </tr>
     {% for char in characters %}
       <tr>
@@ -37,11 +36,6 @@
       <td><h2>{{ char.Class|safe }}</h2></td>
       <td>{{ char.Name|safe }}</td>
       <td>{{ char.Role|safe}}</td>
-      <td>
-      {% for q in char.Quests %}
-        <li>{{ q|safe }}
-      {% endfor %}
-      </td>
       <td>{{ char.LastRun|safe }}</td>
       <td>{{ char.PlayerName|safe }}</td>
       <td>{{ char.Present|safe }}</td>
