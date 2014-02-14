@@ -13,30 +13,30 @@
     </form>
     <h2>Market Results</h2>
     <table class=marketresult>
+    <tr>
+    <th>Itemid</th>
+    <th>Name</th>
+    <th>Slotted with</th>
+    <th>Price</th>
+    <th>Amount</th>
+    <th>Vendor</th>
+    <th>Location</th>
+    <th>Date</th>
+    </tr>
     {% for mr in marketresults %}
       <tr>
-	    <td><h2>{{ mr.itemid|safe }}</td>
-	    <td>{{ mr.name|safe }}</td>
-	  </tr>
-      <tr>
-	  	<th>Slotted with</th>
-	  	<th>Price</th>
-	  	<th>Amount</th>
-	  	<th>Vendor</th>
-	  	<th>Location</th>
-	  	<th>Date</th>
-      </tr>
-      <tr>
-      <td>
+      <td style="width:5%;"><h2>{{ mr.itemid|safe }}</h2></td>
+      <td style="width:22%;">{{ mr.name|safe }}</td>
+      <td style="width:26%;">
       {% for c in mr.cards %}
         <li>{{ c|safe }}
       {% endfor %}
       </td>
-      <td>{{ mr.price|safe }}</td>
-      <td>{{ mr.amount|safe }}</td>
-      <td>{{ mr.vendor|safe }}</td>
-      <td>{{ mr.coords|safe }}</td>
-      <td>{{ mr.date|safe }}</td>
+      <td style="width:7%;">{{ mr.price|safe }}</td>
+      <td style="width:5%;">{{ mr.amount|safe }}</td>
+      <td style="width:10%;">{{ mr.vendor|safe }}</td>
+      <td style="width:10%;">{{ mr.coords|safe }}</td>
+      <td style="width:15%;">{{ mr.date|safe }}</td>
     {% endfor %}
     </table>
     <form>
