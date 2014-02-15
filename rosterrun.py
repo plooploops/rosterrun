@@ -326,7 +326,7 @@ def market_results():
   mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
-  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords) for m in mr]
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   return render_template('market_results.html', marketresults=mrs)
   
 @app.route('/treasury', methods=['GET', 'POST'])
