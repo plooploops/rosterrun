@@ -17,6 +17,7 @@
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
       {% for mr in group.list %}
         <tr>
+          <th>Name</th>
 	      <th>Slotted with</th>
 	      <th>Price</th>
 	      <th>Amount</th>
@@ -24,6 +25,7 @@
 	      <th>Location</th>
 	      <th>Date</th>
         </tr>
+        <td style="width:15%;">{{ mr.name|safe }}</td>
         <td>
 		{% for c in mr.cards %}
 		  <li>{{ c|safe }}
