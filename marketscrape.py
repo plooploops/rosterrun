@@ -4,7 +4,7 @@ from items_map import search_items, test_file, test_items
 from datetime import datetime, timedelta
 
 #container classes    
-class MarketResult:
+class MarketResult(object):
   def __init__(self, itemid = 0, name = None, cards = None, price = None, amount = None, title = None, vendor = None, coords = None, date = datetime.now()):
     self.itemid = itemid
     self.name = name
@@ -100,7 +100,7 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           v = vals[j].getchildren()[0].get('onclick')
-	  coord = v.split('minimap,')[1].split('html')[0].replace('.','')
+	  coord = v.split('minimap,')[1].split('html')[0].replace('.','').replace(',','',1)
           mr.coords = coord
           results.append(mr)
           mr = MarketResult()
@@ -164,7 +164,7 @@ class MarketScraper:
           mr.vendor = val_found
         if(j % 7 == 6):
           v = vals[j].getchildren()[0].get('onclick')
-          coord = v.split('minimap,')[1].split('html')[0].replace('.','')
+          coord = v.split('minimap,')[1].split('html')[0].replace('.','').replace(',','',1)
           mr.coords = coord
           results.append(mr)
           mr = MarketResult()
