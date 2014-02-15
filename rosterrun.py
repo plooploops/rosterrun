@@ -470,7 +470,6 @@ def update_search_list():
   
   search_itemids = request.form.getlist("cbsearch")
   search_itemids = [int(si) for si in search_itemids]
-  print search_itemids
   
   nosearch = MappedMarketSearch.query.filter(~MappedMarketSearch.itemid.in_(search_itemids)).all()
   for ns in nosearch:
@@ -482,7 +481,6 @@ def update_search_list():
         
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
-  print [m.search for m in ms]
     
   return render_template('market_search.html', marketsearchs=ms)
 
