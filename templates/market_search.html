@@ -29,7 +29,7 @@
     {% for ms in marketsearchs %}
       <tr>
       <td>
-        <input checked="{{ ms.search }}" type=checkbox name=cbsearch value="{{ ms.itemid }}">
+        <input type=checkbox name=cbsearch value="{{ ms.itemid }}">
       </td>
       <td>{{ ms.itemid|safe }}</td>
       <td>{{ ms.name|safe }}</td>
