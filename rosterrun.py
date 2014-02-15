@@ -469,6 +469,7 @@ def update_search_list():
     print 'cannot bind action'
   
   search_itemids = request.form.getlist("cbsearch")
+  search_itemids = [int(si) for si in search_itemids]
   print search_itemids
   
   nosearch = MappedMarketSearch.query.filter(~MappedMarketSearch.itemid.in_(search_itemids)).all()
