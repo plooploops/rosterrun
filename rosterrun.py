@@ -482,6 +482,7 @@ def update_search_list():
         
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
+  print [m.search for m in ms]
     
   return render_template('market_search.html', marketsearchs=ms)
 
