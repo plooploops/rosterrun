@@ -465,11 +465,8 @@ def update_search_list():
   search_itemids = request.form.getlist("cbsearch")
   print search_itemids
   exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
-  if len(exists) > 0:
-    for si in search_itemids:
-      f = [e for e in exists if e.itemid == si]
-      if len(f) > 0:
-        f[0].checked = not f[0].checked
+  for e in exists:
+    e.checked = not e.checked
         
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
