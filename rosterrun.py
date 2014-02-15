@@ -10,7 +10,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import distinct, func
+from sqlalchemy import distinct, func, not_
 
 import gdata.gauth
 import gdata.docs.client
@@ -338,8 +338,11 @@ def market_results():
   except:
     print 'cannot bind action'
   
-  latest_items = db.session.query(MappedMarketResult.itemid.label('itemid'), func.max(MappedMarketResult.date).label('latest')).group_by(MappedMarketResult.itemid).subquery()
-  mr = db.session.query(MappedMarketResult).join(latest_items, latest_items.c.latest==MappedMarketResult.date).all()
+  d = datetime.now()
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -361,8 +364,11 @@ def market_current_results():
     print 'cannot bind action'
 
   #how to get latest?
-  latest_items = db.session.query(MappedMarketResult.itemid.label('itemid'), func.max(MappedMarketResult.date).label('latest')).group_by(MappedMarketResult.itemid).subquery()
-  mr = db.session.query(MappedMarketResult).join(latest_items, latest_items.c.latest==MappedMarketResult.date).all()
+  d = datetime.now()
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -464,9 +470,14 @@ def update_search_list():
   
   search_itemids = request.form.getlist("cbsearch")
   print search_itemids
+  
+  nosearch = MappedMarketSearch.query.filter(~MappedMarketSearch.itemid.in_(search_itemids)).all()
+  for ns in nosearch:
+    ns.search = False
+  
   exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
   for e in exists:
-    e.search = not e.search
+    e.search = True
         
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
