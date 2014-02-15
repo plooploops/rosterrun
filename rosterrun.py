@@ -463,9 +463,21 @@ def add_to_search_list():
   except:
     print 'cannot bind action'
   
-  mc = MappedCharacter.query.all()
-  
-  return render_template('show_entries.html')
+  itemid = request.form['nitemid'].strip()
+  itemname = request.form['nname'].strip()
+  exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==itemid).all()
+  if len(exists) == 0:
+    #can add item to search list
+    db.session.add(MappedMarketSearch(True, itemid, itemname))
+  else:
+    for se in exists:
+      se.search = True
+      se.name = itemname
+      
+  db.session.commit()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
+    
+  return render_template('market_search.html', marketsearchs=ms)
 
 @app.route('/update_chars', methods=['GET', 'POST'])
 def update_chars():

@@ -26,6 +26,7 @@
 	  <th>Name</th>
     </tr>
     {% for ms in marketsearchs %}
+      <tr>
       <td>
         <input
       	  {% if ms.search %}
@@ -39,6 +40,7 @@
       </td>
       <td>{{ ms.itemid|safe }}</td>
       <td>{{ ms.name|safe }}</td>
+      </tr>
     {% endfor %}
     </table>
     <form action="{{ url_for('add_to_search_list') }}" method=post>
