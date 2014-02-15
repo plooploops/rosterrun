@@ -466,7 +466,7 @@ def update_search_list():
   print search_itemids
   exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
   for e in exists:
-    e.checked = not e.checked
+    e.search = not e.search
         
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
