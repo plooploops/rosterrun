@@ -19,35 +19,33 @@
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
     <h3>Search List</h3>
-    <table class=marketresult>
-    {% for group in marketresults|groupby('itemid') %}
-      <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
-      {% for mr in group.list %}
-        <tr><td colspan="6"><h2>{{ mr.name|safe }}</h2></td></tr>
-        <tr>
-        <th>Slotted with</th>
-        <th>Price</th>
-        <th>Amount</th>
-        <th>Vendor</th>
-        <th>Location</th>
-        <th>Date</th>
-        </tr>
-        <td>
-        {% for c in mr.cards %}
-	      <li>{{ c|safe }}
-	    {% endfor %}
-	    </td>
-	    <td style="width:7%;">{{ "{:,.2f}".format(mr.price)|safe }}</td>
-	    <td style="width:5%;">{{ mr.amount|safe }}</td>
-     	<td style="width:15%;">{{ mr.vendor|safe }}</td>
-     	<td style="width:8%;">{{ mr.coords|replace(".","")|safe }}</td>
-        <td style="width:10%;">{{ mr.date|safe }}</td>
-      {% endfor %}
+    <table class=marketsearch>
+    <tr>
+	  <th>Search?</th>
+	  <th>Item ID</th>
+	  <th>Name</th>
+    </tr>
+    {% for ms in marketsearchs %}
+      <td>
+        <input
+      	  {% if ms.search %}
+            checked="True"
+          {% else %}
+            checked="False"
+          {% endif %}
+          type=checkbox
+          name=search
+          value="{{ ms.search }}">
+      </td>
+      <td>{{ ms.itemid|safe }}</td>
+      <td>{{ ms.name|safe }}</td>
     {% endfor %}
     </table>
-    <form>
+    <form action="{{ url_for('add_to_search_list') }}" method=post>
       <h2>Search Item</h2>
-      <dd>Item Id:<input type=text name=nitemid placeholder="1234"><input type=submit name=action value=Add></>
+      <dd>Item Id:<input type=text name=nitemid placeholder="578">
+      <dd>Item Name:<input type=text name=nname placeholder="Strawberry">
+      <input type=submit name=action value=Add></>
     </form>
   {% endif %}
 {% endblock %}

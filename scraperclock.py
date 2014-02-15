@@ -6,7 +6,7 @@ from items_map import *
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
-from rosterrun import q, db, MappedMarketResult
+from rosterrun import q, db, MappedMarketResult, MappedMarketSearch
 
 import sys
 
@@ -17,7 +17,8 @@ from datetime import datetime
 
 sched = Scheduler()
 m = MarketScraper()
-  
+updated_search_items = search_items
+
 user = sys.argv[1]
 pw = sys.argv[2]
 
@@ -32,12 +33,25 @@ logging.basicConfig()
 @sched.interval_schedule(hours=12)
 def interval_market_scrape():
   #send this to redis queue
-  
+  updated_search_items = update_search_list()
   sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
   print 'running calc %s ' % sched.scrapejob.id
   print 'This job runs every 12 hours.'
   sched.scrapejobid = sched.scrapejob.id
 
+def populate_search_list():
+  MappedMarketSearch.query.delete()
+  db.session.commit()
+  
+  for k in search_items.keys():
+    db.session.add(MappedMarketSearch(True, str(k), str(search_items[k]))
+       
+  db.session.commit()
+
+def update_search_list():
+  search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
+  return { i.itemid: i.name for i in search_list }
+  
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
   #retrieve results from redis queue
@@ -92,6 +106,7 @@ def retrieve_market_scrape():
 #def scheduled_job():
 #    print 'This job is run every weekday at 5pm.'
 
+populate_search_list()
 interval_market_scrape()
 
 sched.start()

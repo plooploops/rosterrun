@@ -32,7 +32,7 @@
     </tr>
     {% for char in characters %}
       <tr>
-      <td><input type=submit action value=Drop><input type=submit action value=Edit>
+      <td><input type=submit name=action value=Drop><input type=submit name=action value=Edit>
       <td><h2>{{ char.Class|safe }}</h2></td>
       <td>{{ char.Name|safe }}</td>
       <td>{{ char.Role|safe}}</td>

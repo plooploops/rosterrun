@@ -52,6 +52,16 @@ mob_drop_rate = {
 }
 
 search_items = { 
+  607  : "Yggdrasil Berry",
+  7321 : "Crystal Fragment",
+  604  : "Dead Branch",
+  578  : "Strawberry",
+  582  : "Orange",
+  12010 : "Wind Arrow Quiver",
+  12012 : "Crystal Arrow Quiver",
+  12013 : "Shadow Arrow Quiver",
+  12014 : "Immaterial Arrow Quiver",
+  2537 : "Diablos Manteau [1]",
   8900 : "Talon Coin", 
   6091 : "Red Scale", 
   7444 : "Treasure Box", 

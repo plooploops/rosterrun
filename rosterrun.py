@@ -224,6 +224,20 @@ class MappedMarketResult(db.Model):
     def __repr__(self):
         return '<MappedMarketResult %r>' % self.name
 
+class MappedMarketSearch(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    search = db.Column(db.Boolean)
+    itemid = db.Column(db.Integer)
+    name = db.Column(db.String(80))
+        
+    def __init__(self, search, itemid, name):
+        self.search = search
+        self.itemid = itemid
+        self.name = name
+	
+    def __repr__(self):
+        return '<MappedMarketSearch %r>' % self.name
+
 sched = scheduler()
 
 def resetParameters():
@@ -391,11 +405,9 @@ def market_search_list():
     print 'cannot bind action'
 
   #way to manage item search list  
-  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
   
-  #format data
-  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  return render_template('market_search.html', marketresults=mrs)
+  return render_template('market_search.html', marketsearchs=ms)
   
 @app.route('/treasury', methods=['GET', 'POST'])
 def treasury():
@@ -434,7 +446,27 @@ def points():
   p = MappedGuildPoint.query.all()
   
   return render_template('points.html', points=p)
+
+
+@app.route('/add_to_search_list', methods=['GET', 'POST'])
+def add_to_search_list():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
   
+  action = None
+  p = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  mc = MappedCharacter.query.all()
+  
+  return render_template('show_entries.html')
+
 @app.route('/update_chars', methods=['GET', 'POST'])
 def update_chars():
   if not session.get('logged_in'):
