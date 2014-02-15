@@ -18,6 +18,7 @@
       <td><a href="{{ url_for('market_history') }}">History</a></td>
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
+    <form action="{{ url_for('update_search_list') }}" method=post>
     <h3>Search List</h3>
     <table class=marketsearch>
     <tr>
@@ -35,14 +36,16 @@
             checked="False"
           {% endif %}
           type=checkbox
-          name=search
-          value="{{ ms.search }}">
+          name=cbsearch
+          value="{{ ms.itemid }}">
       </td>
       <td>{{ ms.itemid|safe }}</td>
       <td>{{ ms.name|safe }}</td>
       </tr>
     {% endfor %}
     </table>
+    <input type=submit value=Save>
+    </form>
     <form action="{{ url_for('add_to_search_list') }}" method=post>
       <h2>Search Item</h2>
       <dd>Item Id:<input type=text name=nitemid placeholder="578">

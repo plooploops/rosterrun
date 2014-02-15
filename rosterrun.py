@@ -447,6 +447,33 @@ def points():
   
   return render_template('points.html', points=p)
 
+@app.route('/update_search_list', methods=['GET', 'POST'])
+def update_search_list():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  action = None
+  p = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  search_itemids = request.form['cbsearch'].getlist()
+  exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
+  if len(exists) > 0:
+    for si in search_itemids:
+      f = [e for e in exists if e.itemsid == si.value.strip()]
+      if len(f) > 0:
+        f[0].checked = bool(si.value.strip())
+        
+  db.session.commit()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
+    
+  return render_template('market_search.html', marketsearchs=ms)
 
 @app.route('/add_to_search_list', methods=['GET', 'POST'])
 def add_to_search_list():
