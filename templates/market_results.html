@@ -30,12 +30,12 @@
 		  <li>{{ c|safe }}
 		{% endfor %}
 		</td>
-		<td style="width:7%;">{{ "${:,.2f}".format(mr.price)|safe }}</td>
+		<td style="width:7%;">{{ "{:..2f}".format(mr.price)|safe }}</td>
 		<td style="width:5%;">{{ mr.amount|safe }}</td>
 		<td style="width:15%;">>{{ mr.vendor|safe }}</td>
 		<td style="width:8%;">{{ mr.coords|replace(".","")|safe }}</td>
         <td style="width:10%;">{{ mr.date|safe }}</td>
-      {% endfor %}</ul></li>
+      {% endfor %}
     {% endfor %}
     </table>
     <form>
