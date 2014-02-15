@@ -10,6 +10,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import distinct, func
 
 import gdata.gauth
 import gdata.docs.client
@@ -323,11 +324,78 @@ def market_results():
   except:
     print 'cannot bind action'
   
-  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  latest_items = db.session.query(MappedMarketResult.itemid.label('itemid'), func.max(MappedMarketResult.date).label('latest')).group_by(MappedMarketResult.itemid).subquery()
+  mr = db.session.query(MappedMarketResult).join(latest_items, latest_items.c.latest==MappedMarketResult.date).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   return render_template('market_results.html', marketresults=mrs)
+
+@app.route('/market_current_results', methods=['GET', 'POST'])
+def market_current_results():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  action = None
+  mr = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+
+  #how to get latest?
+  latest_items = db.session.query(MappedMarketResult.itemid.label('itemid'), func.max(MappedMarketResult.date).label('latest')).group_by(MappedMarketResult.itemid).subquery()
+  mr = db.session.query(MappedMarketResult).join(latest_items, latest_items.c.latest==MappedMarketResult.date).all()
+  
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  return render_template('market_results.html', marketresults=mrs)
+
+@app.route('/market_history', methods=['GET', 'POST'])
+def market_history():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  action = None
+  mr = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  return render_template('market_history.html', marketresults=mrs)
+
+@app.route('/market_search_list', methods=['GET', 'POST'])
+def market_search_list():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  action = None
+  mr = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+
+  #way to manage item search list  
+  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  return render_template('market_search.html', marketresults=mrs)
   
 @app.route('/treasury', methods=['GET', 'POST'])
 def treasury():
