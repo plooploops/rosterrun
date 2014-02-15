@@ -16,7 +16,7 @@
     {% for group in marketresults|groupby('itemid') %}
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
       {% for mr in group.list %}
-        <td><td colspan="6"><h2>{{ mr.name|safe }}</h2></td></tr>
+        <tr><td colspan="6"><h2>{{ mr.name|safe }}</h2></td></tr>
         <tr>
 	      <th>Slotted with</th>
 	      <th>Price</th>
@@ -30,7 +30,7 @@
 		  <li>{{ c|safe }}
 		{% endfor %}
 		</td>
-		<td style="width:7%;">{{ mr.price|safe }}</td>
+		<td style="width:7%;">{{ "${:,.2f}".format(mr.price)|safe }}</td>
 		<td style="width:5%;">{{ mr.amount|safe }}</td>
 		<td style="width:15%;">>{{ mr.vendor|safe }}</td>
 		<td style="width:8%;">{{ mr.coords|replace(".","")|safe }}</td>
