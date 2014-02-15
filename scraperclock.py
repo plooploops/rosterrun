@@ -75,8 +75,9 @@ def retrieve_market_scrape():
       print 'adding to db'
       vals = marketresults.values()
       #flattenedvals = [item for sublist in vals for item in sublist]
+      daterun = datetime.now()
       for k in marketresults.keys():
-        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(datetime.now()))) for mr in marketresults[k]]
+        [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
      
       db.session.commit()
       print 'added to db'
