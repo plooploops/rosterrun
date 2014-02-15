@@ -44,7 +44,7 @@ def populate_search_list():
   db.session.commit()
   
   for k in search_items.keys():
-    db.session.add(MappedMarketSearch(True, str(k), str(search_items[k]))
+    db.session.add(MappedMarketSearch(True, str(k), str(search_items[k])))
        
   db.session.commit()
 
