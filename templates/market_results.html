@@ -13,7 +13,7 @@
     </form>
     <h2>Market Results</h2>
     <table class=marketresult>
-    {% for group in marketresults|groupby('MarketResult.itemid') %}
+    {% for group in marketresults|groupby('itemid') %}
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
       {% for mr in group.list %}
         <tr>
