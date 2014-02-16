@@ -483,10 +483,10 @@ def update_search_list():
     print 'cannot bind action'
   print action
   
-  if action == "Use Default":
+  if action == u"Use Default":
     use_default_search_list()
     print 'used default search list'
-  elif action == "Save":
+  elif action == u"Save":
     search_itemids = request.form.getlist("cbsearch")
     search_itemids = [int(si) for si in search_itemids]
   
