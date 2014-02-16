@@ -453,7 +453,6 @@ def points():
   
   return render_template('points.html', points=p)
 
-@app.route('/use_default_search_list', methods=['GET', 'POST'])
 def use_default_search_list():
   if not session.get('logged_in'):
     #abort(401)
@@ -478,24 +477,31 @@ def update_search_list():
     return redirect(url_for('login'))
   
   action = None
-  p = []
   try:
     sesson = request.form['action']
   except:
     print 'cannot bind action'
+  print action
   
-  search_itemids = request.form.getlist("cbsearch")
-  search_itemids = [int(si) for si in search_itemids]
+  if action == "Use Default":
+    use_default_search_list()
+    print 'used default search list'
+  elif action == "Save":
+    search_itemids = request.form.getlist("cbsearch")
+    search_itemids = [int(si) for si in search_itemids]
   
-  nosearch = MappedMarketSearch.query.filter(~MappedMarketSearch.itemid.in_(search_itemids)).all()
-  for ns in nosearch:
-    ns.search = False
+    nosearch = MappedMarketSearch.query.filter(~MappedMarketSearch.itemid.in_(search_itemids)).all()
+    for ns in nosearch:
+      ns.search = False
   
-  exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
-  for e in exists:
-    e.search = True
+    exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid.in_(search_itemids)).all()
+    for e in exists:
+      e.search = True
         
-  db.session.commit()
+    db.session.commit()
+    
+    print 'saved search list'
+  
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
     
   return render_template('market_search.html', marketsearchs=ms)
@@ -507,13 +513,6 @@ def add_to_search_list():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
-  action = None
-  p = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
   
   itemid = request.form['nitemid'].strip()
   itemname = request.form['nname'].strip()

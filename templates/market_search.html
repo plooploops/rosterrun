@@ -26,7 +26,7 @@
     </form>
     <form>
     <h3>Search List</h3>
-    <table class=marketsearch>
+    <table action="{{ url_for('update_search_list') }}" method=post class=marketsearch>
     <tr>
 	  <th>Search?</th>
 	  <th>Item ID</th>
@@ -48,8 +48,8 @@
       </tr>
     {% endfor %}
     </table>
-    <input action="{{ url_for('update_search_list') }}" method=post type=submit value=Save>
-    <input action="{{ url_for('use_default_search_list') }}" method=post type=submit value=Default>
+    <input type=submit name=action value="Save">
+    <input type=submit name=action value="Use Default">
     </form>
   {% endif %}
 {% endblock %}
