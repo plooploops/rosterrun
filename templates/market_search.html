@@ -24,9 +24,9 @@
 	  <dd>Item Name:<input type=text name=nname placeholder="Strawberry">
 	  <input type=submit name=action value=Add></>
     </form>
-    <form>
+    <form action="{{ url_for('update_search_list') }}" method=post>
     <h3>Search List</h3>
-    <table action="{{ url_for('update_search_list') }}" method=post class=marketsearch>
+    <table class=marketsearch>
     <tr>
 	  <th>Search?</th>
 	  <th>Item ID</th>
