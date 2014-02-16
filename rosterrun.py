@@ -478,7 +478,7 @@ def update_search_list():
   
   action = None
   try:
-    sesson = request.form['action']
+    action = request.form['action']
   except:
     print 'cannot bind action'
   print action
