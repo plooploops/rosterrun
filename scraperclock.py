@@ -40,6 +40,10 @@ def interval_market_scrape():
   sched.scrapejobid = sched.scrapejob.id
 
 def populate_search_list():
+  ms = MappedMarketSearch.query.count()
+  if ms > 0:
+    return
+
   MappedMarketSearch.query.delete()
   db.session.commit()
   

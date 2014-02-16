@@ -453,6 +453,22 @@ def points():
   
   return render_template('points.html', points=p)
 
+@app.route('/use_default_search_list', methods=['GET', 'POST'])
+def use_default_search_list():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  MappedMarketSearch.query.delete()
+  db.session.commit()
+  
+  for k in search_items.keys():
+    db.session.add(MappedMarketSearch(True, str(k), str(search_items[k])))
+       
+  db.session.commit()
+
 @app.route('/update_search_list', methods=['GET', 'POST'])
 def update_search_list():
   if not session.get('logged_in'):

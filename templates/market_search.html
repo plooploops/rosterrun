@@ -18,7 +18,13 @@
       <td><a href="{{ url_for('market_history') }}">History</a></td>
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
-    <form action="{{ url_for('update_search_list') }}" method=post>
+	<form action="{{ url_for('add_to_search_list') }}" method=post>
+	  <h2>Search Item</h2>
+	  <dd>Item Id:<input type=text name=nitemid placeholder="578">
+	  <dd>Item Name:<input type=text name=nname placeholder="Strawberry">
+	  <input type=submit name=action value=Add></>
+    </form>
+    <form>
     <h3>Search List</h3>
     <table class=marketsearch>
     <tr>
@@ -42,13 +48,8 @@
       </tr>
     {% endfor %}
     </table>
-    <input type=submit value=Save>
-    </form>
-    <form action="{{ url_for('add_to_search_list') }}" method=post>
-      <h2>Search Item</h2>
-      <dd>Item Id:<input type=text name=nitemid placeholder="578">
-      <dd>Item Name:<input type=text name=nname placeholder="Strawberry">
-      <input type=submit name=action value=Add></>
+    <input action="{{ url_for('update_search_list') }}" method=post type=submit value=Save>
+    <input action="{{ url_for('use_default_search_list') }}" method=post type=submit value=Default>
     </form>
   {% endif %}
 {% endblock %}
