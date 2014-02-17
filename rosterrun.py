@@ -405,7 +405,7 @@ def item_history():
   
   histchart = datey.render()
   
-  return render_template('market_history.html', marketsearchs = ms, marketresults=mrs, histchart=histchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart)
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -438,7 +438,7 @@ def market_history():
   
   histchart = datey.render()
   
-  return render_template('market_history.html', marketsearch=ms, marketresults=mrs, histchart=histchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
