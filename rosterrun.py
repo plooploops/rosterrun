@@ -376,17 +376,20 @@ def market_history():
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  projected_results = [str(m.itemid) + "_" + str(m.name) + "_" + str(m.cards), (m.date, int(m.price))]
+  
+  projected_results = [str(m.itemid) + "_" + str(m.name) + "_" + str(m.cards), (m.date, int(m.price))]  
+  print projected_results
+
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
-    for projected_result in group:
+    for pr in group:
       if key in res_dict.keys():
-        res_dict[key].append(projected_result[1])
+        res_dict[key].append(pr[1])
       else:
-        res_dict[key] = [projected_result[1]]
-  
+        res_dict[key] = [pr[1]]
+
   print res_dict
-  
+    
   datey = pygal.DateY(x_label_rotation=20, stroke=False, style=LightStyle)
   datey.title = "Market History Overview"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
