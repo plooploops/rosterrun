@@ -371,7 +371,7 @@ def convert_to_key(itemid = None, name = None, cards = []):
     return res
   
   res = res + "_" + "".join(cards)
-  return res.encode('ascii', 'ignore')
+  return res
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
