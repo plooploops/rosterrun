@@ -373,7 +373,7 @@ def convert_to_key(itemid = None, name = None, cards = []):
   res = res + "_" + "".join(cards)
   return res
 
-@app.route('/market_history', methods=['GET', 'POST'])
+@app.route('/item_history', methods=['GET', 'POST'])
 def item_history():
   if not session.get('logged_in'):
     #abort(401)
@@ -382,7 +382,8 @@ def item_history():
     return redirect(url_for('login'))
     
   val = request.form['itemslist']
-  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  ms = MappedMarketSearch.query.all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -398,13 +399,13 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, disable_xml_declaration=True, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_font_size=12, tooltip_font_size=16, legend_at_bottom=True, y_title='Price', x_title='Date')
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_font_size=12, tooltip_font_size=16, legend_at_bottom=True, y_title='Price', x_title='Date')
   datey.title = "Market History Overview"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
   histchart = datey.render()
   
-  return render_template('market_history.html', marketresults=mrs, histchart=histchart)
+  return render_template('market_history.html', marketsearchs = ms, marketresults=mrs, histchart=histchart)
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -413,12 +414,14 @@ def market_history():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-    
+  
+  ms = MappedMarketSearch.query.all()
   mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
+  #think about restricting the number of dates here
   projected_results = [(convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
   #print projected_results
 
@@ -430,13 +433,12 @@ def market_history():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, disable_xml_declaration=True, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_font_size=12, tooltip_font_size=16, legend_at_bottom=True, y_title='Price', x_title='Date')
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_font_size=12, tooltip_font_size=16, legend_at_bottom=True, y_title='Price', x_title='Date')
   datey.title = "Market History Overview"
-  [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
   histchart = datey.render()
   
-  return render_template('market_history.html', marketresults=mrs, histchart=datey)
+  return render_template('market_history.html', marketsearch=ms, marketresults=mrs, histchart=histchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
