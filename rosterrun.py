@@ -386,7 +386,7 @@ def market_history():
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  projected_results = [convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price)) for m in mrs]  
+  projected_results = [(convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
   print projected_results
 
   res_dict = {}
