@@ -366,11 +366,11 @@ def market_current_results():
 
 def convert_to_key(itemid = None, name = None, cards = []):
   res = ""
-  res = str(itemid) + "_" + str(name)
+  res = str(itemid) + " " + str(name)
   if len(cards) == 0:
     return res
   
-  res = res + "_" + "".join(cards)
+  res = res + " " + "".join(cards)
   return res
 
 @app.route('/item_history', methods=['GET', 'POST'])
@@ -409,7 +409,7 @@ def item_history():
   datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date')
   datey.title = "Market History Overview"
   datey.x_label_format = "%Y-%m-%d"
-  [datey.add(k.replace('_',' ').strip(), res_dict[k]) for k in res_dict.keys()]
+  [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
   histchart = datey.render()
   
