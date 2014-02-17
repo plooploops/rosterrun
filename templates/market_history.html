@@ -20,7 +20,7 @@
     </table>
     <h3>History</h3>
     <figure>
-      {{ histchart.render() }}
+      {{ histchart|safe }}
     </figure>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}
