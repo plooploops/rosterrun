@@ -378,7 +378,7 @@ def market_history():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   projected_results = [str(m.itemid) + "_" + str(m.name) + "_" + str(m.cards), (m.date, m.price)]
   res_dict = {}
-  for key, group in groupby(projected_result, projected_results x: x[0]):
+  for key, group in groupby(projected_results, lambda x: x[0]):
     for projected_result in group:
       if key in res_dict.keys():
         res_dict[key].append(projected_result[1])
