@@ -19,7 +19,7 @@
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
     <h3>History</h3>
-    <form method="post" action="{{ url_for('item_history') }}" class=item-history>
+    <form method=post action="{{ url_for('item_history') }}" class=item-history>
 	<select name="itemslist">
 	{% for ms in marketsearchs %}
 	    <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
