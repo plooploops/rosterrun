@@ -22,7 +22,7 @@
     <form method="post" action="{{ url_for('item_history') }}">
 	<select name="itemslist">
 	{% for ms in marketsearchs %}
-	    <option value={{ ms.itemid|safe }}>{{ ms.itemid|safe }} {{ ms.name|safe }}</option>
+	    <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
 	{% endfor %}
 	</select>
 	</form>

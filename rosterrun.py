@@ -380,7 +380,8 @@ def item_history():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-    
+  
+  print 'in item history'
   val = request.form['itemslist']
   print val
   if len(val) > 0:
