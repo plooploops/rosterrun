@@ -401,7 +401,6 @@ def market_history():
   datey.title = "Market History Overview"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   hist = datey.render()
-  print hist
   histchart = unicode(hist)
   
   return render_template('market_history.html', marketresults=mrs, histchart=histchart)
