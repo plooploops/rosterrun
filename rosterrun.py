@@ -364,6 +364,15 @@ def market_current_results():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   return render_template('market_results.html', marketresults=mrs)
 
+def convert_to_key(itemid = None, name = None, cards = []):
+  res = ""
+  res = str(itemid) + "_" + str(name)
+  if len(cards) == 0:
+    return res
+  
+  res = res + "_" + "".join(cards)[:-1]
+  return res
+
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
   if not session.get('logged_in'):
@@ -377,7 +386,7 @@ def market_history():
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  projected_results = [(str(m.itemid) + "_" + str(m.name) + "_" + str(m.cards), (m.date, int(m.price))) for m in mrs]  
+  projected_results = [convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
   print projected_results
 
   res_dict = {}
