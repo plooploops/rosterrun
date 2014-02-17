@@ -36,6 +36,10 @@ from marketvalue import *
 from mathutility import *
 from items_map import *
 
+import pygal
+from pygal.style import LightStyle
+from itertools import groupby
+
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
 
@@ -331,13 +335,6 @@ def market_results():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  action = None
-  mr = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
-  
   d = datetime.now()
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
@@ -356,13 +353,6 @@ def market_current_results():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  action = None
-  mr = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
-
   #how to get latest?
   d = datetime.now()
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
@@ -382,18 +372,25 @@ def market_history():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  action = None
-  mr = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
-  
   mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  return render_template('market_history.html', marketresults=mrs)
+  projected_results = [str(m.itemid) + "_" + str(m.name) + "_" + str(m.cards), (m.date, m.price)]
+  res_dict = {}
+  for key, group in groupby(things, projected_results x: x[0]):
+    for projected_result in group:
+      if key in res_dict.keys():
+        res_dict[key].append(projected_result[1])
+      else:
+        res_dict[key] = [projected_result[1]]
+  
+  datey = pygal.DateY(x_label_rotation=20, stroke=False, style=LightStyle)
+  datey.title = "Market History Overview"
+  [datey.add(k, res_dict[k]) for k in res_dict.keys()]
+  histchart = datey.render()
+  
+  return render_template('market_history.html', marketresults=mrs, histchart=histchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
@@ -402,14 +399,7 @@ def market_search_list():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-    
-  action = None
-  mr = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
-
+  
   #way to manage item search list  
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
   
@@ -423,13 +413,6 @@ def treasury():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  action = None
-  t = []
-  try:
-    sesson = request.form['action']
-  except:
-    print 'cannot bind action'
-  
   t = MappedGuildTreasure.query.all()
   
   return render_template('treasury.html', treasures=t)
@@ -558,7 +541,6 @@ def add_character():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
   
   #do something to save / edit current character
   action = None
