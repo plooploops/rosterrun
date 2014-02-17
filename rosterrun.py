@@ -382,6 +382,7 @@ def item_history():
     return redirect(url_for('login'))
     
   val = request.form.getlist('itemslist')
+  print val
   if len(val) > 0:
     val = val[0]
   else:
