@@ -384,10 +384,6 @@ def item_history():
   print 'in item history'
   val = request.form['itemslist']
   print val
-  if len(val) > 0:
-    val = val[0]
-  else:
-    val = -1
   
   ms = MappedMarketSearch.query.all()
   mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
