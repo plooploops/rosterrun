@@ -370,8 +370,8 @@ def convert_to_key(itemid = None, name = None, cards = []):
   if len(cards) == 0:
     return res
   
-  res = res + "_" + "".join(cards)[:-1]
-  return res
+  res = res + "_" + "".join(cards)
+  return res.encode('ascii', 'ignore')
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -387,7 +387,7 @@ def market_history():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   projected_results = [(convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
-  print projected_results
+  #print projected_results
 
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -397,7 +397,7 @@ def market_history():
       else:
         res_dict[key] = [pr[1]]
 
-  print res_dict
+  #print res_dict
     
   datey = pygal.DateY(x_label_rotation=20, stroke=False, style=LightStyle)
   datey.title = "Market History Overview"
