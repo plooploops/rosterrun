@@ -381,7 +381,12 @@ def item_history():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  val = request.form['itemslist']
+  val = request.form.getlist('itemslist')
+  if len(val) > 0:
+    val = val[0]
+  else:
+    val = -1
+  
   ms = MappedMarketSearch.query.all()
   mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
