@@ -403,7 +403,7 @@ def market_history():
   datey.render_in_browser()
   #histchart = unicode(hist)
   
-  
+  return datey.render_response()
   #return render_template('market_history.html', marketresults=mrs, histchart=histchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
