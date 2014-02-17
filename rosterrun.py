@@ -395,7 +395,7 @@ def item_history():
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  projected_results = [(convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
+  projected_results = [(convert_to_key(m.itemid, m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(m.itemid, m.name, m.cards)}) for m in mrs]  
   #print projected_results
 
   res_dict = {}
@@ -430,7 +430,7 @@ def market_history():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #think about restricting the number of dates here
-  projected_results = [(convert_to_key(m.itemid, m.name, m.cards), (m.date, int(m.price))) for m in mrs]  
+  projected_results = [(convert_to_key(m.itemid, m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(m.itemid, m.name, m.cards)}) for m in mrs]  
   #print projected_results
 
   res_dict = {}
