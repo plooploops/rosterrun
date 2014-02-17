@@ -400,8 +400,8 @@ def market_history():
   datey = pygal.DateY(x_label_rotation=20, disable_xml_declaration=True, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_font_size=12, tooltip_font_size=16, legend_at_bottom=True, y_title='Price', x_title='Date')
   datey.title = "Market History Overview"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
-  hist = datey.render()
-  histchart = unicode(hist)
+  
+  histchart = datey.render()
   
   return render_template('market_history.html', marketresults=mrs, histchart=histchart)
 
