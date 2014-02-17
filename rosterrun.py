@@ -389,7 +389,7 @@ def item_history():
   except:
     print 'value not found'
   
-  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.desc()).all()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
   mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
@@ -422,7 +422,7 @@ def market_history():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.desc()).all()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
   #mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   mr = []
   #format data
