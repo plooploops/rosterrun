@@ -381,7 +381,7 @@ def item_history():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
-  val = request.form.getlist('itemslist')
+  val = request.form['itemslist']
   print val
   if len(val) > 0:
     val = val[0]
