@@ -19,8 +19,15 @@
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
     <h3>History</h3>
+    <form method="post" action="/item_history">
+	<select name="itemslist">
+	{% for calendar_list_entry in calendar_list['items'] %}
+	    <option value={{ calendar_list_entry['id'] }}>{{ calendar_list_entry['summary'] }
+	</option>
+	{% endfor %}
+	</select>
     <figure>
-      {{ histchart|safe }}
+      {{ histchart.render()|safe }}
     </figure>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}
