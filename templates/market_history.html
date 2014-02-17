@@ -19,9 +19,9 @@
       <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
     </table>
     <h3>History</h3>
-    <embed type="image/svg+xml">
+    <figure>
       {{ histchart }}
-    </embed>
+    </figure>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
