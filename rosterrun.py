@@ -397,12 +397,16 @@ def market_history():
       else:
         res_dict[key] = [pr[1]]
 
-  #print res_dict
+  print 'finished results'
+  print res_dict
     
   datey = pygal.DateY(x_label_rotation=20, stroke=False, style=LightStyle)
   datey.title = "Market History Overview"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   histchart = datey.render()
+  
+  print 'version of chart'
+  print histchart
   
   return render_template('market_history.html', marketresults=mrs, histchart=histchart)
 
