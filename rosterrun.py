@@ -374,7 +374,7 @@ def convert_to_key(itemid = None, name = None, cards = [], date = None):
   if date is None:
     return res
     
-  res = res + " " + date.strftime'(%d, %b %Y')
+  res = res + " " + date.strftime('%d, %b %Y')
   return res
 
 @app.route('/item_history', methods=['GET', 'POST'])
