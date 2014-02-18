@@ -417,11 +417,11 @@ def item_history():
   
   projected_results = [(convert_to_key(m.itemid, m.name), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date)}) for m in mrs]
   res_dict = {}
-    for key, group in groupby(projected_results, lambda x: x[0]):
-      for pr in group:
-        if key in res_dict.keys():
-          res_dict[key].append(pr[1])
-        else:
+  for key, group in groupby(projected_results, lambda x: x[0]):
+    for pr in group:
+      if key in res_dict.keys():
+        res_dict[key].append(pr[1])
+      else:
         res_dict[key] = [pr[1]]
   
   histchart = datey.render()
