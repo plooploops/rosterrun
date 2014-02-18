@@ -428,12 +428,12 @@ def item_history():
   print res_dict
   histchart = datey.render()
   
-  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
   bar_chart.title = "Market History Overview"
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
-  stackedbarhistchart = bar_chart.render()
+  barhistchart = bar_chart.render()
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, stackedbarhistchart=stackedbarhistchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -455,11 +455,11 @@ def market_history():
   
   histchart = datey.render()
   
-  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
   bar_chart.title = "Market History Overview"
-  stackedbarhistchart = bar_chart.render()
+  barhistchart = bar_chart.render()
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, stackedbarhistchart=stackedbarhistchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
