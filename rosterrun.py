@@ -426,9 +426,7 @@ def item_history():
   
   bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Item', x_labels_major_every=2)
   bar_chart.title = "Market History Overview"
-  [bar_chart.add('MIN ' + k, {'value' : min(res_dict[k]['value']), 'label': res_dict[k]['label']}) for k in res_dict.keys()]
-  [bar_chart.add('MAX ' + k, {'value' : max(res_dict[k]['value']), 'label': res_dict[k]['label']}) for k in res_dict.keys()]
-  [bar_chart.add('MEDIAN ' + k, {'value' : median(res_dict[k]['value']), 'label': res_dict[k]['label']}) for k in res_dict.keys()]
+  [bar_chart.add('by week ' + k, res_dict[k]) for k in res_dict.keys()]
   barhistchart = bar_chart.render()
   
   return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
