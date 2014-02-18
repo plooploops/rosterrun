@@ -88,7 +88,7 @@ class MarketScraper:
         if(j % 7 == 1):
           mr.cards = val_found
           if len(test_val) > 0:
-	    val_found = val_found.lstrip().replace('Card', 'Card,')
+	    val_found = val_found.lstrip().replace('Card', 'Card,').replace('+',',+')
             mr.cards = val_found
         if(j % 7 == 2):
           mr.price = float(val_found.replace('.',''))
@@ -151,7 +151,7 @@ class MarketScraper:
         if(j % 7 == 1):
           mr.cards = val_found
           if len(test_val) > 0:
-            val_found = val_found.lstrip().replace('Card', 'Card,')
+            val_found = val_found.lstrip().replace('Card', 'Card,').replace('+',',+')
             mr.cards = val_found
             
         if(j % 7 == 2):

@@ -29,6 +29,7 @@
 	</form>
     <figure>
       {{ histchart|safe }}
+      {{ stackedbarhistchart|safe }}
     </figure>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}

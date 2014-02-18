@@ -364,13 +364,17 @@ def market_current_results():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   return render_template('market_results.html', marketresults=mrs)
 
-def convert_to_key(itemid = None, name = None, cards = []):
+def convert_to_key(itemid = None, name = None, cards = [], date = None):
   res = ""
   res = str(itemid) + " " + str(name)
   if len(cards) == 0:
     return res
   
   res = res + " " + "".join(cards)
+  if date is None:
+    return res
+    
+  res = res + " " + date.strftime'(%d, %b %Y')
   return res
 
 @app.route('/item_history', methods=['GET', 'POST'])
@@ -406,14 +410,27 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  stackedbar = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  stackedbar.title = "Market History Overview"
-  stackedbar.x_label_format = "%Y-%m-%d"
-  [stackedbar.add(k, res_dict[k]) for k in res_dict.keys()]
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Market History Overview"
+  datey.x_label_format = "%Y-%m-%d"
+  [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
-  histchart = stackedbar.render()
+  projected_results = [(convert_to_key(m.itemid, m.name), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date)}) for m in mrs]
+  res_dict = {}
+    for key, group in groupby(projected_results, lambda x: x[0]):
+      for pr in group:
+        if key in res_dict.keys():
+          res_dict[key].append(pr[1])
+        else:
+        res_dict[key] = [pr[1]]
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart)
+  histchart = datey.render()
+  
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  bar_chart.title = "Market History Overview"
+  stackedbarhistchart = bar_chart.render()
+  
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, stackedbarhistchart=stackedbarhistchart)
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -424,30 +441,21 @@ def market_history():
     return redirect(url_for('login'))
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  #mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
-  mr = []
+  
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  #think about restricting the number of dates here
-  projected_results = [(convert_to_key(m.itemid, m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(m.itemid, m.name, m.cards)}) for m in mrs]  
-  #print projected_results
-
-  res_dict = {}
-  for key, group in groupby(projected_results, lambda x: x[0]):
-    for pr in group:
-      if key in res_dict.keys():
-        res_dict[key].append(pr[1])
-      else:
-        res_dict[key] = [pr[1]]
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Market History Overview"
+  datey.x_label_format = "%Y-%m-%d"
   
-  stackedbar = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  stackedbar.title = "Market History Overview"
-  stackedbar.x_label_format = "%Y-%m-%d"
+  histchart = datey.render()
   
-  histchart = stackedbar.render()
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  bar_chart.title = "Market History Overview"
+  stackedbarhistchart = bar_chart.render()
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, stackedbarhistchart=stackedbarhistchart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
