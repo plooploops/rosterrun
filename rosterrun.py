@@ -411,7 +411,7 @@ def item_history():
   datey.x_label_format = "%Y-%m-%d"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
-  projected_results = [(convert_to_key(m.itemid, m.name, None, m.date.strftime('%w, %b %Y')), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(m.itemid, m.name, [], m.date.strftime('%w, %b %Y')), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   print projected_results
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -442,7 +442,7 @@ def market_history():
     return redirect(url_for('login'))
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = []
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
