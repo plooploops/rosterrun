@@ -366,7 +366,10 @@ def market_current_results():
 
 def convert_to_key(itemid = None, name = None, cards = None, date = None):
   res = ""
-  res = str(itemid) + " " + str(name)
+  if itemid is not None:
+    res = str(itemid)
+  if name is not None:
+    res = res + " " + str(name)
   if cards is not None:
     res = res + " " + "".join(cards)
   if date is not None:
@@ -395,7 +398,7 @@ def item_history():
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  projected_results = [(convert_to_key(m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(m.name, m.cards)}) for m in mrs]  
+  projected_results = [(convert_to_key(None, m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   #print projected_results
 
   res_dict = {}
@@ -412,7 +415,7 @@ def item_history():
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  projected_results = [(convert_to_key(m.name, m.cards), {'value': int(m.price), 'label':convert_to_key(m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value': int(m.price), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   print projected_results
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
