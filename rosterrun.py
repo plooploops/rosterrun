@@ -367,14 +367,10 @@ def market_current_results():
 def convert_to_key(itemid = None, name = None, cards = [], date = None):
   res = ""
   res = str(itemid) + " " + str(name)
-  if len(cards) == 0:
-    return res
-  
-  res = res + " " + "".join(cards)
-  if date is None:
-    return res
-    
-  res = res + " " + date.strftime('%d, %b %Y')
+  if len(cards) > 0:
+    res = res + " " + "".join(cards)
+  if date is not None:
+    res = res + " " + date.strftime('%d, %b %Y')
   return res
 
 @app.route('/item_history', methods=['GET', 'POST'])
@@ -415,7 +411,7 @@ def item_history():
   datey.x_label_format = "%Y-%m-%d"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
-  projected_results = [(convert_to_key(m.itemid, m.name), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date)}) for m in mrs]
+  projected_results = [(convert_to_key(m.itemid, m.name, None, m.date.strftime('%w, %b %Y')), {'value': int(m.price), 'label':convert_to_key(m.itemid, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   print projected_results
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -430,7 +426,9 @@ def item_history():
   
   bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Item', x_labels_major_every=2)
   bar_chart.title = "Market History Overview"
-  [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
+  [bar_chart.add('MIN ' + k, min(res_dict[k])) for k in res_dict.keys()]
+  [bar_chart.add('MAX ' + k, max(res_dict[k])) for k in res_dict.keys()]
+  [bar_chart.add('MEDIAN ' + k, median(res_dict[k])) for k in res_dict.keys()]
   barhistchart = bar_chart.render()
   
   return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
