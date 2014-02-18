@@ -444,6 +444,7 @@ def market_history():
     return redirect(url_for('login'))
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
