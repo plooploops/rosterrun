@@ -439,7 +439,7 @@ def item_current_results():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date.strftime('%d, %b %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -454,10 +454,9 @@ def item_current_results():
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
   
   pricechart = datey.render()
-
   
   #volumes
-  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': (m.date, int(m.amount)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -496,13 +495,13 @@ def item_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date > time_delta).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date.strftime('%d, %b %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -550,7 +549,7 @@ def market_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date > time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
