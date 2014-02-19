@@ -468,9 +468,10 @@ def item_current_results():
     for pr in group:
       val = None
       
-      test_date = "".join(key.split(' ')[1:]).strip()
+      test_date = " ".join(key.split(' ')[1:]).strip()
       print test_date
-      if test_date == dates[date_index]:
+      date_index = dates.index(test_date)
+      if test_date > -1:
         val = pr[1]  
       if key in res_dict.keys():
         res_dict[key].append(val)
@@ -542,7 +543,7 @@ def item_history():
     date_index = 0
     for pr in group:
       val = None
-      test_date = "".join(key.split(' ')[1:]).strip()
+      test_date = " ".join(key.split(' ')[1:]).strip()
       print test_date
       if test_date == dates[date_index]:
         val = pr[1]  
