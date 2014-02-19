@@ -457,7 +457,7 @@ def item_current_results():
   
   #volumes
   mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(MappedMarketResult.itemid==val).distinct().all()
-  dates = [mrd.date.strftime('%d, %b %Y' for mrd in mr_dates]
+  dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
@@ -530,7 +530,7 @@ def item_history():
     
   #volumes
   mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(MappedMarketResult.itemid==val).distinct().all()
-  dates = [mrd.date.strftime('%d, %b %Y' for mrd in mr_dates]
+  dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
