@@ -329,24 +329,6 @@ def show_entries():
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
 
-@app.route('/market_results', methods=['GET', 'POST'])
-def market_results():
-  if not session.get('logged_in'):
-    #abort(401)
-    flash('Please login again')
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
-    
-  d = datetime.now()
-  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
-  if len(latest_item) > 0:
-    d = latest_item[0].date
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
-  
-  #format data
-  mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  return render_template('market_results.html', marketresults=mrs)
-
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""
   if itemid is not None:
@@ -361,6 +343,40 @@ def convert_to_key(itemid = None, name = None, cards = None, date = None, amount
     res = res + " " + amount
   
   return res
+
+@app.route('/market_results', methods=['GET', 'POST'])
+def market_results():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  d = datetime.now()
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
+
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  
+  #prices
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Current Prices"
+  datey.x_label_format = "%Y-%m-%d"
+    
+  pricechart = datey.render()
+    
+  #volumes
+      
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Items', x_labels_major_every=2)
+  bar_chart.title = "Current Selling Volume"
+  
+  volumechart = bar_chart.render()
+  
+  return render_template('market_results.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
 @app.route('/market_current_results', methods=['GET', 'POST'])
 def market_current_results():
@@ -441,7 +457,7 @@ def item_current_results():
 
   
   #volumes
-  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': (m.date, int(m.amount)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -449,7 +465,10 @@ def item_current_results():
         res_dict[key].append(pr[1])
       else:
         res_dict[key] = [pr[1]]
-    
+  
+  print projected_results
+  print res_dict
+  
   bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
   bar_chart.title = "Current Selling Volume for %s" % val
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
