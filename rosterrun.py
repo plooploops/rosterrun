@@ -464,8 +464,11 @@ def item_current_results():
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     date_index = 0
+    print len(dates)
     for pr in group:
       val = None
+      print key
+      print p[0]
       print key.split(' ')[1]
       if key.split(' ')[1] == dates[date_index]:
         val = pr[1]  
