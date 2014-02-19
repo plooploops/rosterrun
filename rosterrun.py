@@ -474,7 +474,7 @@ def item_current_results():
 
   volumechart = bar_chart.render()
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
+  return render_template('market_results.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
 @app.route('/item_history', methods=['GET', 'POST'])
 def item_history():
