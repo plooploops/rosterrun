@@ -460,23 +460,24 @@ def item_current_results():
   dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     date_index = 0
     print len(dates)
     for pr in group:
-      val = None
+      value = None
       
       test_date = " ".join(key.split(' ')[1:]).strip()
       print test_date
       date_index = dates.index(test_date)
       if test_date > -1:
-        val = pr[1]  
+        value = pr[1]  
       if key in res_dict.keys():
-        res_dict[key].append(val)
+        res_dict[key].append(value)
       else:
-        res_dict[key] = [val]
+        res_dict[key] = [value]
       date_index += 1
       
   print projected_results
@@ -537,20 +538,23 @@ def item_history():
   dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     date_index = 0
     for pr in group:
-      val = None
+      value = None
       test_date = " ".join(key.split(' ')[1:]).strip()
       print test_date
-      if test_date == dates[date_index]:
-        val = pr[1]  
+      date_index = dates.index(test_date)
+      
+      if test_date > -1:
+        value = pr[1]
       if key in res_dict.keys():
-        res_dict[key].append(val)
+        res_dict[key].append(value)
       else:
-        res_dict[key] = [val]
+        res_dict[key] = [value]
       date_index += 1
         
   print projected_results
