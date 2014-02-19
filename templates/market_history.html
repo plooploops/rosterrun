@@ -28,8 +28,8 @@
 	<input type=submit name=action value="Load">
 	</form>
     <figure>
-      {{ histchart|safe }}
-      {{ barhistchart|safe }}
+      {{ pricechart|safe }}
+      {{ volumechart|safe }}
     </figure>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}

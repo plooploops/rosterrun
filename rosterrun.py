@@ -40,6 +40,8 @@ import pygal
 from pygal.style import LightStyle
 from itertools import groupby
 
+from datetime import datetime, timedelta
+
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
 
@@ -345,26 +347,7 @@ def market_results():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(',')[:-1], m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   return render_template('market_results.html', marketresults=mrs)
 
-@app.route('/market_current_results', methods=['GET', 'POST'])
-def market_current_results():
-  if not session.get('logged_in'):
-    #abort(401)
-    flash('Please login again')
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
-    
-  #how to get latest?
-  d = datetime.now()
-  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
-  if len(latest_item) > 0:
-    d = latest_item[0].date
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
-  
-  #format data
-  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  return render_template('market_results.html', marketresults=mrs)
-
-def convert_to_key(itemid = None, name = None, cards = None, date = None):
+def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""
   if itemid is not None:
     res = str(itemid)
@@ -374,7 +357,106 @@ def convert_to_key(itemid = None, name = None, cards = None, date = None):
     res = res + " " + "".join(cards)
   if date is not None:
     res = res + " " + date
+  if amount is not None:
+    res = res + " " + amount
+  
   return res
+
+@app.route('/market_current_results', methods=['GET', 'POST'])
+def market_current_results():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  d = datetime.now()
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
+
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  
+  #prices
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Current Prices"
+  datey.x_label_format = "%Y-%m-%d"
+    
+  pricechart = datey.render()
+    
+  #volumes
+      
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
+  bar_chart.title = "Current Selling Volume"
+  
+  volumechart = bar_chart.render()
+  
+  return render_template('market_results.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
+
+@app.route('/item_current_results', methods=['GET', 'POST'])
+def item_current_results():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  print 'in item current results'
+  val = None
+  try:
+    val = request.form['itemslist']
+    print val
+  except:
+    print 'value not found'
+    
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  
+  ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  
+  #prices
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
+  res_dict = {}
+  for key, group in groupby(projected_results, lambda x: x[0]):
+    for pr in group:
+      if key in res_dict.keys():
+        res_dict[key].append(pr[1])
+      else:
+        res_dict[key] = [pr[1]]
+  
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Current Prices for %s" % val
+  datey.x_label_format = "%Y-%m-%d"
+  [datey.add(k, res_dict[k]) for k in res_dict.keys()]
+  
+  pricechart = datey.render()
+
+  
+  #volumes
+  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  res_dict = {}
+  for key, group in groupby(projected_results, lambda x: x[0]):
+    for pr in group:
+      if key in res_dict.keys():
+        res_dict[key].append(pr[1])
+      else:
+        res_dict[key] = [pr[1]]
+    
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
+  bar_chart.title = "Current Selling Volume for %s" % val
+  [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
+
+  volumechart = bar_chart.render()
+  
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
 @app.route('/item_history', methods=['GET', 'POST'])
 def item_history():
@@ -392,15 +474,17 @@ def item_history():
   except:
     print 'value not found'
   
+  time_delta = datetime.now() - timedelta(weeks=4)
+  
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date > time_delta).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  projected_results = [(convert_to_key(None, m.name), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
-  #print projected_results
-
+  #prices
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
+  
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -409,14 +493,17 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  datey.title = "Market History Overview for %s" % val
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Historical Selling Price for %s" % val
   datey.x_label_format = "%Y-%m-%d"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
-  
+
+  pricechart = datey.render()
+    
+  #volumes
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value': int(m.price), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
-  print projected_results
+  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -425,15 +512,13 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  print res_dict
-  histchart = datey.render()
-  
-  bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Item %s' % val, x_labels_major_every=2)
-  bar_chart.title = "Market History Overview for %s" % val
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
+  bar_chart.title = "Historical Selling Volume for %s" % val
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
-  barhistchart = bar_chart.render()
+
+  volumechart = bar_chart.render()
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
@@ -443,23 +528,29 @@ def market_history():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
+  time_delta = datetime.now() - timedelta(weeks=4)
+  
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = []
+  mr = MappedMarketResult.query.filter(MappedMarketResult.date > time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  datey.title = "Market History Overview"
+  #prices
+  
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Historical Selling Price"
   datey.x_label_format = "%Y-%m-%d"
   
-  histchart = datey.render()
+  pricechart = datey.render()
   
-  bar_chart = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Item', x_labels_major_every=2)
-  bar_chart.title = "Market History Overview"
-  barhistchart = bar_chart.render()
+  #volumes
   
-  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, histchart=histchart, barhistchart=barhistchart)
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item', x_labels_major_every=2)
+  bar_chart.title = "Historical Selling Volume"
+  volumechart = bar_chart.render()
+  
+  return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():

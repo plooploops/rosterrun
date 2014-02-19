@@ -11,7 +11,19 @@
         <td><a href="{{ url_for('points') }}">Points</a></td>
       </table>
     </form>
-    <h2>Market Results</h2>
+    <h3>Market Results</h3>
+    <form method=post action="{{ url_for('item_current_results') }}" class=item-history>
+    <select name="itemslist">
+      {% for ms in marketsearchs %}
+      <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
+      {% endfor %}
+    </select>
+    <input type=submit name=action value="Load">
+	</form>
+	<figure>
+	  {{ pricechart|safe }}
+	  {{ volumechart|safe }}
+    </figure>
     <table class="guild dashboard">
 	  <tr>
 	  <td><a href="{{ url_for('market_current_results') }}">Current Results</a></td>
