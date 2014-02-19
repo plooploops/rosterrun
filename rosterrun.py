@@ -428,6 +428,7 @@ def item_current_results():
   except:
     print 'value not found'
     
+  d = None
   latest_item = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
