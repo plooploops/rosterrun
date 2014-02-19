@@ -439,7 +439,7 @@ def item_current_results():
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date.strftime('%d, %b %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
     for pr in group:
@@ -456,15 +456,25 @@ def item_current_results():
   pricechart = datey.render()
   
   #volumes
+  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(MappedMarketResult.itemid==val).distinct().all()
+  dates = [mrd.date.strftime('%d, %b %Y' for mrd in mr_dates]
+  dates = list(set(dates))
+  print dates
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
+    date_index = 0
     for pr in group:
+      val = None
+      pr[1].split(' ')[1]
+      if pr[1].split(' ')[1] == dates[date_index]:
+        val = pr[1]  
       if key in res_dict.keys():
-        res_dict[key].append(pr[1])
+        res_dict[key].append(val)
       else:
-        res_dict[key] = [pr[1]]
-  
+        res_dict[key] = [val]
+      date_index += 1
+      
   print projected_results
   print res_dict
   
@@ -519,16 +529,27 @@ def item_history():
   pricechart = datey.render()
     
   #volumes
-  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(MappedMarketResult.itemid==val).distinct().all()
+  dates = [mrd.date.strftime('%d, %b %Y' for mrd in mr_dates]
+  dates = list(set(dates))
+  print dates
   projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
-  
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
+    date_index = 0
     for pr in group:
+      val = None
+      print pr[1].split(' ')[1]
+      if pr[1].split(' ')[1] == dates[date_index]:
+        val = pr[1]  
       if key in res_dict.keys():
-        res_dict[key].append(pr[1])
+        res_dict[key].append(val)
       else:
-        res_dict[key] = [pr[1]]
+        res_dict[key] = [val]
+      date_index += 1
+        
+  print projected_results
+  print res_dict
   
   bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
   bar_chart.title = "Historical Selling Volume for %s" % val
