@@ -390,22 +390,23 @@ def market_current_results():
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
+  
+  mr = []
+  #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
 
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey = pygal.Bar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, human_readable=True, style=LightStyle, y_title='Price', x_title='Date')
   datey.title = "Current Prices"
-  datey.x_label_format = "%Y-%m-%d"
-    
+      
   pricechart = datey.render()
     
   #volumes
       
-  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Items', x_labels_major_every=2)
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, human_readable=True, style=LightStyle, y_title='Quantity', x_title='Items')
   bar_chart.title = "Current Selling Volume"
   
   volumechart = bar_chart.render()
@@ -434,13 +435,13 @@ def item_current_results():
     d = latest_item[0].date
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]  
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':int(m.price), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -450,13 +451,11 @@ def item_current_results():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  datey.title = "Current Prices for %s" % val
-  datey.x_label_format = "%Y-%m-%d"
+  datey = pygal.Bar(x_label_rotation=20, no_data_text='No result found', stroke=False, disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Price', x_title='Item %s' % val)
+  datey.title = "Current Prices for %s as of %s" % (val, d.strftime('%d %b %Y'))
+  
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
-  
-  print res_dict
-  
+    
   pricechart = datey.render()
   
   #volumes
@@ -465,30 +464,17 @@ def item_current_results():
   dates = list(set(dates))
   print dates
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
-    date_index = 0
-    print len(dates)
     for pr in group:
-      value = None
-      
-      test_date = " ".join(key.split(' ')[1:]).strip()
-      print test_date
-      date_index = dates.index(test_date)
-      if test_date > -1:
-        value = pr[1]  
       if key in res_dict.keys():
-        res_dict[key].append(value)
+        res_dict[key].append(pr[1])
       else:
-        res_dict[key] = [value]
-      date_index += 1
-      
-  print projected_results
-  print res_dict
-  
-  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
-  bar_chart.title = "Current Selling Volume for %s" % val
+        res_dict[key] = [pr[1]]
+    
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Quantity', x_title='Item %s' % val)
+  bar_chart.title = "Current Selling Volume for %s as of %s" % (val, d.strftime('%d %b %Y'))
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
 
   volumechart = bar_chart.render()
@@ -514,13 +500,14 @@ def item_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
   #prices
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(m.date, int(m.price)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]  
+  #can convert date values for daily, weekly, monthly?
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(datetime.strptime(m.date.strftime('%d %B %Y'), '%d %B %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]  
   
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -530,9 +517,9 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Price', x_title='Date', x_labels_major_every=2)
-  datey.title = "Historical Selling Price for %s" % val
-  datey.x_label_format = "%Y-%m-%d"
+  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey.title = "Historical Selling Price for %s since %s" % (val, timedelta.strftime('%d %B %Y'))
+  datey.x_label_format = "%d-%B-%Y"
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
 
   pricechart = datey.render()
@@ -543,26 +530,17 @@ def item_history():
   dates = list(set(dates))
   print dates
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
-  projected_results = [(convert_to_key(m.itemid, None, None, m.date.strftime('%d, %b %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
+  projected_results = [(convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %B %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
-    date_index = 0
     for pr in group:
-      value = None
-      test_date = " ".join(key.split(' ')[1:]).strip()
-      print test_date
-      date_index = dates.index(test_date)
-      
-      if test_date > -1:
-        value = pr[1]
       if key in res_dict.keys():
-        res_dict[key].append(value)
+        res_dict[key].append(pr[1])
       else:
-        res_dict[key] = [value]
-      date_index += 1
+        res_dict[key] = [pr[1]]
         
-  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=200, truncate_label=200, legend_at_bottom=True, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
-  bar_chart.title = "Historical Selling Volume for %s" % val
+  bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
+  bar_chart.title = "Historical Selling Volume for %s since %s" % (val, timedelta.strftime('%d %B %Y'))
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
 
   volumechart = bar_chart.render()
@@ -580,7 +558,8 @@ def market_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  mr = []
+  #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
