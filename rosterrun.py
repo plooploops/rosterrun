@@ -540,7 +540,7 @@ def item_history():
         res_dict[key] = [pr[1]]
         
   bar_chart = pygal.StackedBar(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, stroke=False, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Quantity', x_title='Item %s' % val, x_labels_major_every=2)
-  bar_chart.title = "Historical Selling Volume for %s since %s" % (val, timedelta.strftime('%d %B %Y'))
+  bar_chart.title = "Historical Selling Volume for %s since %s" % (val, time_delta.strftime('%d %B %Y'))
   [bar_chart.add(k, res_dict[k]) for k in res_dict.keys()]
 
   volumechart = bar_chart.render()
