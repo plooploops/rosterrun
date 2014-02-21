@@ -10,7 +10,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import distinct, func, not_
+from sqlalchemy import distinct, func, not_, or_
 
 import gdata.gauth
 import gdata.docs.client
@@ -390,11 +390,13 @@ def market_current_results():
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
+    
+  
   
   mr = []
   #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-
+  
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
   
@@ -435,7 +437,9 @@ def item_current_results():
     d = latest_item[0].date
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+  itemname = itemname.replace(' ','')
+  mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -501,7 +505,9 @@ def item_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+  itemname = itemname.replace(' ','')
+  mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
