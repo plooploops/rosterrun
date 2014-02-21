@@ -430,6 +430,7 @@ def item_current_results():
     print val
   except:
     print 'value not found'
+    val = None
     
   d = datetime.now()
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
@@ -437,9 +438,14 @@ def item_current_results():
     d = latest_item[0].date
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
-  itemname = itemname.replace(' ','')
-  mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  itemname = None
+  mr = []
+  if val is not None:
+    itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+    itemname = itemname.replace(' ','')
+    mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  else:
+    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -505,9 +511,15 @@ def item_history():
   time_delta = datetime.now() - timedelta(weeks=4)
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
-  itemname = itemname.replace(' ','')
-  mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  itemname = None
+  mr = []
+  if val is not None:
+    itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+    itemname = itemname.replace(' ','')
+    mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  else:
+    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+    
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
