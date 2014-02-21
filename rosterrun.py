@@ -464,6 +464,7 @@ def item_current_results():
   dates = list(set(dates))
   print dates
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+  
   projected_results = [(convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %B %Y')), {'value': int(m.amount), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
