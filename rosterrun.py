@@ -356,7 +356,9 @@ def market_results():
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
-  mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
+    
+  mr = []
+  #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
 
   #format data
@@ -390,8 +392,6 @@ def market_current_results():
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
-    
-  
   
   mr = []
   #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= d).all()
