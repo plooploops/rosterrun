@@ -37,14 +37,14 @@
       <td>{{ t.minMarketPrice|safe }}</td>
       <td>{{ t.maxMarketPrice|safe }}</td>
       <td>{{ t.medianMarketPrice|safe }}</td>
-
       <td>{{ t.refreshDate|safe }}</td>
       <td>{% if t.guildtransaction_id is defined %}<input type=submit name=buy value=Buy>{% else %}{{ t.guildtransaction_id|safe }}  {% endif %}</>
     {% endfor %}
     </table>
     <form>
       <h2>Add Item</h2>
-      <dd>Item Id:<input type=text name=nitemid placeholder="1234">
+      <dd>Item Id:<input type=text name=nitemid placeholder="578">
+      <dd>Item Name:<input type=text name=nitemname placeholder="Strawberry">
       <dd>Amount:<input type=text name=nitemamount placeholder="1">
       <input type=submit name=action value=Add></>
     </form>

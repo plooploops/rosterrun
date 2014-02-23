@@ -516,10 +516,12 @@ def item_history():
   if val is not None:
     itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
     itemname = itemname.replace(' ','')
-    mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+    mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
   else:
-    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
-    
+    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
+
+  if len(mr) > 0:
+    time_delta = mr[-1].date    
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -578,7 +580,7 @@ def market_history():
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
   mr = []
-  #mr = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+  #mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -733,7 +735,7 @@ def update_chars():
   action = None
   p = []
   try:
-    sesson = request.form['action']
+    action = request.form['action']
   except:
     print 'cannot bind action'
   
