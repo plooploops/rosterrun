@@ -27,10 +27,10 @@
 	</select>
 	<input type=submit name=action value="Load">
 	</form>
-    <figure>
-      {{ pricechart|safe }}
-      {{ volumechart|safe }}
-    </figure>
+    <div style="width:120%;height:120%">
+	  {{ pricechart|safe }}
+	  {{ volumechart|safe }}
+	</div>
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
