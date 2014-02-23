@@ -28,11 +28,15 @@
     <input type=submit name=action value="Load">
 	</form>
 	<div style="width:10em;height:10em">
-	  <object height=100% width=100%>
+	  <object height=100% width=100% type="image/svg+xml">
 	    {{ pricechart|safe }}
-	    {{ volumechart|safe }}
 	  </object>
 	</div>
+	<div style="width:10em;height:10em">
+      <object height=100% width=100% type="image/svg+xml">
+        {{ volumechart|safe }}
+      </object>
+    </div>
 
     <table class=marketresult>
     {% for group in marketresults|groupby('itemid') %}
