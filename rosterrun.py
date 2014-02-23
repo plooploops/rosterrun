@@ -520,7 +520,7 @@ def item_history():
   else:
     mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
 
-  if len(mr) > 0:
+  if mr.count() > 0:
     time_delta = mr[-1].date    
   
   #format data
