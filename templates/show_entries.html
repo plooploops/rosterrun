@@ -53,7 +53,7 @@
     </form>
     <h2>Party Combinations</h2>
     <table class=combination>
-    {% for group in marketresults|groupby('InstanceName') %}
+    {% for group in combinations|groupby('InstanceName') %}
 	  <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
 	  {% for mr in group.list %}
 	    <tr>
