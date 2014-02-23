@@ -53,20 +53,23 @@
     </form>
     <h2>Party Combinations</h2>
     <table class=combination>
-    {% for group in combinations|groupby('InstanceName') %}
-	  <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
-	  {% for mr in group.list %}
-	    <tr>
-	    <th>Player Name</th>
-	    <th>Character Name</th>
-		<th>Class</th>
-		<th>Role</th>
-        </tr>
-		<td>{{ mr.PlayerName|safe }}</td>
-		<td>{{ mr.CharacterName|safe }}</td>
-		<td>{{ mr.CharacterClass|safe }}</td>
-		<td>{{ mr.RoleName|safe }}</td>
-	  {% endfor %}
+    <tr>
+    <th>Party Combination</th>
+    <th>Player Name</th>
+    <th>Character Name</th>
+    <th>Class</th>
+    <th>Role</th>
+    </tr>
+    {% for entry in combinations %}
+      <tr>
+      <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex|safe }}</h2></td>
+      <td>{{ entry.PlayerName|safe }}</td>
+      <td>{{ entry.CharacterName|safe }}</td>
+      <td>{{ entry.CharacterClass|safe }}</td>
+      <td>{{ entry.RoleName|safe }}</td>
+      </tr>
+    {% else %}
+      <li><em>Unbelievable.  No combinations here so far</em>
     {% endfor %}
     </table>
   {% endif %}
