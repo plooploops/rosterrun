@@ -27,7 +27,9 @@
 	</select>
 	<input type=submit name=action value="Load">
 	</form>
-    <div style="width:100%;height:100%">
+	<script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+    <div style="max-width:100%">
 	  {{ pricechart|safe }}
 	  {{ volumechart|safe }}
 	</div>
