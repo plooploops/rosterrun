@@ -626,6 +626,44 @@ def treasury():
   
   return render_template('treasury.html', treasures=t)
   
+  
+@app.route('/add_treasure', methods=['GET', 'POST'])
+def treasury():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  item_id = request.form['nitemid']
+  item_name = request.form['nitemname']
+  item_amount = request.form['nitemamount']
+  
+  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
+  
+  #check db or scrape again?
+  latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
+  if(latest_res.count() > 0):
+    latest_date = latest_res[0]
+    mrs = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).filter(MappedMarketResult.date >= latest_date).all()
+    prices = [mr.price for mr in mrs]
+    gt.minMarketPrice = min(prices)
+    gt.maxMarketPrice = max(prices)
+    gt.medianMarketPrice = median(prices)
+  else:
+    gt.minMarketPrice = request.form['nitemminprice']
+    gt.maxMarketPrice = request.form['nitemmaxprice']
+    gt.medianMarketPrice = request.form['nitemmedianprice']
+    #add it as a search item
+    db.session.add(MappedMarketSearch(True, itemid, itemname))
+  
+  db.session.add(gt)
+  db.session.commit()
+  
+  t = MappedGuildTreasure.query.all()
+    
+  return render_template('treasury.html', treasures=t)
+  
 @app.route('/points', methods=['GET', 'POST'])
 def points():
   if not session.get('logged_in'):
