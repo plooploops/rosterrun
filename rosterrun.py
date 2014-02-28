@@ -628,7 +628,7 @@ def treasury():
   
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
-def treasury():
+def add_treasure():
   if not session.get('logged_in'):
     #abort(401)
     flash('Please login again')
