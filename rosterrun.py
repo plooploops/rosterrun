@@ -655,7 +655,9 @@ def add_treasure():
     gt.maxMarketPrice = request.form['nitemmaxprice']
     gt.medianMarketPrice = request.form['nitemmedianprice']
     #add it as a search item
-    db.session.add(MappedMarketSearch(True, itemid, itemname))
+    ms = MappedMarketSearch.query.filter(MappedMarketSearch.itemid == item_id)
+    if ms.count() == 0:
+      db.session.add(MappedMarketSearch(True, item_id, item_name))
   
   db.session.add(gt)
   db.session.commit()
