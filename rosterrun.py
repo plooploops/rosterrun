@@ -644,7 +644,7 @@ def add_treasure():
   #check db or scrape again?
   latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
   if(latest_res.count() > 0):
-    latest_date = latest_res[0]
+    latest_date = latest_res[0].date
     mrs = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).filter(MappedMarketResult.date >= latest_date).all()
     prices = [mr.price for mr in mrs]
     gt.minMarketPrice = min(prices)
