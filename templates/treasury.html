@@ -12,7 +12,8 @@
       </table>
     </form>
     <h2>Treasury</h2>
-    <table action="{{ url_for('modify_treasury') }}" method=post class=treasure>
+    <form action="{{ url_for('modify_treasury') }}" method=post class=modify-treasury>
+    <table class=treasure>
     <tr>
     <th>Action</th>
     <th>Itemid</th>
@@ -40,8 +41,10 @@
       <td>{{ t.maxMarketPrice|safe }}</td>
       <td>{{ t.medianMarketPrice|safe }}</td>
       <td>{{ t.refreshDate|safe }}</td>
+      <td>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} {% endif %}</td>
     {% endfor %}
     </table>
+    </form>
     <form action="{{ url_for('add_treasure') }}" method=post>
       <h2>Add Item</h2>
       <dd>Item Id:<input type=text name=nitemid placeholder="1560">
