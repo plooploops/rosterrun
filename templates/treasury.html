@@ -12,20 +12,22 @@
       </table>
     </form>
     <h2>Treasury</h2>
-    <table class=treasure>
+    <table action="{{ url_for('modify_treasury') }}" method=post class=treasure>
     <tr>
+    <th>Action</th>
     <th>Itemid</th>
     <th>Name</th>
     <th>Cards</th>
     <th>Amount</th>
-    <th>Min Market Price</th>
-    <th>Max Market Price</th>
-    <th>Median Market Price</th>
+    <th>Unit Min Market Price</th>
+    <th>Unit Max Market Price</th>
+    <th>Unit Median Market Price</th>
     <th>Refresh Date</th>
     <th>Guild Transaction</th>
     </tr>
     {% for t in treasures %}
       <tr>
+      <td><input type=submit name=action value=Delete><input type=submit name=action value=Edit>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <input type=submit name=action value=Buy> {% endif %}</td>
       <td><h2>{{ t.itemid}}</h2></td>
       <td>{{ t.name }}</td>
       <td>
@@ -38,13 +40,13 @@
       <td>{{ t.maxMarketPrice|safe }}</td>
       <td>{{ t.medianMarketPrice|safe }}</td>
       <td>{{ t.refreshDate|safe }}</td>
-      <td>{% if t.guildtransaction_id is defined %}<input type=submit name=buy value=Buy>{% else %}{{ t.guildtransaction_id|safe }}  {% endif %}</>
     {% endfor %}
     </table>
     <form action="{{ url_for('add_treasure') }}" method=post>
       <h2>Add Item</h2>
-      <dd>Item Id:<input type=text name=nitemid placeholder="578">
-      <dd>Item Name:<input type=text name=nitemname placeholder="Strawberry">
+      <dd>Item Id:<input type=text name=nitemid placeholder="1560">
+      <dd>Item Name:<input type=text name=nitemname placeholder="Sage's Diary [2]">
+      <dd>Cards:<input type=text name=nitemname placeholder="Doppelganger Card, Turtle General Card">
       <dd>Amount:<input type=text name=nitemamount placeholder="1">
       <dd>Suggested Min Price:<input type=text name=nitemminprice placeholder="1">
       <dd>Suggested Max Price:<input type=text name=nitemmaxprice placeholder="1">

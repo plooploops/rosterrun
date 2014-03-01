@@ -625,7 +625,33 @@ def treasury():
   t = MappedGuildTreasure.query.all()
   
   return render_template('treasury.html', treasures=t)
+
+@app.route('/modify_treasury', methods=['GET', 'POST'])
+def modify_treasury():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
   
+  try:
+    action = request.form['action']
+    print request
+  except:
+    print 'could not map action for modifying treasury'
+  
+  if action == u'Delete':
+    print 'delete'
+  elif action == u'Edit':
+    print 'edit'
+  elif action == u'Buy':
+    print 'buy'
+  else:
+    print 'could not map action'
+  
+  t = MappedGuildTreasure.query.all()
+    
+  return render_template('treasury.html', treasures=t)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():

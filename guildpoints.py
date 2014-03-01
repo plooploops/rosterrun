@@ -72,6 +72,7 @@ class Guild:
       return False
     else:
       return True  
+  
     
   def CalculatePoints(self, runname = None, mobs_killed = [], players = [], recent_market_results = {}): 
     #get relevant data for run 
