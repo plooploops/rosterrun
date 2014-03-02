@@ -20,7 +20,7 @@
     {% for t in treasures %}
       <tr>
       <td><input type=submit name=action value=Delete><input type=submit name=action value=Edit>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <input type=submit name=action value=Buy> {% endif %}</td>
-      <td><h2>{{ t.itemid}}</h2></td>
+      <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
       {% for c in t.cards %}
@@ -38,7 +38,7 @@
     </div>
     </form>
     <form action="{{ url_for('add_treasure') }}" method=post>
-      <h2>Add Item</h2>
+      <h2 class="sub-header">Add Item</h2>
       <dd>Item Id:<input type=text name=nitemid placeholder="1560">
       <dd>Item Name:<input type=text name=nitemname placeholder="Sage's Diary [2]">
       <dd>Cards:<input type=text name=nitemname placeholder="Doppelganger Card, Turtle General Card">
