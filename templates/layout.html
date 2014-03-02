@@ -48,9 +48,15 @@
 	</div>
   </div>
 </div>
+<div class="row">
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  </br>
+  </br>
+</div>
+<div class="row">
 
-<div class="container-fluid">
-  <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       {% if session.logged_in %}
         <ul class="nav nav-sidebar">
@@ -79,15 +85,9 @@
       {% endif %}
     </div>
   	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  	  </br>
-	  {% for message in get_flashed_messages() %}
-	    <div class=flash>{{ message }}</div>
-	  {% endfor %}
-	  </br>
-
   	  {% block body %}{% endblock %}
   	</div>
-  </div>
+
 </div>
 
   <!-- Custom styles for this template -->
