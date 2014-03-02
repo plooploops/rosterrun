@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+    <h1 class="page-header">Roster</h1>
     <form action="{{ url_for('show_entries') }}" method=post class=run-calculation>
       <dl>
         <dt>Google Document:
@@ -11,8 +12,9 @@
         <input type=submit name=action value=Reset>
       </dl>
     </form>
-    <h2>Character Status</h2>
-    <table action="{{ url_for('update_chars') }}" method=post class=character>
+    <h2 class="sub-header">Character Status</h2>
+    <div class="table-responsive">
+    <table action="{{ url_for('update_chars') }}" method=post class="table table-striped character">
     <tr>
     <th>Manage</th>
     <th>Class</th>
@@ -43,8 +45,8 @@
       <dd>Present: <input type=text name=charpresent placeholder="1">
       <input type=submit name=action value=Add></>
     </form>
-    <h2>Party Combinations</h2>
-    <table class=combination>
+    <h2 class="sub-header">Party Combinations</h2>
+    <table class="table table-striped combination">
     <tr>
     <th>Party Combination</th>
     <th>Player Name</th>
@@ -64,5 +66,6 @@
       <li><em>Unbelievable.  No combinations here so far</em>
     {% endfor %}
     </table>
+    </div>
   {% endif %}
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h2>Points</h2>
-    <table class=point>
+    <h1 class="page-header">Points</h1>
+    <div class="table-responsive">
+    <table class="table table-striped point">
     <tr>
     <th>Name</th>
     <th>Amount</th>
@@ -13,5 +14,6 @@
       <td>{{ p.amount }}</td>
     {% endfor %}
     </table>
+    </div>
   {% endif %}
 {% endblock %}

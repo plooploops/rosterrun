@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+    <h1 class="page-header">Search List</h1>
 	<form action="{{ url_for('add_to_search_list') }}" method=post>
 	  <h2>Search Item</h2>
 	  <dd>Item Id:<input type=text name=nitemid placeholder="578">
@@ -9,7 +10,8 @@
     </form>
     <form action="{{ url_for('update_search_list') }}" method=post>
     <h3>Search List</h3>
-    <table class=marketsearch>
+    <div class="table-responsive">
+    <table class="table table-striped marketsearch">
     <tr>
 	  <th>Search?</th>
 	  <th>Item ID</th>
@@ -31,6 +33,7 @@
       </tr>
     {% endfor %}
     </table>
+    </div>
     <input type=submit name=action value="Save">
     <input type=submit name=action value="Use Default">
     </form>

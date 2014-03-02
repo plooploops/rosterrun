@@ -1,22 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h3>History</h3>
+    <h1 class="page-header">History</h1>
     <form method=post action="{{ url_for('item_history') }}" class=item-history>
-	<select name="itemslist">
+    <select name="itemslist">
 	{% for ms in marketsearchs %}
 	  <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
 	{% endfor %}
 	</select>
 	<input type=submit name=action value="Load">
 	</form>
-	<script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
-    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
-    <div style="max-width:100%">
-	  {{ pricechart|safe }}
-	  {{ volumechart|safe }}
+	<div class="row placeholder">
+	  <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+      <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+      <div class="col-xs-6 col-sm-3 placeholder">
+	    {{ pricechart|safe }}
+	  </div>
+	  <div class="col-xs-6 col-sm-3 placeholder">
+        {{ volumechart|safe }}
+	  </div>
 	</div>
-    <table class=marketresult>
+	<div class="table-responsive">
+    <table class=class="table table-striped marketresult">
     {% for group in marketresults|groupby('itemid') %}
       <tr><td colspan="6"><h2>{{ group.grouper|safe }}</h2></td></tr>
       {% for mr in group.list %}
@@ -42,5 +47,6 @@
       {% endfor %}
     {% endfor %}
     </table>
+    </div>
   {% endif %}
 {% endblock %}

@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h2>Treasury</h2>
+    <h1 class="page-header">Treasury</h1>
     <form action="{{ url_for('modify_treasury') }}" method=post class=modify-treasury>
-    <table class=treasure>
+    <div class="table-responsive">
+    <table class="table table-striped treasure">
     <tr>
     <th>Action</th>
     <th>Itemid</th>
@@ -34,6 +35,7 @@
       <td>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} {% endif %}</td>
     {% endfor %}
     </table>
+    </div>
     </form>
     <form action="{{ url_for('add_treasure') }}" method=post>
       <h2>Add Item</h2>
