@@ -105,10 +105,16 @@ def retrieve_market_scrape():
   else: 
     print 'current job is not ready %s' % job_id
   
-
-#@sched.cron_schedule(day_of_week='mon-fri', hour=17)
-#def scheduled_job():
-#    print 'This job is run every weekday at 5pm.'
+@sched.cron_schedule(day='last sun')
+def clean_up_market():
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+    
+  print 'Clean up all but current market every last sunday of the month'
+  rows = MappedMarketResult.query.filter(MappedMarketResult.date < d).delete()
+  print 'cleaning up %s rows' % rows
+  db.session.commit()
 
 populate_search_list()
 interval_market_scrape()
@@ -116,4 +122,4 @@ interval_market_scrape()
 sched.start()
 
 while True:
-    pass
+  pass

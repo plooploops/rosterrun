@@ -1,14 +1,20 @@
 <!doctype html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+  <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
 
   <title>Roster Run</title>
 
+  <!-- Bootstrap core CSS -->
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
   <!-- Just for debugging purposes. Don't actually copy this line! -->
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,14 +28,14 @@
   <div class="container-fluid">
     <div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	  <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-	  <span class="icon-bar"></span>
-	  <span class="icon-bar"></span>
+	    <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="#">Knights of Hyrule</a>
-	  </div>
-	  <div class="navbar-collapse collapse">
+	</div>
+	<div class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
       {% if not session.logged_in %}
     	<li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -45,43 +51,42 @@
   </div>
 </div>
 <div class="container-fluid">
-<div class="row">
-<div class="col-sm-3 col-md-2 sidebar">
+  <div class="row">
+    <div class="col-xs-4 col-sm-3 col-md-2 sidebar">
       {% if session.logged_in %}
         <ul class="nav nav-sidebar">
-        <li>Roster</li>
-        <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
-        <li><a href="">Viable Parties</a></td></li>
-        <li><a href="">Runs</a></td></li>
+          <li>Roster</li>
+          <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
+          <li><a href="">Viable Parties</a></td></li>
+          <li><a href="">Runs</a></td></li>
         </ul>
         <ul class="nav nav-sidebar">
-        <li>Market</li>
-        <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
-        <li><a href="{{ url_for('market_history') }}">History</a></li>
-        <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
-        <li><a href="">Wish List</a></li>
+          <li>Market</li>
+          <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
+          <li><a href="{{ url_for('market_history') }}">History</a></li>
+          <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
+          <li><a href="">Wish List</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-        <li>Treasury</li>
-        <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
-        <li><a href="">Transactions</a></li>
+          <li>Treasury</li>
+          <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
+          <li><a href="">Transactions</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-        <li>Points</li>
-        <li><a href="{{ url_for('points') }}">Current Points</a></li>
-        <li><a href="">Calculate</a></li>
+          <li>Points</li>
+          <li><a href="{{ url_for('points') }}">Current Points</a></li>
+          <li><a href="">Calculate</a></li>
         </ul>
       {% endif %}
-</div>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  </br>
-  </br>
-  {% block body %}{% endblock %}
-</div>
-</div>
+    </div>
+    <div class="col-xs-8 col-xs-offset-4 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Dashboard</h1>
+      {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+      {% endfor %}
+      {% block body %}{% endblock %}
+    </div>
+  </div>
 </div>
   <!-- Custom styles for this template -->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
@@ -98,4 +103,5 @@
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="./Dashboard Template for Bootstrap_files/docs.min.js"></script>
 </body>
