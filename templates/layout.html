@@ -48,46 +48,45 @@
 	</div>
   </div>
 </div>
-<div class="row">
-  </br>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  </br>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar">
-        {% if session.logged_in %}
-          <ul class="nav nav-sidebar">
-          <li>Roster</li>
-          <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
-          <li><a href="">Viable Parties</a></td></li>
-          <li><a href="">Runs</a></td></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-          <li>Market</li>
-          <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
-          <li><a href="{{ url_for('market_history') }}">History</a></li>
-          <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
-          <li><a href="">Wish List</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-          <li>Treasury</li>
-          <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
-          <li><a href="">Transactions</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-          <li>Points</li>
-          <li><a href="{{ url_for('points') }}">Current Points</a></li>
-          <li><a href="">Calculate</a></li>
-          </ul>
-        {% endif %}
-      </div>
-  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  	   {% block body %}{% endblock %}
-  	</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      {% if session.logged_in %}
+        <ul class="nav nav-sidebar">
+        <li>Roster</li>
+        <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
+        <li><a href="">Viable Parties</a></td></li>
+        <li><a href="">Runs</a></td></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+        <li>Market</li>
+        <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
+        <li><a href="{{ url_for('market_history') }}">History</a></li>
+        <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
+        <li><a href="">Wish List</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+        <li>Treasury</li>
+        <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
+        <li><a href="">Transactions</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+        <li>Points</li>
+        <li><a href="{{ url_for('points') }}">Current Points</a></li>
+        <li><a href="">Calculate</a></li>
+        </ul>
+      {% endif %}
     </div>
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  	  </br>
+	  {% for message in get_flashed_messages() %}
+	    <div class=flash>{{ message }}</div>
+	  {% endfor %}
+	  </br>
+
+  	  {% block body %}{% endblock %}
+  	</div>
   </div>
 </div>
 
