@@ -51,7 +51,11 @@
 	  <div class=flash>{{ message }}</div>
 	{% endfor %}
     {% if not session.logged_in %}
-	  <a href="{{ url_for('login') }}">Log In</a>
+      <div class="container-fluid">
+        <div class="row"
+          {% block body %}{% endblock %}
+        </div>
+      </div>
 	{% else %}
       <div class="container-fluid">
 		<div class="row">
