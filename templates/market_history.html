@@ -1,23 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('market_results') }}" method=post class=run-calculation>
-      <h2>Guild Dashboard</h2>
-      <table class="guild dashboard">
-        <tr>
-        <td><a href="{{ url_for('show_entries') }}">Roster</a></td>
-        <td><a href="{{ url_for('market_results') }}">Market Results</a></td>
-        <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
-        <td><a href="{{ url_for('points') }}">Points</a></td>
-      </table>
-    </form>
-    <h2>Market Results</h2>
-    <table class="guild dashboard">
-      <tr>
-      <td><a href="{{ url_for('market_current_results') }}">Current Results</a></td>
-      <td><a href="{{ url_for('market_history') }}">History</a></td>
-      <td><a href="{{ url_for('market_search_list') }}">Search List</a></td>
-    </table>
     <h3>History</h3>
     <form method=post action="{{ url_for('item_history') }}" class=item-history>
 	<select name="itemslist">

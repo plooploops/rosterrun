@@ -1,16 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('treasury') }}" method=post class=run-calculation>
-      <h2>Guild Dashboard</h2>
-      <table class="guild dashboard">
-        <tr>
-        <td><a href="{{ url_for('show_entries') }}">Roster</a></td>
-        <td><a href="{{ url_for('market_results') }}">Market Results</a></td>
-        <td><a href="{{ url_for('treasury') }}">Treasury</a></td>
-        <td><a href="{{ url_for('points') }}">Points</a></td>
-      </table>
-    </form>
     <h2>Treasury</h2>
     <form action="{{ url_for('modify_treasury') }}" method=post class=modify-treasury>
     <table class=treasure>
