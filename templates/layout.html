@@ -17,7 +17,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="metanav navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -50,8 +50,10 @@
 	  <div class=flash>{{ message }}</div>
 	{% endfor %}
     </div>
-    {% if session.logged_in %}
-	  <div class="container-fluid">
+    {% if not session.logged_in %}
+	  <a href="{{ url_for('login') }}">Log In</a>
+	{% else %}
+      <div class="container-fluid">
 		<div class="row">
 		  <div class="col-sm-3 col-md-2 sidebar">
 		    <ul class="nav nav-sidebar">
