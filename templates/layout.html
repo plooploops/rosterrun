@@ -17,74 +17,77 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-
-<div class=page>
-  <div class=metanav>
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">Log In</a>
-  {% else %}
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	      <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#">Knights of Hyrule</a>
-	      </div>
-	      <div class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ url_for('show_entries') }}">Dashboard</a></li>
-	      <li><a href="#">Settings</a></li>
-	      <li><a href="#">Profile</a></li>
-	      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-	      <li><a href="#">Help</a></li>
-	      </ul>
-	      <form class="navbar-form navbar-right">
-	        <input type="text" class="form-control" placeholder="Search...">
-	      </form>
-	    </div>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	  <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+	  <span class="icon-bar"></span>
+	  <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Knights of Hyrule</a>
 	  </div>
-    </div>
-    <div class="container-fluid">
-	  <div class="row">
-	    <div class="col-sm-3 col-md-2 sidebar">
-	      <ul class="nav nav-sidebar">
-	      <li>Roster</li>
-	      <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
-	      <li><a href="">Viable Parties</a></td></li>
-	      <li><a href="">Runs</a></td></li>
-	      </ul>
-	      <ul class="nav nav-sidebar">
-	      <li>Market</li>
-	      <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
-		  <li><a href="{{ url_for('market_history') }}">History</a></li>
-	      <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
-	      <li><a href="">Wish List</a></li>
-	      </ul>
-	      <ul class="nav nav-sidebar">
-	      <li>Treasury</li>
-          <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
-	      <li><a href="">Transactions</a></li>
-	      </ul>
-	      <ul class="nav nav-sidebar">
-	      <li>Points</li>
-	      <li><a href="{{ url_for('points') }}">Current Points</a></li>
-	      <li><a href="">Calculate</a></li>
-	      </ul>
-	    </div>
-	    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	      {% block body %}{% endblock %}
-	    </div>
-	  </div>
+	  <div class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+      {% if not session.logged_in %}
+    	<li><a href="{{ url_for('login') }}">Log In</a></li>
+	    </ul>
+	  {% else %}
+	    <li><a href="{{ url_for('show_entries') }}">Dashboard</a></li>
+	    <li><a href="#">Settings</a></li>
+	    <li><a href="#">Profile</a></li>
+	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        <li><a href="#">Help</a></li>
+        </ul>
+	    <form class="navbar-form navbar-right">
+	      <input type="text" class="form-control" placeholder="Search...">
+	    </form>
+	  {% endif %}
 	</div>
-  {% endif %}
+	<div class="row">
+	{% for message in get_flashed_messages() %}
+	  <div class=flash>{{ message }}</div>
+	{% endfor %}
+    </div>
+    {% if session.logged_in %}
+	  <div class="container-fluid">
+		<div class="row">
+		  <div class="col-sm-3 col-md-2 sidebar">
+		    <ul class="nav nav-sidebar">
+		    <li>Roster</li>
+		    <li class="active"><a href="{{ url_for('show_entries') }}">Manage</a></td></li>
+		    <li><a href="">Viable Parties</a></td></li>
+		    <li><a href="">Runs</a></td></li>
+		    </ul>
+		    <ul class="nav nav-sidebar">
+		    <li>Market</li>
+		    <li><a href="{{ url_for('market_current_results') }}">Current Results</a></li>
+		    <li><a href="{{ url_for('market_history') }}">History</a></li>
+		    <li><a href="{{ url_for('market_search_list') }}">Search List</a></li>
+		    <li><a href="">Wish List</a></li>
+		    </ul>
+		    <ul class="nav nav-sidebar">
+		    <li>Treasury</li>
+	        <li><a href="{{ url_for('treasury') }}">Current Treasures</a></li>
+		    <li><a href="">Transactions</a></li>
+		    </ul>
+		    <ul class="nav nav-sidebar">
+		    <li>Points</li>
+		    <li><a href="{{ url_for('points') }}">Current Points</a></li>
+		    <li><a href="">Calculate</a></li>
+		    </ul>
+		  </div>
+		  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		    {% block body %}{% endblock %}
+		  </div>
+		</div>
+	  </div>
+	{% endif %}
+
   </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
+</div>
+
 
   <!-- Custom styles for this template -->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
