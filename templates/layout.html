@@ -39,15 +39,13 @@
 	    <li><a href="#">Settings</a></li>
 	    <li><a href="#">Profile</a></li>
 	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        <li><a href="#">Help</a></li>
         </ul>
-	    <form class="navbar-form navbar-right">
-	      <input type="text" class="form-control" placeholder="Search...">
-	    </form>
 	  {% endif %}
 	</div>
   </div>
 </div>
+<div class="container-fluid">
+<div class="row">
 <div class="col-sm-3 col-md-2 sidebar">
       {% if session.logged_in %}
         <ul class="nav nav-sidebar">
@@ -76,18 +74,15 @@
       {% endif %}
 </div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<div class="row">
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
   </br>
   </br>
-</div>
-<div class="row">
   {% block body %}{% endblock %}
 </div>
 </div>
-
+</div>
   <!-- Custom styles for this template -->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 
