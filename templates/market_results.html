@@ -35,7 +35,7 @@
 	</thead>
     {% for group in marketresults|groupby('itemid') %}
       {% for mr in group.list %}
-        <tr><h3>{{ mr.name|safe }}</h3></tr>
+        <tr><td>{{ mr.name|safe }}</td></tr>
         <tr>
         <td>
 		{% for c in mr.cards %}
