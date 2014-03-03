@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><input type=submit name=delete value="delete"><input type=submit name=edit value="edit">{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <input type=submit name=buy value="buy"> {% endif %}</td>
+      <td><button type=submit name=delete value="{{ t.id }}">Delete</button><button type=submit name=edit value="{{ t.id }}">Edit</button>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <button type=submit name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
