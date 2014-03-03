@@ -727,22 +727,22 @@ def modify_treasury():
   except:
     print 'could not map action for modifying treasury'
   
-  if len(delete_treasures) > 0:
-    dt_ids = [dt.id for dt in delete_treasures]
+  #if len(delete_treasures) > 0:
+  #  dt_ids = [dt.id for dt in delete_treasures]
     #check if the mapped guild treasure is in list
-    del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
-    print 'deleted %s items' % del_count
-  if len(edit_treasures) > 0:
-    gt = edit_treasures[0]
+  #  del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
+  #  print 'deleted %s items' % del_count
+  #if len(edit_treasures) > 0:
+  #  gt = edit_treasures[0]
     #push to edit
-    print 'edit'
-  if len(buy_treasures) > 0: 
+  #  print 'edit'
+  #if len(buy_treasures) > 0: 
     #link to guild treasure / guild points
     #who is logged in
-    session['user']
-    print 'buy'
+  #  session['user']
+  #  print 'buy'
   
-  db.session.commit()
+  #db.session.commit()
   
   t = MappedGuildTreasure.query.all()
     
