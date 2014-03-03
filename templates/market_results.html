@@ -35,9 +35,8 @@
 	</thead>
     {% for group in marketresults|groupby('itemid') %}
       {% for mr in group.list %}
-        <thead>
-          <tr><h3 class="sub-header">{{ mr.name|safe }}</h3></tr>
-        </thead>
+        <tr><h3 class="sub-header">{{ mr.name|safe }}</h3></tr>
+        <tr>
         <td>
 		{% for c in mr.cards %}
 		  <li>{{ c|safe }}
@@ -48,6 +47,7 @@
 		<td>{{ mr.vendor|safe }}</td>
 		<td>{{ mr.coords|replace(".","")|safe }}</td>
         <td>{{ mr.date|safe }}</td>
+        </tr>
       {% endfor %}
     {% endfor %}
     </table>
