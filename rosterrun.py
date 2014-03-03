@@ -245,6 +245,7 @@ class MappedMarketSearch(db.Model):
         return '<MappedMarketSearch %r>' % self.name
 
 sched = scheduler()
+guild = Guild()
 
 def resetParameters():
     session['user'] = None
@@ -328,6 +329,80 @@ def show_entries():
     
     
     return render_template('show_entries.html', combinations=availableParties, characters=chars)
+
+@app.route('/viable_parties', methods=['GET', 'POST'])
+def viable_parties():   
+    if not session.get('logged_in'):
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+ 
+    action = None
+    availableParties = []
+    chars = []
+    checkCalculation()    
+    
+    try:
+      session['doc'] = request.form['gdocname'].strip()
+      action = request.form['action']
+    except:
+      print 'cannot find gdoc name'
+    if action == u"Import":
+      import_characters()
+    elif action == u"Calculate":
+      flash('Running Calculation')
+      run_calculation()
+    elif action == u"Reset":
+      reset()
+    elif action == u"Refresh":
+      checkCalculation()
+    else:
+      print 'show entries'
+    
+    try:
+      if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
+        print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+        cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+        print 'AVAILABLE PARTIES %s ' % len(availableParties)  
+      else:
+        print 'could not find the spreadsheet id'
+        #try to retrieve the token from the db
+        loginConfiguration(session['user'])
+        user = users.get_current_user()
+        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+        credentials = storage.get()   
+        if credentials is None:
+          flash('Please login again')
+          session.pop('logged_in', None)
+          return redirect(url_for('login'))
+        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+        session['g_spreadsheet_id'] = g_s_id
+        session['g_worksheet_id'] = g_w_id    
+        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+        
+        print 'now found available parties %s' % len(availableParties)  
+    except:
+      print 'issue finding the available parties'
+      resetLookupParameters()
+      
+    if len(availableParties) == 0:
+      print 'get all combinations'
+      cur = PartyCombo.query.all()
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
+      curChars = MappedCharacter.query.all()
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+    
+    #map points back from characters and guild?
+    
+    
+    return render_template('viable_parties.html', combinations=availableParties, characters=chars)
 
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""
@@ -621,10 +696,11 @@ def treasury():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-    
+  
+  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
   t = MappedGuildTreasure.query.all()
   
-  return render_template('treasury.html', treasures=t)
+  return render_template('treasury.html', treasures=t, edittreasure=gt)
 
 @app.route('/modify_treasury', methods=['GET', 'POST'])
 def modify_treasury():
@@ -633,25 +709,44 @@ def modify_treasury():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
+
+  delete_treasures = []
+  edit_treasures = []
+  buy_treasures = []
+  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
   try:
-    action = request.form['action']
-    print request
+    delete_treasures = request.getlist("delete")
+    for a in delete_treasures:
+      print a
+    edit_treasures = request.getlist("edit")
+    for a in edit_treasures:
+      print a
+    buy_treasures = request.getlist("buy")
+    for a in buy_treasures:
+      print a
   except:
     print 'could not map action for modifying treasury'
   
-  if action == u'Delete':
-    print 'delete'
-  elif action == u'Edit':
+  if len(delete_treasures) > 0:
+    dt_ids = [dt.id for dt in delete_treasures]
+    #check if the mapped guild treasure is in list
+    del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
+    print 'deleted %s items' % del_count
+  if len(edit_treasures) > 0:
+    gt = edit_treasures[0]
+    #push to edit
     print 'edit'
-  elif action == u'Buy':
+  if len(buy_treasures) > 0: 
+    #link to guild treasure / guild points
+    #who is logged in
+    session['user']
     print 'buy'
-  else:
-    print 'could not map action'
+  
+  db.session.commit()
   
   t = MappedGuildTreasure.query.all()
     
-  return render_template('treasury.html', treasures=t)
+  return render_template('treasury.html', treasures=t, edittreasure=gt)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():
@@ -690,7 +785,7 @@ def add_treasure():
   
   t = MappedGuildTreasure.query.all()
     
-  return render_template('treasury.html', treasures=t)
+  return render_template('treasury.html', treasures=t, edittreasure=gt)
   
 @app.route('/points', methods=['GET', 'POST'])
 def points():
@@ -700,6 +795,29 @@ def points():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
+  action = None
+  p = []
+  try:
+    sesson = request.form['action']
+  except:
+    print 'cannot bind action'
+  
+  p = MappedGuildPoint.query.all()
+  
+  return render_template('points.html', points=p)
+
+@app.route('/calculate_points', methods=['GET', 'POST'])
+def calculate_points():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
+  #need to link to guild points calculation
+  
+  #also take into account existing runs (update existing runs with guild points)
+  
   action = None
   p = []
   try:
@@ -795,7 +913,6 @@ def update_chars():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
   
   #do something to populate fields with current character
   action = None
@@ -918,7 +1035,7 @@ def run_calculation():
       
     except:
       print 'error running calculation'
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('viable_parties'))
 
 @app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
@@ -960,7 +1077,7 @@ def checkCalculation():
   except:
     print 'error occurred trying to fetch job'
     session.pop('job_id', None)
-  return redirect(url_for('show_entries'))
+  return redirect(url_for('viable_parties'))
 
 @app.route('/reset', methods=['POST'])
 def reset():

@@ -56,7 +56,7 @@
       {% if session.logged_in %}
         <ul class="nav nav-sidebar">
           <li class="active"><a href="{{ url_for('show_entries') }}">Overview</a></td></li>
-          <li><a href="">Viable Parties</a></td></li>
+          <li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></td></li>
           <li><a href="">Runs</a></td></li>
         </ul>
         <ul class="nav nav-sidebar">

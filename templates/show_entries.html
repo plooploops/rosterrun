@@ -7,8 +7,6 @@
         <dt>Google Document:
         <dd><input type=text name=gdocname placeholder="Quest Status">
         <dd><input type=submit name=action value=Import>
-        <input type=submit name=action value=Calculate>
-        <input type=submit name=action value=Refresh>
         <input type=submit name=action value=Reset>
       </dl>
     </form>
@@ -47,29 +45,6 @@
       <dd>Present: <input type=text name=charpresent placeholder="1">
       <input type=submit name=action value=Add></>
     </form>
-    <h2 class="sub-header">Party Combinations</h2>
-    <table class="table table-striped combination">
-    <thead>
-      <tr>
-        <th>Party Combination</th>
-        <th>Player Name</th>
-        <th>Character Name</th>
-        <th>Class</th>
-        <th>Role</th>
-      </tr>
-    </thead>
-    {% for entry in combinations %}
-      <tr>
-      <td>{{ entry.InstanceName }} {{ entry.PartyIndex|safe }}</td>
-      <td>{{ entry.PlayerName|safe }}</td>
-      <td>{{ entry.CharacterName|safe }}</td>
-      <td>{{ entry.CharacterClass|safe }}</td>
-      <td>{{ entry.RoleName|safe }}</td>
-      </tr>
-    {% else %}
-      <li><em>Unbelievable.  No combinations here so far</em>
-    {% endfor %}
-    </table>
     </div>
   {% endif %}
 {% endblock %}
