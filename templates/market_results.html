@@ -20,27 +20,29 @@
 	    {{ volumechart|safe }}
 	  </div>
 	</div>
+	<h2 class="sub-header">Details</h2>
 	<div class="table-responsive">
 	<table class=class="table table-striped marketresult">
     {% for group in marketresults|groupby('itemid') %}
-      <tr><td colspan="6"><h3>{{ group.grouper|safe }}</h3></td></tr>
       {% for mr in group.list %}
-        <tr><td colspan="6"><h3>{{ mr.name|safe }}</h3></td></tr>
-        <tr>
-	      <th>Slotted with</th>
-	      <th>Price</th>
-	      <th>Amount</th>
-	      <th>Vendor</th>
-	      <th>Location</th>
-	      <th>Date</th>
-        </tr>
+        <thead>
+          <tr><h3 class="sub-header">{{ mr.name|safe }}</h3></tr>
+          <tr>
+          <th>Slotted with</th>
+          <th>Price</th>
+          <th>Amount</th>
+          <th>Vendor</th>
+          <th>Location</th>
+          <th>Date</th>
+          </tr>
+	    </thead>
         <td>
 		{% for c in mr.cards %}
 		  <li>{{ c|safe }}
 		{% endfor %}
 		</td>
 		<td>{{ "{:,.2f}".format(mr.price)|safe }}</td>
-		<td>{{ mr.amount|safe }}</td>
+		<td>{{ "{:,.0f}".format(mr.amount)|safe }}</td>
 		<td>{{ mr.vendor|safe }}</td>
 		<td>{{ mr.coords|replace(".","")|safe }}</td>
         <td>{{ mr.date|safe }}</td>
