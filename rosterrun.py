@@ -697,7 +697,7 @@ def treasury():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
+  gt = MappedGuildTreasure(1560, 'Sage's Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   t = MappedGuildTreasure.query.all()
   
   return render_template('treasury.html', treasures=t, edittreasure=gt)
@@ -713,7 +713,7 @@ def modify_treasury():
   delete_treasures = []
   edit_treasures = []
   buy_treasures = []
-  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
+  gt = MappedGuildTreasure(1560, 'Sage's Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   try:
     delete_treasures = request.getlist("delete")
     for a in delete_treasures:

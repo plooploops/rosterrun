@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Roster</h1>
+    <form action="{{ url_for('viable_parties') }}" method=post class=run-calculation>
+      <dl>
+        <dt>Google Document:
+        <dd><input type=text name=gdocname placeholder="Quest Status">
+        <input type=submit name=action value=Calculate>
+        <input type=submit name=action value=Refresh>
+      </dl>
+    </form>
+    <h2 class="sub-header">Party Combinations</h2>
+    <table class="table table-striped combination">
+    <thead>
+      <tr>
+        <th>Party Combination</th>
+        <th>Player Name</th>
+        <th>Character Name</th>
+        <th>Class</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    {% for entry in combinations %}
+      <tr>
+      <td>{{ entry.InstanceName }} {{ entry.PartyIndex|safe }}</td>
+      <td>{{ entry.PlayerName|safe }}</td>
+      <td>{{ entry.CharacterName|safe }}</td>
+      <td>{{ entry.CharacterClass|safe }}</td>
+      <td>{{ entry.RoleName|safe }}</td>
+      </tr>
+    {% else %}
+      <li><em>Unbelievable.  No combinations here so far</em>
+    {% endfor %}
+    </table>
+    </div>
+  {% endif %}
+{% endblock %}
