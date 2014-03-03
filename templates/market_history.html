@@ -23,19 +23,21 @@
 	<h2 class="sub-header">Details</h2>
 	<div class="table-responsive">
     <table class=class="table table-striped marketresult">
+    <thead>
+	  <tr>
+	    <th>Slotted with</th>
+	    <th>Price</th>
+	    <th>Amount</th>
+	    <th>Vendor</th>
+	    <th>Location</th>
+	    <th>Date</th>
+	  </tr>
+	</thead>
     {% for group in marketresults|groupby('itemid') %}
       {% for mr in group.list %}
         <thead>
           <tr><h3 class="sub-header">{{ mr.name|safe }}</h3></tr>
-          <tr>
-            <th>Slotted with</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Vendor</th>
-            <th>Location</th>
-            <th>Date</th>
-          </tr>
-	    </thead>
+        </thead>
         <td>
         {% for c in mr.cards %}
 	      <li>{{ c|safe }}
