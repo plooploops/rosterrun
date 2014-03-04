@@ -35,8 +35,9 @@
       <td>{{ char.Present|safe }}</td>
     {% endfor %}
     </table>
+    </div>
+    <h2 class="sub-header">Character</h2>
     <form action="{{ url_for('add_character') }}" method=post>
-      <h2 class="sub-header">Character</h2>
       <dd>Class: <input type=text name=charclass placeholder="High Wizard">
       <dd>Name: <input type=text name=charname placeholder="Billdalf">
       <dd>Quests: <input type=text name=charquests placeholder="twotribes">
@@ -45,6 +46,5 @@
       <dd>Present: <input type=text name=charpresent placeholder="1">
       <input type=submit name=action value=Add></>
     </form>
-    </div>
   {% endif %}
 {% endblock %}
