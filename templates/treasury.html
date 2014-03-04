@@ -2,17 +2,6 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Treasury</h1>
-    <form action="{{ url_for('add_treasure') }}" method=post>
-	  <h2 class="sub-header">Add Item</h2>
-      <dd>Item Id:<input type=text name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}">
-      <dd>Item Name:<input type=text name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}">
-	  <dd>Cards:<input type=text name=nitemname placeholder="Doppelganger Card, Turtle General Card" value="{{ edittreasure.cards }}">
-	  <dd>Amount:<input type=text name=nitemamount placeholder="1" value="{{ edittreasure.amount }}">
-	  <dd>Suggested Min Price:<input type=text name=nitemminprice placeholder="1" value="{{ edittreasure.minMarketPrice }}">
-	  <dd>Suggested Max Price:<input type=text name=nitemmaxprice placeholder="1" value="{{ edittreasure.maxMarketPrice }}">
-	  <dd>Suggested Median Price:<input type=text name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}">
-	  <input type=submit name=action value=Add></>
-    </form>
     <form action="{{ url_for('modify_treasury') }}" method=post class=modify-treasury>
     <div class="table-responsive">
     <table class="table table-striped treasure">
@@ -47,6 +36,17 @@
     {% endfor %}
     </table>
     </div>
+    </form>
+    <form action="{{ url_for('add_treasure') }}" method=post>
+	  <h2 class="sub-header">Add Item</h2>
+	  <dd>Item Id:<input type=text name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}">
+	  <dd>Item Name:<input type=text name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}">
+	  <dd>Cards:<input type=text name=nitemname placeholder="Doppelganger Card, Turtle General Card" value="{{ edittreasure.cards }}">
+	  <dd>Amount:<input type=text name=nitemamount placeholder="1" value="{{ edittreasure.amount }}">
+	  <dd>Suggested Min Price:<input type=text name=nitemminprice placeholder="1" value="{{ edittreasure.minMarketPrice }}">
+      <dd>Suggested Max Price:<input type=text name=nitemmaxprice placeholder="1" value="{{ edittreasure.maxMarketPrice }}">
+	  <dd>Suggested Median Price:<input type=text name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}">
+	  <input type=submit name=action value=Add></>
     </form>
   {% endif %}
 {% endblock %}
