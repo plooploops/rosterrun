@@ -729,9 +729,9 @@ def modify_treasury():
     print 'could not map action for modifying treasury'
   
   if len(delete_treasures) > 0:
-    dt_ids = [str(dt) for dt in delete_treasures]
+    dt_ids = [int(str(dt)) for dt in delete_treasures]
     #check if the mapped guild treasure is in list
-    del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
+    del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).delete()
     print 'deleted %s items' % del_count
   if len(edit_treasures) > 0:
     gt = edit_treasures[0]
