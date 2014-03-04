@@ -10,6 +10,16 @@
         <input type=submit name=action value=Reset>
       </dl>
     </form>
+    <h2 class="sub-header">Character</h2>
+	  <form action="{{ url_for('add_character') }}" method=post>
+	    <dd>Class: <input type=text name=charclass placeholder="High Wizard">
+	    <dd>Name: <input type=text name=charname placeholder="Billdalf">
+	    <dd>Quests: <input type=text name=charquests placeholder="twotribes">
+	    <dd>Last Run: <input type=text name=charlastrun placeholder="2/9/2014">
+	    <dd>Player Name: <input type=text name=charplayername placeholder="Billy">
+	    <dd>Present: <input type=text name=charpresent placeholder="1">
+	    <input type=submit name=action value=Add></>
+    </form>
     <h2 class="sub-header">Character Status</h2>
     <div class="table-responsive">
     <table action="{{ url_for('update_chars') }}" method=post class="table table-striped character">
@@ -36,15 +46,5 @@
     {% endfor %}
     </table>
     </div>
-    <h2 class="sub-header">Character</h2>
-    <form action="{{ url_for('add_character') }}" method=post>
-      <dd>Class: <input type=text name=charclass placeholder="High Wizard">
-      <dd>Name: <input type=text name=charname placeholder="Billdalf">
-      <dd>Quests: <input type=text name=charquests placeholder="twotribes">
-      <dd>Last Run: <input type=text name=charlastrun placeholder="2/9/2014">
-      <dd>Player Name: <input type=text name=charplayername placeholder="Billy">
-      <dd>Present: <input type=text name=charpresent placeholder="1">
-      <input type=submit name=action value=Add></>
-    </form>
   {% endif %}
 {% endblock %}
