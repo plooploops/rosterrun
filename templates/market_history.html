@@ -42,7 +42,7 @@
 	      <li>{{ c|safe }}
 	    {% endfor %}
 	    </td>
-	    <td>{{ "{:,.2f}".format(mr.price)|safe }}</td>
+	    <td>{{ "{:,.0f}".format(mr.price)|safe }}</td>
 	    <td>{{ "{:,.0f}".format(mr.amount)|safe }}</td>
 	    <td>{{ mr.vendor|safe }}</td>
 	    <td>{{ mr.coords|replace(".","")|safe }}</td>

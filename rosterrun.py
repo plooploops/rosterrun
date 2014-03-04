@@ -140,7 +140,7 @@ class MappedCharacter(db.Model):
 	self.Present = present
     
     def __repr__(self):
-        return '<MappedCharacter %r>' % self.playerName
+        return '<MappedCharacter %r>' % self.PlayerName
 
 class MappedGuildTreasure(db.Model):
     __tablename__ = 'guild_treasures'
@@ -388,7 +388,8 @@ def viable_parties():
         chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
         
         print 'now found available parties %s' % len(availableParties)  
-    except:
+    except Exception,e: 
+      print str(e)
       print 'issue finding the available parties'
       resetLookupParameters()
       
@@ -727,22 +728,22 @@ def modify_treasury():
   except:
     print 'could not map action for modifying treasury'
   
-  #if len(delete_treasures) > 0:
-  #  dt_ids = [dt.id for dt in delete_treasures]
+  if len(delete_treasures) > 0:
+    dt_ids = [dt.id for dt in delete_treasures]
     #check if the mapped guild treasure is in list
-  #  del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
-  #  print 'deleted %s items' % del_count
-  #if len(edit_treasures) > 0:
-  #  gt = edit_treasures[0]
+    del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id.in_(dt_ids)).delete()
+    print 'deleted %s items' % del_count
+  if len(edit_treasures) > 0:
+    gt = edit_treasures[0]
     #push to edit
-  #  print 'edit'
-  #if len(buy_treasures) > 0: 
+    print 'edit'
+  if len(buy_treasures) > 0: 
     #link to guild treasure / guild points
-    #who is logged in
+    #who is logged in and do they have enough points?
   #  session['user']
-  #  print 'buy'
+    print 'buy'
   
-  #db.session.commit()
+  db.session.commit()
   
   t = MappedGuildTreasure.query.all()
     
@@ -960,8 +961,7 @@ def import_characters():
           return redirect(url_for('show_entries'))
 
       if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
-        cur = MappedCharacter.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        [db.session.delete(c) for c in cur]  
+        MappedCharacter.query.delete()
         db.session.commit()
     
       loginConfiguration(session['user'])
@@ -991,6 +991,10 @@ def import_characters():
     except Exception,e: 
       print str(e)
       print 'error importing'
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+      
     return redirect(url_for('show_entries'))
 
 @app.route('/runcalc', methods=['POST'])
@@ -1033,8 +1037,12 @@ def run_calculation():
       print 'running calc %s ' % calcjob.id
       session['job_id'] = calcjob.id
       
-    except:
+    except Exception,e: 
+      print str(e)
       print 'error running calculation'
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
     return redirect(url_for('viable_parties'))
 
 @app.route('/checkcalc', methods=['POST'])
@@ -1109,13 +1117,10 @@ def reset():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id
          
-      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-       
-      [db.session.delete(c) for c in cur]  
+      PartyCombo.query.delete() 
       db.session.commit()
 
-      cur = MappedCharacter.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-      [db.session.delete(c) for c in cur]  
+      MappedCharacter.query.delete()
       db.session.commit()  
     
       flash('Reset party combinations')

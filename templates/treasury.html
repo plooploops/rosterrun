@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><button type=submit name=delete value="{{ t.id }}">Delete</button><button type=submit name=edit value="{{ t.id }}">Edit</button>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <button type=submit name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
+      <td><button type=submit name=delete value="{{ t }}">Delete</button><button type=submit name=edit value="{{ t }}">Edit</button>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <button type=submit name=buy value="{{ t }}">Buy</button> {% endif %}</td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
@@ -27,10 +27,10 @@
         <li>{{ c }}
       {% endfor %}
       </td>
-      <td>{{ t.amount|safe }}</td>
-      <td>{{ t.minMarketPrice|safe }}</td>
-      <td>{{ t.maxMarketPrice|safe }}</td>
-      <td>{{ t.medianMarketPrice|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.amount)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.minMarketPrice)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.maxMarketPrice)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.medianMarketPrice)|safe }}</td>
       <td>{{ t.refreshDate|safe }}</td>
       <td>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} {% endif %}</td>
     {% endfor %}

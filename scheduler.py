@@ -72,7 +72,7 @@ roleSPActive.CanDualClientRole = [roleSupport, roleSPBoost, roleSPKiller]
 roleFreezer.CanDualClientRole = [roleSupport, roleSPBoost]
 roleDPS.CanDualClientRole = [roleSupport, roleSPBoost]
 
-AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive]
+AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive, roleDPS]
 niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
 niddhoggRolesMinSPKiller = [roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 niddhoggRolesSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleFreezer, roleSPActive]
@@ -198,6 +198,8 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   return (spreadsheet_id, worksheet_id)  
 
 def initializeDataOAuth(credentials, docName, quests):
+  characters = []
+  found_chars = []
   # Connect to Google
   gd_client = gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
   gd_client = authorizeClient(credentials, gd_client)
@@ -219,6 +221,7 @@ def initializeDataOAuth(credentials, docName, quests):
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
   rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
+  
   for row in rows:
     charac = Character()
     charac.Quests = []
@@ -260,7 +263,9 @@ def initializeDataOAuth(credentials, docName, quests):
     
     if charac.Role is None:
       charac.Role = roleUnmapped
-    characters.append(charac)
+    found_chars.append(charac)
+  
+  characters = found_chars
   return characters
   #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars
