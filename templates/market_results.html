@@ -4,11 +4,11 @@
     <h1 class="page-header">Current Results</h1>
     <form method=post action="{{ url_for('item_current_results') }}" class=item-history>
     <select name="itemslist">
-		{% for ms in marketsearchs %}
-		  <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
-		{% endfor %}
-	</select>
-    <button type="button" class="btn btn-primary" name=action action="{{ url_for('item_history') }}">Load<button>
+      {% for ms in marketsearchs %}
+      <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
+      {% endfor %}
+    </select>
+    <button type="button" class="btn btn-primary" name=action action="{{ url_for('item_current_results') }}">Load<button>
 	</form>
 	<div class="row placeholder">
 	  <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
