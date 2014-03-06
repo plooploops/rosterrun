@@ -8,35 +8,35 @@
 	    <input type="text" class="form-control" name=gdocname id="gdocname" placeholder="Quest Status">
 	  </div>
       <dd><input type=submit class="btn btn-primary" name=action value="Import"></input>
-      <input type=submit class="btn btn-default" name=action value="Reset"></input>
+      <button type=submit class="btn btn-default" name=action>Reset</input>
     </form>
     <h2 class="sub-header">Character</h2>
 	  <form action="{{ url_for('add_character') }}" method=post>
 	    <div class="form-group">
 		  <label for="charclass">Class</label>
-		  <input type="text" class="form-control" name=charclass id="charclass" placeholder="High Wizard">
+		  <input type="text" class="form-control" name=charclass id="charclass" placeholder="High Wizard" value="{{ editcharacter.Class }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charname">Name</label>
-		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf">
+		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf" value="{{ editcharacter.Name }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charquests">Quests</label>
-		  <input type="text" class="form-control" name=charquests id="charquests" placeholder="twotribes,attitudetothenewworld">
+		  <input type="text" class="form-control" name=charquests id="charquests" placeholder="twotribes,attitudetothenewworld" value="{{ editcharacter.Quests }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charlastrun">Last Run</label>
-		  <input type="datetime" class="form-control" name=charlastrun id="charlastrun" placeholder="2/9/2014">
+		  <input type="datetime" class="form-control" name=charlastrun id="charlastrun" placeholder="2/9/2014" value="{{ editcharacter.LastRun }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charplayername">Player Name</label>
-		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy">
+		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy" value="{{ editcharacter.PlayerName }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charpresent">Present</label>
-		  <input type="number" class="form-control" name=charpresent id="charpresent" placeholder="1">
+		  <input type="number" class="form-control" name=charpresent id="charpresent" placeholder="1" value="{{ editcharacter.Present }}"></input>
 	    </div>
-	    <input type=submit class="btn btn-primary" name=action value="Add"></input>
+	    <button type=submit class="btn btn-primary" name=add value="{{ editcharacter.id }}">Add</button>
       </dl>
     </form>
     <h2 class="sub-header">Character Status</h2>
@@ -55,7 +55,7 @@
     </thead>
     {% for char in characters %}
       <tr>
-      <td><input type=submit class="btn btn-default" name=action value="Drop"></input><input type=submit class="btn btn-default" name=action value="Edit"></input>
+      <td><button type=submit class="btn btn-default" name=drop value="{{ char.id }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id }}">Edit</button>
       <td>{{ char.Class|safe }}</td>
       <td>{{ char.Name|safe }}</td>
       <td>{{ char.Role|safe}}</td>

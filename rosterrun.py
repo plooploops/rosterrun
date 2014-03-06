@@ -4,7 +4,7 @@ from worker import conn
 
 import os
 from flask import Flask
-from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character
+from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
@@ -267,7 +267,8 @@ def show_entries():
     action = None
     availableParties = []
     chars = []
-    checkCalculation()    
+    checkCalculation() 
+    ec = None
     
     try:
       session['doc'] = request.form['gdocname'].strip()
@@ -324,11 +325,13 @@ def show_entries():
       availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
       curChars = MappedCharacter.query.all()
       chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+
+    
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', 'Billy', 1)
     
     #map points back from characters and guild?
     
-    
-    return render_template('show_entries.html', combinations=availableParties, characters=chars)
+    return render_template('show_entries.html', combinations=availableParties, characters=chars, editcharacter=ec)
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
@@ -734,7 +737,8 @@ def modify_treasure():
     del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).delete()
     print 'deleted %s items' % del_count
   if len(edit_treasures) > 0:
-    gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == edit_treasures[0]).all()[0]
+    et_ids = [int(str(dt)) for dt in edit_treasures]
+    gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     #push to edit
     print 'edit'
   if len(buy_treasures) > 0: 
@@ -914,18 +918,58 @@ def update_chars():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
-  #do something to populate fields with current character
+ 
   action = None
-  p = []
+  chars = []
+  ec = None
+    
   try:
-    action = request.form['action']
+    session['doc'] = request.form['gdocname'].strip()
+    drop_id = request.form.drop.strip()
+    edit_id = request.form.edit.strip()
   except:
-    print 'cannot bind action'
+    print 'cannot find gdoc name'
   
-  mc = MappedCharacter.query.all()
+  if len(drop_id) > 0:
+    d_id = int(str(drop_id))
+    ec = MappedCharacter.query.filter(MappedCharacter.id == d_id).all()[0]
+  elif len(edit_id) > 0:
+    e_id = int(str(edit_id))
+    ec = MappedCharacter.query.filter(MappedCharacter.id == e_id).all()[0]
+  else:
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', 'Billy', 1)
+    print 'no action to map'
   
-  return render_template('show_entries.html')
+  try:
+    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
+      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+      print 'AVAILABLE PARTIES %s ' % len(availableParties)  
+    else:
+      print 'could not find the spreadsheet id'
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is None:
+        flash('Please login again')
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+  except:
+    print 'issue finding the available parties'
+    resetLookupParameters()
+    
+    
+  #map points back from characters and guild?
+    
+  return render_template('show_entries.html', characters=chars, editcharacter=ec)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
@@ -934,18 +978,75 @@ def add_character():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  
-  #do something to save / edit current character
+ 
   action = None
-  p = []
+  chars = []
+  ec = None
+    
   try:
-    sesson = request.form['action']
+    session['doc'] = request.form['gdocname'].strip()
+    char_id = int(str(request.form['add'].strip()))
   except:
-    print 'cannot bind action'
+    print 'cannot find gdoc name'
+    
+  ec = MappedCharacter.query.filter(MappedCharacter.id == char_id).all()[0]
   
-  mc = MappedCharacter.query.all()
-  
-  return render_template('show_entries.html')
+  charclass = request.form['charclass']
+  charrole = None
+  roleMap = [r for r in AllRoles if charac.Class in r.Classes]
+  if len(roleMap) > 0:
+    charrole = roleMap[0]
+  charname = request.form['charname']
+  charquests = request.form['charquests'].replace(',','|')
+  charlastrun = request.form['charlastrun']
+  charplayername = request.form['charplayername']
+  charpresent = request.form['charpresent']
+  if ec is not None:
+    ec.Class = charclass
+    ec.Role = charrole
+    ec.Name = charname
+    ec.Quests = charquests
+    ec.LastRun = charlastrun
+    ec.PlayerName = charplayername
+    ec.Present = charpresent
+    
+  try:
+    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
+      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+      
+      if ec is None:
+        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charplayername, charpresent)  
+        db.session.add(ec)  
+        db.session.commit()
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+    else:
+      print 'could not find the spreadsheet id'
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is None:
+        flash('Please login again')
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      if ec is None:
+        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charplayername, charpresent)  
+        db.session.add(ec)  
+        db.session.commit()
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+  except:
+    print 'issue finding the available parties'
+    resetLookupParameters()
+    
+  #map points back from characters and guild?
+    
+  return render_template('show_entries.html', characters=chars, editcharacter=ec)
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
