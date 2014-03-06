@@ -40,30 +40,32 @@
       </dl>
     </form>
     <h2 class="sub-header">Character Status</h2>
-    <div class="table-responsive">
-    <table action="{{ url_for('update_chars') }}" method=post class="table table-striped character">
-    <thead>
-      <tr>
-        <th>Manage</th>
-        <th>Class</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Last Run</th>
-        <th>Player Name</th>
-        <th>Online?</th>
-      </tr>
-    </thead>
-    {% for char in characters %}
-      <tr>
-      <td><button type=submit class="btn btn-default" name=drop value="{{ char.id }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id }}">Edit</button>
-      <td>{{ char.Class|safe }}</td>
-      <td>{{ char.Name|safe }}</td>
-      <td>{{ char.Role|safe}}</td>
-      <td>{{ char.LastRun|safe }}</td>
-      <td>{{ char.PlayerName|safe }}</td>
-      <td>{{ char.Present|safe }}</td>
-    {% endfor %}
-    </table>
+    <form action="{{ url_for('update_chars') }}" method=post>
+      <div class="table-responsive">
+      <table class="table table-striped character">
+      <thead>
+        <tr>
+          <th>Manage</th>
+          <th>Class</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Last Run</th>
+          <th>Player Name</th>
+          <th>Online?</th>
+        </tr>
+      </thead>
+      {% for char in characters %}
+        <tr>
+        <td><button type=submit class="btn btn-default" name=drop value="{{ char.id }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id }}">Edit</button>
+        <td>{{ char.Class|safe }}</td>
+        <td>{{ char.Name|safe }}</td>
+        <td>{{ char.Role|safe}}</td>
+        <td>{{ char.LastRun|safe }}</td>
+        <td>{{ char.PlayerName|safe }}</td>
+        <td>{{ char.Present|safe }}</td>
+      {% endfor %}
+      </table>
+    </form>
     </div>
   {% endif %}
 {% endblock %}
