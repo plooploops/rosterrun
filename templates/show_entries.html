@@ -6,8 +6,8 @@
       <dl>
         <dt>Google Document:
         <dd><input type=text name=gdocname placeholder="Quest Status">
-        <dd><button type="button" class="btn btn-primary" name=action>Import</button>
-        <button type="button" class="btn btn-default" name=action>Reset</button>
+        <dd><input type=submit class="btn btn-primary" name=action value="Import"></input>
+        <input type=submit class="btn btn-default" name=action value="Reset"></input>
       </dl>
     </form>
     <h2 class="sub-header">Character</h2>
@@ -36,7 +36,7 @@
     </thead>
     {% for char in characters %}
       <tr>
-      <td><button type="button" class="btn btn-default" name=action>Drop</button><button type="button" class="btn btn-default" name=action>Edit</button>
+      <td><input type=submit class="btn btn-default" name=action value="Drop"></input><input type=submit class="btn btn-default" name=action value="Edit"></input>
       <td>{{ char.Class|safe }}</td>
       <td>{{ char.Name|safe }}</td>
       <td>{{ char.Role|safe}}</td>

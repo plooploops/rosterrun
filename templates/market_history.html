@@ -8,7 +8,7 @@
 	  <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
 	{% endfor %}
 	</select>
-	<button type="button" class="btn btn-primary" name=action action="{{ url_for('item_history') }}">Load</button>
+	<input type=submit class="btn btn-primary" value="Load"></input>
 	</form>
 	<div class="row placeholder">
 	  <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
