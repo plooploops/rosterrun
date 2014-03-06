@@ -716,9 +716,6 @@ def modify_treasure():
   buy_treasures = []
   gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   try:
-    print request.form.delete.alt
-    print request.form.edit
-    print request.form.buy
     delete_treasures = request.form.getlist("delete")
     for a in delete_treasures:
       print a
