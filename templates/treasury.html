@@ -6,7 +6,7 @@
     <div class="table-responsive">
     <table class="table table-striped treasure">
     <tr>
-    <th>Action</th>
+    <th>Modify</th>
     <th>Itemid</th>
     <th>Name</th>
     <th>Cards</th>
@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><dd><input type=submit class="btn btn-default" name=delete value="Delete" alt="{{ t.id }}"></input><dd><input type=submit class="btn btn-default" name=edit value="Edit" alt="{{ t.id }}"></input>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><input type=submit class="btn btn-primary" name=buy value="Buy" alt="{{ t.id }}"></input> {% endif %}</td>
+      <td><dd><button type=submit class="btn btn-default" name=delete value="{{ t.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ t.id }}">Edit</button></td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
@@ -32,7 +32,7 @@
       <td>{{ "{:,.0f}".format(t.maxMarketPrice)|safe }}</td>
       <td>{{ "{:,.0f}".format(t.medianMarketPrice)|safe }}</td>
       <td>{{ t.refreshDate|safe }}</td>
-      <td>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} {% endif %}</td>
+      <td>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}"></button> {% endif %}</td>
     {% endfor %}
     </table>
     </div>
@@ -67,7 +67,7 @@
 	    <label for="nitemmedianprice">Suggested Median Price</label>
 	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}"></input>
 	  </div>
-	  <input type=submit class="btn btn-primary" name=action value="Save"></input>
+	  <button type=submit class="btn btn-primary" name=action>Submit</button>
     </form>
   {% endif %}
 {% endblock %}
