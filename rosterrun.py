@@ -925,17 +925,18 @@ def update_chars():
   edit_id = None
   
   try:
-    drop_id = request.form.drop.strip()
-    edit_id = request.form.edit.strip()
+    drop_id = request.form.getlist("drop")
+    edit_id = request.form.getlist("edit")
   except:
     print 'cannot find gdoc name'
   
   if len(drop_id) > 0:
-    d_id = int(str(drop_id))
-    ec = MappedCharacter.query.filter(MappedCharacter.id == d_id).all()[0]
+    dc_ids = [int(str(dt)) for dt in drop_id]
+    ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
   elif len(edit_id) > 0:
+    ec_ids = [int(str(dt)) for dt in edit_id]  
     e_id = int(str(edit_id))
-    ec = MappedCharacter.query.filter(MappedCharacter.id == e_id).all()[0]
+    ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids).all()[0]
   else:
     ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
     print 'no action to map'
@@ -985,11 +986,13 @@ def add_character():
   char_id = None
     
   try:
-    char_id = int(str(request.form['add'].strip()))
+    char_id = request.form.getlist("add")
   except:
     print 'cannot find gdoc name'
-    
-  ec = MappedCharacter.query.filter(MappedCharacter.id == char_id).all()[0]
+  
+  if len(drop_id) > 0:
+    dc_ids = [int(str(dt)) for dt in char_id]
+    ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
   
   charclass = str(request.form['charclass'])
   charrole = None
