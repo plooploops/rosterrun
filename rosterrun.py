@@ -703,8 +703,8 @@ def treasury():
   
   return render_template('treasury.html', treasures=t, edittreasure=gt)
 
-@app.route('/modify_treasury', methods=['GET', 'POST'])
-def modify_treasury():
+@app.route('/save_treasure', methods=['GET', 'POST'])
+def save_treasure():
   if not session.get('logged_in'):
     #abort(401)
     flash('Please login again')
