@@ -783,8 +783,8 @@ def add_treasure():
     ms = MappedMarketSearch.query.filter(MappedMarketSearch.itemid == item_id)
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
+    db.session.add(gt)  
   
-  db.session.add(gt)
   db.session.commit()
   
   t = MappedGuildTreasure.query.all()
