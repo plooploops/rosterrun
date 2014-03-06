@@ -12,13 +12,32 @@
     </form>
     <h2 class="sub-header">Character</h2>
 	  <form action="{{ url_for('add_character') }}" method=post>
-	    <dd>Class: <input type=text name=charclass placeholder="High Wizard">
-	    <dd>Name: <input type=text name=charname placeholder="Billdalf">
-	    <dd>Quests: <input type=text name=charquests placeholder="twotribes">
-	    <dd>Last Run: <input type=text name=charlastrun placeholder="2/9/2014">
-	    <dd>Player Name: <input type=text name=charplayername placeholder="Billy">
-	    <dd>Present: <input type=text name=charpresent placeholder="1">
-	    <button type="button" class="btn btn-primary" name=action>Add</button>
+	    <div class="form-group">
+		  <label for="charclass">Class</label>
+		  <input type="text" class="form-control" name=charclass id="charclass" placeholder="High Wizard">
+	    </div>
+	    <div class="form-group">
+		  <label for="charname">Name</label>
+		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf">
+	    </div>
+	    <div class="form-group">
+		  <label for="charquests">Quests</label>
+		  <input type="text" class="form-control" name=charquests id="charquests" placeholder="twotribes,attitudetothenewworld">
+	    </div>
+	    <div class="form-group">
+		  <label for="charlastrun">Last Run</label>
+		  <input type="datetime" class="form-control" name=charlastrun id="charlastrun" placeholder="2/9/2014">
+	    </div>
+	    <div class="form-group">
+		  <label for="charplayername">Player Name</label>
+		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy">
+	    </div>
+	    <div class="form-group">
+		  <label for="charpresent">Present</label>
+		  <input type="number" class="form-control" name=charpresent id="charpresent" placeholder="1">
+	    </div>
+	    <input type=submit class="btn btn-primary" name=action value="Add"></input>
+      </dl>
     </form>
     <h2 class="sub-header">Character Status</h2>
     <div class="table-responsive">

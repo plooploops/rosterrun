@@ -2,10 +2,16 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Search List</h1>
-	<form action="{{ url_for('add_to_search_list') }}" method=post>
+	<form action="{{ url_for('add_to_search_list') }}" method=post role="form">
 	  <h2>Search Item</h2>
-	  <dd>Item Id:<input type=text name=nitemid placeholder="578">
-	  <dd>Item Name:<input type=text name=nname placeholder="Strawberry">
+	  <div class="form-group">
+	    <label for="itemid">Item Id:</label>
+	    <input type="number" class="form-control" name=nitemid id="itemid" placeholder="578">
+	  </div>
+	  <div class="form-group">
+	    <label for="itemname">Item Name:</label>
+	    <input type="text" class="form-control" name=nname id="itemname" placeholder="Strawberry">
+	  </div>
 	  <input type=submit class="btn btn-primary" name=action value="Add"></input>
     </form>
     <form action="{{ url_for('update_search_list') }}" method=post>
