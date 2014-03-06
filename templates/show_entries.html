@@ -3,12 +3,12 @@
   {% if session.logged_in %}
     <h1 class="page-header">Roster</h1>
     <form action="{{ url_for('show_entries') }}" method=post class=run-calculation>
-      <dl>
-        <dt>Google Document:
-        <dd><input type=text name=gdocname placeholder="Quest Status">
-        <dd><input type=submit class="btn btn-primary" name=action value="Import"></input>
-        <input type=submit class="btn btn-default" name=action value="Reset"></input>
-      </dl>
+      <div class="form-group">
+	    <label for="gdocname">Google Document</label>
+	    <input type="text" class="form-control" name=gdocname id="gdocname" placeholder="Quest Status">
+	  </div>
+      <dd><input type=submit class="btn btn-primary" name=action value="Import"></input>
+      <input type=submit class="btn btn-default" name=action value="Reset"></input>
     </form>
     <h2 class="sub-header">Character</h2>
 	  <form action="{{ url_for('add_character') }}" method=post>

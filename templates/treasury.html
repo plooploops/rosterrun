@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><dd><input type=submit class="btn btn-default" name=delete value="{{ t.id }}"><span class="btn btn-default" value="Delete"></span></input><dd><input type=submit class="btn btn-default" name=edit value="{{ t.id }}"><span class="btn btn-default" value="Edit"></span></input>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><input type=submit class="btn btn-primary" name=buy value="{{ t.id }}"><span class="btn btn-default" value="Buy"></span></input> {% endif %}</td>
+      <td><dd><input type=submit class="btn btn-default" name=delete value="Delete" alt="{{ t.id }}"></input><dd><input type=submit class="btn btn-default" name=edit value="Edit" alt="{{ t.id }}"></input>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><input type=submit class="btn btn-primary" name=buy value="Buy" alt="{{ t.id }}"></input> {% endif %}</td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
