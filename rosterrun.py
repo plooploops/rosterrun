@@ -326,8 +326,7 @@ def show_entries():
       curChars = MappedCharacter.query.all()
       chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
 
-    
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
     
     #map points back from characters and guild?
     
@@ -937,7 +936,7 @@ def update_chars():
     e_id = int(str(edit_id))
     ec = MappedCharacter.query.filter(MappedCharacter.id == e_id).all()[0]
   else:
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
     print 'no action to map'
   
   try:
@@ -991,16 +990,16 @@ def add_character():
     
   ec = MappedCharacter.query.filter(MappedCharacter.id == char_id).all()[0]
   
-  charclass = request.form['charclass']
+  charclass = str(request.form['charclass'])
   charrole = None
   roleMap = [r for r in AllRoles if charac.Class in r.Classes]
   if len(roleMap) > 0:
     charrole = roleMap[0]
-  charname = request.form['charname']
-  charquests = request.form['charquests'].replace(',','|')
-  charlastrun = request.form['charlastrun']
-  charplayername = request.form['charplayername']
-  charpresent = request.form['charpresent']
+  charname = str(request.form['charname'])
+  charquests = str(request.form['charquests'].replace(',','|'))
+  charlastrun = str(request.form['charlastrun'])
+  charplayername = str(request.form['charplayername'])
+  charpresent = str(request.form['charpresent'])
   if ec is not None:
     ec.Class = charclass
     ec.Role = charrole
@@ -1015,7 +1014,7 @@ def add_character():
       print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
       
       if ec is None:
-        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charplayername, charpresent)  
+        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)  
         db.session.add(ec)  
         db.session.commit()
       curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
@@ -1035,7 +1034,7 @@ def add_character():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
       if ec is None:
-        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charplayername, charpresent)  
+        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)  
         db.session.add(ec)  
         db.session.commit()
       curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
