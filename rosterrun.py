@@ -921,7 +921,9 @@ def update_chars():
   action = None
   chars = []
   ec = None
-    
+  drop_id = None
+  edit_id = None
+  
   try:
     drop_id = request.form.drop.strip()
     edit_id = request.form.edit.strip()
@@ -980,6 +982,7 @@ def add_character():
   action = None
   chars = []
   ec = None
+  char_id = None
     
   try:
     char_id = int(str(request.form['add'].strip()))
