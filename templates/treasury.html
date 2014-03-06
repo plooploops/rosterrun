@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><button type=submit name=delete value="{{ t.id }}">Delete</button><button type=submit name=edit value="{{ t.id }}">Edit</button>{% if t.guildtransaction_id is defined %}{{ t.guildtransaction_id|safe }} {% else %} <button type=submit name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
+      <td><dd><button type="button" class="btn btn-default" name=delete value="{{ t.id }}">Delete</button><dd><button type="button" class="btn btn-default" name=edit value="{{ t.id }}">Edit</button>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><button type="button" class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
@@ -37,7 +37,7 @@
     </table>
     </div>
     </form>
-    <form action="{{ url_for('add_treasure') }}" method=post>
+    <form action="{{ url_for('save_treasure') }}" method=post>
 	  <h2 class="sub-header">Add Item</h2>
 	  <dd>Item Id:<input type=text name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}">
 	  <dd>Item Name:<input type=text name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}">
@@ -46,7 +46,7 @@
 	  <dd>Suggested Min Price:<input type=text name=nitemminprice placeholder="1" value="{{ edittreasure.minMarketPrice }}">
       <dd>Suggested Max Price:<input type=text name=nitemmaxprice placeholder="1" value="{{ edittreasure.maxMarketPrice }}">
 	  <dd>Suggested Median Price:<input type=text name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}">
-	  <input type=submit name=action value=Add></>
+	  <button class="btn btn-primary" type="button" name=action value=Save></>
     </form>
   {% endif %}
 {% endblock %}

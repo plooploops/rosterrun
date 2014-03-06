@@ -734,7 +734,7 @@ def modify_treasury():
     del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).delete()
     print 'deleted %s items' % del_count
   if len(edit_treasures) > 0:
-    gt = edit_treasures[0]
+    gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == edit_treasures[0]).all()[0]
     #push to edit
     print 'edit'
   if len(buy_treasures) > 0: 
