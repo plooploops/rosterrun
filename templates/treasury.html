@@ -19,7 +19,7 @@
     </tr>
     {% for t in treasures %}
       <tr>
-      <td><dd><input type=submit class="btn btn-default" name=action value="Delete">{{ t.id }}</input><dd><input type=submit class="btn btn-default" name=action value="Edit">{{ t.id }}</input>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><input type=submit class="btn btn-primary" name=action value="Buy">{{ t.id }}</input> {% endif %}</td>
+      <td><dd><input type=submit class="btn btn-default" name=delete value="{{ t.id }}"><span class="btn btn-default" value="Delete"></span></input><dd><input type=submit class="btn btn-default" name=edit value="{{ t.id }}"><span class="btn btn-default" value="Edit"></span></input>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><input type=submit class="btn btn-primary" name=buy value="{{ t.id }}"><span class="btn btn-default" value="Buy"></span></input> {% endif %}</td>
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
@@ -41,31 +41,31 @@
 	  <h2 class="sub-header">Add Item</h2>
 	  <div class="form-group">
 	  	<label for="nitemid">Item Id</label>
-	  	<input type="number" class="form-control" id="nitemid" name=nitemid placeholder="1560">{{ edittreasure.itemid }}</input>
+	  	<input type="number" class="form-control" id="nitemid" name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemname">Item Name</label>
-	    <input type="email" class="form-control" id="nitemname" name=nitemname placeholder="Sage's Diary [2]">{{ edittreasure.name }}</input>
+	    <input type="text" class="form-control" id="nitemname" name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemname">Cards</label>
-	    <input type="email" class="form-control" id="nitemname" name=nitemname placeholder="Doppelganger Card, Turtle General Card">{{ edittreasure.cards }}</input>
+	    <input type="text" class="form-control" id="nitemname" name=nitemname placeholder="Doppelganger Card, Turtle General Card" value="{{ edittreasure.cards }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemamount">Amount</label>
-	    <input type="email" class="form-control" id="nitemamount" name=nitemamount placeholder="1">{{ edittreasure.amount }}</input>
+	    <input type="number" class="form-control" id="nitemamount" name=nitemamount placeholder="1" value="{{ edittreasure.amount }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemminprice">Suggested Min Price</label>
-	    <input type="email" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1">{{ edittreasure.minMarketPrice }}</input>
+	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{{ edittreasure.minMarketPrice }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmaxprice">Suggested Max Price</label>
-	    <input type="email" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1">{{ edittreasure.maxMarketPrice }}</input>
+	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{{ edittreasure.maxMarketPrice }}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmedianprice">Suggested Median Price</label>
-	    <input type="email" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1">{{ edittreasure.medianMarketPrice }}</input>
+	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}"></input>
 	  </div>
 	  <input type=submit class="btn btn-primary" name=action value="Save"></input>
     </form>
