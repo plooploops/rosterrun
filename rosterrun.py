@@ -895,16 +895,16 @@ def add_to_search_list():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  itemid = request.form['nitemid'].strip()
-  itemname = request.form['nname'].strip()
+  itemid = str(request.form['nitemid'].strip())
+  itemname = str(request.form['nname'].strip())
   exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==itemid).all()
   if len(exists) == 0:
     #can add item to search list
-    db.session.add(MappedMarketSearch(True, itemid, itemname))
+    db.session.add(MappedMarketSearch(True, str(itemid), str(itemname)))
   else:
     for se in exists:
       se.search = True
-      se.name = itemname
+      se.name = str(itemname)
       
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
