@@ -2,7 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Treasury</h1>
-    <form action="{{ url_for('modify_treasury') }}" method=post class=modify-treasury>
+    <form action="{{ url_for('treasury') }}" method=post class=modify-treasury>
     <div class="table-responsive">
     <table class="table table-striped treasure">
     <tr>
