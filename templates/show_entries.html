@@ -6,8 +6,8 @@
       <dl>
         <dt>Google Document:
         <dd><input type=text name=gdocname placeholder="Quest Status">
-        <dd><button type="button" class="btn btn-primary" name=action value=Import>
-        <button type="button" class="btn btn-default" name=action value=Reset>
+        <dd><button type="button" class="btn btn-primary" name=action>Import</button>
+        <button type="button" class="btn btn-default" name=action>Reset</button>
       </dl>
     </form>
     <h2 class="sub-header">Character</h2>
@@ -18,7 +18,7 @@
 	    <dd>Last Run: <input type=text name=charlastrun placeholder="2/9/2014">
 	    <dd>Player Name: <input type=text name=charplayername placeholder="Billy">
 	    <dd>Present: <input type=text name=charpresent placeholder="1">
-	    <button type="button" class="btn btn-primary" name=action value=Add></>
+	    <button type="button" class="btn btn-primary" name=action>Add</button>
     </form>
     <h2 class="sub-header">Character Status</h2>
     <div class="table-responsive">
@@ -36,7 +36,7 @@
     </thead>
     {% for char in characters %}
       <tr>
-      <td><input type=submit name=action value=Drop><input type=submit name=action value=Edit>
+      <td><button type="button" class="btn btn-default" name=action>Drop</button><button type="button" class="btn btn-default" name=action>Edit</button>
       <td>{{ char.Class|safe }}</td>
       <td>{{ char.Name|safe }}</td>
       <td>{{ char.Role|safe}}</td>
