@@ -923,7 +923,6 @@ def update_chars():
   ec = None
     
   try:
-    session['doc'] = request.form['gdocname'].strip()
     drop_id = request.form.drop.strip()
     edit_id = request.form.edit.strip()
   except:
@@ -983,7 +982,6 @@ def add_character():
   ec = None
     
   try:
-    session['doc'] = request.form['gdocname'].strip()
     char_id = int(str(request.form['add'].strip()))
   except:
     print 'cannot find gdoc name'
