@@ -1033,13 +1033,13 @@ def add_character():
     dc_ids = [str(dt) for dt in char_id]
     if dc_ids[0] == u'None':    
       #adding new character
-      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)
+      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charquests, charlastrun, charplayername, charpresent)
       db.session.add(ec)
   else:
     #editing a character
     ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
     ec.Class = charclass
-    ec.Role = charrole
+    ec.Role = charrole.Name
     ec.Name = charname
     ec.Quests = charquests
     ec.LastRun = charlastrun
