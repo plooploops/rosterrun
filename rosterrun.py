@@ -994,10 +994,6 @@ def add_character():
   except:
     print 'cannot find gdoc name'
   
-  if len(char_id) > 0:
-    dc_ids = [int(str(dt)) for dt in char_id]
-    ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
-  
   charclass = str(request.form['charclass'])
   charrole = None
   roleMap = [r for r in AllRoles if charac.Class in r.Classes]
@@ -1008,28 +1004,14 @@ def add_character():
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
   charpresent = str(request.form['charpresent'])
-  if ec is not None:
-    ec.Class = charclass
-    ec.Role = charrole
-    ec.Name = charname
-    ec.Quests = charquests
-    ec.LastRun = charlastrun
-    ec.PlayerName = charplayername
-    ec.Present = charpresent
-    
+  g_spreadsheet_id = None
+  g_worksheet_id = None
+  
   try:
     if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
-      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
-      
-      if ec is None:
-        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)  
-        db.session.add(ec)  
-        db.session.commit()
-      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+      g_spreadsheet_id = session['g_spreadsheet_id']
+      g_worksheet_id = session['g_worksheet_id']
     else:
-      print 'could not find the spreadsheet id'
-      #try to retrieve the token from the db
       loginConfiguration(session['user'])
       user = users.get_current_user()
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
@@ -1041,16 +1023,34 @@ def add_character():
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
-      if ec is None:
-        ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)  
-        db.session.add(ec)  
-        db.session.commit()
-      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+      g_spreadsheet_id = session['g_spreadsheet_id']
+      g_worksheet_id = session['g_worksheet_id']
   except:
     print 'issue finding the available parties'
     resetLookupParameters()
     
+  if len(char_id) > 0:
+    dc_ids = [str(dt) for dt in char_id]
+    if dc_ids[0] == u'None':    
+      #adding new character
+      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole, charquests, charlastrun, charplayername, charpresent)
+      db.session.add(ec)
+  else:
+    #editing a character
+    ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
+    ec.Class = charclass
+    ec.Role = charrole
+    ec.Name = charname
+    ec.Quests = charquests
+    ec.LastRun = charlastrun
+    ec.PlayerName = charplayername
+    ec.Present = charpresent
+  
+  db.session.commit()
+    
+  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+  chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+  
   #map points back from characters and guild?
     
   return render_template('show_entries.html', characters=chars, editcharacter=ec)
