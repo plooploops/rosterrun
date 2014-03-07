@@ -56,7 +56,7 @@
       </thead>
       {% for char in characters %}
         <tr>
-        <td><button type=submit class="btn btn-default" name=drop value="{{ char.id }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id }}">Edit</button>
+        <td><button type=submit class="btn btn-default" name=drop value="{{ char.id|safe }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id|safe }}">Edit</button>
         <td>{{ char.Class|safe }}</td>
         <td>{{ char.Name|safe }}</td>
         <td>{{ char.Role|safe}}</td>
