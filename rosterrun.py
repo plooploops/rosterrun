@@ -996,7 +996,7 @@ def add_character():
   
   charclass = str(request.form['charclass'])
   charrole = None
-  roleMap = [r for r in AllRoles if charac.Class in r.Classes]
+  roleMap = [r for r in AllRoles if charclass in r.Classes]
   if len(roleMap) > 0:
     charrole = roleMap[0]
   charname = str(request.form['charname'])
