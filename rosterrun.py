@@ -807,7 +807,7 @@ def add_treasure():
     gt.minMarketPrice = minMarketPrice
     gt.maxMarketPrice = maxMarketPrice
     gt.medianMarketPrice = medianMarketPrice
-    gt.cards = item_cards
+    gt.cards = item_cards.replace(',', '|')
   else:
     gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     db.session.add(gt)
