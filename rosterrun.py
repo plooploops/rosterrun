@@ -738,7 +738,6 @@ def modify_treasure():
   if len(edit_treasures) > 0:
     et_ids = [int(str(dt)) for dt in edit_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
-    #push to edit
     print 'edit'
   if len(buy_treasures) > 0: 
     #link to guild treasure / guild points
@@ -764,7 +763,16 @@ def add_treasure():
   item_name = request.form['nitemname']
   item_amount = request.form['nitemamount']
   
-  gt = MappedGuildTreasure(item_id, item_name, '', item_amount, 0, 0, 0, datetime.now())
+  try:
+    add_treasures = request.form.getlist("submit")
+    for a in delete_treasures:
+      print a
+  except:
+    print 'could not map action for modifying treasury'
+  
+  minMarketPrice = None
+  maxMarketPrice = None
+  medianMarketPrice = None
   
   #check db or scrape again?
   latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
@@ -772,19 +780,28 @@ def add_treasure():
     latest_date = latest_res[0].date
     mrs = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).filter(MappedMarketResult.date >= latest_date).all()
     prices = [mr.price for mr in mrs]
-    gt.minMarketPrice = min(prices)
-    gt.maxMarketPrice = max(prices)
-    gt.medianMarketPrice = median(prices)
+    minMarketPrice = min(prices)
+    maxMarketPrice = max(prices)
+    medianMarketPrice = median(prices)
   else:
-    gt.minMarketPrice = request.form['nitemminprice']
-    gt.maxMarketPrice = request.form['nitemmaxprice']
-    gt.medianMarketPrice = request.form['nitemmedianprice']
+    minMarketPrice = request.form['nitemminprice']
+    maxMarketPrice = request.form['nitemmaxprice']
+    medianMarketPrice = request.form['nitemmedianprice']
     #add it as a search item
     ms = MappedMarketSearch.query.filter(MappedMarketSearch.itemid == item_id)
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
   
-  db.session.add(gt)  
+  if len(edit_treasures) > 0:
+    et_ids = [int(str(dt)) for dt in add_treasures]
+    gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
+    gt.minMarketPrice = minMarketPrice
+    gt.maxMarketPrice = maxMarketPrice
+    gt.medianMarketPrice = medianMarketPrice
+  else:
+    gt = MappedGuildTreasure(item_id, item_name, '', item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
+    db.session.add(gt)
+    
   db.session.commit()
   
   t = MappedGuildTreasure.query.all()

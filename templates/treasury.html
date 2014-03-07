@@ -67,7 +67,7 @@
 	    <label for="nitemmedianprice">Suggested Median Price</label>
 	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{{ edittreasure.medianMarketPrice }}"></input>
 	  </div>
-	  <button type=submit class="btn btn-primary" name=action>Submit</button>
+	  <button type=submit class="btn btn-primary" name=add value="{{ edittreasure.id }}">Submit</button>
     </form>
   {% endif %}
 {% endblock %}
