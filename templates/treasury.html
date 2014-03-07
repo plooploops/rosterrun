@@ -23,7 +23,7 @@
       <td>{{ t.itemid}}</td>
       <td>{{ t.name }}</td>
       <td>
-      {% for c in t.cards %}
+      {% for c in t.cards.split(',') %}
         <li>{{ c }}
       {% endfor %}
       </td>

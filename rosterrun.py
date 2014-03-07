@@ -330,7 +330,7 @@ def show_entries():
     
     #map points back from characters and guild?
     
-    return render_template('show_entries.html', combinations=availableParties, characters=chars, editcharacter=ec)
+    return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec)
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
