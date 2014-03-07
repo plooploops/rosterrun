@@ -773,9 +773,9 @@ def add_treasure():
   minMarketPrice = None
   maxMarketPrice = None
   medianMarketPrice = None
-  suggestedMinMarketPrice = None
-  suggestedMaxMarketPrice = None
-  suggestedMedianMarketPrice = None
+  suggestedMinMarketPrice = request.form['nitemminprice']
+  suggestedMaxMarketPrice = request.form['nitemmaxprice']
+  suggestedMedianMarketPrice = request.form['nitemmedianprice']
 
   #check db or scrape again?
   latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
@@ -787,9 +787,6 @@ def add_treasure():
     maxMarketPrice = max(prices)
     medianMarketPrice = median(prices)
   else:
-    suggestedMinMarketPrice = request.form['nitemminprice']
-    suggestedMaxMarketPrice = request.form['nitemmaxprice']
-    suggestedMedianMarketPrice = request.form['nitemmedianprice']
     #add it as a search item
     ms = MappedMarketSearch.query.filter(MappedMarketSearch.itemid == item_id)
     if ms.count() == 0:
