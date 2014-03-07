@@ -783,8 +783,8 @@ def add_treasure():
     ms = MappedMarketSearch.query.filter(MappedMarketSearch.itemid == item_id)
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
-    db.session.add(gt)  
   
+  db.session.add(gt)  
   db.session.commit()
   
   t = MappedGuildTreasure.query.all()
@@ -948,8 +948,6 @@ def update_chars():
     if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
       print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
       curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
-      print 'AVAILABLE PARTIES %s ' % len(availableParties)  
     else:
       print 'could not find the spreadsheet id'
       #try to retrieve the token from the db
@@ -965,7 +963,6 @@ def update_chars():
       session['g_spreadsheet_id'] = g_s_id
       session['g_worksheet_id'] = g_w_id    
       curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
   except:
     print 'issue finding the available parties'
     resetLookupParameters()
@@ -973,7 +970,7 @@ def update_chars():
     
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=chars, editcharacter=ec)
+  return render_template('show_entries.html', characters=curChars, editcharacter=ec)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
