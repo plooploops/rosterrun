@@ -934,7 +934,9 @@ def update_chars():
   
   if len(drop_id) > 0:
     dc_ids = [dt for dt in drop_id]
-    ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
+    MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).delete()
+    db.session.commit()
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
     ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids[0]).all()[0]
