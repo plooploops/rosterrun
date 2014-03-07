@@ -762,6 +762,7 @@ def add_treasure():
   item_id = request.form['nitemid']
   item_name = request.form['nitemname']
   item_amount = request.form['nitemamount']
+  item_cards = request.form['nitemcards']
   
   try:
     add_treasures = request.form.getlist("submit")
@@ -806,8 +807,9 @@ def add_treasure():
     gt.minMarketPrice = minMarketPrice
     gt.maxMarketPrice = maxMarketPrice
     gt.medianMarketPrice = medianMarketPrice
+    gt.cards = item_cards
   else:
-    gt = MappedGuildTreasure(item_id, item_name, '', item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
+    gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     db.session.add(gt)
     
   db.session.commit()
