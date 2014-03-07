@@ -792,7 +792,7 @@ def add_treasure():
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
   
-  if len(edit_treasures) > 0:
+  if len(add_treasures) > 0:
     et_ids = [int(str(dt)) for dt in add_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     gt.minMarketPrice = minMarketPrice
