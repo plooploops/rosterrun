@@ -101,7 +101,7 @@ def run_scheduler(user, pw, doc):
     userName = user
     password = pw
     docName = doc
-    initializeData(userName, password, docName, quests)
+    characters = initializeData(userName, password, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
@@ -130,7 +130,7 @@ def run_scheduler_OAuth(credentials, doc):
     viablePartyIndex = 0
 
     docName = doc
-    initializeDataOAuth(credentials, docName, quests)
+    characters = initializeDataOAuth(credentials, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
@@ -150,6 +150,33 @@ def run_scheduler_OAuth(credentials, doc):
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
     
     return parties    
+
+def run_scheduler_mapped_characters(characters):
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesSPKiller)
+    instance = niddhoggInstance
+    quests = niddhoggQuests
+    parties = []
+    viablePartyIndex = 0
+
+    avChar = computeRequirements(characters, instance, quests)
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'No SP Killer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
+    
+    return parties        
 
 def raw_test():
     user = raw_input('User Name: ')

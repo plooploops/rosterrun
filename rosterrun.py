@@ -766,7 +766,7 @@ def add_treasure():
   
   try:
     add_treasures = request.form.getlist("submit")
-    for a in delete_treasures:
+    for a in add_treasures:
       print a
   except:
     print 'could not map action for modifying treasury'
