@@ -903,7 +903,6 @@ def add_run():
     k.set_contents_from_file(image)
     url = k.generate_url(expires_in_seconds)
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
-    def __init__(self, evidence_url, evidence_file_path, date, chars, instance_name, success, notes):
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
     db.session.add(er)
   except Exception,e:
