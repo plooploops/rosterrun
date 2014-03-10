@@ -920,10 +920,34 @@ def add_run():
       print 'added a key'
       
       try:
-        k.set_contents_from_stream(file.read())
-        print 'saved file'
+        k.set_contents_from_filename(file.filename)
+        print 'saved file by file name'
       except:
-        print 'error sending to s3'
+        print 'error sending to s3 by file name'
+        
+      try:
+        k.set_contents_from_file(file)
+        print 'saved file by file'
+      except:
+        print 'error sending to s3 by file'
+      
+      try:
+        k.set_contents_from_stream(file)
+        print 'saved file by stream'
+      except:
+        print 'error sending to s3 by stream'
+        
+      try:
+        k.set_contents_from_stream(file.read())
+        print 'saved file by stream .read()'
+      except:
+        print 'error sending to s3 by stream .read()'
+      
+      try:
+        k.set_contents_from_string(file.read())
+        print 'saved file by string.read()'
+      except:
+        print 'error sending to s3 by string .read()'
       
     url = k.generate_url(expires_in_seconds)
     
