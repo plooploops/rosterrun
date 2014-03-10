@@ -924,7 +924,7 @@ def add_run():
     url = k.generate_url(expires_in_seconds)
     
     char_ids = [int(si) for si in char_ids]
-    chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
+    chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
     db.session.add(er)
   except Exception,e:
