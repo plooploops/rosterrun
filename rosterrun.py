@@ -899,7 +899,7 @@ def add_run():
     notes = request.form['nrunnotes']
     
     k = Key(bucket)
-    k.key = name + 'date-%s' % run_date + '%s' % uuid.uuid4()
+    k.key = "rr-%s" % uuid.uuid4()
     k.set_contents_from_file(image)
     url = k.generate_url(expires_in_seconds)
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
