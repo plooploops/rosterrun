@@ -6,6 +6,7 @@ MarkupSafe==0.18
 PyYAML==3.10
 SQLAlchemy==0.8.3
 Werkzeug==0.9.4
+boto==2.27.0
 django==1.6
 endpoints==0.5
 ez-setup==0.9
