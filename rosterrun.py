@@ -75,7 +75,7 @@ db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
 s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
-bucket = s3.get_bucket(os.environ['S3_BUCKET'])
+bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
 expires_in_seconds = os.environ['S3_EXPIRES_IN_SECONDS']
 
 class PartyCombo(db.Model):
