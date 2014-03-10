@@ -881,7 +881,7 @@ def add_run():
     
   #check if run is already part of DB for edit, else add a new one.
   mrs = MappedRun.query.all()
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75)
+  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
     
   return render_template('runs.html', treasures=t, edittreasure=gt)
 
@@ -894,7 +894,7 @@ def modify_runs():
     return redirect(url_for('login'))
   
   mrs = MappedRun.query.all()
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75)
+  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   
   return render_template('runs.html', runs=mrs, editrun=er)
 
