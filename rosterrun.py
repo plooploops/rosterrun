@@ -45,6 +45,7 @@ from datetime import datetime, timedelta
 import boto
 from boto.s3.key import Key
 import uuid
+from werkzeug import secure_filename
 
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
@@ -74,6 +75,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
+
+app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -892,18 +896,29 @@ def add_run():
     expires_in_seconds = os.environ['S3_EXPIRES_IN_SECONDS']
     
     name = request.form['nrunname']
-    image = request.files['nrunscreenshot']
-    stream = image.read()
+    file = request.files['nrunscreenshot']
     print stream
     char_ids = request.form.getlist('cbsearch')
     run_date = request.form['nrundate']
     success = request.form['cbsuccess']
     notes = request.form['nrunnotes']
-    
+    url = None
     k = Key(bucket)
-    k.key = "rr-%s" % uuid.uuid4()
-    k.set_contents_from_stream(stream)
-    url = k.generate_url(expires_in_seconds)
+    filepath = None
+    
+    if file and allowed_file(file.filename):
+      # Make the filename safe, remove unsupported chars
+      filename = secure_filename(file.filename)
+      # Move the file form the temporal folder to
+      # the upload folder we setup
+      filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename) 
+      file.save(filepath)
+    
+    if filepath:
+      k.key = "rr-%s" % uuid.uuid4()
+      k.set_contents_from_filepath(stream)
+      url = k.generate_url(expires_in_seconds)
+    
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
     db.session.add(er)
@@ -1453,6 +1468,10 @@ def loginConfiguration(username, userid=1):
     os.environ['APPLICATION_ID'] = 'roster run'
   except:
     print 'error with login configuration'
+    
+def allowed_file(filename):
+  return '.' in filename and \
+         filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 if __name__ == "__main__":
   db.create_all()
