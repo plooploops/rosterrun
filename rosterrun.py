@@ -915,14 +915,16 @@ def add_run():
       filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename) 
       print 'created file path'
       
-      file.save(filepath)
-      print 'saved file'
-    
-    k.key = "rr-%s" % uuid.uuid4()
-    try:
-      k.set_contents_from_filepath(filepath)
-    except:
-      print 'error sending to s3'
+      
+      k.key = "rr-%s" % uuid.uuid4()
+      print 'added a key'
+      
+      try:
+        k.set_contents_from_stream(file.read())
+        print 'saved file'
+      except:
+        print 'error sending to s3'
+      
     url = k.generate_url(expires_in_seconds)
     
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
