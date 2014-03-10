@@ -29,7 +29,7 @@
     </table>
     </div>
     </form>
-    <form role="form" action="{{ url_for('add_run') }}" method=post>
+    <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
 	  <h2 class="sub-header">Add Run</h2>
 
 	  <div class="form-group">
@@ -41,11 +41,11 @@
 	    <input type="file" id="nrunscreenshot" name=nrunscreenshot placeholder="C:\screenshot\run.jpg" value="{{ editrun.evidence_file_path }}">
 	    <p class="help-block">Please submit a screenshot</p>
       </div>
-	  <div class="form-group">
-	    <label for="nitemid">Characters</label>
-	  	<table class="table table-striped mappedcharacter">
+      <h3>Characters in Party</h3>
+	  <div class="table-responsive">
+	    <table class="table table-striped mappedcharacter">
 		  <tr>
-		  <th>Part of Run?</th>
+		  <th>Part of Run</th>
 		  <th>Name</th>
 		  <th>Class</th>
 		  </tr>

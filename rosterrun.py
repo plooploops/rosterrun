@@ -901,7 +901,7 @@ def add_run():
     
     k = Key(bucket)
     k.key = "rr-%s" % uuid.uuid4()
-    k.set_contents_from_stream(image)
+    k.set_contents_from_file(image)
     url = k.generate_url(expires_in_seconds)
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
