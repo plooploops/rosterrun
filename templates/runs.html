@@ -2,7 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Runs</h1>
-    <form action="{{ url_for('modify_runs') }}" method=post class=modify-runs>
+    <form role="form" action="{{ url_for('modify_runs') }}" method=post class=modify-runs>
     <div class="table-responsive">
     <table class="table table-striped run">
     <tr>
@@ -29,7 +29,7 @@
     </table>
     </div>
     </form>
-    <form action="{{ url_for('add_run') }}" method=post>
+    <form role="form" action="{{ url_for('add_run') }}" method=post>
 	  <h2 class="sub-header">Add Run</h2>
 
 	  <div class="form-group">
