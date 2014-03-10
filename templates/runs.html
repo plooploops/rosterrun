@@ -19,9 +19,11 @@
       <td><dd><button type=submit class="btn btn-default" name=delete value="{{ r.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ r.id }}">Edit</button></td>
       <td>{{ r.instance_name|safe }}</td>
       <td><img src="{{ r.evidence_url|safe }}" class="img-responsive" alt="Run screenshot"></td>
-      {% for c in r.chars %}
-	    <li>{{ c.Name }} {{ c.Class }}
-      {% endfor %}
+      <td>
+        {% for c in r.chars %}
+	      <li>{{ c.Name }} {{ c.Class }}
+        {% endfor %}
+      </td>
       <td>{{ r.date|safe }}</td>
       <td>{{ r.success|safe }}</td>
       <td>{{ r.notes|safe }}</td>
