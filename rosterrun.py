@@ -908,15 +908,22 @@ def add_run():
     if file and allowed_file(file.filename):
       # Make the filename safe, remove unsupported chars
       filename = secure_filename(file.filename)
+      print 'made secure file path'
+      
       # Move the file form the temporal folder to
       # the upload folder we setup
       filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename) 
+      print 'created file path'
+      
       file.save(filepath)
+      print 'saved file'
     
-    if filepath:
-      k.key = "rr-%s" % uuid.uuid4()
-      k.set_contents_from_filepath(stream)
-      url = k.generate_url(expires_in_seconds)
+    k.key = "rr-%s" % uuid.uuid4()
+    try:
+      k.set_contents_from_filepath(filepath)
+    except:
+      print 'error sending to s3'
+    url = k.generate_url(expires_in_seconds)
     
     chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
