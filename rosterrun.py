@@ -892,7 +892,7 @@ def add_run():
     expires_in_seconds = os.environ['S3_EXPIRES_IN_SECONDS']
     
     name = request.form['nrunname']
-    image = request.form['nrunscreenshot']
+    image = request.files['nrunscreenshot']
     print image
     char_ids = request.form.getlist('cbsearch')
     run_date = request.form['nrundate']

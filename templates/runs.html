@@ -51,16 +51,7 @@
 		  </tr>
 		  {% for mc in mappedcharacters %}
 		    <tr>
-		      <td>
-		      <input
-		        {% if mc in editrun.chars %}
-		       	  checked="True"
-		        {% endif %}
-			    type=checkbox
-			    name=cbsearch
-			    class="form-control"
-			    value="{{ mc.id }}">
-			  </td>
+		      <td><input {% if mc in editrun.chars %} checked="True" {% endif %} type=checkbox name=cbsearch class="form-control" value="{{ mc.id }}"></td>
 			  <td>{{ mc.Name|safe }}</td>
 			  <td>{{ mc.Class|safe }}</td>
 			</tr>
