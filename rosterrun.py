@@ -10,7 +10,8 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import distinct, func, not_, or_
+from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
+from sqlalchemy.orm import relationship, backref
 
 import gdata.gauth
 import gdata.docs.client
