@@ -927,6 +927,7 @@ def add_run():
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     er = MappedRun(url, k.key, run_date, chars, name, success, notes)
     db.session.add(er)
+    db.session.commit()
   except Exception,e:
     print str(e)
     print 'error adding a run'
