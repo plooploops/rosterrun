@@ -76,7 +76,7 @@ db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
 
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['UPLOAD_FOLDER'] = 'tmp/'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 class PartyCombo(db.Model):
@@ -897,7 +897,6 @@ def add_run():
     
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
-    print stream
     char_ids = request.form.getlist('cbsearch')
     run_date = request.form['nrundate']
     success = request.form['cbsuccess']
