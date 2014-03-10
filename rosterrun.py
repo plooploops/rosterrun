@@ -42,6 +42,9 @@ from pygal.style import LightStyle
 from itertools import groupby
 
 from datetime import datetime, timedelta
+import boto
+from boto.s3.key import Key
+import uuid
 
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
@@ -71,6 +74,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn, default_timeout=3600)
+s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+bucket = s3.get_bucket(os.environ['S3_BUCKET'])
+expires_in_seconds = os.environ['S3_EXPIRES_IN_SECONDS']
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -879,12 +885,36 @@ def add_run():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
+ 
+  url = None
+  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  try:
+    #check if the run is already part of the db before adding again else edit
     
+    name = request.form['nrunname']
+    image = request.form['nrunscreenshot']
+    char_ids = request.form.getlist('cbsearch')
+    run_date = request.form['nrundate']
+    success = request.form['cbsuccess']
+    notes = request.form['nrunnotes']
+    
+    k = Key(bucket)
+    k.key = name + 'date-%s' % run_date + uuid.uuid4()
+    k.set_contents_from_file(image)
+    url = k.generate_url(expires_in_seconds)
+    chars = MappedCharacter.query.filter(MappedCharacter.itemid.in_(char_ids)).all()
+    def __init__(self, evidence_url, evidence_file_path, date, chars, instance_name, success, notes):
+    er = MappedRun(url, k.key, run_date, chars, name, success, notes)
+    db.session.add(er)
+  except Exception,e:
+    print str(e)
+    print 'error adding a run'
+  
   #check if run is already part of DB for edit, else add a new one.
   mrs = MappedRun.query.all()
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
-    
-  return render_template('runs.html', treasures=t, edittreasure=gt)
+  mc = MappedCharacter.query.all()  
+  
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -894,10 +924,13 @@ def modify_runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
+  #handle delete and edit logic
+  
   mrs = MappedRun.query.all()
   er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  mc = MappedCharacter.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er)
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():

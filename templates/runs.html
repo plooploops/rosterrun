@@ -12,24 +12,19 @@
     <th>Characters</th>
     <th>Date</th>
     <th>Success</th>
+    <th>Notes</th>
     </tr>
     {% for r in runs %}
       <tr>
-      <td><dd><button type=submit class="btn btn-default" name=delete value="{{ t.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ t.id }}">Edit</button></td>
+      <td><dd><button type=submit class="btn btn-default" name=delete value="{{ r.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ r.id }}">Edit</button></td>
       <td>{{ r.instance_name|safe }}</td>
       <td><img src="{{ r.evidence_url|safe }}" class="img-responsive" alt="Run screenshot"></td>
       {% for c in r.chars.split(',') %}
-	    <li>{{ c.Name }}
+	    <li>{{ c.Name }} {{ c.Class }}
       {% endfor %}
-      <td>{{ r.itemid}}</td>
-      <td>{{ t.name }}</td>
-      <td>
-      {% for c in t.cards.split(',') %}
-        <li>{{ c }}
-      {% endfor %}
-      </td>
       <td>{{ r.date|safe }}</td>
       <td>{{ r.success|safe }}</td>
+      <td>{{ r.notes|safe }}</td>
     {% endfor %}
     </table>
     </div>
@@ -39,7 +34,7 @@
 
 	  <div class="form-group">
 	  	<label for="nrunname">Name</label>
-	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.Name }}"></input>
+	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
 	  </div>
       <div class="form-group">
 	    <label for="nrunscreenshot">Screenshot</label>
@@ -79,7 +74,7 @@
 	    <input type="text" class="form-control" id="nrundate" name=nrundate placeholder="12/12/2013" value="{{ editrun.date }}"></input>
 	  </div>
 	  <div class="form-group">
-	    <label for="cbsuccess">Cards</label>
+	    <label for="cbsuccess">Success</label>
 	    <input
 	      {% if editrun.success %}
 		    checked="True"
@@ -90,6 +85,10 @@
 		  class="form-control"
 		  value="{{ editrun.success }}">
 		</input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nrunnotes">Notes</label>
+	  	<input type="text" class="form-control" id="nrunnotes" name=nrunnotes placeholder="Got to level 75" value="{{ editrun.notes }}"></input>
 	  </div>
 	  <button type=submit class="btn btn-primary" name=add value="{{ editrun.id }}">Submit</button>
     </form>
