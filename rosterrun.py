@@ -862,7 +862,8 @@ def add_treasure():
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
   
-  et_ids = [int(str(dt)) for dt in add_treasures if not(dt is None or dt is 'None')]
+  edit_ids = [dt for dt in add_treasures if not(dt is None or dt is 'None')]
+  et_ids = [int(str(dt)) for dt in edit_ids]
   if len(et_ids) > 0:
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     gt.minMarketPrice = minMarketPrice
@@ -911,7 +912,6 @@ def add_run():
     run_id = request.form['add']
     
     add_runs = request.form.getlist("add")
-    print 'found run id %s ' % run_id
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
@@ -922,9 +922,10 @@ def add_run():
     k = Key(bucket)
     er = None
 
-    dt_ids = [int(str(dt)) for dt in add_runs if not(dt is None or dt is 'None')]
-    if len(dt_ids) > 0:
-      er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).all()[0]
+    edit_ids = [dt for dt in add_runs if not(dt is None or dt is 'None')]
+    et_ids = [int(str(dt)) for dt in edit_ids]
+    if len(et_ids) > 0:
+      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       k.key = er.evidence_file_path
     else:
       k.key = "rr-%s" % uuid.uuid4()
@@ -946,7 +947,7 @@ def add_run():
     print 'found chars'
     print 'run id %s' % er.id
     
-    if len(dt_ids) > 0:
+    if len(et_ids) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key()
       er.date = run_date
