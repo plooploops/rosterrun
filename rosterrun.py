@@ -943,7 +943,7 @@ def add_run():
       print 'found and set run'
     else:
       k.key = "rr-%s" % uuid.uuid4()
-      print 'didn't find run'
+      print 'cannot find run'
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
