@@ -827,10 +827,6 @@ def add_treasure():
   
   try:
     add_treasures = request.form.getlist("add")
-    print add_treasures
-    print 'looking at treasure contents'
-    for a in add_treasures:
-      print a
   except:
     print 'could not map action for modifying treasury'
   
@@ -864,7 +860,7 @@ def add_treasure():
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
   
-  edit_ids = [dt for dt in add_treasures if not(dt is None or dt is 'None')]
+  edit_ids = [dt for dt in add_treasures if not(dt is None or dt is 'None' or dt is u'None')]
   et_ids = []
   if len(edit_ids) > 0:
     et_ids = [int(str(dt)) for dt in edit_ids]
@@ -916,10 +912,6 @@ def add_run():
     run_id = request.form['add']
     
     add_runs = request.form.getlist("add")
-    print add_runs
-    print 'looking at add run contents'
-    for a in add_runs:
-      print a
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
@@ -930,7 +922,7 @@ def add_run():
     k = Key(bucket)
     er = None
 
-    edit_ids = [dt for dt in add_runs if not(dt is None or dt is 'None')]
+    edit_ids = [dt for dt in add_runs if not(dt is None or dt is 'None' or dt is u'None')]
     et_ids = []
     if len(edit_ids) > 0:
       et_ids = [int(str(dt)) for dt in edit_ids]
