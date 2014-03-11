@@ -878,7 +878,21 @@ def add_treasure():
   t = MappedGuildTreasure.query.all()
     
   return render_template('treasury.html', treasures=t, edittreasure=gt)
+
+@app.route('/treasury', methods=['GET', 'POST'])
+def treasury():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
   
+  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  mrs = MappedRun.query.all()
+  mc = MappedCharacter.query.all()  
+    
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
+
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
   if not session.get('logged_in'):
