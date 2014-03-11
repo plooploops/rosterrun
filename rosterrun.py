@@ -941,7 +941,7 @@ def add_run():
         print 'error sending to s3 by file'
     
     print 'creating url'
-    url = k.generate_url(expires_in=None, query_auth=False)
+    url = k.generate_url(expires_in=None)
     print 'created url'
     
     print 'reading chars'
