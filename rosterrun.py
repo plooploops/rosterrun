@@ -903,7 +903,7 @@ def add_run():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-  print 'in add run'
+  
   url = None
   er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   try:
@@ -911,7 +911,7 @@ def add_run():
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
     bucket.set_acl('public-read')
-    run_id = request.form['add']
+    
     
     add_runs = request.form.getlist("add")
     name = request.form['nrunname']
@@ -920,11 +920,14 @@ def add_run():
     run_date = request.form['nrundate']
     
     run_success = request.form.getlist('cbsuccess')
+    
+    print 'read from form'
     success = False
     if len(run_success) > 0:
       success = True
     
     notes = request.form['nrunnotes']
+    print 'read notes from form'
     url = None
     k = Key(bucket)
     er = None
@@ -933,11 +936,14 @@ def add_run():
     et_ids = []
     if len(edit_ids) > 0:
       et_ids = [int(str(dt)) for dt in edit_ids]
+      print 'made edit ids'
     if len(et_ids) > 0:
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       k.key = er.evidence_file_path
+      print 'found and set run'
     else:
       k.key = "rr-%s" % uuid.uuid4()
+      print 'didn't find run'
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
@@ -948,12 +954,18 @@ def add_run():
     
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = str(url)
+    print 'got url'
     char_ids = [int(si) for si in char_ids]
+    print 'got character ids'
+    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     run_date = datetime.strptime(run_date, '%Y-%m-%d %H:%M:%S')
+    print run_date
     name = str(name)
+    print name
     notes = str(notes)
+    print notes
     
     if len(et_ids) > 0:
       er.evidence_url = url
