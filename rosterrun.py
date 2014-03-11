@@ -941,7 +941,7 @@ def add_run():
         print 'error sending to s3 by file'
     
     print 'creating url'
-    url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)'
+    url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     print 'created url'
     
     char_ids = [int(si) for si in char_ids]
