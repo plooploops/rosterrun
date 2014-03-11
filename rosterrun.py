@@ -893,8 +893,8 @@ def add_run():
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
-    expires_in_seconds = int(os.environ['S3_EXPIRES_IN_SECONDS'])
-    
+   
+    run_id = request.form['add']
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
@@ -904,29 +904,34 @@ def add_run():
     url = None
     k = Key(bucket)
     filepath = None
-    
-    if file and allowed_file(file.filename):
-      # Make the filename safe, remove unsupported chars
-      filename = secure_filename(file.filename)
-      
-      # Move the file form the temporal folder to
-      # the upload folder we setup
-      filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename) 
-      
+    er = None
+    if len(run_id) > 0:
+      er = MappedRun.query.filter(MappedRun.id == int(run_id)).all()[0]
+      k.key = er.evidence_file_path
+    else:
       k.key = "rr-%s" % uuid.uuid4()
-      
+    if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
         print 'saved file by file'
       except:
         print 'error sending to s3 by file'
       
-    url = k.generate_url(expires_in_seconds)
+    url = k.generate_url(expires_in=None, query_auth=False)
     
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
-    er = MappedRun(url, k.key, run_date, chars, name, success, notes)
-    db.session.add(er)
+    if er is not None:
+      er.evidence_url = url
+      er.evidence_file_path = k.key()
+      er.date = run_date
+      er.chars = chars
+      er.instance_name = name
+      er.success = success
+      er.notes = notes
+    else:
+      er = MappedRun(url, k.key, run_date, chars, name, success, notes)
+      db.session.add(er)
     db.session.commit()
   except Exception,e:
     print str(e)
@@ -946,10 +951,30 @@ def modify_runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  #handle delete and edit logic
-  
+  drop_id = None
+  edit_id = None
+    
+  try:
+    delete_id = request.form.getlist("delete")
+    print delete_id
+    edit_id = request.form.getlist("edit")
+    print edit_id
+  except:
+    print 'cannot find gdoc name'
+    
+  if len(delete_id) > 0:
+    dc_ids = [dt for dt in delete_id]
+    MappedRun.query.filter(MappedRun.id == dc_ids[0]).delete()
+    db.session.commit()
+    er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  elif len(edit_id) > 0:
+    ec_ids = [ed for ed in edit_id]
+    ec = MappedRun.query.filter(MappedRun.id == ec_ids[0]).all()[0]
+  else:
+    er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+    print 'no action to map'
+    
   mrs = MappedRun.query.all()
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   mc = MappedCharacter.query.all()
   
   return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
