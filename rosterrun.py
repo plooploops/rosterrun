@@ -862,8 +862,8 @@ def add_treasure():
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
   
-  if len(add_treasures) > 0:
-    et_ids = [int(str(dt)) for dt in add_treasures]
+  et_ids = [int(str(dt)) for dt in add_treasures if dt is not None]
+  if len(et_ids) > 0:
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     gt.minMarketPrice = minMarketPrice
     gt.maxMarketPrice = maxMarketPrice
@@ -921,9 +921,9 @@ def add_run():
     url = None
     k = Key(bucket)
     er = None
-    
-    if len(add_runs) > 0:
-      dt_ids = [int(str(dt)) for dt in add_runs]
+
+    dt_ids = [int(str(dt)) for dt in add_runs if dt is not None]
+    if len(dt_ids) > 0:
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).all()[0]
       k.key = er.evidence_file_path
     else:
@@ -946,7 +946,7 @@ def add_run():
     print 'found chars'
     print 'run id %s' % er.id
     
-    if len(add_runs) > 0:
+    if len(dt_ids) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key()
       er.date = run_date
