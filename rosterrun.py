@@ -951,7 +951,7 @@ def add_run():
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
-    run_date = datetime.strptime(run_date, '%Y-%m-%dT%H:%M:%SZ')
+    run_date = datetime.strptime(run_date, '%Y-%m-%d %H:%M:%S')
     name = str(name)
     notes = str(notes)
     
