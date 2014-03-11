@@ -946,17 +946,15 @@ def add_run():
       except:
         print 'error sending to s3 by file'
     
-    print 'creating url'
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
-    print 'created url'
     
-    print char_ids
     char_ids = [int(si) for si in char_ids]
-    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     if len(et_ids) > 0:
-      er.evidence_url = url
+      print 'setting url'
+      er.evidence_url = str(url)
+      print 'done setting url'
       er.evidence_file_path = k.key()
       er.date = run_date
       er.chars = chars
