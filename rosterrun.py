@@ -986,7 +986,8 @@ def modify_runs():
   
   delete_id = None
   edit_id = None
-    
+  er = None
+  
   try:
     delete_id = request.form.getlist("delete")
     print delete_id
@@ -995,22 +996,25 @@ def modify_runs():
   except:
     print 'cannot find gdoc name'
   
-  d_ids = [dt for dt in delete_id if dt != 'None']
-  dt_ids = []
-  e_ids = [et for et in edit_id if et != 'None']
-  et_ids = []
-  if len(d_ids) > 0:
-    dt_ids = [int(str(dt)) for dt in d_ids]
-    mr = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
-    db.session.delete(mr)
-    db.session.commit()
-    er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
-  elif len(e_ids) > 0:
-    et_ids = [int(str(ed)) for ed in edit_id]
-    er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
-  else:
-    er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
-    print 'no action to map'
+  try:
+    d_ids = [int(str(dt)) for dt in delete_id]
+    dt_ids = []
+    e_ids = [et for et in edit_id if et != 'None']
+    et_ids = []
+    if len(d_ids) > 0:
+      dt_ids = [int(str(dt)) for dt in d_ids]
+      er = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
+      db.session.delete(mr)
+      db.session.commit()
+      er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+    elif len(e_ids) > 0:
+      et_ids = [int(str(ed)) for ed in edit_id]
+      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
+    else:
+      er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+      print 'no action to map'
+  except:
+    print 'issue modifying a run'
     
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()
