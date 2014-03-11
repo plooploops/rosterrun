@@ -934,6 +934,7 @@ def add_run():
     if len(edit_ids) > 0:
       et_ids = [int(str(dt)) for dt in edit_ids]
     if len(et_ids) > 0:
+      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       k.key = er.evidence_file_path
     else:
       k.key = "rr-%s" % uuid.uuid4()
@@ -954,9 +955,8 @@ def add_run():
     name = str(name)
     notes = str(notes)
     
+    print et_ids
     if len(et_ids) > 0:
-      print 'adding to run'
-      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       print 'found run'
       er.evidence_url = url
       print 'set url'
