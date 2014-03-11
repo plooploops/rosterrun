@@ -960,7 +960,7 @@ def add_run():
       print 'found run'
       er.evidence_url = url
       print 'set url'
-      er.evidence_file_path = k.key()
+      er.evidence_file_path = str(k.key())
       print 'set file path'
       er.date = run_date
       print 'set date'
