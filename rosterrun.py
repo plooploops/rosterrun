@@ -909,7 +909,7 @@ def add_run():
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
-   
+    bucket.set_acl('public-read')
     run_id = request.form['add']
     
     add_runs = request.form.getlist("add")
@@ -924,7 +924,6 @@ def add_run():
     er = None
 
     edit_ids = [dt for dt in add_runs if dt != 'None']
-    print edit_ids
     et_ids = []
     if len(edit_ids) > 0:
       et_ids = [int(str(dt)) for dt in edit_ids]
@@ -936,20 +935,17 @@ def add_run():
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
+        k.set_acl('public-read')
         print 'saved file by file'
       except:
         print 'error sending to s3 by file'
     
     print 'creating url'
-    url = k.generate_url(expires_in=None)
+    url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)'
     print 'created url'
     
-    print 'reading chars'
     char_ids = [int(si) for si in char_ids]
-    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
-    print 'found chars'
-    print 'run id %s' % er.id
     
     if len(et_ids) > 0:
       er.evidence_url = url
