@@ -906,6 +906,7 @@ def add_run():
     filepath = None
     er = None
     if len(run_id) > 0:
+      print 'checking run %s' % run_id
       er = MappedRun.query.filter(MappedRun.id == run_id).all()[0]
       k.key = er.evidence_file_path
     else:
@@ -957,7 +958,7 @@ def modify_runs():
   try:
     delete_id = request.form.getlist("delete")
     print delete_id
-    edit_id = request.form.getlist("edit")
+    edit_id = request.form.getlist("add")
     print edit_id
   except:
     print 'cannot find gdoc name'
