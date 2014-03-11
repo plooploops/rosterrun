@@ -946,8 +946,9 @@ def add_run():
       except:
         print 'error sending to s3 by file'
     
+    k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
-    url = str(url)
+    url = url.encode('ascii', 'ignore')
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
@@ -957,25 +958,13 @@ def add_run():
     
     print et_ids
     if len(et_ids) > 0:
-      print 'found run'
       er.evidence_url = url
-      print 'set url'
-      er.evidence_file_path = str(k.key())
-      print 'set file path'
-      er.date = run_date
-      print 'set date'
-      
+      er.evidence_file_path = k.key
+      er.date = run_date  
       er.chars = chars
-      print 'add chars'
-      
       er.instance_name = name
-      print 'set instance'
-      
       er.success = success
-      print 'set success'
-      
       er.notes = notes
-      print 'set notes'
     else:
       er = MappedRun(url, k.key, run_date, chars, name, success, notes)
       db.session.add(er)
