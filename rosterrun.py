@@ -947,16 +947,17 @@ def add_run():
         print 'error sending to s3 by file'
     
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
-    
+    url = str(url)
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
+    run_date = datetime.datetime.strptime(run_date, '%Y-%m-%dT%H:%M:%SZ')
+    name = str(name)
+    notes = str(notes)
+    
     if len(et_ids) > 0:
-      er.evidence_url = str(url)
+      er.evidence_url = url
       er.evidence_file_path = k.key()
-      print run_date
-      run_date = datetime.datetime.strptime(run_date, '%Y-%m-%dT%H:%M:%SZ')
-      print run_date
       er.date = run_date
       
       er.chars = chars
