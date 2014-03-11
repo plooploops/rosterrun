@@ -910,7 +910,7 @@ def add_run():
    
     run_id = request.form['add']
     
-    add_treasures = request.form.getlist("submit")
+    add_runs = request.form.getlist("add")
     print 'found run id %s ' % run_id
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
@@ -920,11 +920,10 @@ def add_run():
     notes = request.form['nrunnotes']
     url = None
     k = Key(bucket)
-    filepath = None
     er = None
     
-    if len(add_treasures) > 0:
-      dt_ids = [int(str(dt)) for dt in add_treasures]
+    if len(add_runs) > 0:
+      dt_ids = [int(str(dt)) for dt in add_runs]
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).all()[0]
       k.key = er.evidence_file_path
     else:
@@ -935,12 +934,19 @@ def add_run():
         print 'saved file by file'
       except:
         print 'error sending to s3 by file'
-      
-    url = k.generate_url(expires_in=None, query_auth=False)
     
+    print 'creating url'
+    url = k.generate_url(expires_in=None, query_auth=False)
+    print 'created url'
+    
+    print 'reading chars'
     char_ids = [int(si) for si in char_ids]
+    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
-    if er is not None:
+    print 'found chars'
+    print 'run id %s' % er.id
+    
+    if len(add_runs) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key()
       er.date = run_date
