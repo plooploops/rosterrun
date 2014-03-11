@@ -912,7 +912,6 @@ def add_run():
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
     bucket.set_acl('public-read')
     
-    
     add_runs = request.form.getlist("add")
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
@@ -921,13 +920,11 @@ def add_run():
     
     run_success = request.form.getlist('cbsuccess')
     
-    print 'read from form'
     success = False
     if len(run_success) > 0:
       success = True
     
     notes = request.form['nrunnotes']
-    print 'read notes from form'
     url = None
     k = Key(bucket)
     er = None
@@ -936,14 +933,10 @@ def add_run():
     et_ids = []
     if len(edit_ids) > 0:
       et_ids = [int(str(dt)) for dt in edit_ids]
-      print 'made edit ids'
     if len(et_ids) > 0:
-      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       k.key = er.evidence_file_path
-      print 'found and set run'
     else:
       k.key = "rr-%s" % uuid.uuid4()
-      print 'cannot find run'
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
@@ -954,36 +947,35 @@ def add_run():
     
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = str(url)
-    print 'got url'
     char_ids = [int(si) for si in char_ids]
-    print 'got character ids'
-    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     run_date = datetime.strptime(run_date, '%Y-%m-%d %H:%M:%S')
-    print run_date
     name = str(name)
-    print name
     notes = str(notes)
-    print notes
     
     if len(et_ids) > 0:
+      print 'adding to run'
+      er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
+      print 'found run'
       er.evidence_url = url
+      print 'set url'
       er.evidence_file_path = k.key()
-      print 'set date'
+      print 'set file path'
       er.date = run_date
+      print 'set date'
       
-      print 'add chars'
       er.chars = chars
+      print 'add chars'
       
-      print 'set instance'
       er.instance_name = name
+      print 'set instance'
       
-      print 'set success'
       er.success = success
+      print 'set success'
       
-      print 'set notes'
       er.notes = notes
+      print 'set notes'
     else:
       er = MappedRun(url, k.key, run_date, chars, name, success, notes)
       db.session.add(er)
