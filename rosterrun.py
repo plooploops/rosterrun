@@ -920,7 +920,7 @@ def add_run():
     run_date = request.form['nrundate']
     
     run_success = request.form.getlist('cbsuccess')
-    success = false
+    success = False
     if len(run_success) > 0:
       success = True
     
