@@ -958,11 +958,19 @@ def add_run():
     if len(et_ids) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key()
+      print 'set date'
       er.date = run_date
       
+      print 'add chars'
       er.chars = chars
+      
+      print 'set instance'
       er.instance_name = name
+      
+      print 'set success'
       er.success = success
+      
+      print 'set notes'
       er.notes = notes
     else:
       er = MappedRun(url, k.key, run_date, chars, name, success, notes)
@@ -973,7 +981,7 @@ def add_run():
     print 'error adding a run'
   
   #check if run is already part of DB for edit, else add a new one.
-  er = MappedRun(url, k.key, run_date, chars, name, success, notes)
+  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
