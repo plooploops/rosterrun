@@ -964,12 +964,13 @@ def modify_runs():
     
   if len(delete_id) > 0:
     dc_ids = [dt for dt in delete_id]
-    MappedRun.query.filter(MappedRun.id == dc_ids[0]).delete()
+    mr = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
+    db.session.delete(mr)
     db.session.commit()
     er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
-    ec = MappedRun.query.filter(MappedRun.id == ec_ids[0]).all()[0]
+    ec = MappedRun.query.filter(MappedRun.id == ec_ids[0]).first()
   else:
     er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
     print 'no action to map'
