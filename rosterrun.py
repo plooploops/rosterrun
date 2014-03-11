@@ -826,7 +826,7 @@ def add_treasure():
   item_cards = request.form['nitemcards']
   
   try:
-    add_treasures = request.form.getlist("submit")
+    add_treasures = request.form.getlist("add")
     for a in add_treasures:
       print a
   except:
@@ -909,6 +909,8 @@ def add_run():
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
    
     run_id = request.form['add']
+    
+    add_treasures = request.form.getlist("submit")
     print 'found run id %s ' % run_id
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
@@ -920,8 +922,10 @@ def add_run():
     k = Key(bucket)
     filepath = None
     er = None
-    if run_id is not 'None':
-      er = MappedRun.query.filter(MappedRun.id == run_id).all()[0]
+    
+    if len(add_treasures) > 0:
+      dt_ids = [int(str(dt)) for dt in add_treasures]
+      er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).all()[0]
       k.key = er.evidence_file_path
     else:
       k.key = "rr-%s" % uuid.uuid4()
@@ -977,13 +981,13 @@ def modify_runs():
   except:
     print 'cannot find gdoc name'
     
-  if delete_id is not 'None':
+  if delete_id is not None:
     dc_ids = [dt for dt in delete_id]
     mr = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
     db.session.delete(mr)
     db.session.commit()
     er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
-  elif len(edit_id) > 0:
+  elif edit_id is not None:
     ec_ids = [ed for ed in edit_id]
     ec = MappedRun.query.filter(MappedRun.id == ec_ids[0]).first()
   else:
