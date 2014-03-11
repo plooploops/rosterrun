@@ -886,7 +886,7 @@ def add_run():
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
- 
+  print 'in add run'
   url = None
   er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
   try:
@@ -895,6 +895,7 @@ def add_run():
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
    
     run_id = request.form['add']
+    print 'found run id %s ' % run_id
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
@@ -951,7 +952,7 @@ def modify_runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  drop_id = None
+  delete_id = None
   edit_id = None
     
   try:
@@ -962,7 +963,7 @@ def modify_runs():
   except:
     print 'cannot find gdoc name'
     
-  if len(delete_id) > 0:
+  if delete_id is not 'None':
     dc_ids = [dt for dt in delete_id]
     mr = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
     db.session.delete(mr)
