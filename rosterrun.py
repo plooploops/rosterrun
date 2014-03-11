@@ -906,7 +906,7 @@ def add_run():
     filepath = None
     er = None
     if len(run_id) > 0:
-      er = MappedRun.query.filter(MappedRun.id == int(run_id)).all()[0]
+      er = MappedRun.query.filter(MappedRun.id == run_id).all()[0]
       k.key = er.evidence_file_path
     else:
       k.key = "rr-%s" % uuid.uuid4()
