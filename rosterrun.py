@@ -952,11 +952,13 @@ def add_run():
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     if len(et_ids) > 0:
-      print 'setting url'
       er.evidence_url = str(url)
-      print 'done setting url'
       er.evidence_file_path = k.key()
+      print run_date
+      run_date = datetime.datetime.strptime(run_date, '%Y-%m-%dT%H:%M:%SZ')
+      print run_date
       er.date = run_date
+      
       er.chars = chars
       er.instance_name = name
       er.success = success
