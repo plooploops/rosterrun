@@ -991,7 +991,7 @@ def modify_runs():
   try:
     delete_id = request.form.getlist("delete")
     print delete_id
-    edit_id = request.form.getlist("add")
+    edit_id = request.form.getlist("edit")
     print edit_id
   except:
     print 'cannot find gdoc name'
