@@ -860,7 +860,7 @@ def add_treasure():
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
   
-  edit_ids = [dt if not(dt is None or dt is 'None' or dt is u'None') for dt in add_treasures]
+  edit_ids = [dt for dt in add_treasures if not(dt is None or dt is 'None' or dt is u'None')]
   print edit_ids
   et_ids = []
   if len(edit_ids) > 0:
@@ -923,7 +923,7 @@ def add_run():
     k = Key(bucket)
     er = None
 
-    edit_ids = [dt if not(dt is None or dt is 'None' or dt is u'None') for dt in add_runs]
+    edit_ids = [dt for dt in add_runs if not(dt is None or dt is 'None' or dt is u'None')]
     print edit_ids
     et_ids = []
     if len(edit_ids) > 0:
