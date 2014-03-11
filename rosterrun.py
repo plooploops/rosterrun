@@ -862,7 +862,7 @@ def add_treasure():
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
   
-  et_ids = [int(str(dt)) for dt in add_treasures if dt is not None]
+  et_ids = [int(str(dt)) for dt in add_treasures if not(dt is None or dt is 'None')]
   if len(et_ids) > 0:
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     gt.minMarketPrice = minMarketPrice
@@ -922,7 +922,7 @@ def add_run():
     k = Key(bucket)
     er = None
 
-    dt_ids = [int(str(dt)) for dt in add_runs if dt is not None]
+    dt_ids = [int(str(dt)) for dt in add_runs if not(dt is None or dt is 'None')]
     if len(dt_ids) > 0:
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).all()[0]
       k.key = er.evidence_file_path
