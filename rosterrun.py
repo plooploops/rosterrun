@@ -827,6 +827,8 @@ def add_treasure():
   
   try:
     add_treasures = request.form.getlist("add")
+    print add_treasures
+    print 'looking at treasure contents'
     for a in add_treasures:
       print a
   except:
@@ -914,6 +916,10 @@ def add_run():
     run_id = request.form['add']
     
     add_runs = request.form.getlist("add")
+    print add_runs
+    print 'looking at add run contents'
+    for a in add_runs:
+      print a
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
