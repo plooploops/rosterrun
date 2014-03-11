@@ -878,6 +878,7 @@ def add_treasure():
   db.session.commit()
   
   t = MappedGuildTreasure.query.all()
+  gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     
   return render_template('treasury.html', treasures=t, edittreasure=gt)
 
@@ -917,7 +918,12 @@ def add_run():
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
     run_date = request.form['nrundate']
-    success = request.form['cbsuccess']
+    
+    run_success = request.form.getlist('cbsuccess')
+    success = false
+    if len(run_success) > 0:
+      success = True
+    
     notes = request.form['nrunnotes']
     url = None
     k = Key(bucket)
@@ -964,6 +970,7 @@ def add_run():
     print 'error adding a run'
   
   #check if run is already part of DB for edit, else add a new one.
+  er = MappedRun(url, k.key, run_date, chars, name, success, notes)
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
@@ -987,16 +994,20 @@ def modify_runs():
     print edit_id
   except:
     print 'cannot find gdoc name'
-    
-  if delete_id is not None:
-    dc_ids = [dt for dt in delete_id]
+  
+  d_ids = [dt for dt in delete_id if dt != 'None']
+  dt_ids = []
+  e_ids = [et for et in edit_id if et != 'None']
+  et_ids = []
+  if len(d_ids) > 0:
+    dt_ids = [int(str(dt)) for dt in d_ids]
     mr = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
     db.session.delete(mr)
     db.session.commit()
     er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
-  elif edit_id is not None:
-    ec_ids = [ed for ed in edit_id]
-    ec = MappedRun.query.filter(MappedRun.id == ec_ids[0]).first()
+  elif len(e_ids) > 0:
+    et_ids = [int(str(ed)) for ed in edit_id]
+    er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
   else:
     er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
     print 'no action to map'
