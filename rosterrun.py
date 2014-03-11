@@ -905,7 +905,7 @@ def add_run():
     k = Key(bucket)
     filepath = None
     er = None
-    if run_id is not None:
+    if run_id is not 'None':
       er = MappedRun.query.filter(MappedRun.id == run_id).all()[0]
       k.key = er.evidence_file_path
     else:
