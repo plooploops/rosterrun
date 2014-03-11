@@ -950,7 +950,9 @@ def add_run():
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     print 'created url'
     
+    print char_ids
     char_ids = [int(si) for si in char_ids]
+    print char_ids
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     if len(et_ids) > 0:
