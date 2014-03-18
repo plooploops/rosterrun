@@ -150,6 +150,9 @@ class MappedRun(db.Model):
     instance_name = db.Column(db.String(80))
     success = db.Column(db.Boolean)
     notes = db.Column(db.String(400))
+    points = relationship("MappedGuildPoint", backref="run")
+    credits = relationship("RunCredit", backref="run")
+    mobs_killed = relationship("MappedMob", backref="mob")
     
     def __init__(self, evidence_url, evidence_file_path, date, chars, instance_name, success, notes):
         self.evidence_url = evidence_url
@@ -163,6 +166,34 @@ class MappedRun(db.Model):
     def __repr__(self):
         return '<MappedRun %r>' % self.instance_name
 
+class MappedMob(db.Model):
+    __tablename__ = 'mob'
+    id = db.Column(db.Integer, primary_key=True)
+    mob_id = db.Column(db.Integer)
+    mob_name = db.Column(db.String(80))
+    items = relationship("MappedMobItem", backref="mob")
+    mapped_run_id = db.Column(db.Integer, ForeignKey('run.id'))
+    
+    def __init__(self, mob_id):
+        self.mob_id = mob_id
+    	
+    def __repr__(self):
+        return '<MappedMob %r>' % self.mob_id
+
+class MappedMobItem(db.Model):
+    __tablename__ = 'mob_item'
+    id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer)
+    item_name = db.Column(db.String(80))
+    item_drop_rate = db.Column(db.Float)
+    mapped_mob_id = db.Column(db.Integer, ForeignKey('mob.id'))
+    
+    def __init__(self, item_id):
+        self.item_id = item_id
+        
+    def __repr__(self):
+        return '<MappedMobItem %r>' % self.item_id
+
 class MappedPlayer(db.Model):
     __tablename__ = 'player'
     id = db.Column(db.Integer, primary_key=True)
@@ -170,7 +201,9 @@ class MappedPlayer(db.Model):
     Email = db.Column(db.String(250))
     Chars = db.relationship("MappedCharacter", backref="player")
     Points = db.relationship("MappedGuildPoint", backref="player")
-
+    Credits = db.relationship("RunCredit", backref="player")
+    Transactions = db.relationship("MappedGuildTransaction", backref="player")
+    
     def __init__(self, Name, Email):
         self.Name = Name
 	self.Email = Email
@@ -234,10 +267,24 @@ class MappedGuildTreasure(db.Model):
     def __repr__(self):
         return '<MappedGuildTreasure %r>' % self.name   
 
+class RunCredit(db.Model):
+    __tablename__ = 'run_credits'
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    run_id = db.Column(db.Integer, db.ForeignKey('run.id'))
+    factor = db.Column(db.Float)
+
+    def __init__(self, factor):
+        self.factor = factor
+            
+    def __repr__(self):
+        return '<RunCredit %r>' % self.id
+
 class MappedGuildPoint(db.Model):
     __tablename__ = 'guild_points'
     id = db.Column(db.Integer, primary_key=True)
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    run_id = db.Column(db.Integer, db.ForeignKey('run.id'))
     amount = db.Column(db.Float)
     guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
     guildtransaction = db.relationship("MappedGuildTransaction", uselist=False, backref="guild_points")
@@ -257,10 +304,12 @@ class MappedGuildTransaction(db.Model):
     transType = db.Column(db.String(16))
     transDate = db.Column(db.DateTime)
     guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
- 
-    def __init__(self, playerid, amount):
-        self.player_id = playerid
-        self.amount = amount
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    to_player_name = db.Column(db.String(80))
+    
+    def __init__(self, transType, transDate):
+        self.transType = transType
+        self.transDate = transDate
         
     def __repr__(self):
         return '<MappedGuildTransaction %r>' % self.id     
@@ -303,7 +352,7 @@ class MappedMarketSearch(db.Model):
         self.name = name
 	
     def __repr__(self):
-        return '<MappedMarketSearch %r>' % self.name    
+        return '<MappedMarketSearch %r>' % self.name
 
 sched = scheduler()
 guild = Guild()
@@ -956,7 +1005,6 @@ def add_run():
     name = str(name)
     notes = str(notes)
     
-    print et_ids
     if len(et_ids) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key
