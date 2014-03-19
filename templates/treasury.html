@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Treasury</h1>
+    <form action="{{ url_for('modify_treasure') }}" method=post class=modify-treasury>
+    <div class="table-responsive">
+    <table class="table table-striped treasure">
+    <tr>
+    <th>Modify</th>
+    <th>Itemid</th>
+    <th>Name</th>
+    <th>Cards</th>
+    <th>Amount</th>
+    <th>Unit Min Market Price</th>
+    <th>Unit Max Market Price</th>
+    <th>Unit Median Market Price</th>
+    <th>Refresh Date</th>
+    <th>Guild Transaction</th>
+    </tr>
+    {% for t in treasures %}
+      <tr>
+      <td><dd><button type=submit class="btn btn-default" name=delete value="{{ t.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ t.id }}">Edit</button></td>
+      <td>{{ t.itemid}}</td>
+      <td>{{ t.name }}</td>
+      <td>
+      {% for c in t.cards.split(',') %}
+        <li>{{ c }}
+      {% endfor %}
+      </td>
+      <td>{{ "{:,.0f}".format(t.amount)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.minMarketPrice)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.maxMarketPrice)|safe }}</td>
+      <td>{{ "{:,.0f}".format(t.medianMarketPrice)|safe }}</td>
+      <td>{{ t.refreshDate|safe }}</td>
+      <td>{% if t.guildtransaction_id is defined %} <dd>{{ t.guildtransaction_id|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
+    {% endfor %}
+    </table>
+    </div>
+    </form>
+    <form action="{{ url_for('add_treasure') }}" method=post>
+	  <h2 class="sub-header">Add Item</h2>
+	  <div class="form-group">
+	  	<label for="nitemid">Item Id</label>
+	  	<input type="number" class="form-control" id="nitemid" name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemname">Item Name</label>
+	    <input type="text" class="form-control" id="nitemname" name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemcards">Cards</label>
+	    <input type="text" class="form-control" id="nitemcards" name=nitemcards placeholder="Doppelganger Card, Turtle General Card" value="{{ edittreasure.cards }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemamount">Amount</label>
+	    <input type="number" class="form-control" id="nitemamount" name=nitemamount placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.amount)|safe }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemminprice">Suggested Min Price</label>
+	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.minMarketPrice)|safe }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemmaxprice">Suggested Max Price</label>
+	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.maxMarketPrice)|safe }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemmedianprice">Suggested Median Price</label>
+	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.medianMarketPrice)|safe }}"></input>
+	  </div>
+	  <button type=submit class="btn btn-primary" name=add value="{{ edittreasure.id }}">Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}

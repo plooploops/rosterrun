@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">History</h1>
+    <form method=post action="{{ url_for('item_history') }}" class=item-history>
+    <select name="itemslist">
+	{% for ms in marketsearchs %}
+	  <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
+	{% endfor %}
+	</select>
+	<button type=submit class="btn btn-primary">Load</button>
+	</form>
+	<div class="row placeholder">
+	  <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+      <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+      <div class="col-xs-6 col-sm-6 placeholder">
+	    {{ pricechart|safe }}
+	  </div>
+	  <div class="col-xs-6 col-sm-6 placeholder">
+        {{ volumechart|safe }}
+	  </div>
+	</div>
+	<h2 class="sub-header">Details</h2>
+	<div class="table-responsive">
+    <table class="table table-striped marketresult">
+    <thead>
+	  <tr>
+	    <th>Slotted with</th>
+	    <th>Price</th>
+	    <th>Amount</th>
+	    <th>Vendor</th>
+	    <th>Location</th>
+	    <th>Date</th>
+	  </tr>
+	</thead>
+    {% for group in marketresults|groupby('name') %}
+      <tr><td colspan="6">{{ group.grouper|safe }}</td></tr>
+      {% for mr in group.list %}
+        <tr>
+        <td>
+        {% for c in mr.cards %}
+	      <li>{{ c|safe }}
+	    {% endfor %}
+	    </td>
+	    <td>{{ "{:,.0f}".format(mr.price)|safe }}</td>
+	    <td>{{ "{:,.0f}".format(mr.amount)|safe }}</td>
+	    <td>{{ mr.vendor|safe }}</td>
+	    <td>{{ mr.coords|replace(".","")|safe }}</td>
+        <td>{{ mr.date|safe }}</td>
+        </tr>
+      {% endfor %}
+    {% endfor %}
+    </table>
+    </div>
+  {% endif %}
+{% endblock %}

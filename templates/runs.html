@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Runs</h1>
+    <form role="form" action="{{ url_for('modify_runs') }}" method=post class=add-run>
+    <div class="table-responsive">
+    <table class="table table-striped run">
+    <tr>
+    <th>Modify</th>
+    <th>Name</th>
+    <th>Screenshot</th>
+    <th>Characters</th>
+    <th>Date</th>
+    <th>Success</th>
+    <th>Notes</th>
+    </tr>
+    {% for r in runs %}
+      <tr>
+      <td><dd><button type=submit class="btn btn-default" name=delete value="{{ r.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ r.id }}">Edit</button></td>
+      <td>{{ r.instance_name|safe }}</td>
+      <td><img src="{{ r.evidence_url|safe }}" class="img-responsive" alt="Run screenshot"></td>
+      <td>
+        {% for c in r.chars %}
+	      <li>{{ c.Name }} {{ c.Class }}
+        {% endfor %}
+      </td>
+      <td>{{ r.date|safe }}</td>
+      <td>{{ r.success|safe }}</td>
+      <td>{{ r.notes|safe }}</td>
+    {% endfor %}
+    </table>
+    </div>
+    </form>
+    <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
+	  <h2 class="sub-header">Add Run</h2>
+
+	  <div class="form-group">
+	  	<label for="nrunname">Name</label>
+	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
+	  </div>
+      <div class="form-group">
+	    <label for="nrunscreenshot">Screenshot</label>
+	    <input type="file" id="nrunscreenshot" name=nrunscreenshot placeholder="C:\screenshot\run.jpg" value="{{ editrun.evidence_file_path }}">
+	    <p class="help-block">Please submit a screenshot</p>
+      </div>
+      <h3>Characters in Party</h3>
+	  <div class="table-responsive">
+	    <table class="table table-striped mappedcharacter">
+		  <tr>
+		  <th>Part of Run</th>
+		  <th>Name</th>
+		  <th>Class</th>
+		  </tr>
+		  {% for mc in mappedcharacters %}
+		    <tr>
+		      <td><input {% if mc in editrun.chars %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mc.id }}"></td>
+			  <td>{{ mc.Name|safe }}</td>
+			  <td>{{ mc.Class|safe }}</td>
+			</tr>
+		  {% endfor %}
+        </table>
+	  </div>
+
+      <h3>Mobs Killed in Party</h3>
+	  <div class="table-responsive">
+	    <table class="table table-striped mappedmob">
+	      <tr>
+	      <th>Killed Mob</th>
+	      <th>Name</th>
+	  	  </tr>
+	  	  {% for mm in mappedmobs %}
+	  	    <tr>
+	  	      <td><input {% if mc in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mm.mob_id }}"></td>
+	  		  <td>{{ mm.mob_name|safe }}</td>
+	  		</tr>
+	  	  {% endfor %}
+	  	</table>
+	  </div>
+	  <div class="form-group">
+	    <label for="nrundate">Date</label>
+	    <input type="text" class="form-control" id="nrundate" name=nrundate placeholder="12/12/2013" value="{{ editrun.date }}"></input>
+	  </div>
+	  <label>
+	    <input
+	      {% if editrun.success %}
+		    checked="True"
+		  {% endif %}
+		  type=checkbox
+		  id="cbsuccess"
+		  name=cbsuccess
+		  value="{{ editrun.success }}"> Success
+	  </label>
+	  <div class="form-group">
+	    <label for="nrunnotes">Notes</label>
+	  	<input type="text" class="form-control" id="nrunnotes" name=nrunnotes placeholder="Got to level 75" value="{{ editrun.notes }}"></input>
+	  </div>
+	  <button type=submit class="btn btn-primary" name=add value="{{ editrun.id }}">Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}

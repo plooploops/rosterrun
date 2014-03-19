@@ -1,62 +1,71 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+    <h1 class="page-header">Roster</h1>
     <form action="{{ url_for('show_entries') }}" method=post class=run-calculation>
-      <dl>
-        <dt>Google Document:
-        <dd><input type=text name=gdocname placeholder="Quest Status">
-        <dd><input type=submit name=action value=Import>
-        <input type=submit name=action value=Calculate>
-        <input type=submit name=action value=Refresh>
-        <input type=submit name=action value=Reset>
+      <div class="form-group">
+	    <label for="gdocname">Google Document</label>
+	    <input type="text" class="form-control" name=gdocname id="gdocname" placeholder="Quest Status">
+	  </div>
+      <dd><button type=submit class="btn btn-primary" name=action value='Import'>Import</button>
+      <button type=submit class="btn btn-default" name=action value='Reset'>Reset</button>
+    </form>
+    <h2 class="sub-header">Character</h2>
+	  <form action="{{ url_for('add_character') }}" method=post>
+	    <div class="form-group">
+		  <label for="charclass">Class</label>
+		  <input type="text" class="form-control" name=charclass id="charclass" placeholder="High Wizard" value="{{ editcharacter.Class }}"></input>
+	    </div>
+	    <div class="form-group">
+		  <label for="charname">Name</label>
+		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf" value="{{ editcharacter.Name }}"></input>
+	    </div>
+	    <div class="form-group">
+		  <label for="charquests">Quests</label>
+		  <input type="text" class="form-control" name=charquests id="charquests" placeholder="twotribes,attitudetothenewworld" value="{{ editcharacter.Quests }}"></input>
+	    </div>
+	    <div class="form-group">
+		  <label for="charlastrun">Last Run</label>
+		  <input type="datetime" class="form-control" name=charlastrun id="charlastrun" placeholder="2/9/2014" value="{{ editcharacter.LastRun }}"></input>
+	    </div>
+	    <div class="form-group">
+		  <label for="charplayername">Player Name</label>
+		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy" value="{{ editcharacter.PlayerName }}"></input>
+	    </div>
+	    <div class="form-group">
+		  <label for="charpresent">Present</label>
+		  <input type="number" class="form-control" name=charpresent id="charpresent" placeholder="1" value="{{ editcharacter.Present }}"></input>
+	    </div>
+	    <button type=submit class="btn btn-primary" name=add value="{{ editcharacter.id }}">Add</button>
       </dl>
     </form>
-    <h2>Character Status</h2>
-    <table class=character>
-    <tr>
-    <th>Class</th>
-    <th>Name</th>
-    <th>Role</th>
-    <th>Quests</th>
-    <th>Last Run</th>
-    <th>Player Name</th>
-    <th>Present</th>
-    </tr>
-    {% for char in characters %}
-      <tr>
-      <td><h2>{{ char.Class }}</h2></td>
-      <td>{{ char.Name }}</td>
-      <td>{{ char.Role}}</td>
-      <td>
-      {% for q in char.Quests %}
-        <li>{{ q }}
+    <h2 class="sub-header">Character Status</h2>
+    <form action="{{ url_for('update_chars') }}" method=post>
+      <div class="table-responsive">
+      <table class="table table-striped character">
+      <thead>
+        <tr>
+          <th>Manage</th>
+          <th>Class</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Last Run</th>
+          <th>Player Name</th>
+          <th>Online?</th>
+        </tr>
+      </thead>
+      {% for char in characters %}
+        <tr>
+        <td><button type=submit class="btn btn-default" name=drop value="{{ char.id|safe }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id|safe }}">Edit</button>
+        <td>{{ char.Class|safe }}</td>
+        <td>{{ char.Name|safe }}</td>
+        <td>{{ char.Role|safe}}</td>
+        <td>{{ char.LastRun|safe }}</td>
+        <td>{{ char.PlayerName|safe }}</td>
+        <td>{{ char.Present|safe }}</td>
       {% endfor %}
-      </td>
-      <td>{{ char.LastRun }}</td>
-      <td>{{ char.PlayerName }}</td>
-      <td>{{ char.Present }}</td>
-    {% endfor %}
-    </table>
-    <h2>Party Combinations</h2>
-    <table class=combination>
-    <tr>
-    <th>Party Combination</th>
-    <th>Player Name</th>
-    <th>Character Name</th>
-    <th>Class</th>
-    <th>Role</th>
-    </tr>
-    {% for entry in combinations %}
-      <tr>
-      <td><h2>{{ entry.InstanceName }} {{ entry.PartyIndex }}</h2></td>
-      <td>{{ entry.PlayerName|safe }}</td>
-      <td>{{ entry.CharacterName|safe }}</td>
-      <td>{{ entry.CharacterClass|safe }}</td>
-      <td>{{ entry.RoleName|safe }}</td>
-      </tr>
-    {% else %}
-      <li><em>Unbelievable.  No combinations here so far</em>
-    {% endfor %}
-    </table>
+      </table>
+    </form>
+    </div>
   {% endif %}
 {% endblock %}

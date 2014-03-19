@@ -72,7 +72,7 @@ roleSPActive.CanDualClientRole = [roleSupport, roleSPBoost, roleSPKiller]
 roleFreezer.CanDualClientRole = [roleSupport, roleSPBoost]
 roleDPS.CanDualClientRole = [roleSupport, roleSPBoost]
 
-AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive]
+AllRoles = [roleHealer, roleKiller, roleLurer, roleSupport, roleFreezer, roleSPKiller, roleSPBoost, roleSPActive, roleDPS]
 niddhoggQuests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
 niddhoggRolesMinSPKiller = [roleHealer, roleSPKiller, roleLurer, roleSupport, roleSPActive]
 niddhoggRolesSPKiller = [roleHealer, roleHealer, roleSPKiller, roleLurer, roleSupport, roleFreezer, roleSPActive]
@@ -101,7 +101,7 @@ def run_scheduler(user, pw, doc):
     userName = user
     password = pw
     docName = doc
-    initializeData(userName, password, docName, quests)
+    characters = initializeData(userName, password, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
@@ -130,7 +130,7 @@ def run_scheduler_OAuth(credentials, doc):
     viablePartyIndex = 0
 
     docName = doc
-    initializeDataOAuth(credentials, docName, quests)
+    characters = initializeDataOAuth(credentials, docName, quests)
     avChar = computeRequirements(characters, instance, quests)
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
     niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
@@ -150,6 +150,33 @@ def run_scheduler_OAuth(credentials, doc):
     parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
     
     return parties    
+
+def run_scheduler_mapped_characters(characters):
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesSPKiller)
+    instance = niddhoggInstance
+    quests = niddhoggQuests
+    parties = []
+    viablePartyIndex = 0
+
+    avChar = computeRequirements(characters, instance, quests)
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer')
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'No SP Killer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesNoFreezeSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinSPKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min SP Killer No Freezer') 
+    
+    niddhoggInstance = Instance('Niddhogg', niddhoggQuests, 3, niddhoggRolesMinKiller)
+    instance = niddhoggInstance
+    parties += combineByRoleAssignment(avChar, instance, quests, viablePartyIndex, 'Min Killer') 
+    
+    return parties        
 
 def raw_test():
     user = raw_input('User Name: ')
@@ -198,6 +225,8 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   return (spreadsheet_id, worksheet_id)  
 
 def initializeDataOAuth(credentials, docName, quests):
+  characters = []
+  found_chars = []
   # Connect to Google
   gd_client = gdata.spreadsheets.client.SpreadsheetsClient(source=APP_NAME)
   gd_client = authorizeClient(credentials, gd_client)
@@ -219,6 +248,7 @@ def initializeDataOAuth(credentials, docName, quests):
   g_spreadsheet_id = spreadsheet_id
   g_worksheet_id = worksheet_id
   rows = gd_client.GetListFeed(spreadsheet_id, worksheet_id).entry
+  
   for row in rows:
     charac = Character()
     charac.Quests = []
@@ -260,7 +290,9 @@ def initializeDataOAuth(credentials, docName, quests):
     
     if charac.Role is None:
       charac.Role = roleUnmapped
-    characters.append(charac)
+    found_chars.append(charac)
+  
+  characters = found_chars
   return characters
   #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars
@@ -289,6 +321,7 @@ def computeRequirements(characters, instance, quests):
     return availableCharacters
     
 def combineByRoleAssignment(availableCharacters, instance, quests, viablePartyIndex, partyTypeName):
+    print 'examining party configuration %s' % partyTypeName
     if (len(instance.Roles) > len(availableCharacters)):
 	return []
 
