@@ -61,6 +61,21 @@
         </table>
 	  </div>
 
+      <h3>Mobs Killed in Party</h3>
+	  <div class="table-responsive">
+	    <table class="table table-striped mappedmob">
+	      <tr>
+	      <th>Killed Mob</th>
+	      <th>Name</th>
+	  	  </tr>
+	  	  {% for mm in mappedmobs %}
+	  	    <tr>
+	  	      <td><input {% if mc in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mm.mob_id }}"></td>
+	  		  <td>{{ mm.mob_name|safe }}</td>
+	  		</tr>
+	  	  {% endfor %}
+	  	</table>
+	  </div>
 	  <div class="form-group">
 	    <label for="nrundate">Date</label>
 	    <input type="text" class="form-control" id="nrundate" name=nrundate placeholder="12/12/2013" value="{{ editrun.date }}"></input>
