@@ -12,7 +12,6 @@ from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
 from rosterrun import *
 
-from collection import defaultdict
 #points calculator
 
 #Cards will be treated according to TC * market  z / TC * expected drop rate
@@ -252,6 +251,13 @@ class Guild:
     guild_treasure = db.session.query(MappedGuildTreasure.itemid, func.min(MappedGuildTreasure.minMarketPrice)).filter(MappedGuildTreasure.itemid.in_(drop_items)).group_by(MappedGuildTreasure.itemid).all()
     
     #guild treasure results take precedence over market results
+    #convert to a dictionary
+    market_results_d = {}
+    for mr in market_results:
+      if market_results_d.has_key(mr[0]):
+        market_results_d[mr[0]].append(mr[1])
+      else:
+        market_results_d[mr[0]] = [mr[1]]
     market_results_d = defaultdict(market_results)    
     for k,v in market_results:
       market_results_d[k].append(v)
