@@ -260,13 +260,12 @@ class MappedCharacter(db.Model):
     mappedguild_id = db.Column(db.Integer, ForeignKey('guild.id'))
     mappedplayer_id = db.Column(db.Integer, ForeignKey('player.id'))
     
-    def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, quests, lastRun, playerName, present):
+    def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, lastRun, playerName, present):
         self.g_spreadsheet_id = spreadsheet_id
         self.g_worksheet_id = worksheet_id
 	self.Class = characterClass
 	self.Name = characterName
 	self.Role = role
-	self.Quests = quests
 	self.LastRun = lastRun
 	self.PlayerName = playerName
 	self.Present = present
@@ -469,7 +468,8 @@ def show_entries():
 
   instance = MappedInstance.query.filter(MappedInstance.name == 'Niddhoggs Nest').all()[0]
   quests = [q.name for q in instance.quests]
-  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, quests, None, 'Billy', 1)
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+  ec.Quests = quests
   
   #map points back from characters and guild?
   
@@ -1312,12 +1312,14 @@ def update_chars():
     dc_ids = [dt for dt in drop_id]
     MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).delete()
     db.session.commit()
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, mi.quests, None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+    ec.Quests = mi.quests
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
     ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids[0]).all()[0]
   else:
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, mi.quests, None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+    ec.Quests = mi.quests
     print 'no action to map'
   
   try:
@@ -1409,7 +1411,8 @@ def add_character():
     dc_ids = [str(dt) for dt in char_id]
     if dc_ids[0] == u'None':    
       #adding new character
-      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, quests, charlastrun, charplayername, charpresent)
+      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charlastrun, charplayername, charpresent)
+      ec.Quests = quests
       db.session.add(ec)
   else:
     #editing a character
@@ -1473,7 +1476,9 @@ def import_characters():
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(c.Quests))
-      db.session.add(MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), char_quests, str(c.LastRun), str(c.PlayerName), str(c.Present)))
+      mc = MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), str(c.LastRun), str(c.PlayerName), str(c.Present))
+      mc.Quests = char_quests
+      db.session.add(mc)
     
     db.session.commit()
     flash('Import finished')
