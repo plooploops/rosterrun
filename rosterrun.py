@@ -47,7 +47,7 @@ from boto.s3.key import Key
 import uuid
 from werkzeug import secure_filename
 
-#from data_model import *
+from data_model import *
 
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])

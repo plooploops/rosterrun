@@ -64,7 +64,7 @@ class MappedInstance(db.Model):
     name = db.Column(db.String(80))
     quests = relationship("MappedQuest", backref="instance")
     mapped_run_id = db.Column(db.Integer, ForeignKey('run.id'))
-    mobs = relationship("MappedMob", backref="mob")
+    mobs = relationship("MappedMob", backref="instance")
     median_players = db.Column(db.Integer)
     #placeholder for now.  will update.
     
