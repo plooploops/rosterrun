@@ -10,7 +10,7 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
-from rosterrun import db, MappedMarketResult, MappedMarketSearch, MappedPlayer, MappedGuildPoint, MappedRun, RunCredit, MappedGuildTransaction
+from rosterrun import *
 
 from collection import defaultdict
 #points calculator
