@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship, backref
 from datetime import datetime, timedelta
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
-from rosterrun import db
+from rosterrun import *
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
