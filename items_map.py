@@ -6,6 +6,7 @@ sealedShrineQuestExternal = ['Sealed Shrine Quest']
 morrocQuestExternal = ['Continental Guard Quest']
 gloomQuestExternal = ['Rachel Sanctuary Entrance Quest', 'Lost Child Quest']
 niddhoggQuestsExternal = ['Tripatriate Unions Feud', 'Attitude To The New World', 'Ring Of The Wise King', 'New Surroundings', 'Two Tribes', 'Pursuing Rayan Moore', 'Report From The New World', 'Guardian Of Yggsdrasil Step 9', 'Onward To The New World']
+EndlessTowerExternal = ['None']
 
 cards_to_coins = { 
   4407 : 20.0, 
