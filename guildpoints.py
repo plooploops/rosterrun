@@ -10,7 +10,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
-from rosterrun import *
+from rosterrun import db
+
 
 #points calculator
 
