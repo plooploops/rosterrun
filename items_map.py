@@ -28,21 +28,21 @@ cards_to_coins = {
 #instance name, median_number, mob_id, mob_name, mob_drop_rate, quests
 #added placeholder for ET mvps
 instance_mob_item_mapping = [
-  ('Sealed Shrine', 5, 1929, 'Greater Demon Baphomet', [(6004, .15), (2514, .7), (1181, .5), (1181, .01), (2513, .7), (2327, .7), (1466, .9), (4147, .0003)], sealedShrineQuestExternal),
-  ('Niddhoggs Nest', 4, 2022, 'Nidhoggrs Shadow', [(6091, 1.0), (7444, 1.0), (2610, .5), (1484, .05), (1170, .05), (1417, .05), (2554, .1), (5467, .15)], niddhoggQuestsExternal)
-  ('Ktullanax', 4, 1779, 'Ktullanux', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)], ktullanaxQuestExternal)
-  ('Nameless - Beelzebub', 5, 1874, 'Beelzebub', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)], namelessIslandQuestsExternal)
-  ('Nameless - Fallen Bishop', 3, 1871, 'Fallen Bishop Hibram', [(523, 1.0), (1420, .05), (2677, .05), (1422, .05), (985, 1.0), (1614, .2), (18538, .04), (4441, .0003)], namelessIslandQuestsExternal)
-  ('Thanatos', 4, 1708, 'Memory of Thanatos', [(7444, .3), (2519, .1), (7450, 1.0), (2342, .5), (2412, .5), (2515, .1), (2655, .05), (5377, .1), (5462, .1), (4399, .0003)], thanatosQuestExternal)
-  ('Gloom', 3, 1768, 'Gloom Under Night', [(7566, 1.0), (7023, 1.0), (7022, .6), (616, 1.0), (2513, .1), (1377, .01), (5306, .027), (4408, .0003)], gloomQuestExternal)
-  ('Morroc', 6, 1917, 'Wounded Morroc', [(5808, .075), (2374, .1), (2375, .12), (2433, .25), (7799, 1.0), (7798, 1.0)], morrocQuestExternal)
-  ('Valkyrie Randgris', 6, 1751, 'Valkyrie Randgris', [(7510, 1.0), (2357, .12), (2524, .15), (2421, .3), (2229, .5), (7024, .75), (2115, .16), (4407, .0003)], [])
-  ('Bio - Sniper', 5, 1650, 'Sniper Cecil', [(1228, .35), (1236, .35), (617, 1.0), (1234, .15), (1237, .35), (1720, .15), (1724, .25), (4367, .0003)], biolabQuestsExternal),
-  ('Bio - High Priest', 5, 1649, 'High Priest Margaretha', [(1814, .35), (2615, .25), (2513, .9), (1557, .35), (1527, .35), (1528, .25), (1560, .35), (4363, .0003)], biolabQuestsExternal),
-  ('Bio - High Wizard', 5, 1651, 'High Wizard Kathryne', [(1241, .35), (1242, .35), (2616, .9), (2343, .25), (2513, .25), (1618, .3), (2319, .35), (4365, .0003)], biolabQuestsExternal),
-  ('Bio - Whitesmith', 5, 1648, '1648', [(1138, .35), (1140, .25), (2318, .9), (1365, .35), (1364, .35), (1369, .25), (1368, .35), (4361, .0003)], biolabQuestsExternal),
-  ('Bio - Assassin Cross', 5, 1647, 'Assassin Cross Eremes', [(1234, .15), (1230, .15), (2319, .9), (1233, .35), (1232, .35), (1265, .35), (13002, .35), (4359, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 5, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal)
+  ['Sealed Shrine', 5, 1929, 'Greater Demon Baphomet', [(6004, .15), (2514, .7), (1181, .5), (1181, .01), (2513, .7), (2327, .7), (1466, .9), (4147, .0003)], sealedShrineQuestExternal],
+  ['Niddhoggs Nest', 4, 2022, 'Nidhoggrs Shadow', [(6091, 1.0), (7444, 1.0), (2610, .5), (1484, .05), (1170, .05), (1417, .05), (2554, .1), (5467, .15)], niddhoggQuestsExternal],
+  ['Ktullanax', 4, 1779, 'Ktullanux', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)], ktullanaxQuestExternal],
+  ['Nameless - Beelzebub', 5, 1874, 'Beelzebub', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)], namelessIslandQuestsExternal],
+  ['Nameless - Fallen Bishop', 3, 1871, 'Fallen Bishop Hibram', [(523, 1.0), (1420, .05), (2677, .05), (1422, .05), (985, 1.0), (1614, .2), (18538, .04), (4441, .0003)], namelessIslandQuestsExternal],
+  ['Thanatos', 4, 1708, 'Memory of Thanatos', [(7444, .3), (2519, .1), (7450, 1.0), (2342, .5), (2412, .5), (2515, .1), (2655, .05), (5377, .1), (5462, .1), (4399, .0003)], thanatosQuestExternal],
+  ['Gloom', 3, 1768, 'Gloom Under Night', [(7566, 1.0), (7023, 1.0), (7022, .6), (616, 1.0), (2513, .1), (1377, .01), (5306, .027), (4408, .0003)], gloomQuestExternal],
+  ['Morroc', 6, 1917, 'Wounded Morroc', [(5808, .075), (2374, .1), (2375, .12), (2433, .25), (7799, 1.0), (7798, 1.0)], morrocQuestExternal],
+  ['Valkyrie Randgris', 6, 1751, 'Valkyrie Randgris', [(7510, 1.0), (2357, .12), (2524, .15), (2421, .3), (2229, .5), (7024, .75), (2115, .16), (4407, .0003)], []],
+  ['Bio - Sniper', 5, 1650, 'Sniper Cecil', [(1228, .35), (1236, .35), (617, 1.0), (1234, .15), (1237, .35), (1720, .15), (1724, .25), (4367, .0003)], biolabQuestsExternal],
+  ['Bio - High Priest', 5, 1649, 'High Priest Margaretha', [(1814, .35), (2615, .25), (2513, .9), (1557, .35), (1527, .35), (1528, .25), (1560, .35), (4363, .0003)], biolabQuestsExternal],
+  ['Bio - High Wizard', 5, 1651, 'High Wizard Kathryne', [(1241, .35), (1242, .35), (2616, .9), (2343, .25), (2513, .25), (1618, .3), (2319, .35), (4365, .0003)], biolabQuestsExternal],
+  ['Bio - Whitesmith', 5, 1648, '1648', [(1138, .35), (1140, .25), (2318, .9), (1365, .35), (1364, .35), (1369, .25), (1368, .35), (4361, .0003)], biolabQuestsExternal],
+  ['Bio - Assassin Cross', 5, 1647, 'Assassin Cross Eremes', [(1234, .15), (1230, .15), (2319, .9), (1233, .35), (1232, .35), (1265, .35), (13002, .35), (4359, .0003)], biolabQuestsExternal],
+  ['Bio - Lord Knight', 5, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal]
 ]
 
 #mobs
