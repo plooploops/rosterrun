@@ -581,7 +581,14 @@ def modify_treasure():
   if len(buy_treasures) > 0: 
     bt_ids = [int(str(dt)) for dt in buy_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == bt_ids[0]).all()[0]
-    guild.BuyTreasure(gt, 
+    players_who_match = MappedPlayer.query.filter(MappedPlayer.Email == session['username'])
+    if players_who_match.count() == 0:
+      print 'no player mapped for buying'
+      flash('Unable to buy.  Need to make sure correct player logged in')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+    
+    guild.BuyTreasure(gt, players_who_match.all()[0])
     #link to guild treasure / guild points
     #who is logged in and do they have enough points?
   #  session['user']

@@ -108,7 +108,7 @@ class MappedRun(db.Model):
     notes = db.Column(db.String(400))
     points = relationship("MappedGuildPoint", backref="run")
     credits = relationship("RunCredit", backref="run")
-    mobs_killed = relationship("MappedMob", backref="mob")
+    mobs_killed = relationship("MappedMob", backref="run")
     
     def __init__(self, evidence_url, evidence_file_path, date, chars, instance, success, notes):
         self.evidence_url = evidence_url
