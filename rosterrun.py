@@ -579,6 +579,9 @@ def modify_treasure():
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     print 'edit'
   if len(buy_treasures) > 0: 
+    bt_ids = [int(str(dt)) for dt in buy_treasures]
+    gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == bt_ids[0]).all()[0]
+    guild.BuyTreasure(gt, 
     #link to guild treasure / guild points
     #who is logged in and do they have enough points?
   #  session['user']
@@ -1315,6 +1318,8 @@ def oauth2callback():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       storage.put(credentials)    
       session['logged_in'] = True
+      #map player in db?
+      
       #credentials stored
       flash('You were logged in')
       return redirect(url_for('show_entries'))

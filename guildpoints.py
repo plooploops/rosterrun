@@ -94,7 +94,7 @@ class Guild:
     subtotal = 0
     for r in run_to_points:
       if subtotal > amount:
-        return
+        break
       
       subtotal += r[2]
       run_credit = rcs[r[0]]
@@ -266,16 +266,60 @@ class Guild:
     for run in relevant_runs_query:
       players = [c.mappedplayer_id for c in mr.chars] 
       players = list(set(players))
-      self.CalculatePoints(run, run.mobs_killed, players, market_results): 
+      self.CalculatePoints(run, run.mobs_killed, players, market_results) 
   
   def BuyTreasure(self, mappedGuildTreasure, mappedPlayer):
-    #run_to_drop = db.session.query(MappedRun, MappedMob, MappedMobItem).join(MappedMob).join(MappedMobItem).filter(MappedRun.id == run.id).filter(MappedRun.success == True).all()
+    player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).all()[0]
+    total_points = player_points[2]
+    price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
     
-    #check if the player has enough points to buy treasure (min price * amount) <= player points
+    if total_points < price:
+      #not enough points
+      print 'not enough points'
+      return
     
-    #remap the credit to eliminate the points for next time calculation      
+    #reduce the credit for each of the points until reaching the price.  remaining credit becomes a fraction
+    #1.0 - 2 1.0 - 2 1.0 - 4
+    #7 points is price
+    #5 points remaining
+    #0.0 - 0 0.0 - 0 .25 - 1
     
-    #append points for player to 'buy' treasure
- 
+    run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
+    for rcp in run_credit_points:
+      if total_points > rcp[1].amount: 
+        rcp[0].factor = 0.0
+        total_points -= rcp[1].amount
+        #rcp[1].amount = 0.0
+      elif total_points > 0:
+        remaining_amount = float(rcp[1].amount) - float(total_points)
+        remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
+        rcp[0].factor = remaining_factor
+        #rcp[1].amount = remaining_amount
+      else:
+        #no more points
+        break
+     
+    db.session.commit()
     
+    #calc points
+    mgp_from_player = MappedGuildPoint(-1 * price)
+    mappedPlayer.Points.append(mgp_from_player)
+      
+    #need to link to guild transaction
+    mgt = MappedGuildTransaction('purchase', datetime.now())
+    mgt.player_id = mappedPlayer.id
+    mappedPlayer.Transactions.append(mgt)
+    mgp_from_player.guildtransaction = mgt
+    
+    mappedGuildTreasure.guildtransaction = mgt
+        
+    mg = MappedGuild.query.one()
+    mg.guildTransactions.append(mgt)
+        
+    db.session.commit()
+    
+    print db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).all()
+    
+    #get the player to points total
+    print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()    
     
