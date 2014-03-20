@@ -20,9 +20,21 @@
 		  <label for="charname">Name</label>
 		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf" value="{{ editcharacter.Name }}"></input>
 	    </div>
-	    <div class="form-group">
-		  <label for="charquests">Quests</label>
-		  <input type="text" class="form-control" name=charquests id="charquests" placeholder="twotribes,attitudetothenewworld" value="{{ editcharacter.Quests }}"></input>
+	    <h3>Quests Completed</h3>
+	    <div class="table-responsive">
+          <table class="table table-striped mappedcharacter">
+            <tr>
+            <th>Part of Run</th>
+            <th>Name</th>
+            <th>Class</th>
+			</tr>
+			{% for mq in mappedquests %}
+			  <tr>
+			    <td><input {% if mq in editcharacter.Quests %} checked="True" {% endif %} type=checkbox name=cbquests value="{{ mq.id }}"></td>
+			    <td>{{ mq.name|safe }}</td>
+			  </tr>
+            {% endfor %}
+          </table>
 	    </div>
 	    <div class="form-group">
 		  <label for="charlastrun">Last Run</label>
@@ -30,7 +42,7 @@
 	    </div>
 	    <div class="form-group">
 		  <label for="charplayername">Player Name</label>
-		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy" value="{{ editcharacter.PlayerName }}"></input>
+		  <input type="text" class="fo	rm-control" name=charplayername id="charplayername" placeholder="Billy" value="{{ editcharacter.PlayerName }}"></input>
 	    </div>
 	    <div class="form-group">
 		  <label for="charpresent">Present</label>

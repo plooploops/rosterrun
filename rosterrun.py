@@ -47,6 +47,8 @@ from boto.s3.key import Key
 import uuid
 from werkzeug import secure_filename
 
+from data_model import *
+
 #import dev_appserver
 #os.environ['PATH'] = str(dev_appserver.EXTRA_PATHS) + str(os.environ['PATH'])
 
@@ -79,443 +81,170 @@ q = Queue(connection=conn, default_timeout=3600)
 app.config['UPLOAD_FOLDER'] = 'tmp/'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-class PartyCombo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    g_spreadsheet_id = db.Column(db.String(80))
-    g_worksheet_id = db.Column(db.String(80))
-    partyIndex = db.Column(db.String(80))
-    instanceName = db.Column(db.String(80))
-    playerName = db.Column(db.String(80))
-    name = db.Column(db.String(80))
-    className = db.Column(db.String(80))
-    rolename = db.Column(db.String(80))
-
-    def __init__(self, spreadsheet_id, worksheet_id, pIndex, iName, pName, cName, cClass, rName):
-        self.g_spreadsheet_id = spreadsheet_id
-        self.g_worksheet_id = worksheet_id
-	self.partyIndex = pIndex
-  	self.instanceName = iName
-	self.playerName = pName
-	self.name = cName
-	self.className = cClass
-	self.rolename = rName
-
-    def __repr__(self):
-        return '<PartyCombo %r>' % self.playerName
-
-class MappedGuild(db.Model):
-    __tablename__ = 'guild'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    
-    guildTreasures = db.relationship('MappedGuildTreasure', backref='guild', lazy='dynamic')
-    guildPoints = db.relationship('MappedGuildPoint', backref='guild', lazy='dynamic')
-    guildTransactions = db.relationship('MappedGuildTransaction', backref='guild', lazy='dynamic')
-    guildChars = db.relationship("MappedCharacter", backref="guild")
-    
-    def __init__(self, name, guildChars, guildTreasures, guildPoints, guildTransactions):
-    	self.name = name
-    	self.guildChars = guildChars
-    	self.guildTreasures = guildTreasures
-    	self.guildPoints = guildPoints
-    	self.guildTransactions = guildTransactions
-    
-    def __repr__(self):
-        return '<MappedGuild %r>' % self.name        
-        
-association_table = db.Table('run_to_characters', db.metadata,
-    db.Column('run_id', db.Integer, ForeignKey('run.id')),
-    db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
-)
-
-class MappedInstance(db.Model):
-    __tablename__ = 'instance'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    #placeholder for now.  will update.
-    
-    def __init__(self, name):
-        self.name = name
-        	
-    def __repr__(self):
-        return '<MappedInstance %r>' % self.name
-
-class MappedRun(db.Model):
-    __tablename__ = 'run'
-    id = db.Column(db.Integer, primary_key=True)
-    evidence_url = db.Column(db.String(400))
-    evidence_file_path = db.Column(db.String(400))
-    date = db.Column(db.DateTime)
-    chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
-    instance_name = db.Column(db.String(80))
-    success = db.Column(db.Boolean)
-    notes = db.Column(db.String(400))
-    points = relationship("MappedGuildPoint", backref="run")
-    credits = relationship("RunCredit", backref="run")
-    mobs_killed = relationship("MappedMob", backref="mob")
-    
-    def __init__(self, evidence_url, evidence_file_path, date, chars, instance_name, success, notes):
-        self.evidence_url = evidence_url
-        self.evidence_file_path = evidence_file_path
-        self.date = date
-        self.chars = chars
-        self.instance_name = instance_name
-        self.success = success
-    	self.notes = notes
-    	
-    def __repr__(self):
-        return '<MappedRun %r>' % self.instance_name
-
-class MappedMob(db.Model):
-    __tablename__ = 'mob'
-    id = db.Column(db.Integer, primary_key=True)
-    mob_id = db.Column(db.Integer)
-    mob_name = db.Column(db.String(80))
-    items = relationship("MappedMobItem", backref="mob")
-    mapped_run_id = db.Column(db.Integer, ForeignKey('run.id'))
-    
-    def __init__(self, mob_id):
-        self.mob_id = mob_id
-    	
-    def __repr__(self):
-        return '<MappedMob %r>' % self.mob_id
-
-class MappedMobItem(db.Model):
-    __tablename__ = 'mob_item'
-    id = db.Column(db.Integer, primary_key=True)
-    item_id = db.Column(db.Integer)
-    item_name = db.Column(db.String(80))
-    item_drop_rate = db.Column(db.Float)
-    mapped_mob_id = db.Column(db.Integer, ForeignKey('mob.id'))
-    
-    def __init__(self, item_id):
-        self.item_id = item_id
-        
-    def __repr__(self):
-        return '<MappedMobItem %r>' % self.item_id
-
-class MappedPlayer(db.Model):
-    __tablename__ = 'player'
-    id = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.String(80))
-    Email = db.Column(db.String(250))
-    Chars = db.relationship("MappedCharacter", backref="player")
-    Points = db.relationship("MappedGuildPoint", backref="player")
-    Credits = db.relationship("RunCredit", backref="player")
-    Transactions = db.relationship("MappedGuildTransaction", backref="player")
-    
-    def __init__(self, Name, Email):
-        self.Name = Name
-	self.Email = Email
-    
-    def __repr__(self):
-        return '<MappedPlayer %r>' % self.Name
-
-class MappedCharacter(db.Model):
-    __tablename__ = 'guild_characters'
-    id = db.Column(db.Integer, primary_key=True)
-    g_spreadsheet_id = db.Column(db.String(80))
-    g_worksheet_id = db.Column(db.String(80))
-    Class = db.Column(db.String(80))
-    Name = db.Column(db.String(80))
-    Role = db.Column(db.String(80))
-    Quests = db.Column(db.String(280))
-    LastRun = db.Column(db.String(80))
-    PlayerName = db.Column(db.String(80))
-    Present = db.Column(db.String(80))
-    mappedguild_id = db.Column(db.Integer, ForeignKey('guild.id'))
-    mappedplayer_id = db.Column(db.Integer, ForeignKey('player.id'))
-    
-    def __init__(self, spreadsheet_id, worksheet_id, characterClass, characterName, role, quests, lastRun, playerName, present):
-        self.g_spreadsheet_id = spreadsheet_id
-        self.g_worksheet_id = worksheet_id
-	self.Class = characterClass
-	self.Name = characterName
-	self.Role = role
-	self.Quests = quests
-	self.LastRun = lastRun
-	self.PlayerName = playerName
-	self.Present = present
-    
-    def __repr__(self):
-        return '<MappedCharacter %r>' % self.PlayerName
-
-class MappedGuildTreasure(db.Model):
-    __tablename__ = 'guild_treasures'
-    id = db.Column(db.Integer, primary_key=True)
-    itemid = db.Column(db.Integer)
-    name = db.Column(db.String(80))
-    cards = db.Column(db.String(160))
-    amount = db.Column(db.Float)
-    minMarketPrice = db.Column(db.Float)
-    maxMarketPrice = db.Column(db.Float)
-    medianMarketPrice = db.Column(db.Float)
-    refreshDate = db.Column(db.DateTime)
-    guild_id = db.Column(db.Integer, ForeignKey('guild.id'))
-    guildtransaction = db.relationship("MappedGuildTransaction", uselist=False, backref="guild_treasures")
-  
-    def __init__(self, itemid, name, cards, amount, minMarketPrice, maxMarketPrice, medianMarketPrice, refreshDate):
-        self.itemid = itemid
-        self.name = name
-        self.cards = cards
-        self.amount = amount
-        self.minMarketPrice = minMarketPrice
-        self.maxMarketPrice = maxMarketPrice
-        self.medianMarketPrice = medianMarketPrice
-        self.refreshDate = refreshDate
-        
-    def __repr__(self):
-        return '<MappedGuildTreasure %r>' % self.name   
-
-class RunCredit(db.Model):
-    __tablename__ = 'run_credits'
-    id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
-    run_id = db.Column(db.Integer, db.ForeignKey('run.id'))
-    factor = db.Column(db.Float)
-
-    def __init__(self, factor):
-        self.factor = factor
-            
-    def __repr__(self):
-        return '<RunCredit %r>' % self.id
-
-class MappedGuildPoint(db.Model):
-    __tablename__ = 'guild_points'
-    id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
-    run_id = db.Column(db.Integer, db.ForeignKey('run.id'))
-    amount = db.Column(db.Float)
-    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
-    guildtransaction = db.relationship("MappedGuildTransaction", uselist=False, backref="guild_points")
- 
-    def __init__(self, amount):
-        self.amount = amount
-        
-    def __repr__(self):
-        return '<MappedGuildPoint %r>' % self.id
-
-class MappedGuildTransaction(db.Model):
-    __tablename__ = 'guild_transactions'
-    id = db.Column(db.Integer, primary_key=True)
-    guildpoint_id = db.Column(db.Integer, db.ForeignKey('guild_points.id'))
-    guildtreasure_id = db.Column(db.Integer, db.ForeignKey('guild_treasures.id'))
- 
-    transType = db.Column(db.String(16))
-    transDate = db.Column(db.DateTime)
-    guild_id = db.Column(db.Integer, db.ForeignKey('guild.id'))
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
-    to_player_name = db.Column(db.String(80))
-    
-    def __init__(self, transType, transDate):
-        self.transType = transType
-        self.transDate = transDate
-        
-    def __repr__(self):
-        return '<MappedGuildTransaction %r>' % self.id     
-
-class MappedMarketResult(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    itemid = db.Column(db.Integer)
-    name = db.Column(db.String(80))
-    cards = db.Column(db.String(160))
-    price = db.Column(db.Float)
-    amount = db.Column(db.Float)
-    title = db.Column(db.String(280))
-    vendor = db.Column(db.String(80))
-    coords = db.Column(db.String(80))
-    date = db.Column(db.DateTime)
-        
-    def __init__(self, itemid, name, cards, price, amount, title, vendor, coords, date):
-        self.itemid = itemid
-        self.name = name
-	self.cards = cards
-	self.price = price
-	self.amount = amount
-	self.title = title
-	self.vendor = vendor
-	self.coords = coords
-	self.date = date
-    
-    def __repr__(self):
-        return '<MappedMarketResult %r>' % self.name
-
-class MappedMarketSearch(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    search = db.Column(db.Boolean)
-    itemid = db.Column(db.Integer)
-    name = db.Column(db.String(80))
-        
-    def __init__(self, search, itemid, name):
-        self.search = search
-        self.itemid = itemid
-        self.name = name
-	
-    def __repr__(self):
-        return '<MappedMarketSearch %r>' % self.name
-
 sched = scheduler()
 guild = Guild()
 
 def resetParameters():
-    session['user'] = None
-    session['pw'] = None
-    session['doc'] = None
+  session['user'] = None
+  session['pw'] = None
+  session['doc'] = None
 
 def resetLookupParameters():
-    session['g_spreadsheet_id'] = None
-    session['g_worksheet_id'] = None
+  session['g_spreadsheet_id'] = None
+  session['g_worksheet_id'] = None
 
 @app.route('/', methods=['GET', 'POST'])
 def show_entries():   
-    if not session.get('logged_in'):
-      #abort(401)
-      flash('Please login again')
-      session.pop('logged_in', None)
-      return redirect(url_for('login'))
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
  
-    action = None
-    availableParties = []
-    chars = []
-    checkCalculation() 
-    ec = None
-    
-    try:
-      session['doc'] = request.form['gdocname'].strip()
-      action = request.form['action']
-    except:
-      print 'cannot find gdoc name'
-    if action == u"Import":
-      import_characters()
-    elif action == u"Calculate":
-      flash('Running Calculation')
-      run_calculation()
-    elif action == u"Reset":
-      reset()
-    elif action == u"Refresh":
-      checkCalculation()
+  action = None
+  availableParties = []
+  chars = []
+  checkCalculation() 
+  ec = None
+  
+  try:
+    session['doc'] = request.form['gdocname'].strip()
+    action = request.form['action']
+  except:
+    print 'cannot find gdoc name'
+  if action == u"Import":
+    import_characters()
+  elif action == u"Calculate":
+    flash('Running Calculation')
+    run_calculation()
+  elif action == u"Reset":
+    reset()
+  elif action == u"Refresh":
+    checkCalculation()
+  else:
+    print 'show entries'
+  
+  try:
+    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
+      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
+      print 'AVAILABLE PARTIES %s ' % len(availableParties)  
     else:
-      print 'show entries'
-    
-    try:
-      if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
-        print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
-        print 'AVAILABLE PARTIES %s ' % len(availableParties)  
-      else:
-        print 'could not find the spreadsheet id'
-        #try to retrieve the token from the db
-        loginConfiguration(session['user'])
-        user = users.get_current_user()
-        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-        credentials = storage.get()   
-        if credentials is None:
-          flash('Please login again')
-          session.pop('logged_in', None)
-          return redirect(url_for('login'))
-        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-        session['g_spreadsheet_id'] = g_s_id
-        session['g_worksheet_id'] = g_w_id    
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
-        
-        print 'now found available parties %s' % len(availableParties)  
-    except:
-      print 'issue finding the available parties'
-      resetLookupParameters()
+      print 'could not find the spreadsheet id'
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is None:
+        flash('Please login again')
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
       
-    if len(availableParties) == 0:
-      print 'get all combinations'
-      cur = PartyCombo.query.all()
-      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
-      curChars = MappedCharacter.query.all()
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+      print 'now found available parties %s' % len(availableParties)  
+  except:
+    print 'issue finding the available parties'
+    resetLookupParameters()
+    
+  if len(availableParties) == 0:
+    print 'get all combinations'
+    cur = PartyCombo.query.all()
+    availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
+    curChars = MappedCharacter.query.all()
+    chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
 
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
-    
-    #map points back from characters and guild?
-    
-    return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec)
+  instance = MappedInstance.query.filter(MappedInstance.name == 'Niddhoggs Nest').all()[0]
+  quests = [q.name for q in instance.quests]
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, quests, None, 'Billy', 1)
+  
+  #map points back from characters and guild?
+  
+  return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec)
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
-    if not session.get('logged_in'):
-      #abort(401)
-      flash('Please login again')
-      session.pop('logged_in', None)
-      return redirect(url_for('login'))
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
  
-    action = None
-    availableParties = []
-    chars = []
-    checkCalculation()    
-    
-    try:
-      session['doc'] = request.form['gdocname'].strip()
-      action = request.form['action']
-    except:
-      print 'cannot find gdoc name'
-    if action == u"Import":
-      import_characters()
-    elif action == u"Calculate":
-      flash('Running Calculation')
-      run_calculation()
-    elif action == u"Reset":
-      reset()
-    elif action == u"Refresh":
-      checkCalculation()
+  action = None
+  availableParties = []
+  chars = []
+  checkCalculation()    
+  
+  try:
+    session['doc'] = request.form['gdocname'].strip()
+    action = request.form['action']
+  except:
+    print 'cannot find gdoc name'
+  if action == u"Import":
+    import_characters()
+  elif action == u"Calculate":
+    flash('Running Calculation')
+    run_calculation()
+  elif action == u"Reset":
+    reset()
+  elif action == u"Refresh":
+    checkCalculation()
+  else:
+    print 'show entries'
+  
+  try:
+    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
+      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
+      print 'AVAILABLE PARTIES %s ' % len(availableParties)  
     else:
-      print 'show entries'
-    
-    try:
-      if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
-        print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
-        print 'AVAILABLE PARTIES %s ' % len(availableParties)  
-      else:
-        print 'could not find the spreadsheet id'
-        #try to retrieve the token from the db
-        loginConfiguration(session['user'])
-        user = users.get_current_user()
-        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-        credentials = storage.get()   
-        if credentials is None:
-          flash('Please login again')
-          session.pop('logged_in', None)
-          return redirect(url_for('login'))
-        (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-        session['g_spreadsheet_id'] = g_s_id
-        session['g_worksheet_id'] = g_w_id    
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
-        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
-        
-        print 'now found available parties %s' % len(availableParties)  
-    except Exception,e: 
-      print str(e)
-      print 'issue finding the available parties'
-      resetLookupParameters()
+      print 'could not find the spreadsheet id'
+      #try to retrieve the token from the db
+      loginConfiguration(session['user'])
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      credentials = storage.get()   
+      if credentials is None:
+        flash('Please login again')
+        session.pop('logged_in', None)
+        return redirect(url_for('login'))
+      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+      session['g_spreadsheet_id'] = g_s_id
+      session['g_worksheet_id'] = g_w_id    
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]
+      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
       
-    if len(availableParties) == 0:
-      print 'get all combinations'
-      cur = PartyCombo.query.all()
-      availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
-      curChars = MappedCharacter.query.all()
-      chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+      print 'now found available parties %s' % len(availableParties)  
+  except Exception,e: 
+    print str(e)
+    print 'issue finding the available parties'
+    resetLookupParameters()
     
-    #map points back from characters and guild?
-    
-    
-    return render_template('viable_parties.html', combinations=availableParties, characters=chars)
+  if len(availableParties) == 0:
+    print 'get all combinations'
+    cur = PartyCombo.query.all()
+    availableParties = [Combination(c.partyIndex, c.instanceName, c.playerName, c.name, c.className, c.rolename) for c in cur]    
+    curChars = MappedCharacter.query.all()
+    chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
+  
+  #map points back from characters and guild?
+  
+  
+  return render_template('viable_parties.html', combinations=availableParties, characters=chars)
 
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""
@@ -939,11 +668,40 @@ def runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  mi = MappedInstance.query.all()[0]
+  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
     
   return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
+
+@app.route('/load_run_instance', methods=['GET', 'POST'])
+def load_run_instance():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  print 'in item history'
+  val = None
+  try:
+    val = request.form['instancelist']
+    print val
+  except:
+    print 'value not found'
+  
+  mi = None
+  if val is not None:
+    mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
+  else: 
+    mi = MappedInstance.query.all()[0]
+    
+  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  mrs = MappedRun.query.all()
+  mc = MappedCharacter.query.all()  
+  mm = mi.mobs
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -953,18 +711,31 @@ def add_run():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
+  mi = MappedInstance.query.all()[0]
+  mm = mi.mobs
   url = None
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   try:
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
     bucket.set_acl('public-read')
     
+    val = request.form['instancelist']
+    mi = None
+    if val is not None:
+      mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
+    else:
+      flash('Please login again')
+      mrs = MappedRun.query.all()
+      mc = MappedCharacter.query.all()
+      return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
+    
     add_runs = request.form.getlist("add")
     name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
+    mob_ids = request.form.getlist('cbmobkill')
     run_date = request.form['nrundate']
     
     run_success = request.form.getlist('cbsuccess')
@@ -1001,6 +772,9 @@ def add_run():
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
+    mobs_ids = [int(si) for si in mobs_ids]
+    mobs_killed = MappedMob.query.filter(MappedMob.id.in_(mobs_ids)).all()
+    
     run_date = datetime.strptime(run_date, '%Y-%m-%d %H:%M:%S')
     name = str(name)
     notes = str(notes)
@@ -1010,11 +784,12 @@ def add_run():
       er.evidence_file_path = k.key
       er.date = run_date  
       er.chars = chars
-      er.instance_name = name
+      er.instance = mi
+      er.mobs_killed = mobs_killed
       er.success = success
       er.notes = notes
     else:
-      er = MappedRun(url, k.key, run_date, chars, name, success, notes)
+      er = MappedRun(url, k.key, run_date, chars, mi, success, notes)
       db.session.add(er)
     db.session.commit()
   except Exception,e:
@@ -1022,11 +797,12 @@ def add_run():
     print 'error adding a run'
   
   #check if run is already part of DB for edit, else add a new one.
-  er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+  mm = mi.mobs
+  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -1038,7 +814,9 @@ def modify_runs():
   
   delete_id = None
   edit_id = None
-  er = None
+  mi = MappedInstance.query.all()[0]
+  mm = mi.mobs
+  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   
   try:
     delete_id = request.form.getlist("delete")
@@ -1058,12 +836,12 @@ def modify_runs():
       er = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
       db.session.delete(mr)
       db.session.commit()
-      er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+      er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
     elif len(e_ids) > 0:
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
     else:
-      er = MappedRun('', '', datetime.now(), [], 'Endless Tower', False, 'got to level 75')
+      er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
       print 'no action to map'
   except:
     print 'issue modifying a run'
@@ -1071,7 +849,7 @@ def modify_runs():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
+  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
@@ -1214,16 +992,18 @@ def update_chars():
   except:
     print 'cannot find gdoc name'
   
+  mi = MappedInstance.query.all()[0]
+  
   if len(drop_id) > 0:
     dc_ids = [dt for dt in drop_id]
     MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).delete()
     db.session.commit()
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, mi.quests, None, 'Billy', 1)
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
     ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids[0]).all()[0]
   else:
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, 'twotribes,attitudetothenewworld', None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, mi.quests, None, 'Billy', 1)
     print 'no action to map'
   
   try:
@@ -1249,7 +1029,6 @@ def update_chars():
     print 'issue finding the available parties'
     resetLookupParameters()
     
-    
   #map points back from characters and guild?
     
   return render_template('show_entries.html', characters=curChars, editcharacter=ec)
@@ -1266,9 +1045,11 @@ def add_character():
   chars = []
   ec = None
   char_id = None
-    
+  quests = []  
   try:
     char_id = request.form.getlist("add")
+    charquests = request.form.getlist("cbquests")
+    #Update for quests
     print char_id
   except:
     print 'cannot find gdoc name'
@@ -1279,7 +1060,9 @@ def add_character():
   if len(roleMap) > 0:
     charrole = roleMap[0]
   charname = str(request.form['charname'])
-  charquests = str(request.form['charquests'].replace(',','|'))
+  
+  charquests = [int(str(cq)) for cq in charquests]
+  quests = MappedQuest.query.filter(MappedQuest.id.in_(charquests)).all()
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
   charpresent = str(request.form['charpresent'])
@@ -1312,7 +1095,7 @@ def add_character():
     dc_ids = [str(dt) for dt in char_id]
     if dc_ids[0] == u'None':    
       #adding new character
-      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charquests, charlastrun, charplayername, charpresent)
+      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, quests, charlastrun, charplayername, charpresent)
       db.session.add(ec)
   else:
     #editing a character
@@ -1320,117 +1103,122 @@ def add_character():
     ec.Class = charclass
     ec.Role = charrole.Name
     ec.Name = charname
-    ec.Quests = charquests
+    ec.Quests = quests
     ec.LastRun = charlastrun
     ec.PlayerName = charplayername
     ec.Present = charpresent
   
   db.session.commit()
-    
+  
+  mqs = MappedQuest.query.all()
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-  chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests.split('|'), c.LastRun, c.Present) for c in curChars]
+  chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
   
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=chars, editcharacter=ec)
+  return render_template('show_entries.html', characters=chars, editcharacter=ec, mappedquests=mqs)
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
-    try:
-      if not session.get('logged_in'):
-        #abort(401)
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-    
-      if(len(session['doc']) <= 0):
-          flash('Must include relevant document name')
-          return redirect(url_for('show_entries'))
-
-      if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
-        MappedCharacter.query.delete()
-        db.session.commit()
-    
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()   
-      if credentials is None:
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-     
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      if(g_s_id == -1 or g_w_id == -1):
-        flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-        return redirect(url_for('show_entries'))
- 
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id
-      basequests = ['tripatriateunionsfeud', 'attitudetothenewworld', 'ringofthewiseking', 'newsurroundings', 'twotribes', 'pursuingrayanmoore', 'reportfromthenewworld', 'guardianofyggsdrasilstep9', 'onwardtothenewworld']
-      chars = initializeDataOAuth(credentials, session['doc'], basequests)
-      print 'FOUND %s CHARS' % len(chars)
-      #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
-      [db.session.add(MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), str('|'.join(c.Quests)), str(c.LastRun), str(c.PlayerName), str(c.Present))) for c in chars]
-      
-      db.session.commit()
-      flash('Import finished')
-    except Exception,e: 
-      print str(e)
-      print 'error importing'
+  try:
+    if not session.get('logged_in'):
+      #abort(401)
       flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
-      
-    return redirect(url_for('show_entries'))
+  
+    if(len(session['doc']) <= 0):
+        flash('Must include relevant document name')
+        return redirect(url_for('show_entries'))
+
+    if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
+      MappedCharacter.query.delete()
+      db.session.commit()
+  
+    #Update for quests
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+   
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+ 
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+    quests = MappedQuest.query.all()
+    basequests = [q.internal_name for q in quests]
+    chars = initializeDataOAuth(credentials, session['doc'], basequests)
+    print 'FOUND %s CHARS' % len(chars)
+    #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
+    for c in chars:
+      char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(c.Quests))
+      db.session.add(MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), char_quests, str(c.LastRun), str(c.PlayerName), str(c.Present)))
+    
+    db.session.commit()
+    flash('Import finished')
+  except Exception,e: 
+    print str(e)
+    print 'error importing'
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  return redirect(url_for('show_entries'))
 
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
-    try:
-      if not session.get('logged_in'):
-        #abort(401)
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-    
-      if(len(session['doc']) <= 0):
-          flash('Must include relevant document name')
-          return redirect(url_for('show_entries'))
-
-      if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
-        cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
-        [db.session.delete(c) for c in cur]  
-        db.session.commit()
-    
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()   
-      if credentials is None:
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-    
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      if(g_s_id == -1 or g_w_id == -1):
-        flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-        return redirect(url_for('show_entries'))
-
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id
-      
-      #consider calculating from imported results if possible
-      calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
-      print 'running calc %s ' % calcjob.id
-      session['job_id'] = calcjob.id
-      
-    except Exception,e: 
-      print str(e)
-      print 'error running calculation'
+  try:
+    if not session.get('logged_in'):
+      #abort(401)
       flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
-    return redirect(url_for('viable_parties'))
+  
+    if(len(session['doc']) <= 0):
+        flash('Must include relevant document name')
+        return redirect(url_for('show_entries'))
+
+    if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
+      cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
+      [db.session.delete(c) for c in cur]  
+      db.session.commit()
+  
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+  
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+    
+    #consider calculating from imported results if possible
+    calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
+    print 'running calc %s ' % calcjob.id
+    session['job_id'] = calcjob.id
+    
+  except Exception,e: 
+    print str(e)
+    print 'error running calculation'
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  return redirect(url_for('viable_parties'))
 
 @app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
@@ -1476,62 +1264,62 @@ def checkCalculation():
 
 @app.route('/reset', methods=['POST'])
 def reset():
-    try:
-      if not session.get('logged_in'):
-        #abort(401)
-        flash('Please login again')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
+  try:
+    if not session.get('logged_in'):
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
 
-      if(len(session['doc']) <= 0):
-        flash('Must include relevant document name')
-        return redirect(url_for('show_entries'))
+    if(len(session['doc']) <= 0):
+      flash('Must include relevant document name')
+      return redirect(url_for('show_entries'))
   
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()    
-      if credentials is None:
-        flash('Cannot log in to spreadsheet')
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-    
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      if(g_s_id == -1 or g_w_id == -1):
-        flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-        return redirect(url_for('show_entries'))
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()    
+    if credentials is None:
+      flash('Cannot log in to spreadsheet')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
   
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id
-         
-      PartyCombo.query.delete() 
-      db.session.commit()
+    (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
+    if(g_s_id == -1 or g_w_id == -1):
+      flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
+      return redirect(url_for('show_entries'))
+  
+    session['g_spreadsheet_id'] = g_s_id
+    session['g_worksheet_id'] = g_w_id
+       
+    PartyCombo.query.delete() 
+    db.session.commit()
 
-      MappedCharacter.query.delete()
-      db.session.commit()  
+    MappedCharacter.query.delete()
+    db.session.commit()  
+  
+    flash('Reset party combinations')
+  except:
+    print 'error reseting'
     
-      flash('Reset party combinations')
-    except:
-      print 'error reseting'
-      
-    return redirect(url_for('show_entries')) 
+  return redirect(url_for('show_entries')) 
 
 @app.route('/auth_return', methods=['GET', 'POST'])
 def oauth2callback():
-    try:
-      codeValue = parseUrl(request, 'code')
-      if len(codeValue) > 0:
-        #Store credentials
-        credentials = flow.step2_exchange(codeValue)
-        user = users.get_current_user()
-        storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-        storage.put(credentials)    
-        session['logged_in'] = True
-        #credentials stored
-        flash('You were logged in')
-        return redirect(url_for('show_entries'))
-    except: 
-      print 'error with oauth2callback'
+  try:
+    codeValue = parseUrl(request, 'code')
+    if len(codeValue) > 0:
+      #Store credentials
+      credentials = flow.step2_exchange(codeValue)
+      user = users.get_current_user()
+      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      storage.put(credentials)    
+      session['logged_in'] = True
+      #credentials stored
+      flash('You were logged in')
+      return redirect(url_for('show_entries'))
+  except: 
+    print 'error with oauth2callback'
  
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -1575,13 +1363,13 @@ def login():
 
 @app.route('/logout')
 def logout():
-    try:
-      session.pop('logged_in', None)
-      flash('You were logged out')
-      return redirect(url_for('show_entries'))
-    except:
-      print 'error with logout'
-      return redirect(url_for('show_entries'))  
+  try:
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('show_entries'))
+  except:
+    print 'error with logout'
+    return redirect(url_for('show_entries'))  
 
 def loginConfiguration(username, userid=1):
   try:

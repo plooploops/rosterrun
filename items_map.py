@@ -42,12 +42,7 @@ instance_mob_item_mapping = [
   ('Bio - High Wizard', 5, 1651, 'High Wizard Kathryne', [(1241, .35), (1242, .35), (2616, .9), (2343, .25), (2513, .25), (1618, .3), (2319, .35), (4365, .0003)], biolabQuestsExternal),
   ('Bio - Whitesmith', 5, 1648, '1648', [(1138, .35), (1140, .25), (2318, .9), (1365, .35), (1364, .35), (1369, .25), (1368, .35), (4361, .0003)], biolabQuestsExternal),
   ('Bio - Assassin Cross', 5, 1647, 'Assassin Cross Eremes', [(1234, .15), (1230, .15), (2319, .9), (1233, .35), (1232, .35), (1265, .35), (13002, .35), (4359, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
+  ('Bio - Lord Knight', 5, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal)
 ]
 
 #mobs

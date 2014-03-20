@@ -8,6 +8,7 @@
     <tr>
     <th>Modify</th>
     <th>Name</th>
+    <th>Mobs Killed</th>
     <th>Screenshot</th>
     <th>Characters</th>
     <th>Date</th>
@@ -17,7 +18,12 @@
     {% for r in runs %}
       <tr>
       <td><dd><button type=submit class="btn btn-default" name=delete value="{{ r.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ r.id }}">Edit</button></td>
-      <td>{{ r.instance_name|safe }}</td>
+      <td>{{ r.instance.name|safe }}</td>
+      <td>
+	    {% for m in r.mobs_killed %}
+	      <li>{{ m.mob_id }} {{ m.mob_name }}
+	    {% endfor %}
+      </td>
       <td><img src="{{ r.evidence_url|safe }}" class="img-responsive" alt="Run screenshot"></td>
       <td>
         {% for c in r.chars %}
@@ -31,12 +37,35 @@
     </table>
     </div>
     </form>
-    <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
-	  <h2 class="sub-header">Add Run</h2>
 
+    <h2 class="sub-header">Add Run</h2>
+    <form method=post action="{{ url_for('load_run_instance') }}" class=mapped-instance>
+	  <select name="instancelist">
+		{% for mi in mappedinstances %}
+		  <option value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
+		{% endfor %}
+	  </select>
+	  <button type=submit class="btn btn-primary">Load</button>
+	</form>
+    <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
 	  <div class="form-group">
 	  	<label for="nrunname">Name</label>
 	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
+	  </div>
+	  <h3>Mobs Killed</h3>
+	  <div class="table-responsive">
+	    <table class="table table-striped mappedmob">
+	      <tr>
+	      <th>Killed</th>
+	  	  <th>Mob</th>
+	  	  </tr>
+	  	  {% for mm in mappedmob %}
+	  	    <tr>
+	  	      <td><input {% if mm in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.id }}"></td>
+	  	  	  <td>{{ mm.mob_id|safe }} {{ mm.mob_name|safe }}</td>
+	        </tr>
+	  	  {% endfor %}
+	    </table>
 	  </div>
       <div class="form-group">
 	    <label for="nrunscreenshot">Screenshot</label>
@@ -70,7 +99,7 @@
 	  	  </tr>
 	  	  {% for mm in mappedmobs %}
 	  	    <tr>
-	  	      <td><input {% if mc in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mm.mob_id }}"></td>
+	  	      <td><input {% if mc in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
 	  		  <td>{{ mm.mob_name|safe }}</td>
 	  		</tr>
 	  	  {% endfor %}
