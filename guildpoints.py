@@ -11,7 +11,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
 from rosterrun import db
-
+from scraperclock import interval_market_scrape
 
 #points calculator
 
@@ -204,6 +204,21 @@ class Guild:
     
     return mapped_points	
   
+  def AddMissingSearchItems(self, mob_items, drop_rate):
+    #notify which items are not part of the market search
+    mob_items_dict = dict([(mi.item_id, mi.item_name) for mi in mob_items])
+    mms = MappedMarketSearch.query.all()
+    mms_item_ids = [m.itemid for m in mms]
+           
+    #add missing item ids to search list
+    not_searched = list(set(drop_items) - set(mms_item_ids))
+    for ns in not_searched:
+      db.session.add(MappedMarketSearch(True, ns, mob_items_dict[ns]))
+    db.session.commit()
+    
+    #update market results
+    interval_market_scrape()
+  
   def RefreshMarketWithMobDrops(self):
     #aggregate item drop rates with market 
     mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
@@ -217,6 +232,9 @@ class Guild:
     
     ms = MappedMarketSearch.query.filter(MappedMarketSearch.search == True).all()
     drop_items = [mdr[0] for mdr in drop_rate]
+    
+    self.AddMissingSearchItems(mob_items, drop_rate)
+    
     mapped_search_items = [search_item for search_item in ms if search_item.itemid in drop_items]
     items_to_search = { msi[0] : msi[1] for msi in mapped_search_items }
     
@@ -242,6 +260,8 @@ class Guild:
     mob_items = [m.items for m in mobs_killed]
     drop_items = [mi.item_id for mi in mob_items]
     drop_items = list(set(drop_items))
+    
+    self.AddMissingSearchItems(mob_items, drop_rate)
     
     #recalculate the points for the guild including run credit factors
     d = datetime.now()

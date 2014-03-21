@@ -30,7 +30,7 @@
 			</tr>
 			{% for mq in mappedquests %}
 			  <tr>
-			    <td><input {% if mq in editcharacter.Quests %} checked="True" {% endif %} type=checkbox name=cbquests value="{{ mq.id }}"></td>
+			    <td><input {% if mq.id in edit_character_quests %} checked="True" {% endif %} type=checkbox name=cbquests value="{{ mq.id }}"></td>
 			    <td>{{ mq.name|safe }}</td>
 			  </tr>
             {% endfor %}

@@ -470,10 +470,11 @@ def show_entries():
   quests = [q.name for q in instance.quests]
   ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
   ec.Quests = quests
+  ecq = [q.id for q in ec.Quests]
   
   #map points back from characters and guild?
   
-  return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec)
+  return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec, edit_character_quests=ecq)
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
@@ -984,10 +985,12 @@ def runs():
   
   mi = MappedInstance.query.all()[0]
   er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  ermk = [mk.id for mk in er.mobs_killed]
+  erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
-    
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc)
+  
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc)
 
 @app.route('/load_run_instance', methods=['GET', 'POST'])
 def load_run_instance():
@@ -1012,10 +1015,14 @@ def load_run_instance():
     mi = MappedInstance.query.all()[0]
     
   er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  ermk = [mk.id for mk in er.mobs_killed]
+  erc = [c.id for c in er.chars]
+  
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   mm = mi.mobs
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
+  
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -1113,10 +1120,13 @@ def add_run():
   #check if run is already part of DB for edit, else add a new one.
   mm = mi.mobs
   er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  ermk = [mk.id for mk in er.mobs_killed]
+  erc = [c.id for c in er.chars]
+  
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -1159,11 +1169,13 @@ def modify_runs():
       print 'no action to map'
   except:
     print 'issue modifying a run'
-    
+  
+  ermk = [mk.id for mk in er.mobs_killed]
+  erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
@@ -1344,10 +1356,11 @@ def update_chars():
   except:
     print 'issue finding the available parties'
     resetLookupParameters()
-    
+  
+  ecq = [q.id for q in ec.Quests]
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=curChars, editcharacter=ec)
+  return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
@@ -1431,9 +1444,10 @@ def add_character():
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
   
+  ecq = [q.id for q in ec.Quests]
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=chars, editcharacter=ec, mappedquests=mqs)
+  return render_template('show_entries.html', characters=chars, editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():

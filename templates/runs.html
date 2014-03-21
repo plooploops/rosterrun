@@ -61,7 +61,7 @@
 	  	  </tr>
 	  	  {% for mm in mappedmob %}
 	  	    <tr>
-	  	      <td><input {% if mm in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.id }}"></td>
+	  	      <td><input {% if mm.id in edit_run_mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.id }}"></td>
 	  	  	  <td>{{ mm.mob_id|safe }} {{ mm.mob_name|safe }}</td>
 	        </tr>
 	  	  {% endfor %}
@@ -82,7 +82,7 @@
 		  </tr>
 		  {% for mc in mappedcharacters %}
 		    <tr>
-		      <td><input {% if mc in editrun.chars %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mc.id }}"></td>
+		      <td><input {% if mc.id in edit_run_chars %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mc.id }}"></td>
 			  <td>{{ mc.Name|safe }}</td>
 			  <td>{{ mc.Class|safe }}</td>
 			</tr>
@@ -99,7 +99,7 @@
 	  	  </tr>
 	  	  {% for mm in mappedmobs %}
 	  	    <tr>
-	  	      <td><input {% if mc in editrun.mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
+	  	      <td><input {% if mm in edit_run_mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
 	  		  <td>{{ mm.mob_name|safe }}</td>
 	  		</tr>
 	  	  {% endfor %}
