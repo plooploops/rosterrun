@@ -1192,32 +1192,37 @@ def points():
   except:
     print 'cannot bind action'
   
-  p = MappedGuildPoint.query.all()
+  p = db.session.query(MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
   
   return render_template('points.html', points=p)
 
-@app.route('/calculate_points', methods=['GET', 'POST'])
-def calculate_points():
+@app.route('/points_actions', methods=['GET', 'POST'])
+def points_actions():   
   if not session.get('logged_in'):
     #abort(401)
     flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
-    
-  #need to link to guild points calculation
-  
-  #also take into account existing runs (update existing runs with guild points)
-  
+ 
   action = None
-  p = []
-  try:
-    sesson = request.form['action']
+  availableParties = []
+  chars = []
+  checkCalculation()    
+  
+  try:    
+    action = request.form['action']
   except:
-    print 'cannot bind action'
+    print 'cannot get action'
+ 
+  if action == u"Calculate":
+    flash('Running Points Calculation')
+    run_points_calculation()
+  elif action == u"Refresh":
+    checkPointsCalculation()
+  else:
+    print 'points'
   
-  p = MappedGuildPoint.query.all()
-  
-  return render_template('points.html', points=p)
+  return redirect(url_for('points'))
 
 def use_default_search_list():
   if not session.get('logged_in'):
@@ -1636,6 +1641,71 @@ def reset():
     print 'error reseting'
     
   return redirect(url_for('show_entries')) 
+
+@app.route('/run_points_calculation', methods=['POST'])
+def run_points_calculation():
+  try:
+    if not session.get('logged_in'):
+      #abort(401)
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+
+    MappedGuildPoint.query.delete()
+    db.session.commit()
+    
+    loginConfiguration(session['user'])
+    user = users.get_current_user()
+    storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+    credentials = storage.get()   
+    if credentials is None:
+      flash('Please login again')
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+  
+    
+    #consider calculating from imported results if possible
+    calcpointsjob = q.enqueue_call(func=guild.RefreshMarketWithMobDrops, args=(), result_ttl=3000)
+    print 'running calc %s ' % calcpointsjob.id
+    session['points_job_id'] = calcpointsjob.id
+    
+  except Exception,e: 
+    print str(e)
+    print 'error running points calculation'
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  return redirect(url_for('points'))
+
+@app.route('/checkpointscalc', methods=['POST'])
+def checkPointsCalculation():
+  if not session.get('logged_in'):
+    #abort(401)
+    flash('Please login again')
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  try:
+    if 'points_job_id' in session.keys():
+      job_id = session['points_job_id']
+      print 'using job id %s ' % job_id
+      currentjob = Job(connection=conn)
+      currentjob = currentjob.fetch(job_id, connection=conn)
+      print 'found job %s ' % currentjob
+      
+      if currentjob is not None:
+        if currentjob.result is not None:
+          currentjob.delete()         
+      else: 
+        flash('Points calculation not finished yet.')
+        print 'current job is not ready %s' % job_id
+    else:
+      flash('Please recalculate points before refresh')
+      print 'No job in session'
+  except:
+    print 'error occurred trying to fetch job'
+    session.pop('points_job_id', None)
+  return redirect(url_for('points'))
 
 @app.route('/auth_return', methods=['GET', 'POST'])
 def oauth2callback():

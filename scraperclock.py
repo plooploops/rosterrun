@@ -15,13 +15,10 @@ from rq.job import Job
 from worker import conn
 from datetime import datetime
 
-from guildpoints import *
-
 sched = Scheduler()
 m = MarketScraper()
 updated_search_items = search_items
 
-guild = Guild()
 user = sys.argv[1]
 pw = sys.argv[2]
 
@@ -46,14 +43,6 @@ def interval_market_scrape():
   print 'running calc %s ' % sched.scrapejob.id
   print 'This job runs every 12 hours.'
   sched.scrapejobid = sched.scrapejob.id
-
-@sched.interval_schedule(hours=12)
-def interval_points_calculation():
-  #send this to redis queue
-  sched.pointscalcjob = q.enqueue_call(func=guild.RecalculatePoints, args=(), result_ttl=3000)
-  print 'running points calc %s ' % sched.pointscalcjob.id
-  print 'This job runs every 12 hours.'
-  sched.pointscalcjobid = sched.pointscalcjob.id
 
 def populate_search_list():
   ms = MappedMarketSearch.query.count()
@@ -120,36 +109,6 @@ def retrieve_market_scrape():
       print 'finished deleting job results'
   else: 
     print 'current job is not ready %s' % job_id
-
-@sched.interval_schedule(minutes=1)
-def retrieve_points_calculation():
-  #retrieve results from redis queue
-  if sched.pointscalcjobid is None:
-    print 'No points calc job found'
-    return
-  
-  job_id = sched.pointscalcjobid
-  currentjob = Job(connection=conn)
-  
-  try:
-    currentjob = currentjob.fetch(job_id, connection=conn)
-    print 'points calc job found'
-  except:
-    print 'job not available'
-    sched.pointscalcjobid = None
-    return
-  
-  print 'found job %s ' % currentjob
-  print 'for job id %s ' % job_id
-    
-  if currentjob is not None:
-    if currentjob.result is not None:
-      print 'added to db'
-      print 'removing job results'
-      currentjob.delete()
-      print 'finished deleting job results'
-  else: 
-    print 'current job is not ready %s' % job_id
   
 @sched.cron_schedule(day='last sun')
 def clean_up_market():
@@ -164,7 +123,6 @@ def clean_up_market():
 
 populate_search_list()
 interval_market_scrape()
-interval_points_calculation()
 
 sched.start()
 
