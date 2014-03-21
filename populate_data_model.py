@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from items_map import *
 from scheduler import *
 from rosterrun import *
-from data_model import *
 
 def populate_quests(mi, quest_list):
   for q in quest_list:
