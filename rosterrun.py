@@ -467,7 +467,7 @@ def show_entries():
     chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
 
   instance = MappedInstance.query.filter(MappedInstance.name == 'Niddhoggs Nest').all()[0]
-  quests = [q.name for q in instance.quests]
+  quests = [q for q in instance.quests]
   ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
   ec.Quests = quests
   ecq = [q.id for q in ec.Quests]
