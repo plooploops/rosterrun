@@ -1007,7 +1007,7 @@ def load_run_instance():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  print 'in item history'
+  print 'loaded run instance'
   val = None
   try:
     val = request.form['instancelist']
@@ -1050,16 +1050,6 @@ def add_run():
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
     bucket.set_acl('public-read')
-    
-    val = request.form['instancelist']
-    mi = None
-    if val is not None:
-      mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
-    else:
-      flash('Please login again')
-      mrs = MappedRun.query.all()
-      mc = MappedCharacter.query.all()
-      return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
     
     add_runs = request.form.getlist("add")
     name = request.form['nrunname']
