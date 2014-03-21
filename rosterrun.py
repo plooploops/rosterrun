@@ -1480,6 +1480,9 @@ def import_characters():
       return redirect(url_for('show_entries'))
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
+      mcs = MappedCharacter.query.all()
+      for mc in mcs:
+        [mc.Quests.remove(q) for in mc.Quests]
       MappedCharacter.query.delete()
       db.session.commit()
   
