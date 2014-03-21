@@ -29,10 +29,6 @@ m.login(user, pw)
 sched.scrapejob = None
 sched.scrapejobid = None
 
-#adding placeholders for points calculation
-sched.pointscalcjob = None
-sched.pointscalcjobid = None
-
 logging.basicConfig()
 
 @sched.interval_schedule(hours=12)
