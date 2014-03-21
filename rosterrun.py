@@ -474,7 +474,7 @@ def show_entries():
   
   #map points back from characters and guild?
   
-  return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec, edit_character_quests=ecq)
+  return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec, edit_character_quests=ecq, mappedquests=quests)
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
@@ -547,7 +547,6 @@ def viable_parties():
     chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
   
   #map points back from characters and guild?
-  
   
   return render_template('viable_parties.html', combinations=availableParties, characters=chars)
 
@@ -990,7 +989,9 @@ def runs():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc)
+  mis = MappedInstance.query.all()
+  
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
 
 @app.route('/load_run_instance', methods=['GET', 'POST'])
 def load_run_instance():
@@ -1022,7 +1023,9 @@ def load_run_instance():
   mc = MappedCharacter.query.all()  
   mm = mi.mobs
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
+  mis = MappedInstance.query.all()
+  
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -1126,7 +1129,9 @@ def add_run():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()  
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
+  mis = MappedInstance.query.all()
+  
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -1174,8 +1179,9 @@ def modify_runs():
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.all()
+  mis = MappedInstance.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm)
+  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
