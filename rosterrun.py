@@ -1094,6 +1094,8 @@ def add_run():
     mobs_ids = [int(si) for si in mobs_ids]
     mobs_killed = MappedMob.query.filter(MappedMob.id.in_(mobs_ids)).all()
     
+    run_date = run_date.split(".")
+    run_date = run_date[0]
     run_date = datetime.strptime(run_date, '%Y-%m-%d %H:%M:%S')
     name = str(name)
     notes = str(notes)
