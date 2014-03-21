@@ -48,10 +48,6 @@
 	  <button type=submit class="btn btn-primary">Load</button>
 	</form>
     <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
-	  <div class="form-group">
-	  	<label for="nrunname">Name</label>
-	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
-	  </div>
 	  <h3>Mobs Killed</h3>
 	  <div class="table-responsive">
 	    <table class="table table-striped mappedmob">

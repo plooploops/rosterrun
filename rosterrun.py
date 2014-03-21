@@ -885,7 +885,7 @@ def modify_treasure():
   if len(buy_treasures) > 0: 
     bt_ids = [int(str(dt)) for dt in buy_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == bt_ids[0]).all()[0]
-    players_who_match = MappedPlayer.query.filter(MappedPlayer.Email == session['username'])
+    players_who_match = MappedPlayer.query.filter(MappedPlayer.Email == session['user'])
     if players_who_match.count() == 0:
       print 'no player mapped for buying'
       flash('Unable to buy.  Need to make sure correct player logged in')
@@ -917,6 +917,8 @@ def add_treasure():
   item_amount = request.form['nitemamount']
   item_cards = request.form['nitemcards']
   
+  item_id = int(str(item_id))
+  item_amount = int(str(item_amount))
   try:
     add_treasures = request.form.getlist("add")
   except:
@@ -928,6 +930,10 @@ def add_treasure():
   suggestedMinMarketPrice = request.form['nitemminprice']
   suggestedMaxMarketPrice = request.form['nitemmaxprice']
   suggestedMedianMarketPrice = request.form['nitemmedianprice']
+  
+  suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
+  suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
+  suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
 
   #check db or scrape again?
   latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
@@ -1056,7 +1062,7 @@ def add_run():
       return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
     
     add_runs = request.form.getlist("add")
-    name = request.form['nrunname']
+    name = mi.name
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
     mob_ids = request.form.getlist('cbmobkill')
@@ -1470,8 +1476,8 @@ def import_characters():
       return redirect(url_for('login'))
   
     if(len(session['doc']) <= 0):
-        flash('Must include relevant document name')
-        return redirect(url_for('show_entries'))
+      flash('Must include relevant document name')
+      return redirect(url_for('show_entries'))
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
       MappedCharacter.query.delete()
