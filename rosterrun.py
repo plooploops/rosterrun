@@ -997,7 +997,7 @@ def runs():
   
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
+  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
 
 @app.route('/load_run_instance', methods=['GET', 'POST'])
 def load_run_instance():
@@ -1031,7 +1031,7 @@ def load_run_instance():
   
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('runs.html', selected_run = [val], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -1062,13 +1062,11 @@ def add_run():
       return render_template('runs.html', runs=mrs, editrun=er, mappedcharacters=mc, mappedmobs=mm)
     
     add_runs = request.form.getlist("add")
-    name = mi.name
+    name = request.form['nrunname']
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
     mob_ids = request.form.getlist('cbmobkill')
     run_date = request.form['nrundate']
-    
-    run_success = request.form.getlist('cbsuccess')
     
     success = False
     if len(run_success) > 0:
@@ -1137,7 +1135,7 @@ def add_run():
   
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -1187,7 +1185,7 @@ def modify_runs():
   mc = MappedCharacter.query.all()
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
