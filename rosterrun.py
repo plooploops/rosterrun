@@ -1057,6 +1057,7 @@ def add_run():
     char_ids = request.form.getlist('cbsearch')
     mob_ids = request.form.getlist('cbmobkill')
     run_date = request.form['nrundate']
+    run_success = request.form.getlist('cbsuccess')
     
     success = False
     if len(run_success) > 0:
