@@ -16,7 +16,7 @@
     </tr>
     {% for p in points %}
       <tr>
-      <td><h2>{{ p[0]|safe}}</h2></td>
+      <td>{{ p[0]|safe}}</td>
       <td>{{ "{:,.0f}".format(p[1])|safe }}</td>
     {% endfor %}
     </table>
