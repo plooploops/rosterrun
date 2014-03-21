@@ -50,7 +50,7 @@ def interval_market_scrape():
 @sched.interval_schedule(hours=12)
 def interval_points_calculation():
   #send this to redis queue
-  sched.pointscalcjob = q.enqueue_call(func=guild.RecalculatePoints, args=(,), result_ttl=3000)
+  sched.pointscalcjob = q.enqueue_call(func=guild.RecalculatePoints, args=(), result_ttl=3000)
   print 'running points calc %s ' % sched.pointscalcjob.id
   print 'This job runs every 12 hours.'
   sched.pointscalcjobid = sched.pointscalcjob.id
