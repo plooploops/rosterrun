@@ -11,7 +11,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
 from rosterrun import db
-from scraperclock import interval_market_scrape
 
 #points calculator
 
