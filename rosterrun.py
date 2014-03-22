@@ -1447,10 +1447,14 @@ def add_character():
   db.session.commit()
   
   mqs = MappedQuest.query.all()
+  
+  print 'mapped quests %s ' mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
   
   ecq = [q.id for q in ec.Quests]
+  print 'edit char mapped quests %s ' mqs
+  
   #map points back from characters and guild?
     
   return render_template('show_entries.html', characters=chars, editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
@@ -1505,7 +1509,9 @@ def import_characters():
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
       cqs = [str(q) for q in c.Quests]
+      print 'from import quests %s' % cqs
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqs)).all()
+      print 'found quests %s' % char_quests
       mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
       mc.Quests = char_quests
       db.session.add(mc)
