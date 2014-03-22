@@ -44,13 +44,8 @@ instance_mob_item_mapping = [
   ('Bio - Whitesmith', 5, 1648, '1648', [(1138, .35), (1140, .25), (2318, .9), (1365, .35), (1364, .35), (1369, .25), (1368, .35), (4361, .0003)], biolabQuestsExternal),
   ('Bio - Assassin Cross', 5, 1647, 'Assassin Cross Eremes', [(1234, .15), (1230, .15), (2319, .9), (1233, .35), (1232, .35), (1265, .35), (13002, .35), (4359, .0003)], biolabQuestsExternal),
   ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Endless Tower - Naght Sieger', 10, 1956, 'Naght Sieger', [{13412, .5), (13413, .5), (2542, .5), (5017, .90), (616, 1.0), (2514, .9), (7294, 1.0)], EndlessTowerExternal),
-
+  ('Endless Tower - Naght Sieger', 9, 1956, 'Naght Sieger', [{13412, .5), (13413, .5), (2542, .5), (5017, .90), (616, 1.0), (2514, .9), (7294, 1.0)], EndlessTowerExternal),
+  ('Endless Tower - Drake', 9, 1112, 'Drake', [{1127, .06), (1135, .015), (1128, .04), (5019, .035), (985, .096), (1189, .01), (5417, .024), (1127, .06)], EndlessTowerExternal),
 #mobs
 #2022 - nidd
 #1751 - valk
