@@ -1470,9 +1470,14 @@ def import_characters():
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
       mcs = MappedCharacter.query.all()
+      print 'deleting quest'
       for mc in mcs:
         [db.session.delete(q) for q in mc.Quests]
-      MappedCharacter.query.delete()
+      
+      print 'deleting character'
+      [db.session.delete(mc) for mc in mcs]
+      
+      print 'done delete'
       db.session.commit()
   
     #Update for quests
