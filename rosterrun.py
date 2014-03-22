@@ -1504,12 +1504,9 @@ def import_characters():
     
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
-      print c
-      print c.Class
-      cqins = [q.internal_name for q in c.Quests]
-      print cqins
+      cqs = [q for q in c.Quests]
+      cqins = [cq.internal_name for cq in cqs]
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqins)).all()
-      print char_quests
       mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
       print 'made character'
       mc.Quests = char_quests
