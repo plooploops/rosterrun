@@ -1154,16 +1154,13 @@ def modify_runs():
   
   try:
     d_ids = [int(str(dt)) for dt in delete_id]
-    print 'converted delete ids'
     dt_ids = []
     e_ids = [et for et in edit_id if et != 'None']
-    print 'converted edit ids'
     et_ids = []
     if len(d_ids) > 0:
-      print 'trying to delete'
       dt_ids = [int(str(dt)) for dt in d_ids]
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
-      db.session.delete(mr)
+      db.session.delete(er)
       db.session.commit()
       er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
     elif len(e_ids) > 0:
