@@ -1162,7 +1162,7 @@ def modify_runs():
     if len(d_ids) > 0:
       print 'trying to delete'
       dt_ids = [int(str(dt)) for dt in d_ids]
-      er = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
+      er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
       db.session.delete(mr)
       db.session.commit()
       er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
