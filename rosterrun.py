@@ -1470,14 +1470,10 @@ def import_characters():
 
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
       mcs = MappedCharacter.query.all()
-      print 'deleting quest'
       for mc in mcs:
         [db.session.delete(q) for q in mc.Quests]
       
-      print 'deleting character'
       [db.session.delete(mc) for mc in mcs]
-      
-      print 'done delete'
       db.session.commit()
   
     #Update for quests
@@ -1503,7 +1499,8 @@ def import_characters():
     print 'FOUND %s CHARS' % len(chars)
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
-      char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(c.Quests))
+      cqins = [q.internal_name for c in c.Quests]
+      char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqins)).all()
       mc = MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), str(c.LastRun), str(c.PlayerName), str(c.Present))
       mc.Quests = char_quests
       db.session.add(mc)
