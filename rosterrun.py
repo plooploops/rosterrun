@@ -1508,7 +1508,7 @@ def import_characters():
     
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
-      cqs = [str(q) for q in c.Quests]
+      cqs = [q for q in c.Quests]
       print 'from import quests %s' % cqs
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqs)).all()
       print 'found quests %s' % char_quests
