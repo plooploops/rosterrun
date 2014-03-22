@@ -1493,8 +1493,12 @@ def import_characters():
  
     session['g_spreadsheet_id'] = g_s_id
     session['g_worksheet_id'] = g_w_id
-    quests = MappedQuest.query.all()
-    basequests = [q.internal_name for q in quests]
+    g_s_id = str(g_s_id)
+    g_w_id = str(g_w_id)
+    
+    quests = db.session.query(MappedQuest.internal_name).group_by(MappedQuest.internal_name).all()
+    basequests = [str(q.internal_name) for q in quests]
+    
     chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
     
@@ -1502,13 +1506,16 @@ def import_characters():
     for c in chars:
       print c
       print c.Class
-      cqins = [q.internal_name for c in c.Quests]
+      cqins = [q.internal_name for q in c.Quests]
       print cqins
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqins)).all()
       print char_quests
-      mc = MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), str(c.LastRun), str(c.PlayerName), str(c.Present))
+      mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
+      print 'made character'
       mc.Quests = char_quests
+      print 'added quests'
       db.session.add(mc)
+      print 'added to db'
     
     db.session.commit()
     flash('Import finished')
