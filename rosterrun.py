@@ -1497,6 +1497,7 @@ def import_characters():
     basequests = [q.internal_name for q in quests]
     chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
+    print chars
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
       cqins = [q.internal_name for c in c.Quests]

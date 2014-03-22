@@ -225,6 +225,8 @@ def testConnectToSpreadsheetsServiceOAuth(credentials, docName):
   return (spreadsheet_id, worksheet_id)  
 
 def initializeDataOAuth(credentials, docName, quests):
+  print quests
+  
   characters = []
   found_chars = []
   # Connect to Google
@@ -293,6 +295,8 @@ def initializeDataOAuth(credentials, docName, quests):
     found_chars.append(charac)
   
   characters = found_chars
+  
+  print characters
   return characters
   #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars
