@@ -1448,12 +1448,12 @@ def add_character():
   
   mqs = MappedQuest.query.all()
   
-  print 'mapped quests %s ' mqs
+  print 'mapped quests %s ' % mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
   
   ecq = [q.id for q in ec.Quests]
-  print 'edit char mapped quests %s ' mqs
+  print 'edit char mapped quests %s ' % ecq
   
   #map points back from characters and guild?
     
