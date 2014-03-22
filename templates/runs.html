@@ -42,7 +42,7 @@
     <form method=post action="{{ url_for('load_run_instance') }}" class=mapped-instance>
 	  <select name="instancelist">
 		{% for mi in mappedinstances %}
-		  <option {% if mi.id in val %} selected="True" {% endif %} value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
+		  <option {% if mi.id in selected_run %} selected="True" {% endif %} value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
 		{% endfor %}
 	  </select>
 	  <button type=submit class="btn btn-primary">Load</button>

@@ -1154,22 +1154,27 @@ def modify_runs():
   
   try:
     d_ids = [int(str(dt)) for dt in delete_id]
+    print 'converted delete ids'
     dt_ids = []
     e_ids = [et for et in edit_id if et != 'None']
+    print 'converted edit ids'
     et_ids = []
     if len(d_ids) > 0:
+      print 'trying to delete'
       dt_ids = [int(str(dt)) for dt in d_ids]
       er = MappedRun.query.filter(MappedRun.id == dc_ids[0]).first()
       db.session.delete(mr)
       db.session.commit()
       er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
     elif len(e_ids) > 0:
+      print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
     else:
       er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
       print 'no action to map'
-  except:
+  except Exception,e:
+    print str(e)
     print 'issue modifying a run'
   
   ermk = [mk.id for mk in er.mobs_killed]
