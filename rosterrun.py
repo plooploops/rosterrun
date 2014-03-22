@@ -1208,7 +1208,7 @@ def points_actions():
   action = None
   availableParties = []
   chars = []
-  checkCalculation()    
+  checkPointsCalculation()    
   
   try:    
     action = request.form['action']
@@ -1504,16 +1504,12 @@ def import_characters():
     
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
-      cqs = [q for q in c.Quests]
-      cqins = [cq.internal_name for cq in cqs]
-      char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqins)).all()
+      cqs = [str(q) for q in c.Quests]
+      char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqs)).all()
       mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
-      print 'made character'
       mc.Quests = char_quests
-      print 'added quests'
       db.session.add(mc)
-      print 'added to db'
-    
+      
     db.session.commit()
     flash('Import finished')
   except Exception,e: 
@@ -1608,7 +1604,6 @@ def checkCalculation():
         flash('Calculation not finished yet.')
         print 'current job is not ready %s' % job_id
     else:
-      flash('Please recalculate before refresh')
       print 'No job in session'
   except:
     print 'error occurred trying to fetch job'
@@ -1715,7 +1710,6 @@ def checkPointsCalculation():
         flash('Points calculation not finished yet.')
         print 'current job is not ready %s' % job_id
     else:
-      flash('Please recalculate points before refresh')
       print 'No job in session'
   except:
     print 'error occurred trying to fetch job'
@@ -1753,6 +1747,8 @@ def login():
           else:
               username = request.form['username'].strip()
               session['user'] = username
+              
+              #need to get mapped player by email?
 
               loginConfiguration(username)
               flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
