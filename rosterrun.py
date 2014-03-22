@@ -1502,6 +1502,7 @@ def import_characters():
     
     quests = db.session.query(MappedQuest.internal_name).group_by(MappedQuest.internal_name).all()
     basequests = [q.internal_name for q in quests]
+    print basequests
     
     chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
