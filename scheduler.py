@@ -296,7 +296,6 @@ def initializeDataOAuth(credentials, docName, quests):
   
   characters = found_chars
   
-  print characters
   return characters
   #chars = [[c.PlayerName, c.Name, c.Class, c.Role.Name, c.LastRun, len(c.Quests)] for c in characters]
   #print chars

@@ -1497,11 +1497,15 @@ def import_characters():
     basequests = [q.internal_name for q in quests]
     chars = initializeDataOAuth(credentials, session['doc'], basequests)
     print 'FOUND %s CHARS' % len(chars)
-    print chars
+    
     #parties combinations have [PartyIndex,InstanceName,PlayerName,CharacterName,CharacterClass,RoleName']
     for c in chars:
+      print c
+      print c.Class
       cqins = [q.internal_name for c in c.Quests]
+      print cqins
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqins)).all()
+      print char_quests
       mc = MappedCharacter(str(session['g_spreadsheet_id']), str(session['g_worksheet_id']), str(c.Class), str(c.Name), str(c.Role.Name), str(c.LastRun), str(c.PlayerName), str(c.Present))
       mc.Quests = char_quests
       db.session.add(mc)
