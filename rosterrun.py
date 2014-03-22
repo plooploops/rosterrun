@@ -1044,7 +1044,7 @@ def add_run():
   mi = MappedInstance.query.all()[0]
   mm = mi.mobs
   url = None
-  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  
   try:
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
@@ -1119,7 +1119,6 @@ def add_run():
   
   #check if run is already part of DB for edit, else add a new one.
   mm = mi.mobs
-  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   
@@ -1142,7 +1141,6 @@ def modify_runs():
   edit_id = None
   mi = MappedInstance.query.all()[0]
   mm = mi.mobs
-  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
   
   try:
     delete_id = request.form.getlist("delete")
@@ -1162,7 +1160,6 @@ def modify_runs():
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
       db.session.delete(er)
       db.session.commit()
-      er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
     elif len(e_ids) > 0:
       print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
@@ -1205,7 +1202,6 @@ def points():
 def points_actions():   
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
  
@@ -1475,7 +1471,7 @@ def import_characters():
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
       mcs = MappedCharacter.query.all()
       for mc in mcs:
-        [mc.Quests.remove(q) for q in mc.Quests]
+        [db.session.delete(q) for q in mc.Quests]
       MappedCharacter.query.delete()
       db.session.commit()
   
