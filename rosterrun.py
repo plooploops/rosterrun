@@ -466,8 +466,9 @@ def show_entries():
     curChars = MappedCharacter.query.all()
     chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
 
-  instance = MappedInstance.query.filter(MappedInstance.name == 'Niddhoggs Nest').all()[0]
-  quests = [q for q in instance.quests]
+  all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
+  aqns = [aqn[1] for aqn in all_quest_names]
+  quests = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
   ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
   ec.Quests = quests
   ecq = [q.id for q in ec.Quests]
@@ -1384,6 +1385,7 @@ def add_character():
   try:
     char_id = request.form.getlist("add")
     charquests = request.form.getlist("cbquests")
+    print charquests
     #Update for quests
     print char_id
   except:
@@ -1446,7 +1448,9 @@ def add_character():
   
   db.session.commit()
   
-  mqs = MappedQuest.query.all()
+  all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
+  aqns = [aqn[1] for aqn in all_quest_names]
+  mqs = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
   
   print 'mapped quests %s ' % mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
