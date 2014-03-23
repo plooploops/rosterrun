@@ -46,7 +46,7 @@ instance_mob_item_mapping = [
   ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
   ('Endless Tower - Naght Sieger', 9, 1956, 'Naght Sieger', [{13412, .5), (13413, .5), (2542, .5), (5017, .90), (616, 1.0), (2514, .9), (7294, 1.0)], EndlessTowerExternal),
   ('Endless Tower - Drake', 9, 1112, 'Drake', [{1127, .06), (1135, .015), (1128, .04), (5019, .035), (985, .096), (1189, .01), (5417, .024), (1127, .06)], EndlessTowerExternal),
-  ('Endless Tower - Valkyrie Randgris' , 10, 1751, 'Valkyrie Randgris', [(7510, 1.0), (2357, .12), (2524, .15), (2421, .3), (2229, .5), (7024, .75), (2115, .16), (4407, .0003)], EndlessTowerExternal)
+  ('Endless Tower - Valkyrie Randgris' , 10, 1751, 'Valkyrie Randgris', [(7510, 1.0), (2357, .12), (2524, .15), (2421, .3), (2229, .5), (7024, .75), (2115, .16), (4407, .0003)], EndlessTowerExternal),
 
 #mobs
 #2022 - nidd
