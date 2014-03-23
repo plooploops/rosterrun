@@ -44,9 +44,17 @@ instance_mob_item_mapping = [
   ('Bio - Whitesmith', 5, 1648, '1648', [(1138, .35), (1140, .25), (2318, .9), (1365, .35), (1364, .35), (1369, .25), (1368, .35), (4361, .0003)], biolabQuestsExternal),
   ('Bio - Assassin Cross', 5, 1647, 'Assassin Cross Eremes', [(1234, .15), (1230, .15), (2319, .9), (1233, .35), (1232, .35), (1265, .35), (13002, .35), (4359, .0003)], biolabQuestsExternal),
   ('Bio - Lord Knight', 10, 1646, 'Lord Knight Seyren', [(1132, .25), (2342, .35), (2412, .9), (1470, .35), (1469, .3), (1166, .25), (1415, .15), (4357, .0003)], biolabQuestsExternal),
-  ('Endless Tower - Naght Sieger', 9, 1956, 'Naght Sieger', [{13412, .5), (13413, .5), (2542, .5), (5017, .90), (616, 1.0), (2514, .9), (7294, 1.0)], EndlessTowerExternal),
-  ('Endless Tower - Drake', 9, 1112, 'Drake', [{1127, .06), (1135, .015), (1128, .04), (5019, .035), (985, .096), (1189, .01), (5417, .024), (1127, .06)], EndlessTowerExternal),
+  ('Endless Tower -  Mistress', 10, 1059, 'Mistress', [(1413, .015), (518, 1.0), (2249, .025), (616, .30), (7018, .03), (985, 1), (16001, .01), (4132, .0003), (996, .15), (526, .40), (722, .30)], EndlessTowerExternal),
+  ('Endless Tower -  Golden Thief Bug', 10, 1086, 'Golden Thief Bug' [(969, .30), (1524, .015), (2246, .025), (10016, .15), (714, .09), (985, .60), (984, .45), (4128, .0003), (2160, .20), (701, .10)], EndlessTowerExternal),
+  ('Endless Tower -
+  ('Endless Tower -
+  ('Endless Tower -
+  ('Endless Tower -
+  ('Endless Tower -
+  ('Endless Tower - Naght Sieger', 10, 1956, 'Naght Sieger', [(13412, .5), (13413, .5), (2542, .5), (5017, .90), (616, 1.0), (2514, .9), (7294, 1.0)], EndlessTowerExternal),
+  ('Endless Tower - Drake', 10, 1112, 'Drake', [{1127, .06), (1135, .015), (1128, .04), (5019, .035), (985, .096), (1189, .01), (5417, .024), (1127, .06)], EndlessTowerExternal),
   ('Endless Tower - Valkyrie Randgris' , 10, 1751, 'Valkyrie Randgris', [(7510, 1.0), (2357, .12), (2524, .15), (2421, .3), (2229, .5), (7024, .75), (2115, .16), (4407, .0003)], EndlessTowerExternal),
+  ('Endless Tower - Beelzebub' , 10, 1874, 'Beelzebub', [(7756, 1.0), (2423, .2), (1565, .2), (2000, .2), (2702, .2), (985, 1.0), (742, 1.0), (4145, .0003) (607, .55), (617, .50), (617, .50)], EndlessTowerExternal),   
 
 #mobs
 #2022 - nidd
