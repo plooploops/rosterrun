@@ -1335,7 +1335,7 @@ def update_chars():
       qs = [q.id for q in mcd.Quests]
       print qs
       d = association_table_quests_characters.delete().where(association_table_quests_characters.c.quest_id.in_(qs))
-      d.execute()
+      db.engine.execute(d)
       
       print 'deleted from association table'
       db.session.delete(mcd)
@@ -1398,6 +1398,7 @@ def add_character():
   ec = None
   char_id = None
   quests = []  
+  ecq = []
   try:
     char_id = request.form.getlist("add")
     charquests = request.form.getlist("cbquests")
@@ -1450,6 +1451,8 @@ def add_character():
       #adding new character
       ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charlastrun, charplayername, charpresent)
       ec.Quests = quests
+      
+      ecq = [q.id for q in ec.Quests]
       db.session.add(ec)
   else:
     #editing a character
@@ -1461,6 +1464,8 @@ def add_character():
     ec.LastRun = charlastrun
     ec.PlayerName = charplayername
     ec.Present = charpresent
+    
+    ecq = [q.id for q in ec.Quests]
   
   db.session.commit()
   
@@ -1471,7 +1476,7 @@ def add_character():
   print 'mapped quests %s ' % mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   
-  ecq = [q.id for q in ec.Quests]
+  
   print 'edit char mapped quests %s ' % ecq
   
   #map points back from characters and guild?
