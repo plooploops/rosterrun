@@ -1316,6 +1316,7 @@ def update_chars():
   ec = None
   drop_id = None
   edit_id = None
+  curChars = []
   
   try:
     drop_id = request.form.getlist("drop")
@@ -1379,6 +1380,7 @@ def add_character():
  
   action = None
   chars = []
+  curChars = []
   ec = None
   char_id = None
   quests = []  
@@ -1454,14 +1456,13 @@ def add_character():
   
   print 'mapped quests %s ' % mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-  chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, c.Quests, c.LastRun, c.Present) for c in curChars]
   
   ecq = [q.id for q in ec.Quests]
   print 'edit char mapped quests %s ' % ecq
   
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=chars, editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
+  return render_template('show_entries.html', characters=curChars, editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
 
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
