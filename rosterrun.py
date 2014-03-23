@@ -1334,7 +1334,9 @@ def update_chars():
     for mcd in mc_to_delete:
       qs = [q.id for q in mcd.Quests]
       print qs
-      association_table_quests_characters.delete().where(association_table_quests_characters.quest_id.in_(qs))
+      d = association_table_quests_characters.delete().where(association_table_quests_characters.c.quest_id.in_(qs))
+      d.execute()
+      
       print 'deleted from association table'
       db.session.delete(mcd)
     db.session.commit()
