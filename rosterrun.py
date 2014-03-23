@@ -1365,10 +1365,16 @@ def update_chars():
     print 'issue finding the available parties'
     resetLookupParameters()
   
+  all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
+  aqns = [aqn[1] for aqn in all_quest_names]
+  mqs = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
+    
+  print 'mapped quests %s ' % mqs
+  
   ecq = [q.id for q in ec.Quests]
   #map points back from characters and guild?
     
-  return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq)
+  return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs,)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
