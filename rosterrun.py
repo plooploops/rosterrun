@@ -1332,8 +1332,10 @@ def update_chars():
     dc_ids = [dt for dt in drop_id]
     mc_to_delete = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()
     for mcd in mc_to_delete:
-      for q in mcd.Quests:
-        db.session.delete(q)
+      qs = [q.id for q in mcd.Quests]
+      print qs
+      association_table_quests_characters.delete().where(association_table_quests_characters.id.in_(qs))
+      print 'deleted from association table'
       db.session.delete(mcd)
     db.session.commit()
     ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
