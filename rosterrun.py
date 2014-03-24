@@ -1001,7 +1001,7 @@ def runs():
   s_run = int(str(mi.id))
   sr = [s_run]
   
-  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
+  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
 
 @app.route('/load_run_instance', methods=['GET', 'POST'])
 def load_run_instance():
@@ -1049,7 +1049,23 @@ def add_run():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  mi = MappedInstance.query.all()[0]
+  try:
+    action = request.form['action']
+  except:
+    print 'cannot map action'
+  
+  if action == u"LoadInstance":
+    load_run_instance()
+    return
+  
+  val = None
+  try:
+    val = request.form['instancelist']
+    print val
+    s_run = int(str(val))
+  except:
+    print 'cannot find instance'
+  mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
   mm = mi.mobs
   url = None
   

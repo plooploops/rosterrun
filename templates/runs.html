@@ -39,15 +39,13 @@
     </form>
 
     <h2 class="sub-header">Add Run</h2>
-    <form method=post action="{{ url_for('load_run_instance') }}" class=mapped-instance>
-	  <select name="instancelist">
-		{% for mi in mappedinstances %}
-		  <option {% if mi.id in selected_run %} selected="True" {% endif %} value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
-		{% endfor %}
-	  </select>
-	  <button type=submit class="btn btn-primary">Load</button>
-	</form>
     <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
+      <select name="instancelist">
+	    {% for mi in mappedinstances %}
+	      <option {% if mi.id in selected_run %} selected="True" {% endif %} value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
+	    {% endfor %}
+	  </select>
+	  <button type=submit name=action value=LoadInstance class="btn btn-primary">Load</button>
       <div class="form-group">
 	    <label for="nrunname">Name</label>
 	  	<input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
