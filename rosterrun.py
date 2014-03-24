@@ -997,6 +997,9 @@ def runs():
   mc = MappedCharacter.query.all()  
   
   mis = MappedInstance.query.all()
+  s_run = None
+  s_run = int(str(mi.id))
+  sr = [s_run]
   
   return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
 
@@ -1010,9 +1013,11 @@ def load_run_instance():
   
   print 'loaded run instance'
   val = None
+  s_run = None
   try:
     val = request.form['instancelist']
     print val
+    s_run = int(str(val))
   except:
     print 'value not found'
   
@@ -1032,7 +1037,9 @@ def load_run_instance():
   
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', selected_run = [val], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  sr = [s_run]
+  
+  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -1118,6 +1125,8 @@ def add_run():
     print str(e)
     print 'error adding a run'
   
+  s_run = int(str(mi.id))
+  sr = [s_run]
   #check if run is already part of DB for edit, else add a new one.
   mm = mi.mobs
   ermk = [mk.id for mk in er.mobs_killed]
@@ -1128,7 +1137,7 @@ def add_run():
   
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
@@ -1178,7 +1187,10 @@ def modify_runs():
   mc = MappedCharacter.query.all()
   mis = MappedInstance.query.all()
   
-  return render_template('runs.html', selected_run = [mi.id], runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  s_run = int(str(mi.id))
+  sr = [s_run]
+  
+  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
@@ -1333,11 +1345,8 @@ def update_chars():
     mc_to_delete = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()
     for mcd in mc_to_delete:
       qs = [q.id for q in mcd.Quests]
-      print qs
       d = association_table_quests_characters.delete().where(association_table_quests_characters.c.quest_id.in_(qs))
       db.engine.execute(d)
-      
-      print 'deleted from association table'
       db.session.delete(mcd)
     db.session.commit()
     ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
