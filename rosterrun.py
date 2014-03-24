@@ -1012,34 +1012,7 @@ def load_run_instance():
     return redirect(url_for('login'))
   
   print 'loaded run instance'
-  val = None
-  s_run = None
-  try:
-    val = request.form['instancelist']
-    print val
-    s_run = int(str(val))
-  except:
-    print 'value not found'
-  
-  mi = None
-  if val is not None:
-    mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
-  else: 
-    mi = MappedInstance.query.all()[0]
-    
-  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
-  ermk = [mk.id for mk in er.mobs_killed]
-  erc = [c.id for c in er.chars]
-  
-  mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()  
-  mm = mi.mobs
-  
-  mis = MappedInstance.query.all()
-  
-  sr = [s_run]
-  
-  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
@@ -1054,17 +1027,37 @@ def add_run():
   except:
     print 'cannot map action'
   
-  if action == u"LoadInstance":
-    load_run_instance()
-    return
-  
   val = None
+  s_run = None
+  mi = None
+  
   try:
     val = request.form['instancelist']
     print val
     s_run = int(str(val))
   except:
-    print 'cannot find instance'
+    print 'value not found'
+    
+  if action == u"LoadInstance":
+    if val is not None:
+      mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
+    else: 
+      mi = MappedInstance.query.all()[0]
+      
+    er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+    ermk = [mk.id for mk in er.mobs_killed]
+    erc = [c.id for c in er.chars]
+    
+    mrs = MappedRun.query.all()
+    mc = MappedCharacter.query.all()  
+    mm = mi.mobs
+    
+    mis = MappedInstance.query.all()
+    
+    sr = [s_run]
+    
+    return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  
   mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
   mm = mi.mobs
   url = None
