@@ -1003,17 +1003,6 @@ def runs():
   
   return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
 
-@app.route('/load_run_instance', methods=['GET', 'POST'])
-def load_run_instance():
-  if not session.get('logged_in'):
-    #abort(401)
-    flash('Please login again')
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
-  
-  print 'loaded run instance'
-
-
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
   if not session.get('logged_in'):
@@ -1022,6 +1011,7 @@ def add_run():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
+  action = None
   try:
     action = request.form['action']
   except:
