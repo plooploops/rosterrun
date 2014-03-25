@@ -990,7 +990,7 @@ def runs():
     return redirect(url_for('login'))
   
   mi = MappedInstance.query.all()[0]
-  er = MappedRun('', '', 'Test' datetime.now(), [], mi, True, 'Got good drops')
+  er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
