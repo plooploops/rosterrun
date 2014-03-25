@@ -200,7 +200,7 @@ def RefreshMarketWithMobDrops():
   #aggregate item drop rates with market 
   mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
   mobs = [mr.mobs_killed for mr in mapped_runs]
-  mob_items = [m.items for m in mobs_killed]
+  mob_items = [m.items for m in mobs]
   drop_rate = [(mi.item_id, mi.item_drop_rate) for mi in mob_items]
   drop_rate = [item for sublist in drop_rate for item in sublist]
   #distinct item drop rate
@@ -234,11 +234,11 @@ def RecalculatePoints():
   
   mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
   mobs = [mr.mobs_killed for mr in mapped_runs]
-  mob_items = [m.items for m in mobs_killed]
+  mob_items = [m.items for m in mobs]
   drop_items = [mi.item_id for mi in mob_items]
   drop_items = list(set(drop_items))
   
-  self.AddMissingSearchItems(mob_items, drop_rate)
+  AddMissingSearchItems(mob_items, drop_rate)
   
   #recalculate the points for the guild including run credit factors
   d = datetime.now()
@@ -272,7 +272,7 @@ def RecalculatePoints():
     players = list(set(players))
     CalculatePoints(run, run.mobs_killed, players, market_results) 
 
-def BuyTreasure(self, mappedGuildTreasure, mappedPlayer):
+def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).all()[0]
   total_points = player_points[2]
   price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
