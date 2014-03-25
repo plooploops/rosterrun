@@ -10,7 +10,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
 
-from rosterrun import db, PartyCombo, MappedGuild, MappedInstance, MappedQuest, MappedRun, MappedMob, MappedMobItem, MappedPlayer, MappedCharacter, MappedGuildTreasure, RunCredit, MappedGuildPoint, MappedGuildTransaction, MappedMarketResult, MappedMarketSearch
+from rosterrun import db
+#from rosterrun import PartyCombo, MappedGuild, MappedInstance, MappedQuest, MappedRun, MappedMob, MappedMobItem, MappedPlayer, MappedCharacter, MappedGuildTreasure, RunCredit, MappedGuildPoint, MappedGuildTransaction, MappedMarketResult, MappedMarketSearch
 #points calculator
 
 #Cards will be treated according to TC * market  z / TC * expected drop rate
