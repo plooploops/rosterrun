@@ -175,7 +175,7 @@ class MappedRun(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     evidence_url = db.Column(db.String(400))
     evidence_file_path = db.Column(db.String(400))
-    name = db.Collumn(db.String(400))
+    name = db.Column(db.String(400))
     date = db.Column(db.DateTime)
     chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
     instance = relationship("MappedInstance", backref="instance", uselist=False)
