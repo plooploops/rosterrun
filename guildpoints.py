@@ -18,24 +18,6 @@ from rosterrun import db, PartyCombo, MappedGuild, MappedInstance, MappedQuest, 
 
 marketscraper = MarketScraper()
 
-def testGuildCalculator():
-  g = Guild('KOH')
-  c = Character('Andy', 'Champion', 'plooper')
-  g.AddCharacter(c)
-  c = Character('Andy', 'High Priest', 'kafra chan')
-  g.AddCharacter(c)
-  c = Character('Nick', 'Whitesmith', 'Encee')
-  g.AddCharacter(c)
-  c = Character('Joe', 'High Wizard', 'Kjata')
-  g.AddCharacter(c)
-  
-  user = raw_input('User Name: ')
-  pw = getpass.getpass('Password: ')
-  g.loginScraper(user, pw)
-  
-  runname = 'Niddhogg'
-  g.CalculatePoints(runname, mobs_in_run[runname], g.chars)
-
 def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
   

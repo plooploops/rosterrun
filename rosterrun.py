@@ -175,6 +175,7 @@ class MappedRun(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     evidence_url = db.Column(db.String(400))
     evidence_file_path = db.Column(db.String(400))
+    name = db.Collumn(db.String(400))
     date = db.Column(db.DateTime)
     chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
     instance = relationship("MappedInstance", backref="instance", uselist=False)
@@ -184,18 +185,19 @@ class MappedRun(db.Model):
     credits = relationship("RunCredit", backref="run")
     mobs_killed = relationship("MappedMob", backref="run")
     
-    def __init__(self, evidence_url, evidence_file_path, date, chars, instance, success, notes):
+    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, success, notes):
         self.evidence_url = evidence_url
         self.evidence_file_path = evidence_file_path
         self.date = date
         self.chars = chars
+        self.name = name
         self.instance = instance
         self.mobs_killed = instance.mobs
         self.success = success
     	self.notes = notes
     	
     def __repr__(self):
-        return '<MappedRun %r>' % self.instance_name
+        return '<MappedRun %r>' % self.name
 
 class MappedMob(db.Model):
     __tablename__ = 'mob'
@@ -988,7 +990,7 @@ def runs():
     return redirect(url_for('login'))
   
   mi = MappedInstance.query.all()[0]
-  er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+  er = MappedRun('', '', 'Test' datetime.now(), [], mi, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
@@ -1032,7 +1034,7 @@ def add_run():
     else: 
       mi = MappedInstance.query.all()[0]
       
-    er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+    er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
     
@@ -1108,6 +1110,7 @@ def add_run():
     if len(et_ids) > 0:
       er.evidence_url = url
       er.evidence_file_path = k.key
+      er.name = name
       er.date = run_date  
       er.chars = chars
       er.instance = mi
@@ -1115,7 +1118,7 @@ def add_run():
       er.success = success
       er.notes = notes
     else:
-      er = MappedRun(url, k.key, run_date, chars, mi, success, notes)
+      er = MappedRun(url, k.key, name, run_date, chars, mi, success, notes)
       db.session.add(er)
     db.session.commit()
   except Exception,e:
@@ -1172,7 +1175,7 @@ def modify_runs():
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
     else:
-      er = MappedRun('', '', datetime.now(), [], mi, True, 'Got good drops')
+      er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
       print 'no action to map'
   except Exception,e:
     print str(e)
