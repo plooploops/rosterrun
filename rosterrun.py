@@ -82,8 +82,6 @@ app.config['UPLOAD_FOLDER'] = 'tmp/'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 sched = scheduler()
-guild = Guild()
-
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -1712,9 +1710,8 @@ def run_points_calculation():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
   
-    g = Guild()
     #consider calculating from imported results if possible
-    calcpointsjob = q.enqueue_call(func=g.RecalculatePoints, args=(), result_ttl=3000)
+    calcpointsjob = q.enqueue_call(func=RecalculatePoints, args=(), result_ttl=3000)
     print 'running calc %s ' % calcpointsjob.id
     session['points_job_id'] = calcpointsjob.id
     
