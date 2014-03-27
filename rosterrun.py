@@ -1946,8 +1946,7 @@ def loginScraper(username, password):
 def refreshMarket(search_items = {}):
   print search_items
   item_results = marketscraper.get_scrape_results(search_items)
-  mapped_results = marketscraper.map_prices_ignore_upgrades(item_results)
-  return mapped_results    
+  return item_results    
   
 def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}): 
   #get relevant data for run 
@@ -2060,7 +2059,6 @@ def RefreshMarketWithMobDrops():
   marketresults = refreshMarket(items_to_search)
   #refresh db
   vals = marketresults.values()
-  #flattenedvals = [item for sublist in vals for item in sublist]
   daterun = datetime.now()
   for k in marketresults.keys():
     [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
