@@ -9,7 +9,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from rosterrun import q, db, MappedMarketResult, MappedMarketSearch
 
 import sys
-import os
 
 from rq import Queue, get_current_job
 from rq.job import Job
@@ -23,12 +22,14 @@ updated_search_items = search_items
 user = sys.argv[1]
 pw = sys.argv[2]
 
-print user
-print pw
 m.login(user, pw)
 
 sched.scrapejob = None
 sched.scrapejobid = None
+
+#adding placeholders for points calculation
+sched.pointscalcjob = None
+sched.pointscalcjobid = None
 
 logging.basicConfig()
 

@@ -2058,7 +2058,7 @@ def RefreshMarketWithMobDrops():
   #add talon coin
   items_to_search[8900] = search_items[8900]
   #need to do something to track the market values, can this update a db?
-  market_results = refreshMarket(items_to_search)
+  marketresults = refreshMarket(items_to_search)
   #refresh db
   vals = marketresults.values()
   #flattenedvals = [item for sublist in vals for item in sublist]

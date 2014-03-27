@@ -25,6 +25,7 @@ class MarketScraper:
   #methods
   def login(self, username, password):
     
+    print 'logging in with %s' % username
     login_url = "https://forum.talonro.com/index.php?action=login2"
     login_payload = {'user': username, 'passwrd':password}
     login_r = requests.post(login_url, login_payload)
