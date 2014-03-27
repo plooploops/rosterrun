@@ -2058,12 +2058,13 @@ def RefreshMarketWithMobDrops():
   #need to do something to track the market values, can this update a db?
   marketresults = refreshMarket(items_to_search)
   #refresh db
-  vals = marketresults.values()
-  daterun = datetime.now()
-  for k in marketresults.keys():
-    [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
+  if marketresults is not None:
+    vals = marketresults.values()
+    daterun = datetime.now()
+    for k in marketresults.keys():
+      [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
          
-  db.session.commit()
+    db.session.commit()
   
   return drop_items
 
@@ -2088,7 +2089,7 @@ def RecalculatePoints():
       market_results_d[mr[0]].append(mr[1])
     else:
       market_results_d[mr[0]] = [mr[1]]
-  market_results_d = defaultdict(market_results)    
+  
   for k,v in market_results:
     market_results_d[k].append(v)
   for k, v in guild_treasure:
