@@ -19,6 +19,7 @@ from rosterrun import db
 
 marketscraper = MarketScraper()
 
+
 def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
   
@@ -122,14 +123,16 @@ def refreshMarket(search_items = {}):
 def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}): 
   #get relevant data for run 
   #assume that players conform to Character class
-  runname = run.instance_name
+  runname = run.instance.name
   mobs_killed = run.mobs_killed
   print 'calculating points for %s ' % runname
   print 'assuming mobs killed %s ' % mobs_killed
   print 'with players %s ' % players
   median_party = median_party_size[runname]
   successful_mobs = run.mobs_killed
-  mob_items = [m.items for m in mobs_killed]
+  mobs = [item for sublist in successful_mobs for item in sublist]
+  mob_items = [m.items for m in mobs]
+  mob_items = [item for sublist in mob_items for item in sublist]
   drop_items = [mob_item.item_id for mob_item in mob_items]
   
   drop_rate = [(mi.item_id, mi.item_drop_rate) for mi in mob_items]
