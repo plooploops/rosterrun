@@ -182,7 +182,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   
   return mapped_points	
 
-def AddMissingSearchItems(mob_items, drop_rate):
+def AddMissingSearchItems(mob_items, drop_items):
   #notify which items are not part of the market search
   mob_items_dict = dict([(mi.item_id, mi.item_name) for mi in mob_items])
   mms = MappedMarketSearch.query.all()
@@ -201,9 +201,10 @@ def RefreshMarketWithMobDrops():
   #aggregate item drop rates with market 
   mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
   mobs = [mr.mobs_killed for mr in mapped_runs]
+  mobs = [item for sublist in mobs for item in sublist]
   mob_items = [m.items for m in mobs]
+  mob_items = [item for sublist in mob_items for item in sublist]
   drop_rate = [(mi.item_id, mi.item_drop_rate) for mi in mob_items]
-  drop_rate = [item for sublist in drop_rate for item in sublist]
   #distinct item drop rate
   drop_rate = list(set(drop_rate))
   items_to_search = { mdr[0] : search_items[mdr[0]] for mdr in drop_rate if mdr[0] in search_items }
@@ -211,7 +212,7 @@ def RefreshMarketWithMobDrops():
   ms = MappedMarketSearch.query.filter(MappedMarketSearch.search == True).all()
   drop_items = [mdr[0] for mdr in drop_rate]
   
-  AddMissingSearchItems(mob_items, drop_rate)
+  AddMissingSearchItems(mob_items, drop_items)
   
   mapped_search_items = [search_item for search_item in ms if search_item.itemid in drop_items]
   items_to_search = { msi[0] : msi[1] for msi in mapped_search_items }
@@ -327,4 +328,3 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()    
-  
