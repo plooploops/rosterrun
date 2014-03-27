@@ -83,8 +83,12 @@ q = Queue(connection=conn, default_timeout=3600)
 app.config['UPLOAD_FOLDER'] = 'tmp/'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+m_user = os.environ['M_User']
+m_password = os.environ['M_Pass']
+
 sched = scheduler()
 marketscraper = MarketScraper()
+marketscraper.login(m_user, m_password)
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -2022,7 +2026,15 @@ def AddMissingSearchItems(mob_items, drop_items):
   db.session.commit()
   
   #update market results
-  interval_market_scrape()
+  search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
+  search_items_dict = { i.itemid: i.name for i in search_list }
+  
+  marketresults = m.get_scrape_results(search_items_dict)
+  vals = marketresults.values()
+  daterun = datetime.now()
+  for k in marketresults.keys():
+    [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
+  db.session.commit()
 
 def RefreshMarketWithMobDrops():
   #aggregate item drop rates with market 

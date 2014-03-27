@@ -9,6 +9,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from rosterrun import q, db, MappedMarketResult, MappedMarketSearch
 
 import sys
+import os
 
 from rq import Queue, get_current_job
 from rq.job import Job
@@ -19,12 +20,10 @@ sched = Scheduler()
 m = MarketScraper()
 updated_search_items = search_items
 
-user = sys.argv[1]
-pw = sys.argv[2]
+m_user = os.environ['M_User']
+m_password = os.environ['M_Pass']
 
-print user
-print pw
-m.login(user, pw)
+m.login(m_user, m_password)
 
 sched.scrapejob = None
 sched.scrapejobid = None
