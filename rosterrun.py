@@ -2028,7 +2028,7 @@ def AddMissingSearchItems(mob_items, drop_items):
   search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
   search_items_dict = { i.itemid: i.name for i in search_list }
   
-  marketresults = m.get_scrape_results(search_items_dict)
+  marketresults = marketscraper.get_scrape_results(search_items_dict)
   vals = marketresults.values()
   daterun = datetime.now()
   for k in marketresults.keys():
