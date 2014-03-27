@@ -37,7 +37,6 @@ from marketscrape import *
 from marketvalue import *
 from mathutility import *
 from items_map import *
-from scraperclock import interval_market_scrape
 
 import pygal
 from pygal.style import LightStyle
