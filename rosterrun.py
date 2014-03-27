@@ -405,7 +405,6 @@ def resetLookupParameters():
 def show_entries():   
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
  
@@ -448,7 +447,6 @@ def show_entries():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
       if credentials is None:
-        flash('Please login again')
         session.pop('logged_in', None)
         return redirect(url_for('login'))
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
@@ -486,7 +484,6 @@ def show_entries():
 def viable_parties():   
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
  
@@ -528,7 +525,6 @@ def viable_parties():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
       if credentials is None:
-        flash('Please login again')
         session.pop('logged_in', None)
         return redirect(url_for('login'))
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
@@ -575,7 +571,6 @@ def convert_to_key(itemid = None, name = None, cards = None, date = None, amount
 def market_results():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
@@ -611,7 +606,6 @@ def market_results():
 def market_current_results():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
@@ -646,7 +640,6 @@ def market_current_results():
 def item_current_results():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -723,7 +716,6 @@ def item_current_results():
 def item_history():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -799,7 +791,6 @@ def item_history():
 def market_history():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -832,7 +823,6 @@ def market_history():
 def market_search_list():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -845,7 +835,6 @@ def market_search_list():
 def treasury():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -858,7 +847,6 @@ def treasury():
 def modify_treasure():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
 
@@ -914,7 +902,6 @@ def modify_treasure():
 def add_treasure():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
@@ -990,7 +977,6 @@ def add_treasure():
 def runs():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1012,7 +998,6 @@ def runs():
 def add_run():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1148,7 +1133,6 @@ def add_run():
 def modify_runs():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1201,7 +1185,6 @@ def modify_runs():
 def points():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
@@ -1246,7 +1229,6 @@ def points_actions():
 def use_default_search_list():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
     
@@ -1262,7 +1244,6 @@ def use_default_search_list():
 def update_search_list():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1300,7 +1281,6 @@ def update_search_list():
 def add_to_search_list():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1324,7 +1304,6 @@ def add_to_search_list():
 def update_chars():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
  
@@ -1376,7 +1355,6 @@ def update_chars():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
       if credentials is None:
-        flash('Please login again')
         session.pop('logged_in', None)
         return redirect(url_for('login'))
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
@@ -1402,7 +1380,6 @@ def update_chars():
 def add_character():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
  
@@ -1447,7 +1424,6 @@ def add_character():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       credentials = storage.get()   
       if credentials is None:
-        flash('Please login again')
         session.pop('logged_in', None)
         return redirect(url_for('login'))
       (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
@@ -1502,7 +1478,6 @@ def import_characters():
   try:
     if not session.get('logged_in'):
       #abort(401)
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
   
@@ -1524,7 +1499,6 @@ def import_characters():
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
     credentials = storage.get()   
     if credentials is None:
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
    
@@ -1560,7 +1534,6 @@ def import_characters():
   except Exception,e: 
     print str(e)
     print 'error importing'
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1571,7 +1544,6 @@ def run_calculation():
   try:
     if not session.get('logged_in'):
       #abort(401)
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
   
@@ -1589,7 +1561,6 @@ def run_calculation():
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
     credentials = storage.get()   
     if credentials is None:
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
   
@@ -1609,7 +1580,6 @@ def run_calculation():
   except Exception,e: 
     print str(e)
     print 'error running calculation'
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   return redirect(url_for('viable_parties'))
@@ -1618,7 +1588,6 @@ def run_calculation():
 def checkCalculation():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1660,7 +1629,6 @@ def reset():
   try:
     if not session.get('logged_in'):
       #abort(401)
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
 
@@ -1702,7 +1670,6 @@ def run_points_calculation():
   try:
     if not session.get('logged_in'):
       #abort(401)
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
 
@@ -1714,7 +1681,6 @@ def run_points_calculation():
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
     credentials = storage.get()   
     if credentials is None:
-      flash('Please login again')
       session.pop('logged_in', None)
       return redirect(url_for('login'))
   
@@ -1726,7 +1692,6 @@ def run_points_calculation():
   except Exception,e: 
     print str(e)
     print 'error running points calculation'
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   return redirect(url_for('points'))
@@ -1735,7 +1700,6 @@ def run_points_calculation():
 def checkPointsCalculation():
   if not session.get('logged_in'):
     #abort(401)
-    flash('Please login again')
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
@@ -1781,6 +1745,7 @@ def oauth2callback():
  
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    flash('Please login again')
     try:
       resetParameters()
       error = None    
@@ -2097,7 +2062,7 @@ def RecalculatePoints():
   for k,v in guild_treasure:
     market_results_d[k].append(v)
     
-  market_results = min_values(market_results)
+  market_results = min_values(market_results_d)
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
   for run in relevant_runs_query:
