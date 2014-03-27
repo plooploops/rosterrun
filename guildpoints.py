@@ -117,8 +117,7 @@ def loginScraper(username, password):
 def refreshMarket(search_items = {}):
   print search_items
   item_results = marketscraper.get_scrape_results(search_items)
-  mapped_results = marketscraper.map_prices_ignore_upgrades(item_results)
-  return mapped_results    
+  return item_results    
   
 def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}): 
   #get relevant data for run 
@@ -194,7 +193,7 @@ def AddMissingSearchItems(mob_items, drop_items):
     db.session.add(MappedMarketSearch(True, ns, mob_items_dict[ns]))
   db.session.commit()
   
-  #update market results
+  #update market results takes place by market scraper (scraperclock)
   search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
   search_items_dict = { i.itemid: i.name for i in search_list }
   
@@ -228,27 +227,22 @@ def RefreshMarketWithMobDrops():
   #add talon coin
   items_to_search[8900] = search_items[8900]
   #need to do something to track the market values, can this update a db?
-  market_results = refreshMarket(items_to_search)
+  marketresults = refreshMarket(items_to_search)
   #refresh db
-  vals = marketresults.values()
-  #flattenedvals = [item for sublist in vals for item in sublist]
-  daterun = datetime.now()
-  for k in marketresults.keys():
-    [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
+  if marketresults is not None:
+    vals = marketresults.values()
+    daterun = datetime.now()
+    for k in marketresults.keys():
+      [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
          
-  db.session.commit()
+    db.session.commit()
+  
+  return drop_items
 
 def RecalculatePoints():
+  loginScraper(m_user, m_password)
   #aggregate item drop rates with market 
-  RefreshMarketWithMobDrops()
-  
-  mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
-  mobs = [mr.mobs_killed for mr in mapped_runs]
-  mob_items = [m.items for m in mobs]
-  drop_items = [mi.item_id for mi in mob_items]
-  drop_items = list(set(drop_items))
-  
-  AddMissingSearchItems(mob_items, drop_rate)
+  drop_items = RefreshMarketWithMobDrops()
   
   #recalculate the points for the guild including run credit factors
   d = datetime.now()
@@ -266,7 +260,7 @@ def RecalculatePoints():
       market_results_d[mr[0]].append(mr[1])
     else:
       market_results_d[mr[0]] = [mr[1]]
-  market_results_d = defaultdict(market_results)    
+  
   for k,v in market_results:
     market_results_d[k].append(v)
   for k, v in guild_treasure:
@@ -274,11 +268,11 @@ def RecalculatePoints():
   for k,v in guild_treasure:
     market_results_d[k].append(v)
     
-  market_results = min_values(market_results)
+  market_results = min_values(market_results_d)
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
   for run in relevant_runs_query:
-    players = [c.mappedplayer_id for c in mr.chars] 
+    players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
     CalculatePoints(run, run.mobs_killed, players, market_results) 
 

@@ -2066,7 +2066,7 @@ def RecalculatePoints():
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
   for run in relevant_runs_query:
-    players = [c.mappedplayer_id for c in mr.chars] 
+    players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
     CalculatePoints(run, run.mobs_killed, players, market_results) 
 
