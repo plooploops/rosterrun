@@ -2064,19 +2064,13 @@ def RefreshMarketWithMobDrops():
     [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
          
   db.session.commit()
+  
+  return drop_items
 
 def RecalculatePoints():
   loginScraper(m_user, m_password)
   #aggregate item drop rates with market 
-  RefreshMarketWithMobDrops()
-  
-  mapped_runs = MappedRun.query.filter(MappedRun.success == True).all()
-  mobs = [mr.mobs_killed for mr in mapped_runs]
-  mob_items = [m.items for m in mobs]
-  drop_items = [mi.item_id for mi in mob_items]
-  drop_items = list(set(drop_items))
-  
-  AddMissingSearchItems(mob_items, drop_rate)
+  drop_items = RefreshMarketWithMobDrops()
   
   #recalculate the points for the guild including run credit factors
   d = datetime.now()
