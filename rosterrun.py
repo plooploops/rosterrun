@@ -2053,7 +2053,7 @@ def RefreshMarketWithMobDrops():
   AddMissingSearchItems(mob_items, drop_items)
   
   mapped_search_items = [search_item for search_item in ms if search_item.itemid in drop_items]
-  items_to_search = { msi[0] : msi[1] for msi in mapped_search_items }
+  items_to_search = { msi.itemid : msi.name for msi in mapped_search_items }
   
   #add talon coin
   items_to_search[8900] = search_items[8900]
