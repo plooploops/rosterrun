@@ -1921,7 +1921,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   print 'calculating points for %s ' % runname
   print 'assuming mobs killed %s ' % mobs_killed
   print 'with players %s ' % players
-  median_party = median_party_size[runname]
+  median_party = run.instance.median_players
   successful_mobs = run.mobs_killed
   mobs = [item for sublist in successful_mobs for item in sublist]
   mob_items = [m.items for m in mobs]
