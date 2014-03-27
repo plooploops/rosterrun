@@ -87,7 +87,6 @@ m_password = os.environ['M_Pass']
 
 sched = scheduler()
 marketscraper = MarketScraper()
-marketscraper.login(m_user, m_password)
 
 class PartyCombo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -2024,7 +2023,7 @@ def AddMissingSearchItems(mob_items, drop_items):
     db.session.add(MappedMarketSearch(True, ns, mob_items_dict[ns]))
   db.session.commit()
   
-  #update market results
+  #update market results takes place by market scraper (scraperclock)
   search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
   search_items_dict = { i.itemid: i.name for i in search_list }
   
@@ -2069,6 +2068,7 @@ def RefreshMarketWithMobDrops():
   db.session.commit()
 
 def RecalculatePoints():
+  loginScraper(m_user, m_password)
   #aggregate item drop rates with market 
   RefreshMarketWithMobDrops()
   
