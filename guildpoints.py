@@ -195,7 +195,15 @@ def AddMissingSearchItems(mob_items, drop_items):
   db.session.commit()
   
   #update market results
-  interval_market_scrape()
+  search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
+  search_items_dict = { i.itemid: i.name for i in search_list }
+  
+  marketresults = marketscraper.get_scrape_results(search_items_dict)
+  vals = marketresults.values()
+  daterun = datetime.now()
+  for k in marketresults.keys():
+    [db.session.add(MappedMarketResult(str(mr.itemid), str(mr.name), str(mr.cards), str(mr.price), str(mr.amount), str(mr.title), str(mr.vendor), str(mr.coords), str(daterun))) for mr in marketresults[k]]
+  db.session.commit()
 
 def RefreshMarketWithMobDrops():
   #aggregate item drop rates with market 
@@ -215,7 +223,7 @@ def RefreshMarketWithMobDrops():
   AddMissingSearchItems(mob_items, drop_items)
   
   mapped_search_items = [search_item for search_item in ms if search_item.itemid in drop_items]
-  items_to_search = { msi[0] : msi[1] for msi in mapped_search_items }
+  items_to_search = { msi.itemid : msi.name for msi in mapped_search_items }
   
   #add talon coin
   items_to_search[8900] = search_items[8900]
@@ -328,3 +336,4 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()    
+
