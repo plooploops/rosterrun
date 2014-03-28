@@ -1742,7 +1742,68 @@ def oauth2callback():
       return redirect(url_for('show_entries'))
   except: 
     print 'error with oauth2callback'
- 
+
+@app.route('/user_profile', methods=['GET', 'POST'])
+def user_profile():
+  if not session.get('logged_in'):
+    #abort(401)
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  action = None
+  user = session['user']
+  name = None
+  try:
+    action = request.form['action']
+  except:
+    print 'cannot bind action'
+  print action
+  
+  mp_exists = MappedPlayer.query.filter(MappedPlayer.email==user)
+  mp = None
+  if mp_exists.count() > 0:
+    mp = mp_exists.all()[0]
+  else:
+    mp = MappedPlayer(name, user)
+    db.session.add(mp)
+  db.session.commit()
+    
+  return render_template('profile.html', editplayer=mp)
+
+@app.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
+  if not session.get('logged_in'):
+    #abort(401)
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+  
+  action = None
+  user = session['user']
+  name = None
+  mp = None
+  try:
+    action = request.form['action']
+    name = request.form['nname']  
+  except:
+    print 'cannot bind action'
+  print action
+  
+  if action == u"Update":
+    name = str(name)
+    mp_exists = MappedPlayer.query.filter(MappedPlayer.email==user)
+    if mp_exists.count() > 0:
+      mp = mp_exists.all()[0]
+      mp.Name = name
+    else:
+      mp = MappedPlayer(name, user)
+      db.session.add(mp)
+    db.session.commit()
+    flash('Updated profile')
+  else:
+    print 'cannot map action'
+    
+  return render_template('profile.html', editplayer=mp)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     flash('Please login again')
@@ -1775,6 +1836,7 @@ def login():
               if exists.count() == 0:
                 #add mapped player
                 mp = MappedPlayer(user.nickname(), user.email())
+                db.session.add(mp)
               else:
                 mp = exists.all()[0]
                 mp.Name = user.nickname()
