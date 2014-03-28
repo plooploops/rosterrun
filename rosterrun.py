@@ -2036,6 +2036,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   player_ids = [p for p in players]
   relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
   if relevant_runs_query.count() > 0:
+    print 'found relevant runs'
     relevant_runs = relevant_runs_query.all()
     
     run.points = []
@@ -2046,6 +2047,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
       mgp.amount = rc.factor * points_per_player
       run.points.append(mgp)
   else:
+    print 'adding points for a new run'
     #if this is a new run
     mapped_points = []
     for p in mps:
@@ -2056,6 +2058,8 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
       rc = RunCredit(1.0)
       run.credits.append(rc)
       p.Credits.append(rc)
+      db.session.add(mgp)
+      db.session.add(rc)
    
   db.session.commit()
   
