@@ -1839,7 +1839,7 @@ def login():
                 db.session.add(mp)
               else:
                 mp = exists.all()[0]
-                mp.Name = user.nickname()
+                #mp.Name = user.nickname()
               
               #link characters to player
               mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==mp.Name)
