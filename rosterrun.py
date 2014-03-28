@@ -1763,9 +1763,27 @@ def login():
               flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
               #print flow
               user = users.get_current_user()
-              print user.nickname
-	      print user.email
-              print user.user_id
+              
+              print user.nickname()
+	      print user.email()
+              print user.user_id()
+              
+              #add mapped players based on user information
+              exists = MappedPlayer.query.filter(MappedPlayer.Email==user.email())
+              mp = None
+              if exists.count() == 0:
+                #add mapped player
+                mp = MappedPlayer(user.nickname(), user.email())
+              else:
+                mp = exists.all()[0]
+                mp.Name = user.nickname()
+              
+              #link characters to player
+              mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==user.nickname())
+              if len(mc_exists.count()) > 0:
+                mp.Chars = mc_exists.all()
+              db.session.commit()
+              
   #            print user.user_id()
        #       memcache.set(user.user_id(), pickle.dumps(flow))
             
