@@ -1932,6 +1932,11 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   #distinct item drop rate
   drop_rate = list(set(drop_rate))
   
+  print market_results
+  
+  print drop_rate
+  
+  print cards_to_coins
   #find median prices for drops
   expected_values = [item_drop_rate * market_results[[(x,y) for x,y in market_results.keys() if x == item_id][0]] for item_id, item_drop_rate in drop_rate if item_id in [x for x,y in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
   #find coin price and use for cards
