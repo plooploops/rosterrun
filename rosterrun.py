@@ -1928,7 +1928,6 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   drop_items = [mob_item.item_id for mob_item in mob_items]
   
   drop_rate = [(mi.item_id, mi.item_drop_rate) for mi in mob_items]
-  drop_rate = [item for sublist in drop_rate for item in sublist]
   #distinct item drop rate
   drop_rate = list(set(drop_rate))
   
