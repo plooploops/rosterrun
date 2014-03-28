@@ -1763,15 +1763,16 @@ def login():
               flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
               #print flow
               user = users.get_current_user()
-              
-              print user.nickname()
+              nick = user.nickname().split('@')[0]	
+              print 'nickname %s' % user.nickname()
+              print nick
 	      print user.email()
               print user.user_id()
               
               #add mapped players based on user information
               exists = MappedPlayer.query.filter(MappedPlayer.Email==user.email())
               mp = None
-              if exists.count() == 0:
+              if len(exists.count()) == 0:
                 #add mapped player
                 mp = MappedPlayer(user.nickname(), user.email())
               else:
