@@ -1759,7 +1759,7 @@ def user_profile():
     print 'cannot bind action'
   print action
   
-  mp_exists = MappedPlayer.query.filter(MappedPlayer.email==user)
+  mp_exists = MappedPlayer.query.filter(MappedPlayer.Email==user)
   mp = None
   if mp_exists.count() > 0:
     mp = mp_exists.all()[0]
@@ -1790,7 +1790,7 @@ def update_profile():
   
   if action == u"Update":
     name = str(name)
-    mp_exists = MappedPlayer.query.filter(MappedPlayer.email==user)
+    mp_exists = MappedPlayer.query.filter(MappedPlayer.Email==user)
     if mp_exists.count() > 0:
       mp = mp_exists.all()[0]
       mp.Name = name
