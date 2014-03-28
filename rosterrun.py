@@ -1804,7 +1804,7 @@ def login():
 	      #http://example.com/auth_return/?error=access_denied
 	      #
       return render_template('login.html', error=error)
-    exceptException,e: 
+    except Exception,e: 
       print str(e)
       print 'error with login'
       return render_template('login.html', error='Please give permissions to log in')
