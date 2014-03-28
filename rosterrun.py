@@ -1936,13 +1936,15 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   print drop_rate
   
   print cards_to_coins
+  
+  print players
   #find median prices for drops
-  expected_values = [item_drop_rate * market_results[[(x,y) for x,y in market_results.keys() if x == item_id][0]] for item_id, item_drop_rate in drop_rate if item_id in [x for x,y in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
+  expected_values = [item_drop_rate * market_results[[x for x in market_results.keys() if x == item_id][0]] for item_id, item_drop_rate in drop_rate if item_id in [x for x in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
   #find coin price and use for cards
-  coin_price = float(market_results[[(x,y) for x,y in market_results.keys() if x == 8900][0]])
+  coin_price = float(market_results[[x for x in market_results.keys() if x == 8900][0]])
   expected_values += [item_drop_rate * coin_price * float(cards_to_coins[item_id]) for item_id, item_drop_rate in drop_rate if item_id in cards_to_coins.keys()]
   #if not on market treat as 0
-  expected_values += [0.0 for item_id, item_drop_rate in drop_rate if not item_id in [x for x,y in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
+  expected_values += [0.0 for item_id, item_drop_rate in drop_rate if not item_id in [x for x in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
   
   print 'expected_values is %s' % expected_values
   #points per player= sum expected values / median party size
