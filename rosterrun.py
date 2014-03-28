@@ -1842,7 +1842,7 @@ def login():
                 mp.Name = user.nickname()
               
               #link characters to player
-              mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==user.nickname())
+              mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==mp.Name)
               if mc_exists.count() > 0:
                 mp.Chars = mc_exists.all()
               db.session.commit()
