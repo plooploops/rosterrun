@@ -1772,7 +1772,7 @@ def login():
               #add mapped players based on user information
               exists = MappedPlayer.query.filter(MappedPlayer.Email==user.email())
               mp = None
-              if len(exists.count()) == 0:
+              if exists.count() == 0:
                 #add mapped player
                 mp = MappedPlayer(user.nickname(), user.email())
               else:
@@ -1781,7 +1781,7 @@ def login():
               
               #link characters to player
               mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==user.nickname())
-              if len(mc_exists.count()) > 0:
+              if mc_exists.count() > 0:
                 mp.Chars = mc_exists.all()
               db.session.commit()
               
