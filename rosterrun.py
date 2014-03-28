@@ -1763,6 +1763,9 @@ def login():
               flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPES, redirect_uri=REDIRECT_URI)
               #print flow
               user = users.get_current_user()
+              print user.nickname
+	      print user.email
+              print user.user_id
   #            print user.user_id()
        #       memcache.set(user.user_id(), pickle.dumps(flow))
             
@@ -1781,12 +1784,6 @@ def login():
 	      #
 	      #http://example.com/auth_return/?error=access_denied
 	      #
-
-      if user is not None:
-        print user.nickname
-        print user.email
-        print user.user_id
-
       return render_template('login.html', error=error)
     except:
       print 'error with login'
