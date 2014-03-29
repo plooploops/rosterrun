@@ -894,6 +894,20 @@ def modify_treasure():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
     
+    player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
+    if player_points.count() == 0:
+      print 'no points mapped to player'
+      flash('No points mapped to player.  Please add runs and calculate points first.)
+      return redirect(url_for('treasury'))
+    total_points = player_points.all()[0][2]
+    price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
+      
+    if total_points < price:
+      #not enough points
+      print 'not enough points'
+      flash('Not enough points to purchase item from treasury')
+      return redirect(url_for('treasury'))
+    
     BuyTreasure(gt, players_who_match.all()[0])
     #link to guild treasure / guild points
     #who is logged in and do they have enough points?
