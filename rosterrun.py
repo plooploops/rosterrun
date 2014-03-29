@@ -2095,8 +2095,11 @@ def AddMissingSearchItems(mob_items, drop_items):
          
   #add missing item ids to search list
   not_searched = list(set(drop_items) - set(mms_item_ids))
+  #get the missing item names from items db
+  item_id_name = marketscraper.get_item_name_scrape_results(not_searched)
+  print item_id_name
   for ns in not_searched:
-    db.session.add(MappedMarketSearch(True, ns, mob_items_dict[ns]))
+    db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
   db.session.commit()
   
   #update market results takes place by market scraper (scraperclock)
@@ -2104,6 +2107,9 @@ def AddMissingSearchItems(mob_items, drop_items):
   search_items_dict = { i.itemid: i.name for i in search_list }
   
   marketresults = marketscraper.get_scrape_results(search_items_dict)
+  if len(marketresults) == 0:
+    return
+    
   vals = marketresults.values()
   daterun = datetime.now()
   for k in marketresults.keys():

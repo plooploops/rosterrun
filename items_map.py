@@ -187,7 +187,13 @@ search_items = {
   1232 : "Assassin Dagger",
   1265 : "Bloody Roar",
   13002 : "Ginnungagap",
-  4359 : "Assassin Cross Card"  
+  4359 : "Assassin Cross Card",
+  5808 : "Dark Bashilrium [1]",
+  2374 : "Diablos Robe [1]",
+  2375 : "Diablos Armor [1]",
+  2433 : "Diablos Boots [1]",
+  7799 : "Crystal Of Darkness",
+  7798 : "Fragment Of Darkness"
 }
 
 test_file = "requests_results_sell.html"

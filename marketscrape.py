@@ -17,6 +17,13 @@ class MarketResult(object):
     self.date = date
 
 items_to_search = search_items
+sell_base_url = "https://panel.talonro.com/whosell,%s.html"
+sell_request_result = "requests_results_sell_%s.html"
+buy_base_url = "https://panel.talonro.com/whobuy,%s.html"
+buy_request_result = "requests_results_buy_%s.html"
+itemdb_base_url = "https://panel.talonro.com/itemdb,%s.html"
+itemdb_request_result = "requests_results_itemdb_%s.html"
+
 
 class MarketScraper: 
   #fields
@@ -38,19 +45,19 @@ class MarketScraper:
     print plain_login_r.cookies
     print self.cookies
 
-  def write_file_scrape(self, search_items = items_to_search):
+  def write_file_scrape(self, search_items = items_to_search, base_url = sell_base_url, request_result = sell_request_result):
     if self.cookies is None:
       print 'Need to login first'
       return
   
     for i in items_to_search.keys():
-      sell_url = "https://panel.talonro.com/whosell,%s.html" %  i
+      search_url = base_url %  i
       #run query
-      sell_r = requests.post(sell_url, cookies=self.cookies)
+      req_res = requests.post(search_url, cookies=self.cookies)
    
       #write to file system for testing
-      with open("requests_results_sell_%s.html" % items_to_search[i], "w") as f:
-        f.write(sell_r.content)
+      with open(request_result % items_to_search[i], "w") as f:
+        f.write(req_res.content)
 
   def get_scrape_results_file(self, search_items = items_to_search, file = ''):
     items_to_search = search_items
@@ -113,7 +120,7 @@ class MarketScraper:
    
     return items_results  
 
-  def get_scrape_results(self, search_items = items_to_search):
+  def get_scrape_results(self, search_items = items_to_search, base_url = itemdb_base_url):
     if self.cookies is None:
       print 'Need to login first'
       return
@@ -122,7 +129,7 @@ class MarketScraper:
     items_to_search = search_items
     items_results = { }
     for i in items_to_search.keys():
-      sell_url = "https://panel.talonro.com/whosell,%s.html" %  i
+      sell_url = base_url %  i
       #run query
       sell_r = requests.post(sell_url, cookies=self.cookies)
       #load results into tree
@@ -176,6 +183,53 @@ class MarketScraper:
       #map results back to item
       items_results[i] = results
    
+    return items_results
+  
+  def get_item_name_file(self, item_id, file = ''):
+    #this should read outputs from the write_file_scrape with itemdb to get an item name for a given item id
+    if len(file) == 0:
+      return
+    
+    if len(item_id) == 0:
+      print 'item id is empty'
+      return
+    
+    con = ''
+    with open(file, "r") as f:
+      con = f.read()
+    tree = html.fromstring(con)
+    #item result on the page
+    vals = tree.xpath("//table[@class='table_data table_narrow']/tbody/tr/td[@colspan='8']")
+    #reform result
+    val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
+    #item name - item id - (item name)
+    split_val = val_found.split('-')
+      
+    return split_val[0] 
+  
+  def get_item_name_scrape_results(self, search_items = [], base_url = sell_base_url):
+    if self.cookies is None:
+      print 'Need to login first'
+      return
+  
+    #items to scrape from market
+    items_to_search = search_items
+    items_results = { }
+    for i in items_to_search:
+      sell_url = base_url %  i
+      #run query
+      sell_r = requests.post(sell_url, cookies=self.cookies)
+      #load results into tree
+      tree = html.fromstring(sell_r.content)
+      #find search results
+      vals = tree.xpath("//table[@class='table_data table_narrow']/tbody/tr/td[@colspan='8']")
+      
+      val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
+      #item name - item id - (item name)
+      split_val = val_found.split('-')
+      #set key value pair for item to item name, not parsing anything else here
+      items_results[i] = split_val[0]
+        
     return items_results
       
   def map_prices_ignore_upgrades(self, mapped_values = {}):
