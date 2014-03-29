@@ -69,6 +69,7 @@
 	    <label for="nrunscreenshot">Screenshot</label>
 	    <input type="file" id="nrunscreenshot" name=nrunscreenshot placeholder="C:\screenshot\run.jpg" value="{{ editrun.evidence_file_path }}">
 	    <p class="help-block">Please submit a screenshot</p>
+	    <img src="{{ editrun.evidence_file_path|safe }}" class="img-responsive" alt="Run screenshot">
       </div>
       <h3>Characters in Party</h3>
 	  <div class="table-responsive">
