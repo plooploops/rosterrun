@@ -135,17 +135,16 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   drop_items = [mob_item.item_id for mob_item in mob_items]
   
   drop_rate = [(mi.item_id, mi.item_drop_rate) for mi in mob_items]
-  drop_rate = [item for sublist in drop_rate for item in sublist]
   #distinct item drop rate
   drop_rate = list(set(drop_rate))
   
   #find median prices for drops
-  expected_values = [item_drop_rate * market_results[[(x,y) for x,y in market_results.keys() if x == item_id][0]] for item_id, item_drop_rate in drop_rate if item_id in [x for x,y in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
+  expected_values = [item_drop_rate * market_results[[x for x in market_results.keys() if x == item_id][0]] for item_id, item_drop_rate in drop_rate if item_id in [x for x in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
   #find coin price and use for cards
-  coin_price = float(market_results[[(x,y) for x,y in market_results.keys() if x == 8900][0]])
+  coin_price = float(market_results[[x for x in market_results.keys() if x == 8900][0]])
   expected_values += [item_drop_rate * coin_price * float(cards_to_coins[item_id]) for item_id, item_drop_rate in drop_rate if item_id in cards_to_coins.keys()]
   #if not on market treat as 0
-  expected_values += [0.0 for item_id, item_drop_rate in drop_rate if not item_id in [x for x,y in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
+  expected_values += [0.0 for item_id, item_drop_rate in drop_rate if not item_id in [x for x in market_results.keys() if x == item_id] and not item_id in cards_to_coins.keys()]
   
   print 'expected_values is %s' % expected_values
   #points per player= sum expected values / median party size
@@ -155,9 +154,11 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   #assign points
   
   #if this is reassignment
-  player_ids = [p.id for p in players]
+  mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
+  player_ids = [p for p in players]
   relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
   if relevant_runs_query.count() > 0:
+    print 'found relevant runs'
     relevant_runs = relevant_runs_query.all()
     
     run.points = []
@@ -168,9 +169,10 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
       mgp.amount = rc.factor * points_per_player
       run.points.append(mgp)
   else:
+    print 'adding points for a new run'
     #if this is a new run
     mapped_points = []
-    for p in players:
+    for p in mps:
       mgp = MappedGuildPoint(points_per_player)
       mapped_points.append(mgp)
       p.Points.append(mgp)
@@ -178,6 +180,8 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
       rc = RunCredit(1.0)
       run.credits.append(rc)
       p.Credits.append(rc)
+      db.session.add(mgp)
+      db.session.add(rc)
    
   db.session.commit()
   
@@ -239,6 +243,9 @@ def RefreshMarketWithMobDrops():
          
     db.session.commit()
   
+  #include talon coin
+  drop_items.append(8900)
+  
   return drop_items
 
 def RecalculatePoints():
@@ -273,6 +280,20 @@ def RecalculatePoints():
   market_results = min_values(market_results_d)
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
+  rcs = [rrq.chars for rrq in relevant_runs_query]
+  rcs = [item for sublist in rcs for item in sublist]
+  players_not_mapped_characters = [pc for pc in rcs if pc.mappedplayer_id is None] 
+  player_names = [pc.PlayerName for pc in players_not_mapped_characters]
+  player_names = list(set(player_names))
+  for pn in player_names:
+    #players who have points and unclaimed emails will have their points calculated but they won't be able to use them.  
+    #players will need to register.  Perhaps this players can get an invite?
+    mp = MappedPlayer(pn, 'NEED_EMAIL')
+    db.session.add(mp)
+    chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
+    mp.Chars = chars_to_map
+    db.session.commit()
+  
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))

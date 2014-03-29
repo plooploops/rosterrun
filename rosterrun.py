@@ -144,7 +144,6 @@ class MappedInstance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     quests = relationship("MappedQuest", backref="instance")
-    mapped_run_id = db.Column(db.Integer, ForeignKey('run.id'))
     mobs = relationship("MappedMob", backref="instance")
     median_players = db.Column(db.Integer)
     #placeholder for now.  will update.
@@ -175,6 +174,16 @@ class MappedQuest(db.Model):
     def __repr__(self):
         return '<MappedQuest %r>' % self.name
 
+run_to_mobs = db.Table('run_to_mobs', db.metadata,
+    db.Column('run_id', db.Integer, ForeignKey('run.id')),
+    db.Column('mob_id', db.Integer, ForeignKey('mob.id'))
+)
+
+run_to_instance = db.Table('run_to_mobs', db.metadata,
+    db.Column('run_id', db.Integer, ForeignKey('run.id')),
+    db.Column('instance_id', db.Integer, ForeignKey('instance.id'))
+)
+
 class MappedRun(db.Model):
     __tablename__ = 'run'
     id = db.Column(db.Integer, primary_key=True)
@@ -183,12 +192,12 @@ class MappedRun(db.Model):
     name = db.Column(db.String(400))
     date = db.Column(db.DateTime)
     chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
-    instance = relationship("MappedInstance", backref="instance", uselist=False)
+    instance = relationship("MappedInstance", secondary=run_to_instance, backref="instance", uselist=False)
     success = db.Column(db.Boolean)
     notes = db.Column(db.String(400))
     points = relationship("MappedGuildPoint", backref="run")
     credits = relationship("RunCredit", backref="run")
-    mobs_killed = relationship("MappedMob", backref="run")
+    mobs_killed = relationship("MappedMob", secondary=run_to_mobs, backref="run")
     
     def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, success, notes):
         self.evidence_url = evidence_url
@@ -210,7 +219,6 @@ class MappedMob(db.Model):
     mob_id = db.Column(db.Integer)
     mob_name = db.Column(db.String(80))
     items = relationship("MappedMobItem", backref="mob")
-    mapped_run_id = db.Column(db.Integer, ForeignKey('run.id'))
     mapped_instance_id = db.Column(db.Integer, ForeignKey('instance.id'))
     
     def __init__(self, mob_id):
