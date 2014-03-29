@@ -179,7 +179,7 @@ run_to_mobs = db.Table('run_to_mobs', db.metadata,
     db.Column('mob_id', db.Integer, ForeignKey('mob.id'))
 )
 
-run_to_instance = db.Table('run_to_mobs', db.metadata,
+run_to_instance = db.Table('run_to_instance', db.metadata,
     db.Column('run_id', db.Integer, ForeignKey('run.id')),
     db.Column('instance_id', db.Integer, ForeignKey('instance.id'))
 )
