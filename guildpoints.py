@@ -300,7 +300,7 @@ def RecalculatePoints():
     CalculatePoints(run, run.mobs_killed, players, market_results) 
 
 def BuyTreasure(mappedGuildTreasure, mappedPlayer):
-  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).all()[0]
+  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
   total_points = player_points[2]
   price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
   
