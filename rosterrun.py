@@ -897,7 +897,7 @@ def modify_treasure():
     player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
     if player_points.count() == 0:
       print 'no points mapped to player'
-      flash('No points mapped to player.  Please add runs and calculate points first.)
+      flash('No points mapped to player.  Please add runs and calculate points first.')
       return redirect(url_for('treasury'))
     total_points = player_points.all()[0][2]
     price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
