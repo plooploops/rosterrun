@@ -886,7 +886,7 @@ def modify_treasure():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
     
-    guild.BuyTreasure(gt, players_who_match.all()[0])
+    BuyTreasure(gt, players_who_match.all()[0])
     #link to guild treasure / guild points
     #who is logged in and do they have enough points?
   #  session['user']
@@ -2158,6 +2158,20 @@ def RecalculatePoints():
   market_results = min_values(market_results_d)
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
+  rcs = [rrq.chars for rrq in relevant_runs_query]
+  rcs = [item for sublist in rcs for item in sublist]
+  players_not_mapped_characters = [pc for pc in rcs if pc.mappedplayer_id is None] 
+  player_names = [pc.PlayerName for pc in players_not_mapped_characters]
+  player_names = list(set(player_names))
+  for pn in player_names:
+    #players who have points and unclaimed emails will have their points calculated but they won't be able to use them.  
+    #players will need to register.  Perhaps this players can get an invite?
+    mp = MappedPlayer(pn, 'NEED_EMAIL')
+    db.session.add(mp)
+    chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
+    mp.Chars = chars_to_map
+    db.session.commit()
+  
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
