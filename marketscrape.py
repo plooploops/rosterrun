@@ -200,6 +200,8 @@ class MarketScraper:
     tree = html.fromstring(con)
     #item result on the page
     vals = tree.xpath("//table[@class='table_data table_narrow']/tbody/tr/td[@colspan='8']")
+    if len(vals) == 0:
+      vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@colspan='8']")
     #reform result
     val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
     #item name - item id - (item name)
@@ -217,15 +219,14 @@ class MarketScraper:
     items_results = { }
     for i in items_to_search:
       sell_url = base_url %  i
-      print sell_url
       #run query
       sell_r = requests.post(sell_url, cookies=self.cookies)
       #load results into tree
       tree = html.fromstring(sell_r.content)
       #find search results
-      print 'searching for itemid %s' % i
       vals = tree.xpath("//table[@class='table_data table_narrow']/tbody/tr/td[@colspan='8']")
-      print vals
+      if len(vals) == 0:
+        vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@colspan='8']")
       val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
       #item name - item id - (item name)
       split_val = val_found.split('-')
