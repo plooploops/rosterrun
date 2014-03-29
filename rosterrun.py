@@ -1276,6 +1276,16 @@ def update_search_list():
     print 'cannot bind action'
   print action
   
+  not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
+  not_named_item_ids = [nn[0] for nn in not_named]
+  not_named_item_ids = list(set(not_named_item_ids))
+  item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
+  print item_id_name
+  #save names for the ones with incorrect name
+  for ns in not_named:
+    ns[1].name = item_id_name[ns[0]]
+  db.session.commit()
+  
   if action == u"Use Default":
     use_default_search_list()
     print 'used default search list'
