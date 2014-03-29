@@ -120,7 +120,7 @@ class MarketScraper:
    
     return items_results  
 
-  def get_scrape_results(self, search_items = items_to_search, base_url = itemdb_base_url):
+  def get_scrape_results(self, search_items = items_to_search, base_url = sell_base_url):
     if self.cookies is None:
       print 'Need to login first'
       return
@@ -207,7 +207,7 @@ class MarketScraper:
       
     return split_val[0] 
   
-  def get_item_name_scrape_results(self, search_items = [], base_url = sell_base_url):
+  def get_item_name_scrape_results(self, search_items = [], base_url = itemdb_base_url):
     if self.cookies is None:
       print 'Need to login first'
       return
