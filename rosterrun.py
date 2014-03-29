@@ -900,7 +900,7 @@ def modify_treasure():
       flash('No points mapped to player.  Please add runs and calculate points first.')
       return redirect(url_for('treasury'))
     total_points = player_points.all()[0][2]
-    price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
+    price = gt.minMarketPrice * gt.amount
       
     if total_points < price:
       #not enough points
