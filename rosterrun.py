@@ -894,7 +894,7 @@ def modify_treasure():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
     
-    player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
+    player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == players_who_match.all()[0].id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
     if player_points.count() == 0:
       print 'no points mapped to player'
       flash('No points mapped to player.  Please add runs and calculate points first.')
