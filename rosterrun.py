@@ -836,14 +836,15 @@ def market_search_list():
   
   not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
   not_named_item_ids = [nn[0] for nn in not_named]
-  not_named_item_ids = list(set(not_named_item_ids))
-  loginScraper(m_user, m_password)
-  item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
-  print item_id_name
-  #save names for the ones with incorrect name
-  for ns in not_named:
-    ns[1].name = item_id_name[ns[0]]
-  db.session.commit()
+  if len(not_named_item_ids) > 0:
+    not_named_item_ids = list(set(not_named_item_ids))
+    loginScraper(m_user, m_password)
+    item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
+    print item_id_name
+    #save names for the ones with incorrect name
+    for ns in not_named:
+      ns[1].name = item_id_name[ns[0]]
+    db.session.commit()
   
   #way to manage item search list  
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
@@ -1289,14 +1290,15 @@ def update_search_list():
   
   not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
   not_named_item_ids = [nn[0] for nn in not_named]
-  not_named_item_ids = list(set(not_named_item_ids))
-  loginScraper(m_user, m_password)
-  item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
-  print item_id_name
-  #save names for the ones with incorrect name
-  for ns in not_named:
-    ns[1].name = item_id_name[ns[0]]
-  db.session.commit()
+  if len(not_named_item_ids) > 0:
+    not_named_item_ids = list(set(not_named_item_ids))
+    loginScraper(m_user, m_password)
+    item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
+    print item_id_name
+    #save names for the ones with incorrect name
+    for ns in not_named:
+      ns[1].name = item_id_name[ns[0]]
+    db.session.commit()
   
   if action == u"Use Default":
     use_default_search_list()
@@ -1330,11 +1332,8 @@ def add_to_search_list():
   
   itemid = str(request.form['nitemid'].strip())
   
-  not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
-  not_named_item_ids = [nn[0] for nn in not_named]
-  not_named_item_ids = list(set(not_named_item_ids))
   loginScraper(m_user, m_password)
-  item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
+  item_id_name = marketscraper.get_item_name_scrape_results([itemid])
   print item_id_name
   
   exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==itemid).all()
