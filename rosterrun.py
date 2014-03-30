@@ -887,10 +887,13 @@ def modify_treasure():
       print a
   except:
     print 'could not map action for modifying treasury'
-  
+  mg = MappedGuild.query.one()
   if len(delete_treasures) > 0:
     dt_ids = [int(str(dt)) for dt in delete_treasures]
     #check if the mapped guild treasure is in list
+    mgt_del = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).all()
+    for mgt_d in mgt_del:
+      mg.remove(mgt_d)  
     del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).delete()
     print 'deleted %s items' % del_count
   if len(edit_treasures) > 0:
@@ -1005,6 +1008,8 @@ def add_treasure():
   et_ids = []
   if len(edit_ids) > 0:
     et_ids = [int(str(dt)) for dt in edit_ids]
+    
+  mg = MappedGuild.query.one()
   if len(et_ids) > 0:
     print 'trying to edit guild treasure'
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
@@ -1015,6 +1020,7 @@ def add_treasure():
   else:
     print 'trying to add guild treasure'
     gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
+    mg.guildTreasures.append(gt)
     db.session.add(gt)
     
   db.session.commit()
@@ -2146,6 +2152,9 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
   player_ids = [p for p in players]
   relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
+  
+  mg = MappedGuild.query.one()
+  mapped_points = []
   if relevant_runs_query.count() > 0:
     print 'found relevant runs'
     relevant_runs = relevant_runs_query.all()
@@ -2298,6 +2307,20 @@ def RecalculatePoints():
     mp.Chars = chars_to_map
     db.session.commit()
   
+  #zero out current points
+  mg = MappedGuild.query.one()
+  zero_out_points = db.session.query(MappedPlayer, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer).all()
+  for zop in zero_out_points:
+    mgp = MappedGuildPoint(-1 * zop[1])
+    zop[0].Points.append(mgp)
+    mgt = MappedGuildTransaction('Recalculate Points', datetime.now())
+    mgt.player_id = zop[0].id
+    zop[0].Transactions.append(mgt)
+    mg.guildTransactions.append(mgt)
+  db.session.commit()
+  
+  print 'zeroed out current points'
+  
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
@@ -2329,6 +2352,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       if float(rcp[0].factor) == 0:
         print 'current factor is 0'
         continue
+      print 'updating remaining factor'
       remaining_amount = float(total_points) - float(rcp[1].amount)
       remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
       rcp[0].factor = remaining_factor
