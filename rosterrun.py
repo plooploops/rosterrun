@@ -1789,14 +1789,14 @@ def run_points_calculation():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
 
-    mgps = MappedGuildPoint.query.all()
-    mg = MappedGuild.query.one()
-    for mgp in mgps:
-      mg.guildPoints.remove(mgp)
-    db.session.commit()
+    #mgps = MappedGuildPoint.query.all()
+    #mg = MappedGuild.query.one()
+    #mg.guildTransactions.delete()
+    #mg.guildPoints.delete()
+    #db.session.commit()
     
-    MappedGuildPoint.query.delete()
-    db.session.commit()
+    #MappedGuildPoint.query.delete()
+    #db.session.commit()
     
     loginConfiguration(session['user'])
     user = users.get_current_user()
