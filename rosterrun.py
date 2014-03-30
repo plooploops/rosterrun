@@ -952,14 +952,19 @@ def add_treasure():
   except:
     print 'could not map action for modifying treasury'
   
-  minMarketPrice = None
-  maxMarketPrice = None
-  medianMarketPrice = None
-  suggestedMinMarketPrice = request.form['nitemminprice']
-  suggestedMaxMarketPrice = request.form['nitemmaxprice']
-  suggestedMedianMarketPrice = request.form['nitemmedianprice']
+  minMarketPrice = 0
+  maxMarketPrice = 0
+  medianMarketPrice = 0
+  
+  suggestedMinMarketPrice = 0
+  suggestedMaxMarketPrice = 0
+  suggestedMedianMarketPrice = 0
   
   try:
+    suggestedMinMarketPrice = request.form['nitemminprice']
+    suggestedMaxMarketPrice = request.form['nitemmaxprice']
+    suggestedMedianMarketPrice = request.form['nitemmedianprice']
+  
     suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
     suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
     suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
