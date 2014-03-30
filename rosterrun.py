@@ -1014,7 +1014,11 @@ def transaction():
       #abort(401)
       session.pop('logged_in', None)
       return redirect(url_for('login'))
+ 
+  return render_template('transaction.html', transction=mgt)
 
+        
+'''
   transaction_statement = []
   try:
       transaction_statement = request.form.getlist("statement")
@@ -1023,7 +1027,7 @@ def transaction():
           print s
   except:
         print 'no file on transaction statement'
-
+'''
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
