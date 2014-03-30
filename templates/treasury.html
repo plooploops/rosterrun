@@ -57,15 +57,15 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemminprice">Suggested Min Price</label>
-	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.minMarketPrice)|safe }}"></input>
+	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{% if edittreasure.minMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.minMarketPrice)|safe }} {% else %} {{ edittreasure.minMarketPrice|safe }} {% endif %}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmaxprice">Suggested Max Price</label>
-	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.maxMarketPrice)|safe }}"></input>
+	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{% if edittreasure.maxMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.maxMarketPrice)|safe }} {% else %} {{ edittreasure.maxMarketPrice|safe }} {% endif %}"></input>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmedianprice">Suggested Median Price</label>
-	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.medianMarketPrice)|safe }}"></input>
+	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{% if edittreasure.medianMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.medianMarketPrice)|safe }} {% else %} {{ edittreasure.medianMarketPrice|safe }} {% endif %}"></input>
 	  </div>
 	  <button type=submit class="btn btn-primary" name=add value="{{ edittreasure.id }}">Submit</button>
     </form>
