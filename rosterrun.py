@@ -1355,6 +1355,7 @@ def add_to_search_list():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
+  itemid = ''
   try:
     itemid = str(request.form['nitemid'].strip())
     
@@ -1372,7 +1373,7 @@ def add_to_search_list():
         se.search = True
         se.name = str(itemname)
   except Exception,e: 
-    flash('Unable to add item to search list')
+    flash('Unable to add item %s to search list' % itemid)
     print str(e)
     print 'error adding item to search list'
       
