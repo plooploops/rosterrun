@@ -989,15 +989,15 @@ def add_treasure():
   #if the user makes a suggested market price then run with it
   if suggestedMinMarketPrice > 0:
     minMarketPrice = suggestedMinMarketPrice
-  if minMarketPrice is None:
+  if len(minMarketPrice) == 0:
     minMarketPrice = 0
   if suggestedMaxMarketPrice > 0:
     maxMarketPrice = suggestedMaxMarketPrice
-  if maxMarketPrice is None:
+  if len(maxMarketPrice) == 0:
     maxMarketPrice = 0
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
-  if medianMarketPrice is None:
+  if len(medianMarketPrice) == 0:
     medianMarketPrice = 0
   
   edit_ids = [dt for dt in add_treasures if dt != u'None']
