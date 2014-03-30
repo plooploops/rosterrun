@@ -1872,15 +1872,19 @@ def update_profile():
   
   if action == u"Update":
     name = str(name)
+    name_taken = MappedPlayer.query.filter(MappedPlayer.Name==name)
     mp_exists = MappedPlayer.query.filter(MappedPlayer.Email==user)
     if mp_exists.count() > 0:
       mp = mp_exists.all()[0]
       mp.Name = name
+      flash('Updated profile')
+    elif name_taken.count() > 0:
+      flash('Name already claimed.  Please choose a different name')
     else:
       mp = MappedPlayer(name, user)
       db.session.add(mp)
+      flash('Updated profile')
     db.session.commit()
-    flash('Updated profile')
   else:
     print 'cannot map action'
     
