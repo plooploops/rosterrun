@@ -1789,6 +1789,12 @@ def run_points_calculation():
       session.pop('logged_in', None)
       return redirect(url_for('login'))
 
+    mgps = MappedGuildPoint.query.all()
+    mg = MappedGuild.query.one()
+    for mgp in mgps:
+      mg.guildPoints.remove(mgp)
+    db.session.commit()
+    
     MappedGuildPoint.query.delete()
     db.session.commit()
     
@@ -2317,6 +2323,7 @@ def RecalculatePoints():
     mgt.player_id = zop[0].id
     zop[0].Transactions.append(mgt)
     mg.guildTransactions.append(mgt)
+    mg.guildPoints.append(mgp)
   db.session.commit()
   
   print 'zeroed out current points'
