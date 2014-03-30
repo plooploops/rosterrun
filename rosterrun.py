@@ -896,6 +896,12 @@ def modify_treasure():
   if len(edit_treasures) > 0:
     et_ids = [int(str(dt)) for dt in edit_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
+    if gt.minMarketPrice is None:
+      gt.minMarketPrice = 0
+    if gt.maxMarketPrice is None:
+      gt.maxMarketPrice = 0
+    if gt.medianMarketPrice is None:
+      gt.medianMarketPrice = 0
     print 'edit'
   if len(buy_treasures) > 0: 
     bt_ids = [int(str(dt)) for dt in buy_treasures]
