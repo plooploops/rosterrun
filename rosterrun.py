@@ -838,7 +838,8 @@ def market_search_list():
   not_named_item_ids = [nn[0] for nn in not_named]
   if len(not_named_item_ids) > 0:
     not_named_item_ids = list(set(not_named_item_ids))
-    loginScraper(m_user, m_password)
+    if marketscraper.cookies is None:
+      loginScraper(m_user, m_password)
     item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
     print item_id_name
     #save names for the ones with incorrect name
@@ -1292,7 +1293,8 @@ def update_search_list():
   not_named_item_ids = [nn[0] for nn in not_named]
   if len(not_named_item_ids) > 0:
     not_named_item_ids = list(set(not_named_item_ids))
-    loginScraper(m_user, m_password)
+    if marketscraper.cookies is None:
+      loginScraper(m_user, m_password)
     item_id_name = marketscraper.get_item_name_scrape_results(not_named_item_ids)
     print item_id_name
     #save names for the ones with incorrect name
@@ -1332,8 +1334,9 @@ def add_to_search_list():
   
   try:
     itemid = str(request.form['nitemid'].strip())
-  
-    loginScraper(m_user, m_password)
+    
+    if marketscraper.cookies is None:
+      loginScraper(m_user, m_password)
     item_id_name = marketscraper.get_item_name_scrape_results([itemid])
     print item_id_name
     itemname = item_id_name[itemid]
@@ -2187,7 +2190,8 @@ def RefreshMarketWithMobDrops():
   return drop_items
 
 def RecalculatePoints():
-  loginScraper(m_user, m_password)
+  if marketscraper.cookies is None:
+    loginScraper(m_user, m_password)
   #aggregate item drop rates with market 
   drop_items = RefreshMarketWithMobDrops()
   
