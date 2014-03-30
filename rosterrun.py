@@ -2319,7 +2319,7 @@ def RecalculatePoints():
   for zop in zero_out_points:
     mgp = MappedGuildPoint(-1 * zop[1])
     zop[0].Points.append(mgp)
-    mgt = MappedGuildTransaction('Recalculate Points', datetime.now())
+    mgt = MappedGuildTransaction('Recalc', datetime.now())
     mgt.player_id = zop[0].id
     zop[0].Transactions.append(mgt)
     mg.guildTransactions.append(mgt)
