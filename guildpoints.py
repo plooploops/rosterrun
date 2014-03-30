@@ -352,7 +352,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       
   db.session.commit()
   
-  print db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(RunCredit.id, RunCredit.run_id, MappedRun.instance, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email).all()
-  
+  print db.session.query(func.sum(RunCredit.factor), MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
+    
   #get the player to points total
-  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name, MappedPlayer.Email).all()    
+  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
