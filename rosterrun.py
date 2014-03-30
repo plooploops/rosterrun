@@ -1349,6 +1349,7 @@ def add_to_search_list():
         se.search = True
         se.name = str(itemname)
   except Exception,e: 
+    flash('Unable to add item to search list')
     print str(e)
     print 'error adding item to search list'
       
