@@ -959,9 +959,12 @@ def add_treasure():
   suggestedMaxMarketPrice = request.form['nitemmaxprice']
   suggestedMedianMarketPrice = request.form['nitemmedianprice']
   
-  suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
-  suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
-  suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
+  try:
+    suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
+    suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
+    suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
+  except Exception,e: 
+    print str(e)
 
   #check db or scrape again?
   latest_res = MappedMarketResult.query.filter(MappedMarketResult.itemid == item_id).order_by(MappedMarketResult.date.desc())
@@ -1038,7 +1041,16 @@ def runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  mi = MappedInstance.query.all()[0]
+  val = None
+  s_run = None
+  mi = None
+  try: 
+    val = request.form['instancelist']
+    print val
+    s_run = int(str(val))
+  except:
+    print 'value not found'
+  mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
   er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
@@ -1198,6 +1210,17 @@ def modify_runs():
   edit_id = None
   mi = MappedInstance.query.all()[0]
   mm = mi.mobs
+  
+  val = None
+  s_run = None
+  
+  try:
+    val = request.form['instancelist']
+    print val
+    s_run = int(str(val))
+    mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
+  except:
+    print 'value not found'
   
   try:
     delete_id = request.form.getlist("delete")
@@ -2249,8 +2272,6 @@ def RecalculatePoints():
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
   
-  '''
-  #removing placeholder characters for now.
   rcs = [rrq.chars for rrq in relevant_runs_query]
   rcs = [item for sublist in rcs for item in sublist]
   players_not_mapped_characters = [pc for pc in rcs if pc.mappedplayer_id is None] 
@@ -2259,12 +2280,19 @@ def RecalculatePoints():
   for pn in player_names:
     #players who have points and unclaimed emails will have their points calculated but they won't be able to use them.  
     #players will need to register.  Perhaps this players can get an invite?
-    mp = MappedPlayer(pn, 'NEED_EMAIL')
+    mp_exists = MappedPlayer.query.filter(MappedPlayer.Name==pn)
+    mp = None
+    if mp_exists.count() == 0:
+      continue
+      #removing placeholder characters for now.
+      #mp = MappedPlayer(pn, 'NEED_EMAIL')
+    else:
+      mp = mp_exists.all()[0]
     db.session.add(mp)
     chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
     mp.Chars = chars_to_map
     db.session.commit()
-  '''
+  
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
