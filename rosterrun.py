@@ -1814,8 +1814,8 @@ def run_points_calculation():
   except Exception,e: 
     print str(e)
     print 'error running points calculation'
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
+    #session.pop('logged_in', None)
+    #return redirect(url_for('login'))
   return redirect(url_for('points'))
 
 @app.route('/checkpointscalc', methods=['POST'])
