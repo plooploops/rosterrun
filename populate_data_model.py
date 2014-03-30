@@ -35,4 +35,11 @@ def populate_data_model():
   for imi in instance_mob_item_mapping:
     populate_instances(imi[0], imi[1], imi[2], imi[3], imi[4], imi[5])
   
+  MappedGuild.query.delete()
+  db.session.commit()
+ 
+  #add placeholder guild
+  mg = MappedGuild('Knights of Hyrule', [], [], [], [])
+  db.session.add(mg)
+  
   db.session.commit()
