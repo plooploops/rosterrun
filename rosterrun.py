@@ -1041,16 +1041,8 @@ def runs():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  val = None
-  s_run = None
   mi = None
-  try: 
-    val = request.form['instancelist']
-    print val
-    s_run = int(str(val))
-  except:
-    print 'value not found'
-  mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
+  mi = MappedInstance.query.all()[0]
   er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
