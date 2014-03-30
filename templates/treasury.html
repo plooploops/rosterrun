@@ -28,9 +28,9 @@
       {% endfor %}
       </td>
       <td>{{ "{:,.0f}".format(t.amount)|safe }}</td>
-      <td>{% if t.minMarketPrice is defined %} {{ "{:,.0f}".format(t.minMarketPrice)|safe }} {% else %} {{ t.minMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t.maxMarketPrice is defined %} {{ "{:,.0f}".format(t.maxMarketPrice)|safe }} {% else %} {{ t.maxMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t.medianMarketPrice is defined %} {{ "{:,.0f}".format(t.medianMarketPrice)|safe }} {% else %} {{ t.medianMarketPrice|safe }} {% endif %}</td>
+      <td>{% if len(t.minMarketPrice) > 0 %} {{ "{:,.0f}".format(t.minMarketPrice)|safe }} {% else %} {{ t.minMarketPrice|safe }} {% endif %}</td>
+      <td>{% if len(t.maxMarketPrice) > 0 %} {{ "{:,.0f}".format(t.maxMarketPrice)|safe }} {% else %} {{ t.maxMarketPrice|safe }} {% endif %}</td>
+      <td>{% if len(t.medianMarketPrice) > 0 %} {{ "{:,.0f}".format(t.medianMarketPrice)|safe }} {% else %} {{ t.medianMarketPrice|safe }} {% endif %}</td>
       <td>{{ t.refreshDate|safe }}</td>
       <td>{% if t.guildtransaction_id is defined %} <dd> transaction: {{ t.guildtransaction_id|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
     {% endfor %}
