@@ -1330,20 +1330,24 @@ def add_to_search_list():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
   
-  itemid = str(request.form['nitemid'].strip())
+  try:
+    itemid = str(request.form['nitemid'].strip())
   
-  loginScraper(m_user, m_password)
-  item_id_name = marketscraper.get_item_name_scrape_results([itemid])
-  print item_id_name
-  
-  exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==itemid).all()
-  if len(exists) == 0:
-    #can add item to search list
-    db.session.add(MappedMarketSearch(True, str(itemid), str(itemname)))
-  else:
-    for se in exists:
-      se.search = True
-      se.name = str(item_id_name[itemid])
+    loginScraper(m_user, m_password)
+    item_id_name = marketscraper.get_item_name_scrape_results([itemid])
+    print item_id_name
+    itemname = item_id_name[itemid]
+    exists = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==itemid).all()
+    if len(exists) == 0:
+      #can add item to search list
+      db.session.add(MappedMarketSearch(True, str(itemid), str(itemname)))
+    else:
+      for se in exists:
+        se.search = True
+        se.name = str(itemname)
+  except Exception,e: 
+    print str(e)
+    print 'error adding item to search list'
       
   db.session.commit()
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.itemid.asc()).all()
