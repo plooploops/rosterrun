@@ -2248,6 +2248,9 @@ def RecalculatePoints():
   market_results = min_values(market_results_d)
   
   relevant_runs_query = MappedRun.query.filter(MappedRun.success == True).all()
+  
+  '''
+  #removing placeholder characters for now.
   rcs = [rrq.chars for rrq in relevant_runs_query]
   rcs = [item for sublist in rcs for item in sublist]
   players_not_mapped_characters = [pc for pc in rcs if pc.mappedplayer_id is None] 
@@ -2261,7 +2264,7 @@ def RecalculatePoints():
     chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
     mp.Chars = chars_to_map
     db.session.commit()
-  
+  '''
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
