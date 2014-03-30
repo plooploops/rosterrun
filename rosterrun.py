@@ -989,15 +989,15 @@ def add_treasure():
   #if the user makes a suggested market price then run with it
   if suggestedMinMarketPrice > 0:
     minMarketPrice = suggestedMinMarketPrice
-  if len(minMarketPrice) == 0:
+  if len(str(minMarketPrice)) == 0:
     minMarketPrice = 0
   if suggestedMaxMarketPrice > 0:
     maxMarketPrice = suggestedMaxMarketPrice
-  if len(maxMarketPrice) == 0:
+  if len(str(maxMarketPrice)) == 0:
     maxMarketPrice = 0
   if suggestedMedianMarketPrice > 0:
     medianMarketPrice = suggestedMedianMarketPrice
-  if len(medianMarketPrice) == 0:
+  if len(str(medianMarketPrice)) == 0:
     medianMarketPrice = 0
   
   edit_ids = [dt for dt in add_treasures if dt != u'None']
@@ -2359,7 +2359,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   print db.session.query(func.sum(RunCredit.factor), MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
   #get the player to points total
-  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()    
+  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
 
 
 if __name__ == "__main__":
