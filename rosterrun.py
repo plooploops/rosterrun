@@ -1007,9 +1007,9 @@ def add_treasure():
     et_ids = [int(str(dt)) for dt in edit_ids]
   if len(et_ids) > 0:
     print 'trying to edit guild treasure'
-    print 'minMarketPrice %s' minMarketPrice
-    print 'maxMarketPrice %s' maxMarketPrice
-    print 'medianMarketPrice %s' medianMarketPrice
+    print minMarketPrice
+    print maxMarketPrice
+    print medianMarketPrice
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     gt.minMarketPrice = minMarketPrice
     gt.maxMarketPrice = maxMarketPrice
@@ -1017,9 +1017,9 @@ def add_treasure():
     gt.cards = item_cards.replace(',', '|')
   else:
     print 'trying to add guild treasure'
-    print 'minMarketPrice %s' minMarketPrice
-    print 'maxMarketPrice %s' maxMarketPrice
-    print 'medianMarketPrice %s' medianMarketPrice
+    print minMarketPrice
+    print maxMarketPrice
+    print medianMarketPrice
     gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     db.session.add(gt)
     
