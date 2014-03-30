@@ -1016,13 +1016,11 @@ def transaction():
       return redirect(url_for('login'))
 
   transaction_statement = []
-
   try:
       transaction_statement = request.form.getlist("statement")
 
       for s in transaction_statement:
           print s
-
   except:
         print 'no file on transaction statement'
 
