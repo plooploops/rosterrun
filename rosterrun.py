@@ -1007,6 +1007,25 @@ def add_treasure():
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     
   return render_template('treasury.html', treasures=t, edittreasure=gt)
+  
+@app.route ('/transaction', methods=['GET', 'POST'])
+def transaction():
+  if not session.get('logged_in'):
+      #abort(401)
+      session.pop('logged_in', None)
+      return redirect(url_for('login'))
+
+  transaction_statement = []
+
+  try:
+      transaction_statement = request.form.getlist("statement")
+
+      for s in transaction_statement:
+          print s
+
+  except:
+        print 'no file on transaction statement'
+
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
