@@ -322,7 +322,10 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       total_points -= rcp[1].amount
       #rcp[1].amount = 0.0
     elif total_points > 0:
-      remaining_amount = float(rcp[1].amount) - float(total_points)
+      if float(rcp[0].factor) == 0:
+        print 'current factor is 0'
+        continue
+      remaining_amount = float(total_points) - float(rcp[1].amount)
       remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
       rcp[0].factor = remaining_factor
       #rcp[1].amount = remaining_amount
