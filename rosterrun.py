@@ -1014,8 +1014,10 @@ def transaction():
       #abort(401)
       session.pop('logged_in', None)
       return redirect(url_for('login'))
+      
+  ps = gt
  
-  return render_template('transaction.html', transction=mgt)
+  return render_template('transaction.html', statement=mgt, playerstatement =gt)
 
         
 '''
