@@ -2022,7 +2022,7 @@ def allowed_file(filename):
 #Guild Points
 
 def points_status():
-  return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
 def give_points_to_player(from_player, to_player, amount):
   #check if player has enough points to give
@@ -2121,7 +2121,7 @@ def refreshMarket(search_items = {}):
   item_results = marketscraper.get_scrape_results(search_items)
   return item_results    
   
-def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}): 
+def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}, d = datetime.now()): 
   #get relevant data for run 
   #assume that players conform to Character class
   runname = run.instance.name
@@ -2156,7 +2156,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
-  player_ids = [p for p in players]
+  player_ids = [p.id for p in mps]
   relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
   
   mg = MappedGuild.query.one()
@@ -2167,22 +2167,23 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
     
     run.points = []
     for rr in relevant_runs:
-      rc = rr[0]
-      mp = rr[1]
-      mgp = rr[2]
+      rc, mp, mgp = rr[0], rr[1], rr[2]
       mgp.amount = rc.factor * points_per_player
+      print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
   else:
     print 'adding points for a new run'
     #if this is a new run
     mapped_points = []
     for p in mps:
-      mgp = MappedGuildPoint(points_per_player)
+      rc = RunCredit(1.0)
+      mgp = MappedGuildPoint(rc.factor * points_per_player)
+      print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
       run.points.append(mgp)
-      rc = RunCredit(1.0)
       run.credits.append(rc)
+      mg.guildPoints.append(mgp)
       p.Credits.append(rc)
       db.session.add(mgp)
       db.session.add(rc)
@@ -2312,33 +2313,18 @@ def RecalculatePoints():
     chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
     mp.Chars = chars_to_map
     db.session.commit()
-  
-  #zero out current points
-  mg = MappedGuild.query.one()
-  zero_out_points = db.session.query(MappedPlayer, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer).all()
-  for zop in zero_out_points:
-    mgp = MappedGuildPoint(-1 * zop[1])
-    zop[0].Points.append(mgp)
-    mgt = MappedGuildTransaction('Recalc', datetime.now())
-    mgt.player_id = zop[0].id
-    zop[0].Transactions.append(mgt)
-    mg.guildTransactions.append(mgt)
-    mg.guildPoints.append(mgp)
-  db.session.commit()
-  
-  print 'zeroed out current points'
-  
+    
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
-    CalculatePoints(run, run.mobs_killed, players, market_results) 
+    CalculatePoints(run, run.mobs_killed, players, market_results, d) 
 
 def BuyTreasure(mappedGuildTreasure, mappedPlayer):
-  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
+  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
   total_points = player_points[2]
   price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
   
-  if total_points < price:
+  if price > total_points:
     #not enough points
     print 'not enough points'
     return
@@ -2363,7 +2349,8 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       remaining_amount = float(total_points) - float(rcp[1].amount)
       remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
       rcp[0].factor = remaining_factor
-      #rcp[1].amount = remaining_amount
+      #update points
+      rcp[1].amount = remaining_amount
     else:
       #no more points
       break
@@ -2374,7 +2361,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   mgp_from_player = MappedGuildPoint(-1 * price)
   mappedPlayer.Points.append(mgp_from_player)
     
-  #need to link to guild transaction
+  #need to link to guild transaction but not to run
   mgt = MappedGuildTransaction('purchase', datetime.now())
   mgt.player_id = mappedPlayer.id
   mappedPlayer.Transactions.append(mgt)
