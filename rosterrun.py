@@ -2337,24 +2337,31 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
-    if float(rcp[0].factor) == 0:
-      print 'current factor is 0'
+    if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
+      print 'credit points are 0 here'
       continue
-    remaining_amount = float(total_points) - float(rcp[1].amount)
-    remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
+    
+    print 'total points %s ' % total_points
+    
+    if total_points <= 0:
+      #no more points
+      break
     
     if total_points > rcp[1].amount: 
-      rcp[0].factor = remaining_factor
+      rcp[0].factor = 0
       total_points -= rcp[1].amount
-      rcp[1].amount = remaining_amount
-    elif total_points > 0:
+      rcp[1].amount = 0
+    else:
+      remaining_amount = float(rcp[1].amount) - float(total_points)
+      remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
+      
+      print 'remaining amount %s' % remaining_amount
+      print 'remaining factor %s' % remaining_factor
       rcp[0].factor = remaining_factor
       #update points
       rcp[1].amount = remaining_amount
-    else:
-      #no more points
-      break
-   
+      total_points -= remaining_amount
+    
   db.session.commit()
   
   #calc points
@@ -2378,6 +2385,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
+
 
 
 if __name__ == "__main__":

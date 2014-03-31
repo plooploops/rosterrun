@@ -2,7 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Points</h1>
-    <label>If you don't see your name points here, please update your profile!</label>
+    <label>If you don't see your points here, please update your profile!</label>
     <form action="{{ url_for('points_actions') }}" method=post class=run-calculation>
 	  <dl>
 	    <dd><button type=submit class="btn btn-primary" name=action value='Calculate'>Calculate</button>
