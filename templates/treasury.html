@@ -32,7 +32,7 @@
       <td>{% if t.maxMarketPrice > 0 %} {{ "{:,.0f}".format(t.maxMarketPrice)|safe }} {% else %} {{ t.maxMarketPrice|safe }} {% endif %}</td>
       <td>{% if t.medianMarketPrice > 0 %} {{ "{:,.0f}".format(t.medianMarketPrice)|safe }} {% else %} {{ t.medianMarketPrice|safe }} {% endif %}</td>
       <td>{{ t.refreshDate|safe }}</td>
-      <td>{% if t.guildtransaction is defined %} <dd> transaction: {{ t.guildtransaction|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
+      <td>{% if t.guildtransaction %} <dd> transaction: {{ t.guildtransaction.transType|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
     {% endfor %}
     </table>
     </div>
