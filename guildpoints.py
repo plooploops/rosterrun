@@ -336,17 +336,17 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
+    if float(rcp[0].factor) == 0:
+      print 'current factor is 0'
+      continue
+    remaining_amount = float(total_points) - float(rcp[1].amount)
+    remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
+    
     if total_points > rcp[1].amount: 
-      rcp[0].factor = 0.0
+      rcp[0].factor = remaining_factor
       total_points -= rcp[1].amount
-      #rcp[1].amount = 0.0
+      rcp[1].amount = remaining_amount
     elif total_points > 0:
-      if float(rcp[0].factor) == 0:
-        print 'current factor is 0'
-        continue
-      print 'updating remaining factor'
-      remaining_amount = float(total_points) - float(rcp[1].amount)
-      remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
       rcp[0].factor = remaining_factor
       #update points
       rcp[1].amount = remaining_amount
