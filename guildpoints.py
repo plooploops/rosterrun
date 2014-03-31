@@ -341,17 +341,18 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       continue
     
     print 'total points %s ' % total_points
+    print 'price %s' % price
     
-    if total_points <= 0:
+    if price <= 0:
       #no more points
       break
     
-    if total_points > rcp[1].amount: 
+    if price > rcp[1].amount: 
       rcp[0].factor = 0
-      total_points -= rcp[1].amount
+      price -= rcp[1].amount
       rcp[1].amount = 0
     else:
-      remaining_amount = float(rcp[1].amount) - float(total_points)
+      remaining_amount = float(rcp[1].amount) - float(price)
       remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
       
       print 'remaining amount %s' % remaining_amount
@@ -359,7 +360,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       rcp[0].factor = remaining_factor
       #update points
       rcp[1].amount = remaining_amount
-      total_points -= remaining_amount
+      price -= remaining_amount
     
   db.session.commit()
   
@@ -384,4 +385,3 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
-
