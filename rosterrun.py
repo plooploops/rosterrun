@@ -860,9 +860,9 @@ def treasury():
     return redirect(url_for('login'))
   
   gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
 
 @app.route('/modify_treasure', methods=['GET', 'POST'])
 def modify_treasure():
@@ -932,9 +932,9 @@ def modify_treasure():
   
   db.session.commit()
   
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
     
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():
@@ -1025,10 +1025,10 @@ def add_treasure():
     
   db.session.commit()
   
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
     
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
 def transaction():
