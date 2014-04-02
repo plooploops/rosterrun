@@ -49,3 +49,10 @@ def populate_data_model():
   db.session.add(mg)
   
   db.session.commit()
+
+def clean_data_model():
+  db.session.commit()
+  db.drop_all()
+  db.session.commit()
+  db.create_all()
+  db.session.commit()
