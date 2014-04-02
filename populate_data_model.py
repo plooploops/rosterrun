@@ -22,12 +22,17 @@ def populate_mob_items(mm, mob_items):
     mm.items.append(mob_item)
   db.session.commit()
 
-def populate_instances(instance_name, median_party, mob_id, mob_name, mob_items, quests):
+def populate_instances(instance_name, median_party, mob_id_name_items = [], quests = []):
   mi = MappedInstance(instance_name, median_party)
-  mm = MappedMob(mob_id)
-  mm.mob_name = mob_name
-  populate_mob_items(mm, mob_items)
-  mi.mobs = [mm]
+  mobs_for_instance = []
+  
+  #mob_id_name_item: mob_id, mob_name, items
+  for mob_id_name_item in mob_id_name_items:
+    mm = MappedMob(mob_id_name_item[0])
+    mm.mob_name = mob_id_name_item[1]
+    populate_mob_items(mm, mob_id_name_item[2])
+    mobs_for_instance.append(mm)
+  mi.mobs = mobs_for_instance
   populate_quests(mi, quests)
   db.session.commit()
 
