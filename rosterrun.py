@@ -2204,12 +2204,12 @@ def AddMissingSearchItems(mob_items, drop_items):
     print 'nothing to add'
     return
   
-  
   #get the missing item names from items db
   item_id_name = marketscraper.get_item_name_scrape_results(not_searched)
   print item_id_name
   for ns in not_searched:
-    db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
+    if ns in item_id_name:
+      db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
   db.session.commit()
   
   #update market results takes place by market scraper (scraperclock)

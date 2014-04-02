@@ -230,7 +230,7 @@ class MarketScraper:
       
       print 'checking for item_id %s ' % i
       try:
-        print vals
+        #print vals
         val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
         #item name - item id - (item name)
         split_val = val_found.split('-')
