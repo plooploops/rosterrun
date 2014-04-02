@@ -38,7 +38,7 @@ def populate_instances(instance_name, median_party, mob_id_name_items = [], ques
 
 def populate_data_model():
   for imi in instance_mob_item_mapping:
-    populate_instances(imi[0], imi[1], imi[2], imi[3], imi[4], imi[5])
+    populate_instances(imi[0], imi[1], imi[2], imi[3])
   
   MappedGuild.query.delete()
   db.session.commit()
