@@ -32,6 +32,7 @@ def populate_instances(instance_name, median_party, mob_id_name_items = [], ques
     mm.mob_name = mob_id_name_item[1]
     populate_mob_items(mm, mob_id_name_item[2])
     mobs_for_instance.append(mm)
+    db.session.add(mm)
   mi.mobs = mobs_for_instance
   populate_quests(mi, quests)
   db.session.commit()
