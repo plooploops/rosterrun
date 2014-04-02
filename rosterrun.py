@@ -2200,6 +2200,11 @@ def AddMissingSearchItems(mob_items, drop_items):
          
   #add missing item ids to search list
   not_searched = list(set(drop_items) - set(mms_item_ids))
+  if len(not_searched) == 0:
+    print 'nothing to add'
+    return
+  
+  
   #get the missing item names from items db
   item_id_name = marketscraper.get_item_name_scrape_results(not_searched)
   print item_id_name
