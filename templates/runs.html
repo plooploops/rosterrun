@@ -68,6 +68,7 @@
 	  <div class="form-group">
 	    <label for="nrunscreenshot">Screenshot</label>
 	    <input type="file" id="nrunscreenshot" name=nrunscreenshot placeholder="C:\screenshot\run.jpg" value="{{ editrun.evidence_file_path }}">
+	    <img for="nrunscreenshot" id="nrunscreenshotpreview" src="#" alt="your image" />
 	    <p class="help-block">Please submit a screenshot</p>
       </div>
       <h3>Characters in Party</h3>
@@ -107,5 +108,19 @@
 	  </div>
 	  <button type=submit class="btn btn-primary" name=add value="{{ editrun.id }}">Submit</button>
     </form>
+    <script>
+      function readURL(input) {
+	    if (input.files && input.files[0]) {
+	      var reader = new FileReader();
+	      reader.onload = function (e) {
+	        $('#nrunscreenshotpreview').attr('src', e.target.result);
+	      }
+	      reader.readAsDataURL(input.files[0]);
+	    }
+	  }
+	  $("#nrunscreenshot").change(function(){
+	    readURL(this);
+      });
+    </script>
   {% endif %}
 {% endblock %}
