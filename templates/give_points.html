@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Give Points</h1>
+    <h3>My Points: {{ "{:,.0f}".format(points_amount)|safe }}</h3>
+    <form action="{{ url_for('gift_points_actions') }}" method=post class=run-calculation>
+	  <div class="form-group">
+	    <label for="ngiftamount">Gift Amount</label>
+	    <input type="number" class="form-control" id="ngiftamount" name=ngiftamount placeholder="{{ points_amount }}"></input>
+	  </div>
+	  <select name="playerlist">
+	    {% for mp in mappedplayers %}
+	      <option {% if mp.id in selected_player %} selected="True" {% endif %} value={{ mp.id|safe }}>{{ mp.name|safe }}</option>
+	    {% endfor %}
+	  </select>
+	  <button type=submit class="btn btn-primary" name=action value='Submit'>Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}
