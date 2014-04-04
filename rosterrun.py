@@ -1293,7 +1293,7 @@ def points():
   except:
     print 'cannot bind action'
   
-  p = db.session.query(MappedPlayer.Name, MappedPlayer.id, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.id).all()
+  p = db.session.query(MappedPlayer.Name, MappedPlayer.id, func.sum(MappedGuildPoint.amount)).group_by(MappedPlayer.Name).group_by(MappedPlayer.id).all()
   current_user = session['user']
   
   return render_template('points.html', points=p, current_user=current_user)
