@@ -1117,6 +1117,8 @@ def add_run():
     
     char_ids = request.form.getlist('cbsearch')
     mobs_ids = request.form.getlist("cbmobkill")
+    mobs_ids = [int(si) for si in mobs_ids]
+    mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
     run_date = request.form['nrundate']
     run_success = request.form.getlist('cbsuccess')
     success = False
@@ -1128,7 +1130,7 @@ def add_run():
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
-    er = MappedRun('', '', name, run_date, chars, mi, mi.mobs, success, notes)
+    er = MappedRun('', '', name, run_date, chars, mi, mobs_killed, success, notes)
     
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
@@ -1199,7 +1201,7 @@ def add_run():
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     mobs_ids = [int(si) for si in mobs_ids]
-    mobs_killed = MappedMob.query.filter(MappedMob.id.in_(mobs_ids)).all()
+    mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
     
     run_date = run_date.split(".")
     run_date = run_date[0]
@@ -1284,8 +1286,14 @@ def modify_runs():
       print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
+      
+      mm = er.mobs_killed
+      mi = er.instance
     else:
       er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+      mm = er.mobs_killed
+      mi = er.instance
+      
       print 'no action to map'
   except Exception,e:
     print str(e)
