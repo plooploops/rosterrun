@@ -1110,8 +1110,21 @@ def add_run():
       mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
     else: 
       mi = MappedInstance.query.all()[0]
-      
-    er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
+    
+    add_runs = request.form.getlist("add")
+    name = ''
+    file = request.files['nrunscreenshot']
+    char_ids = request.form.getlist('cbsearch')
+    mobs_ids = request.form.getlist('cbmobkill')
+    run_date = request.form['nrundate']
+    run_success = request.form.getlist('cbsuccess')
+    success = False
+    if len(run_success) > 0:
+      success = True
+    
+    notes = request.form['nrunnotes']
+    er = MappedRun('', '', name, run_date, chars, mi, success, notes)
+    
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
     
@@ -1125,6 +1138,10 @@ def add_run():
     
     return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
   
+  mapped_instance = MappedInstance.query.filter(MappedInstance.id==s_run)
+  if mapped_instance.count()  0:
+    flash('Instance not found, please select a different one')
+    return redirect(url_for('runs'))
   mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
   mm = mi.mobs
   url = None
@@ -1136,7 +1153,7 @@ def add_run():
     bucket.set_acl('public-read')
     
     add_runs = request.form.getlist("add")
-    name = request.form['nrunname']
+    name = ''
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
     mobs_ids = request.form.getlist('cbmobkill')

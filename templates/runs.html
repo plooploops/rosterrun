@@ -40,10 +40,6 @@
 
     <h2 class="sub-header">Add Run</h2>
     <form role="form" action="{{ url_for('add_run') }}" method=post enctype="multipart/form-data">
-      <div class="form-group">
-	    <label for="nrunname">Name</label>
-	    <input type="text" class="form-control" id="nrunname" name=nrunname placeholder="Endless Tower" value="{{ editrun.instance_name }}"></input>
-	  </div>
       <select name="instancelist">
 	    {% for mi in mappedinstances %}
 	      <option {% if mi.id in selected_run %} selected="True" {% endif %} value={{ mi.id|safe }}>{{ mi.name|safe }}</option>
