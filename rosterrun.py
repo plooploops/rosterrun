@@ -1074,7 +1074,7 @@ def runs():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
-  mis = MappedInstance.query.all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   s_run = None
   s_run = int(str(mi.id))
   sr = [s_run]
@@ -1136,10 +1136,10 @@ def add_run():
     erc = [c.id for c in er.chars]
     
     mrs = MappedRun.query.all()
-    mc = MappedCharacter.query.all()  
+    mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
     mm = mi.mobs
     
-    mis = MappedInstance.query.all()
+    mis = MappedInstance.query.order_by(MappedInstance.name).all()
     
     sr = [s_run]
     
@@ -1240,7 +1240,7 @@ def add_run():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
-  mis = MappedInstance.query.all()
+  mis = MappedInstance.query.order_by(MappedInstance.name)all()
   
   return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
@@ -1306,7 +1306,7 @@ def modify_runs():
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()
-  mis = MappedInstance.query.all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   
   s_run = int(str(mi.id))
   sr = [s_run]
