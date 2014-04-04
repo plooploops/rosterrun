@@ -1072,7 +1072,7 @@ def runs():
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()  
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
   mis = MappedInstance.query.all()
   s_run = None
@@ -1235,7 +1235,7 @@ def add_run():
   erc = [c.id for c in er.chars]
   
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()  
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
   mis = MappedInstance.query.all()
   
@@ -1287,11 +1287,11 @@ def modify_runs():
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
       
-      mm = er.mobs_killed
+      mm = er.instance.mobs
       mi = er.instance
     else:
       er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
-      mm = er.mobs_killed
+      mm = er.instance.mobs
       mi = er.instance
       
       print 'no action to map'
@@ -1302,7 +1302,7 @@ def modify_runs():
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()
   mis = MappedInstance.query.all()
   
   s_run = int(str(mi.id))
