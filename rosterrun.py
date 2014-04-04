@@ -862,8 +862,7 @@ def treasury():
   gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
-  player_points = get_points_status(session['user'])
-  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = get_points_status(session['user'])
   
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
@@ -937,8 +936,7 @@ def modify_treasure():
   
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
-  player_points = get_points_status(session['user'])
-  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = get_points_status(session['user'])
     
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
@@ -1034,8 +1032,7 @@ def add_treasure():
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
   
-  player_points = get_points_status(session['user'])
-  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = get_points_status(session['user'])
     
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
@@ -2031,7 +2028,10 @@ def allowed_file(filename):
 #Guild Points
 
 def get_points_status(player_email):
-  return db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
+  player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
+  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = float(player_amount)
+  return player_amount
 
 def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
