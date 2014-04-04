@@ -1124,6 +1124,10 @@ def add_run():
       success = True
     
     notes = request.form['nrunnotes']
+    
+    char_ids = [int(si) for si in char_ids]
+    chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
+    
     er = MappedRun('', '', name, run_date, chars, mi, success, notes)
     
     ermk = [mk.id for mk in er.mobs_killed]
@@ -2051,7 +2055,6 @@ def update_profile():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    flash('Please login again')
     try:
       resetParameters()
       error = None    
