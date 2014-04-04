@@ -1352,7 +1352,7 @@ def gift_points():
     
   player_amount = get_points_status(session['user'])
  
-  return render_template('gift_points.html', points_amount=points_amount, selected_player=selected_player, mappedplayers=mps)
+  return render_template('gift_points.html', points_amount=player_amount, selected_player=selected_player, mappedplayers=mps)
   
 @app.route('/gift_points_actions', methods=['GET', 'POST'])
 def gift_points_actions():   
