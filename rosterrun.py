@@ -1313,7 +1313,7 @@ def points_actions():
   
   try:    
     action = request.form['action']
-    gift = request.form['gift]
+    gift = request.form['gift']
   except:
     print 'cannot get action'
  
