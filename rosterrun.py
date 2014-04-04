@@ -1462,7 +1462,7 @@ def gift_points_actions():
   try:
     give_points_to_player(from_player, to_player, amount)
     print 'finished giving points'
-  exception Exception,e:
+  except Exception,e:
     print str(e)
     print 'error gifting points'
   
