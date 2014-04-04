@@ -53,9 +53,9 @@
 	        <th>Killed Mob</th>
 	        <th>Name</th>
 	      </tr>
-	      {% for mm.id in mappedmobs %}
+	      {% for mm in mappedmobs %}
 	        <tr>
-	          <td><input {% if mm in edit_run_mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
+	          <td><input {% if mm.id in edit_run_mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
 	          <td>{{ mm.mob_name|safe }}</td>
 	    	</tr>
 	      {% endfor %}
