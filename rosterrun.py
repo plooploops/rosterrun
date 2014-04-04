@@ -1035,7 +1035,7 @@ def add_treasure():
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
   
   player_points = get_points_status(session['user'])
-    player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = 0 if len(player_points) == 0 else player_points[0]
     
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
