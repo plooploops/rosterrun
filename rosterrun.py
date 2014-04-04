@@ -1140,7 +1140,7 @@ def add_run():
     return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
   
   mapped_instance = MappedInstance.query.filter(MappedInstance.id==s_run)
-  if mapped_instance.count()  0:
+  if mapped_instance.count() == 0:
     flash('Instance not found, please select a different one')
     return redirect(url_for('runs'))
   mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
