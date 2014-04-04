@@ -1337,7 +1337,11 @@ def gift_points_to():
   
   current_user = session['user']
   selected_player = []
-  mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  mps = []
+  if current_user:
+    mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  else:
+    mps = MappedPlayer.query.all()
   try:
     gift = request.form['gift']
     gift = int(str(gift))
@@ -1359,7 +1363,11 @@ def gift_points():
   
   current_user = session['user']
   selected_player = []
-  mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  mps = []
+  if current_user:
+    mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  else:
+    mps = MappedPlayer.query.all()
   try:
     selected_player_id = session['gift_player_id']
     selected_player = [selected_player_id] 
@@ -1406,6 +1414,10 @@ def gift_points_actions():
   
   from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user']).all()
   to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player).all()
+  if from_player.id == to_player.id:
+    flash('Please give points to a different player')
+    return redirect(url_for('give_points'))
+  
   give_points_to_player(from_player, to_player, amount)
   
   return redirect(url_for('give_points'))
