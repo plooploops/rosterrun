@@ -1114,8 +1114,9 @@ def add_run():
     add_runs = request.form.getlist("add")
     name = ''
     file = request.files['nrunscreenshot']
+    
     char_ids = request.form.getlist('cbsearch')
-    mobs_ids = request.form.getlist('cbmobkill')
+    mobs_ids = request.form.getlist("cbmobkill")
     run_date = request.form['nrundate']
     run_success = request.form.getlist('cbsuccess')
     success = False
@@ -1156,7 +1157,7 @@ def add_run():
     name = ''
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
-    mobs_ids = request.form.getlist('cbmobkill')
+    mobs_ids = request.form.getlist("cbmobkill")
     run_date = request.form['nrundate']
     run_success = request.form.getlist('cbsuccess')
     
