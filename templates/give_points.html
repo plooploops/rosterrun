@@ -6,7 +6,7 @@
     <form action="{{ url_for('gift_points_actions') }}" method=post class=run-calculation>
 	  <div class="form-group">
 	    <label for="ngiftamount">Gift Amount</label>
-	    <input type="number" class="form-control" id="ngiftamount" name=ngiftamount placeholder="{{ points_amount }}"></input>
+	    <input type="number" class="form-control" id="ngiftamount" name=ngiftamount placeholder="{{ "{:,.0f}".format(points_amount)|safe }}"></input>
 	  </div>
 	  <select name="playerlist">
 	    {% for mp in mappedplayers %}
