@@ -10,7 +10,7 @@
 	  </div>
 	  <select name="playerlist">
 	    {% for mp in mappedplayers %}
-	      <option {% if mp.id in selected_player %} selected="True" {% endif %} value={{ mp.id|safe }}>{{ mp.name|safe }}</option>
+	      <option {% if mp.id in selected_player %} selected="True" {% endif %} value={{ mp.id|safe }}>{{ mp.Name|safe }}</option>
 	    {% endfor %}
 	  </select>
 	  <button type=submit class="btn btn-primary" name=action value='Submit'>Submit</button>
