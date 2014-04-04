@@ -411,9 +411,9 @@ def resetLookupParameters():
 
 @app.route('/', methods=['GET', 'POST'])
 def show_entries():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -490,9 +490,9 @@ def show_entries():
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -577,9 +577,9 @@ def convert_to_key(itemid = None, name = None, cards = None, date = None, amount
 
 @app.route('/market_results', methods=['GET', 'POST'])
 def market_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   d = datetime.now()
@@ -612,9 +612,9 @@ def market_results():
 
 @app.route('/market_current_results', methods=['GET', 'POST'])
 def market_current_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   d = datetime.now()
@@ -646,9 +646,9 @@ def market_current_results():
 
 @app.route('/item_current_results', methods=['GET', 'POST'])
 def item_current_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   print 'in item current results'
@@ -722,9 +722,9 @@ def item_current_results():
 
 @app.route('/item_history', methods=['GET', 'POST'])
 def item_history():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   print 'in item history'
@@ -797,9 +797,9 @@ def item_history():
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   time_delta = datetime.now() - timedelta(weeks=4)
@@ -829,11 +829,11 @@ def market_history():
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
-  
+    
   not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
   not_named_item_ids = [nn[0] for nn in not_named]
   if len(not_named_item_ids) > 0:
@@ -854,21 +854,24 @@ def market_search_list():
   
 @app.route('/treasury', methods=['GET', 'POST'])
 def treasury():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
+  player_points = get_points_status(session['user'])
+  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
 @app.route('/modify_treasure', methods=['GET', 'POST'])
 def modify_treasure():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
 
   delete_treasures = []
@@ -933,14 +936,17 @@ def modify_treasure():
   db.session.commit()
   
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  
+  player_points = get_points_status(session['user'])
+  player_amount = 0 if len(player_points) == 0 else player_points[0]
     
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   item_id = request.form['nitemid']
@@ -1027,15 +1033,18 @@ def add_treasure():
   
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
+  
+  player_points = get_points_status(session['user'])
+    player_amount = 0 if len(player_points) == 0 else player_points[0]
     
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
 def transaction():
-  if not session.get('logged_in'):
-      #abort(401)
-      session.pop('logged_in', None)
-      return redirect(url_for('login'))
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
       
   ps = gt
  
@@ -1055,9 +1064,9 @@ def transaction():
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   mi = None
@@ -1077,9 +1086,9 @@ def runs():
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1212,9 +1221,9 @@ def add_run():
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   delete_id = None
@@ -1275,9 +1284,9 @@ def modify_runs():
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   action = None
@@ -1293,9 +1302,9 @@ def points():
 
 @app.route('/points_actions', methods=['GET', 'POST'])
 def points_actions():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1319,9 +1328,9 @@ def points_actions():
   return redirect(url_for('points'))
 
 def use_default_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   MappedMarketSearch.query.delete()
@@ -1334,9 +1343,9 @@ def use_default_search_list():
 
 @app.route('/update_search_list', methods=['GET', 'POST'])
 def update_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1384,9 +1393,9 @@ def update_search_list():
 
 @app.route('/add_to_search_list', methods=['GET', 'POST'])
 def add_to_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   itemid = ''
@@ -1418,9 +1427,9 @@ def add_to_search_list():
 
 @app.route('/update_chars', methods=['GET', 'POST'])
 def update_chars():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1494,9 +1503,9 @@ def update_chars():
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1592,9 +1601,9 @@ def add_character():
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
   
     if(len(session['doc']) <= 0):
@@ -1658,9 +1667,9 @@ def import_characters():
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
   
     if(len(session['doc']) <= 0):
@@ -1702,9 +1711,9 @@ def run_calculation():
 
 @app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   try:
@@ -1743,9 +1752,9 @@ def checkCalculation():
 @app.route('/reset', methods=['POST'])
 def reset():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
 
     if(len(session['doc']) <= 0):
@@ -1784,9 +1793,9 @@ def reset():
 @app.route('/run_points_calculation', methods=['POST'])
 def run_points_calculation():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
 
     #mgps = MappedGuildPoint.query.all()
@@ -1820,9 +1829,9 @@ def run_points_calculation():
 
 @app.route('/checkpointscalc', methods=['POST'])
 def checkPointsCalculation():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   try:
@@ -1867,9 +1876,9 @@ def oauth2callback():
 
 @app.route('/user_profile', methods=['GET', 'POST'])
 def user_profile():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1894,9 +1903,9 @@ def user_profile():
 
 @app.route('/update_profile', methods=['GET', 'POST'])
 def update_profile():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1938,7 +1947,7 @@ def login():
           if len(request.form['username']) == 0:
               error = 'Invalid username'
           else:
-              username = request.form['username'].strip()
+              username = request.form['username'].strip().lower()
               session['user'] = username
               
               #need to get mapped player by email?
@@ -2020,6 +2029,9 @@ def allowed_file(filename):
          filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 #Guild Points
+
+def get_points_status(player_email):
+  return db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
 
 def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
@@ -2392,7 +2404,10 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
 
-
+def clear_session():
+  session.pop('logged_in', None)
+  session.pop('user, None)
+  
 
 if __name__ == "__main__":
   db.create_all()
