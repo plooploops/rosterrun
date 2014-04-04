@@ -1219,6 +1219,9 @@ def add_run():
       er.mobs_killed = mobs_killed
       er.success = success
       er.notes = notes
+      db.session.commit()
+      #finished making edits, prepare to add a new run
+      return redirect(url_for('runs'))
     else:
       er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
       db.session.add(er)
