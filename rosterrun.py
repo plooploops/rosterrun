@@ -1372,6 +1372,8 @@ def gift_points_to():
   current_user = session['user']
   selected_player = []
   mps = []
+  player_amount = 0
+  selected_player = []
   if current_user:
     mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
   else:
@@ -1382,9 +1384,13 @@ def gift_points_to():
   except Exception,e:
     print str(e)
     print 'player not found for gifting'
-    
-  player_amount = get_points_status(session['user'])
-  selected_player = [gift]
+  
+  try:
+    player_amount = get_points_status(session['user'])
+    selected_player = [gift]
+  except Exception,e:
+    print str(e)
+    print 'error giving gift to player'
  
   return render_template('give_points.html', points_amount=player_amount, selected_player=selected_player, mappedplayers=mps)
   
@@ -1452,7 +1458,13 @@ def gift_points_actions():
     flash('Please give points to a different player')
     return redirect(url_for('give_points'))
   
-  give_points_to_player(from_player, to_player, amount)
+  print 'attempt giving points'
+  try:
+    give_points_to_player(from_player, to_player, amount)
+    print 'finished giving points'
+  exception Exception,e:
+    print str(e)
+    print 'error gifting points'
   
   return redirect(url_for('gift_points'))
 
