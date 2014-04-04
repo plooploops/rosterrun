@@ -1388,7 +1388,7 @@ def gift_points_actions():
   
   from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user']).all()
   to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player).all()
-  give_points_to_player(from_player, to_player, amount):
+  give_points_to_player(from_player, to_player, amount)
   
   return redirect(url_for('gift_points'))
 
