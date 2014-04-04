@@ -53,7 +53,7 @@
 	        <th>Killed Mob</th>
 	        <th>Name</th>
 	      </tr>
-	      {% for mm in mappedmobs %}
+	      {% for mm.id in mappedmobs %}
 	        <tr>
 	          <td><input {% if mm in edit_run_mobs_killed %} checked="True" {% endif %} type=checkbox name=cbmobkill value="{{ mm.mob_id }}"></td>
 	          <td>{{ mm.mob_name|safe }}</td>
@@ -64,7 +64,7 @@
 	  <div class="form-group">
 	    <label for="nrunscreenshot">Screenshot</label>
 	    <input type="file" id="nrunscreenshot" name=nrunscreenshot placeholder="C:\screenshot\run.jpg" value="{{ editrun.evidence_file_path }}">
-	    <img for="nrunscreenshot" id="nrunscreenshotpreview" src="#" alt="your image" />
+	    <img for="nrunscreenshot" id="nrunscreenshotpreview" src="{{ editrun.evidence_url|safe }}" alt="your image" />
 	    <p class="help-block">Please submit a screenshot</p>
       </div>
       <h3>Characters in Party</h3>
