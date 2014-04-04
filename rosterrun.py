@@ -1240,7 +1240,7 @@ def add_run():
   mrs = MappedRun.query.all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
-  mis = MappedInstance.query.order_by(MappedInstance.name)all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   
   return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
