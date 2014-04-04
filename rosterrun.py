@@ -1349,7 +1349,6 @@ def gift_points():
   except Exception,e:
     print str(e)
     print 'player not found for gifting'
-    return redirect(url_for('gift_points'))
     
   player_amount = get_points_status(session['user'])
  
@@ -1373,6 +1372,7 @@ def gift_points_actions():
     gift_player = int(str(val))    
   except:
     print 'cannot get action'
+    return redirect(url_for('gift_points'))
   
   player_amount = get_points_status(session['user'])
   if (player_amount == 0):
