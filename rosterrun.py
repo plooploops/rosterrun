@@ -2406,7 +2406,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
 
 def clear_session():
   session.pop('logged_in', None)
-  session.pop('user, None)
+  session.pop('user', None)
   
 
 if __name__ == "__main__":
