@@ -2029,7 +2029,7 @@ def allowed_file(filename):
 
 def get_points_status(player_email):
   player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
-  player_amount = 0 if len(player_points) == 0 else player_points[0]
+  player_amount = 0 if len(player_points) == 0 else player_points[0][0]
   player_amount = float(player_amount)
   return player_amount
 
