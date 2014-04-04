@@ -1454,7 +1454,7 @@ def gift_points_actions():
   
   give_points_to_player(from_player, to_player, amount)
   
-  return redirect(url_for('give_points'))
+  return redirect(url_for('gift_points'))
 
 def use_default_search_list():
   if not session.get('logged_in') or not session.get('user'):
