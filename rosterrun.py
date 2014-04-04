@@ -1293,9 +1293,10 @@ def points():
   except:
     print 'cannot bind action'
   
-  p = db.session.query(MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  p = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
+  current_user = session['user']
   
-  return render_template('points.html', points=p)
+  return render_template('points.html', points=p, current_user=current_user)
 
 @app.route('/points_actions', methods=['GET', 'POST'])
 def points_actions():   
@@ -1305,12 +1306,14 @@ def points_actions():
     return redirect(url_for('login'))
  
   action = None
+  gift = None
   availableParties = []
   chars = []
   checkPointsCalculation()    
   
   try:    
     action = request.form['action']
+    gift = request.form['gift]
   except:
     print 'cannot get action'
  
@@ -1319,10 +1322,75 @@ def points_actions():
     run_points_calculation()
   elif action == u"Refresh":
     checkPointsCalculation()
+  elif gift:
+    mps = MappedPlayer.query.filter(MappedPlayer.Email==gift)
+    if mps.count() > 0:
+      mp = mps.all()[0]
+      session['gift_player_id'] = mp.id
+      return redirect(url_for('gift_points'))
   else:
     print 'points'
   
   return redirect(url_for('points'))
+  
+@app.route('/gift_points', methods=['GET', 'POST'])
+def gift_points():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  current_user = session['user']
+  selected_player = []
+  mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  try:
+    selected_player_id = session['gift_player_id']
+    selected_player = [selected_player_id] 
+  except Exception,e:
+    print str(e)
+    print 'player not found for gifting'
+    
+  player_amount = get_points_status(session['user'])
+ 
+  return render_template('gift_points.html', points_amount=points_amount, selected_player=selected_player, mappedplayers=mps)
+  
+@app.route('/gift_points_actions', methods=['GET', 'POST'])
+def gift_points_actions():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+ 
+  action = None
+  amount = None
+  gift_player = None
+  
+  try:    
+    action = request.form['action']
+    amount = request.form['ngiftamount']
+    val = request.form['playerlist']
+    gift_player = int(str(val))    
+  except:
+    print 'cannot get action'
+  
+  player_amount = get_points_status(session['user'])
+  if (player_amount == 0):
+    flash('No points to give!')
+    return redirect(url_for('gift_points'))
+  
+  if amount > player_amount or amount <= 0:
+    flash('Not enough points to give')
+    return redirect(url_for('gift_points'))
+  
+  if not gift_player:
+    flash('No player selected to give points!')
+    return redirect(url_for('gift_points'))
+  
+  from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user']).all()
+  to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player).all()
+  give_points_to_player(from_player, to_player, amount):
+  
+  return redirect(url_for('gift_points'))
 
 def use_default_search_list():
   if not session.get('logged_in') or not session.get('user'):

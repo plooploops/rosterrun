@@ -14,11 +14,13 @@
     <tr>
     <th>Name</th>
     <th>Amount</th>
+    <th>Gift?</th>
     </tr>
     {% for p in points %}
       <tr>
       <td>{{ p[0]|safe}}</td>
-      <td>{{ "{:,.0f}".format(p[1])|safe }}</td>
+      <td>{{ "{:,.0f}".format(p[2])|safe }}</td>
+      <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn btn-primary" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
     {% endfor %}
     </table>
     </div>
