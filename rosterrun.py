@@ -1293,7 +1293,7 @@ def points():
   except:
     print 'cannot bind action'
   
-  p = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
+  p = db.session.query(MappedPlayer.Name, MappedPlayer.id, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.id).all()
   current_user = session['user']
   
   return render_template('points.html', points=p, current_user=current_user)
@@ -1306,14 +1306,13 @@ def points_actions():
     return redirect(url_for('login'))
  
   action = None
-  gift = None
   availableParties = []
   chars = []
   checkPointsCalculation()    
   
   try:    
     action = request.form['action']
-    gift = request.form['gift']
+    
   except:
     print 'cannot get action'
  
@@ -1322,16 +1321,34 @@ def points_actions():
     run_points_calculation()
   elif action == u"Refresh":
     checkPointsCalculation()
-  elif gift:
-    mps = MappedPlayer.query.filter(MappedPlayer.Email==gift)
-    if mps.count() > 0:
-      mp = mps.all()[0]
-      session['gift_player_id'] = mp.id
-      return redirect(url_for('give_points'))
   else:
     print 'points'
   
   return redirect(url_for('points'))
+
+@app.route('/gift_points_to', methods=['GET', 'POST'])
+def gift_points_to():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  gift = None
+  
+  current_user = session['user']
+  selected_player = []
+  mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  try:
+    gift = request.form['gift']
+    gift = int(str(gift))
+  except Exception,e:
+    print str(e)
+    print 'player not found for gifting'
+    
+  player_amount = get_points_status(session['user'])
+  selected_player = [gift]
+ 
+  return render_template('give_points.html', points_amount=player_amount, selected_player=selected_player, mappedplayers=mps)
   
 @app.route('/gift_points', methods=['GET', 'POST'])
 def gift_points():   
