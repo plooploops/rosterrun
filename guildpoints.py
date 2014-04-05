@@ -35,7 +35,6 @@ def give_points_to_player(from_player, to_player, amount):
     return
   
   check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
-  mps = db.session.query(RunCredit.id, RunCredit.run_id, MappedInstance.name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
   print check_player_point_amount.count()
   if check_player_point_amount.count() == 0:
     print 'not enough points'
@@ -395,3 +394,4 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
+
