@@ -2268,11 +2268,13 @@ def give_points_to_player(from_player, to_player, amount):
   mgp_to_player = MappedGuildPoint(original_amount)
   to_player.Points.append(mgp_to_player)
 
+  d = datetime.now()
   #need to link to guild transaction
-  mgt = MappedGuildTransaction('gift', datetime.now())
+  mgt = MappedGuildTransaction('gift', d)
   mgt.gift_to_player_id = to_player.id
   mgt.player_id = from_player.id
   mgt.to_player_name = to_player.Name
+  mgp_from_player.Transaction = mgt
   from_player.Transactions.append(mgt)
   mgp_to_player.guildtransaction = mgt
   
@@ -2281,16 +2283,16 @@ def give_points_to_player(from_player, to_player, amount):
   
   db.session.commit()
   
-  print db.session.query(RunCredit, MappedRun, MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(RunCredit).group_by(MappedRun).all()
+  #print db.session.query(RunCredit, MappedRun, MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(RunCredit).group_by(MappedRun).all()
   
   #get the player to points total
-  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
+  #print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
   print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).group_by(MappedGuildTransaction.transType).group_by(MappedGuildTransaction.transDate).all()
   
   #who gave anything to anyone
   players_gifts = db.session.query(MappedPlayer.Name, MappedPlayer.Email, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount).join(MappedGuildTransaction).join(MappedGuildPoint).all()
-  print players_gifts
+  #print players_gifts
 
 def loginScraper(username, password):
   marketscraper.login(username, password)
