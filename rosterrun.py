@@ -2205,23 +2205,6 @@ def give_points_to_player(from_player, to_player, amount):
     return
   
   #reassign credit
-  relevant_runs = db.session.query(RunCredit, MappedRun, MappedPlayer, MappedGuildPoint).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0].id, rr[0].factor, rr[3].amount) for rr in relevant_runs]
-  print run_to_points
-  
-  run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
-  rcs = {rc.id : rc for rc in run_credits}
-  print run_credits
-  
-  subtotal = 0
-  for r in run_to_points:
-    if subtotal > amount:
-      return
-    
-    subtotal += r[2]
-    run_credit = rcs[r[0]]
-    run_credit.player_id = to_player.id
-    
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == from_player.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
     if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
