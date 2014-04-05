@@ -1468,6 +1468,7 @@ def gift_points_actions():
     flash('Please give points to a different player')
     return redirect(url_for('gift_points'))
   
+  print 'trying to give points %s from %s to %s' % (amount, from_player.all()[0].Name, to_player.all()[0].Name)
   give_points_to_player(from_player.all()[0], to_player.all()[0], amount)
   
   return redirect(url_for('gift_points'))
@@ -2175,7 +2176,7 @@ def allowed_file(filename):
 #Guild Points
 
 def get_points_status(player_email):
-  player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
+  player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedPlayer).filter(MappedPlayer.Email==player_email).all()
   player_amount = 0 if len(player_points) == 0 else player_points[0][0]
   player_amount = float(player_amount)
   return player_amount
@@ -2184,6 +2185,7 @@ def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
 def give_points_to_player(from_player, to_player, amount):
+  print 'trying to give %s points from %s to %s' % (amount, from_player.Name, to_player.Name)
   #check if player has enough points to give
   if(from_player.id == to_player.id):
     print 'cannot give points to same player'
@@ -2195,6 +2197,7 @@ def give_points_to_player(from_player, to_player, amount):
     print 'not enough points'
     return
   mp = check_player_point_amount.all()[0]
+  
   total_points = mp[2]
   total_points = int(total_points)
   #all runs
@@ -2205,24 +2208,32 @@ def give_points_to_player(from_player, to_player, amount):
     return
   
   #reassign credit
+  print 'total points %s ' % total_points
+  
   original_amount = amount
+  print 'original_amount %s ' % original_amount
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == from_player.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
     if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
       print 'credit points are 0 here'
       continue
     
-    print 'total points %s ' % total_points
     print 'amount %s' % amount
     
     if amount <= 0:
+      print 'done gifting %s remaining points to gift %s' % (original_amount, amount)
       #no more points
       break
     
     if amount > rcp[1].amount: 
+      print 'amount > credit points'
+      print 'reassigning points to new player %s %s' % (rcp, amount)
       rcp[0].player_id = to_player.id
       amount -= rcp[1].amount
+      print 'reassigned points to new player %s %s' % (rcp, amount)
     else:
+      print 'amount <= credit points'
+      
       remaining_amount = float(rcp[1].amount) - float(amount)
       remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
       diff_factor = float(rcp[0].factor) - float(remaining_factor)
@@ -2247,7 +2258,7 @@ def give_points_to_player(from_player, to_player, amount):
       #update points
       #rcp[1].amount = remaining_amount
       
-      amount -= remaining_amount
+      amount = 0 
       
   db.session.commit()
   
