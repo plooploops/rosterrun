@@ -1439,7 +1439,13 @@ def gift_points_actions():
     print 'cannot get action'
     return redirect(url_for('gift_points'))
   
+  print 'amount before %s' % amount
+  amount = 0 if not amount else int(amount)
+  print 'amount after %s' % amount
+  print 'current user %s' % session['user']
   player_amount = get_points_status(session['user'])
+  print 'player points %s' % player_amount
+  player_amount = int(player_amount)
   if (player_amount == 0):
     flash('No points to give!')
     return redirect(url_for('gift_points'))
