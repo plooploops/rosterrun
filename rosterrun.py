@@ -2269,7 +2269,7 @@ def give_points_to_player(from_player, to_player, amount):
   
   db.session.commit()
   
-  print db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).all()
+  print db.session.query(RunCredit, MappedRun, MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(RunCredit).group_by(MappedRun).all()
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
