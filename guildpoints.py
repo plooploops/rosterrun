@@ -48,8 +48,8 @@ def give_points_to_player(from_player, to_player, amount):
     return
   
   #reassign credit
-  relevant_runs = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.id, MappedPlayer.Name, MappedPlayer.Email, MappedGuildPoint.amount).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0], rr[4], rr[7]) for rr in relevant_runs]
+  relevant_runs = db.session.query(RunCredit, MappedRun, MappedPlayer, MappedGuildPoint).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
+  run_to_points = [(rr[0].id, rr[0].factor, rr[4].amount) for rr in relevant_runs]
   print run_to_points
   
   run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
@@ -66,8 +66,8 @@ def give_points_to_player(from_player, to_player, amount):
     run_credit.player_id = to_player.id
     
   #reassign credit
-  relevant_runs = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.id, MappedPlayer.Name, MappedPlayer.Email, MappedGuildPoint.amount).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id==to_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0], rr[4], rr[7]) for rr in relevant_runs]
+  relevant_runs = db.session.query(RunCredit, MappedRun, MappedPlayer, MappedGuildPoint).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
+  run_to_points = [(rr[0].id, rr[0].factor, rr[4].amount) for rr in relevant_runs]
   print run_to_points
   
   run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
@@ -394,4 +394,3 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
-
