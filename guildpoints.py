@@ -24,7 +24,7 @@ def get_points_status(player_email):
   player_amount = 0 if len(player_points) == 0 else player_points[0][0]
   player_amount = float(player_amount)
   return player_amount
-  
+
 def points_status():
   return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
@@ -35,7 +35,7 @@ def give_points_to_player(from_player, to_player, amount):
     return
   
   check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
-  mps = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
+  mps = db.session.query(RunCredit.id, RunCredit.run_id, MappedInstance.name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
   print check_player_point_amount.count()
   if check_player_point_amount.count() == 0:
     print 'not enough points'
@@ -204,11 +204,16 @@ def AddMissingSearchItems(mob_items, drop_items):
          
   #add missing item ids to search list
   not_searched = list(set(drop_items) - set(mms_item_ids))
+  if len(not_searched) == 0:
+    print 'nothing to add'
+    return
+  
   #get the missing item names from items db
   item_id_name = marketscraper.get_item_name_scrape_results(not_searched)
   print item_id_name
   for ns in not_searched:
-    db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
+    if ns in item_id_name:
+      db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
   db.session.commit()
   
   #update market results takes place by market scraper (scraperclock)
