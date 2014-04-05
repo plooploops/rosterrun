@@ -34,7 +34,7 @@ def give_points_to_player(from_player, to_player, amount):
     print 'cannot give points to same player'
     return
   
-  check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
+  check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
   print check_player_point_amount.count()
   if check_player_point_amount.count() == 0:
     print 'not enough points'
