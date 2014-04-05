@@ -1442,29 +1442,23 @@ def gift_points_actions():
   player_amount = get_points_status(session['user'])
   if (player_amount == 0):
     flash('No points to give!')
-    return redirect(url_for('give_points'))
+    return redirect(url_for('gift_points'))
   
   if amount > player_amount or amount <= 0:
     flash('Not enough points to give')
-    return redirect(url_for('give_points'))
+    return redirect(url_for('gift_points'))
   
   if not gift_player:
     flash('No player selected to give points!')
-    return redirect(url_for('give_points'))
+    return redirect(url_for('gift_points'))
   
   from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user']).all()
   to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player).all()
   if from_player.id == to_player.id:
     flash('Please give points to a different player')
-    return redirect(url_for('give_points'))
+    return redirect(url_for('gift_points'))
   
-  print 'attempt giving points'
-  try:
-    give_points_to_player(from_player, to_player, amount)
-    print 'finished giving points'
-  except Exception,e:
-    print str(e)
-    print 'error gifting points'
+  give_points_to_player(from_player, to_player, amount)
   
   return redirect(url_for('gift_points'))
 
