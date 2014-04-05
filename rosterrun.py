@@ -1439,12 +1439,8 @@ def gift_points_actions():
     print 'cannot get action'
     return redirect(url_for('gift_points'))
   
-  print 'amount before %s' % amount
   amount = 0 if not amount else int(amount)
-  print 'amount after %s' % amount
-  print 'current user %s' % session['user']
   player_amount = get_points_status(session['user'])
-  print 'player points %s' % player_amount
   player_amount = int(player_amount)
   if (player_amount == 0):
     flash('No points to give!')
@@ -1458,13 +1454,21 @@ def gift_points_actions():
     flash('No player selected to give points!')
     return redirect(url_for('gift_points'))
   
-  from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user']).all()
-  to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player).all()
-  if from_player.id == to_player.id:
+  from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user'])
+  if from_player.count() == 0:
+    flash('Could not find player points, please login again')
+    clear_session()
+    return redirect(url_for('login'))
+    
+  to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player)
+  if to_player.count() == 0:
+    flash('Player not found, please select a different player to give points to')
+    return redirect(url_for('gift_points'))
+  if from_player.all()[0].id == to_player.all()[0].id:
     flash('Please give points to a different player')
     return redirect(url_for('gift_points'))
   
-  give_points_to_player(from_player, to_player, amount)
+  give_points_to_player(from_player.all()[0], to_player.all()[0], amount)
   
   return redirect(url_for('gift_points'))
 
