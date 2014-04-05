@@ -19,6 +19,7 @@ from rosterrun import db
 
 marketscraper = MarketScraper()
 
+
 def get_points_status(player_email):
   player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedRun).filter(MappedPlayer.Email==player_email).all()
   player_amount = 0 if len(player_points) == 0 else player_points[0][0]
@@ -40,54 +41,64 @@ def give_points_to_player(from_player, to_player, amount):
     print 'not enough points'
     return
   mp = check_player_point_amount.all()[0]
+  total_points = mp[2]
+  total_points = int(total_points)
   #all runs
   #mp = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name).one()
   print mp
-  if (mp[2] < amount):
+  if (total_points < amount):
     print 'not enough points'
     return
   
   #reassign credit
-  relevant_runs = db.session.query(RunCredit, MappedRun, MappedPlayer, MappedGuildPoint).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0].id, rr[0].factor, rr[3].amount) for rr in relevant_runs]
-  print run_to_points
-  
-  run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
-  rcs = {rc.id : rc for rc in run_credits}
-  print run_credits
-  
-  subtotal = 0
-  for r in run_to_points:
-    if subtotal > amount:
-      return
+  original_amount = amount
+  run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == from_player.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
+  for rcp in run_credit_points:
+    if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
+      print 'credit points are 0 here'
+      continue
     
-    subtotal += r[2]
-    run_credit = rcs[r[0]]
-    run_credit.player_id = to_player.id
+    print 'total points %s ' % total_points
+    print 'amount %s' % amount
     
-  #reassign credit
-  relevant_runs = db.session.query(RunCredit, MappedRun, MappedPlayer, MappedGuildPoint).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0].id, rr[0].factor, rr[3].amount) for rr in relevant_runs]
-  print run_to_points
-  
-  run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
-  rcs = {rc.id : rc for rc in run_credits}
-  print run_credits
-  
-  subtotal = 0
-  for r in run_to_points:
-    if subtotal > amount:
+    if amount <= 0:
+      #no more points
       break
     
-    subtotal += r[2]
-    run_credit = rcs[r[0]]
-    run_credit.factor = 0
-    run_credit.player_id = from_player.id
-  
+    if amount > rcp[1].amount: 
+      rcp[0].player_id = to_player.id
+      amount -= rcp[1].amount
+    else:
+      remaining_amount = float(rcp[1].amount) - float(amount)
+      remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
+      diff_factor = float(rcp[0].factor) - float(remaining_factor)
+      rc_exists = RunCredit.query.filter(RunCredit.player_id==to_player.id).filter(RunCredit.run_id==rcp[0].run_id)
+      
+      if rc_exists.count() > 0:
+        rc = rc_exists.all()[0]
+        rc.factor += diff_factor
+      else:
+        #reallocate points to new run credit
+        rc = RunCredit(diff_factor)
+        rc.player_id = to_player.id
+        rc.run_id = rcp[0].run_id
+        db.session.add(rc)
+      
+      #should we reassign guild points here?
+      #use factor for reallocation purposes.  bulk points into one big guild point
+      print 'remaining amount %s' % remaining_amount
+      print 'remaining factor %s' % remaining_factor
+      rcp[0].factor = remaining_factor
+      db.session.commit()
+      #update points
+      #rcp[1].amount = remaining_amount
+      
+      amount -= remaining_amount
+      
   db.session.commit()
   
   #calc points
-  mgp_from_player = MappedGuildPoint(-1 * amount)
+  mgp_from_player = MappedGuildPoint(-1 * original_amount)
   from_player.Points.append(mgp_from_player)
   mgp_to_player = MappedGuildPoint(amount)
   to_player.Points.append(mgp_to_player)
@@ -105,12 +116,12 @@ def give_points_to_player(from_player, to_player, amount):
   
   db.session.commit()
   
-  print db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).all()
+  print db.session.query(RunCredit, MappedRun, MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(RunCredit).group_by(MappedRun).all()
   
   #get the player to points total
-  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
-  print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildPoint.amount).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).all()
+  print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).group_by(MappedGuildTransaction.transType).group_by(MappedGuildTransaction.transDate).all()
   
   #who gave anything to anyone
   players_gifts = db.session.query(MappedPlayer.Name, MappedPlayer.Email, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount).join(MappedGuildTransaction).join(MappedGuildPoint).all()
