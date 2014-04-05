@@ -2202,7 +2202,7 @@ def give_points_to_player(from_player, to_player, amount):
   total_points = int(total_points)
   #all runs
   #mp = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name).one()
-  print mp
+  #print mp
   if (total_points < amount):
     print 'not enough points'
     return
@@ -2265,7 +2265,7 @@ def give_points_to_player(from_player, to_player, amount):
   #calc points
   mgp_from_player = MappedGuildPoint(-1 * original_amount)
   from_player.Points.append(mgp_from_player)
-  mgp_to_player = MappedGuildPoint(amount)
+  mgp_to_player = MappedGuildPoint(original_amount)
   to_player.Points.append(mgp_to_player)
 
   #need to link to guild transaction
