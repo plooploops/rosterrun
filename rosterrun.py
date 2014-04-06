@@ -2339,13 +2339,13 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
   player_ids = [p.id for p in mps]
-  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
-  
+  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
   mg = MappedGuild.query.one()
   mapped_points = []
-  if relevant_runs_query.count() > 0:
+  rrq = relevant_runs_query.filter(MappedPlayer.id.in_(player_ids))
+  if rrq.count() > 0:
     print 'found relevant runs'
-    relevant_runs = relevant_runs_query.all()
+    relevant_runs = rrq.all()
     
     run.points = []
     for rr in relevant_runs:
@@ -2353,11 +2353,19 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
       mgp.amount = rc.factor * points_per_player
       print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
-  else:
+  
+  check_existing = db.session.query(RunCredit, MappedPlayer).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
+  ces = check_existing.filter(MappedPlayer.id.in_(player_ids))
+  found_players = [ce[1].id for ce in ces.all()]
+  found_players = list(set(found_players))
+  not_found_players = list(set(player_ids) - set(found_players))
+  if len(not_found_players) > 0:
+    not_found_players_query = MappedPlayer.query.filter(MappedPlayer.id.in_(not_found_players)).all()  
+    
     print 'adding points for a new run'
     #if this is a new run
     mapped_points = []
-    for p in mps:
+    for p in not_found_players_query:
       rc = RunCredit(1.0)
       mgp = MappedGuildPoint(rc.factor * points_per_player)
       print 'new assigning %s' % mgp.amount
