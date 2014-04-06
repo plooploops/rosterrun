@@ -227,11 +227,18 @@ class MarketScraper:
       vals = tree.xpath("//table[@class='table_data table_narrow']/tbody/tr/td[@colspan='8']")
       if len(vals) == 0:
         vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@colspan='8']")
-      val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
-      #item name - item id - (item name)
-      split_val = val_found.split('-')
-      #set key value pair for item to item name, not parsing anything else here
-      items_results[i] = split_val[0]
+      
+      print 'checking for item_id %s ' % i
+      try:
+        #print vals
+        val_found = str.join('', [c.strip() for c in vals[0].itertext()]).strip()
+        #item name - item id - (item name)
+        split_val = val_found.split('-')
+        #set key value pair for item to item name, not parsing anything else here
+        items_results[i] = split_val[0]
+      except Exception,e: 
+        print str(e)
+        print 'error finding the values'
         
     return items_results
       

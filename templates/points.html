@@ -2,26 +2,29 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Points</h1>
+    <label>If you don't see your points here, please update your profile and recalculate points!</label>
     <form action="{{ url_for('points_actions') }}" method=post class=run-calculation>
 	  <dl>
 	    <dd><button type=submit class="btn btn-primary" name=action value='Calculate'>Calculate</button>
 	    <button type=submit class="btn btn-default" name=action value='Refresh'>Refresh</button>
 	  </dl>
     </form>
-    <div class="table-responsive">
-    <table class="table table-striped point">
-    <tr>
-    <th>Name</th>
-    <th>Amount</th>
-    </tr>
-    {% for p in points %}
+    <form action="{{ url_for('gift_points_to') }}" method=post class=run-calculation>
+      <div class="table-responsive">
+      <table class="table table-striped point">
       <tr>
-      <td>{{ p[0]|safe}}</td>
-      <td>{{ "{:,.0f}".format(p[1])|safe }}</td>
-    {% endfor %}
-    </table>
-    </div>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Gift?</th>
+      </tr>
+      {% for p in points %}
+        <tr>
+        <td>{{ p[0]|safe}}</td>
+        <td>{{ "{:,.0f}".format(p[2])|safe }}</td>
+        <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn btn-primary" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
+      {% endfor %}
+      </table>
+      </div>
     </form>
-    <label>Please register your profile to ensure that we can give proper points to the right people!</label>
   {% endif %}
 {% endblock %}

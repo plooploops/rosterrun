@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h1 class="page-header">Treasury</h1>
+    <h1 class="page-header">Treasury</h1><h3>My Points: {{ "{:,.0f}".format(points_amount)|safe }}</h3>
     <form action="{{ url_for('modify_treasure') }}" method=post class=modify-treasury>
     <div class="table-responsive">
     <table class="table table-striped treasure">
@@ -20,19 +20,19 @@
     {% for t in treasures %}
       <tr>
       <td><dd><button type=submit class="btn btn-default" name=delete value="{{ t.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ t.id }}">Edit</button></td>
-      <td>{{ t.itemid}}</td>
-      <td>{{ t.name }}</td>
+      <td>{{ t[0].itemid}}</td>
+      <td>{{ t[0].name }}</td>
       <td>
-      {% for c in t.cards.split(',') %}
-        <li>{{ c }}
+      {% for c in t[0].cards.split('|') %}
+        <li>{{ c.strip() }}
       {% endfor %}
       </td>
-      <td>{{ "{:,.0f}".format(t.amount)|safe }}</td>
-      <td>{% if t.minMarketPrice > 0 %} {{ "{:,.0f}".format(t.minMarketPrice)|safe }} {% else %} {{ t.minMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t.maxMarketPrice > 0 %} {{ "{:,.0f}".format(t.maxMarketPrice)|safe }} {% else %} {{ t.maxMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t.medianMarketPrice > 0 %} {{ "{:,.0f}".format(t.medianMarketPrice)|safe }} {% else %} {{ t.medianMarketPrice|safe }} {% endif %}</td>
-      <td>{{ t.refreshDate|safe }}</td>
-      <td>{% if t.guildtransaction_id is defined %} <dd> transaction: {{ t.guildtransaction_id|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t.id }}">Buy</button> {% endif %}</td>
+      <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
+      <td>{% if t[0].minMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].minMarketPrice)|safe }} {% else %} {{ t[0].minMarketPrice|safe }} {% endif %}</td>
+      <td>{% if t[0].maxMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].maxMarketPrice)|safe }} {% else %} {{ t[0].maxMarketPrice|safe }} {% endif %}</td>
+      <td>{% if t[0].medianMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].medianMarketPrice)|safe }} {% else %} {{ t[0].medianMarketPrice|safe }} {% endif %}</td>
+      <td>{{ t[0].refreshDate|safe }}</td>
+      <td>{% if t[1] %} <dd> {{ t[1].transType|safe }} by: {{ t[2].Name|safe }} on {{ t[1].transDate|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t[0].id }}">Buy</button> {% endif %}</td>
     {% endfor %}
     </table>
     </div>

@@ -199,14 +199,14 @@ class MappedRun(db.Model):
     credits = relationship("RunCredit", backref="run")
     mobs_killed = relationship("MappedMob", secondary=run_to_mobs, backref="run")
     
-    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, success, notes):
+    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, mobs_killed, success, notes):
         self.evidence_url = evidence_url
         self.evidence_file_path = evidence_file_path
         self.date = date
         self.chars = chars
         self.name = name
         self.instance = instance
-        self.mobs_killed = instance.mobs
+        self.mobs_killed = mobs_killed
         self.success = success
     	self.notes = notes
     	
@@ -411,9 +411,9 @@ def resetLookupParameters():
 
 @app.route('/', methods=['GET', 'POST'])
 def show_entries():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -490,9 +490,9 @@ def show_entries():
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -577,9 +577,9 @@ def convert_to_key(itemid = None, name = None, cards = None, date = None, amount
 
 @app.route('/market_results', methods=['GET', 'POST'])
 def market_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   d = datetime.now()
@@ -612,9 +612,9 @@ def market_results():
 
 @app.route('/market_current_results', methods=['GET', 'POST'])
 def market_current_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   d = datetime.now()
@@ -646,9 +646,9 @@ def market_current_results():
 
 @app.route('/item_current_results', methods=['GET', 'POST'])
 def item_current_results():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   print 'in item current results'
@@ -722,9 +722,9 @@ def item_current_results():
 
 @app.route('/item_history', methods=['GET', 'POST'])
 def item_history():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   print 'in item history'
@@ -797,9 +797,9 @@ def item_history():
 
 @app.route('/market_history', methods=['GET', 'POST'])
 def market_history():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   time_delta = datetime.now() - timedelta(weeks=4)
@@ -829,11 +829,11 @@ def market_history():
 
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
-  
+    
   not_named = db.session.query(MappedMarketSearch.itemid, MappedMarketSearch).filter(MappedMarketSearch.name==None).all()
   not_named_item_ids = [nn[0] for nn in not_named]
   if len(not_named_item_ids) > 0:
@@ -854,21 +854,23 @@ def market_search_list():
   
 @app.route('/treasury', methods=['GET', 'POST'])
 def treasury():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  player_amount = get_points_status(session['user'])
+  
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
 @app.route('/modify_treasure', methods=['GET', 'POST'])
 def modify_treasure():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
 
   delete_treasures = []
@@ -932,15 +934,17 @@ def modify_treasure():
   
   db.session.commit()
   
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  
+  player_amount = get_points_status(session['user'])
     
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   item_id = request.form['nitemid']
@@ -1025,17 +1029,19 @@ def add_treasure():
     
   db.session.commit()
   
-  t = MappedGuildTreasure.query.all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
+  
+  player_amount = get_points_status(session['user'])
     
-  return render_template('treasury.html', treasures=t, edittreasure=gt)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
 def transaction():
-  if not session.get('logged_in'):
-      #abort(401)
-      session.pop('logged_in', None)
-      return redirect(url_for('login'))
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
       
   ps = gt
  
@@ -1055,20 +1061,20 @@ def transaction():
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   mi = None
   mi = MappedInstance.query.all()[0]
-  er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
+  er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()  
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
-  mis = MappedInstance.query.all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   s_run = None
   s_run = int(str(mi.id))
   sr = [s_run]
@@ -1077,9 +1083,9 @@ def runs():
 
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1104,21 +1110,45 @@ def add_run():
       mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
     else: 
       mi = MappedInstance.query.all()[0]
-      
-    er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
+    
+    add_runs = request.form.getlist("add")
+    name = ''
+    file = request.files['nrunscreenshot']
+    
+    char_ids = request.form.getlist('cbsearch')
+    mobs_ids = request.form.getlist("cbmobkill")
+    mobs_ids = [int(si) for si in mobs_ids]
+    mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
+    run_date = request.form['nrundate']
+    run_success = request.form.getlist('cbsuccess')
+    success = False
+    if len(run_success) > 0:
+      success = True
+    
+    notes = request.form['nrunnotes']
+    
+    char_ids = [int(si) for si in char_ids]
+    chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
+    
+    er = MappedRun('', '', name, run_date, chars, mi, mobs_killed, success, notes)
+    
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
     
     mrs = MappedRun.query.all()
-    mc = MappedCharacter.query.all()  
+    mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
     mm = mi.mobs
     
-    mis = MappedInstance.query.all()
+    mis = MappedInstance.query.order_by(MappedInstance.name).all()
     
     sr = [s_run]
     
     return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
   
+  mapped_instance = MappedInstance.query.filter(MappedInstance.id==s_run)
+  if mapped_instance.count() == 0:
+    flash('Instance not found, please select a different one')
+    return redirect(url_for('runs'))
   mi = MappedInstance.query.filter(MappedInstance.id==s_run)[0]
   mm = mi.mobs
   url = None
@@ -1130,10 +1160,11 @@ def add_run():
     bucket.set_acl('public-read')
     
     add_runs = request.form.getlist("add")
-    name = request.form['nrunname']
+    name = ''
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
-    mobs_ids = request.form.getlist('cbmobkill')
+    mobs_ids = request.form.getlist("cbmobkill")
+    print mobs_ids
     run_date = request.form['nrundate']
     run_success = request.form.getlist('cbsuccess')
     
@@ -1170,7 +1201,7 @@ def add_run():
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
     mobs_ids = [int(si) for si in mobs_ids]
-    mobs_killed = MappedMob.query.filter(MappedMob.id.in_(mobs_ids)).all()
+    mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
     
     run_date = run_date.split(".")
     run_date = run_date[0]
@@ -1188,8 +1219,11 @@ def add_run():
       er.mobs_killed = mobs_killed
       er.success = success
       er.notes = notes
+      db.session.commit()
+      #finished making edits, prepare to add a new run
+      return redirect(url_for('runs'))
     else:
-      er = MappedRun(url, k.key, name, run_date, chars, mi, success, notes)
+      er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
       db.session.add(er)
     db.session.commit()
   except Exception,e:
@@ -1204,17 +1238,17 @@ def add_run():
   erc = [c.id for c in er.chars]
   
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()  
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
   
-  mis = MappedInstance.query.all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   
   return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   delete_id = None
@@ -1255,8 +1289,14 @@ def modify_runs():
       print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).first()
+      
+      mm = er.instance.mobs
+      mi = er.instance
     else:
-      er = MappedRun('', '', 'Test', datetime.now(), [], mi, True, 'Got good drops')
+      er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+      mm = er.instance.mobs
+      mi = er.instance
+      
       print 'no action to map'
   except Exception,e:
     print str(e)
@@ -1265,8 +1305,8 @@ def modify_runs():
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.all()
-  mis = MappedInstance.query.all()
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
   
   s_run = int(str(mi.id))
   sr = [s_run]
@@ -1275,9 +1315,9 @@ def modify_runs():
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
     
   action = None
@@ -1287,15 +1327,16 @@ def points():
   except:
     print 'cannot bind action'
   
-  p = db.session.query(MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  p = db.session.query(MappedPlayer.Name, MappedPlayer.id, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.id).all()
+  current_user = session['user']
   
-  return render_template('points.html', points=p)
+  return render_template('points.html', points=p, current_user=current_user)
 
 @app.route('/points_actions', methods=['GET', 'POST'])
 def points_actions():   
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1305,6 +1346,7 @@ def points_actions():
   
   try:    
     action = request.form['action']
+    
   except:
     print 'cannot get action'
  
@@ -1318,10 +1360,123 @@ def points_actions():
   
   return redirect(url_for('points'))
 
-def use_default_search_list():
-  if not session.get('logged_in'):
+@app.route('/gift_points_to', methods=['GET', 'POST'])
+def gift_points_to():   
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  gift = None
+  
+  current_user = session['user']
+  selected_player = []
+  mps = []
+  player_amount = 0
+  selected_player = []
+  if current_user:
+    mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  else:
+    mps = MappedPlayer.query.all()
+  try:
+    gift = request.form['gift']
+    gift = int(str(gift))
+  except Exception,e:
+    print str(e)
+    print 'player not found for gifting'
+  
+  try:
+    player_amount = get_points_status(session['user'])
+    selected_player = [gift]
+  except Exception,e:
+    print str(e)
+    print 'error giving gift to player'
+ 
+  return render_template('give_points.html', points_amount=player_amount, selected_player=selected_player, mappedplayers=mps)
+  
+@app.route('/gift_points', methods=['GET', 'POST'])
+def gift_points():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  current_user = session['user']
+  selected_player = []
+  mps = []
+  if current_user:
+    mps = MappedPlayer.query.filter(MappedPlayer.Email!=current_user).all()
+  else:
+    mps = MappedPlayer.query.all()
+  try:
+    selected_player_id = session['gift_player_id']
+    selected_player = [selected_player_id] 
+  except Exception,e:
+    print str(e)
+    print 'player not found for gifting'
+    
+  player_amount = get_points_status(session['user'])
+ 
+  return render_template('give_points.html', points_amount=player_amount, selected_player=selected_player, mappedplayers=mps)
+  
+@app.route('/gift_points_actions', methods=['GET', 'POST'])
+def gift_points_actions():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+ 
+  action = None
+  amount = None
+  gift_player = None
+  
+  try:    
+    action = request.form['action']
+    amount = request.form['ngiftamount']
+    val = request.form['playerlist']
+    gift_player = int(str(val))    
+  except:
+    print 'cannot get action'
+    return redirect(url_for('gift_points'))
+  
+  amount = 0 if not amount else int(amount)
+  player_amount = get_points_status(session['user'])
+  player_amount = int(player_amount)
+  if (player_amount == 0):
+    flash('No points to give!')
+    return redirect(url_for('gift_points'))
+  
+  if amount > player_amount or amount <= 0:
+    flash('Not enough points to give')
+    return redirect(url_for('gift_points'))
+  
+  if not gift_player:
+    flash('No player selected to give points!')
+    return redirect(url_for('gift_points'))
+  
+  from_player = MappedPlayer.query.filter(MappedPlayer.Email==session['user'])
+  if from_player.count() == 0:
+    flash('Could not find player points, please login again')
+    clear_session()
+    return redirect(url_for('login'))
+    
+  to_player = MappedPlayer.query.filter(MappedPlayer.id==gift_player)
+  if to_player.count() == 0:
+    flash('Player not found, please select a different player to give points to')
+    return redirect(url_for('gift_points'))
+  if from_player.all()[0].id == to_player.all()[0].id:
+    flash('Please give points to a different player')
+    return redirect(url_for('gift_points'))
+  
+  print 'trying to give points %s from %s to %s' % (amount, from_player.all()[0].Name, to_player.all()[0].Name)
+  give_points_to_player(from_player.all()[0], to_player.all()[0], amount)
+  
+  return redirect(url_for('gift_points'))
+
+def use_default_search_list():
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
     return redirect(url_for('login'))
     
   MappedMarketSearch.query.delete()
@@ -1334,9 +1489,9 @@ def use_default_search_list():
 
 @app.route('/update_search_list', methods=['GET', 'POST'])
 def update_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1384,9 +1539,9 @@ def update_search_list():
 
 @app.route('/add_to_search_list', methods=['GET', 'POST'])
 def add_to_search_list():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   itemid = ''
@@ -1418,9 +1573,9 @@ def add_to_search_list():
 
 @app.route('/update_chars', methods=['GET', 'POST'])
 def update_chars():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1494,9 +1649,9 @@ def update_chars():
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
  
   action = None
@@ -1592,9 +1747,9 @@ def add_character():
 @app.route('/import_characters', methods=['POST'])
 def import_characters():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
   
     if(len(session['doc']) <= 0):
@@ -1658,9 +1813,9 @@ def import_characters():
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
   
     if(len(session['doc']) <= 0):
@@ -1702,9 +1857,9 @@ def run_calculation():
 
 @app.route('/checkcalc', methods=['POST'])
 def checkCalculation():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   try:
@@ -1743,9 +1898,9 @@ def checkCalculation():
 @app.route('/reset', methods=['POST'])
 def reset():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
 
     if(len(session['doc']) <= 0):
@@ -1784,9 +1939,9 @@ def reset():
 @app.route('/run_points_calculation', methods=['POST'])
 def run_points_calculation():
   try:
-    if not session.get('logged_in'):
+    if not session.get('logged_in') or not session.get('user'):
       #abort(401)
-      session.pop('logged_in', None)
+      clear_session()
       return redirect(url_for('login'))
 
     #mgps = MappedGuildPoint.query.all()
@@ -1820,9 +1975,9 @@ def run_points_calculation():
 
 @app.route('/checkpointscalc', methods=['POST'])
 def checkPointsCalculation():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   try:
@@ -1867,9 +2022,9 @@ def oauth2callback():
 
 @app.route('/user_profile', methods=['GET', 'POST'])
 def user_profile():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1894,9 +2049,9 @@ def user_profile():
 
 @app.route('/update_profile', methods=['GET', 'POST'])
 def update_profile():
-  if not session.get('logged_in'):
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
-    session.pop('logged_in', None)
+    clear_session()
     return redirect(url_for('login'))
   
   action = None
@@ -1929,7 +2084,6 @@ def update_profile():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    flash('Please login again')
     try:
       resetParameters()
       error = None    
@@ -1938,7 +2092,7 @@ def login():
           if len(request.form['username']) == 0:
               error = 'Invalid username'
           else:
-              username = request.form['username'].strip()
+              username = request.form['username'].strip().lower()
               session['user'] = username
               
               #need to get mapped player by email?
@@ -2021,79 +2175,107 @@ def allowed_file(filename):
 
 #Guild Points
 
+def get_points_status(player_email):
+  player_points = db.session.query(func.sum(MappedGuildPoint.amount)).join(MappedPlayer).filter(MappedPlayer.Email==player_email).all()
+  player_amount = 0 if len(player_points) == 0 else player_points[0][0]
+  player_amount = float(player_amount) if player_amount else 0
+  
+  return player_amount
+
 def points_status():
-  return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  return db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
 def give_points_to_player(from_player, to_player, amount):
+  print 'trying to give %s points from %s to %s' % (amount, from_player.Name, to_player.Name)
   #check if player has enough points to give
   if(from_player.id == to_player.id):
     print 'cannot give points to same player'
     return
   
-  check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
-  mps = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name)
+  check_player_point_amount = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email)
   print check_player_point_amount.count()
   if check_player_point_amount.count() == 0:
     print 'not enough points'
     return
   mp = check_player_point_amount.all()[0]
+  
+  total_points = mp[2]
+  total_points = int(total_points)
   #all runs
   #mp = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == from_player.id).group_by(MappedPlayer.Name).one()
-  print mp
-  if (mp[2] < amount):
+  #print mp
+  if (total_points < amount):
     print 'not enough points'
     return
   
   #reassign credit
-  relevant_runs = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.id, MappedPlayer.Name, MappedPlayer.Email, MappedGuildPoint.amount).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id==from_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0], rr[4], rr[7]) for rr in relevant_runs]
-  print run_to_points
+  print 'total points %s ' % total_points
   
-  run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
-  rcs = {rc.id : rc for rc in run_credits}
-  print run_credits
-  
-  subtotal = 0
-  for r in run_to_points:
-    if subtotal > amount:
-      return
+  original_amount = amount
+  print 'original_amount %s ' % original_amount
+  run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == from_player.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
+  for rcp in run_credit_points:
+    if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
+      print 'credit points are 0 here'
+      continue
     
-    subtotal += r[2]
-    run_credit = rcs[r[0]]
-    run_credit.player_id = to_player.id
+    print 'amount %s' % amount
     
-  #reassign credit
-  relevant_runs = db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.id, MappedPlayer.Name, MappedPlayer.Email, MappedGuildPoint.amount).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedPlayer.id==to_player.id).filter(RunCredit.factor > 0).all()
-  run_to_points = [(rr[0], rr[4], rr[7]) for rr in relevant_runs]
-  print run_to_points
-  
-  run_credits = RunCredit.query.filter(RunCredit.id.in_([rp[0] for rp in run_to_points])).all()
-  rcs = {rc.id : rc for rc in run_credits}
-  print run_credits
-  
-  subtotal = 0
-  for r in run_to_points:
-    if subtotal > amount:
+    if amount <= 0:
+      print 'done gifting %s remaining points to gift %s' % (original_amount, amount)
+      #no more points
       break
     
-    subtotal += r[2]
-    run_credit = rcs[r[0]]
-    run_credit.factor = 0
-    run_credit.player_id = from_player.id
-  
+    if amount > rcp[1].amount: 
+      print 'amount > credit points'
+      print 'reassigning points to new player %s %s' % (rcp, amount)
+      rcp[0].player_id = to_player.id
+      amount -= rcp[1].amount
+      print 'reassigned points to new player %s %s' % (rcp, amount)
+    else:
+      print 'amount <= credit points'
+      
+      remaining_amount = float(rcp[1].amount) - float(amount)
+      remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
+      diff_factor = float(rcp[0].factor) - float(remaining_factor)
+      rc_exists = RunCredit.query.filter(RunCredit.player_id==to_player.id).filter(RunCredit.run_id==rcp[0].run_id)
+      
+      if rc_exists.count() > 0:
+        rc = rc_exists.all()[0]
+        rc.factor += diff_factor
+      else:
+        #reallocate points to new run credit
+        rc = RunCredit(diff_factor)
+        rc.player_id = to_player.id
+        rc.run_id = rcp[0].run_id
+        db.session.add(rc)
+      
+      #should we reassign guild points here?
+      #use factor for reallocation purposes.  bulk points into one big guild point
+      print 'remaining amount %s' % remaining_amount
+      print 'remaining factor %s' % remaining_factor
+      rcp[0].factor = remaining_factor
+      db.session.commit()
+      #update points
+      #rcp[1].amount = remaining_amount
+      
+      amount = 0 
+      
   db.session.commit()
   
   #calc points
-  mgp_from_player = MappedGuildPoint(-1 * amount)
+  mgp_from_player = MappedGuildPoint(-1 * original_amount)
   from_player.Points.append(mgp_from_player)
-  mgp_to_player = MappedGuildPoint(amount)
+  mgp_to_player = MappedGuildPoint(original_amount)
   to_player.Points.append(mgp_to_player)
 
+  d = datetime.now()
   #need to link to guild transaction
-  mgt = MappedGuildTransaction('gift', datetime.now())
+  mgt = MappedGuildTransaction('gift', d)
   mgt.gift_to_player_id = to_player.id
   mgt.player_id = from_player.id
   mgt.to_player_name = to_player.Name
+  mgp_from_player.Transaction = mgt
   from_player.Transactions.append(mgt)
   mgp_to_player.guildtransaction = mgt
   
@@ -2102,16 +2284,16 @@ def give_points_to_player(from_player, to_player, amount):
   
   db.session.commit()
   
-  print db.session.query(RunCredit.id, RunCredit.run_id, MappedRun.instance_name, RunCredit.factor, MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Name).all()
+  #print db.session.query(RunCredit, MappedRun, MappedPlayer.Name, func.sum(MappedGuildPoint.amount)).join(MappedRun).join(MappedPlayer).join(MappedGuildPoint).filter(MappedRun.success == True).group_by(MappedPlayer.Name).group_by(RunCredit).group_by(MappedRun).all()
   
   #get the player to points total
-  print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).all()
+  #print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()
   
-  print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildPoint.amount).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).all()
+  print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).group_by(MappedGuildTransaction.transType).group_by(MappedGuildTransaction.transDate).all()
   
   #who gave anything to anyone
   players_gifts = db.session.query(MappedPlayer.Name, MappedPlayer.Email, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount).join(MappedGuildTransaction).join(MappedGuildPoint).all()
-  print players_gifts
+  #print players_gifts
 
 def loginScraper(username, password):
   marketscraper.login(username, password)
@@ -2121,7 +2303,7 @@ def refreshMarket(search_items = {}):
   item_results = marketscraper.get_scrape_results(search_items)
   return item_results    
   
-def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}): 
+def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}, d = datetime.now()): 
   #get relevant data for run 
   #assume that players conform to Character class
   runname = run.instance.name
@@ -2156,33 +2338,42 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
   
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
-  player_ids = [p for p in players]
-  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0).filter(MappedPlayer.id.in_(player_ids))
-  
+  player_ids = [p.id for p in mps]
+  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
   mg = MappedGuild.query.one()
   mapped_points = []
-  if relevant_runs_query.count() > 0:
+  rrq = relevant_runs_query.filter(MappedPlayer.id.in_(player_ids))
+  if rrq.count() > 0:
     print 'found relevant runs'
-    relevant_runs = relevant_runs_query.all()
+    relevant_runs = rrq.all()
     
     run.points = []
     for rr in relevant_runs:
-      rc = rr[0]
-      mp = rr[1]
-      mgp = rr[2]
+      rc, mp, mgp = rr[0], rr[1], rr[2]
       mgp.amount = rc.factor * points_per_player
+      print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
-  else:
+  
+  check_existing = db.session.query(RunCredit, MappedPlayer).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
+  ces = check_existing.filter(MappedPlayer.id.in_(player_ids))
+  found_players = [ce[1].id for ce in ces.all()]
+  found_players = list(set(found_players))
+  not_found_players = list(set(player_ids) - set(found_players))
+  if len(not_found_players) > 0:
+    not_found_players_query = MappedPlayer.query.filter(MappedPlayer.id.in_(not_found_players)).all()  
+    
     print 'adding points for a new run'
     #if this is a new run
     mapped_points = []
-    for p in mps:
-      mgp = MappedGuildPoint(points_per_player)
+    for p in not_found_players_query:
+      rc = RunCredit(1.0)
+      mgp = MappedGuildPoint(rc.factor * points_per_player)
+      print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
       run.points.append(mgp)
-      rc = RunCredit(1.0)
       run.credits.append(rc)
+      mg.guildPoints.append(mgp)
       p.Credits.append(rc)
       db.session.add(mgp)
       db.session.add(rc)
@@ -2199,11 +2390,16 @@ def AddMissingSearchItems(mob_items, drop_items):
          
   #add missing item ids to search list
   not_searched = list(set(drop_items) - set(mms_item_ids))
+  if len(not_searched) == 0:
+    print 'nothing to add'
+    return
+  
   #get the missing item names from items db
   item_id_name = marketscraper.get_item_name_scrape_results(not_searched)
   print item_id_name
   for ns in not_searched:
-    db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
+    if ns in item_id_name:
+      db.session.add(MappedMarketSearch(True, ns, item_id_name[ns]))
   db.session.commit()
   
   #update market results takes place by market scraper (scraperclock)
@@ -2312,33 +2508,18 @@ def RecalculatePoints():
     chars_to_map = [pc for pc in players_not_mapped_characters if pc.PlayerName == pn]
     mp.Chars = chars_to_map
     db.session.commit()
-  
-  #zero out current points
-  mg = MappedGuild.query.one()
-  zero_out_points = db.session.query(MappedPlayer, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer).all()
-  for zop in zero_out_points:
-    mgp = MappedGuildPoint(-1 * zop[1])
-    zop[0].Points.append(mgp)
-    mgt = MappedGuildTransaction('Recalc', datetime.now())
-    mgt.player_id = zop[0].id
-    zop[0].Transactions.append(mgt)
-    mg.guildTransactions.append(mgt)
-    mg.guildPoints.append(mgp)
-  db.session.commit()
-  
-  print 'zeroed out current points'
-  
+    
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
-    CalculatePoints(run, run.mobs_killed, players, market_results) 
+    CalculatePoints(run, run.mobs_killed, players, market_results, d) 
 
 def BuyTreasure(mappedGuildTreasure, mappedPlayer):
-  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
+  player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
   total_points = player_points[2]
   price = mappedGuildTreasure.minMarketPrice * mappedGuildTreasure.amount
   
-  if total_points < price:
+  if price > total_points:
     #not enough points
     print 'not enough points'
     return
@@ -2351,30 +2532,39 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
-    if total_points > rcp[1].amount: 
-      rcp[0].factor = 0.0
-      total_points -= rcp[1].amount
-      #rcp[1].amount = 0.0
-    elif total_points > 0:
-      if float(rcp[0].factor) == 0:
-        print 'current factor is 0'
-        continue
-      print 'updating remaining factor'
-      remaining_amount = float(total_points) - float(rcp[1].amount)
-      remaining_factor = float(remaining_amount) / float(rcp[0].factor) 
-      rcp[0].factor = remaining_factor
-      #rcp[1].amount = remaining_amount
-    else:
+    if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
+      print 'credit points are 0 here'
+      continue
+    
+    print 'total points %s ' % total_points
+    print 'price %s' % price
+    
+    if price <= 0:
       #no more points
       break
-   
+    
+    if price > rcp[1].amount: 
+      rcp[0].factor = 0
+      price -= rcp[1].amount
+      rcp[1].amount = 0
+    else:
+      remaining_amount = float(rcp[1].amount) - float(price)
+      remaining_factor = (float(remaining_amount) / float(rcp[1].amount)) * (float(rcp[0].factor))
+      
+      print 'remaining amount %s' % remaining_amount
+      print 'remaining factor %s' % remaining_factor
+      rcp[0].factor = remaining_factor
+      #update points
+      rcp[1].amount = remaining_amount
+      price -= remaining_amount
+    
   db.session.commit()
   
   #calc points
   mgp_from_player = MappedGuildPoint(-1 * price)
   mappedPlayer.Points.append(mgp_from_player)
     
-  #need to link to guild transaction
+  #need to link to guild transaction but not to run
   mgt = MappedGuildTransaction('purchase', datetime.now())
   mgt.player_id = mappedPlayer.id
   mappedPlayer.Transactions.append(mgt)
@@ -2392,6 +2582,10 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   #get the player to points total
   print db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).group_by(MappedPlayer.Name).join(MappedRun).filter(MappedRun.success == True).group_by(MappedPlayer.Email).all()    
 
+def clear_session():
+  session.pop('logged_in', None)
+  session.pop('user', None)
+  
 
 if __name__ == "__main__":
   db.create_all()
