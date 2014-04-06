@@ -2530,6 +2530,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   #5 points remaining
   #0.0 - 0 0.0 - 0 .25 - 1
   
+  original_price = price
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
     if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
@@ -2561,7 +2562,7 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   db.session.commit()
   
   #calc points
-  mgp_from_player = MappedGuildPoint(-1 * price)
+  mgp_from_player = MappedGuildPoint(-1 * original_price)
   mappedPlayer.Points.append(mgp_from_player)
     
   #need to link to guild transaction but not to run
