@@ -895,7 +895,7 @@ def modify_treasure():
     #check if the mapped guild treasure is in list
     mgt_del = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).all()
     for mgt_d in mgt_del:
-      mg.remove(mgt_d)  
+      mg.guildTreasures.remove(mgt_d)  
     del_count = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == dt_ids[0]).delete()
     print 'deleted %s items' % del_count
   if len(edit_treasures) > 0:
