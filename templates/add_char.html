@@ -22,8 +22,10 @@
 		  <input type="text" class="form-control" name=charplayername id="charplayername" placeholder="Billy" value="{{ editcharacter.PlayerName }}"></input>
 	  </div>
 	  <div class="form-group">
-		  <label for="charpresent">Present</label>
-		  <input type="checkbox" class="boolean optional form-control" name=charpresent id="charpresent" value="{{ editcharacter.Present }}"></input>
+	      <label for="charpresent">Present?</label>
+		  <label>
+		    <input type="checkbox" class="boolean optional form-control" name=charpresent id="charpresent" value="{{ editcharacter.Present }}"></input>
+		  </label>
 		  <p class="help-block">Is the character online?</p>
 	  </div>
 	  <h3>Quests Completed</h3>
