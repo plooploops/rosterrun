@@ -480,7 +480,7 @@ def show_entries():
   all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
   aqns = [aqn[1] for aqn in all_quest_names]
   quests = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
-  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
   ec.Quests = quests
   ecq = [q.id for q in ec.Quests]
   
@@ -1604,37 +1604,15 @@ def update_chars():
       db.engine.execute(d)
       db.session.delete(mcd)
     db.session.commit()
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
     ec.Quests = mi.quests
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
     ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids[0]).all()[0]
   else:
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 1)
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
     ec.Quests = mi.quests
     print 'no action to map'
-  
-  try:
-    if 'g_spreadsheet_id' in session and 'g_worksheet_id' in session:
-      print 'already have ids in session ', session['g_spreadsheet_id'], session['g_worksheet_id']
-      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-    else:
-      print 'could not find the spreadsheet id'
-      #try to retrieve the token from the db
-      loginConfiguration(session['user'])
-      user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      credentials = storage.get()   
-      if credentials is None:
-        session.pop('logged_in', None)
-        return redirect(url_for('login'))
-      (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
-      session['g_spreadsheet_id'] = g_s_id
-      session['g_worksheet_id'] = g_w_id    
-      curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
-  except:
-    print 'issue finding the available parties'
-    resetLookupParameters()
   
   all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
   aqns = [aqn[1] for aqn in all_quest_names]
@@ -1644,8 +1622,42 @@ def update_chars():
   
   ecq = [q.id for q in ec.Quests]
   #map points back from characters and guild?
+  
+  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+  
+  if len(edit_id) > 0:
+    return render_template('add_char.html', editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs)
+  else:
+    return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs) 
+
+@app.route('/add_char', methods=['GET', 'POST'])
+def add_character():
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+ 
+  action = None
+  chars = []
+  curChars = []
+  ec = None
+  char_id = None
+  quests = []  
+  ecq = []
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
     
-  return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs,)
+  all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
+  aqns = [aqn[1] for aqn in all_quest_names]
+  mqs = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
+  
+  print 'mapped quests %s ' % mqs
+  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+  
+  print 'edit char mapped quests %s ' % ecq
+  
+  #map points back from characters and guild?
+    
+  return render_template('add_char.html', editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
@@ -1737,7 +1749,7 @@ def add_character():
   print 'mapped quests %s ' % mqs
   curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   
-  
+  flash('Updated Character!')
   print 'edit char mapped quests %s ' % ecq
   
   #map points back from characters and guild?
