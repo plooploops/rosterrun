@@ -1699,7 +1699,8 @@ def add_character():
   quests = MappedQuest.query.filter(MappedQuest.id.in_(charquests)).all()
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
-  charpresent = str(request.form['charpresent'])
+  charpresent_raw = request.form['charpresent']
+  charpresent = str(True) if charpresent_raw == 1 else str(False)
   
   print charpresent
   
