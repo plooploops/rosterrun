@@ -2,6 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Treasury</h1><h3 class="text-right">My Points: {{ "{:,.0f}".format(points_amount)|safe }}</h3>
+    <p>If you don't see your points here, please update your <a href="{{ url_for('user_profile') }}">Profile</a> and recalculate points!</p>
     <form action="{{ url_for('modify_treasure') }}" method=post class=modify-treasury>
     <div class="table-responsive">
     <table class="table table-striped treasure">
