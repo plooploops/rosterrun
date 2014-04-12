@@ -1684,8 +1684,9 @@ def add_character():
     print char_id
     
     charpresent_raw = request.form.getlist("charpresent")
+    charpresent_raw = str(charpresent_raw).lower()
     print charpresent_raw
-    charpresent = str(True) if charpresent_raw == 1 else str(False)
+    charpresent = str(True) if charpresent_raw == 'on' else str(False)
   except:
     print 'cannot find gdoc name'
   
