@@ -2,7 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Points</h1>
-    <label>If you don't see your points here, please update your profile and recalculate points!</label>
+    <p>If you don't see your points here, please update your <a href="{{ url_for('user_profile') }}">Profile</a> and recalculate points!</p>
     <form action="{{ url_for('points_actions') }}" method=post class=run-calculation>
 	  <dl>
 	    <dd><button type=submit class="btn btn-primary" name=action value='Calculate'>Calculate</button>
@@ -21,7 +21,7 @@
         <tr>
         <td>{{ p[0]|safe}}</td>
         <td>{{ "{:,.0f}".format(p[2])|safe }}</td>
-        <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn btn-primary" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
+        <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
       {% endfor %}
       </table>
       </div>
