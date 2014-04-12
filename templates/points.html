@@ -21,7 +21,7 @@
         <tr>
         <td>{{ p[0]|safe}}</td>
         <td>{{ "{:,.0f}".format(p[2])|safe }}</td>
-        <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
+        <td>{% if not p[1] == current_user %} <dd><button type=submit class="btn btn-primary" name=gift value="{{ p[1] }}">Gift</button> {% endif %}</td>
       {% endfor %}
       </table>
       </div>

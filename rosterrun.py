@@ -1725,17 +1725,14 @@ def add_character():
     
   if len(char_id) > 0:
     dc_ids = [str(dt) for dt in char_id]
-    if dc_ids[0] == u'None':    
-      #adding new character
-      ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charlastrun, charplayername, charpresent)
-      ec.Quests = quests
+  if dc_ids[0] == u'None':    
+    #adding new character
+    ec = MappedCharacter(g_spreadsheet_id, g_worksheet_id, charclass, charname, charrole.Name, charlastrun, charplayername, charpresent)
+    ec.Quests = quests
+     
+    ecq = [q.id for q in ec.Quests]
       
-      ecq = [q.id for q in ec.Quests]
-      
-      print 'editing character present %s ' % ec.Present
-      print 'character present %s ' % charpresent
-      
-      db.session.add(ec)
+    db.session.add(ec)
   else:
     #editing a character
     ec = MappedCharacter.query.filter(MappedCharacter.id == dc_ids[0]).all()[0]
@@ -1748,9 +1745,7 @@ def add_character():
     ec.Present = charpresent
     
     ecq = [q.id for q in ec.Quests]
-    print 'editing character present %s ' % ec.Present
-    print 'character present %s ' % charpresent
-  
+    
   db.session.commit()
   
   all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
