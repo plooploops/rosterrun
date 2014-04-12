@@ -1679,16 +1679,14 @@ def add_character():
   try:
     char_id = request.form.getlist("add")
     charquests = request.form.getlist("cbquests")
-    print charquests
     #Update for quests
-    print char_id
     
     charpresent_raw = request.form.getlist("charpresent")
     charpresent_raw = str(charpresent_raw).lower()
-    print charpresent_raw
-    charpresent = str(True) if charpresent_raw == 'on' else str(False)
-  except:
-    print 'cannot find gdoc name'
+    charpresent = str(True) if charpresent_raw == u'on' else str(False)
+  except Exception,e:
+    print str(e)
+    print 'error finding character values'
   
   charclass_id = int(request.form['charclass'])
   charclass = character_classes[charclass_id]
