@@ -8,7 +8,7 @@
 	    <label for="ngiftamount">Gift Amount</label>
 	    <input type="number" class="form-control" id="ngiftamount" name=ngiftamount placeholder="{{ "{:,.0f}".format(points_amount)|safe }}"></input>
 	  </div>
-	  <select name="playerlist">
+	  <select class="form-control" name="playerlist">
 	    {% for mp in mappedplayers %}
 	      <option {% if mp.id in selected_player %} selected="True" {% endif %} value={{ mp.id|safe }}>{{ mp.Name|safe }}</option>
 	    {% endfor %}
