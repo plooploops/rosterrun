@@ -4,7 +4,7 @@ from worker import conn
 
 import os
 from flask import Flask
-from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles
+from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles, roleUnmapped
 from scheduler import Character, Role, Instance
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
@@ -1684,7 +1684,8 @@ def add_character():
   except:
     print 'cannot find gdoc name'
   
-  charclass = str(request.form['charclass'])
+  charclass_id = int(request.form['charclass'])
+  charclass = character_classes[charclass_id]
   print charclass
   charrole = None
   roleMap = [r for r in AllRoles if charclass in r.Classes]

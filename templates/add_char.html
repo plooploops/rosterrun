@@ -4,8 +4,8 @@
     <h1 class="page-header">Add Character</h1>
     <form action="{{ url_for('add_character') }}" method=post>
 	  <select class="form-control" name="charclass">
-	    {% for cc in charclasses %}
-	  	  <option {% if cc in selected_class %} selected="True" {% endif %} value={{ cc|safe }}>{{ cc|safe }}</option>
+	    {% for cc, val in charclasses.iteritems() %}
+	  	  <option {% if val in selected_class %} selected="True" {% endif %} value={{ cc|safe }}>{{ val|safe }}</option>
 	    {% endfor %}
 	  </select>
 	  <div class="form-group">
