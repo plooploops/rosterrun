@@ -1623,7 +1623,7 @@ def update_chars():
   ecq = [q.id for q in ec.Quests]
   #map points back from characters and guild?
   
-  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+  curChars = MappedCharacter.query.all()
   
   if len(edit_id) > 0:
     return render_template('add_char.html', editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs)
@@ -1651,7 +1651,6 @@ def add_char():
   mqs = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
   
   print 'mapped quests %s ' % mqs
-  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
   
   print 'edit char mapped quests %s ' % ecq
   
@@ -1747,7 +1746,7 @@ def add_character():
   mqs = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
   
   print 'mapped quests %s ' % mqs
-  curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+  curChars = MappedCharacter.query.all()
   
   flash('Updated Character!')
   print 'edit char mapped quests %s ' % ecq
