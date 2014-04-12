@@ -3,9 +3,12 @@
   {% if session.logged_in %}
     <h1 class="page-header">Roster</h1>
     <form action="{{ url_for('viable_parties') }}" method=post class=run-calculation>
+      <div class="form-group">
+	    <label for="gdocname">Google Document</label>
+	    <input type="text" class="form-control" name=gdocname id="gdocname" placeholder="Quest Status">
+	    <p class="help-block"><a href="https://docs.google.com/spreadsheet/ccc?key=0AmzfL1xpw-ENdDNsWll2RTNYRlVDOE81cE9OSmM1aEE&usp=sharing">Example Quest Status</a></p>
+	  </div>
       <dl>
-        <dt>Google Document:
-        <dd><input type=text name=gdocname placeholder="Quest Status">
         <button type=submit class="btn btn-primary" name=action value='Calculate'>Calculate</button>
         <button type=submit class="btn btn-default" name=action value='Refresh'>Refresh</button>
       </dl>

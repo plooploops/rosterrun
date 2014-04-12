@@ -3,7 +3,7 @@
   {% if session.logged_in %}
     <h1 class="page-header">Current Results</h1>
     <form method=post action="{{ url_for('item_current_results') }}" class=item-history>
-    <select name="itemslist">
+    <select class="form-control" name="itemslist">
       {% for ms in marketsearchs %}
         <option value={{ ms.itemid|safe }}>{{ ms.name|safe }}</option>
       {% endfor %}

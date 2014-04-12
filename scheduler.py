@@ -53,7 +53,7 @@ class Combination:
 roleHealer = Role('Healer', ['High Priest', 'Priest'])
 roleKiller = Role('Killer', ['Creator'])
 roleSPKiller = Role('SPKiller', ['Champion'])
-roleLurer = Role('Lurer', ['Lord Knight', 'Paladin', 'Whitesmith'])
+roleLurer = Role('Lurer', ['Lord Knight', 'Paladin', 'Whitesmith', 'Assassin Cross', 'Stalker', 'Knight', 'Crusader', 'Blacksmith', 'Assassin'])
 roleSupport = Role('Support', ['Bard', 'Clown'])
 roleSPBoost = Role('SPBoost', ['Dancer', 'Gypsy'])
 roleSPActive = Role('SPActive', ['Professor'])

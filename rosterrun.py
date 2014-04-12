@@ -37,6 +37,7 @@ from marketscrape import *
 from marketvalue import *
 from mathutility import *
 from items_map import *
+from char_class_map import *
 
 import pygal
 from pygal.style import LightStyle
@@ -480,7 +481,7 @@ def show_entries():
   all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
   aqns = [aqn[1] for aqn in all_quest_names]
   quests = MappedQuest.query.filter(MappedQuest.id.in_(aqns)).all()
-  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, datetime.now(), 'Billy', 'true')
   ec.Quests = quests
   ecq = [q.id for q in ec.Quests]
   
@@ -1604,13 +1605,13 @@ def update_chars():
       db.engine.execute(d)
       db.session.delete(mcd)
     db.session.commit()
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, datetime.now(), 'Billy', 'true')
     ec.Quests = mi.quests
   elif len(edit_id) > 0:
     ec_ids = [ed for ed in edit_id]
     ec = MappedCharacter.query.filter(MappedCharacter.id == ec_ids[0]).all()[0]
   else:
-    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
+    ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, datetime.now(), 'Billy', 'true')
     ec.Quests = mi.quests
     print 'no action to map'
   
@@ -1624,9 +1625,10 @@ def update_chars():
   #map points back from characters and guild?
   
   curChars = MappedCharacter.query.all()
-  
+  ccs = character_classes
+  selected_class = [str(ec.Class)]
   if len(edit_id) > 0:
-    return render_template('add_char.html', editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs)
+    return render_template('add_char.html', selected_class = selected_class, charclasses = ccs, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs)
   else:
     return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs) 
 
@@ -1644,7 +1646,7 @@ def add_char():
   char_id = None
   quests = []  
   ecq = []
-  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, None, 'Billy', 'true')
+  ec = MappedCharacter(session['g_spreadsheet_id'], session['g_worksheet_id'], 'High Wizard', 'Billdalf', None, datetime.now(), 'Billy', 'true')
     
   all_quest_names = db.session.query(MappedQuest.name, func.max(MappedQuest.id)).group_by(MappedQuest.name).all()
   aqns = [aqn[1] for aqn in all_quest_names]
@@ -1655,8 +1657,9 @@ def add_char():
   print 'edit char mapped quests %s ' % ecq
   
   #map points back from characters and guild?
-    
-  return render_template('add_char.html', editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
+  ccs = character_classes
+  selected_class = [str(ec.Class)]  
+  return render_template('add_char.html', selected_class = selected_class, charclasses = ccs, editcharacter=ec, mappedquests=mqs, edit_character_quests=ecq)
 
 @app.route('/add_character', methods=['GET', 'POST'])
 def add_character():
@@ -1693,6 +1696,9 @@ def add_character():
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
   charpresent = str(request.form['charpresent'])
+  
+  print charpresent
+  
   g_spreadsheet_id = None
   g_worksheet_id = None
   
