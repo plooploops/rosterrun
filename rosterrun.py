@@ -1685,10 +1685,13 @@ def add_character():
     print 'cannot find gdoc name'
   
   charclass = str(request.form['charclass'])
+  print charclass
   charrole = None
   roleMap = [r for r in AllRoles if charclass in r.Classes]
   if len(roleMap) > 0:
     charrole = roleMap[0]
+  else:
+    charrole = roleUnmapped
   charname = str(request.form['charname'])
   
   charquests = [int(str(cq)) for cq in charquests]
