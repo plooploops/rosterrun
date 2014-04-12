@@ -1731,6 +1731,10 @@ def add_character():
       ec.Quests = quests
       
       ecq = [q.id for q in ec.Quests]
+      
+      print 'editing character present %s ' % ec.Present
+      print 'character present %s ' % charpresent
+      
       db.session.add(ec)
   else:
     #editing a character
@@ -1744,6 +1748,8 @@ def add_character():
     ec.Present = charpresent
     
     ecq = [q.id for q in ec.Quests]
+    print 'editing character present %s ' % ec.Present
+    print 'character present %s ' % charpresent
   
   db.session.commit()
   
