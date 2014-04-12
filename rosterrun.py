@@ -1631,7 +1631,7 @@ def update_chars():
     return render_template('show_entries.html', characters=curChars, editcharacter=ec, edit_character_quests=ecq,mappedquests=mqs) 
 
 @app.route('/add_char', methods=['GET', 'POST'])
-def add_character():
+def add_char():
   if not session.get('logged_in') or not session.get('user'):
     #abort(401)
     clear_session()
