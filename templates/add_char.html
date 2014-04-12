@@ -3,11 +3,14 @@
   {% if session.logged_in %}
     <h1 class="page-header">Add Character</h1>
     <form action="{{ url_for('add_character') }}" method=post>
-	  <select class="form-control" name="charclass">
-	    {% for cc, val in charclasses.iteritems() %}
-	  	  <option {% if val in selected_class %} selected="True" {% endif %} value={{ cc|safe }}>{{ val|safe }}</option>
-	    {% endfor %}
-	  </select>
+	  <div class="form-group">
+	  	  <label for="charclass">Class</label>
+          <select class="form-control" name="charclass">
+     	    {% for cc, val in charclasses.iteritems() %}
+	  	      <option {% if val in selected_class %} selected="True" {% endif %} value={{ cc|safe }}>{{ val|safe }}</option>
+	        {% endfor %}
+	      </select>
+	  </div>
 	  <div class="form-group">
 		  <label for="charname">Name</label>
 		  <input type="text" class="form-control" name=charname id="charname" placeholder="Billdalf" value="{{ editcharacter.Name }}"></input>
