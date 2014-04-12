@@ -1682,10 +1682,7 @@ def add_character():
     #Update for quests
     
     charpresent_raw = request.form.getlist("charpresent")
-    charpresent_raw = str(charpresent_raw).lower()
-    print 'charpresent_raw %s ' % charpresent_raw
-    charpresent = str(True) if charpresent_raw == u'on' else str(False)
-    charpresent = charpresent.lower()
+    charpresent = 'true' if len(charpresent_raw) > 0 else 'false'
     print 'charpresent %s ' % charpresent
   except Exception,e:
     print str(e)
