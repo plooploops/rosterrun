@@ -1675,12 +1675,17 @@ def add_character():
   char_id = None
   quests = []  
   ecq = []
+  charpresent = 'false'
   try:
     char_id = request.form.getlist("add")
     charquests = request.form.getlist("cbquests")
     print charquests
     #Update for quests
     print char_id
+    
+    charpresent_raw = request.form['charpresent']
+    print charpresent_raw
+    charpresent = str(True) if charpresent_raw == 1 else str(False)
   except:
     print 'cannot find gdoc name'
   
@@ -1699,10 +1704,8 @@ def add_character():
   quests = MappedQuest.query.filter(MappedQuest.id.in_(charquests)).all()
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
-  charpresent_raw = request.form['charpresent']
-  print charpresent_raw
-  charpresent = str(True) if charpresent_raw == 1 else str(False)
   
+  charpresent = charpresent.lower()
   print charpresent
   
   g_spreadsheet_id = None
