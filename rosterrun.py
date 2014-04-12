@@ -1700,6 +1700,7 @@ def add_character():
   charlastrun = str(request.form['charlastrun'])
   charplayername = str(request.form['charplayername'])
   charpresent_raw = request.form['charpresent']
+  print charpresent_raw
   charpresent = str(True) if charpresent_raw == 1 else str(False)
   
   print charpresent
