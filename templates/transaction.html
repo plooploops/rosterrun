@@ -14,11 +14,11 @@
     </tr>
     {% for p in purchases %}
       <tr>
-      <td>{{ t[2].Name|safe }}</td>
-      <td>{{ t[1].transDate|safe }}</td>
-      <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
+      <td>{{ p[2].Name|safe }}</td>
+      <td>{{ p[1].transDate|safe }}</td>
+      <td>{{ "{:,.0f}".format(p[0].amount)|safe }}</td>
       <td>
-        <dd>{{ t[2].Name|safe }} Bought {{ t[0].amount|safe }} {{ t[0].name|safe }} for {{ "{:,.0f}".format(t[0].amount * t[0].minMarketPrice) }}
+        <dd>{{ p[2].Name|safe }} Bought {{ p[0].amount|safe }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }}
       </td>
     {% endfor %}
     </table>
@@ -34,12 +34,12 @@
 	    </tr>
 	    {% for g in gifts %}
 	      <tr>
-	      <td>{{ t[2].Name|safe }}</td>
-	      <td>{{ t[0].transDate|safe }}</td>
-	      <td>{{ "{:,.0f}".format(t[1].amount)|safe }}</td>
+	      <td>{{ g[2].Name|safe }}</td>
+	      <td>{{ g[0].transDate|safe }}</td>
+	      <td>{{ "{:,.0f}".format(g[1].amount)|safe }}</td>
 	      <td>
 	        <dd>
-	          {{ t[2].Name|safe }} Gave points to {{ t[0].to_player_name|safe }}
+	          {{ g[2].Name|safe }} Gave points to {{ g[0].to_player_name|safe }}
 	      </td>
 	    {% endfor %}
 	    </table>
