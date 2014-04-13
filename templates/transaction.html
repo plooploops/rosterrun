@@ -34,12 +34,12 @@
 	    </tr>
 	    {% for g in gifts %}
 	      <tr>
-	      <td>{{ g[2].Name|safe }}</td>
-	      <td>{{ g[0].transDate|safe }}</td>
-	      <td>{{ "{:,.0f}".format(g[1].amount)|safe }}</td>
+	      <td>{{ g[0]|safe }}</td>
+	      <td>{{ g[1]|safe }}</td>
+	      <td>{{ "{:,.0f}".format(g[3])|safe }}</td>
 	      <td>
 	        <dd>
-	          {{ g[2].Name|safe }} Gave points to {{ g[0].to_player_name|safe }}
+	          {{ g[0]|safe }} Gave points to {{ g[2]|safe }}
 	      </td>
 	    {% endfor %}
 	    </table>

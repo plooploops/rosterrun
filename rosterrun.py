@@ -1075,15 +1075,15 @@ def transaction():
                         .join(MappedGuildTransaction) \
                         .join(MappedPlayer).all()
   
-  gifts = db.session.query(MappedGuildTransaction, MappedGuildPoint, MappedPlayer) \
-                    .join(MappedGuildPoint) \
-                    .join(MappedPlayer) \
-                    .filter(MappedGuildTransaction.transType.in_(['gift'])) \
-                    .order_by(desc(MappedGuildTransaction.transDate)).all()
+  players_gifts = db.session.query(MappedPlayer.Name, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount) \
+                            .join(MappedGuildTransaction) \
+                            .join(MappedGuildPoint) \
+                            .filter(MappedGuildTransaction.transType.in_(['gift'])) \
+                            .order_by(desc(MappedGuildTransaction.transDate)).all()
   
   player_amount = get_points_status(session['user'])
 
-  return render_template('transaction.html', purchases=purchases, gifts=gifts, points_amount=player_amount)
+  return render_template('transaction.html', purchases=purchases, gifts=players_gifts, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
@@ -2343,7 +2343,7 @@ def give_points_to_player(from_player, to_player, amount):
   print db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedGuildTransaction).group_by(MappedPlayer).group_by(MappedGuildTransaction.transType).group_by(MappedGuildTransaction.transDate).all()
   
   #who gave anything to anyone
-  players_gifts = db.session.query(MappedPlayer.Name, MappedPlayer.Email, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount).join(MappedGuildTransaction).join(MappedGuildPoint).all()
+  players_gifts = db.session.query(MappedPlayer.Name, MappedGuildTransaction.transType, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount).join(MappedGuildTransaction).join(MappedGuildPoint).all()
   #print players_gifts
 
 def loginScraper(username, password):
