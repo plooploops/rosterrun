@@ -39,7 +39,7 @@
           {% else %}
             <dd>
               <button type=submit class="btn btn-primary" name=buy value="{{ t[0].id }}">Buy</button>
-              <p class="help-block">Buy for {{ "{:,.0f}".format(t[0].minMarketPrice * t[0].amoun) }} points</p>
+              <p class="help-block">Buy for {{ "{:,.0f}".format(t[0].minMarketPrice * t[0].amount) }} points</p>
           {% endif %}</td>
     {% endfor %}
     </table>
