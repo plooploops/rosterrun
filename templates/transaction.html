@@ -18,7 +18,7 @@
       <td>{{ p[1].transDate|safe }}</td>
       <td>{{ "{:,.0f}".format(p[0].amount)|safe }}</td>
       <td>
-        <dd>{{ p[2].Name|safe }} Bought {{ p[0].amount|safe }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }}
+        <dd>{{ p[2].Name|safe }} Bought {{ "{:,.0f}".format(p[0].amount) }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }}
       </td>
     {% endfor %}
     </table>
