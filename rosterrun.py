@@ -1005,14 +1005,6 @@ def add_treasure():
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
   
-  print 'min market price from scrape %s' % minMarketPrice
-  print 'max market price from scrape %s' % maxMarketPrice
-  print 'median market price from scrape %s' % medianMarketPrice
-  
-  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
-  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
-  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
-  
   #if the user makes a suggested market price then run with it
   if suggestedMinMarketPrice > 0:
     minMarketPrice = suggestedMinMarketPrice
@@ -1026,14 +1018,6 @@ def add_treasure():
     medianMarketPrice = suggestedMedianMarketPrice
   if len(str(medianMarketPrice)) == 0:
     medianMarketPrice = 0
-  
-  print 'min market price from scrape %s' % minMarketPrice
-  print 'max market price from scrape %s' % maxMarketPrice
-  print 'median market price from scrape %s' % medianMarketPrice
-  
-  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
-  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
-  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
   
   edit_ids = [dt for dt in add_treasures if dt != u'None']
   print edit_ids
