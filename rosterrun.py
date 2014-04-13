@@ -1076,7 +1076,7 @@ def transaction():
   
   player_amount = get_points_status(session['user'])
 
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('transaction.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
