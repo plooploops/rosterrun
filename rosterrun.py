@@ -1005,6 +1005,14 @@ def add_treasure():
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
   
+  print 'min market price from scrape %s' % minMarketPrice
+  print 'max market price from scrape %s' % maxMarketPrice
+  print 'median market price from scrape %s' % medianMarketPrice
+  
+  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
+  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
+  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
+  
   #if the user makes a suggested market price then run with it
   if suggestedMinMarketPrice > 0:
     minMarketPrice = suggestedMinMarketPrice
@@ -1018,6 +1026,14 @@ def add_treasure():
     medianMarketPrice = suggestedMedianMarketPrice
   if len(str(medianMarketPrice)) == 0:
     medianMarketPrice = 0
+  
+  print 'min market price from scrape %s' % minMarketPrice
+  print 'max market price from scrape %s' % maxMarketPrice
+  print 'median market price from scrape %s' % medianMarketPrice
+  
+  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
+  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
+  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
   
   edit_ids = [dt for dt in add_treasures if dt != u'None']
   print edit_ids
@@ -1049,27 +1065,20 @@ def add_treasure():
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
-def transaction():
-  if not session.get('logged_in') or not session.get('user'):
+
+def treasury():
+  
+ if not session.get('logged_in') or not session.get('user'):
     #abort(401)
     clear_session()
     return redirect(url_for('login'))
-      
-  ps = gt
- 
-  return render_template('transaction.html', statement=mgt, playerstatement =gt)
+  
+  gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  
+  player_amount = get_points_status(session['user'])
 
-        
-'''
-  transaction_statement = []
-  try:
-      transaction_statement = request.form.getlist("statement")
-
-      for s in transaction_statement:
-          print s
-  except:
-        print 'no file on transaction statement'
-'''
+return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
