@@ -22,7 +22,7 @@
       <tr>
       <td>
         <dd><button type=submit class="btn btn-default" name=delete value="{{ t[0].id }}">Delete</button>
-        {% if t[1] %}
+        {% if not t[1] %}
           <dd><button type=submit class="btn btn-default" name=edit value="{{ t[0].id }}">Edit</button>
         {% endif %}
       </td>
