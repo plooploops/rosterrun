@@ -1065,10 +1065,8 @@ def add_treasure():
   return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
-
-def treasury():
-  
- if not session.get('logged_in') or not session.get('user'):
+def transaction():
+  if not session.get('logged_in') or not session.get('user'):
     #abort(401)
     clear_session()
     return redirect(url_for('login'))
@@ -1078,7 +1076,7 @@ def treasury():
   
   player_amount = get_points_status(session['user'])
 
-return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
