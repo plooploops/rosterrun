@@ -973,9 +973,20 @@ def add_treasure():
     suggestedMaxMarketPrice = request.form['nitemmaxprice']
     suggestedMedianMarketPrice = request.form['nitemmedianprice']
   
-    suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
-    suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
-    suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
+    if suggestedMinMarketPrice:
+      suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
+    else:
+      suggestedMinMarketPrice = 0
+    
+    if suggestedMaxMarketPrice:
+      suggestedMaxMarketPrice = int(str(suggestedMaxMarketPrice))
+    else:
+      suggestedMaxMarketPrice = 0
+    
+    if suggestedMedianMarketPrice:
+      suggestedMedianMarketPrice = int(str(suggestedMedianMarketPrice))
+    else:
+      suggestedMedianMarketPrice = 0
   except Exception,e: 
     print str(e)
 
@@ -994,6 +1005,14 @@ def add_treasure():
     if ms.count() == 0:
       db.session.add(MappedMarketSearch(True, item_id, item_name))
   
+  print 'min market price from scrape %s' % minMarketPrice
+  print 'max market price from scrape %s' % maxMarketPrice
+  print 'median market price from scrape %s' % medianMarketPrice
+  
+  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
+  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
+  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
+  
   #if the user makes a suggested market price then run with it
   if suggestedMinMarketPrice > 0:
     minMarketPrice = suggestedMinMarketPrice
@@ -1007,6 +1026,14 @@ def add_treasure():
     medianMarketPrice = suggestedMedianMarketPrice
   if len(str(medianMarketPrice)) == 0:
     medianMarketPrice = 0
+  
+  print 'min market price from scrape %s' % minMarketPrice
+  print 'max market price from scrape %s' % maxMarketPrice
+  print 'median market price from scrape %s' % medianMarketPrice
+  
+  print 'suggested min market price from scrape %s' % suggestedMinMarketPrice
+  print 'suggested max market price from scrape %s' % suggestedMaxMarketPrice
+  print 'suggested market price from scrape %s' % suggestedMedianMarketPrice
   
   edit_ids = [dt for dt in add_treasures if dt != u'None']
   print edit_ids
