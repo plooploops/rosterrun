@@ -7,82 +7,29 @@
     <div class="table-responsive">
     <table class="table table-striped transaction">
     <tr>
-    <th>Modify</th>
-    <th>Itemid</th>
     <th>Name</th>
-    <th>Cards</th>
-    <th>Amount</th>
-    <th>Unit Min Market Price</th>
-    <th>Unit Max Market Price</th>
-    <th>Unit Median Market Price</th>
-    <th>Last Modified</th>
-    <th>Guild Transaction</th>
+    <th>Transaction Type</th>
+    <th>Date</th>
+    <th>Details</th>
     </tr>
-    {% for t in Transaction %}
+    {% for t in transactions %}
       <tr>
-      <td>
-        <dd><button type=submit class="btn btn-default" name=delete value="{{ t[0].id }}">Delete</button>
-        <dd><button type=submit class="btn btn-default" name=edit value="{{ t[0].id }}">Edit</button>
-      </td>
-      <td>{{ t[0].itemid}}</td>
-      <td>{{ t[0].name }}</td>
-      <td>
-      {% for c in t[0].cards.split('|') %}
-        <li>{{ c.strip() }}
-      {% endfor %}
-      </td>
+      <td>{{ t[1].Name|safe }}</td>
+      <td>{{ t[2].transType|safe }}</td>
+      <td>{{ t[2].transDate|safe }}</td>
       <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
-      <td>{% if t[0].minMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].minMarketPrice)|safe }} {% else %} {{ t[0].minMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t[0].maxMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].maxMarketPrice)|safe }} {% else %} {{ t[0].maxMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t[0].medianMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].medianMarketPrice)|safe }} {% else %} {{ t[0].medianMarketPrice|safe }} {% endif %}</td>
-      <td>{{ t[0].refreshDate|safe }}</td>
-      <td>{% if t[1] %}
+      <td>{% if t[2].transType=='purchase' %}
             <dd>
-              {{ t[1].transType|safe }} by: {{ t[2].Name|safe }} on {{ t[1].transDate|safe }}
-          {% else %}
-            <dd>
-              <button type=submit class="btn btn-primary" name=buy value="{{ t[0].id }}">Buy</button>
-              <p class="help-block">Buy for {{ "{:,.0f}".format(t[0].minMarketPrice * t[0].amount) }} points</p>
+              Got {{ t[3].amount|safe }} {{ t[3].name|safe }} for {{ "{:,.0f}".format(t[3].amount * t[3].minMarketPrice) }}
+          {% endif %}
+          {% if t[2].transType=='gift' %}
+             <dd>
+               Gave points to {{ t[2].to_player_name|safe }}
           {% endif %}
       </td>
     {% endfor %}
     </table>
     </div>
-    </form>
-    <form action="{{ url_for('add_transaction') }}" method=post>
-	  <h2 class="sub-header">Add Item</h2>
-	  <div class="form-group">
-	  	<label for="nitemid">Item Id</label>
-	  	<input type="number" class="form-control" id="nitemid" name=nitemid placeholder="1560" value="{{ edittransaction.itemid }}"></input>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemname">Item Name</label>
-	    <input type="text" class="form-control" id="nitemname" name=nitemname placeholder="Sage's Diary [2]" value="{{ edittransaction.name }}"></input>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemcards">Cards</label>
-	    <input type="text" class="form-control" id="nitemcards" name=nitemcards placeholder="Doppelganger Card, Turtle General Card" value="{{ edittransaction.cards }}"></input>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemamount">Amount</label>
-	    <input type="number" class="form-control" id="nitemamount" name=nitemamount placeholder="1" value="{{ '{:,.0f}'.format(edittransaction.amount)|safe }}"></input>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemminprice">Suggested Min Price</label>
-	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{% if edittransaction.minMarketPrice > 0 %} {{ '{:,.0f}'.format(edittransaction.minMarketPrice)|safe }} {% else %} {{ edittransaction.minMarketPrice|safe }} {% endif %}"></input>
-	    <p class="help-block">Suggested Minimum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemmaxprice">Suggested Max Price</label>
-	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{% if edittransaction.maxMarketPrice > 0 %} {{ '{:,.0f}'.format(edittransction.maxMarketPrice)|safe }} {% else %} {{ edittransction.maxMarketPrice|safe }} {% endif %}"></input>
-	    <p class="help-block">Suggested Maximum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
-	  </div>
-	  <div class="form-group">
-	    <label for="nitemmedianprice">Suggested Median Price</label>
-	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{% if edittransaction.medianMarketPrice > 0 %} {{ '{:,.0f}'.format(edittransaction.medianMarketPrice)|safe }} {% else %} {{ edittransction.medianMarketPrice|safe }} {% endif %}"></input>
-	    <p class="help-block">Suggested Median Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
-	  </div>
-	  <button type=submit class="btn btn-primary" name=add value="{{ edittransaction.id }}">Submit</button>
     </form>
   {% endif %}
 {% endblock %}

@@ -11,7 +11,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey
+from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey, desc
 from sqlalchemy.orm import relationship, backref
 import getpass
 
@@ -1071,12 +1071,16 @@ def transaction():
     clear_session()
     return redirect(url_for('login'))
   
-  gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
-  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  guild_transactions = db.session.query(MappedGuildPoint, MappedPlayer, MappedGuildTransaction, MappedGuildTreasure) \
+                          .join(MappedPlayer) \
+                          .join(MappedGuildTransaction) \
+                          .outerjoin(MappedGuildTreasure) \
+                          .filter(MappedGuildTransaction.transType.in_(['purchase', 'gift'])) \
+                          .order_by(desc(MappedGuildTransaction.transDate)).all()
   
   player_amount = get_points_status(session['user'])
 
-  return render_template('transaction.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('transaction.html', transactions=guild_transactions, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():
