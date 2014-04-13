@@ -18,7 +18,7 @@
       <td>{{ t[2].transType|safe }}</td>
       <td>{{ t[2].transDate|safe }}</td>
       <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
-      <td>{% if t[2].transType=='purchase' %}
+      <td>{% if t[2].transType=='purchase' and t[3] %}
             <dd>
               Got {{ t[3].amount|safe }} {{ t[3].name|safe }} for {{ "{:,.0f}".format(t[3].amount * t[3].minMarketPrice) }}
           {% endif %}
