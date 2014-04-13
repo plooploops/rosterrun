@@ -33,7 +33,14 @@
       <td>{% if t[0].maxMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].maxMarketPrice)|safe }} {% else %} {{ t[0].maxMarketPrice|safe }} {% endif %}</td>
       <td>{% if t[0].medianMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].medianMarketPrice)|safe }} {% else %} {{ t[0].medianMarketPrice|safe }} {% endif %}</td>
       <td>{{ t[0].refreshDate|safe }}</td>
-      <td>{% if t[1] %} <dd> {{ t[1].transType|safe }} by: {{ t[2].Name|safe }} on {{ t[1].transDate|safe }} {% else %} <dd><button type=submit class="btn btn-primary" name=buy value="{{ t[0].id }}">Buy</button> {% endif %}</td>
+      <td>{% if t[1] %}
+            <dd>
+              {{ t[1].transType|safe }} by: {{ t[2].Name|safe }} on {{ t[1].transDate|safe }}
+          {% else %}
+            <dd>
+              <button type=submit class="btn btn-primary" name=buy value="{{ t[0].id }}">Buy</button>
+              <p class="help-block">Buy for {{ t[0].minMarketPrice * t[0].amount }} points</p>
+          {% endif %}</td>
     {% endfor %}
     </table>
     </div>
@@ -59,14 +66,17 @@
 	  <div class="form-group">
 	    <label for="nitemminprice">Suggested Min Price</label>
 	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{% if edittreasure.minMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.minMarketPrice)|safe }} {% else %} {{ edittreasure.minMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Minimum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmaxprice">Suggested Max Price</label>
 	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{% if edittreasure.maxMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.maxMarketPrice)|safe }} {% else %} {{ edittreasure.maxMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Maximum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
 	  </div>
 	  <div class="form-group">
 	    <label for="nitemmedianprice">Suggested Median Price</label>
 	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{% if edittreasure.medianMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.medianMarketPrice)|safe }} {% else %} {{ edittreasure.medianMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Median Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
 	  </div>
 	  <button type=submit class="btn btn-primary" name=add value="{{ edittreasure.id }}">Submit</button>
     </form>
