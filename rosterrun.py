@@ -1071,16 +1071,19 @@ def transaction():
     clear_session()
     return redirect(url_for('login'))
   
-  guild_transactions = db.session.query(MappedGuildPoint, MappedPlayer, MappedGuildTransaction, MappedGuildTreasure) \
-                          .join(MappedPlayer) \
-                          .join(MappedGuildTransaction) \
-                          .outerjoin(MappedGuildTreasure) \
-                          .filter(MappedGuildTransaction.transType.in_(['purchase', 'gift'])) \
-                          .order_by(desc(MappedGuildTransaction.transDate)).all()
+  purchases = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer) \
+                        .join(MappedGuildTransaction) \
+                        .join(MappedPlayer).all()
+  
+  gifts = db.session.query(MappedGuildTransaction, MappedGuildPoint, MappedPlayer) \
+                    .join(MappedGuildPoint) \
+                    .join(MappedPlayer) \
+                    .filter(MappedGuildTransaction.transType.in_(['gift'])) \
+                    .order_by(desc(MappedGuildTransaction.transDate)).all()
   
   player_amount = get_points_status(session['user'])
 
-  return render_template('transaction.html', transactions=guild_transactions, points_amount=player_amount)
+  return render_template('transaction.html', purchases=purchases, gifts=gifts, points_amount=player_amount)
 
 @app.route('/runs', methods=['GET', 'POST'])
 def runs():

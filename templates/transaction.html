@@ -3,32 +3,46 @@
   {% if session.logged_in %}
     <h1 class="page-header">Transaction</h1><h3 class="text-right">My Points: {{ "{:,.0f}".format(points_amount)|safe }}</h3>
     <p>If you don't see your points here, please update your <a href="{{ url_for('user_profile') }}">Profile</a> and recalculate points!</p>
+    <h2>Purchase History</h2>
     <div class="table-responsive">
     <table class="table table-striped transaction">
     <tr>
     <th>Name</th>
-    <th>Transaction Type</th>
     <th>Date</th>
+    <th>Amount</th>
     <th>Details</th>
     </tr>
-    {% for t in transactions %}
+    {% for p in purchases %}
       <tr>
-      <td>{{ t[1].Name|safe }}</td>
-      <td>{{ t[2].transType|safe }}</td>
-      <td>{{ t[2].transDate|safe }}</td>
+      <td>{{ t[2].Name|safe }}</td>
+      <td>{{ t[1].transDate|safe }}</td>
       <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
-      <td>{% if t[2].transType=='purchase' and t[3] %}
-            <dd>
-              Got {{ t[3].amount|safe }} {{ t[3].name|safe }} for {{ "{:,.0f}".format(t[3].amount * t[3].minMarketPrice) }}
-          {% endif %}
-          {% if t[2].transType=='gift' %}
-             <dd>
-               Gave points to {{ t[2].to_player_name|safe }}
-          {% endif %}
+      <td>
+        <dd>{{ t[2].Name|safe }} Bought {{ t[0].amount|safe }} {{ t[0].name|safe }} for {{ "{:,.0f}".format(t[0].amount * t[0].minMarketPrice) }}
       </td>
     {% endfor %}
     </table>
     </div>
-    </form>
+    <h2>Gift History</h2>
+    <div class="table-responsive">
+	    <table class="table table-striped transaction">
+	    <tr>
+	    <th>Name</th>
+	    <th>Date</th>
+	    <th>Amount</th>
+	    <th>Details</th>
+	    </tr>
+	    {% for g in gifts %}
+	      <tr>
+	      <td>{{ t[2].Name|safe }}</td>
+	      <td>{{ t[0].transDate|safe }}</td>
+	      <td>{{ "{:,.0f}".format(t[1].amount)|safe }}</td>
+	      <td>
+	        <dd>
+	          {{ t[2].Name|safe }} Gave points to {{ t[0].to_player_name|safe }}
+	      </td>
+	    {% endfor %}
+	    </table>
+    </div>
   {% endif %}
 {% endblock %}
