@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h1 class="page-header">Roster</h1>
+    <h1 class="page-header">Viable Parties</h1>
     <form action="{{ url_for('viable_parties') }}" method=post class=run-calculation>
       <div class="form-group">
 	    <label for="gdocname">Google Document</label>

@@ -1073,7 +1073,8 @@ def transaction():
   
   purchases = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer) \
                         .join(MappedGuildTransaction) \
-                        .join(MappedPlayer).all()
+                        .join(MappedPlayer) \
+                        .order_by(desc(MappedGuildTransaction.transDate)).all()
   
   players_gifts = db.session.query(MappedPlayer.Name, MappedGuildTransaction.transDate, MappedGuildTransaction.to_player_name, MappedGuildPoint.amount) \
                             .join(MappedGuildTransaction) \

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <h1 class="page-header">History</h1>
+    <h1 class="page-header">Market History</h1>
     <form method=post action="{{ url_for('item_history') }}" class=item-history>
     <select class="form-control" name="itemslist">
 	{% for ms in marketsearchs %}
