@@ -59,6 +59,8 @@ def populate_search_list():
 
 def update_search_list():
   search_list = MappedMarketSearch.query.filter(MappedMarketSearch.search==True).all()	
+  print 'reading search list from the db'
+  print search_list
   return { i.itemid: i.name for i in search_list }
   
 @sched.interval_schedule(minutes=1)
