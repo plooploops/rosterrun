@@ -140,7 +140,7 @@ class MarketScraper:
       #find search results
       vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@style='vertical-align:top;']")
       print 'for key %s'  % i
-      print 'got values %' % vals
+      #print 'got values %' % vals
       #order of values (cycles):
       #name
       #cards
