@@ -667,7 +667,7 @@ def item_current_results():
     itemname = itemname.replace(' ','')
   
   d = datetime.now()
-  latest_item = MappedMarketResult.query.(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).order_by(MappedMarketResult.date.desc()).all()
+  latest_item = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
   
