@@ -69,12 +69,15 @@ class MarketScraper:
     con = ''
     with open(file, "r") as f:
       con = f.read()
-    for i in items_to_search.keys():
-      #load results into tree
-      tree = html.fromstring(con)
-      #find search results
-      vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@style='vertical-align:top;']")
     
+    #load results into tree
+    tree = html.fromstring(con)
+    #find search results
+    vals = tree.xpath("//table[@class='table_data table_narrow']/tr/td[@style='vertical-align:top;']")
+    
+    print 'vals %s ' % vals
+    
+    for i in items_to_search.keys():    
       #order of values (cycles):
       #name
       #cards
@@ -95,7 +98,7 @@ class MarketScraper:
         #might want to account for multiple cards here.  can convert to a list?
         if(j % 7 == 1):
           mr.cards = val_found
-          if len(test_val) > 0:
+          if len(val_found) > 0:
 	    val_found = val_found.lstrip().replace('Card', 'Card,')
             mr.cards = val_found
         if(j % 7 == 2):
@@ -159,7 +162,7 @@ class MarketScraper:
         #might want to account for multiple cards here.  can convert to a list?
         if(j % 7 == 1):
           mr.cards = val_found
-          if len(test_val) > 0:
+          if len(val_found) > 0:
             val_found = val_found.lstrip().replace('Card', 'Card,')
             mr.cards = val_found
             
