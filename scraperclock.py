@@ -40,7 +40,9 @@ def interval_market_scrape():
   print 'searching for items'
   print updated_search_items
   print 'number of search items %s ' % len(updated_search_items)
-  sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(search_items,), result_ttl=3000)
+  if len(updated_search_items) == 0:
+    updated_search_items = search_items
+  sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(updated_search_items,), result_ttl=3000)
   print 'running calc %s ' % sched.scrapejob.id
   print 'This job runs every 12 hours.'
   sched.scrapejobid = sched.scrapejob.id
