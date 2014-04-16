@@ -660,21 +660,23 @@ def item_current_results():
   except:
     print 'value not found'
     val = None
-    
+  
+  itemname = None
+  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+  if itemname:
+    itemname = itemname.replace(' ','')
+  
   d = datetime.now()
-  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  latest_item = MappedMarketResult.query.(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).order_by(MappedMarketResult.date.desc()).all()
   if len(latest_item) > 0:
     d = latest_item[0].date
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
-  itemname = None
   mr = []
   if val is not None:
-    itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
-    itemname = itemname.replace(' ','')
     mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
   else:
-    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).all()
+    mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).filter(MappedMarketResult.date >= d).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).filter(MappedMarketResult.date >= d).all()
   
   #format data
   mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
@@ -698,7 +700,7 @@ def item_current_results():
   pricechart = datey.render()
   
   #volumes
-  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(MappedMarketResult.itemid==val).distinct().all()
+  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= d).filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).distinct().all()
   dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
@@ -740,10 +742,12 @@ def item_history():
   
   ms = MappedMarketSearch.query.order_by(MappedMarketSearch.name.asc()).all()
   itemname = None
+  itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
+  if itemname:
+    itemname = itemname.replace(' ','')
+  
   mr = []
   if val is not None:
-    itemname = MappedMarketSearch.query.filter(MappedMarketSearch.itemid==val).all()[0].name
-    itemname = itemname.replace(' ','')
     mr = MappedMarketResult.query.filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
   else:
     mr = MappedMarketResult.query.filter(MappedMarketResult.itemid==val).order_by(MappedMarketResult.itemid.asc(), MappedMarketResult.price.asc(), MappedMarketResult.date.desc()).limit(30)
@@ -774,7 +778,7 @@ def item_history():
   pricechart = datey.render()
     
   #volumes
-  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(MappedMarketResult.itemid==val).distinct().all()
+  mr_dates = MappedMarketResult.query.filter(MappedMarketResult.date >= time_delta).filter(or_(MappedMarketResult.itemid==val,MappedMarketResult.cards.contains(itemname))).distinct().all()
   dates = [mrd.date.strftime('%d, %b %Y') for mrd in mr_dates]
   dates = list(set(dates))
   print dates
