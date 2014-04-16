@@ -36,15 +36,18 @@ logging.basicConfig()
 @sched.interval_schedule(hours=12)
 def interval_market_scrape():
   #send this to redis queue
+  print 'This job runs every 12 hours.'
+  
   updated_search_items = update_search_list()
   print 'searching for items'
   print updated_search_items
   print 'number of search items %s ' % len(updated_search_items)
   if len(updated_search_items) == 0:
-    updated_search_items = search_items
+    print 'no items to search'
+    return
+  
   sched.scrapejob = q.enqueue_call(func=m.get_scrape_results, args=(updated_search_items,), result_ttl=3000)
   print 'running calc %s ' % sched.scrapejob.id
-  print 'This job runs every 12 hours.'
   sched.scrapejobid = sched.scrapejob.id
 
 def populate_search_list():
