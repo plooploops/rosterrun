@@ -92,7 +92,9 @@ class MarketScraper:
       mr.itemid = i
       #map values to result
       for j in range(len(vals)):
-        val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
+        test_val = "".join(vals[j].itertext())
+        #val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
+        val_found = test_val.strip().replace('\t','').replace('\n','')
         if(j % 7 == 0):
           mr.name = val_found
         #might want to account for multiple cards here.  can convert to a list?
@@ -158,7 +160,8 @@ class MarketScraper:
         #print vals[j]
         test_val = "".join(vals[j].itertext())
         #print test_val
-        val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
+        #val_found = str.join('', [c.strip() for c in vals[j].itertext()]).strip()
+        val_found = test_val.strip().replace('\t','').replace('\n','')
         if(j % 7 == 0):
           mr.name = val_found
         #might want to account for multiple cards here.  can convert to a list?
