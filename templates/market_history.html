@@ -28,8 +28,8 @@
 	    <th>Slotted with</th>
 	    <th>Price</th>
 	    <th>Amount</th>
-	    <th>Vendor</th>
-	    <th>Location</th>
+	    <th class="hidden-xs hidden-sm">Vendor</th>
+	    <th class="hidden-xs hidden-sm">Location</th>
 	    <th>Date</th>
 	  </tr>
 	</thead>
@@ -44,8 +44,8 @@
 	    </td>
 	    <td>{{ "{:,.0f}".format(mr.price)|safe }}</td>
 	    <td>{{ "{:,.0f}".format(mr.amount)|safe }}</td>
-	    <td>{{ mr.vendor|safe }}</td>
-	    <td>{{ mr.coords|replace(".","")|safe }}</td>
+	    <td class="hidden-xs hidden-sm">{{ mr.vendor|safe }}</td>
+	    <td class="hidden-xs hidden-sm">{{ mr.coords|replace(".","")|safe }}</td>
         <td>{{ mr.date|safe }}</td>
         </tr>
       {% endfor %}

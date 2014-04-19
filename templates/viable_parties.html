@@ -18,19 +18,19 @@
     <thead>
       <tr>
         <th>Party Combination</th>
-        <th>Player Name</th>
+        <th class="hidden-xs hidden-sm">Player Name</th>
         <th>Character Name</th>
         <th>Class</th>
-        <th>Role</th>
+        <th class="hidden-xs hidden-sm">Role</th>
       </tr>
     </thead>
     {% for entry in combinations %}
       <tr>
       <td>{{ entry.InstanceName }} {{ entry.PartyIndex|safe }}</td>
-      <td>{{ entry.PlayerName|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ entry.PlayerName|safe }}</td>
       <td>{{ entry.CharacterName|safe }}</td>
       <td>{{ entry.CharacterClass|safe }}</td>
-      <td>{{ entry.RoleName|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ entry.RoleName|safe }}</td>
       </tr>
     {% else %}
       <li><em>Unbelievable.  No combinations here so far</em>

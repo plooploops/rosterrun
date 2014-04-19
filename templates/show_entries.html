@@ -20,10 +20,10 @@
           <th>Manage</th>
           <th>Class</th>
           <th>Name</th>
-          <th>Role</th>
-          <th>Last Run</th>
+          <th class="hidden-xs hidden-sm">Role</th>
+          <th class="hidden-xs hidden-sm">Last Run</th>
           <th>Player Name</th>
-          <th>Online?</th>
+          <th class="hidden-xs hidden-sm">Online?</th>
         </tr>
       </thead>
       {% for char in characters %}
@@ -31,10 +31,10 @@
         <td><button type=submit class="btn btn-default" name=drop value="{{ char.id|safe }}">Drop</button><button type=submit class="btn btn-default" name=edit value="{{ char.id|safe }}">Edit</button>
         <td>{{ char.Class|safe }}</td>
         <td>{{ char.Name|safe }}</td>
-        <td>{{ char.Role|safe}}</td>
-        <td>{{ char.LastRun|safe }}</td>
+        <td class="hidden-xs hidden-sm">{{ char.Role|safe}}</td>
+        <td class="hidden-xs hidden-sm">{{ char.LastRun|safe }}</td>
         <td>{{ char.PlayerName|safe }}</td>
-        <td>{{ char.Present|safe }}</td>
+        <td class="hidden-xs hidden-sm">{{ char.Present|safe }}</td>
       {% endfor %}
       </table>
     </form>

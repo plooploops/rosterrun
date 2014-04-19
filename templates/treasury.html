@@ -13,9 +13,9 @@
     <th>Cards</th>
     <th>Amount</th>
     <th>Unit Min Market Price</th>
-    <th>Unit Max Market Price</th>
-    <th>Unit Median Market Price</th>
-    <th>Last Modified</th>
+    <th class="hidden-xs hidden-sm">Unit Max Market Price</th>
+    <th class="hidden-xs hidden-sm">Unit Median Market Price</th>
+    <th class="hidden-xs hidden-sm">Last Modified</th>
     <th>Guild Transaction</th>
     </tr>
     {% for t in treasures %}
@@ -33,9 +33,9 @@
       </td>
       <td>{{ "{:,.0f}".format(t[0].amount)|safe }}</td>
       <td>{% if t[0].minMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].minMarketPrice)|safe }} {% else %} {{ t[0].minMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t[0].maxMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].maxMarketPrice)|safe }} {% else %} {{ t[0].maxMarketPrice|safe }} {% endif %}</td>
-      <td>{% if t[0].medianMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].medianMarketPrice)|safe }} {% else %} {{ t[0].medianMarketPrice|safe }} {% endif %}</td>
-      <td>{{ t[0].refreshDate|safe }}</td>
+      <td class="hidden-xs hidden-sm">{% if t[0].maxMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].maxMarketPrice)|safe }} {% else %} {{ t[0].maxMarketPrice|safe }} {% endif %}</td>
+      <td class="hidden-xs hidden-sm">{% if t[0].medianMarketPrice > 0 %} {{ "{:,.0f}".format(t[0].medianMarketPrice)|safe }} {% else %} {{ t[0].medianMarketPrice|safe }} {% endif %}</td>
+      <td class="hidden-xs hidden-sm">{{ t[0].refreshDate|safe }}</td>
       <td>{% if t[1] %}
             <dd>
               {{ t[1].transType|safe }} by: {{ t[2].Name|safe }} on {{ t[1].transDate|safe }}

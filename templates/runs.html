@@ -10,10 +10,10 @@
     <th>Name</th>
     <th>Mobs Killed</th>
     <th>Screenshot</th>
-    <th>Characters</th>
+    <th class="hidden-xs hidden-sm">Characters</th>
     <th>Date</th>
-    <th>Success</th>
-    <th>Notes</th>
+    <th class="hidden-xs hidden-sm">Success</th>
+    <th class="hidden-xs hidden-sm">Notes</th>
     </tr>
     {% for r in runs %}
       <tr>
@@ -25,14 +25,14 @@
 	    {% endfor %}
       </td>
       <td><img src="{{ r.evidence_url|safe }}" class="img-responsive" alt="Run screenshot"></td>
-      <td>
+      <td class="hidden-xs hidden-sm">
         {% for c in r.chars %}
 	      <li>{{ c.Name }} {{ c.Class }}
         {% endfor %}
       </td>
       <td>{{ r.date|safe }}</td>
-      <td>{{ r.success|safe }}</td>
-      <td>{{ r.notes|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ r.success|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ r.notes|safe }}</td>
     {% endfor %}
     </table>
     </div>
