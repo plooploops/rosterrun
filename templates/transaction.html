@@ -7,19 +7,19 @@
     <div class="table-responsive">
     <table class="table table-striped transaction">
     <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Amount</th>
+    <th class="hidden-xs hidden-sm">Name</th>
+    <th class="hidden-xs hidden-sm">Amount</th>
     <th>Details</th>
+    <th>Date</th>
     </tr>
     {% for p in purchases %}
       <tr>
-      <td>{{ p[2].Name|safe }}</td>
-      <td>{{ p[1].transDate|safe }}</td>
-      <td>{{ "{:,.0f}".format(p[0].amount)|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ p[2].Name|safe }}</td>
+      <td class="hidden-xs hidden-sm">{{ "{:,.0f}".format(p[0].amount)|safe }}</td>
       <td>
         <dd>{{ p[2].Name|safe }} Bought {{ "{:,.0f}".format(p[0].amount) }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }}
       </td>
+      <td>{{ p[1].transDate|safe }}</td>
     {% endfor %}
     </table>
     </div>
@@ -27,20 +27,20 @@
     <div class="table-responsive">
 	    <table class="table table-striped transaction">
 	    <tr>
-	    <th>Name</th>
-	    <th>Date</th>
-	    <th>Amount</th>
+	    <th class="hidden-xs hidden-sm">Name</th>
+	    <th class="hidden-xs hidden-sm">Amount</th>
 	    <th>Details</th>
+	    <th>Date</th>
 	    </tr>
 	    {% for g in gifts %}
 	      <tr>
-	      <td>{{ g[0]|safe }}</td>
-	      <td>{{ g[1]|safe }}</td>
-	      <td>{{ "{:,.0f}".format(g[3])|safe }}</td>
+	      <td class="hidden-xs hidden-sm">{{ g[0]|safe }}</td>
+	      <td class="hidden-xs hidden-sm">{{ "{:,.0f}".format(g[3])|safe }}</td>
 	      <td>
 	        <dd>
 	          {{ g[0]|safe }} Gave points to {{ g[2]|safe }}
 	      </td>
+	      <td>{{ g[1]|safe }}</td>
 	    {% endfor %}
 	    </table>
     </div>
