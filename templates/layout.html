@@ -69,19 +69,17 @@
               <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
             </ul>
           </li>
+          <li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{{ url_for('user_profile') }}">Update Profile</a></li>
+		      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+		    </ul>
+		  </li>
           <!--<li><a href="#">Settings</a></li>-->
 	    {% endif %}
 	  </ul>
 	</div>
-	<ul class="nav navbar-nav navbar-right">
-	  <li class="dropdown">
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-	    <ul class="dropdown-menu">
-	      <li><a href="{{ url_for('user_profile') }}">Update Profile</a></li>
-	      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-	    </ul>
-	  </li>
-	</ul>
   </div>
 </div>
 <div class="container-fluid">
