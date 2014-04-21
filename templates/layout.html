@@ -42,6 +42,16 @@
 	    {% if not session.logged_in %}
 	      <li><a href="{{ url_for('login') }}">Log In</a></li>
 	    {% else %}
+
+		  <li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
+		      <li><a href="{{ url_for('market_history') }}">Market History</a></li>
+		      <li class="divider"></li>
+		      <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
+		    </ul>
+          </li>
           <li class="dropdown">
     		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
 		    <ul class="dropdown-menu">
@@ -58,24 +68,11 @@
 			  <li class="divider"></li>
 			  <li><a href="{{ url_for('points') }}">Points</a></li>
 			  <li><a href="{{ url_for('gift_points') }}">Gift</a></li>
+			  <li class="divisder"></li>
+			  <li><a href="{{ url_for('user_profile') }}">Update Profile</a></li>
+		      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
 	        </ul>
           </li>
-          <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
-              <li><a href="{{ url_for('market_history') }}">Market History</a></li>
-              <li class="divider"></li>
-              <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-		    <ul class="dropdown-menu">
-		      <li><a href="{{ url_for('user_profile') }}">Update Profile</a></li>
-		      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-		    </ul>
-		  </li>
           <!--<li><a href="#">Settings</a></li>-->
 	    {% endif %}
 	  </ul>
