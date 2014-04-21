@@ -28,43 +28,6 @@
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
-	  <div class="col-sm-3 col-md-2 visible-xs visible-sm hidden-md hidden-lg">
-	    <li class="nav navbar-nav">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Status <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-	  	    <li><a href="{{ url_for('show_entries') }}">Roster</a></li>
-	  		<li><a href="{{ url_for('add_char') }}">Add Character</a></li>
-	  		<li class="divider"></li>
-	  		<li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></li>
-	  		<li class="divider"></li>
-	  		<li><a href="{{ url_for('runs') }}">Runs</a></li>
-	  	  </ul>
-	    </li>
-	    <li class="dropdown">
-	  	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
-	  	  <ul class="dropdown-menu">
-	  	    <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
-	  	    <li><a href="{{ url_for('market_history') }}">Market History</a></li>
-	        <li class="divider"></li>
-	  	    <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
-	  	    <li class="divider"></li>
-	  	    <!--<li><a href="">Wish List</a></li>-->
-	  	  </ul>
-	    </li>
-	    <li class="dropdown">
-	  	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Balance <b class="caret"></b></a>
-	  	  <ul class="dropdown-menu">
-	  	    <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
-	  	    <li><a href="{{ url_for('transaction') }}">Transactions</a></li>
-	  	    <li class="divider"></li>
-	 	    <li><a href="{{ url_for('points') }}">Points</a></li>
-	  	    <li class="divider"></li>
-     	    <a href="{{ url_for('gift_points') }}">Gift</a>
-	      </ul>
-	    </li>
-	  </div>
-    </div>
     <div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	    <span class="sr-only">Toggle navigation</span>
