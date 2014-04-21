@@ -17,7 +17,7 @@
       <td class="hidden-xs hidden-sm">{{ p[2].Name|safe }}</td>
       <td class="hidden-xs hidden-sm">{{ "{:,.0f}".format(p[0].amount)|safe }}</td>
       <td>
-        <dd>{{ p[2].Name|safe }} Bought {{ "{:,.0f}".format(p[0].amount) }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }}
+        <dd>{{ p[2].Name|safe }} Bought {{ "{:,.0f}".format(p[0].amount) }} {{ p[0].name|safe }} for {{ "{:,.0f}".format(p[0].amount * p[0].minMarketPrice) }} points
       </td>
       <td>{{ p[1].transDate|safe }}</td>
     {% endfor %}

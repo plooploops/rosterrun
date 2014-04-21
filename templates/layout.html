@@ -41,20 +41,55 @@
 	  <ul class="nav navbar-nav navbar-right">
       {% if not session.logged_in %}
     	<li><a href="{{ url_for('login') }}">Log In</a></li>
-	    </ul>
+
 	  {% else %}
-	    <!--<li><a href="#">Settings</a></li>-->
-	    <li><a href="{{ url_for('user_profile') }}">Profile</a></li>
-	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        </ul>
+	    <div class="col-sm-3 col-md-2 visible-xs visible-sm hidden-md hidden-lg">
+          <li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Status <b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{{ url_for('show_entries') }}">Roster</a></li>
+		      <li><a href="{{ url_for('add_char') }}">Add Character</a></li>
+		      <li class="divider"></li>
+		      <li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></li>
+		      <li class="divider"></li>
+			  <li><a href="{{ url_for('runs') }}">Runs</a></li>
+		    </ul>
+          </li>
+          <li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
+		      <li><a href="{{ url_for('market_history') }}">Market History</a></li>
+		      <li class="divider"></li>
+		      <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
+		      <li class="divider"></li>
+		      <!--<li><a href="">Wish List</a></li>-->
+		    </ul>
+          </li>
+          <li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Balance <b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
+		      <li><a href="{{ url_for('transaction') }}">Transactions</a></li>
+		      <li class="divider"></li>
+		      <li><a href="{{ url_for('points') }}">Points</a></li>
+		      <li class="divider"></li>
+		      <a href="{{ url_for('gift_points') }}">Gift</a>
+		    </ul>
+          </li>
+		</div>
+		<!--<li><a href="#">Settings</a></li>-->
+		<li><a href="{{ url_for('user_profile') }}">Profile</a></li>
+		<li><a href="{{ url_for('logout') }}">Log Out</a></li>
 	  {% endif %}
+	  </ul>
 	</div>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      {% if session.logged_in %}
+    {% if session.logged_in %}
+      <div class="col-sm-3 col-md-2 sidebar hidden-xs hidden-sm visible-md visible-lg">
         <ul class="nav nav-sidebar">
           <li class="active"><a href="{{ url_for('show_entries') }}">Roster</a></td></li>
           <li><a href="{{ url_for('add_char') }}">Add Character</a></td></li>
@@ -75,8 +110,8 @@
           <li><a href="{{ url_for('points') }}">Points</a></li>
           <li><a href="{{ url_for('gift_points') }}">Gift</a></li>
         </ul>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       {% for message in get_flashed_messages() %}
         <div class="alert alert-info">
