@@ -26,7 +26,7 @@
   <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,12 +38,9 @@
 	  <a class="navbar-brand" href="#">Knights of Hyrule</a>
 	</div>
 	<div class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav navbar-right">
-      {% if not session.logged_in %}
-    	<li><a href="{{ url_for('login') }}">Log In</a></li>
-
-	  {% else %}
-	    <div class="col-sm-3 col-md-2 visible-xs visible-sm hidden-md hidden-lg">
+	  <ul class="nav navbar-nav">
+      {% if session.logged_in %}
+    	<div class="col-sm-3 col-md-2 visible-xs visible-sm hidden-md hidden-lg">
           <li class="dropdown">
 		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Status <b class="caret"></b></a>
 		    <ul class="dropdown-menu">
@@ -79,41 +76,22 @@
           </li>
         </div>
 		<!--<li><a href="#">Settings</a></li>-->
-		<li><a href="{{ url_for('user_profile') }}">Profile</a></li>
-		<li><a href="{{ url_for('logout') }}">Log Out</a></li>
 	  {% endif %}
 	  </ul>
 	</div>
+	<ul class="nav navbar-nav navbar-right">
+	{% if not session.logged_in %}
+	  <li><a href="{{ url_for('login') }}">Log In</a></li>
+	{% else %}
+	  <li><a href="{{ url_for('user_profile') }}">Profile</a></li>
+	  <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+	{% endif %}
+	</ul>
   </div>
-</div>
+</nav>
 <div class="container-fluid">
   <div class="row">
-    {% if session.logged_in %}
-
-      <div class="col-md-2 sidebar hidden-xs hidden-sm visible-md visible-lg">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="{{ url_for('show_entries') }}">Roster</a></td></li>
-          <li><a href="{{ url_for('add_char') }}">Add Character</a></td></li>
-          <li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></td></li>
-          <li><a href="{{ url_for('runs') }}">Runs</a></td></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
-          <li><a href="{{ url_for('market_history') }}">Market History</a></li>
-          <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
-          <!--<li><a href="">Wish List</a></li>-->
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
-          <li><a href="{{ url_for('transaction') }}">Transactions</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="{{ url_for('points') }}">Points</a></li>
-          <li><a href="{{ url_for('gift_points') }}">Gift</a></li>
-        </ul>
-      </div>
-    {% endif %}
-    <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-2 main">
+    <div class="main">
       {% for message in get_flashed_messages() %}
         <div class="alert alert-info">
 		   {{ message }}
