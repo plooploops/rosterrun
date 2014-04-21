@@ -26,69 +26,54 @@
   <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	    <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+      </a>
 	  <a class="navbar-brand" href="#">Knights of Hyrule</a>
 	</div>
 	<div class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav">
-      {% if session.logged_in %}
-    	<div class="col-sm-3 col-md-2 visible-xs visible-sm hidden-md hidden-lg">
+	  <ul class="nav navbar-nav navbar-right">
+	    {% if not session.logged_in %}
+	      <li><a href="{{ url_for('login') }}">Log In</a></li>
+	    {% else %}
           <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Status <b class="caret"></b></a>
+    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Guild Actions <b class="caret"></b></a>
 		    <ul class="dropdown-menu">
+		      <li class="divider">Status</li>
 		      <li><a href="{{ url_for('show_entries') }}">Roster</a></li>
 		      <li><a href="{{ url_for('add_char') }}">Add Character</a></li>
 		      <li class="divider"></li>
 		      <li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></li>
 		      <li class="divider"></li>
-			  <li><a href="{{ url_for('runs') }}">Runs</a></li>
-		    </ul>
-          </li>
-          <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
-		    <ul class="dropdown-menu">
-		      <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
-		      <li><a href="{{ url_for('market_history') }}">Market History</a></li>
-		      <li class="divider"></li>
-		      <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
-		      <li class="divider"></li>
-		      <!--<li><a href="">Wish List</a></li>-->
-		    </ul>
-          </li>
-          <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Balance <b class="caret"></b></a>
-		    <ul class="dropdown-menu">
-		      <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
-		      <li><a href="{{ url_for('transaction') }}">Transactions</a></li>
-		      <li class="divider"></li>
-		      <li><a href="{{ url_for('points') }}">Points</a></li>
-		      <li class="divider"></li>
+	          <li><a href="{{ url_for('runs') }}">Runs</a></li>
+	          <li class="divider">Market</li>
+	          <li><a href="{{ url_for('market_current_results') }}">Current Market</a></li>
+			  <li><a href="{{ url_for('market_history') }}">Market History</a></li>
+			  <li class="divider"></li>
+			  <li><a href="{{ url_for('market_search_list') }}">Market Search</a></li>
+			  <li class="divider">Balance</li>
+			  <!--<li><a href="">Wish List</a></li>-->
+			  <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
+			  <li><a href="{{ url_for('transaction') }}">Transactions</a></li>
+			  <li class="divider"></li>
+			  <li><a href="{{ url_for('points') }}">Points</a></li>
+			  <li class="divider"></li>
 		      <li><a href="{{ url_for('gift_points') }}">Gift</a></li>
 		    </ul>
           </li>
-        </div>
-		<!--<li><a href="#">Settings</a></li>-->
-	  {% endif %}
+          <!--<li><a href="#">Settings</a></li>-->
+          <li><a href="{{ url_for('user_profile') }}">Profile</a></li>
+	      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+	    {% endif %}
 	  </ul>
 	</div>
-	<ul class="nav navbar-nav navbar-right">
-	{% if not session.logged_in %}
-	  <li><a href="{{ url_for('login') }}">Log In</a></li>
-	{% else %}
-	  <li><a href="{{ url_for('user_profile') }}">Profile</a></li>
-	  <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-	{% endif %}
-	</ul>
   </div>
-</nav>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="main">
