@@ -24,7 +24,7 @@
         <dd><button type=submit class="btn btn-default" name=delete value="{{ t[0].id }}">Delete</button>
         <dd><button type=submit class="btn btn-default" name=edit value="{{ t[0].id }}">Edit</button>
       </td>
-      <td>{{ t[0].itemid}}</td>
+      <td><a href="https://panel.talonro.com/itemdb,"{{ t[0].itemid|safe }}".html" target="_blank">{{ t[0].itemid|safe }}</a></td>
       <td>{{ t[0].name }}</td>
       <td>
       {% for c in t[0].cards.split('|') %}

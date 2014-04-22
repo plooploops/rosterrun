@@ -35,7 +35,7 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
       </button>
-	  <a class="navbar-brand" href="#">Knights of Hyrule</a>
+	  <a class="navbar-brand" href="{{ url_for('show_entries') }}">Knights of Hyrule</a>
 	</div>
 	<div class="navbar-collapse collapse" id="navbar-collapse">
 	  <ul class="nav navbar-nav navbar-right">
@@ -61,6 +61,7 @@
 		      <li><a href="{{ url_for('viable_parties') }}">Viable Parties</a></li>
 		      <li class="divider"></li>
 	          <li><a href="{{ url_for('runs') }}">Runs</a></li>
+	          <li><a href="{{ url_for('add_run') }}">Add Run</a></li>
 	          <li class="divider"></li>
 	          <li><a href="{{ url_for('treasury') }}">Treasury</a></li>
 			  <li><a href="{{ url_for('transaction') }}">Transactions</a></li>

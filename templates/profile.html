@@ -5,7 +5,8 @@
     <form action="{{ url_for('update_profile') }}" method=post class=mapped-player>
       <div class="form-group">
         <label for="nname">Player Name:</label>
-	    <input type="text" class="form-control" name=nname id="nname" placeholder="Billy" value="{{ editplayer.Name }}">
+        <input type="text" class="form-control" name=nname id="nname" placeholder="Billy" value="{{ editplayer.Name }}">
+	    <p class="help-block">What's your name?  This should match the player names in the <a href="{{ url_for('show_entries') }}">Roster</a> </p>
       </div>
       <dd><button type=submit class="btn btn-primary" name=action value='Update'>Update</button>
     </form>

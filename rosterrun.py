@@ -1111,9 +1111,31 @@ def runs():
   sr = [s_run]
   
   return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
-
+  
 @app.route('/add_run', methods=['GET', 'POST'])
 def add_run():
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+    
+  mi = None
+  mi = MappedInstance.query.all()[0]
+  er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+  ermk = [mk.id for mk in er.mobs_killed]
+  erc = [c.id for c in er.chars]
+  mrs = MappedRun.query.all()
+  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
+   
+  mis = MappedInstance.query.order_by(MappedInstance.name).all()
+  s_run = None
+  s_run = int(str(mi.id))
+  sr = [s_run]
+    
+  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
+
+@app.route('/add_run_action', methods=['GET', 'POST'])
+def add_run_action():
   if not session.get('logged_in') or not session.get('user'):
     #abort(401)
     clear_session()
@@ -1174,7 +1196,7 @@ def add_run():
     
     sr = [s_run]
     
-    return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+    return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
   
   mapped_instance = MappedInstance.query.filter(MappedInstance.id==s_run)
   if mapped_instance.count() == 0:
@@ -1316,6 +1338,8 @@ def modify_runs():
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
       db.session.delete(er)
       db.session.commit()
+      
+      return redirect(url_for('runs'))
     elif len(e_ids) > 0:
       print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
@@ -1342,7 +1366,7 @@ def modify_runs():
   s_run = int(str(mi.id))
   sr = [s_run]
   
-  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():

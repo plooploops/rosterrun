@@ -27,7 +27,7 @@
 	  <div class="form-group">
 	      <label for="charpresent">Present?</label>
 		  <input type="checkbox" class="boolean optional" {% if editcharacter.Present.lower() == 'true' %} checked="True" {% endif %} name=charpresent id="charpresent"></input>
-		  <p class="help-block">Is the character online?</p>
+		  <p class="help-block">Is the character online?  This is used for figuring out <a href="{{ url_for('viable_parties') }}">Viable Parties</a> for the guild.</p>
 	  </div>
 	  <h3>Quests Completed</h3>
 	  <div class="table-responsive">
