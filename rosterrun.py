@@ -1274,7 +1274,7 @@ def add_run_action():
       er.notes = notes
       db.session.commit()
       #finished making edits, prepare to add a new run
-      return redirect(url_for('runs'))
+      
     else:
       er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
       db.session.add(er)
@@ -1283,19 +1283,7 @@ def add_run_action():
     print str(e)
     print 'error adding a run'
   
-  s_run = int(str(mi.id))
-  sr = [s_run]
-  #check if run is already part of DB for edit, else add a new one.
-  mm = mi.mobs
-  ermk = [mk.id for mk in er.mobs_killed]
-  erc = [c.id for c in er.chars]
-  
-  mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
-  
-  mis = MappedInstance.query.order_by(MappedInstance.name).all()
-  
-  return render_template('runs.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return redirect(url_for('runs'))
 
 @app.route('/modify_runs', methods=['GET', 'POST'])
 def modify_runs():
