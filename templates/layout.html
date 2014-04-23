@@ -29,16 +29,13 @@
 <body>
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container-fluid">
-    <div id="mobile-header">
-	    <a id="responsive-menu-button" href="#sidr-main">
-	      <span class="sr-only">Toggle navigation</span>
-		  <span class="icon-bar"></span>
-		  <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </a>
-    </div>
-
     <div class="navbar-header">
+      <a id="simple-menu" href="#sidr-main">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </a>
       <a class="navbar-brand" href="{{ url_for('show_entries') }}">Knights of Hyrule</a>
 	</div>
 	<div id="navigation" class="sidr left">
@@ -104,9 +101,8 @@
 
   <script src="{{ url_for('static', filename='jquery.sidr.min.js') }}"></script>
       <script>
-    	$('#responsive-menu-button').sidr({
-  	      name: 'sidr-main',
-  	      source: '#navigation'
-      });
+    $(document).ready(function() {
+	  $('#simple-menu').sidr();
+    });
     </script>
 </body>
