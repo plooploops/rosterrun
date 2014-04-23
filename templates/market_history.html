@@ -2,6 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Market History</h1>
+    <p>This will contain up to 4 weeks worth of market history.</p>
     <form method=post action="{{ url_for('item_history') }}" class=item-history>
     <select class="form-control" name="itemslist">
 	{% for ms in marketsearchs %}
