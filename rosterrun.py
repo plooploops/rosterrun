@@ -2169,6 +2169,8 @@ def update_profile():
     updatePlayerCharacter(user, name)
     
     flash('Updated profile')
+    
+    return redirect(url_for('show_entries'))
   else:
     print 'cannot map action'
     
