@@ -2068,6 +2068,32 @@ def checkPointsCalculation():
     print 'error occurred trying to fetch job'
     session.pop('points_job_id', None)
   return redirect(url_for('points'))
+  
+def checkPlayerNameNeedUpdate(user_email):
+  exists = MappedPlayer.query.filter(MappedPlayer.Email==user_email).filter(MappedPlayer.Name==user_email)
+  mp = None
+  if exists.count() == 0:
+    #player doesn't exist
+    return False
+  else:
+    return True
+    
+def updatePlayerCharacter(user_email, user_name):
+  exists = MappedPlayer.query.filter(MappedPlayer.Email==user_email)
+  mp = None
+  if exists.count() == 0:
+    #add mapped player
+    mp = MappedPlayer(user_name, user_email)
+    db.session.add(mp)
+  else:
+    mp = exists.all()[0]
+    mp.Name = user_name
+                
+    #link characters to player
+  mc_exists = MappedCharacter.query.filter(MappedCharacter.PlayerName==mp.Name)
+  if mc_exists.count() > 0:
+    mp.Chars = mc_exists.all()
+  db.session.commit()
 
 @app.route('/auth_return', methods=['GET', 'POST'])
 def oauth2callback():
@@ -2080,10 +2106,14 @@ def oauth2callback():
       storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
       storage.put(credentials)    
       session['logged_in'] = True
+      
+      flash('You were logged in')
+      if checkPlayerNameNeedUpdate(user.email()):
+        flash('Please change your player name to something else besides your email')
+        return redirect(url_for('user_profile'))
       #map player in db?
       
       #credentials stored
-      flash('You were logged in')
       return redirect(url_for('show_entries'))
   except: 
     print 'error with oauth2callback'
@@ -2136,14 +2166,8 @@ def update_profile():
   if action == u"Update":
     name = str(name)
     
-    mp_exists = MappedPlayer.query.filter(MappedPlayer.Email==user)
-    if mp_exists.count() > 0:
-      mp = mp_exists.all()[0]
-      mp.Name = name
-    else:
-      mp = MappedPlayer(name, user)
-      db.session.add(mp)
-    db.session.commit()
+    updatePlayerCharacter(user, name)
+    
     flash('Updated profile')
   else:
     print 'cannot map action'
