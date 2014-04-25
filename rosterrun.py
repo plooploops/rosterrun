@@ -2094,6 +2094,8 @@ def updatePlayerCharacter(user_email, user_name):
   if mc_exists.count() > 0:
     mp.Chars = mc_exists.all()
   db.session.commit()
+  
+  return mp
 
 @app.route('/auth_return', methods=['GET', 'POST'])
 def oauth2callback():
@@ -2166,7 +2168,15 @@ def update_profile():
   if action == u"Update":
     name = str(name)
     
-    updatePlayerCharacter(user, name)
+    exists = MappedPlayer.query.filter(MappedPlayer.Email==user)
+    if exists.count() > 0:
+      mp = exists.all()[0]
+    
+    if name == user:
+      flash('Please choose a player name other than your email')
+      return render_template('profile.html', editplayer=mp)
+    
+    mp = updatePlayerCharacter(user, name)
     
     flash('Updated profile')
     
