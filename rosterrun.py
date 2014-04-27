@@ -2192,6 +2192,7 @@ def login():
       resetParameters()
       error = None    
       user = None
+      
       if request.method == 'POST':
           if len(request.form['username']) == 0:
               error = 'Invalid username'
