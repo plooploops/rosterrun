@@ -864,12 +864,22 @@ def treasury():
     clear_session()
     return redirect(url_for('login'))
   
-  gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
   
   player_amount = get_points_status(session['user'])
   
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('treasury.html', treasures=treasures_transactions, points_amount=player_amount)
+
+@app.route('/add_treasure_item', methods=['GET', 'POST'])
+def add_treasure_item():
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  gt = MappedGuildTreasure(1560, 'Sages Diary [2]', 'Doppelganger Card, Turtle General Card', 1, 0, 0, 0, datetime.now())
+  
+  return render_template('add_treasure.html', edittreasure=gt)
 
 @app.route('/modify_treasure', methods=['GET', 'POST'])
 def modify_treasure():
@@ -907,6 +917,8 @@ def modify_treasure():
     et_ids = [int(str(dt)) for dt in edit_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == et_ids[0]).all()[0]
     print 'edit'
+    
+    return render_template('add_treasure.html', edittreasure=gt)
   if len(buy_treasures) > 0: 
     bt_ids = [int(str(dt)) for dt in buy_treasures]
     gt = MappedGuildTreasure.query.filter(MappedGuildTreasure.id == bt_ids[0]).all()[0]
@@ -943,7 +955,7 @@ def modify_treasure():
   
   player_amount = get_points_status(session['user'])
     
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('treasury.html', treasures=treasures_transactions, points_amount=player_amount)
   
 @app.route('/add_treasure', methods=['GET', 'POST'])
 def add_treasure():
@@ -1062,11 +1074,10 @@ def add_treasure():
   db.session.commit()
   
   treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
-  gt = MappedGuildTreasure(item_id, item_name, item_cards, item_amount, minMarketPrice, maxMarketPrice, medianMarketPrice, datetime.now())
   
   player_amount = get_points_status(session['user'])
     
-  return render_template('treasury.html', treasures=treasures_transactions, edittreasure=gt, points_amount=player_amount)
+  return render_template('treasury.html', treasures=treasures_transactions, points_amount=player_amount)
   
 @app.route ('/transaction', methods=['GET', 'POST'])
 def transaction():
@@ -1886,15 +1897,27 @@ def run_calculation():
       clear_session()
       return redirect(url_for('login'))
   
-    if(len(session['doc']) <= 0):
-        flash('Must include relevant document name')
-        return redirect(url_for('show_entries'))
-
     if('g_spreadsheet_id' in session.keys() and 'g_worksheet_id' in session.keys()):
       cur = PartyCombo.query.filter_by(g_spreadsheet_id=str(session['g_spreadsheet_id']), g_worksheet_id=str(session['g_worksheet_id'])) 
       [db.session.delete(c) for c in cur]  
       db.session.commit()
   
+    mc = MappedCharacter.query.count()
+    
+    if(len(session['doc']) <= 0):
+      if mc <= 0:
+        flash('Must include relevant document name')
+        return redirect(url_for('viable_parties'))
+      else:
+        flash('Calculating using existing roster')
+        curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
+        chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
+        
+        calcjob = q.enqueue_call(func=run_scheduler_mapped_characters, args=(chars,), result_ttl=3000)
+	print 'running calc %s ' % calcjob.id
+        session['job_id'] = calcjob.id
+        return redirect(url_for('viable_parties'))
+
     loginConfiguration(session['user'])
     user = users.get_current_user()
     storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
@@ -1906,8 +1929,8 @@ def run_calculation():
     (g_s_id, g_w_id) = testConnectToSpreadsheetsServiceOAuth(credentials, session['doc'])
     if(g_s_id == -1 or g_w_id == -1):
       flash('Cannot connect to google document.  Please check spreadsheet name, google credentials and connectivity.')
-      return redirect(url_for('show_entries'))
-
+      return redirect(url_for('viable_parties'))
+    
     session['g_spreadsheet_id'] = g_s_id
     session['g_worksheet_id'] = g_w_id
     

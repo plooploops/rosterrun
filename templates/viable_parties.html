@@ -6,7 +6,7 @@
       <div class="form-group">
 	    <label for="gdocname">Google Document</label>
 	    <input type="text" class="form-control" name=gdocname id="gdocname" placeholder="Quest Status">
-	    <p class="help-block">Provide a document for calculation.  For example, place a copy of <a href="https://docs.google.com/spreadsheet/ccc?key=0AmzfL1xpw-ENdDNsWll2RTNYRlVDOE81cE9OSmM1aEE&usp=sharing" target="_blank">Example Quest Status</a> in your google drive.  And then provide the name of that document here!</p>
+	    <p class="help-block">Provide a document for calculation.  We will use this document to import the roster and finid viable parties.  For example, place a copy of <a href="https://docs.google.com/spreadsheet/ccc?key=0AmzfL1xpw-ENdDNsWll2RTNYRlVDOE81cE9OSmM1aEE&usp=sharing" target="_blank">Example Quest Status</a> in your google drive.  And then provide the name of that document here!  If you don't provide any document, we'll try to calculate using the existing <a href="{{ url_for('show_entries') }}" target="_blank">Roster</a>.</p>
 	  </div>
       <dl>
         <button type=submit class="btn btn-primary" name=action value='Calculate'>Calculate</button>

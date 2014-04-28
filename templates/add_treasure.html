@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Add Treasure</h1>
+    <form action="{{ url_for('add_treasure') }}" method=post>
+	  <h2 class="sub-header">Add Item</h2>
+	  <div class="form-group">
+	  	<label for="nitemid">Item Id</label>
+	  	<input type="number" class="form-control" id="nitemid" name=nitemid placeholder="1560" value="{{ edittreasure.itemid }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemname">Item Name</label>
+	    <input type="text" class="form-control" id="nitemname" name=nitemname placeholder="Sage's Diary [2]" value="{{ edittreasure.name }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemcards">Cards</label>
+	    <input type="text" class="form-control" id="nitemcards" name=nitemcards placeholder="Doppelganger Card, Turtle General Card" value="{{ edittreasure.cards }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemamount">Amount</label>
+	    <input type="number" class="form-control" id="nitemamount" name=nitemamount placeholder="1" value="{{ '{:,.0f}'.format(edittreasure.amount)|safe }}"></input>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemminprice">Suggested Min Price</label>
+	    <input type="number" class="form-control" id="nitemminprice" name=nitemminprice placeholder="1" value="{% if edittreasure.minMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.minMarketPrice)|safe }} {% else %} {{ edittreasure.minMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Minimum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemmaxprice">Suggested Max Price</label>
+	    <input type="number" class="form-control" id="nitemmaxprice" name=nitemmaxprice placeholder="1" value="{% if edittreasure.maxMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.maxMarketPrice)|safe }} {% else %} {{ edittreasure.maxMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Maximum Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
+	  </div>
+	  <div class="form-group">
+	    <label for="nitemmedianprice">Suggested Median Price</label>
+	    <input type="number" class="form-control" id="nitemmedianprice" name=nitemmedianprice placeholder="1" value="{% if edittreasure.medianMarketPrice > 0 %} {{ '{:,.0f}'.format(edittreasure.medianMarketPrice)|safe }} {% else %} {{ edittreasure.medianMarketPrice|safe }} {% endif %}"></input>
+	    <p class="help-block">Suggested Median Price.  If nothing is specified, we'll check the <a href="{{ url_for('market_history') }}">Market</a> for it and calculate accordingly.</p>
+	  </div>
+	  <button type=submit class="btn btn-primary" name=add value="{{ edittreasure.id }}">Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}

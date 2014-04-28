@@ -2,7 +2,7 @@
 {% block body %}
   {% if session.logged_in %}
     <h1 class="page-header">Market Search List</h1>
-    <p>This list is used to update the market results and will be read a few times a day.</p>
+    <p>This list is used to update the market results which will be read a few times a day.</p>
 	<form action="{{ url_for('add_to_search_list') }}" method=post role="form">
 	  <h2>Search Item</h2>
 	  <div class="form-group">
