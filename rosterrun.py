@@ -561,6 +561,16 @@ def viable_parties():
   
   return render_template('viable_parties.html', combinations=availableParties, characters=chars)
 
+@app.route('/party_planner', methods=['GET', 'POST'])
+def party_planner():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+ 
+  return render_template('party_planner.html')
+
+
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""
   if itemid is not None:
