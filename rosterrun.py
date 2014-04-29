@@ -770,7 +770,9 @@ def item_history():
   
   #prices
   #can convert date values for daily, weekly, monthly?
-  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(datetime.strptime(m.date.strftime('%d %B %Y'), '%d %B %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]  
+  #projected_results = [(convert_to_key(None, m.name, m.cards), {'value':(datetime.strptime(m.date.strftime('%d %B %Y'), '%d %B %Y'), int(m.price)), 'label':convert_to_key(None, m.name, m.cards, m.date.strftime('%d, %b %Y'))}) for m in mrs]  
+  
+  projected_results = [(convert_to_key(None, m.name, m.cards), {'value':int(m.price), 'label':convert_to_key(None, m.name, m.cards)}) for m in mrs]  
   
   res_dict = {}
   for key, group in groupby(projected_results, lambda x: x[0]):
@@ -780,11 +782,15 @@ def item_history():
       else:
         res_dict[key] = [pr[1]]
   
-  datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Price', x_title='Date', x_labels_major_every=2)
+  print res_dict
+  #using Bar chart for now.  DateY having issues with historical data showing up.
+  #datey = pygal.DateY(x_label_rotation=20, no_data_text='No result found', disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Price', x_title='Date', x_labels_major_every=2)
+  datey = pygal.Bar(x_label_rotation=20, no_data_text='No result found', stroke=False, disable_xml_declaration=True, dots_size=5, legend_font_size=18, legend_box_size=18, value_font_size=16, label_font_size=14, tooltip_font_size=18, human_readable=True, style=LightStyle, truncate_legend=15, truncate_label=200, y_title='Price', x_title='Item %s' % val)
   datey.title = "Historical Selling Price for %s since %s" % (val, time_delta.strftime('%d %B %Y'))
   datey.x_label_format = "%d-%B-%Y"
+  
   [datey.add(k, res_dict[k]) for k in res_dict.keys()]
-
+  
   pricechart = datey.render()
     
   #volumes
