@@ -179,7 +179,7 @@ var DivsToJPG = function( image_parent ) {
 				        s = new FormData();
 						s.append('image', toblob(img)); \\I believe I refer to this with request.files['image']?
 						var g = $.ajax({
-							url: {{ url_for('plan_thumbnail') }},
+							url: 'plan_thumbnail',
 							type: 'POST',
 							processData : false,
 							contentType : false,
