@@ -49,7 +49,7 @@ $(function() {
 
 	  $("#btnsubmit").click( function()
            {
-
+				alert('user click');
            		var plan_elements = [];
 				var field = $('#div1');
 				plan_elements.push(field);
@@ -180,7 +180,7 @@ var DivsToJPG = function( image_parent ) {
 				        s = new FormData();
 						s.append('image', toblob(this.img)); \\I believe I refer to this with request.files['image']?
 						var g = $.ajax({
-							url: 'plan_thumbnail',
+							url: url_for('plan_thumbnail'),
 							type: 'POST',
 							processData : false,
 							contentType : false,
