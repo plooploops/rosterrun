@@ -585,7 +585,7 @@ def party_planner():
   return render_template('party_planner.html', plan_url = plan_url, plan_notes = plan_notes)
 
 @app.route('/party_plan_action', methods=['GET', 'POST'])
-def party_planner_action():   
+def party_plan_action():   
   if not session.get('logged_in') or not session.get('user'):
     #abort(401)
     clear_session()
