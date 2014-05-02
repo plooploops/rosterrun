@@ -575,7 +575,7 @@ def party_plans():
   if session.get('plan_url'):
     plan_url = session['plan_url'] 
   
-  return render_template('party_plans.html', plan_url = plan_url, plan_notes = plan_notes)
+  return render_template('party_plan.html', plan_url = plan_url, plan_notes = plan_notes)
 
 @app.route('/party_planner', methods=['GET', 'POST'])
 def party_planner():   
