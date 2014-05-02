@@ -43,6 +43,158 @@ $('.droppable').droppable({
 });//]]>
 
 </script>
+<script type="text/javascript">//<![CDATA[
+
+$(function() {
+
+	  $("#btnsubmit").click( function()
+           {
+
+           		var plan_elements = [];
+				var field = $('#div1');
+				plan_elements.push(field);
+				var drag_elements = $('.draggable').not("#original");
+				$('.draggable').not('#original').each(function(i, item) {
+					plan_elements.push(item);
+				});
+				var divsToJPG = new DivsToJPG(plan_elements);
+		   });
+});
+
+function toblob(stuff) {
+    var g, type, bi, ab, ua, b, i;
+    g = stuff.split(',');
+    if (g[0].split('png')[1])
+        type = 'png';
+    else if (g[0].split('jpeg')[1])
+        type = 'jpeg';
+    else
+        return false;
+    bi = atob(g[1]);
+    ab = new ArrayBuffer(bi.length);
+    ua = new Uint8Array(ab);
+    for (i = 0; i < bi.length; i++) {
+        ua[i] = bi.charCodeAt(i);
+    }
+    b = new Blob([ua], {
+        type: "image/" + type
+    });
+    return b;
+}
+
+var DivsToJPG = function( image_parent ) {
+				    this.canvasSizeX = 0;
+				    this.canvasSizeY = 0;
+				    this.images = [];
+				    this.init = function( parent ) {
+				    	images = parent;
+				    	//this.images = parent.find('img');
+				        //this.setSizes();
+				        this.createCanvas();
+				        this.drawImages();
+				        this.exportJPG();
+				    }
+
+				    this.setSizes = function() {
+
+				        for (var i = 0, l = images.length; i < l ; i++) {
+				        	var currentImage = images[i];
+				            var posX = $(currentImage).position().left;
+							var posY = $(currentImage).position().top;
+							if($(currentImage).is("div")){
+								currentImage = $(currentImage).find("img").get(0);
+							}
+
+							var imheight = $(currentImage).height();
+				            var imwidth = $(currentImage).width();
+
+				            if (this.canvasSizeX < (posX+imwidth)){
+				            	this.canvasSizeX = (posX+imwidth);
+				            }
+
+				            //console.log(this.canvasSizeX);
+
+				            if (this.canvasSizeY < (posY+imheight)){
+				            	this.canvasSizeX = (posY+imheight);
+				            }
+
+				        }
+				    }
+
+				    this.createCanvas = function() {
+				        this.canvas = document.createElement('canvas');
+				        this.canvas.id     = "exportCanvas";
+				        this.canvas.width  = this.canvasSizeX;
+				        this.canvas.height = this.canvasSizeY;
+				        this.ctx = this.canvas.getContext("2d");
+				        document.body.appendChild(this.canvas);
+				    }
+
+				    this.drawImages = function() {
+				        for (var i = 0, l = images.length; i < l ; i++) {
+				        	alert(i);
+				        	var currentImage = images[i];
+
+				            if($(currentImage).is("div")){
+								currentImage = $(currentImage).find("img").get(0);
+				            }
+
+				            var posX = $(currentImage).position().left;
+							var posY = $(currentImage).position().top;
+
+				            var imheight = $(currentImage).height();
+				            var imwidth = $(currentImage).width();
+
+							var ctx = document.getElementById('exportCanvas').getContext('2d');
+				            var img;
+				            if(!$(currentImage).is("img")){
+				            	img = currentImage.get(0);
+				            }
+				            else
+				            {
+				            	img = currentImage;
+				            }
+							if(!$(img).is("img")){
+								img = $(img).find("img").get(0);
+				            }
+				            ctx.drawImage(img, posX, posY, imwidth, imheight);
+				        }
+				    }
+
+				    this.exportJPG = function() {
+				    	var canvas = document.getElementById('exportCanvas');
+						var img;
+						try{
+							img = canvas.toDataURL();
+						}
+						catch(err){
+							alert(err);
+						}
+						var dataURL = canvas.toDataURL();
+				    	this.img = document.createElement('img');
+				        this.img.id = "createdImage";
+				        this.img.src     = dataURL;
+				        var container = $('#preview');
+				        document.body.appendChild(this.img);
+				        s = new FormData();
+						s.append('image', toblob(img)); \\I believe I refer to this with request.files['image']?
+						var g = $.ajax({
+							url: {{ url_for('plan_thumbnail') }},
+							type: 'POST',
+							processData : false,
+							contentType : false,
+							data: s
+						}) //POSTDATA
+
+});
+				    }
+
+				    this.init( image_parent );
+				}
+
+//]]>
+
+</script>
 <style type="text/css">
         #div2
         {
@@ -58,6 +210,7 @@ $('.droppable').droppable({
         	display: inline-block
         }
     </style>
+<form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post>
 <h1>Party Planning</h1>
 <h3>Drag players to grid</h3>
 <div>
@@ -210,5 +363,17 @@ $('.droppable').droppable({
 
 <p>Note this is still in beta.  Feedback is always welcome!</p>
 
+<div id="preview">
+
+</div>
+
+<div class="form-group">
+  <label for="nplannotes">Notes</label>
+  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="Got to level 75" value="{{ editplan.notes }}"></input>
+</div>
+
+<button type=submit class="btn btn-primary" id="btnsubmit" name=add value="{{ editplan.id }}">Submit</button>
+
+</form>
   {% endif %}
 {% endblock %}

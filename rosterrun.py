@@ -561,6 +561,18 @@ def viable_parties():
   
   return render_template('viable_parties.html', combinations=availableParties, characters=chars)
 
+@app.route('/party_plans', methods=['GET', 'POST'])
+def party_plans():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  plan_notes = session['plan_notes'] 
+  plan_url = session['plan_url'] 
+  
+  return render_template('party_plans.html', plan_url = plan_url, plan_notes = plan_notes)
+
 @app.route('/party_planner', methods=['GET', 'POST'])
 def party_planner():   
   if not session.get('logged_in') or not session.get('user'):
@@ -568,8 +580,109 @@ def party_planner():
     clear_session()
     return redirect(url_for('login'))
  
-  return render_template('party_planner.html')
+  plan_notes = session['plan_notes'] 
+  plan_url = session['plan_url'] 
+  return render_template('party_planner.html', plan_url = plan_url, plan_notes = plan_notes)
 
+@app.route('/party_plan_action', methods=['GET', 'POST'])
+def party_planner_action():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  notes = request.form['nplannotes']
+  notes = str(notes)
+  print notes
+  session['plan_notes'] = notes
+  
+  return redirect(url_for('party_plans'))  
+
+@app.route('/party_planner_action', methods=['GET', 'POST'])
+def party_planner_action():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  notes = request.form['nplannotes']
+  notes = str(notes)
+  print notes
+  session['plan_notes'] = notes
+  
+  return redirect(url_for('party_plans'))  
+
+@app.route('/plan_thumbnail', methods=['POST'])
+def plan_thumbnail():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+      
+  url = None
+  
+  try:
+    #check if the run is already part of the db before adding again else edit
+    s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+    bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
+    bucket.set_acl('public-read')
+    
+    name = ''
+    file = request.files['image']
+    
+    success = False
+    if len(run_success) > 0:
+      success = True
+    
+    url = None
+    k = Key(bucket)
+    er = None
+
+    #if len(et_ids) > 0:
+    #  er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
+    #  k.key = er.evidence_file_path
+    #else:
+    #  k.key = "rr-%s" % uuid.uuid4()
+    k.key = "rr-%s" % uuid.uuid4()
+    if file and allowed_file(file.filename):
+      try:
+        k.set_contents_from_file(file)
+        k.set_acl('public-read')
+        print 'saved file by file'
+      except:
+        print 'error sending to s3 by file'
+    
+    k.key = k.key.encode('ascii', 'ignore')
+    url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
+    url = url.encode('ascii', 'ignore')
+    
+    
+    print url
+    session['plan_url'] = url
+    
+    
+    #if len(et_ids) > 0:
+    #  er.evidence_url = url
+    #  er.evidence_file_path = k.key
+    #  er.name = name
+    #  er.date = run_date  
+    #  er.chars = chars
+    #  er.instance = mi
+    #  er.mobs_killed = mobs_killed
+    #  er.success = success
+    #  er.notes = notes
+    #  db.session.commit()
+      #finished making edits, prepare to add a new run
+      
+    #else:
+    #  er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
+    #  db.session.add(er)
+    #db.session.commit()
+  except Exception,e:
+    print str(e)
+    print 'error adding a run'
+  
+  #return redirect(url_for('party_plans'))  
 
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""

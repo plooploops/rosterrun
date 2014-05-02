@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+ 
+<form id="party_plan_form" action="{{ url_for('party_plan_action') }}" method=post>
+<h1>Party Planning</h1>
+<h3>Drag players to grid</h3>
+
+<p>Note this is still in beta.  Feedback is always welcome!</p>
+
+<div id="preview">
+  <img src="{{ plan_url }}">
+</div>
+
+<div class="form-group">
+  <label for="nplannotes">Notes</label>
+  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="Got to level 75" value="{{ plan_notes }}"></input>
+</div>
+
+</form>
+  {% endif %}
+{% endblock %}
