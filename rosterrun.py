@@ -568,8 +568,12 @@ def party_plans():
     clear_session()
     return redirect(url_for('login'))
   
-  plan_notes = session['plan_notes'] 
-  plan_url = session['plan_url'] 
+  plan_notes = None
+  plan_url = None
+  if session.get('plan_notes'):
+    plan_notes = session['plan_notes'] 
+  if session.get('plan_url'):
+    plan_url = session['plan_url'] 
   
   return render_template('party_plans.html', plan_url = plan_url, plan_notes = plan_notes)
 
@@ -579,9 +583,13 @@ def party_planner():
     #abort(401)
     clear_session()
     return redirect(url_for('login'))
- 
-  plan_notes = session['plan_notes'] 
-  plan_url = session['plan_url'] 
+  
+  plan_notes = None
+  plan_url = None
+  if session.get('plan_notes'):
+    plan_notes = session['plan_notes'] 
+  if session.get('plan_url'):
+    plan_url = session['plan_url'] 
   return render_template('party_planner.html', plan_url = plan_url, plan_notes = plan_notes)
 
 @app.route('/party_plan_action', methods=['GET', 'POST'])
