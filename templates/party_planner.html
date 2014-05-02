@@ -162,6 +162,7 @@ var DivsToJPG = function( image_parent ) {
 				    }
 
 				    this.exportJPG = function() {
+				    	alert('exporting');
 				    	var canvas = document.getElementById('exportCanvas');
 						var img;
 						try{
@@ -174,10 +175,10 @@ var DivsToJPG = function( image_parent ) {
 				    	this.img = document.createElement('img');
 				        this.img.id = "createdImage";
 				        this.img.src     = dataURL;
+				        alert(dataURL);
 				        var container = $('#preview');
-				        document.body.appendChild(this.img);
 				        s = new FormData();
-						s.append('image', toblob(img)); \\I believe I refer to this with request.files['image']?
+						s.append('image', toblob(this.img)); \\I believe I refer to this with request.files['image']?
 						var g = $.ajax({
 							url: 'plan_thumbnail',
 							type: 'POST',
