@@ -643,9 +643,9 @@ def plan_thumbnail():
     bucket.set_acl('public-read')
     
     name = ''
-    #file = request.files['nrunscreenshot']
-    file = request.args.get('image')
-    
+    file = request.files['image']
+    #file = request.args.get('image')
+    print file
     url = None
     k = Key(bucket)
     er = None
@@ -656,15 +656,14 @@ def plan_thumbnail():
     #else:
     #  k.key = "rr-%s" % uuid.uuid4()
     k.key = "rr-%s" % uuid.uuid4()
-    if file and allowed_file(file.filename):
+    if file:
       try:
-        k.set_contents_from_file(file)
+        k.set_contents_from_stream(file)
         k.set_acl('public-read')
-        print 'saved file by file'
+        print 'saved file by stream'
       except:
-        print 'error sending to s3 by file'
+        print 'error sending to s3 by stream'
       
-    
     k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = url.encode('ascii', 'ignore')
