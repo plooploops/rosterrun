@@ -3,7 +3,7 @@ from rq.job import Job
 from worker import conn
 
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles, roleUnmapped
 from scheduler import Character, Role, Instance
 #import sqlite3
@@ -643,11 +643,8 @@ def plan_thumbnail():
     bucket.set_acl('public-read')
     
     name = ''
-    file = request.args.get('s_data')
-    
-    success = False
-    if len(run_success) > 0:
-      success = True
+    #file = request.files['nrunscreenshot']
+    file = request.args.get('image')
     
     url = None
     k = Key(bucket)
@@ -666,6 +663,7 @@ def plan_thumbnail():
         print 'saved file by file'
       except:
         print 'error sending to s3 by file'
+      
     
     k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
@@ -674,7 +672,6 @@ def plan_thumbnail():
     s3_url = url
     print url
     session['plan_url'] = url
-    
     
     #if len(et_ids) > 0:
     #  er.evidence_url = url
