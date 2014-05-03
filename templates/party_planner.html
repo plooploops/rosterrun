@@ -136,7 +136,7 @@ var DivsToJPG = function( image_parent ) {
 
 				    this.drawImages = function() {
 				        for (var i = 0, l = images.length; i < l ; i++) {
-				        	//alert(i);
+				        	alert(i);
 				        	var currentImage = images[i];
 
 				            if($(currentImage).is("div")){
@@ -166,7 +166,7 @@ var DivsToJPG = function( image_parent ) {
 				    }
 
 				    this.exportJPG = function() {
-				    	//alert('exporting');
+				    	alert('exporting');
 				    	var canvas = document.getElementById('exportCanvas');
 						var img;
 						try{
@@ -179,15 +179,28 @@ var DivsToJPG = function( image_parent ) {
 				    	this.img = document.createElement('img');
 				        this.img.id = "createdImage";
 				        this.img.src     = dataURL;
-				        //alert(dataURL);
+				        alert(dataURL);
 				        var container = $('#preview');
 				        s = new FormData();
 						s.append('image', toblob(this.img));
-						$.getJSON($SCRIPT_ROOT + '/plan_thumbnail', {
+						$.ajax({
+						  url: " {{ url_for('plan_thumbnail') }} ",
+						  type: 'POST',
+						  cache: false,
+						  contentType: false,
+    					  processData: false,
+    					  success: function(data){
+						          alert(data);
+    					  }
+
+						  },
 						  s_data: s
-						}, function(data) {
-						   $("#result").text(data.result);
-      					});
+						});
+						//$.getJSON($SCRIPT_ROOT + '/plan_thumbnail', {
+						//  s_data: s
+						//}, function(data) {
+						//   $("#result").text(data.result);
+      					//});
 				    }
 
 				    this.init( image_parent );
