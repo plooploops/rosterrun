@@ -635,7 +635,7 @@ def plan_thumbnail():
     return redirect(url_for('login'))
       
   url = None
-  
+  s3_url = None
   try:
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
@@ -643,7 +643,7 @@ def plan_thumbnail():
     bucket.set_acl('public-read')
     
     name = ''
-    file = request.files['image']
+    file = request.args.get('s_data')
     
     success = False
     if len(run_success) > 0:
@@ -671,7 +671,7 @@ def plan_thumbnail():
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = url.encode('ascii', 'ignore')
     
-    
+    s3_url = url
     print url
     session['plan_url'] = url
     
@@ -696,6 +696,8 @@ def plan_thumbnail():
   except Exception,e:
     print str(e)
     print 'error adding a run'
+  
+  return jsonify(result=s3_url)
   
   #return redirect(url_for('party_plans'))  
 

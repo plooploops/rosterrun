@@ -81,7 +81,7 @@ function toblob(stuff) {
     });
     return b;
 }
-
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 var DivsToJPG = function( image_parent ) {
 				    this.canvasSizeX = 0;
 				    this.canvasSizeY = 0;
@@ -179,15 +179,13 @@ var DivsToJPG = function( image_parent ) {
 				        var container = $('#preview');
 				        s = new FormData();
 						s.append('image', toblob(this.img)); \\I believe I refer to this with request.files['image']?
-						var g = $.ajax({
-							url: url_for('plan_thumbnail'),
-							type: 'POST',
-							processData : false,
-							contentType : false,
-							data: s
-						}) //POSTDATA
+						$.getJSON($SCRIPT_ROOT + '/plan_thumbnail', {
+						  s_data: s
+						}, function(data) {
+						   $("#result").text(data.result);
+      					});
 
-});
+					});
 				    }
 
 				    this.init( image_parent );
@@ -365,7 +363,7 @@ var DivsToJPG = function( image_parent ) {
 <p>Note this is still in beta.  Feedback is always welcome!</p>
 
 <div id="preview">
-
+  <span id=result>?</span>
 </div>
 
 <div class="form-group">
