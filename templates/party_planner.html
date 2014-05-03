@@ -152,18 +152,19 @@ var DivsToJPG = function( image_parent ) {
 							alert(err);
 						}
 						var dataURL = canvas.toDataURL();
-				    	this.img = document.createElement('img');
-				        this.img.id = "createdImage";
-				        this.img.src     = dataURL;
-				        alert(dataURL);
+				    	#this.img = document.createElement('img');
+				        #this.img.id = "createdImage";
+				        #this.img.src     = dataURL;
+				        alert(img);
 
 				        var s = new FormData();
 
-						s.append('image', this.img);
+						s.append('image', img);
 						$.ajax({
 						  url: "{{ url_for('plan_thumbnail') }}",
 						  type: 'POST',
 						  cache: false,
+						  async: false,
 						  contentType: false,
     					  processData: false,
     					  data : s,
@@ -193,7 +194,7 @@ var DivsToJPG = function( image_parent ) {
         	display: inline-block
         }
     </style>
-<form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post>
+<form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
 <h1>Party Planning</h1>
 <h3>Drag players to grid</h3>
 <div>
