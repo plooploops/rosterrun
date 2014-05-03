@@ -60,7 +60,27 @@ $(function() {
 		   });
 
 });
+function toblob(stuff) {
+	var g, type, bi, ab, ua, b, i;
+    g = stuff.split(',');
 
+    if (g[0].split('png')[1])
+        type = 'png';
+    else if (g[0].split('jpeg')[1])
+        type = 'jpeg';
+    else
+        return false;
+    bi = atob(g[1]);
+    ab = new ArrayBuffer(bi.length);
+    ua = new Uint8Array(ab);
+    for (i = 0; i < bi.length; i++) {
+        ua[i] = bi.charCodeAt(i);
+    }
+    b = new Blob([ua], {
+        type: "image/" + type
+    });
+    return b;
+}
 $SCRIPT_ROOT = "";
 var DivsToJPG = function( image_parent ) {
 				    this.canvasSizeX = 0;
@@ -152,14 +172,14 @@ var DivsToJPG = function( image_parent ) {
 							alert(err);
 						}
 						var dataURL = canvas.toDataURL();
-				    	//this.img = document.createElement('img');
-				        //this.img.id = "createdImage";
-				        //this.img.src     = dataURL;
-				        alert(img);
+				    	this.img = document.createElement('img');
+				        this.img.id = "createdImage";
+				        this.img.src     = dataURL;
+				        alert(dataURL);
 
 				        var s = new FormData();
 
-						s.append('image', img);
+						s.append('image', toblob(dataURL));
 						$.ajax({
 						  url: "{{ url_for('plan_thumbnail') }}",
 						  type: 'POST',
