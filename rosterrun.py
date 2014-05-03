@@ -643,8 +643,8 @@ def plan_thumbnail():
     bucket.set_acl('public-read')
     
     name = ''
-    file = request.files['image']
-    #file = request.args.get('image')
+    #file = request.files['image']
+    file = request.args.get('image')
     print file
     url = None
     k = Key(bucket)

@@ -180,17 +180,12 @@ var DivsToJPG = function( image_parent ) {
 				        var s = new FormData();
 
 						s.append('image', toblob(dataURL));
-						$.ajax({
+						$.post({
 						  url: "{{ url_for('plan_thumbnail') }}",
 						  type: 'POST',
-						  cache: false,
-						  async: false,
 						  contentType: false,
     					  processData: false,
-    					  data : s,
-    					  success: function(data){
-						  	alert(data.result);
-    					  }
+    					  data : s
     					});
 				    }
 
