@@ -60,9 +60,12 @@ $(function() {
 				var divsToJPG = new DivsToJPG(plan_elements);
 		   });
 
+});
+
 function toblob(stuff) {
-    var g, type, bi, ab, ua, b, i;
+	var g, type, bi, ab, ua, b, i;
     g = stuff.split(',');
+
     if (g[0].split('png')[1])
         type = 'png';
     else if (g[0].split('jpeg')[1])
@@ -80,7 +83,7 @@ function toblob(stuff) {
     });
     return b;
 }
-$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+$SCRIPT_ROOT = "";
 var DivsToJPG = function( image_parent ) {
 				    this.canvasSizeX = 0;
 				    this.canvasSizeY = 0;
@@ -121,6 +124,8 @@ var DivsToJPG = function( image_parent ) {
 				    }
 
 				    this.createCanvas = function() {
+				    	if(typeof this.canvas != 'undefined')
+				    		return;
 				        this.canvas = document.createElement('canvas');
 				        this.canvas.id     = "exportCanvas";
 				        this.canvas.width  = this.canvasSizeX;
@@ -161,7 +166,7 @@ var DivsToJPG = function( image_parent ) {
 				    }
 
 				    this.exportJPG = function() {
-				    	alert('exporting');
+				    	//alert('exporting');
 				    	var canvas = document.getElementById('exportCanvas');
 						var img;
 						try{
@@ -174,22 +179,19 @@ var DivsToJPG = function( image_parent ) {
 				    	this.img = document.createElement('img');
 				        this.img.id = "createdImage";
 				        this.img.src     = dataURL;
-				        alert(dataURL);
+				        //alert(dataURL);
 				        var container = $('#preview');
 				        s = new FormData();
-						s.append('image', toblob(this.img)); \\I believe I refer to this with request.files['image']?
+						s.append('image', toblob(this.img));
 						$.getJSON($SCRIPT_ROOT + '/plan_thumbnail', {
 						  s_data: s
 						}, function(data) {
 						   $("#result").text(data.result);
       					});
-
-					});
 				    }
 
 				    this.init( image_parent );
 				}
-});
 //]]>
 
 </script>
