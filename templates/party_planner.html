@@ -49,7 +49,6 @@ $(function() {
 
 	  $("#btnsubmit").click( function()
            {
-				//alert('user click');
            		var plan_elements = [];
 				var field = $('#div1');
 				plan_elements.push(field);
@@ -62,27 +61,6 @@ $(function() {
 
 });
 
-function toblob(stuff) {
-	var g, type, bi, ab, ua, b, i;
-    g = stuff.split(',');
-
-    if (g[0].split('png')[1])
-        type = 'png';
-    else if (g[0].split('jpeg')[1])
-        type = 'jpeg';
-    else
-        return false;
-    bi = atob(g[1]);
-    ab = new ArrayBuffer(bi.length);
-    ua = new Uint8Array(ab);
-    for (i = 0; i < bi.length; i++) {
-        ua[i] = bi.charCodeAt(i);
-    }
-    b = new Blob([ua], {
-        type: "image/" + type
-    });
-    return b;
-}
 $SCRIPT_ROOT = "";
 var DivsToJPG = function( image_parent ) {
 				    this.canvasSizeX = 0;
@@ -94,7 +72,6 @@ var DivsToJPG = function( image_parent ) {
 				        this.setSizes();
 				        this.createCanvas();
 				        this.drawImages();
-				        //alert('export');
 				        this.exportJPG();
 				    }
 
@@ -137,7 +114,6 @@ var DivsToJPG = function( image_parent ) {
 
 				    this.drawImages = function() {
 				        for (var i = 0, l = images.length; i < l ; i++) {
-				        	//alert(i);
 				        	var currentImage = images[i];
 
 				            if($(currentImage).is("div")){
@@ -167,7 +143,6 @@ var DivsToJPG = function( image_parent ) {
 				    }
 
 				    this.exportJPG = function() {
-				    	//alert('exporting');
 				    	var canvas = document.getElementById('exportCanvas');
 						var img;
 						try{
@@ -181,9 +156,10 @@ var DivsToJPG = function( image_parent ) {
 				        this.img.id = "createdImage";
 				        this.img.src     = dataURL;
 				        alert(dataURL);
-				        var container = $('#preview');
-				        s = new FormData();
-						s.append('image', toblob(this.img));
+
+				        var s = new FormData();
+
+						s.append('image', this.img);
 						$.ajax({
 						  url: " /plan_thumbnail ",
 						  type: 'POST',
@@ -192,16 +168,9 @@ var DivsToJPG = function( image_parent ) {
     					  processData: false,
     					  data : s,
     					  success: function(data){
-						          alert(data);
+						  	alert(data);
     					  }
-
-
-						});
-						//$.getJSON($SCRIPT_ROOT + '/plan_thumbnail', {
-						//  s_data: s
-						//}, function(data) {
-						//   $("#result").text(data.result);
-      					//});
+    					});
 				    }
 
 				    this.init( image_parent );
