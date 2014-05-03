@@ -161,7 +161,7 @@ var DivsToJPG = function( image_parent ) {
 
 						s.append('image', this.img);
 						$.ajax({
-						  url: " /plan_thumbnail ",
+						  url: "{{ url_for('plan_thumbnail') }}",
 						  type: 'POST',
 						  cache: false,
 						  contentType: false,
