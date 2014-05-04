@@ -64,7 +64,7 @@
       </label>
       <div class="form-group">
     	<label for="nrunnotes">Notes</label>
-    	<input type="text" class="form-control" id="nrunnotes" name=nrunnotes placeholder="Got to level 75" value="{{ editrun.notes }}"></input>
+    	<textarea class="form-control" rows="3" id="nrunnotes" name=nrunnotes placeholder="Got to level 75" value="{{ editrun.notes }}"></textarea>
       </div>
       <button type=submit class="btn btn-primary" name=add value="{{ editrun.id }}">Submit</button>
     </form>

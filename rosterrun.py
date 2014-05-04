@@ -681,11 +681,14 @@ def party_plan_action():
   
   delete_id = None
   edit_id = None
+  view_id = None
     
   try:
     delete_id = request.form.getlist("delete")
     print delete_id
     edit_id = request.form.getlist("edit")
+    print edit_id
+    view_id = request.form.getlist("view")
     print edit_id
   except:
     print 'cannot find gdoc name'
@@ -695,6 +698,8 @@ def party_plan_action():
     dt_ids = []
     e_ids = [et for et in edit_id if et != 'None']
     et_ids = []
+    v_ids = [vt for vt in view_id if vt != 'None']
+    vt_ids = []
     if len(d_ids) > 0:
       dt_ids = [int(str(dt)) for dt in d_ids]
       ep = MappedPlan.query.filter(MappedPlan.id == dt_ids[0]).first()
@@ -706,6 +711,11 @@ def party_plan_action():
       print 'trying to edit'
       et_ids = [int(str(ed)) for ed in edit_id]
       ep = MappedPlan.query.filter(MappedPlan.id == et_ids[0]).first()
+    elif len(v_ids) > 0:
+      print 'trying to view'
+      vt_ids = [int(str(vd)) for vd in view_id]
+      ep = MappedPlan.query.filter(MappedPlan.id == et_ids[0]).first()
+      return render_template('view_party_plan.html', editplan=ep)
       
     else:
       ep = MappedPlan('', '', 'New Plan Setup')

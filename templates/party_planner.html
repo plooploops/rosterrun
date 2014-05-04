@@ -208,7 +208,6 @@ $('.droppable').droppable({
   <p><strong>Drop here to remove.  We prevent removing originals!</strong></p>
 </div>
 <form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
-<p>Note this is still in beta.  Feedback is always welcome!</p>
 
 <div class="form-group">
   <label for="nplanscreenshot">Screenshot</label>
@@ -219,11 +218,11 @@ $('.droppable').droppable({
 
 <div class="form-group">
   <label for="nplannotes">Notes</label>
-  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard." value="{{ editplan.notes }}"></input>
+  <textarea class="form-control" rows="3" id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard." value="{{ editplan.notes }}"></textarea>
 </div>
 
 <button type=submit class="btn btn-primary" id="btnsubmit" name=add value="{{ editplan.id|safe }}">Submit</button>
-
+<p>Note this is still in beta.  Feedback is always welcome!</p>
 </form>
 <script>
       function readURL(input) {
