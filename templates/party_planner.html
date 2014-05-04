@@ -218,7 +218,7 @@ $('.droppable').droppable({
 
 <div class="form-group">
   <label for="nplannotes">Notes</label>
-  <textarea class="form-control" rows="3" id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard." value="{{ editplan.notes }}"></textarea>
+  <textarea class="form-control" rows="3" id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard.">{{ editplan.notes }}</textarea>
 </div>
 
 <button type=submit class="btn btn-primary" id="btnsubmit" name=add value="{{ editplan.id|safe }}">Submit</button>
