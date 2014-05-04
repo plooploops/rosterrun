@@ -138,11 +138,6 @@ association_table = db.Table('run_to_characters', db.metadata,
     db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
 )
 
-plan_association_table = db.Table('plan_to_characters', db.metadata,
-    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
-    db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
-)
-
 #do we need a mapped instance type?
 
 class MappedInstance(db.Model):
@@ -219,44 +214,16 @@ class MappedRun(db.Model):
     def __repr__(self):
         return '<MappedRun %r>' % self.name
     
-plan_to_mobs = db.Table('plan_to_mobs', db.metadata,
-    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
-    db.Column('mob_id', db.Integer, ForeignKey('mob.id'))
-)
-plan_to_instance = db.Table('plan_to_instance', db.metadata,
-    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
-    db.Column('instance_id', db.Integer, ForeignKey('instance.id'))
-)
-
-
 class MappedPlan(db.Model):
     __tablename__ = 'plan'
     id = db.Column(db.Integer, primary_key=True)
     evidence_url = db.Column(db.String(400))
     evidence_file_path = db.Column(db.String(400))
-    name = db.Column(db.String(400))
-    date = db.Column(db.DateTime)
-    chars = relationship("MappedCharacter", secondary=plan_association_table, backref="plans")
-    instance = relationship("MappedInstance", secondary=plan_to_instance, backref="instance", uselist=False)
-    success = db.Column(db.Boolean)
     notes = db.Column(db.String(1600))
-    mobs = relationship("MappedMob", secondary=plan_to_mobs, backref="plan")
     
-    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, mobs, success, notes):
+    def __init__(self, evidence_url, evidence_file_path, notes):
         self.evidence_url = evidence_url
         self.evidence_file_path = evidence_file_path
-        self.date = date
-        self.chars = chars
-        self.name = name
-        self.instance = instance
-        self.mobs = mobs
-        self.success = success
-    	self.notes = notes
-   
-    def __init__(self, evidence_url, evidence_file_path, date, notes):
-        self.evidence_url = evidence_url
-        self.evidence_file_path = evidence_file_path
-        self.date = date
     	self.notes = notes
     	
     def __repr__(self):
