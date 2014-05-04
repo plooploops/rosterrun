@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+ <h1>View Party Plan</h1>
+ <h3>Return back to the list of <a href="{{ url_for('party_plans') }}">Plans</a> if you want to edit this plan.</h3>
+
+<div class="form-group">
+  <label for="nplanscreenshot">Screenshot</label>
+  <img for="nplanscreenshot" id="nplanscreenshotpreview" src="{{ editplan.evidence_url|safe }}" alt="your image" />
+</div>
+
+<div class="form-group">
+  <label for="nplannotes">Notes</label>
+  <label id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard." value="{{ editplan.notes }}"></textarea>
+</div>
+
+<p>Note this is still in beta.  Feedback is always welcome!</p>
+  {% endif %}
+{% endblock %}
