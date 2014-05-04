@@ -594,7 +594,7 @@ def party_planner():
     clear_session()
     return redirect(url_for('login'))
   
-  ep = EditPlan('', '', 'New Plan Setup')
+  ep = MappedPlan('', '', 'New Plan Setup')
   
   return render_template('party_planner.html', editplan=ep)
 
