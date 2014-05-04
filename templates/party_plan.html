@@ -1,22 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
- 
-<form id="party_plan_form" action="{{ url_for('party_plan_action') }}" method=post>
-<h1>Party Planning</h1>
-<h3>Drag players to grid</h3>
 
-<p>Note this is still in beta.  Feedback is always welcome!</p>
-
-<div id="preview">
-  <img src="{{ plan_url }}">
-</div>
-
-<div class="form-group">
-  <label for="nplannotes">Notes</label>
-  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="Got to level 75" value="{{ plan_notes }}"></input>
-</div>
-
+<h1>Party Plans</h1>
+<h3>This is a summary of <a href="{{ url_for('party_planner') }}">Plans</a></h3>
+<form role="form" action="{{ url_for('party_plan_action') }}" method=post class=add-plan>
+  <div class="table-responsive">
+    <table class="table table-striped plan">
+      <tr>
+        <th>Modify</th>
+        <th>Name</th>
+        <th>Screenshot</th>
+        <th class="hidden-xs hidden-sm">Notes</th>
+      </tr>
+      {% for p in plans %}
+        <tr>
+          <td><dd><button type=submit class="btn btn-default" name=delete value="{{ p.id }}">Delete</button><dd><button type=submit class="btn btn-default" name=edit value="{{ p.id }}">Edit</button></td>
+          <td><img src="{{ p.evidence_url|safe }}" class="img-responsive" alt="Plan screenshot"></td>
+          <td class="hidden-xs hidden-sm">{{ p.notes|safe }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 </form>
+<p>Note this is still in beta.  Feedback is always welcome!</p>
   {% endif %}
 {% endblock %}

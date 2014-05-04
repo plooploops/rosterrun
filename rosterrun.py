@@ -138,6 +138,11 @@ association_table = db.Table('run_to_characters', db.metadata,
     db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
 )
 
+plan_association_table = db.Table('plan_to_characters', db.metadata,
+    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
+    db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
+)
+
 #do we need a mapped instance type?
 
 class MappedInstance(db.Model):
@@ -213,6 +218,49 @@ class MappedRun(db.Model):
     	
     def __repr__(self):
         return '<MappedRun %r>' % self.name
+    
+plan_to_mobs = db.Table('plan_to_mobs', db.metadata,
+    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
+    db.Column('mob_id', db.Integer, ForeignKey('mob.id'))
+)
+plan_to_instance = db.Table('plan_to_instance', db.metadata,
+    db.Column('plan_id', db.Integer, ForeignKey('plan.id')),
+    db.Column('instance_id', db.Integer, ForeignKey('instance.id'))
+)
+
+
+class MappedPlan(db.Model):
+    __tablename__ = 'plan'
+    id = db.Column(db.Integer, primary_key=True)
+    evidence_url = db.Column(db.String(400))
+    evidence_file_path = db.Column(db.String(400))
+    name = db.Column(db.String(400))
+    date = db.Column(db.DateTime)
+    chars = relationship("MappedCharacter", secondary=plan_association_table, backref="plans")
+    instance = relationship("MappedInstance", secondary=plan_to_instance, backref="instance", uselist=False)
+    success = db.Column(db.Boolean)
+    notes = db.Column(db.String(1600))
+    mobs = relationship("MappedMob", secondary=plan_to_mobs, backref="plan")
+    
+    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, mobs, success, notes):
+        self.evidence_url = evidence_url
+        self.evidence_file_path = evidence_file_path
+        self.date = date
+        self.chars = chars
+        self.name = name
+        self.instance = instance
+        self.mobs = mobs
+        self.success = success
+    	self.notes = notes
+   
+    def __init__(self, evidence_url, evidence_file_path, date, notes):
+        self.evidence_url = evidence_url
+        self.evidence_file_path = evidence_file_path
+        self.date = date
+    	self.notes = notes
+    	
+    def __repr__(self):
+        return '<MappedPlan %r>' % self.notes
 
 class MappedMob(db.Model):
     __tablename__ = 'mob'
@@ -568,17 +616,9 @@ def party_plans():
     clear_session()
     return redirect(url_for('login'))
   
-  plan_notes = None
-  plan_url = None
-  if session.get('plan_notes'):
-    plan_notes = session['plan_notes'] 
-  if session.get('plan_url'):
-    plan_url = session['plan_url'] 
+  mps = MappedPlan.query.all()
   
-  print plan_notes
-  print plan_url
-    
-  return render_template('party_plan.html', plan_url = plan_url, plan_notes = plan_notes)
+  return render_template('party_plan.html', plans=mps)    
 
 @app.route('/party_planner', methods=['GET', 'POST'])
 def party_planner():   
@@ -587,31 +627,9 @@ def party_planner():
     clear_session()
     return redirect(url_for('login'))
   
-  plan_notes = None
-  plan_url = None
-  if session.get('plan_notes'):
-    plan_notes = session['plan_notes'] 
-  if session.get('plan_url'):
-    plan_url = session['plan_url'] 
+  ep = EditPlan('', '', 'New Plan Setup')
   
-  print plan_notes
-  print plan_url
-  
-  return render_template('party_planner.html', plan_url = plan_url, plan_notes = plan_notes)
-
-@app.route('/party_plan_action', methods=['GET', 'POST'])
-def party_plan_action():   
-  if not session.get('logged_in') or not session.get('user'):
-    #abort(401)
-    clear_session()
-    return redirect(url_for('login'))
-  
-  notes = request.form['nplannotes']
-  notes = str(notes)
-  print notes
-  session['plan_notes'] = notes
-  
-  return redirect(url_for('party_plans'))  
+  return render_template('party_planner.html', editplan=ep)
 
 @app.route('/party_planner_action', methods=['GET', 'POST'])
 def party_planner_action():   
@@ -620,82 +638,119 @@ def party_planner_action():
     clear_session()
     return redirect(url_for('login'))
   
-  notes = request.form['nplannotes']
-  notes = str(notes)
-  print notes
-  session['plan_notes'] = notes
+  action = None
+  try:
+    action = request.form['action']
+  except:
+    print 'cannot map action'
   
-  return redirect(url_for('party_plans'))  
-
-@app.route('/plan_thumbnail', methods=['POST'])
-def plan_thumbnail():   
-  if not session.get('logged_in') or not session.get('user'):
-    #abort(401)
-    clear_session()
-    return redirect(url_for('login'))
-      
+  val = None
+  s_run = None
+   
   url = None
-  s3_url = None
+  
   try:
     #check if the run is already part of the db before adding again else edit
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
     bucket.set_acl('public-read')
     
+    add_plans = request.form.getlist("add")
     name = ''
-    #file = request.files['image']
-    file = request.args.get('image')
-    print file
+    file = request.files['nplanscreenshot']
+    
+    notes = request.form['nplannotes']
     url = None
     k = Key(bucket)
-    er = None
+    ep = None
 
-    #if len(et_ids) > 0:
-    #  er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
-    #  k.key = er.evidence_file_path
-    #else:
-    #  k.key = "rr-%s" % uuid.uuid4()
-    k.key = "rr-%s" % uuid.uuid4()
-    if file:
+    edit_ids = [dt for dt in add_plans if dt != 'None']
+    et_ids = []
+    if len(edit_ids) > 0:
+      et_ids = [int(str(dt)) for dt in edit_ids]
+    if len(et_ids) > 0:
+      ep = MappedPlan.query.filter(MappedPlan.id == et_ids[0]).all()[0]
+      k.key = ep.evidence_file_path
+    else:
+      k.key = "rr-%s" % uuid.uuid4()
+    if file and allowed_file(file.filename):
       try:
-        k.set_contents_from_stream(file)
+        k.set_contents_from_file(file)
         k.set_acl('public-read')
-        print 'saved file by stream'
+        print 'saved file by file'
       except:
-        print 'error sending to s3 by stream'
-      
+        print 'error sending to s3 by file'
+    
     k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = url.encode('ascii', 'ignore')
     
-    s3_url = url
-    print url
-    session['plan_url'] = url
+    notes = str(notes)
     
-    #if len(et_ids) > 0:
-    #  er.evidence_url = url
-    #  er.evidence_file_path = k.key
-    #  er.name = name
-    #  er.date = run_date  
-    #  er.chars = chars
-    #  er.instance = mi
-    #  er.mobs_killed = mobs_killed
-    #  er.success = success
-    #  er.notes = notes
-    #  db.session.commit()
-      #finished making edits, prepare to add a new run
+    if len(et_ids) > 0:
+      ep.evidence_url = url
+      ep.evidence_file_path = k.key
+      ep.date = run_date  
+      ep.notes = notes
+      db.session.commit()
+      #finished making edits, prepare to add a new plan
       
-    #else:
-    #  er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
-    #  db.session.add(er)
-    #db.session.commit()
+    else:
+      ep = MappedPlan(url, k.key, notes)
+      db.session.add(er)
+    db.session.commit()
   except Exception,e:
     print str(e)
-    print 'error adding a run'
+    print 'error adding a plan'
   
-  return jsonify(result=s3_url)
+  return redirect(url_for('party_plans'))  
+
+@app.route('/party_plan_action', methods=['GET', 'POST'])
+def party_plan_action():   
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
   
-  #return redirect(url_for('party_plans'))  
+  delete_id = None
+  edit_id = None
+    
+  try:
+    delete_id = request.form.getlist("delete")
+    print delete_id
+    edit_id = request.form.getlist("edit")
+    print edit_id
+  except:
+    print 'cannot find gdoc name'
+  
+  try:
+    d_ids = [int(str(dt)) for dt in delete_id]
+    dt_ids = []
+    e_ids = [et for et in edit_id if et != 'None']
+    et_ids = []
+    if len(d_ids) > 0:
+      dt_ids = [int(str(dt)) for dt in d_ids]
+      ep = MappedPlan.query.filter(MappedPlan.id == dt_ids[0]).first()
+      db.session.delete(ep)
+      db.session.commit()
+      
+      return redirect(url_for('party_plans'))
+    elif len(e_ids) > 0:
+      print 'trying to edit'
+      et_ids = [int(str(ed)) for ed in edit_id]
+      ep = MappedPlan.query.filter(MappedPlan.id == et_ids[0]).first()
+      
+    else:
+      ep = MappedPlan('', '', 'New Plan Setup')
+      
+      print 'no action to map'
+  except Exception,e:
+    print str(e)
+    print 'issue modifying a plan'
+  
+  mps = MappedRun.query.all()
+  
+  return render_template('party_planner.html', editplan = ep, plans=mps)
 
 def convert_to_key(itemid = None, name = None, cards = None, date = None, amount = None):
   res = ""

@@ -43,157 +43,6 @@ $('.droppable').droppable({
 });//]]>
 
 </script>
-<script type="text/javascript">//<![CDATA[
-
-$(function() {
-
-	  $("#btnsubmit").click( function()
-           {
-           		var plan_elements = [];
-				var field = $('#div1');
-				plan_elements.push(field);
-				var drag_elements = $('.draggable').not("#original");
-				$('.draggable').not('#original').each(function(i, item) {
-					plan_elements.push(item);
-				});
-				var divsToJPG = new DivsToJPG(plan_elements);
-		   });
-
-});
-function toblob(stuff) {
-	var g, type, bi, ab, ua, b, i;
-    g = stuff.split(',');
-
-    if (g[0].split('png')[1])
-        type = 'png';
-    else if (g[0].split('jpeg')[1])
-        type = 'jpeg';
-    else
-        return false;
-    bi = atob(g[1]);
-    ab = new ArrayBuffer(bi.length);
-    ua = new Uint8Array(ab);
-    for (i = 0; i < bi.length; i++) {
-        ua[i] = bi.charCodeAt(i);
-    }
-    b = new Blob([ua], {
-        type: "image/" + type
-    });
-    return b;
-}
-$SCRIPT_ROOT = "";
-var DivsToJPG = function( image_parent ) {
-				    this.canvasSizeX = 0;
-				    this.canvasSizeY = 0;
-				    this.images = [];
-				    this.init = function( parent ) {
-				    	images = parent;
-				    	//this.images = parent.find('img');
-				        this.setSizes();
-				        this.createCanvas();
-				        this.drawImages();
-				        this.exportJPG();
-				    }
-
-				    this.setSizes = function() {
-
-				        for (var i = 0, l = images.length; i < l ; i++) {
-				        	var currentImage = images[i];
-				            var posX = $(currentImage).position().left;
-							var posY = $(currentImage).position().top;
-							if($(currentImage).is("div")){
-								currentImage = $(currentImage).find("img").get(0);
-							}
-
-							var imheight = $(currentImage).height();
-				            var imwidth = $(currentImage).width();
-
-				            if (this.canvasSizeX < (posX+imwidth)){
-				            	this.canvasSizeX = (posX+imwidth);
-				            }
-
-				            //console.log(this.canvasSizeX);
-
-				            if (this.canvasSizeY < (posY+imheight)){
-				            	this.canvasSizeX = (posY+imheight);
-				            }
-
-				        }
-				    }
-
-				    this.createCanvas = function() {
-				    	if(typeof this.canvas != 'undefined')
-				    		return;
-				        this.canvas = document.createElement('canvas');
-				        this.canvas.id     = "exportCanvas";
-				        this.canvas.width  = this.canvasSizeX;
-				        this.canvas.height = this.canvasSizeY;
-				        this.ctx = this.canvas.getContext("2d");
-				        document.body.appendChild(this.canvas);
-				    }
-
-				    this.drawImages = function() {
-				        for (var i = 0, l = images.length; i < l ; i++) {
-				        	var currentImage = images[i];
-
-				            if($(currentImage).is("div")){
-								currentImage = $(currentImage).find("img").get(0);
-				            }
-
-				            var posX = $(currentImage).position().left;
-							var posY = $(currentImage).position().top;
-
-				            var imheight = $(currentImage).height();
-				            var imwidth = $(currentImage).width();
-
-							var ctx = document.getElementById('exportCanvas').getContext('2d');
-				            var img;
-				            if(!$(currentImage).is("img")){
-				            	img = currentImage.get(0);
-				            }
-				            else
-				            {
-				            	img = currentImage;
-				            }
-							if(!$(img).is("img")){
-								img = $(img).find("img").get(0);
-				            }
-				            ctx.drawImage(img, posX, posY, imwidth, imheight);
-				        }
-				    }
-
-				    this.exportJPG = function() {
-				    	var canvas = document.getElementById('exportCanvas');
-						var img;
-						try{
-							img = canvas.toDataURL();
-						}
-						catch(err){
-							alert(err);
-						}
-						var dataURL = canvas.toDataURL();
-				    	this.img = document.createElement('img');
-				        this.img.id = "createdImage";
-				        this.img.src     = dataURL;
-				        alert(dataURL);
-
-				        var s = new FormData();
-
-						s.append('image', toblob(dataURL));
-						$.post({
-						  url: "{{ url_for('plan_thumbnail') }}",
-						  type: 'POST',
-						  contentType: false,
-    					  processData: false,
-    					  data : s
-    					});
-				    }
-
-				    this.init( image_parent );
-				}
-//]]>
-
-</script>
 <style type="text/css">
         #div2
         {
@@ -209,7 +58,6 @@ var DivsToJPG = function( image_parent ) {
         	display: inline-block
         }
     </style>
-<form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
 <h1>Party Planning</h1>
 <h3>Drag players to grid</h3>
 <div>
@@ -359,20 +207,37 @@ var DivsToJPG = function( image_parent ) {
 <div id="div2" class="droppable">
   <p><strong>Drop here to remove.  We prevent removing originals!</strong></p>
 </div>
-
+<form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
 <p>Note this is still in beta.  Feedback is always welcome!</p>
 
-<div id="preview">
-  <span id=result>?</span>
+<div class="form-group">
+  <label for="nplanscreenshot">Screenshot</label>
+  <input type="file" id="nplanscreenshot" name=nplanscreenshot placeholder="C:\screenshot\plan.jpg" value="{{ editplan.evidence_file_path|safe }}">
+  <img for="nplanscreenshot" id="nplanscreenshotpreview" src="{{ editplan.evidence_url|safe }}" alt="your image" />
+  <p class="help-block">Please submit a screenshot</p>
 </div>
 
 <div class="form-group">
   <label for="nplannotes">Notes</label>
-  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="Got to level 75" value="{{ plan_notes }}"></input>
+  <input type="text" class="form-control" id="nplannotes" name=nplannotes placeholder="We need a champ to tank, some high priests and a high wizard." value="{{ editplan.notes }}"></input>
 </div>
 
-<button type=submit class="btn btn-primary" id="btnsubmit" name=add value="1">Submit</button>
+<button type=submit class="btn btn-primary" id="btnsubmit" name=add value="{{ editplan.id|safe }}">Submit</button>
 
 </form>
+<script>
+      function readURL(input) {
+    	if (input.files && input.files[0]) {
+    	  var reader = new FileReader();
+    	  reader.onload = function (e) {
+    	    $('#nplanscreenshotpreview').attr('src', e.target.result);
+    	  }
+    	  reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#nplanscreenshot").change(function(){
+        readURL(this);
+      });
+</script>
   {% endif %}
 {% endblock %}
