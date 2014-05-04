@@ -664,7 +664,7 @@ def party_planner_action():
       
     else:
       ep = MappedPlan(url, k.key, notes)
-      db.session.add(er)
+      db.session.add(ep)
     db.session.commit()
   except Exception,e:
     print str(e)
