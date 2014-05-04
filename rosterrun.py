@@ -689,7 +689,7 @@ def party_plan_action():
     edit_id = request.form.getlist("edit")
     print edit_id
     view_id = request.form.getlist("view")
-    print edit_id
+    print view_id
   except:
     print 'cannot find gdoc name'
   
@@ -714,7 +714,7 @@ def party_plan_action():
     elif len(v_ids) > 0:
       print 'trying to view'
       vt_ids = [int(str(vd)) for vd in view_id]
-      ep = MappedPlan.query.filter(MappedPlan.id == et_ids[0]).first()
+      ep = MappedPlan.query.filter(MappedPlan.id == vt_ids[0]).first()
       return render_template('view_party_plan.html', editplan=ep)
       
     else:
