@@ -657,7 +657,6 @@ def party_planner_action():
     if len(et_ids) > 0:
       ep.evidence_url = url
       ep.evidence_file_path = k.key
-      ep.date = run_date  
       ep.notes = notes
       db.session.commit()
       #finished making edits, prepare to add a new plan
