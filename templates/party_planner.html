@@ -43,6 +43,23 @@ $('.droppable').droppable({
 });//]]>
 
 </script>
+<script type="text/javascript">//<![CDATA[
+
+$(function() {
+
+	  $("#btnclearplayers").click( function()
+	             {
+	             	$('.player').not("#original").remove();
+		   });
+      $("#btnclearmobs").click( function()
+	  	             {
+	  	             	$('.mob').not("#original").remove();
+		   });
+
+});
+//]]>
+
+</script>
 <style type="text/css">
         #div2
         {
@@ -61,148 +78,152 @@ $('.droppable').droppable({
 <h1>Party Planning</h1>
 <h3>Drag players to grid</h3>
 <div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_champ.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='gypsy.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_creator.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_gs.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_hp.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_hw.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_lk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_ninja.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_paladin.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_peco_lk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_peco_paladin.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_prof.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_sg.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_sinx.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_sl.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_sn.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_sniper.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_stalker.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_tk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='f_ws.png') }}">
   </div>
 </div>
 
 <div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='champ.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='clown.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='creator.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='gs.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='hp.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='hw.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='lk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='ninja.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='peco_lk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='paladin.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='peco_paladin.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='prof.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='sg.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='sinx.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='sl.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='sn.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='sniper.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='stalker.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='tk.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable player">
     <img src="{{ url_for('static', filename='ws.png') }}">
   </div>
 </div>
 <h3>Drag Mobs to grid</h3>
 <div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable mob">
     <img src="{{ url_for('static', filename='beelzebub.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable mob">
     <img src="{{ url_for('static', filename='ifrit.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable mob">
     <img src="{{ url_for('static', filename='niddhoggr_shadow.png') }}">
   </div>
-  <div id="original" class="draggable">
+  <div id="original" class="draggable mob">
     <img src="{{ url_for('static', filename='valkyrie_randgris.png') }}">
   </div>
 <div>
 
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <img src="{{ url_for('static', filename='rotated_blank16.gif') }}" HSPACE=5 VSPACE=5 BORDER=0>
+<div>
+  <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="{{ url_for('static', filename='rotated_blank16.gif') }}" HSPACE=5 VSPACE=5 BORDER=0>
+  </div>
+  <button class="btn btn-default" id="btnclearplayers">Clear Players</button>
+  <button class="btn btn-default" id="btnclearmobs">Clear Mobs</button>
 </div>
 <div id="div2" class="droppable">
   <p><strong>Drop here to remove.  We prevent removing originals!</strong></p>
@@ -210,10 +231,10 @@ $('.droppable').droppable({
 <form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
 
 <div class="form-group">
-  <label for="nplanscreenshot">Screenshot</label>
+  <label for="nplanscreenshot">Add a Plan Screenshot</label>
   <input type="file" id="nplanscreenshot" name=nplanscreenshot placeholder="C:\screenshot\plan.jpg" value="{{ editplan.evidence_file_path|safe }}">
   <img for="nplanscreenshot" id="nplanscreenshotpreview" src="{{ editplan.evidence_url|safe }}" alt="your image" />
-  <p class="help-block">Please submit a screenshot</p>
+  <p class="help-block">Please submit a screenshot to go with the proposed plan.</p>
 </div>
 
 <div class="form-group">
