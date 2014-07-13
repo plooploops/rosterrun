@@ -243,6 +243,16 @@ $(function() {
     <img src="{{ url_for('static', filename='ws_mvp.png') }}">
   </div>
 <div>
+
+<div>
+  <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="{{ url_for('static', filename='blank16.gif') }}" HSPACE=5 VSPACE=5 BORDER=0>
+  </div>
+  <button class="btn btn-default" id="btnclearplayers">Clear Players</button>
+  <button class="btn btn-default" id="btnclearmobs">Clear Mobs</button>
+  <button class="btn btn-default" id="btncleareffects">Clear Effects</button>
+</div>
+
 <h3>Add effects to grid</h3>
 <div>
   <div id="original" class="draggable effect bg">
@@ -271,14 +281,6 @@ $(function() {
   </div>
 <div>
 
-<div>
-  <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <img src="{{ url_for('static', filename='blank16.gif') }}" HSPACE=5 VSPACE=5 BORDER=0>
-  </div>
-  <button class="btn btn-default" id="btnclearplayers">Clear Players</button>
-  <button class="btn btn-default" id="btnclearmobs">Clear Mobs</button>
-  <button class="btn btn-default" id="btncleareffects">Clear Effects</button>
-</div>
 <form id="party_plan_form" action="{{ url_for('party_planner_action') }}" method=post enctype=multipart/form-data>
 
 <div class="form-group">
