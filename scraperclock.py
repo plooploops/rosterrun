@@ -13,7 +13,7 @@ import sys
 from rq import Queue, get_current_job
 from rq.job import Job
 from worker import conn
-from datetime import datetime
+from datetime import datetime, timedelta
 
 sched = Scheduler()
 m = MarketScraper()
@@ -117,7 +117,20 @@ def retrieve_market_scrape():
       print 'finished deleting job results'
   else: 
     print 'current job is not ready %s' % job_id
-  
+
+@sched.cron_schedule(day_of_week='sun', hour=5, minute=30)
+def clean_up_market():
+  #need to clean out database until expand number of rows.
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+    
+  d2 = d - timedelta(days = 7)
+  print 'Clean up all but last 7 days of current market every last sunday of the month'
+  rows = MappedMarketResult.query.filter(MappedMarketResult.date < d2).delete()
+  print 'cleaning up %s rows' % rows
+  db.session.commit()
+
 @sched.cron_schedule(day='last sun')
 def clean_up_market():
   latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
