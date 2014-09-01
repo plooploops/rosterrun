@@ -1309,7 +1309,7 @@ def add_run():
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
+  mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
    
   mis = MappedInstance.query.order_by(MappedInstance.name).all()
   s_run = None

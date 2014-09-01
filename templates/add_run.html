@@ -42,8 +42,9 @@
           {% for mc in mappedcharacters %}
     	    <tr>
     	      <td><input {% if mc.id in edit_run_chars %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mc.id }}"></td>
-    	      <td>{{ mc.Name|safe }}</td>
     	      <td>{{ mc.Class|safe }}</td>
+    	      <td>{{ mc.PlayerName|safe }}</td>
+    	      <td>{{ mc.Name|safe }}</td>
     	    </tr>
     	  {% endfor %}
         </table>
