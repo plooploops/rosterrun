@@ -1286,8 +1286,8 @@ def runs():
   er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
-  mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
+  mrs = MappedRun.query.order_by(MappedRun.date).all()
+  mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
   
   mis = MappedInstance.query.order_by(MappedInstance.name).all()
   s_run = None
@@ -1308,7 +1308,7 @@ def add_run():
   er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
-  mrs = MappedRun.query.all()
+  mrs = MappedRun.query.order_by(MappedRun.date).all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
    
   mis = MappedInstance.query.order_by(MappedInstance.name).all()
@@ -1372,8 +1372,8 @@ def add_run_action():
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
     
-    mrs = MappedRun.query.all()
-    mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()  
+    mrs = MappedRun.query.order_by(MappedRun.date).all()
+    mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
     mm = mi.mobs
     
     mis = MappedInstance.query.order_by(MappedInstance.name).all()
@@ -1531,8 +1531,8 @@ def modify_runs():
   
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
-  mrs = MappedRun.query.all()
-  mc = MappedCharacter.query.order_by(MappedCharacter.Name).all()
+  mrs = MappedRun.query.order_by(MappedRun.date).all()
+  mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
   mis = MappedInstance.query.order_by(MappedInstance.name).all()
   
   s_run = int(str(mi.id))
