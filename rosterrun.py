@@ -237,7 +237,7 @@ class MappedMob(db.Model):
     items = relationship("MappedMobItem", backref="mob")
     mapped_instance_id = db.Column(db.Integer, ForeignKey('instance.id'))
     
-    def __getitem__(self):
+    def __getitem__(self, id):
         return '<MappedMob %r>' % self.mob_name
     
     def __init__(self, mob_id):
