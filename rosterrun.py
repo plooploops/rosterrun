@@ -237,6 +237,9 @@ class MappedMob(db.Model):
     items = relationship("MappedMobItem", backref="mob")
     mapped_instance_id = db.Column(db.Integer, ForeignKey('instance.id'))
     
+    def __getitem__(self):
+        return '<MappedMob %r>' % self.mob_name
+    
     def __init__(self, mob_id):
         self.mob_id = mob_id
     	
@@ -1375,7 +1378,7 @@ def add_run_action():
     mrs = MappedRun.query.order_by(MappedRun.date).all()
     mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
     mm = mi.mobs
-    
+    mm = sorted(mm, key=lambda k: k['mob_name']) 
     mis = MappedInstance.query.order_by(MappedInstance.name).all()
     
     sr = [s_run]
@@ -1537,6 +1540,8 @@ def modify_runs():
   
   s_run = int(str(mi.id))
   sr = [s_run]
+  
+  mm = sorted(mm, key=lambda k: k['mob_name']) 
   
   return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
