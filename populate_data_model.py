@@ -65,7 +65,7 @@ def db_DropEverything(db):
   tbs = []
   all_fks = []
 
-  for table_name in inspector.get_table_names()
+  for table_name in inspector.get_table_names():
     fks = []
     for fk in inspector.get_foreign_keys(table_name):
       if not fk['name']:
