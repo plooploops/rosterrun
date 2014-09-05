@@ -1436,6 +1436,7 @@ def add_run_action():
     else:
       k.key = "rr-%s" % uuid.uuid4()
       print 'got a new key'
+    print len(file)
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
@@ -2490,6 +2491,7 @@ def loginConfiguration(username, userid=1):
     print 'error with login configuration'
     
 def allowed_file(filename):
+  print 'checking allowed file with %s' % filename
   return '.' in filename and \
          filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
