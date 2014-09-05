@@ -645,6 +645,9 @@ def party_planner_action():
       k.key = ep.evidence_file_path
     else:
       k.key = "rr-%s" % uuid.uuid4()
+    print file
+    if file:
+      print file.filename
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
@@ -1429,8 +1432,10 @@ def add_run_action():
     if len(et_ids) > 0:
       er = MappedRun.query.filter(MappedRun.id == et_ids[0]).all()[0]
       k.key = er.evidence_file_path
+      print 'got key from database'
     else:
       k.key = "rr-%s" % uuid.uuid4()
+      print 'got a new key'
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
@@ -1438,6 +1443,8 @@ def add_run_action():
         print 'saved file by file'
       except:
         print 'error sending to s3 by file'
+    else:
+      print 'file not found'
     
     k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
