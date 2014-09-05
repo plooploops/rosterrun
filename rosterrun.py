@@ -1437,7 +1437,7 @@ def add_run_action():
       k.key = "rr-%s" % uuid.uuid4()
       print 'got a new key'
     print file
-    if file
+    if file:
       print file.filename
     if file and allowed_file(file.filename):
       try:
