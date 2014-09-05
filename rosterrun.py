@@ -1436,7 +1436,9 @@ def add_run_action():
     else:
       k.key = "rr-%s" % uuid.uuid4()
       print 'got a new key'
-    print len(file)
+    print file
+    if file
+      print file.filename
     if file and allowed_file(file.filename):
       try:
         k.set_contents_from_file(file)
