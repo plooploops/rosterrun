@@ -1397,8 +1397,11 @@ def add_run_action():
   
   try:
     #check if the run is already part of the db before adding again else edit
+    print 'connect to s3'
     s3 = boto.connect_s3(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+    print 'get bucket'
     bucket = s3.get_bucket(os.environ['S3_BUCKET_NAME'])
+    print 'set access'
     bucket.set_acl('public-read')
     
     add_runs = request.form.getlist("add")
@@ -1439,6 +1442,7 @@ def add_run_action():
     k.key = k.key.encode('ascii', 'ignore')
     url = 'http://{0}.s3.amazonaws.com/{1}'.format(os.environ['S3_BUCKET_NAME'], k.key)
     url = url.encode('ascii', 'ignore')
+    print 'url is %s' % url
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
@@ -1463,10 +1467,11 @@ def add_run_action():
       er.notes = notes
       db.session.commit()
       #finished making edits, prepare to add a new run
-      
+      print 'finished making edits, prepare to add a new run'
     else:
       er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
       db.session.add(er)
+      print 'adding a new run'
     db.session.commit()
   except Exception,e:
     print str(e)
