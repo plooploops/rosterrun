@@ -2035,7 +2035,7 @@ def import_characters():
       for mc in mcs:
         [db.session.delete(q) for q in mc.Quests]
       
-      [db.session.delete(mc) for mc in mcs]
+      #[db.session.delete(mc) for mc in mcs]
       db.session.commit()
   
     #Update for quests
@@ -2070,9 +2070,26 @@ def import_characters():
       print 'from import quests %s' % cqs
       char_quests = MappedQuest.query.filter(MappedQuest.internal_name.in_(cqs)).all()
       print 'found quests %s' % char_quests
-      mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
-      mc.Quests = char_quests
-      db.session.add(mc)
+      
+      #find character in db
+      found_chars = MappedCharacter.query.filter(MappedCharacter.Name = c.Name).all()
+      if found_chars:
+        #edit a character mapping
+        print 'Import found same character.  Updating character information."
+        mc = found_chars[0]
+        mc.g_spreadsheet_id = g_s_id
+        mc.g_worksheet_id = g_w_id
+        mc.Class = c.Class
+        mc.Name = c.Name
+        mc.LastRun = c.LastRun
+        mc.PlayerName = c.PlayerName
+        mc.Present = c.Present
+        mc.Quests = char_quests
+      else:
+        print 'Import adding a new character."
+        mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
+        mc.Quests = char_quests
+        db.session.add(mc)
       
     db.session.commit()
     flash('Import finished')
