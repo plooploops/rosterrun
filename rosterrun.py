@@ -2072,7 +2072,7 @@ def import_characters():
       print 'found quests %s' % char_quests
       
       #find character in db
-      found_chars = MappedCharacter.query.filter(MappedCharacter.Name = c.Name).all()
+      found_chars = MappedCharacter.query.filter(MappedCharacter.Name == c.Name).all()
       if found_chars:
         #edit a character mapping
         print 'Import found same character.  Updating character information.'
