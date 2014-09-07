@@ -2075,7 +2075,7 @@ def import_characters():
       found_chars = MappedCharacter.query.filter(MappedCharacter.Name = c.Name).all()
       if found_chars:
         #edit a character mapping
-        print 'Import found same character.  Updating character information."
+        print 'Import found same character.  Updating character information.'
         mc = found_chars[0]
         mc.g_spreadsheet_id = g_s_id
         mc.g_worksheet_id = g_w_id
@@ -2086,7 +2086,7 @@ def import_characters():
         mc.Present = c.Present
         mc.Quests = char_quests
       else:
-        print 'Import adding a new character."
+        print 'Import adding a new character.'
         mc = MappedCharacter(g_s_id, g_w_id, c.Class, c.Name, c.Role.Name, c.LastRun, c.PlayerName, c.Present)
         mc.Quests = char_quests
         db.session.add(mc)
