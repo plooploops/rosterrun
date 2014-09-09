@@ -1529,6 +1529,11 @@ def modify_runs():
       dt_ids = [int(str(dt)) for dt in d_ids]
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
       db.session.delete(er)
+      
+      delete_run_credits = RunCredit.query.filter(RunCredit.run_id == None).all()
+      if len(delete_run_credits) > 0:
+        for drc in delete_run_credits:
+          db.session.delete(drc)
       db.session.commit()
       
       return redirect(url_for('runs'))
