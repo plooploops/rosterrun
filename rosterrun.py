@@ -1530,10 +1530,8 @@ def modify_runs():
       er = MappedRun.query.filter(MappedRun.id == dt_ids[0]).first()
       db.session.delete(er)
       
-      delete_run_credits = RunCredit.query.filter(RunCredit.run_id == None).all()
-      if len(delete_run_credits) > 0:
-        for drc in delete_run_credits:
-          db.session.delete(drc)
+      ClearEmptyPointsRuns()
+      
       db.session.commit()
       
       return redirect(url_for('runs'))
@@ -2801,6 +2799,8 @@ def RefreshMarketWithMobDrops():
   return drop_items
 
 def RecalculatePoints():
+  ClearEmptyPointsRuns()
+
   if marketscraper.cookies is None:
     loginScraper(m_user, m_password)
   #aggregate item drop rates with market 
@@ -2859,6 +2859,19 @@ def RecalculatePoints():
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
     CalculatePoints(run, run.mobs_killed, players, market_results, d) 
+
+def ClearEmptyPointsRuns():
+  delete_run_credits = RunCredit.query.filter(RunCredit.run_id == None).all()
+  if len(delete_run_credits) > 0:
+    for drc in delete_run_credits:
+      db.session.delete(drc)
+      
+  delete_points = MappedGuildPoint.query.filter(MappedGuildPoint.run_id == None).all()
+  if len(delete_points) > 0:
+    for dp in delete_points:
+      db.session.delete(dp)
+      
+  db.session.commit()
 
 def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   player_points = db.session.query(MappedPlayer.Name, MappedPlayer.Email, func.sum(MappedGuildPoint.amount)).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).group_by(MappedPlayer.Name).group_by(MappedPlayer.Email).all()[0]
