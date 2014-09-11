@@ -523,8 +523,8 @@ def viable_parties():
   checkCalculation()    
   
   try:
-    session['doc'] = request.form['gdocname'].strip()
     action = request.form['action']
+    session['doc'] = request.form['gdocname'].strip()
   except:
     print 'cannot find gdoc name'
   if action == u"Import":
