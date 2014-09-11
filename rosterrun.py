@@ -521,7 +521,6 @@ def viable_parties():
   availableParties = []
   chars = []
   checkCalculation()    
-  initializeQueue()
   
   try:
     session['doc'] = request.form['gdocname'].strip()
