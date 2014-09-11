@@ -2128,6 +2128,8 @@ def run_calculation():
         curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
         
+        initializeQueue()
+        
         calcjob = q.enqueue_call(func=run_scheduler_mapped_characters, args=(chars,), result_ttl=3000)
 	print 'running calc %s ' % calcjob.id
         session['job_id'] = calcjob.id
@@ -2151,10 +2153,9 @@ def run_calculation():
     
     #consider calculating from imported results if possible
     print 'trying to queue up call'
-    print q
-    if q is None:
-      print 'updating q'
-      q = Queue(connection=conn, default_timeout=3600)
+    
+    initializeQueue()
+    
     calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
     print 'running calc %s ' % calcjob.id
     session['job_id'] = calcjob.id
@@ -2246,6 +2247,13 @@ def reset():
     print 'error reseting'
     
   return redirect(url_for('show_entries')) 
+
+def initializeQueue():
+  if q is None:
+    q = Queue(connection=conn, default_timeout=3600)
+    print 'updating q'
+  else:
+    print 'q is fine'
 
 @app.route('/run_points_calculation', methods=['POST'])
 def run_points_calculation():
