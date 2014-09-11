@@ -2152,6 +2152,9 @@ def run_calculation():
     #consider calculating from imported results if possible
     print 'trying to queue up call'
     print q
+    if q is None:
+      print 'updating q'
+      q = Queue(connection=conn, default_timeout=3600)
     calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
     print 'running calc %s ' % calcjob.id
     session['job_id'] = calcjob.id
