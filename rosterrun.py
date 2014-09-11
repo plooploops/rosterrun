@@ -2249,11 +2249,11 @@ def reset():
   return redirect(url_for('show_entries')) 
 
 def initializeQueue():
-  if q is None:
+  if q:
+    print 'q is fine'
+  else:
     q = Queue(connection=conn, default_timeout=3600)
     print 'updating q'
-  else:
-    print 'q is fine'
 
 @app.route('/run_points_calculation', methods=['POST'])
 def run_points_calculation():
