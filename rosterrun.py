@@ -80,7 +80,7 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-q = Queue(connection=conn, default_timeout=3600)
+global q = Queue(connection=conn, default_timeout=3600)
 
 app.config['UPLOAD_FOLDER'] = 'tmp/'
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
