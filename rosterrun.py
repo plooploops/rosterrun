@@ -80,7 +80,6 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-global q 
 q = Queue(connection=conn, default_timeout=3600)
 
 app.config['UPLOAD_FOLDER'] = 'tmp/'
@@ -510,13 +509,6 @@ def show_entries():
   #map points back from characters and guild?
   
   return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec, edit_character_quests=ecq, mappedquests=quests)
-
-def initializeQueue():
-  if q:
-    print 'q is fine'
-  else:
-    q = Queue(connection=conn, default_timeout=3600)
-    print 'updating q'
 
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
@@ -2117,6 +2109,7 @@ def import_characters():
 @app.route('/runcalc', methods=['POST'])
 def run_calculation():
   try:
+    global q
     if not session.get('logged_in') or not session.get('user'):
       #abort(401)
       clear_session()
