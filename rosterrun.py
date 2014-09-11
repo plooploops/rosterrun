@@ -2150,6 +2150,8 @@ def run_calculation():
     session['g_worksheet_id'] = g_w_id
     
     #consider calculating from imported results if possible
+    print 'trying to queue up call'
+    print q
     calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
     print 'running calc %s ' % calcjob.id
     session['job_id'] = calcjob.id
