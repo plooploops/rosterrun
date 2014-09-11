@@ -6,7 +6,7 @@ from worker import conn
 
 import os
 from flask import Flask, jsonify
-from scheduler import run_scheduler_OAuth, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles, roleUnmapped
+from scheduler import run_scheduler_OAuth, run_scheduler_mapped_characters, scheduler, testConnectToSpreadsheetsServiceOAuth, Combination, initializeDataOAuth, Character, AllRoles, roleUnmapped
 from scheduler import Character, Role, Instance
 #import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
