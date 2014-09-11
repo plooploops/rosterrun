@@ -441,6 +441,7 @@ def show_entries():
   availableParties = []
   chars = []
   checkCalculation() 
+  
   ec = None
   
   try:
@@ -509,6 +510,13 @@ def show_entries():
   
   return render_template('show_entries.html', combinations=availableParties, characters=curChars, editcharacter=ec, edit_character_quests=ecq, mappedquests=quests)
 
+def initializeQueue():
+  if q:
+    print 'q is fine'
+  else:
+    q = Queue(connection=conn, default_timeout=3600)
+    print 'updating q'
+
 @app.route('/viable_parties', methods=['GET', 'POST'])
 def viable_parties():   
   if not session.get('logged_in') or not session.get('user'):
@@ -520,6 +528,7 @@ def viable_parties():
   availableParties = []
   chars = []
   checkCalculation()    
+  initializeQueue()
   
   try:
     session['doc'] = request.form['gdocname'].strip()
@@ -2128,8 +2137,7 @@ def run_calculation():
         curChars = MappedCharacter.query.filter_by(g_spreadsheet_id=session['g_spreadsheet_id'], g_worksheet_id=session['g_worksheet_id'])
         chars = [Character(c.PlayerName, c.Class, c.Name, c.Role, [q.name for q in c.Quests], c.LastRun, c.Present) for c in curChars]
         
-        initializeQueue()
-        
+        print q
         calcjob = q.enqueue_call(func=run_scheduler_mapped_characters, args=(chars,), result_ttl=3000)
 	print 'running calc %s ' % calcjob.id
         session['job_id'] = calcjob.id
@@ -2154,8 +2162,7 @@ def run_calculation():
     #consider calculating from imported results if possible
     print 'trying to queue up call'
     
-    initializeQueue()
-    
+    print q
     calcjob = q.enqueue_call(func=run_scheduler_OAuth, args=(credentials, session['doc'],), result_ttl=3000)
     print 'running calc %s ' % calcjob.id
     session['job_id'] = calcjob.id
@@ -2247,13 +2254,6 @@ def reset():
     print 'error reseting'
     
   return redirect(url_for('show_entries')) 
-
-def initializeQueue():
-  if q:
-    print 'q is fine'
-  else:
-    q = Queue(connection=conn, default_timeout=3600)
-    print 'updating q'
 
 @app.route('/run_points_calculation', methods=['POST'])
 def run_points_calculation():
