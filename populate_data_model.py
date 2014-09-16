@@ -11,6 +11,8 @@ from sqlalchemy.schema import (
     ForeignKeyConstraint,
     DropConstraint,
     )
+from sqlalchemy.ext.serializer import loads, dumps
+
 from datetime import datetime, timedelta
 
 from items_map import *
@@ -104,3 +106,16 @@ def clean_data_model():
   db.session.commit()
   db.create_all()
   db.session.commit()
+  
+def back_up_db():
+  meta = MetaData()
+  meta.reflect(bind=db.engine)
+  for table in reversed(meta.sorted_tables):
+    s_d = dumps(db.session.query(table).all())
+    #store the data somewhere?  maybe S3?
+  
+def restore_db():
+  meta = MetaData()
+  meta.reflect(bind=db.engine)
+  #use session.merge?
+  restore_q = loads(serialized_data, meta.metadata, db.session)

@@ -31,7 +31,7 @@ cards_to_coins = {
 #added naming and ordering for ET.
 instance_mob_item_mapping = [
   ['Sealed Shrine', 5, [(1929, 'Greater Demon Baphomet', [(6004, .15), (2514, .7), (1181, .5), (1181, .01), (2513, .7), (2327, .7), (1466, .9), (4147, .0003)])], sealedShrineQuestExternal],
-  ['Niddhoggs Nest', 4, [(2022, 'Nidhoggrs Shadow', [(6091, 1.0), (7444, 1.0), (2610, .5), (1484, .05), (1170, .05), (1417, .05), (2554, .1), (5467, .15)])], niddhoggQuestsExternal],
+  ['Niddhoggs Nest', 6, [(2022, 'Nidhoggrs Shadow', [(6091, 1.0), (7444, 1.0), (2610, .5), (1484, .05), (1170, .05), (1417, .05), (2554, .1), (5467, .15)])], niddhoggQuestsExternal],
   ['Ktullanax', 4, [(1779, 'Ktullanux', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)])], ktullanaxQuestExternal],
   ['Nameless - Beelzebub', 5, [(1874, 'Beelzebub', [(7562, 1.0), (616, .9), (2509, .2), (2111, .2), (617, 1.0), (607, 1.0), (4419, .0003)])], namelessIslandQuestsExternal],
   ['Nameless - Fallen Bishop', 3, [(1871, 'Fallen Bishop Hibram', [(523, 1.0), (1420, .05), (2677, .05), (1422, .05), (985, 1.0), (1614, .2), (18538, .04), (4441, .0003)])], namelessIslandQuestsExternal],
