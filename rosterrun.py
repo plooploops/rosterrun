@@ -1046,7 +1046,7 @@ def treasury():
     clear_session()
     return redirect(url_for('login'))
   
-  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all().order_by(MappedGuildTreasure.itemid)
   
   player_amount = get_points_status(session['user'])
   
@@ -1133,7 +1133,7 @@ def modify_treasure():
   
   db.session.commit()
   
-  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all().order_by(MappedGuildTreasure.itemid)
   
   player_amount = get_points_status(session['user'])
     
@@ -1255,7 +1255,7 @@ def add_treasure():
     
   db.session.commit()
   
-  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all()
+  treasures_transactions = db.session.query(MappedGuildTreasure, MappedGuildTransaction, MappedPlayer).outerjoin(MappedGuildTransaction).outerjoin(MappedPlayer).all().order_by(MappedGuildTreasure.itemid)
   
   player_amount = get_points_status(session['user'])
     
