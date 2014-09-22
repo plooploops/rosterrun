@@ -140,6 +140,11 @@ association_table = db.Table('run_to_characters', db.metadata,
     db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
 )
 
+borrow_association_table = db.Table('run_to_characters', db.metadata,
+    db.Column('run_id', db.Integer, ForeignKey('run.id')),
+    db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
+)
+
 #do we need a mapped instance type?
 
 class MappedInstance(db.Model):
@@ -195,6 +200,7 @@ class MappedRun(db.Model):
     name = db.Column(db.String(400))
     date = db.Column(db.DateTime)
     chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
+    borrow_chars = relationship("MappedCharacter", secondary=borrow_association_table, backref="runs")
     instance = relationship("MappedInstance", secondary=run_to_instance, backref="instance", uselist=False)
     success = db.Column(db.Boolean)
     notes = db.Column(db.String(400))
@@ -202,11 +208,12 @@ class MappedRun(db.Model):
     credits = relationship("RunCredit", backref="run")
     mobs_killed = relationship("MappedMob", secondary=run_to_mobs, backref="run")
     
-    def __init__(self, evidence_url, evidence_file_path, name, date, chars, instance, mobs_killed, success, notes):
+    def __init__(self, evidence_url, evidence_file_path, name, date, chars, borrow_chars, instance, mobs_killed, success, notes):
         self.evidence_url = evidence_url
         self.evidence_file_path = evidence_file_path
         self.date = date
         self.chars = chars
+        self.borrow_chars = borrow_chars
         self.name = name
         self.instance = instance
         self.mobs_killed = mobs_killed
@@ -1292,7 +1299,7 @@ def runs():
   
   mi = None
   mi = MappedInstance.query.all()[0]
-  er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+  er = MappedRun('', '', 'Test', datetime.now(), [], [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
   mrs = MappedRun.query.order_by(MappedRun.date).all()
@@ -1314,9 +1321,10 @@ def add_run():
     
   mi = None
   mi = MappedInstance.query.all()[0]
-  er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+  er = MappedRun('', '', 'Test', datetime.now(), [], [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
+  erc_borrow = [c.id for c in er.borrow_chars]
   mrs = MappedRun.query.order_by(MappedRun.date).all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
    
@@ -1325,7 +1333,7 @@ def add_run():
   s_run = int(str(mi.id))
   sr = [s_run]
     
-  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedinstances=mis)
+  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, edit_run_borrow_chars=erc_borrow, mappedcharacters=mc, mappedinstances=mis)
 
 @app.route('/add_run_action', methods=['GET', 'POST'])
 def add_run_action():
@@ -1362,6 +1370,7 @@ def add_run_action():
     file = request.files['nrunscreenshot']
     
     char_ids = request.form.getlist('cbsearch')
+    borrow_char_ids = request.form.getlist('cbborrow')
     mobs_ids = request.form.getlist("cbmobkill")
     mobs_ids = [int(si) for si in mobs_ids]
     mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
@@ -1376,10 +1385,14 @@ def add_run_action():
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
-    er = MappedRun('', '', name, run_date, chars, mi, mobs_killed, success, notes)
+    borrow_char_ids = [int(si) for si in borrow_char_ids]
+    borrow_chars = MappedCharacter.query.filter(MappedCharacter.id.in_(borrow_char_ids)).all()
+    
+    er = MappedRun('', '', name, run_date, chars, borrow_chars, mi, mobs_killed, success, notes)
     
     ermk = [mk.id for mk in er.mobs_killed]
     erc = [c.id for c in er.chars]
+    erc_borrow = [c.id for c in er.borrow_chars]
     
     mrs = MappedRun.query.order_by(MappedRun.date).all()
     mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
@@ -1389,7 +1402,7 @@ def add_run_action():
     
     sr = [s_run]
     
-    return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+    return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, edit_run_borrow_chars = erc_borrow, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
   
   mapped_instance = MappedInstance.query.filter(MappedInstance.id==s_run)
   if mapped_instance.count() == 0:
@@ -1412,6 +1425,7 @@ def add_run_action():
     name = ''
     file = request.files['nrunscreenshot']
     char_ids = request.form.getlist('cbsearch')
+    borrow_char_ids = request.form.getlist('cbborrow')
     mobs_ids = request.form.getlist("cbmobkill")
     print mobs_ids
     run_date = request.form['nrundate']
@@ -1457,6 +1471,9 @@ def add_run_action():
     char_ids = [int(si) for si in char_ids]
     chars = MappedCharacter.query.filter(MappedCharacter.id.in_(char_ids)).all()
     
+    borrow_char_ids = [int(si) for si in borrow_char_ids]
+    borrow_chars = MappedCharacter.query.filter(MappedCharacter.id.in_(borrow_char_ids)).all()
+    
     mobs_ids = [int(si) for si in mobs_ids]
     mobs_killed = MappedMob.query.filter(MappedMob.mob_id.in_(mobs_ids)).all()
     
@@ -1472,6 +1489,7 @@ def add_run_action():
       er.name = name
       er.date = run_date  
       er.chars = chars
+      er.borrow_chars = chars
       er.instance = mi
       er.mobs_killed = mobs_killed
       er.success = success
@@ -1480,7 +1498,7 @@ def add_run_action():
       #finished making edits, prepare to add a new run
       print 'finished making edits, prepare to add a new run'
     else:
-      er = MappedRun(url, k.key, name, run_date, chars, mi, mobs_killed, success, notes)
+      er = MappedRun(url, k.key, name, run_date, chars, borrow_chars, mi, mobs_killed, success, notes)
       db.session.add(er)
       print 'adding a new run'
     db.session.commit()
@@ -1544,7 +1562,7 @@ def modify_runs():
       mm = er.instance.mobs
       mi = er.instance
     else:
-      er = MappedRun('', '', 'Test', datetime.now(), [], mi, mi.mobs, True, 'Got good drops')
+      er = MappedRun('', '', 'Test', datetime.now(), [], [], mi, mi.mobs, True, 'Got good drops')
       mm = er.instance.mobs
       mi = er.instance
       
@@ -1555,6 +1573,7 @@ def modify_runs():
   
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
+  erc_borrow = [c.id for c in er.borrow_chars]
   mrs = MappedRun.query.order_by(MappedRun.date).all()
   mc = MappedCharacter.query.order_by(MappedCharacter.Class, MappedCharacter.PlayerName, MappedCharacter.Name).all()  
   mis = MappedInstance.query.order_by(MappedInstance.name).all()
@@ -1564,7 +1583,7 @@ def modify_runs():
   
   mm = sorted(mm, key=lambda k: [int(c) if c.isdigit() else c.lower() for c in re.split('([0-9]+)', k['mob_name'])]) 
   
-  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
+  return render_template('add_run.html', selected_run = sr, runs=mrs, editrun=er, edit_run_mobs_killed=ermk, edit_run_chars=erc, edit_run_borrow_chars = erc_borrow, mappedcharacters=mc, mappedmobs=mm, mappedinstances=mis)
 
 @app.route('/points', methods=['GET', 'POST'])
 def points():
@@ -2653,7 +2672,7 @@ def refreshMarket(search_items = {}):
   item_results = marketscraper.get_scrape_results(search_items)
   return item_results    
   
-def CalculatePoints(run = None, mobs_killed = [], players = [], market_results = {}, d = datetime.now()): 
+def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players = [], market_results = {}, d = datetime.now()): 
   #get relevant data for run 
   #assume that players conform to Character class
   runname = run.instance.name
@@ -2716,7 +2735,8 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], market_results =
     #if this is a new run
     mapped_points = []
     for p in not_found_players_query:
-      rc = RunCredit(1.0)
+      factor = .95 if p.id in borrow_players else 1.0
+      rc = RunCredit(factor)
       mgp = MappedGuildPoint(rc.factor * points_per_player)
       print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
@@ -2864,7 +2884,11 @@ def RecalculatePoints():
   for run in relevant_runs_query:
     players = [c.mappedplayer_id for c in run.chars] 
     players = list(set(players))
-    CalculatePoints(run, run.mobs_killed, players, market_results, d) 
+    
+    borrow_players = [c.mappedplayer_id for c in run.borrow_chars] 
+    borrow_players = list(set(borrow_players))
+    
+    CalculatePoints(run, run.mobs_killed, players, borrow_players, market_results, d) 
 
 def ClearEmptyPointsRuns():
   delete_run_credits = RunCredit.query.filter(RunCredit.run_id == None).all()

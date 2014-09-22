@@ -36,6 +36,7 @@
         <table class="table table-striped mappedcharacter">
           <tr>
             <th>Part of Run</th>
+            <th>Borrowed Guild Gear?</th>
             <th>Class</th>
             <th>Player Name</th>
             <th>Name</th>
@@ -43,6 +44,7 @@
           {% for mc in mappedcharacters %}
     	    <tr>
     	      <td><input {% if mc.id in edit_run_chars %} checked="True" {% endif %} type=checkbox name=cbsearch value="{{ mc.id }}"></td>
+    	      <td><input {% if mc.id in edit_run_borrow_chars %} checked="True" {% endif %} type=checkbox name=cbborrow value="{{ mc.id }}"></td>
     	      <td>{{ mc.Class|safe }}</td>
     	      <td>{{ mc.PlayerName|safe }}</td>
     	      <td>{{ mc.Name|safe }}</td>

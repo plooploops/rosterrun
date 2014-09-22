@@ -11,6 +11,7 @@
     <th>Mobs Killed</th>
     <th>Screenshot</th>
     <th class="hidden-xs hidden-sm">Characters</th>
+    <th class="hidden-xs hidden-sm">Borrowed Gear?</th>
     <th>Date</th>
     <th class="hidden-xs hidden-sm">Success</th>
     <th class="hidden-xs hidden-sm">Notes</th>
@@ -29,6 +30,11 @@
         {% for c in r.chars %}
 	      <li>{{ c.Name }} {{ c.Class }}
         {% endfor %}
+      </td>
+      <td class="hidden-xs hidden-sm">
+	    {% for c in r.borrow_chars %}
+	      <li>{{ c.Name }} {{ c.Class }}
+	    {% endfor %}
       </td>
       <td>{{ r.date|safe }}</td>
       <td class="hidden-xs hidden-sm">{{ r.success|safe }}</td>
