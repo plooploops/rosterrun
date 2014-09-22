@@ -2719,7 +2719,8 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
     run.points = []
     for rr in relevant_runs:
       rc, mp, mgp = rr[0], rr[1], rr[2]
-      mgp.amount = rc.factor * points_per_player
+      borrow_factor = .95 if mp.id in borrow_players else 1.0
+      mgp.amount = rc.factor * borrow_factor * points_per_player
       print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
   
@@ -2735,9 +2736,9 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
     #if this is a new run
     mapped_points = []
     for p in not_found_players_query:
-      factor = .95 if p.id in borrow_players else 1.0
-      rc = RunCredit(factor)
-      mgp = MappedGuildPoint(rc.factor * points_per_player)
+      borrow_factor = .95 if p.id in borrow_players else 1.0
+      rc = RunCredit(1.0)
+      mgp = MappedGuildPoint(rc.factor * borrow_factor * points_per_player)
       print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
