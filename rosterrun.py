@@ -141,8 +141,8 @@ association_table = db.Table('run_to_characters', db.metadata,
 )
 
 borrow_association_table = db.Table('run_to_borrow_characters', db.metadata,
-    db.Column('run_id', db.Integer, ForeignKey('run.id')),
-    db.Column('guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
+    db.Column('borrow_run_id', db.Integer, ForeignKey('run.id')),
+    db.Column('borrow_guild_characters_id', db.Integer, ForeignKey('guild_characters.id'))
 )
 
 #do we need a mapped instance type?
