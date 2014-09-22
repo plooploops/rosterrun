@@ -1489,7 +1489,7 @@ def add_run_action():
       er.name = name
       er.date = run_date  
       er.chars = chars
-      er.borrow_chars = chars
+      er.borrow_chars = borrow_chars
       er.instance = mi
       er.mobs_killed = mobs_killed
       er.success = success
