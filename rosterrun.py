@@ -200,7 +200,7 @@ class MappedRun(db.Model):
     name = db.Column(db.String(400))
     date = db.Column(db.DateTime)
     chars = relationship("MappedCharacter", secondary=association_table, backref="runs")
-    borrow_chars = relationship("MappedCharacter", secondary=borrow_association_table, backref="runs")
+    borrow_chars = relationship("MappedCharacter", secondary=borrow_association_table, backref="borrow_runs")
     instance = relationship("MappedInstance", secondary=run_to_instance, backref="instance", uselist=False)
     success = db.Column(db.Boolean)
     notes = db.Column(db.String(400))
