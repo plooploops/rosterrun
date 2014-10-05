@@ -2722,11 +2722,11 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
     run.points = []
     for player_id in player_ids:
       rcs = [rc for rc in run_credits if rc.player_id == player_id][0]
-      print 'RC player ID: {0} current player ID: {1} RC run ID: {2} current run ID: {3}'.format(rcs.player_id, player_id, rcs.run_id, run_id)
+      print 'RC player ID: {0} current player ID: {1} RC run ID: {2} current run ID: {3}'.format(rcs.player_id, player_id, rcs.run_id, run.id)
       mp = [mp for mp in mps if mp.id == player_id][0]
       print 'Player ID: {0} Player Name {1}'.format(mp.id, mp.Name)
       mgp = [mapped_guild_point for mapped_guild_point in mapped_guild_points if mapped_guild_point.player_id == player_id][0]
-      print 'MGP player ID: {0} current player ID: {1} MGP run ID: {2} current run ID: {3}'.format(mgp.player_id, player_id, mgp.run_id, run_id)
+      print 'MGP player ID: {0} current player ID: {1} MGP run ID: {2} current run ID: {3}'.format(mgp.player_id, player_id, mgp.run_id, run.id)
       borrow_factor = .95 if mp.id in borrow_players else 1.0
       mgp.amount = rc.factor * borrow_factor * points_per_player * success_factor
       print 'Assign to: {0} Run credit factor: {1} Borrow factor: {2} points per player: {3} success factor: {4}'.format(mp.Name, rc.factor, borrow_factor, points_per_player, success_factor)
