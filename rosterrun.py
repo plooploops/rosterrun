@@ -2709,7 +2709,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
   player_ids = [p.id for p in mps]
-  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
+  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor >= 0)
   mg = MappedGuild.query.one()
   mapped_points = []
   rrq = relevant_runs_query.filter(MappedPlayer.id.in_(player_ids))
@@ -2726,7 +2726,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
       print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
   
-  check_existing = db.session.query(RunCredit, MappedPlayer).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor > 0)
+  check_existing = db.session.query(RunCredit, MappedPlayer).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor >= 0)
   ces = check_existing.filter(MappedPlayer.id.in_(player_ids))
   found_players = [ce[1].id for ce in ces.all()]
   found_players = list(set(found_players))
@@ -2957,15 +2957,15 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   db.session.commit()
   
   #calc points
-  mgp_from_player = MappedGuildPoint(-1 * original_price)
-  mappedPlayer.Points.append(mgp_from_player)
-  print 'Adding {0} points to player {1}'.format(mgp_from_player.amount, mappedPlayer.Name)
+  #mgp_from_player = MappedGuildPoint(-1 * original_price)
+  #mappedPlayer.Points.append(mgp_from_player)
+  #print 'Adding {0} points to player {1}'.format(mgp_from_player.amount, mappedPlayer.Name)
   
   #need to link to guild transaction but not to run
   mgt = MappedGuildTransaction('purchase', datetime.now())
   mgt.player_id = mappedPlayer.id
   mappedPlayer.Transactions.append(mgt)
-  mgp_from_player.guildtransaction = mgt  
+  #mgp_from_player.guildtransaction = mgt  
   mappedGuildTreasure.guildtransaction = mgt
       
   mg = MappedGuild.query.one()
