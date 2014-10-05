@@ -2922,11 +2922,8 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   #0.0 - 0 0.0 - 0 .25 - 1
   
   original_price = price
-  #calc points
-  mgp_from_player = MappedGuildPoint(-1 * original_price)
-  mappedPlayer.Points.append(mgp_from_player)
   
-  print 'Adding {0} points to player {1}'.format(mgp_from_player.amount, mappedPlayer.Name)
+  
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
     if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
@@ -2956,7 +2953,12 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       price -= remaining_amount
     
   db.session.commit()
-    
+  
+  #calc points
+  mgp_from_player = MappedGuildPoint(-1 * original_price)
+  mappedPlayer.Points.append(mgp_from_player)
+  print 'Adding {0} points to player {1}'.format(mgp_from_player.amount, mappedPlayer.Name)
+  
   #need to link to guild transaction but not to run
   mgt = MappedGuildTransaction('purchase', datetime.now())
   mgt.player_id = mappedPlayer.id
@@ -2966,7 +2968,6 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       
   mg = MappedGuild.query.one()
   mg.guildTransactions.append(mgt)
-  mg.guildPoints.append(mgp)
       
   db.session.commit()
   
