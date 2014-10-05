@@ -1298,7 +1298,7 @@ def runs():
     return redirect(url_for('login'))
   
   mi = None
-  mi = MappedInstance.query.all()[0]
+  mi = MappedInstance.query.all()[-1]
   er = MappedRun('', '', 'Test', datetime.now(), [], [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
@@ -1320,7 +1320,7 @@ def add_run():
     return redirect(url_for('login'))
     
   mi = None
-  mi = MappedInstance.query.all()[0]
+  mi = MappedInstance.query.all()[-1]
   er = MappedRun('', '', 'Test', datetime.now(), [], [], mi, mi.mobs, True, 'Got good drops')
   ermk = [mk.id for mk in er.mobs_killed]
   erc = [c.id for c in er.chars]
@@ -1363,7 +1363,7 @@ def add_run_action():
     if val is not None:
       mi = MappedInstance.query.filter(MappedInstance.id==val).all()[0]
     else: 
-      mi = MappedInstance.query.all()[0]
+      mi = MappedInstance.query.all()[-1]
     
     add_runs = request.form.getlist("add")
     name = ''
@@ -1517,7 +1517,7 @@ def modify_runs():
   
   delete_id = None
   edit_id = None
-  mi = MappedInstance.query.all()[0]
+  mi = MappedInstance.query.all()[-1]
   mm = mi.mobs
   
   val = None
@@ -2675,6 +2675,7 @@ def refreshMarket(search_items = {}):
 def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players = [], market_results = {}, d = datetime.now()): 
   #get relevant data for run 
   #assume that players conform to Character class
+  success_factor = 1 if run.success == True else 0
   runname = run.instance.name
   mobs_killed = run.mobs_killed
   print 'calculating points for %s ' % runname
@@ -2720,7 +2721,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
     for rr in relevant_runs:
       rc, mp, mgp = rr[0], rr[1], rr[2]
       borrow_factor = .95 if mp.id in borrow_players else 1.0
-      mgp.amount = rc.factor * borrow_factor * points_per_player
+      mgp.amount = rc.factor * borrow_factor * points_per_player * success_factor
       print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
   
@@ -2738,7 +2739,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
     for p in not_found_players_query:
       borrow_factor = .95 if p.id in borrow_players else 1.0
       rc = RunCredit(1.0)
-      mgp = MappedGuildPoint(rc.factor * borrow_factor * points_per_player)
+      mgp = MappedGuildPoint(rc.factor * borrow_factor * points_per_player * success_factor)
       print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
@@ -2921,6 +2922,11 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
   #0.0 - 0 0.0 - 0 .25 - 1
   
   original_price = price
+  #calc points
+  mgp_from_player = MappedGuildPoint(-1 * original_price)
+  mappedPlayer.Points.append(mgp_from_player)
+  
+  print 'Adding {0} points to player {1}'.format(mgp_from_player.amount, mappedPlayer.Name)
   run_credit_points = db.session.query(RunCredit, MappedGuildPoint, MappedPlayer.Email, MappedPlayer.Name).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedPlayer.id == mappedPlayer.id).filter(RunCredit.factor > 0).filter(MappedRun.success == True).all()
   for rcp in run_credit_points:
     if float(rcp[0].factor) == 0 or float(rcp[1].amount) == 0:
@@ -2950,21 +2956,17 @@ def BuyTreasure(mappedGuildTreasure, mappedPlayer):
       price -= remaining_amount
     
   db.session.commit()
-  
-  #calc points
-  mgp_from_player = MappedGuildPoint(-1 * original_price)
-  mappedPlayer.Points.append(mgp_from_player)
     
   #need to link to guild transaction but not to run
   mgt = MappedGuildTransaction('purchase', datetime.now())
   mgt.player_id = mappedPlayer.id
   mappedPlayer.Transactions.append(mgt)
-  mgp_from_player.guildtransaction = mgt
-  
+  mgp_from_player.guildtransaction = mgt  
   mappedGuildTreasure.guildtransaction = mgt
       
   mg = MappedGuild.query.one()
   mg.guildTransactions.append(mgt)
+  mg.guildPoints.append(mgp)
       
   db.session.commit()
   
