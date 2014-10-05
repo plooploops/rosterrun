@@ -2709,7 +2709,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
   player_ids = [p.id for p in mps]
-  
+  player_ids = list(set(player_ids))
   #look at run credits on player by player basis
   run_credits = RunCredit.query.filter(RunCredit.run_id==run.id).filter(RunCredit.player_id.in_(player_ids)).all()
   mapped_guild_points = MappedGuildPoint.query.filter(MappedGuildPoint.run_id == run.id).filter(MappedGuildPoint.player_id.in_(player_ids)).all()
@@ -2726,7 +2726,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
       mgp = [mapped_guild_point for mapped_guild_point in mapped_guild_points if mapped_guild_point.player_id == player_id][0]
       borrow_factor = .95 if mp.id in borrow_players else 1.0
       mgp.amount = rc.factor * borrow_factor * points_per_player * success_factor
-      print 'Run credit factor: {0} Borrow factor: {1} points per player: {2} success factor: {3}'.format(rc.factor, borrow_factor, points_per_player, success_factor)
+      print 'Assign to: {0} Run credit factor: {1} Borrow factor: {2} points per player: {3} success factor: {4}'.format(mp.Name, rc.factor, borrow_factor, points_per_player, success_factor)
       print 'existing assigning %s' % mgp.amount
       run.points.append(mgp)
   
@@ -2745,7 +2745,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
       borrow_factor = .95 if p.id in borrow_players else 1.0
       rc = RunCredit(1.0)
       mgp = MappedGuildPoint(rc.factor * borrow_factor * points_per_player * success_factor)
-      print 'Run credit factor: {0} Borrow factor: {1} points per player: {2} success factor: {3}'.format(rc.factor, borrow_factor, points_per_player, success_factor)
+      print 'Assign to: {0} Run credit factor: {1} Borrow factor: {2} points per player: {3} success factor: {4}'.format(mp.Name, rc.factor, borrow_factor, points_per_player, success_factor)
       print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
