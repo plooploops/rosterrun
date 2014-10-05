@@ -2709,17 +2709,21 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
   #if this is reassignment
   mps = MappedPlayer.query.filter(MappedPlayer.id.in_(players)).all()
   player_ids = [p.id for p in mps]
-  relevant_runs_query = db.session.query(RunCredit, MappedPlayer, MappedGuildPoint, MappedRun).join(MappedPlayer).join(MappedGuildPoint).join(MappedRun).filter(MappedRun.success == True).filter(MappedRun.id==run.id).filter(RunCredit.factor >= 0)
+  
+  #look at run credits on player by player basis
+  run_credits = RunCredit.query.filter(RunCredit.run_id==run.id).filter(RunCredit.player_id.in_(player_ids)).all()
+  mapped_guild_points = MappedGuildPoint.query.filter(MappedGuildPoint.run_id == run.id).filter(MappedGuildPoint.player_id.in_(player_ids)).all()
+  
   mg = MappedGuild.query.one()
   mapped_points = []
-  rrq = relevant_runs_query.filter(MappedPlayer.id.in_(player_ids))
-  if rrq.count() > 0:
+  if len(run_credits) > 0 and len(mapped_guild_points) > 0:
     print 'found relevant runs'
-    relevant_runs = rrq.all()
     
     run.points = []
-    for rr in relevant_runs:
-      rc, mp, mgp = rr[0], rr[1], rr[2]
+    for player_id in player_ids:
+      rcs = [rc for rc in run_credits if rc.player_id == player_id][0]
+      mp = [mp for mp in mps if mp.id == player_id][0]
+      mgp = [mapped_guild_point for mapped_guild_point in mapped_guild_points if mapped_guild_point.player_id == player_id][0]
       borrow_factor = .95 if mp.id in borrow_players else 1.0
       mgp.amount = rc.factor * borrow_factor * points_per_player * success_factor
       print 'Run credit factor: {0} Borrow factor: {1} points per player: {2} success factor: {3}'.format(rc.factor, borrow_factor, points_per_player, success_factor)
