@@ -2748,7 +2748,7 @@ def CalculatePoints(run = None, mobs_killed = [], players = [], borrow_players =
       borrow_factor = .95 if p.id in borrow_players else 1.0
       rc = RunCredit(1.0)
       mgp = MappedGuildPoint(rc.factor * borrow_factor * points_per_player * success_factor)
-      print 'Assign to: {0} Run credit factor: {1} Borrow factor: {2} points per player: {3} success factor: {4}'.format(mp.Name, rc.factor, borrow_factor, points_per_player, success_factor)
+      print 'Assign to: {0} Run credit factor: {1} Borrow factor: {2} points per player: {3} success factor: {4}'.format(p.Name, rc.factor, borrow_factor, points_per_player, success_factor)
       print 'new assigning %s' % mgp.amount
       mapped_points.append(mgp)
       p.Points.append(mgp)
