@@ -1177,6 +1177,11 @@ def add_treasure():
     suggestedMinMarketPrice = request.form['nitemminprice']
     suggestedMaxMarketPrice = request.form['nitemmaxprice']
     suggestedMedianMarketPrice = request.form['nitemmedianprice']
+    
+    #remove punctuation
+    suggestedMinMarketPrice = ''.join(e for e in suggestedMinMarketPrice if e.isalnum())
+    suggestedMaxMarketPrice = ''.join(e for e in suggestedMaxMarketPrice if e.isalnum())
+    suggestedMedianMarketPrice = ''.join(e for e in suggestedMedianMarketPrice if e.isalnum())
   
     if suggestedMinMarketPrice:
       suggestedMinMarketPrice = int(str(suggestedMinMarketPrice))
