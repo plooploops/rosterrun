@@ -163,7 +163,12 @@ def update_guild_treasure_with_market():
   for u in unpurchased_guild_treasure:
     k = u.itemid
     if market_results.has_key(k):
-      u.minMarketPrice = market_results[k]
+      price = market_results[k]
+      u.minMarketPrice = price
+      if price > u.maxMarketPrice:
+        u.maxMarketPrice = price
+      if price > u.medianMarketPrice:
+        u.medianMarketPrice = price
   
   db.session.commit()
   print 'done updating unpurchased guild treasure with market value if available'
