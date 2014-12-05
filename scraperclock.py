@@ -1,6 +1,8 @@
 from apscheduler.scheduler import Scheduler
 import logging
 from marketscrape import *
+from marketvalue import *
+from mathutility import *
 from items_map import *
 
 from flask import Flask
@@ -120,9 +122,51 @@ def retrieve_market_scrape():
       print 'removing job results'
       currentjob.delete()
       print 'finished deleting job results'
+      
+      update_guild_treasure_with_market()
   else: 
     print 'current job is not ready %s' % job_id
 
+def update_guild_treasure_with_market():
+  print 'updating unpurchased guild treasure with market value if available'
+  #get unpurchased treasures
+  purchase_treasures_result = db.session.query(MappedGuildTransaction.guildtreasure_id).filter(MappedGuildTransaction.transType == u'purchase').all()
+  purchase_treasures = [i[0] for i in purchase_treasures]
+  unpurchased_guild_treasure = MappedGuildTreasure.query.filter(not_(MappedGuildTreasure.id.in_(purchase_treasures))).all()
+  
+  unpurchased_guild_treasure_ids = [u.itemid for u in unpurchased_guild_treasure]
+  
+  #get market results for unpurchased treasure
+  d = datetime.now()
+  latest_item = MappedMarketResult.query.order_by(MappedMarketResult.date.desc()).all()
+  if len(latest_item) > 0:
+    d = latest_item[0].date
+  
+  market_results = db.session.query(MappedMarketResult.itemid, func.min(MappedMarketResult.price)).filter(MappedMarketResult.itemid.in_(unpurchased_guild_treasure_ids)).filter(MappedMarketResult.date >= d).group_by(MappedMarketResult.itemid).all()
+  
+  #convert to a dictionary
+  market_results_d = {}
+  for mr in market_results:
+    if market_results_d.has_key(mr[0]):
+      market_results_d[mr[0]].append(mr[1])
+    else:
+      market_results_d[mr[0]] = [mr[1]]
+    
+  for k,v in market_results:
+    market_results_d[k].append(v)
+  
+  #now dictionary
+  market_results = min_values(market_results_d)
+  
+  #assign market results to unpurchased treasure
+  for u in unpurchased_guild_treasure:
+    k = u.itemid
+    if market_results.has_key(k):
+      u.minMarketPrice = market_results[k]
+  
+  db.session.commit()
+  print 'done updating unpurchased guild treasure with market value if available'
+  
 @sched.cron_schedule(day_of_week='sun', hour=5, minute=30)
 def clean_up_market():
   #need to clean out database until expand number of rows.
