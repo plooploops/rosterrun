@@ -131,7 +131,7 @@ def update_guild_treasure_with_market():
   print 'updating unpurchased guild treasure with market value if available'
   #get unpurchased treasures
   purchase_treasures_result = db.session.query(MappedGuildTransaction.guildtreasure_id).filter(MappedGuildTransaction.transType == u'purchase').all()
-  purchase_treasures = [i[0] for i in purchase_treasures]
+  purchase_treasures = [i[0] for i in purchase_treasures_result]
   unpurchased_guild_treasure = MappedGuildTreasure.query.filter(not_(MappedGuildTreasure.id.in_(purchase_treasures))).all()
   
   unpurchased_guild_treasure_ids = [u.itemid for u in unpurchased_guild_treasure]
