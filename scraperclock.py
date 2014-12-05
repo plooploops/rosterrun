@@ -8,7 +8,7 @@ from items_map import *
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
-from rosterrun import q, db, MappedMarketResult, MappedMarketSearch
+from rosterrun import q, db, MappedMarketResult, MappedMarketSearch, MappedGuildTransaction, MappedGuildTreasure
 
 import sys
 
