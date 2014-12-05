@@ -74,8 +74,8 @@ def update_search_list():
 @sched.interval_schedule(minutes=1)
 def retrieve_market_scrape():
   row_count = MappedMarketResult.query.count()
-  #check row count to clean up market
-  if len(latest_item) >= 9000:
+  #check row count to clean up market if it's over 9000 (dbz?)
+  if row_count >= 9000:
     clean_up_market()
   
   #retrieve results from redis queue
