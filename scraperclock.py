@@ -7,6 +7,7 @@ from items_map import *
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import distinct, func, not_, or_, Table, Column, ForeignKey, desc
 
 from rosterrun import q, db, MappedMarketResult, MappedMarketSearch, MappedGuildTransaction, MappedGuildTreasure
 
