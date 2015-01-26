@@ -1021,6 +1021,22 @@ def market_history():
   
   return render_template('market_history.html', marketsearchs=ms, marketresults=mrs, pricechart=pricechart, volumechart=volumechart)
 
+@app.route('/entire_market', methods=['GET', 'POST'])
+def entire_market():
+  if not session.get('logged_in') or not session.get('user'):
+    #abort(401)
+    clear_session()
+    return redirect(url_for('login'))
+  
+  time_delta = datetime.now() - timedelta(weeks=4)
+  
+  mr = MappedMarketResult.query.order_by(MappedMarketResult.itemid.asc()).all()
+  
+  #format data
+  mrs = [MarketResult(m.itemid, m.name, m.cards.split(','), m.price, m.amount, m.title, m.vendor, m.coords, m.date) for m in mr]
+    
+  return render_template('entire_market.html', marketresults=mrs)
+
 @app.route('/market_search_list', methods=['GET', 'POST'])
 def market_search_list():
   if not session.get('logged_in') or not session.get('user'):
