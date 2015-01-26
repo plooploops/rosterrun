@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <h1 class="page-header">Entire Market History</h1>
+    <p>This will contain up to 4 weeks worth of market history.</p>
+    <form method=post action="{{ url_for('item_history') }}" class=item-history>
+    <h2 class="sub-header">Details</h2>
+	<div class="table-responsive">
+    <table class="table table-striped marketresult">
+    <thead>
+	  <tr>
+	    <th>Slotted with</th>
+	    <th>Price</th>
+	    <th>Amount</th>
+	    <th class="hidden-xs hidden-sm">Vendor</th>
+	    <th class="hidden-xs hidden-sm">Location</th>
+	    <th>Date</th>
+	  </tr>
+	</thead>
+    {% for group in marketresults|groupby('name') %}
+      <tr><td colspan="6">{{ group.grouper|safe }}</td></tr>
+      {% for mr in group.list %}
+        <tr>
+        <td>
+        {% for c in mr.cards %}
+	      <li>{{ c|safe }}
+	    {% endfor %}
+	    </td>
+	    <td>{{ "{:,.0f}".format(mr.price)|safe }}</td>
+	    <td>{{ "{:,.0f}".format(mr.amount)|safe }}</td>
+	    <td class="hidden-xs hidden-sm">{{ mr.vendor|safe }}</td>
+	    <td class="hidden-xs hidden-sm">{{ mr.coords|replace(".","")|safe }}</td>
+        <td>{{ mr.date|safe }}</td>
+        </tr>
+      {% endfor %}
+    {% endfor %}
+    </table>
+    </div>
+  {% endif %}
+{% endblock %}
