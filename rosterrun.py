@@ -2389,8 +2389,8 @@ def oauth2callback():
       #Store credentials
       credentials = flow.step2_exchange(codeValue)
       user = users.get_current_user()
-      storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
-      storage.put(credentials)    
+      #storage = StorageByKeyName(CredentialsModel, str(user), 'credentials')
+      #storage.put(credentials)    
       session['logged_in'] = True
       
       flash('You were logged in')
@@ -2401,7 +2401,8 @@ def oauth2callback():
       
       #credentials stored
       return redirect(url_for('show_entries'))
-  except: 
+  except Exception,e: 
+    print str(e)
     print 'error with oauth2callback'
 
 @app.route('/user_profile', methods=['GET', 'POST'])
