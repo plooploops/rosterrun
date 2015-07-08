@@ -33,7 +33,7 @@ from oauth2client.appengine import CredentialsProperty
 from credentialsmodel import CredentialsModel
 from google.appengine.api import users
 from oauth2client.appengine import StorageByKeyName
-import datastorestub
+#import datastorestub
 
 from marketscrape import *
 from marketvalue import *
